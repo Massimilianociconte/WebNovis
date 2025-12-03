@@ -1,4 +1,6 @@
-/* ===== RESET & BASE ===== */
+/* ===== WEBNOVIS DESIGN SYSTEM 2.0 ===== */
+/* All'Avanguardia - Premium Web Agency */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,35 +8,214 @@
 }
 
 :root {
-    /* Palette Lussuosa - Oro & Rosso Elegante */
+    /* ========== COLOR TOKENS ========== */
+    /* Oro Premium - Colore principale */
     --primary: #b8860b;
-    /* Oro scuro elegante */
     --primary-dark: #8b6914;
-    /* Oro bronzo */
     --primary-light: #daa520;
-    /* Oro chiaro */
+    --primary-glow: rgba(184, 134, 11, 0.3);
+    
+    /* Bordeaux Accent - Colore secondario */
     --secondary: #8b1538;
-    /* Rosso bordeaux profondo */
+    --secondary-light: #a91d47;
+    --secondary-glow: rgba(139, 21, 56, 0.3);
+    
+    /* Accent */
     --accent: #cd853f;
-    /* Oro rosa */
-    --dark: #0d0d0d;
-    /* Nero assoluto */
-    --dark-light: #1a1a1a;
-    /* Nero carbone */
+    --accent-light: #deb887;
+    
+    /* Dark Mode Base */
+    --dark: #0a0a0a;
+    --dark-light: #141414;
+    --dark-medium: #1a1a1a;
+    --dark-surface: #222222;
+    
+    /* Grigi */
+    --gray-900: #1a1a1a;
+    --gray-800: #2d2d2d;
+    --gray-700: #404040;
+    --gray-600: #525252;
+    --gray-500: #6b6b6b;
+    --gray-400: #8a8a8a;
+    --gray-300: #a3a3a3;
+    --gray-200: #c4c4c4;
+    --gray-100: #e5e5e5;
     --gray: #6b6b6b;
-    /* Grigio caldo */
     --gray-light: #c4b5a0;
-    /* Beige chiaro */
+    
+    /* Testo */
+    --text-primary: #faf8f3;
+    --text-secondary: #c4b5a0;
+    --text-muted: #8a8a8a;
     --white: #faf8f3;
-    /* Bianco caldo */
+    
+    /* ========== GRADIENT TOKENS ========== */
+    --gradient-gold: linear-gradient(135deg, #b8860b 0%, #daa520 50%, #cd853f 100%);
+    --gradient-luxury: linear-gradient(135deg, #b8860b 0%, #8b1538 100%);
+    --gradient-dark: linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    --gradient-text: linear-gradient(90deg, #daa520 0%, #b8860b 50%, #cd853f 100%);
     --gradient-1: linear-gradient(135deg, #b8860b 0%, #8b1538 100%);
     --gradient-2: linear-gradient(135deg, #8b1538 0%, #b8860b 100%);
     --gradient-3: linear-gradient(135deg, #daa520 0%, #cd853f 100%);
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    
+    /* ========== TYPOGRAPHY TOKENS ========== */
+    --font-display: 'Inter', -apple-system, sans-serif;
+    --font-heading: 'Inter', -apple-system, sans-serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    
+    /* Fluid Typography */
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+    --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+    --text-3xl: clamp(1.875rem, 1.5rem + 2vw, 2.5rem);
+    --text-4xl: clamp(2.25rem, 1.8rem + 2.5vw, 3.5rem);
+    --text-5xl: clamp(3rem, 2rem + 4vw, 5rem);
+    --text-6xl: clamp(3.75rem, 2.5rem + 5vw, 6rem);
+    
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.1;
+    --leading-snug: 1.25;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    
+    /* Letter Spacing */
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+    
+    /* ========== SPACING TOKENS (8px Grid) ========== */
+    --space-0: 0;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+    
+    /* Section Spacing */
+    --section-sm: clamp(3rem, 5vw, 5rem);
+    --section-md: clamp(5rem, 8vw, 8rem);
+    --section-lg: clamp(6rem, 10vw, 10rem);
+    
+    /* ========== BORDER RADIUS TOKENS ========== */
+    --radius-none: 0;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-3xl: 2rem;
+    --radius-full: 9999px;
+    
+    /* ========== SHADOW TOKENS ========== */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    --shadow-glow-gold: 0 0 30px rgba(184, 134, 11, 0.3), 0 0 60px rgba(184, 134, 11, 0.1);
+    --shadow-glow-bordeaux: 0 0 30px rgba(139, 21, 56, 0.3), 0 0 60px rgba(139, 21, 56, 0.1);
+    
+    /* ========== ANIMATION TOKENS ========== */
+    --duration-instant: 50ms;
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    --duration-slower: 700ms;
+    
+    /* Easings */
+    --ease-linear: linear;
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ========== PREMIUM ANIMATIONS ========== */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: var(--shadow-glow-gold); }
+    50% { box-shadow: 0 0 50px rgba(184, 134, 11, 0.5); }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ========== UTILITY CLASSES ========== */
+.gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hover-glow {
+    position: relative;
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.hover-glow::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-gold);
+    border-radius: inherit;
+    opacity: 0;
+    z-index: -1;
+    filter: blur(15px);
+    transition: opacity var(--duration-normal) var(--ease-smooth);
+}
+
+.hover-glow:hover::after {
+    opacity: 0.5;
 }
 
 html {
