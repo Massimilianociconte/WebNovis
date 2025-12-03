@@ -169,12 +169,35 @@
     font-weight: 500;
 }
 
+/* Social Mockup Container - Centratura */
+.social-mockup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.visual-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Responsive */
+@media (max-width: 1024px) {
+    .mockup-phone {
+        width: 300px;
+        margin: 0 auto;
+    }
+}
+
 @media (max-width: 768px) {
     .mockup-phone {
-        width: 280px;
+        width: 85%;
+        max-width: 320px;
         border-radius: 35px;
         padding: 10px;
+        margin: 0 auto;
     }
     
     .phone-screen {
@@ -182,10 +205,61 @@
     }
     
     .social-feed-scroll {
-        height: 420px;
+        height: 400px;
     }
     
     .feed-post {
         margin-bottom: 12px;
+    }
+    
+    .feed-image {
+        aspect-ratio: 4/3;
+    }
+    
+    .feed-caption {
+        font-size: 0.75rem;
+    }
+    
+    .feed-likes {
+        font-size: 0.8rem;
+    }
+    
+    .social-mockup {
+        padding: 0 1rem;
+    }
+    
+    .visual-card {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .mockup-phone {
+        width: 90%;
+        max-width: 300px;
+        border-radius: 30px;
+        padding: 8px;
+    }
+    
+    .social-feed-scroll {
+        height: 350px;
+    }
+    
+    .feed-header {
+        padding: 8px 10px;
+    }
+    
+    .feed-avatar {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .feed-username {
+        font-size: 0.8rem;
+    }
+    
+    .action-icon {
+        font-size: 1.1rem;
     }
 }
