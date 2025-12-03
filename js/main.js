@@ -1,4 +1,37 @@
-// ===== SPOTLIGHT INTRO - Moved to spotlight-ultra.js =====
+// ===== WEBNOVIS REVOLUTION JS =====
+
+// Cursor Glow Effect
+const cursorGlow = document.getElementById('cursorGlow');
+if (cursorGlow) {
+    let mouseX = 0, mouseY = 0;
+    let glowX = 0, glowY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    function animateCursor() {
+        glowX += (mouseX - glowX) * 0.1;
+        glowY += (mouseY - glowY) * 0.1;
+        cursorGlow.style.left = glowX + 'px';
+        cursorGlow.style.top = glowY + 'px';
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+}
+
+// Scroll Reveal Animation
+const revealElements = document.querySelectorAll('.reveal, .reveal-stagger');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
 
 // Navigation scroll effect
 const nav = document.getElementById('nav');
@@ -388,27 +421,9 @@ visualCards.forEach(card => {
     });
 });
 
-// Scroll Reveal Avanzato con Stagger
-const revealElements = document.querySelectorAll('.triade-card, .service-section, .stat-item');
-
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0) scale(1)';
-            }, index * 100);
-        }
-    });
-}, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-});
-
-revealElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(50px) scale(0.95)';
-    el.style.transition = 'opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+// Scroll Reveal Avanzato con Stagger (usa il revealObserver già definito sopra)
+document.querySelectorAll('.triade-card, .service-section, .stat-item').forEach(el => {
+    el.classList.add('reveal');
     revealObserver.observe(el);
 });
 
