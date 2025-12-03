@@ -1,34 +1,66 @@
-/* ===== MODERN SOCIAL FEED STYLES ===== */
+/* ===== INSTAGRAM-STYLE SOCIAL FEED ===== */
+
+/* Phone Mockup Enhancement */
+.mockup-phone {
+    background: #000;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 
+        0 50px 100px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.phone-screen {
+    background: #000;
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+}
+
+.social-feed-scroll {
+    height: 480px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.social-feed-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Feed Post - Instagram Style */
+.feed-post {
+    background: #000;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
 
 .feed-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 12px;
+    padding: 10px 12px;
 }
 
 .feed-avatar {
-    position: relative;
-    width: 38px;
-    height: 38px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(135deg, #b8860b, #8b1538);
+    padding: 2px;
     overflow: hidden;
 }
 
-.avatar-gradient {
+.avatar-img {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #b8860b 0%, #8b1538 100%);
-    animation: avatarRotate 8s linear infinite;
-}
-
-@keyframes avatarRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    border-radius: 50%;
+    object-fit: cover;
+    background: #000;
 }
 
 .feed-user {
@@ -36,25 +68,100 @@
 }
 
 .feed-username {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: #fff;
-    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.verified {
+    color: #3b82f6;
+    font-size: 0.7rem;
+    background: #3b82f6;
+    color: #fff;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }
 
 .feed-time {
-    font-size: 0.75rem;
-    color: #64748b;
+    font-size: 0.7rem;
+    color: #8e8e8e;
 }
 
-.feed-content {
-    margin-bottom: 12px;
+.feed-more {
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 5px;
 }
 
-.content-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #cbd5e1;
+/* Feed Image */
+.feed-image {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #1a1a1a;
+}
+
+.feed-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.feed-post:hover .feed-image img {
+    transform: scale(1.02);
+}
+
+/* Feed Actions - Instagram Style */
+.feed-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+}
+
+.action-left {
+    display: flex;
+    gap: 16px;
+}
+
+.action-icon {
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.action-icon:hover {
+    transform: scale(1.15);
+}
+
+/* Feed Likes */
+.feed-likes {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    padding: 0 12px 6px;
+}
+
+/* Feed Caption */
+.feed-caption {
+    font-size: 0.8rem;
+    color: #e0e0e0;
+    padding: 0 12px;
+    line-height: 1.4;
+}
+
+.feed-caption strong {
+    color: #fff;
+    font-weight: 600;
 }
 
 .content-hashtag {
@@ -62,64 +169,23 @@
     font-weight: 500;
 }
 
-.content-media {
-    background: linear-gradient(135deg, rgba(184, 134, 11, 0.1), rgba(139, 21, 56, 0.1));
-    border-radius: 12px;
-    padding: 24px;
-    text-align: center;
-    border: 1px solid rgba(184, 134, 11, 0.2);
-}
-
-.media-icon {
-    font-size: 2.5rem;
-    margin-bottom: 8px;
-    animation: mediaFloat 3s ease-in-out infinite;
-}
-
-@keyframes mediaFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
-.media-label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #fff;
-}
-
-.feed-stats {
-    display: flex;
-    gap: 16px;
-    font-size: 0.8rem;
-    color: #64748b;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.feed-stats span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    transition: color 0.2s ease;
-}
-
-.feed-stats span:hover {
-    color: #daa520;
-    cursor: pointer;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     .mockup-phone {
-        width: 260px;
-        height: 500px;
+        width: 280px;
+        border-radius: 35px;
+        padding: 10px;
+    }
+    
+    .phone-screen {
+        border-radius: 28px;
     }
     
     .social-feed-scroll {
-        padding: 12px 10px;
+        height: 420px;
     }
     
     .feed-post {
-        padding: 12px;
+        margin-bottom: 12px;
     }
 }

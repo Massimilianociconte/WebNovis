@@ -6,6 +6,7 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     position: relative;
     overflow: hidden;
     background: #0a0a0a;
@@ -19,10 +20,21 @@
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(184, 134, 11, 0.15), transparent),
-        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(139, 21, 56, 0.1), transparent),
-        radial-gradient(ellipse 50% 30% at 20% 80%, rgba(218, 165, 32, 0.08), transparent);
+        radial-gradient(ellipse 100% 80% at 50% 20%, rgba(184, 134, 11, 0.12), transparent 60%),
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(139, 21, 56, 0.08), transparent 50%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(218, 165, 32, 0.06), transparent 50%);
     pointer-events: none;
+}
+
+/* Noise texture overlay per effetto premium */
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    mix-blend-mode: overlay;
 }
 
 .hero-bg {
@@ -86,15 +98,22 @@
     mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
 }
 
-/* Hero Content */
+/* Hero Content - Centrato */
 .hero-container {
     position: relative;
     z-index: 10;
-    padding-top: 120px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-content {
     max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Badge - Più elegante */
@@ -208,73 +227,11 @@
     line-height: 1.7;
     margin-bottom: 2.5rem;
     max-width: 600px;
+    text-align: center;
     animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
-/* Floating Cards - Glassmorphism Premium */
-.hero-visual {
-    position: absolute;
-    right: -50px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 400px;
-    height: 400px;
-    display: none;
-}
-
-@media (min-width: 1200px) {
-    .hero-visual {
-        display: block;
-    }
-}
-
-.floating-card {
-    position: absolute;
-    padding: 16px 24px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--white);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    animation: float 6s ease-in-out infinite;
-}
-
-.floating-card .card-glow {
-    position: absolute;
-    inset: -1px;
-    background: linear-gradient(135deg, rgba(184, 134, 11, 0.3), rgba(139, 21, 56, 0.3));
-    border-radius: inherit;
-    z-index: -1;
-    opacity: 0;
-    filter: blur(15px);
-    transition: opacity 0.3s ease;
-}
-
-.floating-card:hover .card-glow {
-    opacity: 1;
-}
-
-.card-1 {
-    top: 20%;
-    right: 10%;
-    animation-delay: 0s;
-}
-
-.card-2 {
-    top: 50%;
-    right: 30%;
-    animation-delay: -2s;
-}
-
-.card-3 {
-    top: 75%;
-    right: 5%;
-    animation-delay: -4s;
-}
+/* Hero Visual Elements rimossi - design pulito e centrato */
 
 /* CTA Buttons - Premium Style */
 .hero-cta {
