@@ -2620,13 +2620,14 @@ button:hover,
 .testimonial-card::before {
     content: '"';
     position: absolute;
-    top: 1rem;
-    left: 1.5rem;
-    font-size: 8rem;
-    font-family: 'Space Grotesk', sans-serif;
-    color: rgba(99, 102, 241, 0.1);
+    top: 3.5rem;
+    right: 1.5rem;
+    font-size: 6rem;
+    font-family: Georgia, serif;
+    color: rgba(184, 134, 11, 0.15);
     line-height: 1;
     pointer-events: none;
+    z-index: 0;
 }
 
 .testimonial-card:hover {
@@ -3692,5 +3693,250 @@ button:hover,
     .scroll-indicator,
     .hero-bg {
         display: none !important;
+    }
+}
+
+
+/* ===== DESIGN STUDIO ANIMATION ===== */
+.design-studio {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    background: var(--dark-light);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Canvas principale con griglia */
+.design-canvas {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: var(--dark);
+    border-radius: var(--radius-xl);
+    border: 2px solid rgba(184, 134, 11, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-glow-gold);
+}
+
+.canvas-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(184, 134, 11, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184, 134, 11, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border-radius: inherit;
+    opacity: 0.5;
+}
+
+/* Logo preview animato */
+.logo-preview {
+    display: flex;
+    gap: 0.5rem;
+    z-index: 1;
+}
+
+.logo-letter {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 800;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: logoFloat 3s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(184, 134, 11, 0.5);
+}
+
+.logo-letter:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.05); }
+}
+
+/* Tool fluttuanti */
+.design-tool {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    cursor: pointer;
+}
+
+.design-tool span {
+    font-size: 1.5rem;
+}
+
+.tool-label {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.design-tool:hover {
+    background: rgba(184, 134, 11, 0.15);
+    border-color: var(--primary);
+    transform: scale(1.1);
+}
+
+/* Posizioni tool */
+.tool-1 {
+    top: 15%;
+    left: 10%;
+    animation: toolFloat1 4s ease-in-out infinite;
+}
+
+.tool-2 {
+    top: 20%;
+    right: 10%;
+    animation: toolFloat2 4.5s ease-in-out infinite;
+}
+
+.tool-3 {
+    bottom: 15%;
+    left: 15%;
+    animation: toolFloat3 5s ease-in-out infinite;
+}
+
+@keyframes toolFloat1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(5px, -10px); }
+}
+
+@keyframes toolFloat2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-8px, 8px); }
+}
+
+@keyframes toolFloat3 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(10px, 5px); }
+}
+
+/* Color palette */
+.color-palette {
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.color-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: transform var(--duration-fast) var(--ease-bounce);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.color-swatch:hover {
+    transform: scale(1.2) translateY(-3px);
+}
+
+/* Cursor animato */
+.design-cursor {
+    position: absolute;
+    top: 40%;
+    left: 55%;
+    animation: cursorMove 6s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    z-index: 10;
+}
+
+@keyframes cursorMove {
+    0%, 100% { 
+        top: 40%;
+        left: 55%;
+        transform: rotate(0deg);
+    }
+    25% { 
+        top: 25%;
+        left: 70%;
+        transform: rotate(15deg);
+    }
+    50% { 
+        top: 60%;
+        left: 65%;
+        transform: rotate(-10deg);
+    }
+    75% { 
+        top: 50%;
+        left: 30%;
+        transform: rotate(5deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .design-studio {
+        height: 280px;
+    }
+    
+    .design-canvas {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .logo-letter {
+        font-size: 2.2rem;
+    }
+    
+    .design-tool {
+        padding: 0.5rem;
+    }
+    
+    .design-tool span {
+        font-size: 1.2rem;
+    }
+    
+    .tool-label {
+        font-size: 0.55rem;
+    }
+    
+    .color-swatch {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .design-studio {
+        height: 240px;
+    }
+    
+    .design-canvas {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .logo-letter {
+        font-size: 1.8rem;
+    }
+    
+    .tool-3 {
+        display: none;
     }
 }
