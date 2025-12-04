@@ -1052,7 +1052,7 @@ section {
 
 .mockup-phone {
     width: 280px;
-    height: 550px;
+    height: 500px;
     background: linear-gradient(145deg, rgba(26, 26, 26, 0.8), rgba(13, 13, 13, 0.9));
     border-radius: 40px;
     padding: 12px;
@@ -1106,7 +1106,11 @@ section {
     scrollbar-width: none;
     /* Firefox */
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
+    overscroll-behavior-y: contain;
+    /* Migliora fluidità touch */
+    touch-action: pan-y;
+    -ms-overflow-style: none;
+    scroll-snap-type: y proximity;
 }
 
 .social-feed-scroll::-webkit-scrollbar {
@@ -1123,6 +1127,8 @@ section {
     margin-bottom: 12px;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
+    scroll-snap-align: start;
+    scroll-margin-top: 8px;
 }
 
 .feed-post:hover {
@@ -1451,7 +1457,7 @@ section {
     opacity: 0.8;
 }
 
-/* Responsive */
+/* Responsive Social Feed */
 @media (max-width: 768px) {
     .social-feed {
         max-height: 400px;
@@ -1467,6 +1473,26 @@ section {
 
     .social-reel {
         height: 80px;
+    }
+    
+    /* Phone mockup mobile fix */
+    .mockup-phone {
+        width: 260px;
+        height: 450px;
+        margin: 0 auto;
+    }
+    
+    .social-mockup {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .mockup-phone {
+        width: 240px;
+        height: 420px;
     }
 }
 
@@ -1784,6 +1810,36 @@ section {
 
     .scroll-line {
         height: 30px;
+    }
+    
+    /* ===== SOCIAL SECTION MOBILE FIX ===== */
+    .social-section .service-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .social-section .service-visual {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        order: 1;
+    }
+    
+    .social-section .service-content {
+        width: 100%;
+        text-align: center;
+        order: 2;
+    }
+    
+    .social-section .service-features {
+        text-align: left;
+        display: inline-block;
+    }
+    
+    .social-section .service-features li {
+        justify-content: flex-start;
     }
 }
 
