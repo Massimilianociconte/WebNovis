@@ -728,84 +728,66 @@ revealSections.forEach(section => sectionObserver.observe(section));
 // Modern Social Feed with Seamless Infinite Scroll
 const socialFeedScroll = document.getElementById('socialFeedScroll');
 if (socialFeedScroll) {
-    console.log('🔄 Initializing seamless infinite scroll...');
+    console.log('🔄 Initializing social feed...');
+    
+    // Detect if mobile
+    const isMobileDevice = window.innerWidth <= 768 || 'ontouchstart' in window;
 
     // Wait for DOM to be fully loaded
     setTimeout(() => {
-        // Clone all posts to create seamless loop
+        // Clone all posts to create seamless loop (only on desktop)
         const posts = Array.from(socialFeedScroll.children);
-        console.log(`📝 Found ${posts.length} posts, cloning for infinite scroll...`);
+        console.log(`📝 Found ${posts.length} posts`);
 
-        // Calculate original content height (before cloning/appending) to avoid forced reflow
+        // Calculate original content height
         let originalHeight = 0;
         posts.forEach(post => {
             originalHeight += post.offsetHeight;
-            // Add margin-bottom from computed style
             const style = window.getComputedStyle(post);
             originalHeight += parseInt(style.marginBottom) || 0;
         });
 
-        const clonedPosts = posts.map(post => post.cloneNode(true));
+        // Only enable auto-scroll on desktop
+        if (!isMobileDevice) {
+            const clonedPosts = posts.map(post => post.cloneNode(true));
+            clonedPosts.forEach(clone => {
+                socialFeedScroll.appendChild(clone);
+            });
 
-        // Append cloned posts for infinite scroll
-        clonedPosts.forEach(clone => {
-            socialFeedScroll.appendChild(clone);
-        });
+            let scrollPosition = 0;
+            let isScrolling = true;
+            let scrollSpeed = 0.5;
 
-        let scrollPosition = 0;
-        let isScrolling = true;
-        let scrollSpeed = 0.5; // Velocità ottimale per smooth scroll
+            console.log(`📏 Original height: ${originalHeight}px`);
 
-        console.log(`📏 Original height: ${originalHeight}px`);
-        console.log(`📏 Total height: ${socialFeedScroll.scrollHeight}px`);
-
-        // Auto scroll function with seamless loop
-        function autoScroll() {
-            if (isScrolling) {
-                scrollPosition += scrollSpeed;
-
-                // Reset seamlessly when reaching the end of original posts
-                if (scrollPosition >= originalHeight) {
-                    scrollPosition = 0;
-                    console.log('🔁 Loop reset');
+            // Auto scroll function with seamless loop
+            function autoScroll() {
+                if (isScrolling) {
+                    scrollPosition += scrollSpeed;
+                    if (scrollPosition >= originalHeight) {
+                        scrollPosition = 0;
+                    }
+                    socialFeedScroll.scrollTop = scrollPosition;
                 }
-
-                socialFeedScroll.scrollTop = scrollPosition;
+                requestAnimationFrame(autoScroll);
             }
-            requestAnimationFrame(autoScroll);
-        }
 
-        // Start auto scroll
-        autoScroll();
-        console.log('✅ Infinite scroll started!');
+            autoScroll();
+            console.log('✅ Desktop auto-scroll started!');
 
-        // Pause on hover
-        socialFeedScroll.addEventListener('mouseenter', () => {
-            isScrolling = false;
-            console.log('⏸️ Scroll paused');
-        });
+            // Pause on hover (desktop only)
+            socialFeedScroll.addEventListener('mouseenter', () => {
+                isScrolling = false;
+            });
 
-        socialFeedScroll.addEventListener('mouseleave', () => {
-            isScrolling = true;
-            console.log('▶️ Scroll resumed');
-        });
-
-        // Touch events for mobile manual scrolling
-        socialFeedScroll.addEventListener('touchstart', () => {
-            isScrolling = false;
-            console.log('📱 Touch start - Scroll paused');
-        }, { passive: true });
-
-        socialFeedScroll.addEventListener('touchend', () => {
-            // Resume after a delay
-            setTimeout(() => {
+            socialFeedScroll.addEventListener('mouseleave', () => {
                 isScrolling = true;
-                // Recalculate position based on manual scroll
-                scrollPosition = socialFeedScroll.scrollTop;
-                console.log('📱 Touch end - Scroll resumed');
-            }, 2000);
-        }, { passive: true });
-    }, 100); // Small delay to ensure posts are rendered
+            });
+        } else {
+            // Mobile: no auto-scroll, user controls scrolling
+            console.log('📱 Mobile detected - manual scroll only');
+        }
+    }, 100);
 
     // Animate stats counters
     const feedStats = document.querySelectorAll('.feed-stats span');

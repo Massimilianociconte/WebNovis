@@ -611,7 +611,7 @@ body {
 
 .scroll-indicator {
     position: absolute;
-    bottom: 3rem;
+    bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -621,6 +621,7 @@ body {
     color: var(--gray-light);
     font-size: 0.85rem;
     animation: fadeIn 1s ease 1s backwards;
+    z-index: 5;
 }
 
 .scroll-line {
@@ -3753,17 +3754,53 @@ button:hover,
 }
 
 
-/* ===== DESIGN STUDIO ANIMATION ===== */
+/* ===== DESIGN STUDIO ANIMATION - MOZZAFIATO ===== */
 .design-studio {
     position: relative;
     width: 100%;
-    height: 320px;
-    background: var(--dark-light);
+    height: 350px;
+    background: linear-gradient(135deg, var(--dark-light) 0%, var(--dark) 100%);
     border-radius: var(--radius-2xl);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Effetto particelle di sfondo */
+.design-studio::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(184, 134, 11, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(139, 21, 56, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(218, 165, 32, 0.1) 0%, transparent 50%);
+    animation: designAmbient 8s ease-in-out infinite;
+}
+
+@keyframes designAmbient {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Linee di connessione animate */
+.design-studio::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(184, 134, 11, 0.1) 49%, rgba(184, 134, 11, 0.1) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(139, 21, 56, 0.1) 49%, rgba(139, 21, 56, 0.1) 51%, transparent 52%);
+    background-size: 60px 60px;
+    animation: gridPulse 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes gridPulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.3; }
 }
 
 /* Canvas principale con griglia */
@@ -3773,70 +3810,128 @@ button:hover,
     height: 200px;
     background: var(--dark);
     border-radius: var(--radius-xl);
-    border: 2px solid rgba(184, 134, 11, 0.3);
+    border: 2px solid rgba(184, 134, 11, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-glow-gold);
+    box-shadow: 
+        var(--shadow-glow-gold),
+        0 0 60px rgba(184, 134, 11, 0.2),
+        inset 0 0 30px rgba(184, 134, 11, 0.1);
+    animation: canvasPulse 4s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes canvasPulse {
+    0%, 100% { 
+        box-shadow: var(--shadow-glow-gold), 0 0 60px rgba(184, 134, 11, 0.2), inset 0 0 30px rgba(184, 134, 11, 0.1);
+        border-color: rgba(184, 134, 11, 0.4);
+    }
+    50% { 
+        box-shadow: 0 0 50px rgba(184, 134, 11, 0.5), 0 0 100px rgba(184, 134, 11, 0.3), inset 0 0 40px rgba(184, 134, 11, 0.15);
+        border-color: rgba(184, 134, 11, 0.7);
+    }
 }
 
 .canvas-grid {
     position: absolute;
     inset: 0;
     background-image: 
-        linear-gradient(rgba(184, 134, 11, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(184, 134, 11, 0.1) 1px, transparent 1px);
+        linear-gradient(rgba(184, 134, 11, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184, 134, 11, 0.15) 1px, transparent 1px);
     background-size: 20px 20px;
     border-radius: inherit;
-    opacity: 0.5;
+    opacity: 0.6;
+    animation: gridShift 10s linear infinite;
 }
 
-/* Logo preview animato */
+@keyframes gridShift {
+    0% { background-position: 0 0; }
+    100% { background-position: 20px 20px; }
+}
+
+/* Logo preview animato con effetto 3D */
 .logo-preview {
     display: flex;
     gap: 0.5rem;
     z-index: 1;
+    perspective: 500px;
 }
 
 .logo-letter {
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 800;
     background: var(--gradient-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: logoFloat 3s ease-in-out infinite;
-    text-shadow: 0 0 30px rgba(184, 134, 11, 0.5);
+    animation: logoFloat3D 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(184, 134, 11, 0.6));
+    transform-style: preserve-3d;
 }
 
 .logo-letter:nth-child(2) {
     animation-delay: 0.3s;
+    animation-name: logoFloat3DAlt;
 }
 
-@keyframes logoFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-8px) scale(1.05); }
+@keyframes logoFloat3D {
+    0%, 100% { 
+        transform: translateY(0) scale(1) rotateY(0deg); 
+        filter: drop-shadow(0 0 20px rgba(184, 134, 11, 0.6));
+    }
+    50% { 
+        transform: translateY(-12px) scale(1.1) rotateY(10deg); 
+        filter: drop-shadow(0 0 40px rgba(184, 134, 11, 0.9));
+    }
 }
 
-/* Tool fluttuanti */
+@keyframes logoFloat3DAlt {
+    0%, 100% { 
+        transform: translateY(0) scale(1) rotateY(0deg); 
+        filter: drop-shadow(0 0 20px rgba(139, 21, 56, 0.6));
+    }
+    50% { 
+        transform: translateY(-12px) scale(1.1) rotateY(-10deg); 
+        filter: drop-shadow(0 0 40px rgba(139, 21, 56, 0.9));
+    }
+}
+
+/* Tool fluttuanti con effetto glass premium */
 .design-tool {
     position: absolute;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--radius-lg);
-    padding: 0.75rem;
+    padding: 0.85rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
-    transition: all var(--duration-normal) var(--ease-smooth);
+    gap: 0.3rem;
+    transition: all var(--duration-normal) var(--ease-bounce);
     cursor: pointer;
+    z-index: 3;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.design-tool::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: var(--gradient-gold);
+    opacity: 0;
+    z-index: -1;
+    filter: blur(10px);
+    transition: opacity var(--duration-normal) var(--ease-smooth);
 }
 
 .design-tool span {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .tool-label {
@@ -3844,82 +3939,151 @@ button:hover,
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-weight: 600;
 }
 
 .design-tool:hover {
-    background: rgba(184, 134, 11, 0.15);
+    background: rgba(184, 134, 11, 0.2);
     border-color: var(--primary);
-    transform: scale(1.1);
+    transform: scale(1.15) translateY(-5px);
+    box-shadow: 0 15px 40px rgba(184, 134, 11, 0.3);
 }
 
-/* Posizioni tool */
+.design-tool:hover::before {
+    opacity: 0.5;
+}
+
+/* Posizioni tool con orbite */
 .tool-1 {
-    top: 15%;
-    left: 10%;
-    animation: toolFloat1 4s ease-in-out infinite;
+    top: 12%;
+    left: 8%;
+    animation: toolOrbit1 5s ease-in-out infinite;
 }
 
 .tool-2 {
-    top: 20%;
-    right: 10%;
-    animation: toolFloat2 4.5s ease-in-out infinite;
+    top: 15%;
+    right: 8%;
+    animation: toolOrbit2 5.5s ease-in-out infinite;
 }
 
 .tool-3 {
-    bottom: 15%;
-    left: 15%;
-    animation: toolFloat3 5s ease-in-out infinite;
+    bottom: 12%;
+    left: 12%;
+    animation: toolOrbit3 6s ease-in-out infinite;
 }
 
-@keyframes toolFloat1 {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(5px, -10px); }
+@keyframes toolOrbit1 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(8px, -12px) rotate(5deg); }
+    50% { transform: translate(15px, -5px) rotate(-3deg); }
+    75% { transform: translate(5px, 8px) rotate(3deg); }
 }
 
-@keyframes toolFloat2 {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(-8px, 8px); }
+@keyframes toolOrbit2 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(-10px, 10px) rotate(-5deg); }
+    50% { transform: translate(-5px, 15px) rotate(3deg); }
+    75% { transform: translate(-12px, 5px) rotate(-3deg); }
 }
 
-@keyframes toolFloat3 {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(10px, 5px); }
+@keyframes toolOrbit3 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(12px, -8px) rotate(3deg); }
+    50% { transform: translate(8px, 10px) rotate(-5deg); }
+    75% { transform: translate(-5px, 5px) rotate(5deg); }
 }
 
-/* Color palette */
+/* Color palette con effetto arcobaleno */
 .color-palette {
     position: absolute;
-    bottom: 15%;
-    right: 10%;
+    bottom: 12%;
+    right: 8%;
     display: flex;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    background: rgba(0, 0, 0, 0.5);
+    gap: 0.6rem;
+    padding: 0.6rem 0.8rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    z-index: 3;
+    animation: paletteGlow 3s ease-in-out infinite;
+}
+
+@keyframes paletteGlow {
+    0%, 100% { box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); }
+    50% { box-shadow: 0 8px 30px rgba(184, 134, 11, 0.3); }
 }
 
 .color-swatch {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     border-radius: var(--radius-md);
     cursor: pointer;
-    transition: transform var(--duration-fast) var(--ease-bounce);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all var(--duration-fast) var(--ease-bounce);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.color-swatch::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    border: 2px solid transparent;
+    transition: border-color var(--duration-fast) var(--ease-smooth);
 }
 
 .color-swatch:hover {
-    transform: scale(1.2) translateY(-3px);
+    transform: scale(1.3) translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
-/* Cursor animato */
+.color-swatch:hover::after {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Animazione sequenziale per i colori */
+.color-swatch:nth-child(1) { animation: swatchPop 2s ease-in-out infinite 0s; }
+.color-swatch:nth-child(2) { animation: swatchPop 2s ease-in-out infinite 0.2s; }
+.color-swatch:nth-child(3) { animation: swatchPop 2s ease-in-out infinite 0.4s; }
+.color-swatch:nth-child(4) { animation: swatchPop 2s ease-in-out infinite 0.6s; }
+
+@keyframes swatchPop {
+    0%, 80%, 100% { transform: scale(1); }
+    40% { transform: scale(1.1); }
+}
+
+/* Cursor animato con scia luminosa */
 .design-cursor {
     position: absolute;
     top: 40%;
     left: 55%;
-    animation: cursorMove 6s ease-in-out infinite;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    animation: cursorMove 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(184, 134, 11, 0.8));
     z-index: 10;
+}
+
+.design-cursor svg {
+    width: 28px;
+    height: 28px;
+}
+
+.design-cursor::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(184, 134, 11, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: cursorGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes cursorGlow {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
 }
 
 @keyframes cursorMove {
@@ -3928,20 +4092,25 @@ button:hover,
         left: 55%;
         transform: rotate(0deg);
     }
-    25% { 
-        top: 25%;
-        left: 70%;
-        transform: rotate(15deg);
+    20% { 
+        top: 22%;
+        left: 72%;
+        transform: rotate(20deg);
     }
-    50% { 
-        top: 60%;
-        left: 65%;
-        transform: rotate(-10deg);
+    40% { 
+        top: 55%;
+        left: 68%;
+        transform: rotate(-15deg);
     }
-    75% { 
-        top: 50%;
-        left: 30%;
-        transform: rotate(5deg);
+    60% { 
+        top: 65%;
+        left: 35%;
+        transform: rotate(10deg);
+    }
+    80% { 
+        top: 30%;
+        left: 25%;
+        transform: rotate(-5deg);
     }
 }
 
