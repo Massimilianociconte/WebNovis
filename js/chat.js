@@ -15,8 +15,8 @@ const CHAT_CONFIG = {
     keepAliveInterval: 5 * 60 * 1000 // 5 minutes
 };
 
-// Mobile detection
-const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+// Mobile detection (renamed to avoid conflict with main.js)
+const isMobileChat = window.innerWidth <= 768 || 'ontouchstart' in window;
 
 document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Close on outside click (desktop only)
-    if (!isMobile) {
+    if (!isMobileChat) {
         document.addEventListener('click', (e) => {
             if (state.isOpen &&
                 !elements.popup.contains(e.target) &&
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- MOBILE UX FUNCTIONS ---
 
     function handleMobileFocus() {
-        if (!isMobile) return;
+        if (!isMobileChat) return;
 
         state.scrollLocked = true;
 
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleMobileBlur() {
-        if (!isMobile) return;
+        if (!isMobileChat) return;
 
         state.scrollLocked = false;
 
@@ -164,19 +164,19 @@ document.addEventListener('DOMContentLoaded', function () {
             if (elements.bubble) elements.bubble.classList.add('hidden');
 
             // Mobile: prevent background scroll
-            if (isMobile) {
+            if (isMobileChat) {
                 document.body.style.overflow = 'hidden';
                 document.body.style.position = 'fixed';
                 document.body.style.width = '100%';
             }
 
             // Focus input (delayed on mobile)
-            setTimeout(() => elements.input?.focus(), isMobile ? 300 : 100);
+            setTimeout(() => elements.input?.focus(), isMobileChat ? 300 : 100);
 
             scrollToBottom();
         } else {
             // Restore scroll on mobile
-            if (isMobile) {
+            if (isMobileChat) {
                 document.body.style.overflow = '';
                 document.body.style.position = '';
                 document.body.style.width = '';
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
         elements.popup.classList.remove('active');
 
         // Restore mobile scroll
-        if (isMobile) {
+        if (isMobileChat) {
             document.body.style.overflow = '';
             document.body.style.position = '';
             document.body.style.width = '';
@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!state.isOpen && !state.hasInteracted && elements.bubble) {
             elements.bubble.classList.add('visible');
         }
-    }, isMobile ? 5000 : 3000); // Longer delay on mobile
+    }, isMobileChat ? 5000 : 3000); // Longer delay on mobile
 
     // Keep-Alive Heartbeat (production only)
     if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
