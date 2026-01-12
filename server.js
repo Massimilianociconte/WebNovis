@@ -6,10 +6,31 @@ const fs = require('fs');
 const path = require('path');
 const aiConfig = require('./ai-config'); // Configurazione AI
 
+// Rate Limiting per protezione API
+let rateLimit;
+try {
+    rateLimit = require('express-rate-limit');
+} catch (e) {
+    console.warn('⚠️ express-rate-limit non installato. Rate limiting disabilitato.');
+    rateLimit = null;
+}
+
 console.log('🔧 AI Config loaded:', aiConfig);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Rate limiter for chat API (30 requests per 15 minutes per IP)
+const chatLimiter = rateLimit ? rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minuti
+    max: 30, // limite di 30 richieste per finestra
+    message: {
+        error: 'Troppe richieste. Riprova tra qualche minuto.',
+        retryAfter: '15 minuti'
+    },
+    standardHeaders: true,
+    legacyHeaders: false
+}) : (req, res, next) => next();
 
 // Middleware
 app.use(cors());
@@ -26,13 +47,13 @@ function createSystemPrompt() {
     const toToon = (obj, indent = 0) => {
         const spaces = '  '.repeat(indent);
         let output = '';
-        
+
         for (const [key, value] of Object.entries(obj)) {
             if (key === 'chatbotInstructions') continue; // Salta istruzioni separate
-            
+
             // Formatta la chiave (da camelCase a Human Readable)
             const readableKey = key.replace(/([A-Z])/g, ' $1').toUpperCase();
-            
+
             if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
                 output += `${spaces}${readableKey}:\n${toToon(value, indent + 1)}`;
             } else if (Array.isArray(value)) {
@@ -64,16 +85,16 @@ app.get('/api/health', (req, res) => {
     res.status(200).json({ status: 'ok', message: 'Server is awake and running! 🚀' });
 });
 
-// Endpoint per la chat
-app.post('/api/chat', async (req, res) => {
+// Endpoint per la chat (con rate limiting)
+app.post('/api/chat', chatLimiter, async (req, res) => {
     try {
         const { message, conversationHistory = [] } = req.body;
-        
+
         console.log(`💬 New message: "${message}"`);
         console.log(`📚 Conversation history length: ${conversationHistory.length}`);
-        
+
         const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-        
+
         if (!OPENAI_API_KEY) {
             console.log('⚠️ No API key found, using local responses');
             // Fallback a risposte predefinite se non c'è API key
@@ -81,7 +102,7 @@ app.post('/api/chat', async (req, res) => {
             console.log(`📤 Local response: ${response.substring(0, 50)}...`);
             return res.json({ response });
         }
-        
+
         console.log('🤖 Calling OpenAI API...');
 
         // Chiamata a OpenAI
@@ -113,7 +134,7 @@ app.post('/api/chat', async (req, res) => {
         });
 
         const data = await openaiResponse.json();
-        
+
         if (data.error) {
             console.error('❌ OpenAI API error:', data.error);
             throw new Error(data.error.message);
@@ -123,9 +144,9 @@ app.post('/api/chat', async (req, res) => {
 
         // CLEANUP: Rimuove eventuali residui di markdown se l'AI non ha obbedito
         response = response.replace(/\*\*/g, '')   // Rimuove grassetto
-                          .replace(/\#/g, '')      // Rimuove intestazioni
-                          .replace(/\-\s/g, '• ')  // Sostituisce trattini con pallini
-                          .replace(/\[.*?\]/g, ''); // Rimuove link markdown
+            .replace(/\#/g, '')      // Rimuove intestazioni
+            .replace(/\-\s/g, '• ')  // Sostituisce trattini con pallini
+            .replace(/\[.*?\]/g, ''); // Rimuove link markdown
 
         console.log(`✅ OpenAI response: ${response.substring(0, 100)}...`);
         res.json({ response });
@@ -134,7 +155,7 @@ app.post('/api/chat', async (req, res) => {
         console.error('❌ Full error:', error);
         console.error('❌ Error message:', error.message);
         console.error('❌ Error stack:', error.stack);
-        res.status(500).json({ 
+        res.status(500).json({
             error: 'Si è verificato un errore. Riprova tra poco o contattaci direttamente.',
             errorDetails: error.message,
             fallback: getLocalResponse(req.body.message)
@@ -145,7 +166,7 @@ app.post('/api/chat', async (req, res) => {
 // Funzione di fallback per risposte locali
 function getLocalResponse(message) {
     const lowerMessage = message.toLowerCase();
-    
+
     if (lowerMessage.includes('prezzo') || lowerMessage.includes('costo') || lowerMessage.includes('preventivo')) {
         return `Ecco i nostri prezzi principali:
 
@@ -166,7 +187,7 @@ function getLocalResponse(message) {
 
 Per un preventivo personalizzato, contattaci a ${config.companyInfo.email}! 💼`;
     }
-    
+
     if (lowerMessage.includes('servizi') || lowerMessage.includes('cosa fate')) {
         return `Offriamo tre servizi principali:
 
@@ -176,7 +197,7 @@ Per un preventivo personalizzato, contattaci a ${config.companyInfo.email}! 💼
 
 Quale ti interessa di più? Posso darti maggiori dettagli! ✨`;
     }
-    
+
     if (lowerMessage.includes('contatt') || lowerMessage.includes('email') || lowerMessage.includes('telefono')) {
         return `Puoi contattarci via email:
 
@@ -184,7 +205,7 @@ Quale ti interessa di più? Posso darti maggiori dettagli! ✨`;
 
 Oppure compila il form nella sezione contatti qui sotto. Rispondiamo entro 24 ore! 🚀`;
     }
-    
+
     return `Grazie per il tuo messaggio! Per informazioni dettagliate sui nostri servizi e prezzi, scrivici a ${config.companyInfo.email} o compila il form. Il nostro team sarà felice di aiutarti! 💬`;
 }
 

@@ -1803,14 +1803,9 @@ section {
         background-size: 30px 30px;
     }
 
-    /* Scroll indicator più piccolo */
+    /* Nascondi scroll indicator su mobile - evita sovrapposizione con stats */
     .scroll-indicator {
-        bottom: 2rem;
-        font-size: 0.75rem;
-    }
-
-    .scroll-line {
-        height: 30px;
+        display: none;
     }
     
     /* ===== SOCIAL SECTION MOBILE FIX ===== */
@@ -4164,4 +4159,146 @@ button:hover,
     .tool-3 {
         display: none;
     }
+}
+
+/* ========== MOBILE UX ENHANCEMENTS ========== */
+
+/* Body scroll lock when mobile menu is open */
+body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+/* Mobile menu close button */
+.nav-menu-close {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    align-items: center;
+    justify-content: center;
+    z-index: 1010;
+}
+
+.nav-menu-close:hover,
+.nav-menu-close:focus {
+    background: rgba(184, 134, 11, 0.3);
+    border-color: var(--primary);
+    transform: scale(1.1);
+}
+
+.nav-menu-close:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+    .nav-menu-close {
+        display: flex;
+    }
+    
+    .nav-menu {
+        padding-top: 4rem; /* Space for close button */
+    }
+}
+
+/* ========== ACCESSIBILITY: REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .gradient-orb,
+    .floating-card,
+    .floating-3d,
+    .glitch,
+    .glitch::before,
+    .glitch::after,
+    #particlesCanvas {
+        animation: none !important;
+    }
+    
+    #particlesCanvas {
+        display: none;
+    }
+    
+    .scroll-indicator {
+        animation: none;
+    }
+}
+
+/* ========== TOUCH-FRIENDLY 3D INTERACTIONS ========== */
+@media (hover: none) and (pointer: coarse) {
+    /* Disable aggressive 3D transforms on touch devices */
+    .floating-3d:hover {
+        transform: none;
+    }
+    
+    .floating-3d.touch-active {
+        transform: perspective(1000px) rotateY(3deg) rotateX(3deg) translateZ(10px);
+        transition: transform 0.3s ease;
+    }
+    
+    .magnetic {
+        transform: none !important;
+    }
+    
+    .triade-card:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+    
+    /* Larger touch targets */
+    .btn {
+        min-height: 48px;
+        min-width: 48px;
+    }
+    
+    .nav-link {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Disable phone float animation on touch - too jumpy */
+    .mockup-phone {
+        animation: none;
+    }
+}
+
+/* ========== FOCUS STATES FOR ACCESSIBILITY ========== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.nav-link:focus-visible {
+    outline: 2px solid var(--primary-light);
+    border-radius: var(--radius-sm);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.4);
 }

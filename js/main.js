@@ -1,16 +1,21 @@
 // ===== WEBNOVIS REVOLUTION JS =====
 
-// Cursor Glow Effect
+// Mobile/Touch detection
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+const isMobile = window.innerWidth <= 768;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Cursor Glow Effect (desktop only)
 const cursorGlow = document.getElementById('cursorGlow');
-if (cursorGlow) {
+if (cursorGlow && !isTouchDevice) {
     let mouseX = 0, mouseY = 0;
     let glowX = 0, glowY = 0;
-    
+
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
     });
-    
+
     function animateCursor() {
         glowX += (mouseX - glowX) * 0.1;
         glowY += (mouseY - glowY) * 0.1;
@@ -49,98 +54,88 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Mobile menu toggle
+// Mobile menu toggle with body scroll lock
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
+let scrollPosition = 0;
+
+// Create close button for mobile menu
+const closeButton = document.createElement('button');
+closeButton.className = 'nav-menu-close';
+closeButton.innerHTML = '✕';
+closeButton.setAttribute('aria-label', 'Chiudi menu');
+navMenu.insertBefore(closeButton, navMenu.firstChild);
+
+function openMobileMenu() {
+    scrollPosition = window.pageYOffset;
+    navMenu.classList.add('active');
+    navToggle.classList.add('active');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+    document.body.style.top = `-${scrollPosition}px`;
+}
+
+function closeMobileMenu() {
+    navMenu.classList.remove('active');
+    navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+    document.body.style.top = '';
+    window.scrollTo(0, scrollPosition);
+}
 
 navToggle.addEventListener('click', () => {
-    const isExpanded = navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-    navToggle.setAttribute('aria-expanded', isExpanded);
+    if (navMenu.classList.contains('active')) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
 });
+
+closeButton.addEventListener('click', closeMobileMenu);
 
 // Close mobile menu when clicking on a link
 const navLinks = document.querySelectorAll('.nav-link');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
+        closeMobileMenu();
     });
 });
 
-// Smooth scroll con Lenis per fluidità estrema
-// Nota: Lenis deve essere caricato via CDN nel file HTML prima di questo script
-let lenis;
+// Smooth scroll - use native on mobile for better performance
+// Native smooth scroll (fallback / mobile)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
 
-if (typeof Lenis !== 'undefined') {
-    console.log('🚀 Initializing Lenis Smooth Scroll');
-    lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-    });
+        const target = document.querySelector(targetId);
+        if (target) {
+            // Close mobile menu if open
+            closeMobileMenu();
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
+            // Use scrollIntoView for better mobile support
+            const navHeight = 80;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
 
-    requestAnimationFrame(raf);
+            window.scrollTo({
+                top: targetPosition,
+                behavior: isMobile ? 'auto' : 'smooth'
+            });
 
-    // Integrazione con i link di ancoraggio
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const target = document.querySelector(targetId);
-
-            if (target) {
-                // Chiudi menu mobile se aperto
-                const navMenu = document.getElementById('navMenu');
-                const navToggle = document.getElementById('navToggle');
-                if (navMenu && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                }
-
-                // Scroll con Lenis
-                lenis.scrollTo(target, {
-                    offset: -80,
-                    duration: 1.5,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-                });
+            // On mobile, use instant scroll then slight delay for visual feedback
+            if (isMobile) {
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'auto'
+                    });
+                }, 50);
             }
-        });
+        }
     });
-} else {
-    // Fallback smooth scroll nativo se Lenis non carica
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                // Chiudi menu mobile
-                const navMenu = document.getElementById('navMenu');
-                const navToggle = document.getElementById('navToggle');
-                if (navMenu && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                }
-
-                const offsetTop = target.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
+});
 
 // Intersection Observer for fade-in animations
 const observerOptions = {
@@ -174,17 +169,17 @@ window.addEventListener('scroll', () => {
         window.requestAnimationFrame(() => {
             const scrolled = window.pageYOffset;
             const orbs = document.querySelectorAll('.gradient-orb');
-            
+
             orbs.forEach((orb, index) => {
                 const speed = 0.5 + (index * 0.2);
                 orb.style.transform = `translateY(${scrolled * speed}px)`;
             });
-            
+
             // Also handle background color change here to avoid multiple listeners
             const bodySections = document.querySelectorAll('section');
             const body = document.body;
             let newBackground = '';
-            
+
             // Batch READS
             bodySections.forEach(section => {
                 const rect = section.getBoundingClientRect();
@@ -201,7 +196,7 @@ window.addEventListener('scroll', () => {
 
             // Single WRITE
             if (newBackground) {
-                 body.style.background = newBackground;
+                body.style.background = newBackground;
             }
 
             isScrolling = false;
@@ -224,16 +219,8 @@ triadeCards.forEach(card => {
     });
 });
 
-// Cursor trail effect (optional - for extra wow factor)
-let mouseX = 0;
-let mouseY = 0;
-let cursorX = 0;
-let cursorY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
+// Cursor trail values (use global detection)
+// mouseX/mouseY already defined in cursor glow section if desktop
 
 // Custom cursor rimosso per migliore usabilità
 
@@ -256,12 +243,12 @@ const highlightNav = () => {
     // Batch WRITES
     if (activeId) {
         navLinks.forEach(link => {
-             const href = link.getAttribute('href');
-             if (href === '#' + activeId) {
-                 if (!link.classList.contains('active')) link.classList.add('active');
-             } else {
-                 if (link.classList.contains('active')) link.classList.remove('active');
-             }
+            const href = link.getAttribute('href');
+            if (href === '#' + activeId) {
+                if (!link.classList.contains('active')) link.classList.add('active');
+            } else {
+                if (link.classList.contains('active')) link.classList.remove('active');
+            }
         });
     }
 };
@@ -297,11 +284,14 @@ window.addEventListener('scroll', debouncedHighlight);
 
 // ===== EFFETTI CLAMOROSI AVANZATI =====
 
-// Particle System nel Canvas
+// Particle System nel Canvas - OPTIMIZED FOR MOBILE
 const canvas = document.getElementById('particlesCanvas');
 
-if (canvas) {
+// Skip particles on mobile or if reduced motion is preferred
+if (canvas && !prefersReducedMotion) {
     const ctx = canvas.getContext('2d');
+    const particleCount = isMobile ? 30 : 100; // Reduced on mobile
+    const connectionDistance = isMobile ? 60 : 100;
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -340,7 +330,7 @@ if (canvas) {
     }
 
     const particles = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
     }
 
@@ -352,20 +342,22 @@ if (canvas) {
             particle.draw();
         });
 
-        // Connetti particelle vicine
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+        // Connetti particelle vicine (skip on very small screens for performance)
+        if (!isMobile || window.innerWidth > 480) {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
 
-                if (distance < 100) {
-                    ctx.strokeStyle = `rgba(184, 134, 11, ${0.2 * (1 - distance / 100)})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
+                    if (distance < connectionDistance) {
+                        ctx.strokeStyle = `rgba(184, 134, 11, ${0.2 * (1 - distance / connectionDistance)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
                 }
             }
         }
@@ -398,28 +390,40 @@ magneticElements.forEach(element => {
 
 // Custom Cursor Rimosso - Usa cursore di sistema per migliore usabilità
 
-// Effetto 3D Tilt sulle Visual Cards
+// Effetto 3D Tilt sulle Visual Cards (desktop only)
 const visualCards = document.querySelectorAll('.floating-3d');
 
-visualCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+if (!isTouchDevice) {
+    visualCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
+            const rotateX = (y - centerY) / 15;
+            const rotateY = (centerX - x) / 15;
 
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        });
     });
-
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+} else {
+    // Touch device: add subtle tap feedback instead of continuous tilt
+    visualCards.forEach(card => {
+        card.addEventListener('touchstart', () => {
+            card.classList.add('touch-active');
+        });
+        card.addEventListener('touchend', () => {
+            setTimeout(() => card.classList.remove('touch-active'), 300);
+        });
     });
-});
+}
 
 // Scroll Reveal Avanzato con Stagger (usa il revealObserver già definito sopra)
 document.querySelectorAll('.triade-card, .service-section, .stat-item').forEach(el => {
@@ -729,7 +733,7 @@ revealSections.forEach(section => sectionObserver.observe(section));
 const socialFeedScroll = document.getElementById('socialFeedScroll');
 if (socialFeedScroll) {
     console.log('🔄 Initializing social feed...');
-    
+
     // Detect if mobile
     const isMobileDevice = window.innerWidth <= 768 || 'ontouchstart' in window;
 
