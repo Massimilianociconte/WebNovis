@@ -329,8 +329,8 @@ body {
     height: 45px;
     width: auto;
     object-fit: contain;
-    mix-blend-mode: lighten;
-    /* Blends black bg with navbar */
+    mix-blend-mode: screen;
+    /* Makes black bg transparent against dark navbar */
 }
 
 /* Rimuoviamo i vecchi stili del logo testuale se non servono più, o li teniamo come backup */
