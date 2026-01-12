@@ -1,25 +1,24 @@
-// ===== WEBY CHATBOT SYSTEM =====
-console.log('💬 WebNovis Chat System v2.0 Loading...');
+// ===== WEBY CHATBOT SYSTEM v3.0 =====
+// Mobile-optimized, token-efficient, secure
 
 // Configuration
 const CHAT_CONFIG = {
-    apiEndpoint: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-        ? 'http://localhost:3000/api/chat' 
+    apiEndpoint: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:3000/api/chat'
         : 'https://webnovis-chat.onrender.com/api/chat',
     healthCheckUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
         ? 'http://localhost:3000/api/health'
         : 'https://webnovis-chat.onrender.com/api/health',
-    typingSpeed: 30, // ms per character
-    botName: 'Weby',
-    botAvatar: '🤖',
-    userAvatar: '👤',
-    welcomeMessage: 'Ciao! Sono Weby, l\'assistente AI di WebNovis. 👋\nCome posso aiutarti a far crescere il tuo business oggi?',
+    maxMessageLength: 500,      // Prevent token abuse
+    maxHistoryLength: 6,        // Keep context tight
+    minTypingTime: 800,         // Natural feel
     keepAliveInterval: 5 * 60 * 1000 // 5 minutes
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Initializing Chat Interface...');
-    
+// Mobile detection
+const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+
+document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements
     const elements = {
         button: document.getElementById('chatButton'),
@@ -33,18 +32,19 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Check for critical elements
-    if (!elements.button || !elements.popup) {
-        console.error('❌ Critical chat elements missing from DOM');
-        return;
-    }
+    if (!elements.button || !elements.popup) return;
 
     // State
     let state = {
         isOpen: false,
         isTyping: false,
-        history: [], // Conversation history for context
-        hasInteracted: false
+        history: [],
+        hasInteracted: false,
+        scrollLocked: false
     };
+
+    // Store original viewport for mobile keyboard handling
+    let originalViewportHeight = window.innerHeight;
 
     // --- EVENT LISTENERS ---
 
@@ -70,19 +70,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Input Handling
     if (elements.input) {
+        // Character limit enforcement
+        elements.input.setAttribute('maxlength', CHAT_CONFIG.maxMessageLength);
+
         elements.input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 sendMessage();
             }
         });
-        
-        // Prevent scroll on mobile focus
-        elements.input.addEventListener('focus', () => {
-            if (window.innerWidth < 768) {
-                setTimeout(() => elements.messages.scrollTop = elements.messages.scrollHeight, 300);
-            }
-        });
+
+        // Mobile keyboard handling
+        elements.input.addEventListener('focus', handleMobileFocus);
+        elements.input.addEventListener('blur', handleMobileBlur);
     }
 
     if (elements.send) {
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Quick Replies
     document.querySelectorAll('.quick-reply').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
             const msg = this.dataset.message;
             if (msg) {
                 elements.input.value = msg;
@@ -104,51 +104,109 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-        if (state.isOpen && 
-            !elements.popup.contains(e.target) && 
-            !elements.button.contains(e.target)) {
-            closeChat();
-        }
-    });
+    // Close on outside click (desktop only)
+    if (!isMobile) {
+        document.addEventListener('click', (e) => {
+            if (state.isOpen &&
+                !elements.popup.contains(e.target) &&
+                !elements.button.contains(e.target)) {
+                closeChat();
+            }
+        });
+    }
 
-    // --- FUNCTIONS ---
+    // --- MOBILE UX FUNCTIONS ---
+
+    function handleMobileFocus() {
+        if (!isMobile) return;
+
+        state.scrollLocked = true;
+
+        // Wait for keyboard to appear
+        setTimeout(() => {
+            // Scroll chat to bottom
+            scrollToBottom();
+
+            // Ensure popup is fully visible
+            if (elements.popup) {
+                elements.popup.style.bottom = '0';
+                elements.popup.style.height = '100%';
+                elements.popup.style.maxHeight = '100vh';
+                elements.popup.style.borderRadius = '0';
+            }
+        }, 300);
+    }
+
+    function handleMobileBlur() {
+        if (!isMobile) return;
+
+        state.scrollLocked = false;
+
+        // Reset popup styles
+        setTimeout(() => {
+            if (elements.popup && state.isOpen) {
+                elements.popup.style.bottom = '';
+                elements.popup.style.height = '';
+                elements.popup.style.maxHeight = '';
+                elements.popup.style.borderRadius = '';
+            }
+        }, 100);
+    }
+
+    // --- CORE FUNCTIONS ---
 
     function toggleChat() {
         state.isOpen = !state.isOpen;
         elements.popup.classList.toggle('active', state.isOpen);
-        
+
         if (state.isOpen) {
-            // Hide notification bubble when open
+            // Hide notification bubble
             if (elements.bubble) elements.bubble.classList.add('hidden');
-            
-            // Focus input
-            setTimeout(() => elements.input?.focus(), 100);
-            
-            // Scroll to bottom
+
+            // Mobile: prevent background scroll
+            if (isMobile) {
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+            }
+
+            // Focus input (delayed on mobile)
+            setTimeout(() => elements.input?.focus(), isMobile ? 300 : 100);
+
             scrollToBottom();
+        } else {
+            // Restore scroll on mobile
+            if (isMobile) {
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+            }
         }
     }
 
     function closeChat() {
         state.isOpen = false;
         elements.popup.classList.remove('active');
+
+        // Restore mobile scroll
+        if (isMobile) {
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+        }
     }
 
     function appendMessage(content, type = 'bot') {
         const msgDiv = document.createElement('div');
         msgDiv.className = `chat-message ${type === 'user' ? 'user-message' : 'bot-message'}`;
-        
+
         const avatar = type === 'user' ? 'TU' : 'WN';
         const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        
-        // Parse basic markdown-like syntax for bot messages
+
+        // Format bot messages (preserve line breaks, escape HTML)
         let formattedContent = escapeHtml(content);
         if (type === 'bot') {
-            formattedContent = formattedContent
-                .replace(/\n/g, '<br>')
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            formattedContent = formattedContent.replace(/\n/g, '<br>');
         }
 
         msgDiv.innerHTML = `
@@ -164,10 +222,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function sendMessage() {
-        if (state.isTyping || !elements.input.value.trim()) return;
+        if (state.isTyping) return;
 
-        const message = elements.input.value.trim();
-        elements.input.value = ''; // Clear input immediately
+        let message = elements.input.value.trim();
+        if (!message) return;
+
+        // Enforce message length limit
+        if (message.length > CHAT_CONFIG.maxMessageLength) {
+            message = message.substring(0, CHAT_CONFIG.maxMessageLength);
+        }
+
+        elements.input.value = '';
         state.hasInteracted = true;
 
         // Add User Message
@@ -177,36 +242,29 @@ document.addEventListener('DOMContentLoaded', function() {
         showTyping();
 
         try {
-            // Determine response
             const response = await fetchResponse(message);
-            
-            // Remove Typing Indicator
             hideTyping();
-            
-            // Add Bot Response
             appendMessage(response, 'bot');
-            
-            // Update History
+
+            // Update History (keep it tight for token efficiency)
             state.history.push({ role: 'user', content: message });
             state.history.push({ role: 'assistant', content: response });
-            
-            // Limit history
-            if (state.history.length > 10) state.history = state.history.slice(-10);
+
+            // Limit history strictly
+            if (state.history.length > CHAT_CONFIG.maxHistoryLength * 2) {
+                state.history = state.history.slice(-CHAT_CONFIG.maxHistoryLength * 2);
+            }
 
         } catch (error) {
-            console.error('Chat Error:', error);
             hideTyping();
-            appendMessage('Mi dispiace, si è verificato un errore di connessione. Riprova tra poco! 😔', 'bot');
+            appendMessage('Si è verificato un errore. Riprova tra poco! 😔', 'bot');
         }
     }
 
     async function fetchResponse(message) {
-        // Artificial delay for natural feel if local
         const startTime = Date.now();
-        
+
         try {
-            console.log(`📡 Calling API: ${CHAT_CONFIG.apiEndpoint}`);
-            
             const res = await fetch(CHAT_CONFIG.apiEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -219,41 +277,61 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!res.ok) throw new Error(`API Error: ${res.status}`);
 
             const data = await res.json();
-            
-            // Ensure minimum visibility time for typing indicator
+
+            // Ensure minimum typing time for natural feel
             const elapsed = Date.now() - startTime;
-            if (elapsed < 1000) await new Promise(r => setTimeout(r, 1000 - elapsed));
+            if (elapsed < CHAT_CONFIG.minTypingTime) {
+                await new Promise(r => setTimeout(r, CHAT_CONFIG.minTypingTime - elapsed));
+            }
 
             return data.response || data.fallback || getLocalFallback(message);
 
         } catch (error) {
-            console.warn('⚠️ API Unreachable, using local fallback:', error);
-            await new Promise(r => setTimeout(r, 1000)); // Simulate network delay
+            await new Promise(r => setTimeout(r, 800));
             return getLocalFallback(message);
         }
     }
 
     function getLocalFallback(message) {
         const lower = message.toLowerCase();
-        
-        // Simple keyword matching aligned with WebNovis services
-        if (lower.includes('prezz') || lower.includes('cost')) {
-            return "I nostri prezzi sono su misura! 🏷️\n• Landing Page: da €500\n• Siti Vetrina: da €1.200\n• E-commerce: da €3.500\n\nPer un preventivo esatto, scrivici a webnovis.info@gmail.com!";
+
+        // Greetings
+        if (lower.match(/^(ciao|salve|buongiorno|buonasera|hey|hello|hi)/)) {
+            return "Ciao! 👋 Come posso aiutarti oggi?\n\nMi occupo di siti web, grafica e social media!";
         }
-        if (lower.includes('sito') || lower.includes('web')) {
-            return "Sviluppiamo siti web ultra-veloci e moderni! 🚀\nCi occupiamo di design, sviluppo e SEO. Vuoi vedere qualche esempio del nostro portfolio?";
+
+        // Prices
+        if (lower.includes('prezz') || lower.includes('cost') || lower.includes('quanto')) {
+            return "Ecco i nostri prezzi 👇\n\n👉 Landing Page: da €500\n👉 Sito Vetrina: da €1.200\n👉 E-commerce: da €3.500\n👉 Logo: da €150\n👉 Social: da €300/mese\n\nVuoi un preventivo gratuito?";
         }
-        if (lower.includes('social') || lower.includes('instagram')) {
-            return "Gestiamo la tua presenza social a 360°! 📱\nDalla strategia alla creazione dei contenuti. I nostri piani partono da €300/mese.";
+
+        // Web
+        if (lower.includes('sito') || lower.includes('web') || lower.includes('ecommerce')) {
+            return "Creiamo siti web moderni e ultra-veloci! 🚀\n\nDal design allo sviluppo, ci occupiamo di tutto.\n\nVuoi vedere il nostro portfolio?";
         }
-        if (lower.includes('contatt') || lower.includes('email')) {
-            return "Puoi contattarci qui: 📧 webnovis.info@gmail.com\nOppure compila il form in fondo alla pagina!";
+
+        // Social
+        if (lower.includes('social') || lower.includes('instagram') || lower.includes('facebook')) {
+            return "Gestiamo i tuoi social a 360°! 📱\n\n👉 Piano editoriale\n👉 Creazione contenuti\n👉 Community management\n\nPiani da €300/mese.";
         }
-        if (lower.includes('ciao') || lower.includes('salve')) {
-            return "Ciao! 👋 Benvenuto in WebNovis. Come posso aiutare il tuo business oggi?";
+
+        // Design
+        if (lower.includes('logo') || lower.includes('grafica') || lower.includes('brand')) {
+            return "Creiamo identità visive memorabili! ✨\n\n👉 Logo: da €150\n👉 Brand completo: da €450\n\nVuoi vedere esempi?";
         }
-        
-        return "Grazie per il messaggio! 😊\nPer darti una risposta precisa, ti consiglio di scriverci a webnovis.info@gmail.com. Il nostro team ti risponderà in giornata!";
+
+        // Contact
+        if (lower.includes('contatt') || lower.includes('email') || lower.includes('parlare')) {
+            return "Scrivici! 📧\n\n👉 Email: webnovis.info@gmail.com\n👉 Oppure compila il form qui sotto!\n\nTi rispondiamo in giornata.";
+        }
+
+        // Thanks
+        if (lower.match(/(grazie|thanks|ok|perfetto|ottimo)/)) {
+            return "Prego! 😊 Sono qui se hai altre domande.";
+        }
+
+        // Default
+        return "Posso aiutarti con:\n\n👉 Siti web ed e-commerce\n👉 Loghi e grafica\n👉 Gestione social media\n\nCosa ti interessa?";
     }
 
     function showTyping() {
@@ -281,7 +359,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function scrollToBottom() {
         requestAnimationFrame(() => {
-            elements.messages.scrollTop = elements.messages.scrollHeight;
+            if (elements.messages) {
+                elements.messages.scrollTop = elements.messages.scrollHeight;
+            }
         });
     }
 
@@ -292,25 +372,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- INITIALIZATION ---
-    
-    // Show bubble after delay if not interacted
+
+    // Show bubble after delay
     setTimeout(() => {
         if (!state.isOpen && !state.hasInteracted && elements.bubble) {
             elements.bubble.classList.add('visible');
         }
-    }, 3000);
+    }, isMobile ? 5000 : 3000); // Longer delay on mobile
 
-    // Keep-Alive Heartbeat
-    setInterval(() => {
-        if (window.location.hostname !== 'localhost') {
-            fetch(CHAT_CONFIG.healthCheckUrl).catch(() => {});
-        }
-    }, CHAT_CONFIG.keepAliveInterval);
+    // Keep-Alive Heartbeat (production only)
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        setInterval(() => {
+            fetch(CHAT_CONFIG.healthCheckUrl).catch(() => { });
+        }, CHAT_CONFIG.keepAliveInterval);
 
-    // Wake up server immediately on load
-    if (window.location.hostname !== 'localhost') {
-        fetch(CHAT_CONFIG.healthCheckUrl).catch(() => {});
+        // Wake up server on load
+        fetch(CHAT_CONFIG.healthCheckUrl).catch(() => { });
     }
-
-    console.log('✅ WebNovis Chat System Ready');
 });
