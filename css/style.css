@@ -330,6 +330,8 @@ body {
     height: 45px;
     width: auto;
     object-fit: contain;
+    background: #000;
+    /* Ensure solid black background */
 }
 
 /* Rimuoviamo i vecchi stili del logo testuale se non servono più, o li teniamo come backup */
