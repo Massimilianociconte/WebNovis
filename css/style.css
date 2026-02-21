@@ -2223,30 +2223,53 @@ section {
 
 /* ===== FOOTER ===== */
 .footer {
-    background: var(--dark-light);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 4rem 0 2rem;
+    background: linear-gradient(180deg, var(--dark-light) 0%, #060609 100%);
+    border-top: 1px solid rgba(91, 106, 174, 0.12);
+    padding: 4.5rem 0 0;
+    position: relative;
 }
 
-.footer-content {
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91, 106, 174, 0.3), transparent);
+}
+
+/* --- Footer Grid: 5-column layout --- */
+.footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 4rem;
-    margin-bottom: 3rem;
+    grid-template-columns: 1.6fr repeat(4, 1fr);
+    gap: 2rem 3rem;
+    padding-bottom: 2.5rem;
 }
 
-.footer-brand p {
+.footer-brand {
+    padding-right: 1rem;
+}
+
+.footer-brand .logo {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+}
+
+.footer-tagline {
     color: var(--gray-light);
-    margin-top: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    max-width: 280px;
 }
 
 .footer-nap {
     font-style: normal;
-    color: var(--gray-light);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    margin-top: 0.75rem;
-    opacity: 0.85;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
 }
 
 .footer-nap a {
@@ -2259,92 +2282,147 @@ section {
     color: var(--white);
 }
 
-.footer-reviews-badges {
+/* --- Social icons in brand column --- */
+.footer-social-icons {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+}
+
+.footer-social-icons .footer-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--gray-light);
+    transition: all 0.25s ease;
+}
+
+.footer-social-icons .footer-social-link:hover {
+    background: rgba(91, 106, 174, 0.15);
+    border-color: rgba(91, 106, 174, 0.35);
+    color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.footer-social-icons .footer-social-link span {
+    display: none;
+}
+
+/* --- Footer link columns --- */
+.footer-column h3 {
+    font-family: Syne, sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: var(--primary-light);
+    border-radius: 1px;
+}
+
+.footer-column a {
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 0.88rem;
+    padding: 0.3rem 0;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.footer-column a:hover {
+    color: var(--primary-light);
+    transform: translateX(3px);
+}
+
+/* --- Badges row --- */
+.footer-badges {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
-    margin-top: 1.25rem;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.75rem 0;
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.footer-reviews-badges .review-badge {
+.footer-badges .review-badge {
     display: flex;
     align-items: center;
-    gap: 7px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 8px;
-    padding: 7px 11px;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    padding: 8px 14px;
     text-decoration: none;
-    transition: background 0.2s, border-color 0.2s;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
     white-space: nowrap;
 }
 
-.footer-reviews-badges .review-badge:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.18);
+.footer-badges .review-badge:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
 }
 
-.footer-reviews-badges .review-badge-text {
+.footer-badges .review-badge-text {
     display: flex;
     flex-direction: column;
     line-height: 1.2;
 }
 
-.footer-reviews-badges .review-badge-label {
+.footer-badges .review-badge-label {
     font-size: 0.6rem;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
 }
 
-.footer-reviews-badges .review-badge-name {
-    font-size: 0.72rem;
+.footer-badges .review-badge-name {
+    font-size: 0.75rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.85);
+    color: rgba(255, 255, 255, 0.85);
 }
 
-.footer-reviews-badges .review-badge-stars {
-    font-size: 0.6rem;
+.footer-badges .review-badge-stars {
+    font-size: 0.65rem;
     color: #f59e0b;
     letter-spacing: 1px;
 }
 
-.footer-reviews-badges [data-designrush-widget] {
+.footer-badges .trustpilot-widget {
+    max-width: 180px;
+}
+
+.footer-badges [data-designrush-widget] {
     display: block;
 }
 
-.footer-links {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
-
-.footer-column h3 {
-    font-weight: 600;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-
-.footer-column a {
-    display: block;
-    color: var(--gray-light);
-    text-decoration: none;
-    margin-bottom: 0.8rem;
-    transition: color 0.3s ease;
-}
-
-.footer-column a:hover {
-    color: var(--primary-light);
-}
-
+/* --- Footer bottom bar --- */
 .footer-bottom {
     text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    color: #9a9a9a;
-    /* Grigio più chiaro per contrasto WCAG AA */
-    font-size: 0.9rem;
+    padding: 1.5rem 0;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -2365,6 +2443,41 @@ section {
     .contact-layout {
         grid-template-columns: 1fr;
         gap: 3rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 1rem 3rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-brand .logo {
+        width: 100%;
+    }
+
+    .footer-tagline {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .footer-nap {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 0;
+    }
+
+    .footer-social-icons {
+        align-self: center;
     }
 }
 
@@ -2522,12 +2635,19 @@ section {
         grid-template-columns: 1fr;
     }
 
-    .footer-content {
+    .footer-grid {
         grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
 
-    .footer-links {
-        grid-template-columns: 1fr;
+    .footer-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 1rem;
+    }
+
+    .footer-column h3 {
+        grid-column: 1 / -1;
     }
 
     section {
@@ -5772,16 +5892,20 @@ img {
 
     /* -- Footer mobile -- */
     .footer {
-        padding: 3rem 0 1.5rem;
+        padding: 3rem 0 0;
     }
 
-    .footer-content {
-        gap: 2.5rem;
-        margin-bottom: 2rem;
+    .footer-grid {
+        gap: 2rem;
     }
 
-    .footer-bottom {
-        font-size: 0.8rem;
+    .footer-column {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-badges {
+        gap: 0.75rem;
+        padding: 1.25rem 0;
     }
 
     /* -- Showcase numbers mobile -- */
@@ -5977,17 +6101,18 @@ img {
 
     /* -- Footer compact -- */
     .footer {
-        padding: 2.5rem 0 1.5rem;
+        padding: 2rem 0 0;
     }
 
     .footer-column h3 {
-        font-size: 1rem;
+        font-size: 0.78rem;
         margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
     }
 
     .footer-column a {
-        font-size: 0.9rem;
-        margin-bottom: 0.6rem;
+        font-size: 0.84rem;
+        padding: 0.25rem 0;
     }
 
     /* -- Showcase numbers compact -- */
@@ -6142,8 +6267,17 @@ img {
     }
 
     /* -- Footer ultra-compact -- */
-    .footer-brand p {
+    .footer-tagline {
         font-size: 0.85rem;
+    }
+
+    .footer-badges {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .footer-badges .review-badge {
+        justify-content: center;
     }
 
     /* -- Counter number text overflow -- */
