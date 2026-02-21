@@ -5786,9 +5786,13 @@ img {
 
     /* -- Hero mobile polish -- */
     .hero {
-        padding-top: 70px;
-        min-height: calc(100vh - 70px);
-        min-height: calc(100dvh - 70px);
+        padding-top: 80px;
+        min-height: 105vh;
+        min-height: 105dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 2rem;
     }
 
     .hero-badge {
