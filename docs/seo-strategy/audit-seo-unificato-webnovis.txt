@@ -1,0 +1,170 @@
+﻿
+
+
+AUDIT SEO UNIFICATO - www.webnovis.com
+Report completo cross-referenced da 4 fonti | 21 Febbraio 2026
+Fonti: SEOptimer, SEO Tester Online (38 pagine), Otterly.AI, Crawl Diretto Claude
+
+DOCUMENTO PER AI: Contiene TUTTE le informazioni per ottimizzare webnovis.com. Ogni sezione include dati da 4 fonti, discrepanze evidenziate, e azioni specifiche con priorita.
+Punteggi comparati
+FonteScorePunti forzaCriticitaSEOptimerB (66/100)Performance A(84), Social A+(100)Usabilita F(12) - PSI MobileSEO Tester Online85.9/100Vel.Web 96, Social 97.2, Base 82.6Vel.Mobile 69, HTTPS 0/100, Mixed Content 0/100Otterly.AIReadiness 63%Metadata 100%, Technical 100%Content 56%, AI bot bloccatiCrawl Diretto90% leggibileFAQ, servizi, pricing strutturatiH1 concatenato, counter +0%
+CRITICO #1: Il robots.txt blocca 8 crawler AI (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, CCBot, Bytespider, meta-externalagent, Amazonbot). Il sito e INVISIBILE ai motori AI.
+CRITICO #2: HTTPS non ottimizzato. STO rileva HTTPS 0/100 e Mixed Content 0/100. URL http://www.webnovis.com non redirige correttamente. Causa 0.63s di latenza aggiuntiva (redirect chain).
+CRITICO #3: Sitemap non dichiarata nel robots.txt (STO 0/100). La sitemap esiste ma non e referenziata nel robots.txt.
+
+
+1. Piano d'Azione Completo
+Tutte le raccomandazioni deduplicate da 4 fonti, ordinate per priorita. L'AI deve eseguirle dall'alto verso il basso.
+
+Azione richiestaCategoriaPrioritaFonteSbloccare crawler AI nel robots.txt (rimuovere Disallow per GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, CCBot, Bytespider, meta-externalagent, Amazonbot)CrawlabilityCRITICAOtterly+STOAggiungere Sitemap: https://www.webnovis.com/sitemap.xml nel robots.txtCrawlabilityCRITICASTO (0/100)Risolvere redirect HTTP->HTTPS: 301 diretto senza chainSicurezzaCRITICASTO (0/100)Eliminare Mixed Content: tutte le risorse via HTTPSSicurezzaCRITICASTO (0/100)Correggere H1 concatenato (text-rotation crea 'visibilitacrescitaidentitapresenza')ContenutoALTASTO (55/100)+OtterlyMigliorare coerenza H1<->body (agenzia,accende,visibilita,crescita assenti)ContenutoALTASTO (43/100)Migliorare coerenza Title<->body (agenzia,milano,rho,grafica insufficienti)SEO On-PageALTASTO (56/100)Aggiungere metriche statiche nei counter (noscript fallback per +0%)ContenutoALTAOtterly+CrawlRidurre Title Tag da 72 a 55-66 caratteriSEO On-PageMEDIASEOptimer+STOAggiungere twitter:description meta tagSocialMEDIASTO (75/100)Aggiungere title attribute a 46/47 tag <a> mancantiContenutoMEDIASTO (2/100)Aggiungere summary block dopo hero per AI extractionGEOMEDIAOtterlyConsolidare sezioni duplicate 'Il Nostro Metodo'ContenutoMEDIAOtterly+CrawlAggiungere alt a 5 immagini mancantiSEO On-PageBASSASEOptimerAggiornare URL link per leggibilitaLinksBASSASEOptimerCreare profilo X (Twitter)SocialBASSASEOptimerAggiungere record SPF MailEmailBASSASEOptimerImplementare Google AnalyticsTrackingBASSASEOptimerCreare canale YouTubeSocialBASSASEOptimerInstallare Facebook PixelSocialBASSASEOptimerRimuovere stili inline CSSPerformanceBASSASEOptimerAggiungere indirizzo+telefono visibili nel testoLocal SEOBASSASEOptimerCreare Google Business ProfileLocal SEOBASSASEOptimerIsolare chatbot Weby dal DOMGEOBASSAOtterly
+
+
+2. SEO On-Page
+
+2.1 Title Tag
+ProprietaValoreValutazioneContenutoAgenzia Web a Milano e Rho - Web Novis - Sviluppo Siti, Grafica e SocialLunghezza72 caratteriTROPPO LUNGOSEOptimerIdeale 50-60 carWarningSTOIdeale 55-66 car - 70/100Warning
+2.2 Meta Description
+STO (157 car): Web Novis e un'agenzia web a Milano (Rho) specializzata in sviluppo siti, grafica, brand identity e social media. Preventivo gratuito - contattaci oggi.
+Punteggio STO: 100/100
+SEOptimer: 84 car (troppo corta) - DISCREPANZA: SEOptimer legge una versione diversa/piu corta
+
+2.3 H1 - PROBLEMA CRITICO
+H1 attuale letto dai crawler: 'Agenzia Digitale che Accende la tua visibilita crescita identita presenza' - parole text-rotation concatenate senza spaziSTO H1: 55/100 - troppo lungo, mancano keyword del title
+STO Coerenza H1: 43/100 - agenzia, accende, visibilita, crescita non presenti nel body
+STO Coerenza Title: 56/100 - agenzia, milano, rho, grafica insufficienti nel body
+
+2.4 Heading Hierarchy
+TagQtyPunteggio STOH11 (corretto)55/100H210100/100H315N/AHeading OrderSequenziale100/100
+2.5 Keyword insufficienti nel body
+Da STO: le keyword 'agenzia', 'milano', 'rho', 'grafica' (dal title) e 'accende', 'visibilita', 'crescita' (dall'H1) non sono sufficientemente presenti nel testo della pagina. Inserire 3-5 occorrenze ciascuna.
+
+2.6 Top keyword attuali (SEOptimer)
+ParolaFreqFraseFreqweb22social media8webnovis21likes webnovis8design20il tuo7social13ogni progetto6ogni13brand identity5progetto12web agency5
+2.7 Contenuto testuale
+Parole (SEOptimer): 1.337
+Parole (STO, include nav/footer): 2.906
+Rapporto Testo/HTML: 50.77% (STO - eccellente)
+Contenuto reso (LLM): 15% rendering (SEOptimer - buona leggibilita LLM)
+
+
+
+3. Technical SEO
+
+3.1 Robots.txt - Blocchi AI
+Bot bloccatoServizioStatoGPTBotOpenAI/ChatGPTBLOCCATOClaudeBotAnthropic/ClaudeBLOCCATOGoogle-ExtendedGoogle Gemini AIBLOCCATOApplebot-ExtendedApple IntelligenceBLOCCATOCCBotCommon Crawl/LLMBLOCCATOBytespiderByteDance/TikTokBLOCCATOmeta-externalagentMeta AIBLOCCATOAmazonbotAmazon AlexaBLOCCATOUser-agent: *Googlebot, Bingbot...CONSENTITOContent-Signal: search=yes, ai-train=no (corretto per GEO, ma i Disallow prevalgono)
+
+3.2 HTTPS - PROBLEMA
+ControlloSEOptimerSTOSSL attivatoSISIRedirect HTTPSOKFAIL - redirect chainMixed ContentN/A0/100 - 1 richiesta HTTPHTTPS ottimizzatoN/A0/100CAUSA: http://www.webnovis.com non fa 301 diretto a https. Passa per redirect chain che aggiunge 0.63s di latenza mobile.
+
+3.3 Controlli tecnici completi
+ControlloStatoDettaglioPage is CrawlablePASSSTO 100/100Links are CrawlablePASSSTO 100/100 - tag <a> correttiCanonicalPASShttps://www.webnovis.com/NoindexPASSAssente (indicizzabile)Robots.txtPASSPresente con blocchi AIllms.txtPASSPresente e rilevatoHreflangPASSSTO 100/100HTML LangPASSSTO 100/100 - itDOCTYPE HTML5PASSSTO 100/100Tag deprecatiPASSSTO 100/100 - nessunoIframePASSSTO 100/100 - nessunoMeta ViewportPASSSTO 100/100SEO Friendly URLPASSSTO 100/100Microdata/SchemaPASSSTO 100/100 - ricchissimoXML SitemapPASSEsiste ma NON nel robots.txtRedirect HTTPSFAILRedirect chain non ottimaleMixed ContentFAIL1 richiesta HTTPHTTPSFAILSTO 0/100Sitemap nel robots.txtFAILSTO 0/100
+3.4 Schema.org - ECCELLENTE
+Schema ricchissimo confermato da entrambi: Organization, LocalBusiness, FAQPage (8 Q&A), AggregateRating, Review x5, Service x3, OfferCatalog, BreadcrumbList, WebPage, WebSite, SearchAction, GeoCoordinates, OpeningHoursSpecification, 11 City, PostalAddress, ContactPoint, ImageObject, QuantitativeValue, Person x5, Rating x5.
+
+
+
+4. Performance e Core Web Vitals
+
+4.1 Desktop - ECCELLENTE
+MetricaSEOptimer PSISTOSogliaFCP0.9s92/100<1.8sSpeed Index1.3s96/100<3.4sLCP1.4s87/100<2.5sTTI1.4s100/100<3.8sTBT0.05s100/100<0.2sCLS0.018100/100<0.1
+4.2 Mobile - PROBLEMA
+MetricaSEOptimer PSISTOSogliaFCP3.4s37/100<1.8sSpeed Index4.7s69/100<3.4sLCP6.1s14/100<2.5sTTI6.1s65/100<3.8sTBT0.01s100/100<0.2sCLS0.052100/100<0.1LCP mobile 6.1s = triplo del limite. Causa: redirect chain (0.63s) + hero background + JS animations. TBT e CLS sono ottimi.
+
+4.3 Dimensione pagina
+Totale download: 0.62 MB (pagina leggera)
+Immagini: 0.41 MB (66% del totale, 0% compressione transfer)
+Risposta server: 0.0s | Contenuti: 0.8s | Script: 1.7s
+Oggetti totali: 40 (2 HTML, 14 JS, 9 CSS, 8 img, 7 altro)
+
+
+
+5. Links e Backlinks
+Link totali: 43 (SEOptimer) / 47 tag <a> (STO)
+Interni: 35 (81%)
+Esterni follow: 8 (19%)
+Esterni nofollow: 0
+Link descrittivi: STO 100/100
+Title sui link: STO 2/100 - 46/47 senza title attribute
+Backlinks: Nessun backlink significativo rilevato (SEOptimer)
+
+
+
+6. Social
+PiattaformaStatoTag SocialPunteggioFacebookCollegatoOpen Graph completoSTO 100/100InstagramCollegatoN/ALinkedInCollegatoN/AX (Twitter)Mancantetwitter:description mancanteSTO 75/100YouTubeMancanteN/AFacebook PixelNon installatoSocial Plugin: STO 100/100 (Facebook plugin attivo)
+Condivisioni Facebook: 0
+
+
+
+7. SEO Locale
+ControlloStatoDettaglioSchema LocalBusinessPASSCon GeoCoordinates, OpeningHours, 11 cittaIndirizzo visibile testoFAILNon trovato nel bodyTelefono visibile testoFAILNon trovato nel bodyGoogle Business ProfileFAILNon identificatoRecensioni GoogleFAILNessun GBP collegato
+
+
+8. AI Readiness / GEO
+
+8.1 Punteggi Otterly.AI
+CategoriaScoreNoteMetadata100%Title, desc, OG tutti OKTechnical100%SSL, canonical, sitemap, robotsStructure79%Buon semantic HTML, lacune headingContent56%Modularita insufficiente per AIReadiness63%Margine ampio di miglioramento
+8.2 Problemi AI specifici
+• Crawler AI bloccati (8 bot in robots.txt)
+• H1 concatenato illeggibile per LLM
+• Counter JS mostrano +0% ai crawler
+• Chatbot Weby inietta testo nel DOM principale
+• Manca summary block per estrazione rapida AI
+• Timeline duplicate e incoerenti
+
+8.3 Punti forza AI
+• llms.txt presente e rilevato
+• Schema.org ricchissimo (FAQPage 8 Q&A, Review x5, Service x3)
+• Contenuto reso 15% (basso = buona leggibilita LLM)
+• Rapporto testo/HTML 50.77% (eccellente)
+• Sito statico 90% - ideale per AI crawling
+
+
+
+9. Stack Tecnologico
+TecnologiaRuoloCloudflareCDN, DDoS, SSL, DNS, Browser InsightsFastlyCDN secondarioGitHub PagesHosting staticoHSTSStrict Transport Security attivoHTTP/3Protocollo nuova generazioneVarnishCache server-sideIP: 172.67.156.239
+DMARC: v=DMARC1; p=reject; pct=100 (OK)
+SPF: MANCANTE - necessario per email deliverability
+
+
+
+10. Discrepanze tra strumenti
+MetricaSEOptimerSTOSpiegazioneMeta Description84 car (corta)157 car (100/100)SEOptimer legge versione diversaRobots.txtNon trovatoTrovato (100/100)Timeout o URL diversoAlt immagini5/30 mancanti100/100STO include aria-labelUsabilitaF (12/100)Vel.Mobile 69/100PSI Mobile pesa di piu in SEOptimerParole1.3372.906STO include nav/footer/chatbot
+
+
+11. Ordine di esecuzione
+
+Sprint 1 - Fix immediati (1-2 ore)
+• 1. Sitemap: https://www.webnovis.com/sitemap.xml nel robots.txt
+• 2. Rimuovere Disallow per crawler AI nel robots.txt
+• 3. Redirect 301 diretto http -> https in Cloudflare
+• 4. Aggiungere twitter:description meta tag
+
+Sprint 2 - Contenuto e SEO (2-4 ore)
+• 5. Riscrivere H1 leggibile in statico, <70 car, con keyword
+• 6. Accorciare Title a 55-60 caratteri
+• 7. Keyword agenzia/Milano/Rho/grafica nel body (3-5x ciascuna)
+• 8. Summary block dopo hero per AI
+• 9. Valori reali nei counter (noscript fallback)
+• 10. Title attribute a 46 tag <a>
+
+Sprint 3 - Local e Tecnico (1-2 ore)
+• 11. Indirizzo e telefono visibili nel footer
+• 12. Alt a 5 immagini mancanti
+• 13. Record SPF
+• 14. Consolidare sezioni duplicate
+• 15. Isolare chatbot Weby dal DOM
+
+Sprint 4 - Strategico (ongoing)
+• 16. Google Business Profile
+• 17. Google Analytics
+• 18. Campagna backlink building
+• 19. Profili X e YouTube
+• 20. Facebook Pixel
+
+STIMA: Sprint 1-3 completati -> SEOptimer B(66)->A-(75+), STO 85.9->92+, Otterly AI Readiness 63%->85%+
+12. Pagine del sito
+PaginaURLHomepage/index.htmlAgenzia Web Arese/agenzia-web-arese.htmlAgenzia Web Garbagnate/agenzia-web-garbagnate.htmlAgenzia Web Lainate/agenzia-web-lainate.htmlAgenzia Web Milano/agenzia-web-milano.htmlAgenzia Web Rho/agenzia-web-rho.htmlBlog/blog/index.htmlChi Siamo/chi-siamo.htmlCome Lavoriamo/come-lavoriamo.htmlContatti/contatti.htmlCookie Policy/cookie-policy.htmlPortfolio/portfolio.html
+Audit SEO Unificato | www.webnovis.com | 21/02/2026
+
+Fonti: SEOptimer + SEO Tester Online + Otterly.AI + Crawl Diretto | Compilato da Claude per Web Novis
+

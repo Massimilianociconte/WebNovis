@@ -44,11 +44,14 @@ if (navMenu && navToggle) {
 
     openMobileMenu = function() {
         scrollPosition = window.pageYOffset;
+        // Add menu-open FIRST so transition:none is already active on .nav
+        // before we remove menu-closing (which also has transition:none).
+        // This prevents a brief frame where .nav has active transitions.
+        document.body.classList.add('menu-open');
         document.body.classList.remove('menu-closing');
         navMenu.classList.add('active');
         navToggle.classList.add('active');
         navToggle.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('menu-open');
         document.body.style.top = `-${scrollPosition}px`;
     };
 
@@ -1849,36 +1852,62 @@ if (processLineGlow && processLineDot && processLineSvg && !isMobile) {
     animateProcessLine();
 }
 
-// ===== TRUSTPILOT WIDGET — Lazy-loaded when testimonials section enters viewport =====
+// ===== TRUSTPILOT WIDGET — Lazy-loaded with observer + fallback timer =====
 (function() {
     var tpLoaded = false;
+
+    function loadTrustpilotScript() {
+        if (tpLoaded) return;
+        tpLoaded = true;
+        var s = document.createElement('script');
+        s.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+        s.async = true;
+        s.onload = function() {
+            function initWidgets() {
+                if (window.Trustpilot) {
+                    var widgets = document.querySelectorAll('.trustpilot-widget');
+                    for (var i = 0; i < widgets.length; i++) {
+                        window.Trustpilot.loadFromElement(widgets[i], true);
+                    }
+                }
+            }
+            // Immediate attempt + delayed retries for mobile browsers
+            initWidgets();
+            setTimeout(initWidgets, 500);
+            setTimeout(initWidgets, 1500);
+            setTimeout(initWidgets, 3000);
+        };
+        s.onerror = function() {
+            // Retry once on network error after 2 seconds
+            setTimeout(function() {
+                var s2 = document.createElement('script');
+                s2.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+                s2.async = true;
+                s2.onload = s.onload;
+                document.body.appendChild(s2);
+            }, 2000);
+        };
+        document.body.appendChild(s);
+    }
+
     var tpTarget = document.querySelector('.trustpilot-widget') || document.querySelector('.testimonials-section');
     if (tpTarget) {
+        // Primary: IntersectionObserver for early scroll-triggered loading
         var tpObserver = new IntersectionObserver(function(entries) {
             if (entries[0].isIntersecting && !tpLoaded) {
-                tpLoaded = true;
-                var s = document.createElement('script');
-                s.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
-                s.async = true;
-                s.onload = function() {
-                    function initWidgets() {
-                        if (window.Trustpilot) {
-                            var widgets = document.querySelectorAll('.trustpilot-widget');
-                            for (var i = 0; i < widgets.length; i++) {
-                                window.Trustpilot.loadFromElement(widgets[i], true);
-                            }
-                        }
-                    }
-                    // Immediate attempt + delayed retry for mobile browsers
-                    initWidgets();
-                    setTimeout(initWidgets, 500);
-                    setTimeout(initWidgets, 1500);
-                };
-                document.body.appendChild(s);
                 tpObserver.disconnect();
+                loadTrustpilotScript();
             }
-        }, { rootMargin: '300px' });
+        }, { rootMargin: '600px' });
         tpObserver.observe(tpTarget);
+
+        // Fallback: load after 4 seconds regardless (user may not scroll to footer)
+        setTimeout(function() {
+            if (!tpLoaded) {
+                tpObserver.disconnect();
+                loadTrustpilotScript();
+            }
+        }, 4000);
     }
 })();
 
