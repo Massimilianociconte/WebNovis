@@ -18,7 +18,17 @@
     padding: 0 1rem;
     height: 40px;
     transition: all 0.3s var(--ease-smooth);
+    transform-origin: center;
+    will-change: transform;
     cursor: text;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .search-bar:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.12);
+        transform: scale(1.04);
+    }
 }
 
 .search-bar:hover {
@@ -553,12 +563,14 @@
     -webkit-backdrop-filter: blur(8px);
     z-index: 2000;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.28s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
 .search-overlay.visible {
     opacity: 1;
+    pointer-events: auto;
 }
 
 /* ===== RESPONSIVE ===== */

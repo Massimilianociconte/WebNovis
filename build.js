@@ -414,7 +414,9 @@ async function build() {
             collapseBooleanAttributes: true,
             sortAttributes: true,
             sortClassName: true,
-            conservativeCollapse: true
+            conservativeCollapse: true,
+            removeOptionalTags: false,
+            preserveLineBreaks: false
         };
         // Only minify HTML files that are NOT in node_modules or .git
         const htmlToMinify = htmlFiles.filter(f => !f.includes('node_modules') && !f.includes('.git') && !f.includes('newsletter-template'));

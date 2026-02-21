@@ -234,18 +234,36 @@ triadeCards.forEach(card => {
 // Add active state to navigation based on scroll position
 const sections = document.querySelectorAll('section[id]');
 
+// Cache section geometry to avoid forced reflow on every scroll frame
+var sectionCache = [];
+var sectionCacheDirty = true;
+
+function buildSectionCache() {
+    sectionCache = [];
+    sections.forEach(function(section) {
+        sectionCache.push({
+            id: section.getAttribute('id'),
+            top: section.offsetTop - 100,
+            bottom: section.offsetTop - 100 + section.offsetHeight
+        });
+    });
+    sectionCacheDirty = false;
+}
+
+window.addEventListener('resize', function() { sectionCacheDirty = true; });
+window.addEventListener('load', function() { sectionCacheDirty = true; });
+
 const highlightNav = () => {
+    if (sectionCacheDirty) buildSectionCache();
     const scrollY = window.pageYOffset;
     let activeId = '';
 
-    // Batch READS
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            activeId = section.getAttribute('id');
+    // Pure reads from cache — no layout forced
+    for (var i = 0; i < sectionCache.length; i++) {
+        if (scrollY > sectionCache[i].top && scrollY <= sectionCache[i].bottom) {
+            activeId = sectionCache[i].id;
         }
-    });
+    }
 
     // Batch WRITES
     if (activeId) {
