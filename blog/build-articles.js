@@ -945,7 +945,7 @@ const articles = [
   {
     slug: 'sito-web-fai-da-te-vs-professionale',
     title: 'Sito Web Fai Da Te vs Professionale: Il Confronto Onesto nel 2026',
-    description: 'Wix, Squarespace o sito professionale? Confronto reale su costi, qualità, SEO, performance e risultati. Quando il fai-da-te basta e quando serve un professionista.',
+    description: 'Wix, Squarespace o sito professionale? Confronto su costi, qualità, SEO e performance. Quando basta il fai-da-te e quando no.',
     tag: 'Web Development',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -1049,7 +1049,7 @@ const articles = [
   {
     slug: 'serve-ancora-un-sito-web',
     title: 'Serve Ancora un Sito Web nel 2026? La Risposta Definitiva',
-    description: 'Social media, marketplace, AI: serve ancora investire in un sito web? Dati, casi reali e ragioni concrete per cui il sito resta il centro della strategia digitale.',
+    description: 'Social media, marketplace, AI: serve ancora un sito web? Dati, casi reali e ragioni per cui il sito resta centrale nella strategia.',
     tag: 'Strategia',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -1342,7 +1342,7 @@ const articles = [
   {
     slug: 'sito-web-per-ristoranti',
     title: 'Sito Web per Ristoranti: Guida Completa con Esempi e Costi nel 2026',
-    description: 'Cosa deve avere il sito di un ristorante per funzionare: menù, prenotazioni, SEO locale, Google Maps. Costi, errori da evitare e best practice per la ristorazione.',
+    description: 'Cosa deve avere il sito di un ristorante: menù, prenotazioni, SEO locale, Google Maps. Costi ed errori da evitare.',
     tag: 'Web Development',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -2948,7 +2948,7 @@ const articles = [
   {
     slug: 'preventivi-progetti-web',
     title: 'Come Leggere un Preventivo per un Sito Web: Guida per Aziende',
-    description: 'Cosa deve contenere un preventivo web trasparente: voci di costo, servizi inclusi, red flag da evitare. Guida per imprenditori e PMI che devono valutare proposte.',
+    description: 'Cosa deve contenere un preventivo web trasparente: voci di costo, servizi inclusi e red flag da evitare. Guida per PMI.',
     tag: 'Strategia',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -3360,7 +3360,7 @@ const articles = [
   {
     slug: 'partita-iva-ecommerce',
     title: 'Serve la Partita IVA per un E-commerce? Guida Fiscale Pratica 2026',
-    description: 'Obblighi fiscali per vendere online in Italia: quando serve la Partita IVA, regime forfettario, adempimenti e costi. Guida pratica per chi vuole aprire un e-commerce.',
+    description: 'Obblighi fiscali per vendere online in Italia: Partita IVA, regime forfettario, adempimenti e costi. Guida pratica per e-commerce.',
     tag: 'E-Commerce',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -3768,7 +3768,7 @@ const articles = [
   {
     slug: 'keyword-research-guida-2026',
     title: 'Keyword Research: Come Trovare le Parole Chiave Giuste nel 2026',
-    description: 'Guida completa alla ricerca keyword: tool gratuiti, intento di ricerca, long tail, analisi competitor. Come trovare le parole chiave che portano traffico e clienti.',
+    description: 'Guida completa alla ricerca keyword: tool gratuiti, intento di ricerca, long tail e analisi competitor. Trova le parole chiave giuste.',
     tag: 'SEO',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -3870,7 +3870,7 @@ const articles = [
   {
     slug: 'seo-on-page-checklist',
     title: 'SEO On-Page: Checklist Completa per Ottimizzare Ogni Pagina nel 2026',
-    description: 'Checklist SEO on-page operativa: title tag, meta description, heading, URL, immagini, internal linking, schema markup. Guida pratica per ottimizzare ogni pagina.',
+    description: 'Checklist SEO on-page: title tag, meta description, heading, URL, immagini, internal linking e schema markup. Guida pratica.',
     tag: 'SEO',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -5888,30 +5888,30 @@ function buildContentUpgradeHTML(upgradeData, utmSlug) {
                 </section>`;
 }
 
-function buildSourceReferencesHTML(sources = []) {
+function buildSourceReferencesHTML(sources = [], articleTag = '') {
   if (!sources.length) {
     return '';
   }
-
+  const tagSuffix = articleTag ? ` su ${articleTag}` : '';
   return `
                 <section class="article-sources" aria-labelledby="fonti-title">
-                    <h2 id="fonti-title">Fonti e riferimenti</h2>
+                    <h2 id="fonti-title">Fonti e riferimenti${tagSuffix}</h2>
                     <ul>
                         ${sources.map((source) => `<li><a href="${source.url}" rel="noopener noreferrer" target="_blank">${source.name}</a></li>`).join('')}
                     </ul>
                 </section>`;
 }
 
-function buildRelatedArticlesHTML(relatedArticles = []) {
+function buildRelatedArticlesHTML(relatedArticles = [], articleTag = '') {
   if (!relatedArticles.length) {
     return '';
   }
-
+  const tagSuffix = articleTag ? ` su ${articleTag}` : '';
   return `
                 <div style="padding:3rem 0;border-top:1px solid rgba(255,255,255,.06)">
-                    <h2>Articoli Correlati</h2>
+                    <h2>Articoli Correlati${tagSuffix}</h2>
                     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:1.5rem">
-                        ${relatedArticles.map((related) => `<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:1.5rem"><h4 style="font-size:1rem;color:var(--white);margin:0 0 .5rem"><a href="${related.slug}.html" style="color:inherit;text-decoration:none">${related.title}</a></h4><p style="font-size:.85rem;color:var(--text-muted);line-height:1.5;margin:0">${related.desc}</p></div>`).join('')}
+                        ${relatedArticles.map((related) => `<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:1.5rem"><h3 style="font-size:1rem;color:var(--white);margin:0 0 .5rem"><a href="${related.slug}.html" style="color:inherit;text-decoration:none">${related.title}</a></h3><p style="font-size:.85rem;color:var(--text-muted);line-height:1.5;margin:0">${related.desc}</p></div>`).join('')}
                     </div>
                 </div>`;
 }
@@ -5930,14 +5930,14 @@ function getAutomaticRelatedArticles(currentArticle, pool, limit = 3) {
     }));
 }
 
-function buildFaqHTML(faq = []) {
+function buildFaqHTML(faq = [], articleTag = '') {
   if (!faq.length) {
     return '';
   }
-
+  const tagSuffix = articleTag ? ` su ${articleTag}` : '';
   return `
                 <section class="article-faq" aria-labelledby="faq-title">
-                    <h2 id="faq-title">Domande frequenti</h2>
+                    <h2 id="faq-title">Domande frequenti${tagSuffix}</h2>
                     ${faq.map((item) => `<h3>${item.question}</h3><p>${item.answer}</p>`).join('')}
                 </section>`;
 }
@@ -5953,10 +5953,10 @@ function buildArticleHTML(a, contentHTML, options = {}) {
   const contentUpgradeData = resolveContentUpgrade(serviceLink);
   const sourceReferences = resolveSourceSet(serviceLink);
   const articleFaq = (a.faq && a.faq.length) ? a.faq : generateDefaultFaq(a);
-  const faqHTML = buildFaqHTML(articleFaq);
+  const faqHTML = buildFaqHTML(articleFaq, a.tag);
   const inlineCtaHTML = options.skipInlineCta ? '' : buildInlineCtaHTML(inlineCtaData, serviceLink, utmSlug);
   const contentUpgradeHTML = buildContentUpgradeHTML(contentUpgradeData, utmSlug);
-  const sourceReferencesHTML = options.skipSourceReferences ? '' : buildSourceReferencesHTML(sourceReferences);
+  const sourceReferencesHTML = options.skipSourceReferences ? '' : buildSourceReferencesHTML(sourceReferences, a.tag);
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -6063,6 +6063,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <meta property="article:modified_time" content="${modifiedDateIso}">
     <meta property="article:section" content="${a.tag}">
     <meta property="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@webaboratorio">
     <meta property="twitter:title" content="${a.title}">
     <meta property="twitter:description" content="${a.description}">
     <meta property="twitter:image" content="${SITE_URL}/Img/webnovis-logo-bianco.png">
@@ -6211,7 +6212,7 @@ if (require.main === module) {
     const relatedArticles = (a.relatedArticles && a.relatedArticles.length)
       ? a.relatedArticles
       : getAutomaticRelatedArticles(a, allArticles);
-    const relatedHTML = buildRelatedArticlesHTML(relatedArticles);
+    const relatedHTML = buildRelatedArticlesHTML(relatedArticles, a.tag);
     const html = buildArticleHTML(a, `${a.content}${relatedHTML}`);
     const filepath = path.join(BLOG_DIR, `${a.slug}.html`);
     const existed = fs.existsSync(filepath);
@@ -6223,7 +6224,7 @@ if (require.main === module) {
   for (const a of stubArticles) {
     const filepath = path.join(BLOG_DIR, `${a.slug}.html`);
     const relatedArticles = getAutomaticRelatedArticles(a, allArticles);
-    const relatedHTML = buildRelatedArticlesHTML(relatedArticles);
+    const relatedHTML = buildRelatedArticlesHTML(relatedArticles, a.tag);
     const content = `${generateStubContent(a)}${relatedHTML}`;
     const html = buildArticleHTML(a, content);
     const existed = fs.existsSync(filepath);
