@@ -5131,6 +5131,11 @@ body.menu-open .nav {
     transition: none !important;
 }
 
+/* Prevent border/background flash when nav snaps back to pill after menu close */
+body.menu-closing .nav {
+    transition: none !important;
+}
+
 /* Mobile menu close button */
 .nav-menu-close {
     display: none;

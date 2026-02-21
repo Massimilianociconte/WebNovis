@@ -44,6 +44,7 @@ if (navMenu && navToggle) {
 
     openMobileMenu = function() {
         scrollPosition = window.pageYOffset;
+        document.body.classList.remove('menu-closing');
         navMenu.classList.add('active');
         navToggle.classList.add('active');
         navToggle.setAttribute('aria-expanded', 'true');
@@ -62,9 +63,17 @@ if (navMenu && navToggle) {
             document.documentElement.style.scrollBehavior = '';
         });
         // Delay removing menu-open so .nav doesn't snap back to pill
-        // while the nav-menu is still sliding out (0.5s transform)
+        // while the nav-menu is still sliding out (0.5s transform).
+        // menu-closing keeps transition:none on .nav to prevent border flash.
+        document.body.classList.add('menu-closing');
         setTimeout(function() {
             document.body.classList.remove('menu-open');
+            // Allow one frame for the pill layout to settle, then re-enable transitions
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    document.body.classList.remove('menu-closing');
+                });
+            });
         }, 500);
     };
 
@@ -1849,20 +1858,26 @@ if (processLineGlow && processLineDot && processLineSvg && !isMobile) {
             if (entries[0].isIntersecting && !tpLoaded) {
                 tpLoaded = true;
                 var s = document.createElement('script');
-                s.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+                s.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
                 s.async = true;
                 s.onload = function() {
-                    if (window.Trustpilot) {
-                        var widgets = document.querySelectorAll('.trustpilot-widget');
-                        for (var i = 0; i < widgets.length; i++) {
-                            window.Trustpilot.loadFromElement(widgets[i], true);
+                    function initWidgets() {
+                        if (window.Trustpilot) {
+                            var widgets = document.querySelectorAll('.trustpilot-widget');
+                            for (var i = 0; i < widgets.length; i++) {
+                                window.Trustpilot.loadFromElement(widgets[i], true);
+                            }
                         }
                     }
+                    // Immediate attempt + delayed retry for mobile browsers
+                    initWidgets();
+                    setTimeout(initWidgets, 500);
+                    setTimeout(initWidgets, 1500);
                 };
                 document.body.appendChild(s);
                 tpObserver.disconnect();
             }
-        }, { rootMargin: '200px' });
+        }, { rootMargin: '300px' });
         tpObserver.observe(tpTarget);
     }
 })();
