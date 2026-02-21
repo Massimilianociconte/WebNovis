@@ -238,11 +238,31 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    const ICONS = {
+        sparkles: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>',
+        globe: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>',
+        palette: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>',
+        smartphone: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>',
+        search: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
+        rocket: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>',
+        camera: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>',
+        calendar: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>',
+        zap: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>',
+        target: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+        mail: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
+        tool: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+        smile: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg>',
+        info: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>',
+        chevronDown: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>'
+    };
+
     function appendMessage(content, type = 'bot') {
         const msgDiv = document.createElement('div');
         msgDiv.className = `chat-message ${type === 'user' ? 'user-message' : 'bot-message'}`;
 
-        const avatar = type === 'user' ? 'TU' : 'WN';
+        const botAvatar = `<picture><source srcset="Img/robot.webp" type="image/webp"><img alt="Weby" src="Img/robot-112.webp" class="bot-avatar-img"></picture>`;
+        const userAvatar = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+        const avatar = type === 'user' ? userAvatar : botAvatar;
         const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
         // Format bot messages: escape HTML, linkify, preserve line breaks
@@ -252,7 +272,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 .replace(/\n/g, '<br>')
                 .replace(/(hello@webnovis\.com)/g, '<a href="mailto:$1" style="color:#a8b4f8;text-decoration:underline;">$1</a>')
                 .replace(/wa\.me\/(\S+)/g, '<a href="https://wa.me/$1" target="_blank" rel="noopener noreferrer" style="color:#a8b4f8;text-decoration:underline;">WhatsApp</a>')
-                .replace(/(https?:\/\/(?!wa\.me)[^\s<"]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#a8b4f8;text-decoration:underline;">$1</a>');
+                .replace(/(https?:\/\/(?!wa\.me)[^\s<"]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#a8b4f8;text-decoration:underline;">$1</a>')
+                .replace(/\[icon:([a-zA-Z]+)\]/g, (match, iconName) => ICONS[iconName] || '')
+                .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, ''); // Remove any lingering emojis
         }
 
         msgDiv.innerHTML = `
@@ -310,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         } catch (error) {
             hideTyping();
-            appendMessage('Ops, qualcosa non ha funzionato. Riprova tra un momento o scrivici a hello@webnovis.com �', 'bot');
+            appendMessage('Ops, qualcosa non ha funzionato. Riprova tra un momento o scrivici a hello@webnovis.com [icon:info]', 'bot');
         } finally {
             if (elements.send) elements.send.disabled = false;
             elements.input?.focus();
@@ -446,91 +468,91 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Greetings
         if (lower.match(/^(ciao|salve|buongiorno|buonasera|hey|hello|hi|hola|salut)/)) {
-            return "Ciao! 👋 Sono Weby, l'assistente di WebNovis.\nLavoriamo su siti web, grafica e social media.\n\nCosa posso fare per te oggi?";
+            return "Ciao! [icon:sparkles] Sono Weby, l'assistente di WebNovis.\nLavoriamo su siti web, grafica e social media.\n\nCosa posso fare per te oggi?";
         }
 
         // Thanks
         if (lower.match(/(grazie|thanks|ok perfetto|ottimo|grande|fantastico|perfetto)/)) {
-            return "Prego! 😊 Se hai altre domande sono qui.\nBuona giornata!";
+            return "Prego! [icon:smile] Se hai altre domande sono qui.\nBuona giornata!";
         }
 
         // Prices / Budget
         if (lower.match(/(prezz|cost|quanto|tariff|listino|budget|preventiv)/)) {
-            return "Ecco i prezzi di partenza 👇\n\n🌐 Web:\n• Landing Page: da €500\n• Sito Vetrina: da €1.200\n• E-commerce: da €3.500\n\n🎨 Design:\n• Logo: da €150\n• Brand Identity: da €450\n\n📱 Social Media: da €300/mese\n\nI preventivi sono sempre gratuiti e su misura.\nVuoi che ti prepariamo uno personalizzato?";
+            return "Ecco i prezzi di partenza [icon:chevronDown]\n\n[icon:globe] Web:\n• Landing Page: da €500\n• Sito Vetrina: da €1.200\n• E-commerce: da €3.500\n\n[icon:palette] Design:\n• Logo: da €150\n• Brand Identity: da €450\n\n[icon:smartphone] Social Media: da €300/mese\n\nI preventivi sono sempre gratuiti e su misura.\nVuoi che ti prepariamo uno personalizzato?";
         }
 
         // Objection: too expensive
         if (lower.match(/(caro|costoso|troppo|non ho budget|poco budget|economico|conveniente|scontare)/)) {
-            return "Capisco! 💡\nUn sito professionale lavora per te 24/7 — è un investimento, non una spesa.\n\nPossiamo strutturare il progetto in fasi per distribuire il costo.\n\nVuoi un preventivo gratuito su misura per il tuo budget?";
+            return "Capisco! [icon:zap]\nUn sito professionale lavora per te 24/7 — è un investimento, non una spesa.\n\nPossiamo strutturare il progetto in fasi per distribuire il costo.\n\nVuoi un preventivo gratuito su misura per il tuo budget?";
         }
 
         // Objection: need to think
         if (lower.match(/(devo pensare|ci penso|non sono sicuro|forse|magari|vedremo|non so)/)) {
-            return "Assolutamente, prenditi il tempo che ti serve! 😊\n\nPosso inviarti un preventivo dettagliato via email così hai tutto nero su bianco.\n\nQual è la tua email? Rispondo entro 24 ore, senza impegno.";
+            return "Assolutamente, prenditi il tempo che ti serve! [icon:smile]\n\nPosso inviarti un preventivo dettagliato via email così hai tutto nero su bianco.\n\nQual è la tua email? Rispondo entro 24 ore, senza impegno.";
         }
 
         // Already have a site
         if (lower.match(/(ho gia|ho gi|sito esistente|restyling|rifacimento|aggiornare il sito|migliorare il sito)/)) {
-            return "Ottimo punto di partenza! 🔍\nSpesso un restyling o un'ottimizzazione SEO del sito esistente fa la differenza.\n\nPossiamo analizzare gratuitamente il tuo sito attuale.\nManda l'URL a hello@webnovis.com — ti diciamo cosa migliorare!";
+            return "Ottimo punto di partenza! [icon:search]\nSpesso un restyling o un'ottimizzazione SEO del sito esistente fa la differenza.\n\nPossiamo analizzare gratuitamente il tuo sito attuale.\nManda l'URL a hello@webnovis.com — ti diciamo cosa migliorare!";
         }
 
         // Web / E-commerce
         if (lower.match(/(sito|web|ecommerce|e-commerce|landing|pagina|app|wordpress|shopify|negozio online)/)) {
-            return "Creiamo siti web professionali e performanti! 🚀\n\n• Design su misura (zero template)\n• Responsive su ogni dispositivo\n• SEO tecnica inclusa\n• E-commerce scalabili\n\nPrezzi da €500 per una landing page.\n\nVuoi vedere il portfolio o ricevere un preventivo gratuito?";
+            return "Creiamo siti web professionali e performanti! [icon:rocket]\n\n• Design su misura (zero template)\n• Responsive su ogni dispositivo\n• SEO tecnica inclusa\n• E-commerce scalabili\n\nPrezzi da €500 per una landing page.\n\nVuoi vedere il portfolio o ricevere un preventivo gratuito?";
         }
 
         // Social
         if (lower.match(/(social|instagram|facebook|tiktok|linkedin|post|content|ads|campagn|advertising)/)) {
-            return "Supportiamo la tua presenza social! 📱\n\n• Analisi competitor e ricerche di marketing\n• Contenuti grafici pronti per la pubblicazione\n• Campagne Meta Ads gestite\n\nNota: non gestiamo profili o pubblicazioni quotidiane.\n\nPacchetti da €300/mese.\nVuoi sapere quale fa per te?";
+            return "Supportiamo la tua presenza social! [icon:smartphone]\n\n• Analisi competitor e ricerche di marketing\n• Contenuti grafici pronti per la pubblicazione\n• Campagne Meta Ads gestite\n\nNota: non gestiamo profili o pubblicazioni quotidiane.\n\nPacchetti da €300/mese.\nVuoi sapere quale fa per te?";
         }
 
         // Design / Logo / Brand
         if (lower.match(/(logo|grafica|brand|design|identit|visual|stampa|flyer|brochure|packaging|coordinato)/)) {
-            return "Creiamo identità visive memorabili! ✨\n\n• Logo professionale: da €150\n• Brand Identity completa: da €450\n• Materiale stampa: preventivo\n• Packaging: preventivo\n\nTutto disegnato da zero, nessun template!\n\nVuoi vedere esempi nel portfolio?";
+            return "Creiamo identità visive memorabili! [icon:sparkles]\n\n• Logo professionale: da €150\n• Brand Identity completa: da €450\n• Materiale stampa: preventivo\n• Packaging: preventivo\n\nTutto disegnato da zero, nessun template!\n\nVuoi vedere esempi nel portfolio?";
         }
 
         // Photo / Video
         if (lower.match(/(foto|video|shooting|fotografic|ripres|editing|post-produzion)/)) {
-            return "Offriamo servizi foto e video professionali! 📸\n\n• Shooting prodotto\n• Ritratti aziendali\n• Video promo\n• Editing avanzato\n\nDa €150/sessione.\n\nVuoi maggiori dettagli o un preventivo?";
+            return "Offriamo servizi foto e video professionali! [icon:camera]\n\n• Shooting prodotto\n• Ritratti aziendali\n• Video promo\n• Editing avanzato\n\nDa €150/sessione.\n\nVuoi maggiori dettagli o un preventivo?";
         }
 
         // Timeline / How long
         if (lower.match(/(tempo|quanto ci vuole|tempi|consegna|settiman|giorni|veloce|urgent|scadenza)/)) {
-            return "I tempi variano in base alla complessità 📅\n\n• Landing Page: 1-2 settimane\n• Sito Vetrina: 3-4 settimane\n• E-commerce: 6-8 settimane\n• Logo: 1-2 settimane\n• Brand Identity: 2-4 settimane\n• Social: attivazione in 5 giorni\n\nHai una data di lancio in mente?";
+            return "I tempi variano in base alla complessità [icon:calendar]\n\n• Landing Page: 1-2 settimane\n• Sito Vetrina: 3-4 settimane\n• E-commerce: 6-8 settimane\n• Logo: 1-2 settimane\n• Brand Identity: 2-4 settimane\n• Social: attivazione in 5 giorni\n\nHai una data di lancio in mente?";
         }
 
         // Process / How it works
         if (lower.match(/(come funzion|processo|come lavora|metodo|step|fasi|procedur|come si inizia)/)) {
-            return "Il nostro processo in 5 step ⚡\n\n1️⃣ Analisi gratuita delle tue esigenze\n2️⃣ Mockup su misura\n3️⃣ Revisione condivisa\n4️⃣ Sviluppo tecnico\n5️⃣ Lancio + supporto continuo\n\nVuoi iniziare con una consulenza gratuita?";
+            return "Il nostro processo in 5 step [icon:zap]\n\n1️⃣ Analisi gratuita delle tue esigenze\n2️⃣ Mockup su misura\n3️⃣ Revisione condivisa\n4️⃣ Sviluppo tecnico\n5️⃣ Lancio + supporto continuo\n\nVuoi iniziare con una consulenza gratuita?";
         }
 
         // Portfolio
         if (lower.match(/(portfolio|esemp|lavori|progett|client|referenz)/)) {
-            return "Puoi vedere i nostri lavori su webnovis.com/portfolio.html 🎯\n\nAlcuni progetti: Mikuna, FB Total Security, QuickSEO, DreamSense, Mimmo Fratelli e altri.\n\nVuoi info su un progetto specifico?";
+            return "Puoi vedere i nostri lavori su webnovis.com/portfolio.html [icon:target]\n\nAlcuni progetti: Mikuna, FB Total Security, QuickSEO, DreamSense, Mimmo Fratelli e altri.\n\nVuoi info su un progetto specifico?";
         }
 
         // Contact
         if (lower.match(/(contatt|email|parlare|scrivere|chiamare|telefon|whatsapp|ricontatt)/)) {
-            return "Puoi contattarci così 📧\n\n• Email: hello@webnovis.com\n• WhatsApp: wa.me/393802647367\n• Form contatti: qui sotto nella pagina\n\nRispondiamo entro 24 ore!";
+            return "Puoi contattarci così [icon:mail]\n\n• Email: hello@webnovis.com\n• WhatsApp: wa.me/393802647367\n• Form contatti: qui sotto nella pagina\n\nRispondiamo entro 24 ore!";
         }
 
         // Support / Maintenance
         if (lower.match(/(support|aiuto|problema|assist|manutenzione|aggiornament)/)) {
-            return "Offriamo supporto dedicato! 🛠️\n\n• Chatbot (io!)\n• WhatsApp\n• Email: hello@webnovis.com\n\nAssistenza continua anche dopo il lancio.\n\nCome posso aiutarti?";
+            return "Offriamo supporto dedicato! [icon:tool]\n\n• Chatbot (io!)\n• WhatsApp\n• Email: hello@webnovis.com\n\nAssistenza continua anche dopo il lancio.\n\nCome posso aiutarti?";
         }
 
         // SEO
         if (lower.match(/(seo|posizionamento|google|indicizzazione|ranking)/)) {
-            return "Ottimizziamo i siti per Google! 🔍\n\n• SEO tecnica on-page\n• Struttura ottimizzata per i motori di ricerca\n• Performance e velocità\n• Schema.org e dati strutturati\n\nL'ottimizzazione SEO è inclusa in tutti i nostri siti web!\n\nVuoi saperne di più?";
+            return "Ottimizziamo i siti per Google! [icon:search]\n\n• SEO tecnica on-page\n• Struttura ottimizzata per i motori di ricerca\n• Performance e velocità\n• Schema.org e dati strutturati\n\nL'ottimizzazione SEO è inclusa in tutti i nostri siti web!\n\nVuoi saperne di più?";
         }
 
         // Chi siete / About
         if (lower.match(/(chi siete|chi sei|chi e webnovis|di cosa vi occupate|cosa fate|presentati)/)) {
-            return "Sono Weby, l'assistente di Web Novis! 👋\n\nWebNovis è un'agenzia digitale italiana con sede a Rho (MI).\nCi occupiamo di siti web, grafica, branding e social media.\n\nFilosofia: design 100% su misura, zero template, SEO inclusa.\n\nVuoi vedere il portfolio o ricevere un preventivo gratuito?";
+            return "Sono Weby, l'assistente di Web Novis! [icon:sparkles]\n\nWebNovis è un'agenzia digitale italiana con sede a Rho (MI).\nCi occupiamo di siti web, grafica, branding e social media.\n\nFilosofia: design 100% su misura, zero template, SEO inclusa.\n\nVuoi vedere il portfolio o ricevere un preventivo gratuito?";
         }
 
         // Default
-        return "Posso aiutarti con i servizi WebNovis:\n\n🌐 Siti web ed e-commerce\n🎨 Logo, grafica e branding\n📱 Social media e advertising\n📸 Foto e video\n\nCosa ti interessa? 😊";
+        return "Posso aiutarti con i servizi WebNovis:\n\n[icon:globe] Siti web ed e-commerce\n[icon:palette] Logo, grafica e branding\n[icon:smartphone] Social media e advertising\n[icon:camera] Foto e video\n\nCosa ti interessa? [icon:smile]";
     }
 
     function showTyping() {
@@ -539,7 +561,9 @@ document.addEventListener('DOMContentLoaded', function () {
         typingDiv.id = 'typingIndicator';
         typingDiv.className = 'chat-message bot-message typing-indicator';
         typingDiv.innerHTML = `
-            <div class="message-avatar">WN</div>
+            <div class="message-avatar">
+                <picture><source srcset="Img/robot.webp" type="image/webp"><img alt="Weby" src="Img/robot-112.webp" class="bot-avatar-img"></picture>
+            </div>
             <div class="message-content">
                 <div class="typing-dot"></div>
                 <div class="typing-dot"></div>

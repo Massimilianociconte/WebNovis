@@ -18,6 +18,14 @@
     box-sizing: border-box;
 }
 
+/* Reset list styles for semantic lists used as grids/layouts */
+ul.tech-grid,
+ul.features-grid,
+ol.process-timeline,
+ol.clg-steps {
+    list-style: none;
+}
+
 /* Safe page-load transition — body always visible, no FOUC */
 body { opacity: 1; }
 body.page-loaded { animation: pageIn .45s ease both; }
@@ -4084,6 +4092,16 @@ section {
     font-weight: 700;
     font-size: 1rem;
     color: var(--white);
+    overflow: hidden;
+}
+
+.chat-avatar picture,
+.chat-avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .chat-status {
@@ -4184,6 +4202,19 @@ section {
     font-weight: 600;
     font-size: 0.8rem;
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.message-avatar picture,
+.bot-avatar-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.bot-avatar-img {
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .message-content {
