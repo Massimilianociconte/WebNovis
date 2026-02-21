@@ -44,15 +44,13 @@ if (navMenu && navToggle) {
 
     openMobileMenu = function() {
         scrollPosition = window.pageYOffset;
-        // Add menu-open FIRST so transition:none is already active on .nav
-        // before we remove menu-closing (which also has transition:none).
-        // This prevents a brief frame where .nav has active transitions.
+        // Set top BEFORE position:fixed to prevent scroll-to-top flash
+        document.body.style.top = `-${scrollPosition}px`;
         document.body.classList.add('menu-open');
         document.body.classList.remove('menu-closing');
         navMenu.classList.add('active');
         navToggle.classList.add('active');
         navToggle.setAttribute('aria-expanded', 'true');
-        document.body.style.top = `-${scrollPosition}px`;
     };
 
     closeMobileMenu = function() {

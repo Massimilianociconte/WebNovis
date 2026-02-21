@@ -46,7 +46,7 @@ body.page-loaded { animation: pageIn .45s ease both; }
 
 /* AI Summary Block — compact extractable summary for LLMs */
 .ai-summary {
-    padding: 1.25rem 0;
+    padding: 2rem 0;
     background: rgba(91, 106, 174, 0.06);
     border-bottom: 1px solid rgba(91, 106, 174, 0.12);
 }
@@ -58,6 +58,17 @@ body.page-loaded { animation: pageIn .45s ease both; }
     text-align: center;
     max-width: 720px;
     margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Section-header long paragraphs — breathing room */
+.section-header p {
+    max-width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.25rem;
+    line-height: 1.8;
+    padding: 0 1rem;
 }
 
 .ai-summary-text a {
@@ -69,6 +80,32 @@ body.page-loaded { animation: pageIn .45s ease both; }
 
 .ai-summary-text a:hover {
     color: var(--white);
+}
+
+/* Inline content links — blend with dark theme, no default blue/underline */
+.section-header p a,
+.feature-desc a,
+.section-subtitle a,
+.service-description a {
+    color: var(--primary-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(123, 140, 201, 0.3);
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.section-header p a:hover,
+.feature-desc a:hover,
+.section-subtitle a:hover,
+.service-description a:hover {
+    color: var(--white);
+    border-bottom-color: var(--white);
+}
+
+/* Abbreviation tags — remove default browser dotted underline */
+abbr[title] {
+    text-decoration: none;
+    border-bottom: none;
+    cursor: help;
 }
 
 /* Critical marquee anti-FOUC (nicole-inspired.css is deferred) */
@@ -371,6 +408,7 @@ html {
     scroll-behavior: smooth;
     overflow-x: hidden;
     overflow-x: clip;
+    scrollbar-gutter: stable;
 }
 
 body {
@@ -2341,8 +2379,24 @@ section {
 
     .nav {
         top: 0.75rem;
+        left: 1rem;
+        transform: none;
         width: calc(100% - 2rem);
         border-radius: 24px;
+    }
+
+    .ai-summary {
+        padding: 1.75rem 0;
+    }
+
+    .ai-summary-text {
+        font-size: 0.88rem;
+        padding: 0 1.25rem;
+    }
+
+    .section-header p {
+        padding: 0 0.75rem;
+        font-size: 0.92rem;
     }
 
     .nav-container {
