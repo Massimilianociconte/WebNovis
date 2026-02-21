@@ -112,6 +112,14 @@
     100% { transform: translateX(-50%); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation-play-state: running !important;
+        animation-iteration-count: infinite !important;
+        animation-duration: 25s !important;
+    }
+}
+
 /* ========== 2. HERO ROTATING WORDS ========== */
 .hero-rotating-wrapper {
     display: inline-flex;
@@ -1022,19 +1030,13 @@
     .counters-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
-    .counter-item:nth-child(2)::after {
-        display: none;
-    }
-
+    
     .process-timeline {
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
+        padding: 0 1rem;
     }
-
-    .process-timeline::before {
-        display: none;
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -1042,6 +1044,10 @@
     .marquee-item {
         font-size: 0.95rem;
         padding: 0 1.5rem;
+    }
+    
+    .marquee-track {
+        animation: marqueeScroll 20s linear infinite;
     }
 
     .counters-grid {
