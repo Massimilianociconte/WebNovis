@@ -5363,49 +5363,8 @@ body.menu-open {
     touch-action: none;
 }
 
-/* When menu is open, expand .nav to full screen so nav-menu can cover viewport.
-   transition: none prevents the visible "flash" / layout shift on open.
-   The nav-menu itself handles its own slide-in animation. */
-body.menu-open .nav {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    transform: none;
-    border-radius: 0;
-    border: none;
-    background: transparent;
-    box-shadow: none;
-    transition: none !important;
-}
-
-/* Keep nav-container pinned at top with dark bg when menu is open */
-body.menu-open .nav-container {
-    position: relative;
-    z-index: 1005;
-    background: #0a0a0a;
-    border-radius: 0;
-}
-
-/* Hide hamburger when menu is open (close button ✕ inside nav-menu is used instead) */
-body.menu-open .nav-toggle {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Also hide search toggle when menu is open to avoid clutter */
-body.menu-open .search-mobile-toggle {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Prevent border/background flash when nav snaps back to pill after menu close */
-body.menu-closing .nav {
-    transition: none !important;
-}
+/* .nav pill is never modified when the menu opens/closes.
+   .nav-menu is position:fixed and covers the viewport independently. */
 
 /* Mobile menu close button */
 .nav-menu-close {

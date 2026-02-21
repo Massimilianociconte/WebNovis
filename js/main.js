@@ -47,7 +47,6 @@ if (navMenu && navToggle) {
         // Set top BEFORE position:fixed to prevent scroll-to-top flash
         document.body.style.top = `-${scrollPosition}px`;
         document.body.classList.add('menu-open');
-        document.body.classList.remove('menu-closing');
         navMenu.classList.add('active');
         navToggle.classList.add('active');
         navToggle.setAttribute('aria-expanded', 'true');
@@ -63,18 +62,10 @@ if (navMenu && navToggle) {
         requestAnimationFrame(function() {
             document.documentElement.style.scrollBehavior = '';
         });
-        // Delay removing menu-open so .nav doesn't snap back to pill
-        // while the nav-menu is still sliding out (0.5s transform).
-        // menu-closing keeps transition:none on .nav to prevent border flash.
-        document.body.classList.add('menu-closing');
+        // Delay removing menu-open so scroll stays locked while
+        // the nav-menu slides out (0.5s transform).
         setTimeout(function() {
             document.body.classList.remove('menu-open');
-            // Allow one frame for the pill layout to settle, then re-enable transitions
-            requestAnimationFrame(function() {
-                requestAnimationFrame(function() {
-                    document.body.classList.remove('menu-closing');
-                });
-            });
         }, 500);
     };
 
