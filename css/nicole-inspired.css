@@ -856,6 +856,16 @@
         gap: 2.5rem;
     }
 
+    .brxe-block-image {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .ricominciare-img {
+        margin: 0 auto;
+        display: block;
+    }
+
     .next-blur-reveal__inner .word {
         font-size: clamp(2rem, 6vw, 3rem);
     }
@@ -1193,16 +1203,17 @@
 
 .morphing-text-container {
     position: relative;
-    display: inline-block;
-    vertical-align: bottom;
-    height: 1.4em;
+    display: inline-flex;
+    vertical-align: baseline;
+    height: 1.2em;
+    align-items: baseline;
     transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .morph-text {
     position: absolute;
     left: 0;
-    top: 0;
+    bottom: 0;
     white-space: nowrap;
     filter: blur(8px);
     opacity: 0;
