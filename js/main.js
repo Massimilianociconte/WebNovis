@@ -56,12 +56,16 @@ if (navMenu && navToggle) {
         navToggle.classList.remove('active');
         navToggle.setAttribute('aria-expanded', 'false');
         document.documentElement.style.scrollBehavior = 'auto';
-        document.body.classList.remove('menu-open');
         document.body.style.top = '';
         window.scrollTo(0, scrollPosition);
         requestAnimationFrame(function() {
             document.documentElement.style.scrollBehavior = '';
         });
+        // Delay removing menu-open so .nav doesn't snap back to pill
+        // while the nav-menu is still sliding out (0.5s transform)
+        setTimeout(function() {
+            document.body.classList.remove('menu-open');
+        }, 500);
     };
 
     navToggle.addEventListener('click', () => {
@@ -1847,6 +1851,14 @@ if (processLineGlow && processLineDot && processLineSvg && !isMobile) {
                 var s = document.createElement('script');
                 s.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
                 s.async = true;
+                s.onload = function() {
+                    if (window.Trustpilot) {
+                        var widgets = document.querySelectorAll('.trustpilot-widget');
+                        for (var i = 0; i < widgets.length; i++) {
+                            window.Trustpilot.loadFromElement(widgets[i], true);
+                        }
+                    }
+                };
                 document.body.appendChild(s);
                 tpObserver.disconnect();
             }
