@@ -1,0 +1,86 @@
+# Web Novis — Agenzia Digitale a Milano e Rho
+
+> Web Novis è un'agenzia web italiana con sede a Rho (Milano) specializzata in sviluppo siti web custom, graphic design, brand identity e social media marketing (contenuti grafici, ricerche di marketing, analisi competitor e advertising). Offriamo soluzioni digitali integrate per PMI, startup e professionisti in tutta Italia.
+
+## Servizi
+
+- [Sviluppo Siti Web](https://www.webnovis.com/servizi/sviluppo-web.html): Siti web professionali, responsive, ottimizzati SEO. Landing page, siti vetrina, web app.
+- [E-commerce](https://www.webnovis.com/servizi/ecommerce.html): Negozi online personalizzati, scalabili e sicuri per PMI italiane.
+- [Landing Page](https://www.webnovis.com/servizi/landing-page.html): Pagine ad alta conversione per campagne marketing e lead generation.
+- [Sito Vetrina](https://www.webnovis.com/servizi/sito-vetrina.html): Siti multi-pagina professionali per presentare la tua attività online.
+- [Graphic Design e Branding](https://www.webnovis.com/servizi/graphic-design.html): Logo design, brand identity, coordinato aziendale, materiali pubblicitari.
+- [Social Media Marketing](https://www.webnovis.com/servizi/social-media.html): Ricerche di marketing, analisi competitor, creazione contenuti grafici e gestione campagne advertising su Instagram, Facebook (Meta) e LinkedIn.
+- [Accessibilità Web e Compliance EAA](https://www.webnovis.com/servizi/accessibilita.html): Audit accessibilità WCAG 2.1 AA, adeguamento all'European Accessibility Act e monitoraggio continuo. Audit da €890, monitoraggio da €49/mese.
+
+## Sedi Locali
+
+- [Agenzia Web Rho](https://www.webnovis.com/agenzia-web-rho.html): Sede principale a Rho (MI). Siti web custom, grafica e social per l'hinterland milanese.
+- [Agenzia Web Milano](https://www.webnovis.com/agenzia-web-milano.html): Servizi web per startup e PMI milanesi.
+- [Agenzia Web Lainate](https://www.webnovis.com/agenzia-web-lainate.html): Servizi web per imprese e professionisti di Lainate e Nord-Ovest Milano.
+- [Agenzia Web Arese](https://www.webnovis.com/agenzia-web-arese.html): Siti web e digital marketing per il commercio e le PMI di Arese.
+- [Agenzia Web Garbagnate Milanese](https://www.webnovis.com/agenzia-web-garbagnate.html): Siti web custom per aziende e artigiani di Garbagnate Milanese.
+
+## Portfolio
+
+- [Portfolio Progetti](https://www.webnovis.com/portfolio.html): Raccolta dei progetti realizzati da Web Novis per clienti in diversi settori.
+- [Aether Digital — Case Study](https://www.webnovis.com/portfolio/case-study/aether-digital.html): Agenzia digitale — sito corporate moderno.
+- [FB Total Security — Case Study](https://www.webnovis.com/portfolio/case-study/fbtotalsecurity.html): Azienda sicurezza — sito professionale.
+- [Mikuna — Case Study](https://www.webnovis.com/portfolio/case-study/mikuna.html): Ristorante Nikkei — sito immersivo con menù digitale.
+- [Mimmo Fratelli — Case Study](https://www.webnovis.com/portfolio/case-study/mimmo-fratelli.html): Negozio alimentari — e-commerce locale.
+- [QuickSEO — Case Study](https://www.webnovis.com/portfolio/case-study/quickseo.html): Web app con strumenti SEO avanzati.
+- [Lumina Creative — Case Study](https://www.webnovis.com/portfolio/case-study/lumina-creative.html): Studio creativo — portfolio e brand identity.
+- [Muse Editorial — Case Study](https://www.webnovis.com/portfolio/case-study/muse-editorial.html): Casa editrice — piattaforma editoriale.
+- [PopBlock Studio — Case Study](https://www.webnovis.com/portfolio/case-study/popblock-studio.html): Studio di animazione — portfolio interattivo.
+- [Structure Arch — Case Study](https://www.webnovis.com/portfolio/case-study/structure-arch.html): Studio di architettura — portfolio progetti.
+- [Ember & Oak — Case Study](https://www.webnovis.com/portfolio/case-study/ember-oak.html): Ristorante — sito con prenotazioni online.
+- [Arconti 31 — Case Study](https://www.webnovis.com/portfolio/case-study/arconti31.html): Attività locale — presenza digitale completa.
+
+## Azienda
+
+- [Chi Siamo](https://www.webnovis.com/chi-siamo.html): La storia, la missione, i valori e il team di Web Novis.
+- [Come Lavoriamo](https://www.webnovis.com/come-lavoriamo.html): Il nostro processo in 5 fasi: brief, wireframe, design, sviluppo e lancio. Trasparenza e tempi certi.
+- [Preventivo Gratuito](https://www.webnovis.com/preventivo.html): Richiedi un preventivo gratuito per sito web, e-commerce, grafica o social media. Risposta in 24 ore.
+- [Contatti](https://www.webnovis.com/contatti.html): Email, telefono, WhatsApp, form di contatto e mappa per raggiungere Web Novis.
+
+## Blog
+
+- [Blog Web Novis](https://www.webnovis.com/blog/): Articoli su web design, SEO, branding, social media e marketing digitale per PMI italiane.
+- [Quanto Costa un Sito Web nel 2026](https://www.webnovis.com/blog/quanto-costa-un-sito-web.html): Guida completa ai costi di realizzazione siti web in Italia.
+- [Quanto Costa un E-commerce](https://www.webnovis.com/blog/quanto-costa-un-ecommerce.html): Guida ai costi di sviluppo e-commerce per PMI.
+- [Come Scegliere una Web Agency](https://www.webnovis.com/blog/come-scegliere-web-agency.html): Criteri per scegliere l'agenzia web giusta.
+- [SEO per Piccole Imprese](https://www.webnovis.com/blog/seo-per-piccole-imprese.html): Guida SEO pratica per PMI italiane.
+- [Brand Identity — Guida Completa](https://www.webnovis.com/blog/brand-identity-guida-completa.html): Come costruire un'identità di marca efficace.
+- [Social Media Strategy 2026](https://www.webnovis.com/blog/social-media-strategy-2026.html): Strategie social media aggiornate per il 2026.
+- [Core Web Vitals — Guida](https://www.webnovis.com/blog/core-web-vitals-guida.html): Ottimizzare LCP, INP e CLS per prestazioni e SEO.
+
+## Informazioni di Contatto
+
+- **Email**: hello@webnovis.com
+- **Telefono**: +39 380 264 7367
+- **WhatsApp**: https://wa.me/393802647367
+- **Sede**: Via S. Giorgio, 2 — 20017 Rho (MI), Italia
+- **Orari**: Aperto 24/7
+- **Sito**: https://www.webnovis.com
+- **Instagram**: https://www.instagram.com/web.novis
+- **Facebook**: https://www.facebook.com/share/1C7hNnkqEU/
+- **Clutch.co**: https://clutch.co/profile/web-novis
+- **Trustpilot**: https://it.trustpilot.com/review/webnovis.com
+- **Google Business Profile**: Web Novis — Web designer, Rho (MI)
+- **Wikidata**: https://www.wikidata.org/wiki/Q138340285
+- **Crunchbase**: https://www.crunchbase.com/organization/web-novis
+- **DesignRush**: https://www.designrush.com/agency/profile/web-novis
+
+## Prezzi Indicativi
+
+- Landing Page: da €500
+- Sito Vetrina: da €1.200
+- E-commerce: da €3.500
+- Social Media Marketing (contenuti grafici): da €300/mese
+- Advertising Gestito (Meta Ads): da €500/mese
+- Graphic Design / Logo: da €400
+
+## Dati Strutturati
+
+- [ai.txt](https://www.webnovis.com/ai.txt): Contenuto AI-readable completo con informazioni aziendali, servizi, FAQ e keyword.
+- [Dati JSON AI](https://www.webnovis.com/webnovis-ai-data.json): Dati strutturati in formato JSON per crawler AI.
+- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa completa del sito con 48+ URL indicizzabili.

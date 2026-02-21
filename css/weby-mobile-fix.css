@@ -1,0 +1,53 @@
+/* ===== WEBY MOBILE FIX ===== */
+
+@media (max-width: 768px) {
+    .weby-chat-container {
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 999;
+    }
+
+    .weby-speech {
+        display: none !important;
+    }
+
+    .weby-robot {
+        width: 48px;
+        height: 48px;
+    }
+
+    .chat-popup {
+        right: 1rem;
+        left: 1rem;
+        bottom: 5rem;
+        width: auto;
+        max-width: calc(100vw - 2rem);
+        height: 70vh;
+        max-height: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .weby-chat-container {
+        bottom: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .weby-robot {
+        width: 44px;
+        height: 44px;
+    }
+
+    .chat-popup {
+        bottom: 4.5rem;
+        height: calc(100vh - 6rem);
+        max-height: none;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .chat-popup {
+        height: 85vh;
+        max-height: 400px;
+    }
+}

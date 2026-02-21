@@ -1,0 +1,1 @@
+contatti-form-wrapper{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:2.5rem}.contatti-form-wrapper h2{font-family:Syne,Syne-fallback,sans-serif;font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:1.5rem}.breadcrumb{padding:100px 0 20p

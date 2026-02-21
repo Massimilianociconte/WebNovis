@@ -1,0 +1,9 @@
+Analysis of preventivo.html:
+Has name="service": true
+Has name="timeline": true
+Has custom-select-wrapper: true
+First <select at: -1
+custom-select-wrapper at: 11095
+
+--- custom-select snippet ---
+custom-select-wrapper{position:relative;width:100%}.custom-select-trigger{display:flex;justify-content:space-between;align-items:center;width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.04);

@@ -1,0 +1,178 @@
+1. Componenti UI (Copy-Paste & Frameworks)
+Risorse per elementi d'interfaccia pronti all'uso (bottoni, card, form) da integrare nel codice.
+Generalisti & Tailwind (Copia-Incolla)
+Uiverse.io: Elementi UI open-source creati dalla community (HTML/CSS, Tailwind).
+HyperUI: Componenti per marketing ed e-commerce (HTML + Tailwind).
+Float UI: Sezioni di pagina complete per React, Vue, Svelte e HTML.
+Tailblocks: Sezioni pronte all'uso per landing page rapide (Tailwind).
+Meraki UI: Componenti con supporto RTL e dark mode (Tailwind).
+WickedBlocks: Blocchi pre-costruiti per siti di marketing.
+FreeFrontend: Collezioni curate di esempi creativi da CodePen.
+CodeMyUI: Snippet HTML/CSS/JS con anteprime GIF.
+Ecosistema React (Focus su Shadcn/ui)
+shadcn/ui: Primitives accessibili (Radix) stilizzate con Tailwind; filosofia "possiedi il tuo codice".
+Origin UI: Estensione di shadcn con 400+ componenti.
+Aceternity UI: Componenti shadcn con animazioni Framer Motion.
+Magic UI: Componenti animati ad alto impatto visivo.
+Mantine: Sistema completo con 120+ componenti e hook.
+Ant Design: Componenti di livello enterprise.
+Radix UI: Primitive non stilizzate focalizzate sull'accessibilità (base di shadcn).
+Tremor: Componenti specializzati per dashboard e grafici.
+Librerie Tailwind CSS
+DaisyUI: Aggiunge classi semantiche e temi a Tailwind (no JS).
+Flowbite: Vasta libreria con adattatori per i principali framework JS.
+Preline UI: Grande design system Figma con plugin Tailwind.
+FlyonUI: Classi semantiche combinate con plugin JS.
+Sailboat UI: Componenti interattivi basati su Tailwind e Alpine.js.
+Ecosistema Vue
+Vuetify: Implementazione del Material Design per Vue.
+PrimeVue: Libreria completa e agnostica rispetto al design.
+Nuxt UI: Componenti accessibili per l'ecosistema Nuxt.
+shadcn-vue: Porting della filosofia shadcn per Vue.
+Naive UI: Sistema basato su TypeScript con 80+ componenti.
+CSS-Only & Stili Particolari
+Pico.css: Stile automatico per elementi HTML nativi (senza classi).
+NES.css: Interfacce in stile retro 8-bit.
+Neobrutalism.dev: Componenti in stile neobrutalista (basato su shadcn).
+Bulma: Framework puramente CSS senza dipendenze JS.
+2. Icone
+Librerie vettoriali per ogni stile visivo.
+I "Grandi Classici"
+Lucide: Fork di Feather Icons, consistente e supportata ovunque.
+Tabler Icons: Vasta collezione di icone outline di alta qualità.
+Phosphor Icons: Flessibile (6 pesi diversi, incluso duotone).
+Heroicons: Set del team Tailwind, semplice e pixel-perfect.
+Remix Icon: Ogni icona disponibile in stile outline e filled.
+Bootstrap Icons: Ottimizzate per l'ecosistema Bootstrap.
+Set Specializzati & Gemme Nascoste
+Iconoir: Nessun livello premium, open source.
+MingCute: Icone artigianali di alta qualità.
+css.gg: Icone realizzate in puro CSS (no immagini/font).
+Myna UI Icons: Vasto set con licenza MIT.
+Atlas Icons: Spessore del tratto regolabile via browser.
+Simple Icons: Loghi di brand e marchi (SVG).
+Pixelarticons: Stile pixel art retrò.
+Radix Icons: Icone 15x15 ideali per tool di sviluppo.
+Octicons: Set ufficiale di GitHub.
+Icone Animate & Aggregatori
+pqoqubbw/icons: Icone animate con Framer Motion.
+useAnimations: Icone lineari animate (Lottie).
+Lucide Animated: Versioni animate delle icone Lucide.
+Iconify: API unificata per 200k+ icone da set diversi.
+Icones: Interfaccia di ricerca visuale per Iconify.
+React Icons: Bundle di icone per React (con tree-shaking).
+SVG Repo: Enorme repository di SVG.
+3. Illustrazioni
+Grafica vettoriale personalizzabile.
+unDraw: Lo standard per illustrazioni flat personalizzabili nel colore.
+Open Peeps: Sistema modulare per creare personaggi "mix-and-match".
+Humaaans: Sistema modulare focalizzato sulle figure umane.
+Open Doodles: Schizzi in stile disegnato a mano.
+illlustrations: Illustrazioni flat open source.
+IRA Design: Sistema modulare basato su gradienti.
+Lukasz Adam: SVG gratuiti rilasciati settimanalmente.
+ManyPixels: Database ricercabile con personalizzazione colore.
+Storyset: Illustrazioni animabili direttamente nel browser.
+Blush: Collezioni di vari artisti con generatore casuale.
+DrawKit: Pacchetti misti (inclusi 3D e Lottie).
+Isometric.online: Vettori in prospettiva isometrica.
+404 Illustrations: Specifiche per pagine di errore.
+Avataaars: Generatore di avatar personalizzabili.
+DiceBear: Avatar generati in modo deterministico (seed-based).
+Boring Avatars: Avatar SVG leggeri e senza dipendenze.
+4. Ispirazione e Design
+Reference visive e kit di progettazione.
+Awwwards: Siti premiati per design e creatività.
+Godly: Showcase con anteprime animate dei siti.
+Siteinspire: Gallerie categorizzate di siti web.
+Landing.love: Le migliori landing page animate.
+Mobbin / Banani: Reference di schermate app reali (Banani è l'alternativa free).
+Collect UI: Ispirazione giornaliera divisa per componenti.
+Navbar Gallery / Footer.design / Pricing Pages / Dark Mode Design / 404s.design: Gallerie verticali su specifici elementi UI.
+Figma Community: Migliaia di UI kit gratuiti.
+Untitled UI (Free): Versione gratuita di un design system molto diffuso.
+UI Design Daily: Componenti gratuiti per Figma/Sketch/HTML.
+Penpot: Alternativa open source a Figma.
+HTML5 UP / Tooplate: Template HTML responsive gratuiti.
+Tabler: Dashboard UI kit open source.
+5. Animazioni
+Strumenti per micro-interazioni e motion design.
+GSAP: Libreria professionale per animazioni complesse (ora totalmente free).
+Motion: (ex Framer Motion) Motore di animazione per React/Vue/JS.
+Animate.css: Animazioni CSS pronte all'uso tramite classi.
+AOS / Sal: Animazioni allo scroll (AOS via attributi HTML, Sal via Intersection Observer).
+AutoAnimate: Transizioni automatiche del DOM con una riga di codice.
+Animista: Generatore visuale di codice CSS per animazioni.
+cssanimation.io: Libreria di effetti CSS.
+AnimXYZ: Animazioni CSS componibili.
+CSS Loaders / SpinKit / Whirl / SVG Spinners: Collezioni di caricatori e spinner (CSS o SVG).
+LottieFiles: Animazioni JSON vettoriali scalabili.
+6. Background, Pattern e Texture
+Generatori di fondali visivi.
+fffuel: Suite di generatori SVG (onde, noise, fluidi).
+Haikei: Generatore di forme a strati e onde.
+Hero Patterns: Pattern SVG ripetibili personalizzabili.
+Pattern Monster: Pattern SVG con controlli fini.
+CSS Pattern: Pattern realizzati con soli gradienti CSS.
+Subtle Patterns: Texture PNG delicate.
+Patternico: Pattern basati su icone ed emoji.
+Doodad: Pattern royalty-free.
+BEAUBUS / BGJar: Generatori di background SVG.
+ShapeDivider: Divisori di sezione (onde, curve).
+Cool Backgrounds: Mix di particelle e gradienti.
+Trianglify: Sfondi poligonali (low-poly).
+7. Tipografia
+Font e strumenti di gestione del testo.
+Google Fonts: CDN globale di font open source.
+Bunny Fonts: Alternativa privacy-first a Google Fonts (GDPR compliant).
+Fontsource: Font pacchettizzati come moduli npm (self-hosting).
+Fontshare: Font di alta qualità (es. Satoshi) non presenti su Google.
+Font Squirrel: Font verificati per uso commerciale.
+The League of Moveable Type: Storica foundry open source.
+Velvetyne: Font sperimentali e artistici.
+Open Foundry: Selezione editoriale di font open.
+Leon Sans: Font geometrico animabile via codice.
+Fontesk: Archivio di font con licenza SIL.
+8. Colore
+Strumenti per palette e accessibilità.
+Coolors: Generatore di palette standard industriale.
+Khroma: Generatore AI basato sulle preferenze dell'utente.
+Colormind: Generatore deep learning (basato su arte/film).
+Happy Hues: Anteprima delle palette su interfacce reali.
+Realtime Colors: Visualizzazione live su mockup web.
+PaletteMaker: Anteprima su brand identity e UI.
+Color Hunt: Palette curate dalla community.
+Adobe Color: Teoria del colore e regole di armonia.
+ColorSpace: Generazione palette da un colore di input.
+Paletton: Ruota cromatica interattiva.
+Huetone: Focus su sistemi di colore accessibili (contrasto WCAG).
+9. Generatori CSS
+Tool per scrivere CSS complesso visivamente.
+Shadow Palette Generator: Ombre fotorealistiche a strati (Josh Comeau).
+Smooth Shadow: Ombre con curve di easing personalizzate.
+CSS Scan: Collezione di box-shadow "copia-incolla".
+Glass UI: Generatore effetto vetro (Glassmorphism).
+Neumorphism.io: Generatore effetto Soft UI.
+Mesher: Gradienti mesh in puro CSS.
+Clippy: Editor visivo per clip-path.
+Fancy Border Radius: Generatore di forme organiche (blob).
+CSS Grid Generator / Layoutit Grid: Builder visivi per CSS Grid.
+Flexbox Froggy / Grid Garden: Giochi per imparare il layout.
+CSS Gradient / WebGradients / Gradient Magic: Strumenti per gradienti semplici e complessi.
+CSS-Generators.com / CSS Portal / 10015.io: Suite complete di tool CSS vari.
+10. Risorse 3D
+Asset tridimensionali per il web.
+3dicons: Icone 3D open source (file Blender inclusi).
+Shapefest: Render di forme 3D ad alta risoluzione (materiali vari).
+Khagwal 3D: Modelli 3D con file sorgente.
+Spline: Tool di design 3D collaborativo per il web.
+Poly Pizza: Modelli low-poly ottimizzati per il web.
+Sketchfab: Repository di modelli (filtro CC0 per uso libero).
+ambientCG: Texture PBR di alta qualità nel pubblico dominio.
+11. Meta-Risorse
+Indici e aggregatori di risorse.
+Toools.design: Archivio organizzato di risorse di design.
+Brad Traversy GitHub: Lista completa di risorse per sviluppatori.
+Undesign: PWA che organizza risorse free.
+DevResourc.es: Lista mantenuta dalla community.
+Resource.fyi: Tool selezionati per dev e designer.

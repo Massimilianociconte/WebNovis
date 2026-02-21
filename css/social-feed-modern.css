@@ -1,0 +1,364 @@
+/* ===== INSTAGRAM-STYLE SOCIAL FEED — PREMIUM ===== */
+
+/* Phone Mockup Enhancement */
+.mockup-phone {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border-radius: 44px;
+    padding: 10px;
+    box-shadow:
+        0 50px 100px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    position: relative;
+    overflow: hidden;
+    transform-style: flat;
+}
+
+.phone-notch {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 24px;
+    background: #000;
+    border-radius: 0 0 16px 16px;
+    z-index: 10;
+}
+
+.phone-screen {
+    background: #000;
+    border-radius: 36px;
+    overflow: hidden;
+    position: relative;
+    clip-path: inset(0 round 36px);
+}
+
+.social-feed-scroll {
+    height: 480px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    scroll-snap-type: y proximity;
+}
+
+.social-feed-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Feed Post */
+.feed-post {
+    background: #000;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 12px;
+    scroll-snap-align: start;
+    scroll-margin-top: 8px;
+}
+
+.feed-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+}
+
+.feed-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5B6AAE, #3A4785);
+    padding: 2px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #000;
+}
+
+.feed-user {
+    flex: 1;
+}
+
+.feed-username {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.verified {
+    background: #3b82f6;
+    color: #fff;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.feed-time {
+    font-size: 0.65rem;
+    color: #737373;
+    margin-top: 1px;
+}
+
+.feed-more {
+    color: #fff;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+}
+
+/* Feed Image */
+.feed-image {
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+.feed-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.feed-post:hover .feed-image img {
+    transform: scale(1.02);
+}
+
+/* Feed Actions — SVG Icons */
+.feed-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px 4px;
+}
+
+.action-left {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.action-icon {
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.action-icon:hover {
+    transform: scale(1.15);
+    opacity: 0.85;
+}
+
+.action-icon svg {
+    display: block;
+}
+
+.action-liked svg {
+    filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.4));
+}
+
+/* Feed Likes */
+.feed-likes {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    padding: 2px 12px 4px;
+    letter-spacing: -0.01em;
+}
+
+/* Feed Caption */
+.feed-caption {
+    font-size: 0.75rem;
+    color: #a0a0a0;
+    padding: 0 12px 4px;
+    line-height: 1.5;
+}
+
+.feed-caption strong {
+    color: #fff;
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+.content-hashtag {
+    color: #5B6AAE;
+    font-weight: 500;
+}
+
+/* Social Mockup Container */
+.social-mockup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.visual-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .mockup-phone {
+        width: 280px;
+        height: 500px;
+        margin: 0 auto;
+    }
+    
+    .social-feed-scroll {
+        height: 100%;
+        max-height: 460px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Sezione Social Media - Centratura completa */
+    .social-section .service-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .social-section .service-visual {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        order: 1;
+    }
+    
+    .social-section .service-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem;
+        order: 2;
+        text-align: center;
+    }
+    
+    .social-section .service-content .service-features {
+        text-align: left;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .social-section .visual-card {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+    }
+    
+    .social-mockup {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+    }
+    
+    .mockup-phone {
+        width: 260px;
+        height: 450px;
+        max-width: 260px;
+        border-radius: 35px;
+        padding: 10px;
+        margin: 0 auto;
+    }
+    
+    .phone-screen {
+        border-radius: 28px;
+        height: calc(100% - 20px);
+    }
+    
+    .social-feed-scroll {
+        height: 100%;
+        max-height: 400px;
+    }
+    
+    .feed-post {
+        margin-bottom: 12px;
+    }
+    
+    .feed-image {
+        aspect-ratio: 4/3;
+    }
+    
+    .feed-caption {
+        font-size: 0.75rem;
+    }
+    
+    .feed-likes {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mockup-phone {
+        width: 240px;
+        height: 420px;
+        max-width: 240px;
+        border-radius: 30px;
+        padding: 8px;
+    }
+    
+    .phone-screen {
+        height: calc(100% - 16px);
+    }
+    
+    .social-feed-scroll {
+        max-height: 370px;
+    }
+    
+    .feed-header {
+        padding: 8px 10px;
+    }
+    
+    .feed-avatar {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .feed-username {
+        font-size: 0.8rem;
+    }
+    
+    .action-icon {
+        font-size: 1.1rem;
+    }
+    
+    .social-section .service-content {
+        padding: 0 0.5rem;
+    }
+    
+    .social-section .service-title {
+        font-size: 1.8rem;
+    }
+    
+    .social-section .service-description {
+        font-size: 0.95rem;
+    }
+}

@@ -1,0 +1,86 @@
+# robots.txt per WebNovis - Agenzia Digitale
+# https://www.webnovis.com
+
+# Sitemap
+Sitemap: https://www.webnovis.com/sitemap.xml
+
+# Regole per tutti i motori di ricerca
+User-agent: *
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /Img/
+Allow: /ai.txt
+Allow: /llms.txt
+Allow: /webnovis-ai-data.json
+Allow: /8531a1fa-b8b0-4136-8741-b5895865d3c4.txt
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.vscode/
+Disallow: /.env
+Disallow: /server.js
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /*.bat$
+Disallow: /*.md$
+Disallow: /test-*.html
+Disallow: /server-log.txt
+Disallow: /*.log$
+Disallow: /docs/
+
+# File ottimizzati per AI (ChatGPT, Claude, Perplexity, Gemini, ecc.)
+User-agent: GPTBot
+Allow: /
+Allow: /ai.txt
+Allow: /webnovis-ai-data.json
+
+User-agent: OAI-SearchBot
+Allow: /
+Allow: /ai.txt
+Allow: /webnovis-ai-data.json
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /ai.txt
+Allow: /webnovis-ai-data.json
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /ai.txt
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Blocca scraper aggressivi
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /

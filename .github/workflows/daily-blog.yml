@@ -1,0 +1,45 @@
+name: Daily Blog Writer
+
+on:
+  schedule:
+    # Every day at 6:00 AM UTC (7:00 AM CET / 8:00 AM CEST)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      count:
+        description: 'Number of articles to generate'
+        required: false
+        default: '10'
+
+jobs:
+  write-articles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --omit=dev
+
+      - name: Run auto-writer
+        run: node blog/auto-writer.js --count ${{ github.event.inputs.count || '10' }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+
+      - name: Commit and push new articles
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "📝 Auto-generated blog articles [skip ci]"
+          file_pattern: "blog/*.html blog/*.json sitemap.xml indexnow-log.json"
+          commit_author: "WebNovis Bot <bot@webnovis.com>"

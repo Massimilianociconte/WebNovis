@@ -1,0 +1,853 @@
+{
+    "project_name": "Webnovis SEO Keyword Strategy",
+    "description": "Mapping gerarchico delle keyword per ottimizzazione posizionamento web agency.",
+    "clusters": [
+        {
+            "nome_cluster": "⚪ DOMANDE PONTE",
+            "sotto_clusters": [
+                {
+                    "nome_sotto_cluster": "Fiducia/Scelta",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "PAA",
+                            "keywords": [
+                                {
+                                    "termine": "Come riconoscere una web agency seria?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: guida scelta"
+                                },
+                                {
+                                    "termine": "Meglio un freelancer o una web agency?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog comparativo"
+                                },
+                                {
+                                    "termine": "Come valutare il preventivo di un sito web?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog guida preventivi"
+                                },
+                                {
+                                    "termine": "Cosa chiedere prima di far fare un sito?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog checklist"
+                                },
+                                {
+                                    "termine": "Perché i siti web costano così tanto?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog trasparenza prezzi"
+                                },
+                                {
+                                    "termine": "Cosa succede se non ho un sito web?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: importanza sito"
+                                },
+                                {
+                                    "termine": "Posso fare il sito web da solo?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: fai-da-te vs profes."
+                                },
+                                {
+                                    "termine": "Sito web o pagina social, cosa serve davvero?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog strategico"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nome_sotto_cluster": "Nicchia locale Rho",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "web agency Rho",
+                                    "intento": "Transazionale locale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing Rho"
+                                },
+                                {
+                                    "termine": "siti web per attività a Rho",
+                                    "intento": "Transazionale locale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing Rho"
+                                },
+                                {
+                                    "termine": "grafico freelance Rho Milano",
+                                    "intento": "Transazionale locale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing grafica"
+                                },
+                                {
+                                    "termine": "SEO per negozi Rho",
+                                    "intento": "Transazionale locale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing SEO locale Rho"
+                                },
+                                {
+                                    "termine": "social media manager Rho",
+                                    "intento": "Transazionale locale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing social"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nome_cluster": "🔴 E-COMMERCE",
+            "sotto_clusters": [
+                {
+                    "nome_sotto_cluster": "Query principali",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "e-commerce per piccole aziende",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing PMI e-commerce"
+                                },
+                                {
+                                    "termine": "aprire negozio online costi",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog costi e-commerce"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "PAA",
+                            "keywords": [
+                                {
+                                    "termine": "Quanto costa aprire un e-commerce?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog guida completa"
+                                },
+                                {
+                                    "termine": "Conviene WooCommerce o Shopify?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Blog comparativo"
+                                },
+                                {
+                                    "termine": "Quanto guadagna un e-commerce?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Blog ROI e-commerce"
+                                },
+                                {
+                                    "termine": "Cosa serve per aprire un negozio online?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog guida step-by-step"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "Query seed",
+                            "keywords": [
+                                {
+                                    "termine": "realizzazione e-commerce Milano",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina servizio e-commerce"
+                                },
+                                {
+                                    "termine": "creare negozio online",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing e-commerce"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nome_cluster": "🔵 WEB AGENCY MILANO",
+            "sotto_clusters": [
+                {
+                    "nome_sotto_cluster": "People Also Ask",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "PAA",
+                            "keywords": [
+                                {
+                                    "termine": "Qual è la migliore web agency italiana?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: Guida scelta web agency"
+                                },
+                                {
+                                    "termine": "Come scegliere una web agency?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: Guida scelta web agency"
+                                },
+                                {
+                                    "termine": "Cosa fa esattamente una web agency?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Pagina Chi Siamo / Blog"
+                                },
+                                {
+                                    "termine": "Quanto costa affidarsi a una web agency?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina Prezzi / Blog costi"
+                                },
+                                {
+                                    "termine": "Che differenza c'è tra web agency e agenzia di comunicazione?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Blog post"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nome_sotto_cluster": "Query principali",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "web agency Milano lavora con noi",
+                                    "intento": "Navigazionale",
+                                    "priorita_roi": "⭐",
+                                    "pagina_target": "Pagina Careers"
+                                },
+                                {
+                                    "termine": "agenzia web Rho",
+                                    "intento": "Transazionale locale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing locale Rho"
+                                },
+                                {
+                                    "termine": "web agency Monza",
+                                    "intento": "Transazionale locale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing locale Monza/Brianza"
+                                },
+                                {
+                                    "termine": "agenzie marketing Milano",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Pagina servizi marketing"
+                                },
+                                {
+                                    "termine": "agenzia siti web",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Homepage"
+                                },
+                                {
+                                    "termine": "agenzia creazione siti web",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina servizi"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "Query seed",
+                            "keywords": [
+                                {
+                                    "termine": "agenzia web Milano",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Homepage / Landing dedicata"
+                                },
+                                {
+                                    "termine": "web agency Milano",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Homepage"
+                                },
+                                {
+                                    "termine": "migliori web agency Milano",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing comparativa"
+                                },
+                                {
+                                    "termine": "migliori web agency italiane",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Blog post"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nome_cluster": "🟠 SITI PER SETTORI",
+            "sotto_clusters": [
+                {
+                    "nome_sotto_cluster": "Altre attività locali",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "sito web per palestra",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing attività locali"
+                                },
+                                {
+                                    "termine": "sito web per negozio abbigliamento",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing retail"
+                                },
+                                {
+                                    "termine": "sito web per impresa edile",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing settore edilizia"
+                                },
+                                {
+                                    "termine": "sito web per agenzia immobiliare",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing immobiliare"
+                                },
+                                {
+                                    "termine": "sito web per officina meccanica",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing automotive"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nome_sotto_cluster": "Parrucchieri/Beauty",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "realizzazione siti web centri estetici",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing beauty"
+                                },
+                                {
+                                    "termine": "sito web con prenotazione appuntamenti",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing booking online"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "PAA",
+                            "keywords": [
+                                {
+                                    "termine": "Quanto costa un sito web per un parrucchiere?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog costi"
+                                },
+                                {
+                                    "termine": "Serve un sito web a un parrucchiere?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Blog: perché sito parrucchiere"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "Query seed",
+                            "keywords": [
+                                {
+                                    "termine": "sito web per parrucchiere",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing siti parrucchieri"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nome_sotto_cluster": "Ristoranti",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "realizzazione siti web per ristoranti",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing siti ristoranti"
+                                },
+                                {
+                                    "termine": "sito web ristorante con prenotazione online",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing siti ristoranti"
+                                },
+                                {
+                                    "termine": "menù digitale ristorante",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Blog"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "PAA",
+                            "keywords": [
+                                {
+                                    "termine": "Quanto costa un sito web per un ristorante?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: costi sito ristorante"
+                                },
+                                {
+                                    "termine": "Come creare un sito per il mio ristorante?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog/guida"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "Query seed",
+                            "keywords": [
+                                {
+                                    "termine": "sito web per ristorante",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing siti ristoranti"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nome_sotto_cluster": "Studi professionali",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Query seed",
+                            "keywords": [
+                                {
+                                    "termine": "sito web per avvocati",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing professionisti"
+                                },
+                                {
+                                    "termine": "sito web per commercialisti",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing professionisti"
+                                },
+                                {
+                                    "termine": "sito web per dentisti",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing studi medici"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nome_cluster": "🟡 RESTYLING SITI",
+            "sotto_clusters": [
+                {
+                    "nome_sotto_cluster": "Manutenzione",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "assistenza sito web WordPress",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing assistenza"
+                                },
+                                {
+                                    "termine": "gestione sito web mensile",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina piani ricorrenti"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "PAA",
+                            "keywords": [
+                                {
+                                    "termine": "Quanto costa mantenere un sito web all'anno?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog costi annuali"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "Query seed",
+                            "keywords": [
+                                {
+                                    "termine": "manutenzione sito web costi",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina piani manutenzione"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nome_sotto_cluster": "Restyling",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "quando conviene rifare il sito web",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: segnali restyling"
+                                },
+                                {
+                                    "termine": "restyling sito WordPress",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing WordPress"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "PAA",
+                            "keywords": [
+                                {
+                                    "termine": "Quanto costa rifare un sito web?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog costi restyling"
+                                },
+                                {
+                                    "termine": "Ogni quanto bisogna aggiornare il sito web?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Blog manutenzione"
+                                },
+                                {
+                                    "termine": "Come capire se il mio sito è obsoleto?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: check sito vecchio"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "Query seed",
+                            "keywords": [
+                                {
+                                    "termine": "restyling sito web",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina servizio restyling"
+                                },
+                                {
+                                    "termine": "rifare sito web Milano",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing restyling"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nome_cluster": "🟢 REALIZZAZIONE SITI WEB",
+            "sotto_clusters": [
+                {
+                    "nome_sotto_cluster": "People Also Ask",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "PAA",
+                            "keywords": [
+                                {
+                                    "termine": "Quanto costa farmi fare un sito web?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina Prezzi dettagliata"
+                                },
+                                {
+                                    "termine": "Quanto prende un creatore di siti web?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: costi reali 2026"
+                                },
+                                {
+                                    "termine": "Quanto costa un sito web professionale nel 2026?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: guida prezzi"
+                                },
+                                {
+                                    "termine": "Quanto tempo ci vuole per fare un sito web?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "FAQ / Blog"
+                                },
+                                {
+                                    "termine": "Qual è la migliore piattaforma per creare un sito web?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Blog comparativo"
+                                },
+                                {
+                                    "termine": "Conviene fare un sito web con WordPress o codice custom?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: custom vs WordPress"
+                                },
+                                {
+                                    "termine": "Quali sono le spese annuali per un sito web?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: costi mantenimento"
+                                },
+                                {
+                                    "termine": "Quanto costa il dominio e l'hosting?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "FAQ"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nome_sotto_cluster": "Query principali",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "realizzazione siti web economici",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing prezzi accessibili"
+                                },
+                                {
+                                    "termine": "realizzazione sito web gratis",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Blog: gratis vs professionale"
+                                },
+                                {
+                                    "termine": "creazione e gestione siti web",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina manutenzione"
+                                },
+                                {
+                                    "termine": "siti web per aziende",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing siti aziendali"
+                                },
+                                {
+                                    "termine": "sviluppo siti web su misura",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing siti custom"
+                                },
+                                {
+                                    "termine": "siti web senza WordPress",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: codice custom vs CMS"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "Query seed",
+                            "keywords": [
+                                {
+                                    "termine": "realizzazione siti web Milano",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina servizio siti web"
+                                },
+                                {
+                                    "termine": "realizzazione siti web professionali",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina servizio siti web"
+                                },
+                                {
+                                    "termine": "creazione siti web Milano",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina servizio siti web"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nome_cluster": "🟣 SEO E VISIBILITÀ",
+            "sotto_clusters": [
+                {
+                    "nome_sotto_cluster": "SEO Locale",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "come farsi trovare su Google",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog guida completa"
+                                },
+                                {
+                                    "termine": "Google My Business ottimizzazione",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog Google Business"
+                                },
+                                {
+                                    "termine": "come apparire su Google Maps",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog Google Maps"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "PAA",
+                            "keywords": [
+                                {
+                                    "termine": "Come inserire la mia attività su Google?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog tutorial GMB"
+                                },
+                                {
+                                    "termine": "Come farsi trovare su Google nella mia città?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog SEO locale"
+                                },
+                                {
+                                    "termine": "Quanto costa la SEO locale?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog costi local SEO"
+                                },
+                                {
+                                    "termine": "Serve un sito web per apparire su Google?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog: sito web necessità"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "Query seed",
+                            "keywords": [
+                                {
+                                    "termine": "SEO locale per attività commerciali",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing SEO locale"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nome_sotto_cluster": "SEO generale",
+                    "categorie_tipologia": [
+                        {
+                            "tipo": "Correlata",
+                            "keywords": [
+                                {
+                                    "termine": "consulente SEO Milano",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Landing consulenza SEO"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "PAA",
+                            "keywords": [
+                                {
+                                    "termine": "Quanto costa un servizio SEO?",
+                                    "intento": "Commerciale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog costi SEO"
+                                },
+                                {
+                                    "termine": "Come posizionare il sito su Google?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Blog guida SEO"
+                                },
+                                {
+                                    "termine": "Quanto tempo serve per ottenere risultati SEO?",
+                                    "intento": "Informazionale",
+                                    "priorita_roi": "⭐⭐",
+                                    "pagina_target": "Blog/FAQ"
+                                }
+                            ]
+                        },
+                        {
+                            "tipo": "Query seed",
+                            "keywords": [
+                                {
+                                    "termine": "posizionamento SEO Milano",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Pagina servizio SEO"
+                                },
+                                {
+                                    "termine": "agenzia SEO Milano",
+                                    "intento": "Transazionale",
+                                    "priorita_roi": "⭐⭐⭐",
+                                    "pagina_target": "Landing SEO"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

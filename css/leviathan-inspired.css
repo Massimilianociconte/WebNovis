@@ -1,0 +1,355 @@
+/* ===== LEVIATHAN-INSPIRED DESIGN ELEMENTS ===== */
+/* Ispirato a levthn.com - Design moderno e d'impatto */
+
+/* ========== IMPACT NUMBERS SECTION ========== */
+.impact-numbers {
+    padding: var(--section-md) 0;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.impact-numbers::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91, 106, 174, 0.3), transparent);
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+.impact-item {
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.impact-number {
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa 0%, #93c5fd 50%, #bfdbfe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.3));
+}
+
+.impact-label {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.impact-description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}
+
+/* ========== SERVICES GRID - LEVIATHAN STYLE ========== */
+.services-modern {
+    padding: var(--section-lg) 0;
+    background: var(--dark-light);
+}
+
+.services-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.service-card-modern {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    cursor: pointer;
+}
+
+.service-card-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-brand);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.service-card-modern:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(91, 106, 174, 0.2);
+    transform: translateY(-5px);
+}
+
+.service-card-modern:hover::before {
+    transform: scaleX(1);
+}
+
+.service-icon-modern {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(91, 106, 174, 0.1);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.service-title-modern {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+}
+
+.service-desc-modern {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ========== TESTIMONIALS - LEVIATHAN STYLE ========== */
+.testimonials-modern {
+    padding: var(--section-lg) 0;
+    background: var(--dark);
+}
+
+.testimonial-card-modern {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 3rem;
+    position: relative;
+}
+
+.testimonial-quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.testimonial-quote::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-size: 5rem;
+    color: rgba(91, 106, 174, 0.2);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.testimonial-author-modern {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.author-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+}
+
+.author-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ========== CTA SECTION - LEVIATHAN STYLE ========== */
+.cta-modern {
+    padding: var(--section-lg) 0;
+    background: var(--dark-light);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-modern::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(91, 106, 174, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.cta-title-modern {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.cta-subtitle-modern {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ========== ANIMATED TEXT - LEVIATHAN STYLE ========== */
+.text-rotate-container {
+    display: inline-block;
+    position: relative;
+    min-width: 200px;
+}
+
+.text-rotate {
+    display: inline-block;
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textRotate 8s ease-in-out infinite;
+}
+
+@keyframes textRotate {
+    0%, 20% { opacity: 1; }
+    25%, 45% { opacity: 0; }
+    50%, 70% { opacity: 1; }
+    75%, 95% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* ========== MARQUEE TEXT - LEVIATHAN STYLE ========== */
+.marquee-container {
+    overflow: hidden;
+    padding: 2rem 0;
+    background: var(--dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.marquee-content {
+    display: flex;
+    animation: marquee 30s linear infinite;
+    white-space: nowrap;
+}
+
+.marquee-item {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.05);
+    padding: 0 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.marquee-item.highlight {
+    color: var(--primary);
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ========== PILL TAGS - LEVIATHAN STYLE ========== */
+.pill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(91, 106, 174, 0.1);
+    border: 1px solid rgba(91, 106, 174, 0.2);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pill-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+    .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .services-grid-modern {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .impact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .impact-number {
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+    }
+    
+    .services-grid-modern {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-card-modern {
+        padding: 2rem;
+    }
+    
+    .testimonial-card-modern {
+        padding: 2rem;
+    }
+    
+    .testimonial-quote {
+        font-size: 1.1rem;
+    }
+}
