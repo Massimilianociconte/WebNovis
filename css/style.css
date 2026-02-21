@@ -2656,7 +2656,7 @@ section {
 
     /* Mantieni le animazioni hero su mobile */
     .hero {
-        padding: 100px 0 4rem;
+        padding: 100px 0 8rem;
         min-height: 100vh;
         min-height: 100svh;
         background-image: url('../Img/sfondo-mobile.webp');
@@ -5778,7 +5778,7 @@ img {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-bottom: 4rem;
+        padding-bottom: 8rem;
         box-sizing: border-box;
     }
 
