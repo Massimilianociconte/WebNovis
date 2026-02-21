@@ -2498,28 +2498,17 @@ section {
         justify-content: flex-start;
     }
 
-    /* Gradient meno diffuso su mobile */
+    /* Web-section mobile: same blue gradient as desktop, reduced padding */
     .web-section {
-        padding-top: 8rem;
-        padding-bottom: 8rem;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
         background: linear-gradient(180deg,
             #0a0a0a 0%,
-            #1e1e1e 5%,
-            #4b4b4b 10%,
-            #7b7b7b 15%,
-            #adadad 20%,
-            #d5d5d5 25%,
-            #f0f0f0 30%,
-            #fdfdfd 35%,
-            #ffffff 40%,
-            #ffffff 60%,
-            #fdfdfd 65%,
-            #f0f0f0 70%,
-            #d5d5d5 75%,
-            #adadad 80%,
-            #7b7b7b 85%,
-            #4b4b4b 90%,
-            #1e1e1e 95%,
+            #0a1230 8%,
+            #0b3078 30%,
+            #1555c7 50%,
+            #0b3078 70%,
+            #0a1230 92%,
             #0a0a0a 100%) !important;
     }
 }
@@ -3937,7 +3926,10 @@ section {
     visibility: hidden;
     transform: translateY(20px) scale(0.95);
     pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+                opacity 0.35s cubic-bezier(0.32, 0.72, 0, 1),
+                visibility 0s linear 0.45s;
+    will-change: transform, opacity;
     z-index: 1001;
     overflow: hidden;
 }
@@ -3947,6 +3939,9 @@ section {
     visibility: visible;
     transform: translateY(0) scale(1);
     pointer-events: all;
+    transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+                opacity 0.3s cubic-bezier(0.32, 0.72, 0, 1),
+                visibility 0s linear 0s;
 }
 
 .chat-popup::before {
@@ -5550,17 +5545,6 @@ img {
     .glitch::before,
     .glitch::after {
         display: none;
-    }
-
-    /* -- Web-section mobile: reduce massive desktop padding -- */
-    .web-section {
-        padding-top: 5rem !important;
-        padding-bottom: 5rem !important;
-    }
-
-    .social-section {
-        padding-top: 5rem !important;
-        padding-bottom: 5rem !important;
     }
 
     .hero-subtitle {
