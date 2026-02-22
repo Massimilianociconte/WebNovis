@@ -46,3 +46,4 @@ leads-log.json
 *.tmp
 *.temp
 ~*
+docs/history.json
