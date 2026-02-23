@@ -621,7 +621,7 @@ body:hover .cursor-glow {
     .hero {
         padding: 80px 0 2rem;
         min-height: 100vh;
-        min-height: 100dvh;
+        min-height: 100svh;
     }
     
     .hero-title {

@@ -2658,7 +2658,7 @@ section {
     .hero {
         padding: 100px 0 2rem;
         min-height: 100vh;
-        min-height: 100dvh;
+        min-height: 100svh;
         background-image: url('../Img/sfondo-mobile.webp');
     }
 
@@ -5774,7 +5774,7 @@ img {
     .hero {
         padding-top: 80px;
         min-height: 100vh;
-        min-height: 100dvh;
+        min-height: 100svh;
         display: flex;
         flex-direction: column;
         justify-content: center;
