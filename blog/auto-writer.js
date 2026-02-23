@@ -768,9 +768,8 @@ async function main() {
   log(`Groq API: ${GROQ_API_KEY ? 'configured' : 'NOT SET'}`);
   log('');
 
-  // Check at least one API key
   if (!GEMINI_API_KEY && !GROQ_API_KEY) {
-    logError('No AI API keys. Set GEMINI_API_KEY_WRITER and/or GROQ_API_KEY in .env');
+    logError('No AI API keys. Set GEMINI_API_KEY_WRITER and/or GROQ_API_KEY in .env (local) or as GitHub Secrets (Actions).');
     process.exit(1);
   }
 

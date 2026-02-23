@@ -119,7 +119,7 @@
 
   function loadIndex() {
     if (searchIndex) return Promise.resolve(searchIndex);
-    return fetch('/search-index.json')
+    return fetch('../search-index.json')
       .then(function (r) {
         if (!r.ok) throw new Error('Index fetch failed');
         return r.json();
