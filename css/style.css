@@ -41,6 +41,7 @@ body.page-loaded { animation: pageIn .45s ease both; }
 .search-results{opacity:0;visibility:hidden;position:absolute}
 .search-mobile-toggle{display:none;background:none;border:none;padding:8px;color:rgba(255,255,255,.7)}
 .search-overlay{display:none}
+.search-modal{display:none}
 
 /* Critical highlight-gold anti-FOUC (nicole-inspired.css is deferred) */
 .highlight-gold,.highlight-burgundy{position:relative;display:inline;isolation:isolate}
