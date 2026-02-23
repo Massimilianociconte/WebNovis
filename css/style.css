@@ -2656,9 +2656,9 @@ section {
 
     /* Mantieni le animazioni hero su mobile */
     .hero {
-        padding: 100px 0 8rem;
+        padding: 100px 0 2rem;
         min-height: 100vh;
-        min-height: 100svh;
+        min-height: 100dvh;
         background-image: url('../Img/sfondo-mobile.webp');
     }
 
@@ -5774,11 +5774,11 @@ img {
     .hero {
         padding-top: 80px;
         min-height: 100vh;
-        min-height: 100svh;
+        min-height: 100dvh;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-bottom: 8rem;
+        padding-bottom: 2rem;
         box-sizing: border-box;
     }
 
