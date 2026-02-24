@@ -11,6 +11,9 @@ on:
         required: false
         default: '10'
 
+permissions:
+  contents: write
+
 jobs:
   write-articles:
     runs-on: ubuntu-latest
