@@ -733,6 +733,10 @@ function postProcessContent(html) {
     return '../servizi/sviluppo-web.html';
   });
 
+  // Wrap bare <table> in .table-wrap for responsive scroll on mobile
+  html = html.replace(/<table(?=[>\s])/g, '<div class="table-wrap"><table');
+  html = html.replace(/<\/table>/g, '</table></div>');
+
   // T4 safety: clean stray backslashes before quotes in href attributes
   html = html.replace(/href="([^"]*?)\\"/g, 'href="$1"');
 
