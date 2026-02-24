@@ -1,0 +1,192 @@
+GOOGLE SEARCH CONSOLE
+Crawl Stats Audit
+webnovis.com — Analisi Post-Rilancio
+Periodo: 26 Nov 2025 — 22 Feb 2026 | Rilancio sito: ~15 Feb 2026
+EXECUTIVE SUMMARY
+Il sito webnovis.com è stato rilanciato intorno al 15 Febbraio 2026 dopo mesi di stasi. I dati di crawl riflettono due fasi nettamente distinte: un periodo pre-rilancio con crawl quasi inesistente (media 4.3 req/giorno, coerente con un sito dormiente) e un’esplosione post-rilancio con un aumento del +795% (34.2 req/giorno, picchi di 113 e 156 richieste). L’iscrizione a directory e le modifiche strutturali stanno già producendo effetti visibili. Il server risponde velocemente (61ms post-rilancio) e il tasso di 200 OK è alto (91.3%). Le priorità ora sono massimizzare l’efficienza del crawl budget e alimentare la crescita con azioni mirate.
+CRAWL HEALTH SCORE
+5.5 / 10
+In fase di ascesa — trend positivo dopo rilancio
+(Pre-rilancio: 3/10 → Post-rilancio: 6.5/10)
+KPI
+Pre-rilancio
+Post-rilancio
+Variazione
+Status
+Media req/giorno
+4.3
+34.2
++795%
+IN CRESCITA
+Giorni attivi
+35.8%
+50%
++14.2pp
+MIGLIORATO
+Tempo risposta
+84ms
+61ms
+-27%
+ECCELLENTE
+Tasso 200 OK
+91.3% (globale)
+—
+—
+BUONO
+Errori 301+404
+8.3% (globale)
+—
+—
+DA RIDURRE
+% HTML sul totale
+38.8% (globale)
+—
+—
+INEFFICIENTE
+Scoperta vs Aggiorn.
+24% vs 76%
+—
+—
+DA INVERTIRE
+1. Il Quadro Generale: Da Sito Dormiente a Rilancio
+I dati raccontano una storia chiara e coerente con il contesto operativo. Dal 26 Novembre 2025 al ~14 Febbraio 2026, il sito era sostanzialmente fermo: nessun contenuto nuovo, nessun backlink building attivo, nessuna segnalazione a Google. Il crawl rate medio di 4.3 richieste/giorno con il 64% di giorni a zero scansioni è la risposta fisiologica di Googlebot a un sito che non dà segnali di vita.
+🟢 POSITIVO: Il dato pre-rilancio non è un problema da risolvere: è il punto di partenza. Il dato importante è la velocità con cui Google ha reagito al rilancio: +795% in meno di una settimana. Questo è un segnale molto positivo che indica che il sito non ha penalizzazioni e che l’infrastruttura tecnica funziona.
+1.1 Cosa Dice lo Spike del 21-22 Febbraio
+Le 113 + 156 richieste in due giorni consecutivi sono il risultato diretto delle azioni post-rilancio: nuovo sito, iscrizioni a directory, probabilmente nuovi link in ingresso. Google ha ricevuto segnali esterni (backlink dalle directory) e interni (nuovi contenuti, sitemap aggiornata) che lo hanno spinto ad allocare più crawl budget.
+Ulteriore dato positivo: il tempo di risposta post-rilancio è sceso a 61ms (da 84ms pre-rilancio), segno che il nuovo sito è più performante del precedente. Google premia esplicitamente i server veloci con un crawl rate più alto.
+2. Efficienza del Crawl Budget
+🔴 CRITICO: Solo il 38.8% delle richieste di Googlebot riguarda pagine HTML. Il restante 61.2% è sprecato in risorse accessorie (CSS 28.6%, JS 15.4%, altro). Con un crawl budget in fase di crescita, ogni richiesta conta.
+2.1 Il Problema: CSS e JavaScript Cannibalizzano il Budget
+Quando Googlebot scansiona una pagina HTML, ha bisogno di scaricare anche CSS e JS per renderizzarla correttamente (mobile-first indexing). Se queste risorse non hanno cache headers adeguati, Googlebot le riscarica a ogni visita. Risultato: per ogni pagina HTML utile, il crawler "spreca" quasi 2 richieste in file accessori.
+In un sito con 10.000 richieste/giorno questo è tollerabile. Con 34 richieste/giorno, significa che Googlebot scansiona forse 13 pagine HTML effettive al giorno invece di potenzialmente 25-30.
+2.2 La Soluzione: Cache Aggressiva con Content Hashing
+Cache-Control: public, max-age=31536000, immutable su tutti i file CSS, JS, font e immagini statiche. Questo dice a Googlebot: "non riscaricare mai questo file, è immutabile".
+Filename con hash (es. style.a3f8b2.css) per l’invalidazione automatica. Quando modifichi il CSS, il filename cambia e Googlebot scarica solo la nuova versione.
+Verificare robots.txt: se ci sono risorse CSS/JS non necessarie per il rendering, valutare se bloccarle (attenzione: bloccare risorse necessarie causa problemi di indicizzazione).
+Impatto stimato: riduzione del 40-50% delle richieste di risorse accessorie, liberando crawl budget per scansionare più pagine HTML effettive.
+3. Codici di Risposta e Finalità
+3.1 Codici di Risposta HTTP
+Il 91.3% di risposte 200 OK è una base solida. I problemi residui:
+301 Redirect (7.2% — ~45 richieste): Ogni 301 è una richiesta doppia (redirect + destinazione). Probabilmente sono URL del vecchio sito che ora puntano alle nuove pagine. Azione: aggiornare la sitemap per contenere solo URL finali. Aggiornare ogni link interno. Se le directory appena iscritte puntano a URL vecchi, aggiornarle.
+404 Not Found (1.1% — ~7 richieste): Poche in assoluto, ma in fase di rilancio ogni errore conta. Verificare in GSC Copertura > Escluse > Non trovata (404) per l’elenco esatto. Per ogni URL: se ha un equivalente nel nuovo sito → redirect 301. Se il contenuto non esiste più → 410 Gone.
+3.2 Finalità: Aggiornamento (76.4%) vs Rilevamento (23.6%)
+Il rapporto 76/24 a favore dell’aggiornamento è comprensibile nel contesto: Google sta ancora ri-scansionando le pagine esistenti (molte delle quali sono probabilmente cambiate con il rilancio). Nelle prossime settimane, man mano che Google completa la ri-scansione del sito, il rapporto dovrebbe spostarsi naturalmente verso più rilevamento, soprattutto se vengono pubblicati nuovi contenuti regolarmente.
+ℹ️ INFO: Non preoccuparti del rapporto 76/24 adesso — è fisiologico post-rilancio. Diventa un problema solo se resta stabile così dopo 4-6 settimane, perché significherebbe che Google non sta scoprendo contenuti nuovi.
+4. Googlebot Types e Host
+4.1 Tipi di Crawler
+La distribuzione dei tipi di Googlebot conferma il quadro di efficienza:
+Carico risorse pagina (46.7%): Quasi metà delle richieste serve per risorse accessorie. Questo è il dato da migliorare con il caching (vedi Sezione 2).
+Smartphone (16.7%) vs Computer (6.4%): Rapporto 2.6:1 a favore del mobile, coerente con il mobile-first indexing. Il nuovo sito deve essere impeccabile su mobile (Core Web Vitals, responsive, touch-friendly).
+Altro tipo di agente (22.6%): Crawler specializzati (AdsBot, Storebot, etc.). Se non usi Google Ads o Merchant Center, valuta di bloccarli via robots.txt per recuperare budget.
+4.2 Duplicazione Host: www vs non-www
+592 richieste su www.webnovis.com vs 31 su webnovis.com (senza www). Le 31 richieste sulla versione non-www rappresentano il 5% del crawl budget totale sprecato.
+🟡 ATTENZIONE: Verificare che esista un redirect 301 permanente da webnovis.com → www.webnovis.com (o viceversa, a seconda della versione canonica scelta). Controllare che il tag <link rel="canonical"> su ogni pagina punti alla versione corretta. Nel nuovo sito, questo potrebbe essere già configurato — le 31 richieste sulla versione non-www potrebbero essere residui del vecchio sito che diminuiranno progressivamente.
+5. Piano d’Azione Post-Rilancio
+Le azioni sono calibrate per la fase attuale: un sito appena rilanciato che deve consolidare il momentum positivo. Sono ordinate per impatto immediato sul crawl budget e sull’indicizzazione.
+#
+Azione
+Priorità
+Impatto
+Effort
+Timing
+1
+Cache headers aggressivi su CSS/JS/font/immagini. Implementare filename con content hash per invalidazione. Può raddoppiare le pagine HTML scansionate a parità di crawl budget.
+P0
+Molto alto
+Basso
+Settimana 1
+2
+Risolvere i 301 alla fonte: aggiornare sitemap, link interni, e profili directory per puntare direttamente agli URL finali del nuovo sito. Elimina il 7.2% di spreco.
+P0
+Alto
+Medio
+Settimana 1-2
+3
+Consolidare canonical www/non-www. Redirect 301 hard + canonical tag coerente. Verificare configurazione nel nuovo hosting.
+P0
+Medio
+Basso
+Settimana 1
+4
+Identificare e risolvere i 404. In GSC > Copertura, trovare gli URL non trovati. Redirect 301 se hanno equivalente, 410 Gone se definitivamente rimossi.
+P1
+Medio
+Basso
+Settimana 1-2
+5
+Sitemap XML pulita: solo URL 200, canonical self-referencing, <lastmod> accurato. Sottomettere via GSC. Escludere URL con redirect o parametri.
+P1
+Alto
+Basso
+Settimana 2
+6
+Continuare iscrizioni a directory di qualità (Pagine Gialle, Yelp, Hotfrog, Europages, directory web agency italiane, camere di commercio locali). I backlink dalle directory sono ciò che ha triggerato lo spike.
+P1
+Molto alto
+Medio
+Continuo
+7
+Pubblicare contenuti nuovi con cadenza regolare (min 2-4 articoli/mese). Blog su temi SEO/web design per PMI della zona Rho/Milano. Sposterà il rapporto Scoperta/Aggiornamento verso il 50/50.
+P1
+Molto alto
+Alto
+Continuo
+8
+Struttura di linking interno: ogni pagina raggiungibile in ≤3 click dalla homepage. Breadcrumb con schema markup. Pagine hub per servizi (sviluppo web, SEO, grafica).
+P2
+Alto
+Medio
+Settimana 3-4
+9
+Implementare Google Indexing API + IndexNow per segnalare proattivamente ogni nuovo contenuto. Riduce la dipendenza dal crawl passivo e accelera l’indicizzazione.
+P2
+Medio
+Medio
+Settimana 2-3
+10
+Valutare blocco "Altro tipo di agente" (22.6%) via robots.txt se non si usano Google Ads/Merchant Center. Recupererebbe ~1/5 del crawl budget per il crawler principale.
+P2
+Medio
+Basso
+Settimana 3
+6. Obiettivi e Monitoraggio
+6.1 Target Misurabili a 30 / 60 / 90 Giorni
+Metrica
+Attuale
+30 gg
+60 gg
+90 gg
+Crawl req/giorno (media)
+34.2 *
+40-60
+80-150
+150-300
+% giorni con scansione
+50%
+>70%
+>85%
+>95%
+% HTML sul totale richieste
+38.8%
+>50%
+>55%
+>60%
+Tasso errori (301+404)
+8.3%
+<5%
+<3%
+<2%
+Scoperta vs Aggiornamento
+24% / 76%
+30% / 70%
+40% / 60%
+45% / 55%
+* Post-rilancio, basato su soli 8 giorni. Il valore si stabilizzerà nelle prossime settimane.
+6.2 Checklist di Monitoraggio Settimanale
+Controllare GSC > Crawl Stats: il trend giornaliero si sta consolidando o sta regredendo?
+Verificare GSC > Copertura: nuove pagine indicizzate? Errori emergenti?
+Controllare che le nuove directory abbiano accettato l’iscrizione e che i link siano live.
+Monitorare il tempo di risposta: deve restare sotto 100ms.
+Dopo ogni pubblicazione di contenuto: verificare che compaia nella sitemap e che Google la scopra entro 48h.
+CONCLUSIONE
+Il rilancio sta funzionando. Google ha risposto immediatamente con un aumento del 795% del crawl rate. La priorità adesso non è diagnosticare problemi ma capitalizzare il momentum: ottimizzare l’efficienza tecnica (caching, redirect), alimentare la crescita con contenuti e backlink, e monitorare settimanalmente che il trend positivo si consolidi. Se il crawl rate continua a salire nelle prossime 2-4 settimane, il sito è sulla traiettoria giusta per costruire visibilità organica significativa nell’area Rho/Milano.
