@@ -36,6 +36,7 @@ const GENERATE_SITEMAP_SCRIPT = path.join(__dirname, '..', 'generate-sitemap.js'
 const BLOG_INDEX_FILE = path.join(__dirname, 'index.html');
 
 const DRY_RUN = process.argv.includes('--dry-run');
+const REBUILD_INDEX_ONLY = process.argv.includes('--rebuild-index');
 const countIdx = process.argv.indexOf('--count');
 const ARTICLES_PER_RUN = countIdx !== -1 ? parseInt(process.argv[countIdx + 1], 10) || 10 : 10;
 
@@ -56,6 +57,16 @@ const TAG_TO_CATEGORY = {
   'Branding': 'design', 'Design': 'design', 'Personal Brand': 'design',
   'Social Media': 'social', 'Instagram': 'social', 'Advertising': 'social',
   'Content Marketing': 'marketing', 'Strategia': 'marketing', 'Conversioni': 'marketing'
+};
+
+const CATEGORY_COVER = {
+  'web': 'blog-cat-web',
+  'seo': 'blog-cat-seo',
+  'marketing': 'blog-cat-marketing',
+  'social': 'blog-cat-social',
+  'design': 'blog-cat-web',
+  'ai': 'blog-cat-ai',
+  'case-study': 'blog-cat-case-study'
 };
 
 const ITALIAN_MONTHS = [
@@ -732,8 +743,15 @@ function postProcessContent(html) {
 
 function buildBlogCardHTML(article) {
   const category = TAG_TO_CATEGORY[article.tag] || 'marketing';
+  const coverBase = CATEGORY_COVER[category] || CATEGORY_COVER['web'];
 
   return `                    <article class="blog-card" data-category="${category}">
+                        <a href="${article.slug}.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+                            <picture>
+                                <source srcset="../Img/${coverBase}.webp" type="image/webp">
+                                <img alt="${escapeHTML(article.title)}" height="450" src="../Img/${coverBase}.png" width="800" loading="lazy" fetchpriority="auto">
+                            </picture>
+                        </a>
                         <div class="blog-card-body">
                             <span class="blog-card-tag">${article.tag}</span>
                             <h2 class="blog-card-title"><a href="${article.slug}.html">${escapeHTML(article.title)}</a></h2>
@@ -823,11 +841,6 @@ async function main() {
   log(`Groq API: ${GROQ_API_KEY ? 'configured' : 'NOT SET'}`);
   log('');
 
-  if (!GEMINI_API_KEY && !GROQ_API_KEY) {
-    logError('No AI API keys. Set GEMINI_API_KEY_WRITER and/or GROQ_API_KEY in .env (local) or as GitHub Secrets (Actions).');
-    process.exit(1);
-  }
-
   // Load existing state
   const existingSlugs = new Set(getExistingArticleSlugs());
   log(`Existing articles on disk: ${existingSlugs.size}`);
@@ -840,6 +853,33 @@ async function main() {
     ...stubArticles.map(a => ({ slug: a.slug, title: a.title, description: a.description, tag: a.tag })),
     ...articlesLog.map(a => ({ slug: a.slug, title: a.title, description: a.description, tag: a.tag }))
   ];
+
+  // --rebuild-index: just regenerate blog/index.html and sitemap, no article generation
+  if (REBUILD_INDEX_ONLY) {
+    log('Mode: REBUILD INDEX ONLY');
+    const allMeta = [
+      ...articlesLog,
+      ...builtInArticles,
+      ...stubArticles
+    ].map(a => ({
+      slug: a.slug, title: a.title, description: a.description,
+      tag: a.tag, date: a.date, readTime: a.readTime, isoDate: a.isoDate
+    }));
+    allMeta.sort((a, b) => {
+      const dateA = a.isoDate || '2000-01-01';
+      const dateB = b.isoDate || '2000-01-01';
+      return dateB.localeCompare(dateA);
+    });
+    updateBlogIndex(allMeta);
+    regenerateSitemap();
+    log('Done — index and sitemap rebuilt.');
+    return;
+  }
+
+  if (!GEMINI_API_KEY && !GROQ_API_KEY) {
+    logError('No AI API keys. Set GEMINI_API_KEY_WRITER and/or GROQ_API_KEY in .env (local) or as GitHub Secrets (Actions).');
+    process.exit(1);
+  }
 
   // Load topic queue
   const topics = loadTopicQueue();
