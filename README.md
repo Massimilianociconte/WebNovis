@@ -305,7 +305,7 @@ Se questo progetto ti è stato utile, lascia una ⭐ su GitHub!
 <p align="center">
   Made with ❤️ by WebNovis Team
 </p>
-
+Progetto sviluppato da [WebNovis](https://webnovis.com) — Agenzia di sviluppo web e SEO a Rho (Milano).
 <p align="center">
   <a href="https://webnovis.com">Website</a> •
   <a href="https://github.com/webnovis">GitHub</a> •
