@@ -605,7 +605,38 @@ async function generateWithAI(prompt, retries = 2) {
   }
 }
 
-// ─── JSON parsing & validation ───────────────────────────────────────────────
+// ─── JSON repair & parsing ──────────────────────────────────────────────────
+
+function repairJSON(str) {
+  let s = str;
+
+  // 1. Remove control characters (except \n, \r, \t) that break JSON
+  s = s.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '');
+
+  // 2. Fix trailing commas before } or ]
+  s = s.replace(/,\s*([}\]])/g, '$1');
+
+  // 3. Fix unescaped newlines inside string values — walk the string
+  //    and escape any raw newlines that sit between unescaped quotes.
+  //    (This is the #1 cause of AI JSON parse failures.)
+  const chars = [...s];
+  const out = [];
+  let inString = false;
+  let escaped = false;
+  for (let i = 0; i < chars.length; i++) {
+    const c = chars[i];
+    if (escaped) { out.push(c); escaped = false; continue; }
+    if (c === '\\') { out.push(c); escaped = true; continue; }
+    if (c === '"') { inString = !inString; out.push(c); continue; }
+    if (inString && c === '\n') { out.push('\\n'); continue; }
+    if (inString && c === '\r') { continue; } // strip CR inside strings
+    if (inString && c === '\t') { out.push('\\t'); continue; }
+    out.push(c);
+  }
+  s = out.join('');
+
+  return s;
+}
 
 function parseArticleJSON(raw) {
   let cleaned = raw.trim();
@@ -614,7 +645,32 @@ function parseArticleJSON(raw) {
     cleaned = cleaned.replace(/^```(?:json)?\s*\n?/, '').replace(/\n?\s*```$/, '');
   }
 
-  const article = JSON.parse(cleaned);
+  // Try direct parse first, then repair on failure
+  let article;
+  try {
+    article = JSON.parse(cleaned);
+  } catch (firstErr) {
+    log(`  ⚠️  JSON repair needed: ${firstErr.message}`);
+    try {
+      const repaired = repairJSON(cleaned);
+      article = JSON.parse(repaired);
+      log(`  ✓ JSON repaired successfully`);
+    } catch (secondErr) {
+      // Last resort: try to extract the JSON object with a regex
+      const match = cleaned.match(/\{[\s\S]*\}/);
+      if (match) {
+        try {
+          const repaired = repairJSON(match[0]);
+          article = JSON.parse(repaired);
+          log(`  ✓ JSON extracted and repaired`);
+        } catch (thirdErr) {
+          throw new Error(`JSON unfixable after repair attempts: ${firstErr.message}`);
+        }
+      } else {
+        throw new Error(`JSON unfixable (no object found): ${firstErr.message}`);
+      }
+    }
+  }
 
   // Validate required fields
   const required = ['slug', 'title', 'description', 'tag', 'date', 'isoDate', 'content', 'faq'];
@@ -822,11 +878,21 @@ async function main() {
       // Build prompt with current knowledge of all articles
       const prompt = buildMasterPrompt(topic, allKnownArticles);
 
-      // Generate via AI
-      const rawJSON = await generateWithAI(prompt);
-
-      // Parse & validate
-      const article = parseArticleJSON(rawJSON);
+      // Generate via AI, with JSON-parse retry on fallback provider
+      let rawJSON = await generateWithAI(prompt);
+      let article;
+      try {
+        article = parseArticleJSON(rawJSON);
+      } catch (parseErr) {
+        log(`  ⚠️  Parse failed, retrying with fallback provider: ${parseErr.message}`);
+        // Retry once with the other provider (Groq has json_object mode)
+        try {
+          rawJSON = GROQ_API_KEY ? await callGroq(prompt) : await callGemini(prompt);
+          article = parseArticleJSON(rawJSON);
+        } catch (retryErr) {
+          throw new Error(parseErr.message); // throw the original parse error
+        }
+      }
       article.content = postProcessContent(article.content);
       log(`  ✓ Parsed: "${article.title}" (${article.readTime})`);
 
