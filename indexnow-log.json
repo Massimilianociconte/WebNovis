@@ -1,0 +1,21 @@
+[
+  {
+    "timestamp": "2026-02-24T08:48:39.818Z",
+    "urlCount": 10,
+    "urls": [
+      "https://www.webnovis.com/blog/sviluppo-sito-web-da-zero.html",
+      "https://www.webnovis.com/blog/scegliere-hosting-sito-web.html",
+      "https://www.webnovis.com/blog/accessibilita-web-guida.html",
+      "https://www.webnovis.com/blog/sito-web-multilingua.html",
+      "https://www.webnovis.com/blog/web-design-trends-2026.html",
+      "https://www.webnovis.com/blog/form-contatto-ottimizzazione.html",
+      "https://www.webnovis.com/blog/piattaforme-ecommerce-confronto.html",
+      "https://www.webnovis.com/blog/scheda-prodotto-perfetta.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
+  }
+]
