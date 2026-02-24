@@ -16,6 +16,13 @@
 const fs = require('fs');
 const path = require('path');
 
+// Centralized fetch: lazy-load node-fetch once (ESM-only in v3)
+let _fetch;
+async function getFetch() {
+    if (!_fetch) _fetch = (await import('node-fetch')).default;
+    return _fetch;
+}
+
 // Carica template HTML una sola volta all'avvio
 let emailTemplate = '';
 try {
@@ -36,6 +43,22 @@ function sanitizeInput(str) {
         .replace(/\n{3,}/g, '\n\n')     // Limita newline consecutive
         .trim()
         .slice(0, 200);                 // Limita lunghezza
+}
+
+function getNewsletterAdminSecret() {
+    const secret = process.env.NEWSLETTER_ADMIN_SECRET;
+    if (!secret || secret === 'change-this-to-a-random-secret-string-32chars') {
+        throw new Error('NEWSLETTER_ADMIN_SECRET non configurato');
+    }
+    return secret;
+}
+
+function createUnsubscribeToken(email) {
+    const crypto = require('crypto');
+    return crypto
+        .createHmac('sha256', getNewsletterAdminSecret())
+        .update(email.toLowerCase().trim())
+        .digest('hex');
 }
 
 // System prompt per Llama 3.3 — separato dai dati utente
@@ -80,7 +103,7 @@ async function generateContent(topic) {
 
     const safeTopic = sanitizeInput(topic) || 'trend e consigli di digital marketing';
 
-    const fetch = (await import('node-fetch')).default;
+    const fetch = await getFetch();
 
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
@@ -138,7 +161,7 @@ async function getSubscribers() {
         throw new Error('BREVO_API_KEY non configurata');
     }
 
-    const fetch = (await import('node-fetch')).default;
+    const fetch = await getFetch();
 
     const response = await fetch(
         `https://api.brevo.com/v3/contacts/lists/${BREVO_LIST_ID}/contacts?limit=500&offset=0`,
@@ -170,8 +193,10 @@ async function sendEmail(to, toName, subject, htmlContent) {
     const BREVO_API_KEY = process.env.BREVO_API_KEY;
     const senderEmail = process.env.BREVO_SENDER_EMAIL || 'newsletter@webnovis.com';
     const senderName = process.env.BREVO_SENDER_NAME || 'WebNovis';
+    const unsubscribeToken = createUnsubscribeToken(to);
+    const unsubscribeUrl = `https://www.webnovis.com/api/newsletter/unsubscribe?email=${encodeURIComponent(to)}&token=${unsubscribeToken}`;
 
-    const fetch = (await import('node-fetch')).default;
+    const fetch = await getFetch();
 
     const response = await fetch('https://api.brevo.com/v3/smtp/email', {
         method: 'POST',
@@ -186,7 +211,7 @@ async function sendEmail(to, toName, subject, htmlContent) {
             subject: subject,
             htmlContent: htmlContent,
             headers: {
-                'List-Unsubscribe': `<https://www.webnovis.com/api/newsletter/unsubscribe?email=${encodeURIComponent(to)}>`,
+                'List-Unsubscribe': `<${unsubscribeUrl}>`,
                 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click'
             }
         })
@@ -263,11 +288,7 @@ async function sendNewsletter(topic, subject) {
     for (const contact of contacts) {
         try {
             const recipientName = contact.name || 'lettore';
-
-            const crypto = require('crypto');
-            const hmac = crypto.createHmac('sha256', process.env.NEWSLETTER_ADMIN_SECRET || 'secret');
-            hmac.update(contact.email.toLowerCase().trim());
-            const token = hmac.digest('hex');
+            const token = createUnsubscribeToken(contact.email);
             
             const unsubscribeUrl = `https://www.webnovis.com/api/newsletter/unsubscribe?email=${encodeURIComponent(contact.email)}&token=${token}`;
             
@@ -334,7 +355,7 @@ async function unsubscribeContact(email) {
 
     if (!BREVO_API_KEY) throw new Error('BREVO_API_KEY non configurata');
 
-    const fetch = (await import('node-fetch')).default;
+    const fetch = await getFetch();
 
     // Rimuovi dalla lista newsletter (non cancella il contatto)
     const response = await fetch(

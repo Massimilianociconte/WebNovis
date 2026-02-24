@@ -16,6 +16,7 @@
 require('dotenv').config({ path: require('path').resolve(__dirname, '..', '.env') });
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const {
   BLOG_DIR, SITE_URL, SERVICE_LINKS,
@@ -31,7 +32,7 @@ const { submitNewArticles } = require('../indexnow-submit');
 
 const TOPICS_FILE = path.join(__dirname, 'topics-queue.json');
 const LOG_FILE = path.join(__dirname, 'articles-log.json');
-const SITEMAP_FILE = path.join(__dirname, '..', 'sitemap.xml');
+const GENERATE_SITEMAP_SCRIPT = path.join(__dirname, '..', 'generate-sitemap.js');
 const BLOG_INDEX_FILE = path.join(__dirname, 'index.html');
 
 const DRY_RUN = process.argv.includes('--dry-run');
@@ -733,26 +734,24 @@ function updateBlogIndex(allArticlesMeta) {
 
 // ─── Sitemap updater ─────────────────────────────────────────────────────────
 
-function updateSitemap(newArticles) {
-  if (!fs.existsSync(SITEMAP_FILE)) {
-    logError('sitemap.xml not found — skipping');
+function regenerateSitemap() {
+  if (!fs.existsSync(GENERATE_SITEMAP_SCRIPT)) {
+    logError('generate-sitemap.js not found — skipping sitemap regeneration');
     return;
   }
 
-  let sitemap = fs.readFileSync(SITEMAP_FILE, 'utf-8');
-  const todayIso = formatIsoDate(new Date());
-  let added = 0;
-
-  for (const article of newArticles) {
-    if (sitemap.includes(`/blog/${article.slug}.html`)) continue;
-
-    const entry = `  <url>\n    <loc>${SITE_URL}/blog/${article.slug}.html</loc>\n    <lastmod>${todayIso}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
-    sitemap = sitemap.replace('</urlset>', `${entry}</urlset>`);
-    added++;
+  try {
+    const output = execFileSync(process.execPath, [GENERATE_SITEMAP_SCRIPT], {
+      cwd: path.join(__dirname, '..'),
+      encoding: 'utf8'
+    });
+    const summary = output
+      .split('\n')
+      .find(line => line.includes('sitemap.xml generated'));
+    log(summary || 'Regenerated sitemap.xml with central generator');
+  } catch (error) {
+    logError(`Sitemap regeneration failed: ${error.message}`);
   }
-
-  fs.writeFileSync(SITEMAP_FILE, sitemap, 'utf-8');
-  log(`Updated sitemap.xml (+${added} entries)`);
 }
 
 // ─── Main ────────────────────────────────────────────────────────────────────
@@ -910,7 +909,7 @@ async function main() {
     });
 
     updateBlogIndex(allMeta);
-    updateSitemap(newArticles);
+    regenerateSitemap();
 
     // Submit new articles to IndexNow (Bing, Yandex, Naver, Seznam, Amazon, Yep)
     try {

@@ -47,11 +47,19 @@ Sito web professionale per WebNovis, agenzia digitale specializzata in Web Devel
 ### Backend (Opzionale)
 - **Node.js** - Server backend
 - **Express** - API REST
-- **OpenAI API** - Chatbot intelligente
+- **Google Gemini API** - Chatbot + ricerca AI lato server
+- **Brevo API** - Newsletter e lead workflow
+
+### Modalità Runtime (importante)
+
+- **Static mode (GitHub Pages / hosting statico):** serve solo HTML/CSS/JS. Gli endpoint `/api/*` non sono disponibili.
+- **Node mode (Express):** abilita API AI, unsubscribe firmato, header sicurezza/caching runtime, redirect canonical e automazioni newsletter.
+
+Se deployi in statico, considera le funzionalità backend come disattivate per design.
 
 ## 📦 Installazione
 
-### Metodo 1: GitHub Pages (Consigliato)
+### Metodo 1: Hosting Statico (GitHub Pages)
 
 ```bash
 # 1. Clona il repository
@@ -76,7 +84,7 @@ npm install
 
 # 3. Configura variabili ambiente
 cp .env.example .env
-# Modifica .env con la tua OPENAI_API_KEY
+# Modifica .env con le chiavi Gemini/Brevo/Groq richieste
 
 # 4. Avvia server
 npm start
@@ -87,6 +95,8 @@ npm start
 ## 🚀 Deploy
 
 ### GitHub Pages
+
+> Nota: GitHub Pages esegue **solo modalità statica**. Gli endpoint Express (`/api/*`) non saranno disponibili.
 
 1. **Fork questo repository**
 2. **Vai su Settings → Pages**
@@ -166,17 +176,18 @@ Il chatbot usa risposte predefinite per:
 - Supporto
 - Contatti
 
-### ChatGPT Integration (Opzionale)
+### Integrazione Gemini (Opzionale, richiede backend Node)
 
-Per abilitare ChatGPT:
+Per abilitare funzionalità AI server-side:
 
-1. Ottieni API key da [OpenAI](https://platform.openai.com/api-keys)
+1. Crea una API key Gemini da [Google AI Studio](https://aistudio.google.com/apikey)
 2. Configura `.env`:
    ```
-   OPENAI_API_KEY=sk-proj-tua-chiave
+   GEMINI_API_KEY_CHAT=your-gemini-chat-api-key
+   GEMINI_API_KEY_SEARCH=your-gemini-search-api-key
    ```
 3. Avvia server: `npm start`
-4. Deploy backend su Vercel/Heroku
+4. Deploy backend su una piattaforma Node (Render/Railway/VPS)
 
 ## 📄 Struttura Progetto
 
@@ -206,9 +217,14 @@ webnovis-site/
 
 ```env
 # .env
-OPENAI_API_KEY=sk-proj-xxx    # Chiave API OpenAI
-NODE_ENV=production            # Ambiente
-PORT=3000                      # Porta server
+GEMINI_API_KEY_CHAT=...        # Chatbot
+GEMINI_API_KEY_SEARCH=...      # Ricerca AI
+GEMINI_API_KEY_WRITER=...      # Auto writer blog
+GROQ_API_KEY=...               # Newsletter AI / fallback writer
+BREVO_API_KEY=...              # Newsletter + lead pipeline
+NEWSLETTER_ADMIN_SECRET=...    # Secret admin + unsubscribe HMAC
+NODE_ENV=production
+PORT=3000
 ```
 
 ### Package.json Scripts
@@ -217,8 +233,13 @@ PORT=3000                      # Porta server
 {
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
-    "deploy": "vercel --prod"
+    "dev": "nodemon server.js",
+    "build": "node build.js",
+    "build:search-index": "node build-search-index.js",
+    "build:sitemap": "node generate-sitemap.js",
+    "test:seo-smoke": "node tests/seo-smoke.test.js",
+    "test:api": "node tests/api-endpoints.test.js",
+    "ci:quality": "npm run build && npm run build:search-index && npm run build:sitemap && npm run test:seo-smoke && npm run test:api"
   }
 }
 ```

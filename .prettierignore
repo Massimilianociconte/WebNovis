@@ -1,0 +1,8 @@
+node_modules/
+*.min.js
+*.min.css
+blog/*.html
+portfolio/**/*.html
+package-lock.json
+sitemap.xml
+search-index.json

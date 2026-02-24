@@ -78,15 +78,21 @@ function buildIndex() {
     }
   }
 
-  // Portfolio
-  const portfolioDir = path.join(PROJECT_ROOT, 'portfolio');
+  // Portfolio (prefer canonical case-study URLs when present)
+  const canonicalPortfolioDir = path.join(PROJECT_ROOT, 'portfolio', 'case-study');
+  const legacyPortfolioDir = path.join(PROJECT_ROOT, 'portfolio');
+  const useCanonicalPortfolio = fs.existsSync(canonicalPortfolioDir);
+  const portfolioDir = useCanonicalPortfolio ? canonicalPortfolioDir : legacyPortfolioDir;
+  const portfolioUrlPrefix = useCanonicalPortfolio ? '/portfolio/case-study/' : '/portfolio/';
+
   if (fs.existsSync(portfolioDir)) {
     const portfolioFiles = fs.readdirSync(portfolioDir).filter(f => f.endsWith('.html'));
     for (const file of portfolioFiles) {
       const filePath = path.join(portfolioDir, file);
       const html = fs.readFileSync(filePath, 'utf-8');
       const ex = extractFromHTML(html);
-      index.push({ id: `/portfolio/${file}`, type: 'portfolio', url: `/portfolio/${file}`, title: ex.title, description: ex.description, keywords: ex.keywords, headings: ex.headings, content: ex.contentSnippet });
+      const portfolioUrl = `${portfolioUrlPrefix}${file}`;
+      index.push({ id: portfolioUrl, type: 'portfolio', url: portfolioUrl, title: ex.title, description: ex.description, keywords: ex.keywords, headings: ex.headings, content: ex.contentSnippet });
     }
   }
 

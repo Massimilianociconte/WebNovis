@@ -1,0 +1,27 @@
+{
+    "env": {
+        "node": true,
+        "browser": true,
+        "es2022": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+        "no-undef": "error",
+        "no-console": "off",
+        "eqeqeq": ["warn", "always"],
+        "no-var": "warn",
+        "prefer-const": "warn",
+        "no-duplicate-imports": "error"
+    },
+    "ignorePatterns": [
+        "node_modules/",
+        "*.min.js",
+        "*.min.css",
+        "blog/*.html",
+        "portfolio/**/*.html"
+    ]
+}

@@ -7,7 +7,12 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "build": "node build.js",
-    "build:watch": "nodemon --watch js --watch css --exec npm run build"
+    "build:watch": "nodemon --watch js --watch css --exec npm run build",
+    "build:search-index": "node build-search-index.js",
+    "build:sitemap": "node generate-sitemap.js",
+    "test:seo-smoke": "node tests/seo-smoke.test.js",
+    "test:api": "node tests/api-endpoints.test.js",
+    "ci:quality": "npm run build && npm run build:search-index && npm run build:sitemap && npm run test:seo-smoke && npm run test:api"
   },
   "keywords": [
     "chatbot",
@@ -17,6 +22,7 @@
   "author": "WebNovis",
   "license": "MIT",
   "dependencies": {
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
@@ -25,12 +31,12 @@
   },
   "devDependencies": {
     "clean-css": "^5.3.3",
-    "compression": "^1.8.1",
     "html-minifier-terser": "^7.2.0",
     "lightningcss": "^1.31.1",
     "nodemon": "^3.0.1",
     "sharp": "^0.34.5",
     "terser": "^5.26.0",
+    "vitest": "^4.0.18",
     "web-vitals": "^5.1.0"
   }
 }

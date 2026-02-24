@@ -58,6 +58,13 @@ console.log('🔧 AI Config loaded:', aiConfig);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const isProd = process.env.NODE_ENV === 'production';
+
+// F1-06: Startup check — warn if newsletter secret is still placeholder
+const adminSecret = process.env.NEWSLETTER_ADMIN_SECRET;
+if (isProd && (!adminSecret || adminSecret === 'change-this-to-a-random-secret-string-32chars')) {
+    console.error('🚨 CRITICAL: NEWSLETTER_ADMIN_SECRET is not configured! Newsletter API will reject all requests.');
+}
 
 // Brotli/Gzip compression — reduces transfer size ~70% for text assets
 let compression;
@@ -128,9 +135,10 @@ app.use(express.json({ limit: '16kb' })); // Prevenzione DoS da payload giganti
 // 2.1 Security headers — trust signal + vulnerability prevention
 app.use((req, res, next) => {
     res.set({
-        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
         'X-Content-Type-Options': 'nosniff',
-        'Content-Security-Policy': "frame-ancestors 'self'",
+        'X-Frame-Options': 'DENY',
+        'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://widget.trustpilot.com https://connect.facebook.net https://www.clarity.ms https://cdn.jsdelivr.net https://web3forms.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://api.web3forms.com https://www.facebook.com; frame-src https://widget.trustpilot.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests",
         'Referrer-Policy': 'strict-origin-when-cross-origin',
         'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
         'X-XSS-Protection': '0'
@@ -172,6 +180,24 @@ app.use((req, res, next) => {
     next();
 });
 
+// 2.6 Legacy URL canonicalization for portfolio case studies (301)
+const legacyPortfolioRedirects = new Map([
+    ['/portfolio/Aether-Digital.html', '/portfolio/case-study/aether-digital.html'],
+    ['/portfolio/Ember-Oak.html', '/portfolio/case-study/ember-oak.html'],
+    ['/portfolio/Lumina-Creative.html', '/portfolio/case-study/lumina-creative.html'],
+    ['/portfolio/Muse-Editorial.html', '/portfolio/case-study/muse-editorial.html'],
+    ['/portfolio/PopBlock-Studio.html', '/portfolio/case-study/popblock-studio.html'],
+    ['/portfolio/Structure-Arch.html', '/portfolio/case-study/structure-arch.html']
+]);
+
+app.use((req, res, next) => {
+    const canonicalPath = legacyPortfolioRedirects.get(req.path);
+    if (!canonicalPath) return next();
+
+    const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+    return res.redirect(301, canonicalPath + query);
+});
+
 // 2.3 Bot detection logging — crawl intelligence for GEO strategy
 const botPatterns = new Map([
     ['Googlebot', /Googlebot/i], ['Bingbot', /bingbot/i],
@@ -191,7 +217,17 @@ app.use((req, res, next) => {
                 url: req.originalUrl,
                 method: req.method
             }) + '\n';
-            fs.appendFile(path.join(__dirname, 'bot-access.log'), entry, () => {});
+            const logPath = path.join(__dirname, 'bot-access.log');
+            fs.appendFile(logPath, entry, (err) => {
+                if (err) console.error('⚠️ Bot log write error:', err.message);
+            });
+            // Basic log rotation: truncate if > 10MB
+            try {
+                const stats = fs.statSync(logPath);
+                if (stats.size > 10 * 1024 * 1024) {
+                    fs.writeFileSync(logPath, entry);
+                }
+            } catch (e) { /* file may not exist yet */ }
             break;
         }
     }
@@ -199,9 +235,19 @@ app.use((req, res, next) => {
 });
 
 // Serve only safe public files (not server code, configs, .env, etc.)
-const publicFiles = ['index.html', 'portfolio.html', 'privacy-policy.html', 'cookie-policy.html', 'termini-condizioni.html', 'chi-siamo.html', 'contatti.html', 'agenzia-web-rho.html', 'agenzia-web-milano.html', 'agenzia-web-lainate.html', 'agenzia-web-arese.html', 'agenzia-web-garbagnate.html', 'preventivo.html', 'come-lavoriamo.html', 'grazie.html', '404.html', 'robots.txt', 'sitemap.xml', 'manifest.json', 'favicon.ico', 'ai.txt', 'llms.txt', 'webnovis-ai-data.json', 'search-index.json', 'CNAME', '8531a1fa-b8b0-4136-8741-b5895865d3c4.txt', 'realizzazione-siti-web-rho.html', 'realizzazione-siti-web-arese.html', 'realizzazione-siti-web-pero.html', 'realizzazione-siti-web-lainate.html', 'realizzazione-siti-web-cornaredo.html', 'realizzazione-siti-web-settimo-milanese.html'];
+const publicFiles = ['index.html', 'portfolio.html', 'privacy-policy.html', 'cookie-policy.html', 'termini-condizioni.html', 'chi-siamo.html', 'contatti.html', 'agenzia-web-rho.html', 'agenzie-web-rho.html', 'agenzia-web-milano.html', 'agenzia-web-lainate.html', 'agenzia-web-arese.html', 'agenzia-web-garbagnate.html', 'preventivo.html', 'come-lavoriamo.html', 'grazie.html', '404.html', 'robots.txt', 'sitemap.xml', 'manifest.json', 'favicon.ico', 'ai.txt', 'llms.txt', 'webnovis-ai-data.json', 'search-index.json', 'CNAME', '8531a1fa-b8b0-4136-8741-b5895865d3c4.txt', 'realizzazione-siti-web-rho.html', 'realizzazione-siti-web-arese.html', 'realizzazione-siti-web-pero.html', 'realizzazione-siti-web-lainate.html', 'realizzazione-siti-web-cornaredo.html', 'realizzazione-siti-web-settimo-milanese.html'];
 // 2.4 Static assets with no-cache for development (files use cache-busting ?v= params)
-const staticCacheOptions = { setHeaders: (res) => { res.set('Cache-Control', 'no-cache, no-store, must-revalidate'); res.set('Pragma', 'no-cache'); res.set('Expires', '0'); } };
+const staticCacheOptions = {
+    setHeaders: (res) => {
+        if (isProd) {
+            res.set('Cache-Control', 'public, max-age=31536000, immutable');
+            return;
+        }
+        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+    }
+};
 app.use('/css', express.static(path.join(__dirname, 'css'), staticCacheOptions));
 app.use('/js', express.static(path.join(__dirname, 'js'), staticCacheOptions));
 app.use('/Img', express.static(path.join(__dirname, 'Img'), staticCacheOptions));
@@ -214,9 +260,17 @@ app.use('/servizi', express.static(path.join(__dirname, 'servizi'), htmlCacheOpt
 app.use('/portfolio', express.static(path.join(__dirname, 'portfolio'), htmlCacheOptions));
 publicFiles.forEach(file => {
     app.get('/' + file, (req, res) => {
-        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-        res.set('Pragma', 'no-cache');
-        res.set('Expires', '0');
+        if (isProd) {
+            if (file.endsWith('.html')) {
+                res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
+            } else {
+                res.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=7200');
+            }
+        } else {
+            res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+            res.set('Pragma', 'no-cache');
+            res.set('Expires', '0');
+        }
         res.sendFile(path.join(__dirname, file));
     });
 });
@@ -278,6 +332,13 @@ ${toToon(config)}
 Usa queste informazioni per rispondere. Mantieni un tono professionale ma cordiale.`;
 }
 
+// Cache system prompt at startup (static content, no need to regenerate per-request)
+const cachedSystemPrompt = createSystemPrompt();
+
+// Cache 404 page existence at startup (avoid sync I/O on every 404)
+const notFoundPath = path.join(__dirname, '404.html');
+const has404Page = fs.existsSync(notFoundPath);
+
 // Rate limiter for newsletter API (10 requests per 15 minutes per IP)
 const newsletterLimiter = rateLimit ? rateLimit({
     windowMs: 15 * 60 * 1000,
@@ -336,7 +397,7 @@ Pagine disponibili (usa SOLO questi URL nei link inline e in suggestedPages):
 - /chi-siamo.html (Chi Siamo, Team, Valori, Storia)
 - /contatti.html (Contatti, Richiedi Preventivo Gratuito)
 - /portfolio.html (Portfolio lavori e progetti realizzati)
-- /blog/index.html (Blog con articoli su web, design, marketing)
+- /blog/ (Blog con articoli su web, design, marketing)
 
 REGOLE IMPORTANTI:
 - La risposta in "answer" DEVE essere completa, mai troncata a metà frase.
@@ -394,11 +455,18 @@ REGOLE IMPORTANTI:
         }
 
         // Validate and sanitize output — never leak internal data
+        const sanitizeInternalPath = (value) => {
+            const normalized = String(value || '').trim();
+            if (!normalized.startsWith('/')) return '/';
+            if (!/^\/[a-z0-9\-./]*$/i.test(normalized)) return '/';
+            return normalized;
+        };
+
         res.json({
             answer: String(result.answer || '').slice(0, 600),
             suggestedPages: (result.suggestedPages || []).slice(0, 5).map(p => ({
                 title: String(p.title || '').slice(0, 100),
-                url: String(p.url || '/').slice(0, 200),
+                url: sanitizeInternalPath(String(p.url || '/').slice(0, 200)),
                 relevance: Math.min(1, Math.max(0, parseFloat(p.relevance) || 0))
             })),
             relatedQueries: (result.relatedQueries || []).slice(0, 4).map(q => String(q || '').slice(0, 80))
@@ -733,7 +801,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
         const fetch = await getFetch();
 
         // Build Gemini-compatible conversation
-        const systemPrompt = createSystemPrompt();
+        const systemPrompt = cachedSystemPrompt;
         const contents = [];
 
         // Add conversation history (Gemini uses 'user'/'model' roles)
@@ -961,11 +1029,35 @@ app.get('/api/newsletter/unsubscribe', async (req, res) => {
             `);
         }
 
-        const expectedToken = crypto.createHmac('sha256', process.env.NEWSLETTER_ADMIN_SECRET || 'secret')
+        const adminSecret = process.env.NEWSLETTER_ADMIN_SECRET;
+        if (!adminSecret || adminSecret === 'change-this-to-a-random-secret-string-32chars') {
+            return res.status(503).send(`
+                <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+                <title>Errore Configurazione - WebNovis</title>
+                <style>body{background:#0a0a0f;color:#e0e0e0;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+                .card{background:#111118;border:1px solid rgba(91,106,174,0.15);border-radius:16px;padding:48px;text-align:center;max-width:460px}
+                h2{color:#ef4444;margin-bottom:12px}p{color:#999;line-height:1.6}</style></head><body>
+                <div class="card"><h2>Servizio temporaneamente non disponibile</h2><p>La disiscrizione è momentaneamente non configurata. Contattaci a hello@webnovis.com</p></div></body></html>
+            `);
+        }
+
+        const providedToken = String(token).trim();
+        if (!/^[a-f0-9]{64}$/i.test(providedToken)) {
+            return res.status(403).send(`
+                <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+                <title>Errore Sicurezza - WebNovis</title>
+                <style>body{background:#0a0a0f;color:#e0e0e0;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+                .card{background:#111118;border:1px solid rgba(91,106,174,0.15);border-radius:16px;padding:48px;text-align:center;max-width:460px}
+                h2{color:#ef4444;margin-bottom:12px}p{color:#999;line-height:1.6}</style></head><body>
+                <div class="card"><h2>Errore di sicurezza</h2><p>Token di disiscrizione non valido o contraffatto.</p></div></body></html>
+            `);
+        }
+
+        const expectedToken = crypto.createHmac('sha256', adminSecret)
             .update(email.toLowerCase().trim())
             .digest('hex');
 
-        if (!crypto.timingSafeEqual(Buffer.from(token), Buffer.from(expectedToken))) {
+        if (!crypto.timingSafeEqual(Buffer.from(providedToken), Buffer.from(expectedToken))) {
              return res.status(403).send(`
                 <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
                 <title>Errore Sicurezza - WebNovis</title>
@@ -1070,8 +1162,7 @@ function startNewsletterCron() {
 app.use((req, res) => {
     res.status(404);
     if (req.accepts('html')) {
-        const notFoundPath = path.join(__dirname, '404.html');
-        if (fs.existsSync(notFoundPath)) {
+        if (has404Page) {
             return res.sendFile(notFoundPath);
         }
         return res.send('<h1>404 — Pagina non trovata</h1><p><a href="/">Torna alla homepage</a></p>');

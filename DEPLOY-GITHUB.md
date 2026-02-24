@@ -48,19 +48,25 @@ test-*.js
 *.bat
 ```
 
-### 3. Rimuovi Backend (GitHub Pages è solo frontend)
+### 3. Scegli la modalità runtime (evita drift)
 
-GitHub Pages serve solo file statici (HTML, CSS, JS). Il chatbot userà solo risposte locali.
+GitHub Pages serve solo file statici (HTML, CSS, JS). Non esegue `server.js`.
 
-**Opzione A: Mantieni risposte locali**
-- Il chatbot funzionerà con risposte predefinite
-- Nessuna configurazione aggiuntiva necessaria
+**Modalità A: Static-only (GitHub Pages puro)**
+- ✅ Pubblichi solo file statici
+- ✅ Nessuna infrastruttura backend da mantenere
+- ❌ Endpoint Express non disponibili (`/api/chat`, `/api/search-ai`, `/api/newsletter/*`, `/api/lead`)
 
-**Opzione B: Backend separato (avanzato)**
-- Deploy backend su Vercel/Heroku
-- Aggiorna endpoint in `js/chat.js`
+**Modalità B: Statico + backend Node separato**
+- Frontend su GitHub Pages
+- Backend Node su Render/Railway/VPS (o altra piattaforma Node)
+- Configura il frontend per puntare al dominio backend (o reverse proxy)
 
-Per ora usiamo **Opzione A** (più semplice).
+Prima di ogni deploy esegui sempre:
+
+```bash
+npm run ci:quality
+```
 
 ---
 
@@ -253,8 +259,8 @@ git push
 
 GitHub Pages serve solo file statici, quindi:
 - ❌ Nessun backend Node.js
-- ❌ Nessuna chiamata diretta a ChatGPT
-- ✅ Solo risposte locali predefinite
+- ❌ Nessun endpoint Express (`/api/*`)
+- ✅ Solo funzionalità client-side e risposte locali predefinite
 
 ### Soluzioni
 
@@ -265,7 +271,7 @@ Il chatbot usa già risposte predefinite in `js/chat.js`:
 - ❌ Risposte limitate
 
 #### Opzione 2: Backend Separato
-Deploy backend su Vercel/Heroku:
+Deploy backend su una piattaforma Node (es. Render/Railway/VPS):
 
 1. **Crea progetto separato per backend**
    ```
@@ -275,15 +281,23 @@ Deploy backend su Vercel/Heroku:
    └── .env
    ```
 
-2. **Deploy su Vercel**
-   ```bash
-   cd webnovis-backend
-   vercel --prod
+2. **Configura variabili ambiente backend**
+   ```env
+   GEMINI_API_KEY_CHAT=...
+   GEMINI_API_KEY_SEARCH=...
+   BREVO_API_KEY=...
+   NEWSLETTER_ADMIN_SECRET=...
    ```
 
-3. **Aggiorna endpoint in `js/chat.js`**
+3. **Deploy backend**
+   ```bash
+   npm install
+   npm start
+   ```
+
+4. **Aggiorna endpoint frontend (chat/search) verso il backend**
    ```javascript
-   const API_ENDPOINT = 'https://tuo-backend.vercel.app/api/chat';
+   const API_ENDPOINT = 'https://tuo-backend.example.com/api/chat';
    ```
 
 #### Opzione 3: Servizio Terzo
@@ -302,6 +316,8 @@ Usa servizi come:
 - [ ] File sensibili esclusi
 - [ ] Sito testato localmente
 - [ ] Link funzionanti
+- [ ] Modalità runtime scelta (solo statico vs statico+backend)
+- [ ] `npm run ci:quality` eseguito con esito positivo
 
 ### Deploy
 - [ ] Git inizializzato
@@ -321,7 +337,7 @@ Usa servizi come:
 - [ ] Homepage carica
 - [ ] Tutte le sezioni visibili
 - [ ] Link funzionanti
-- [ ] Chat funzionante (risposte locali)
+- [ ] Chat funzionante (risposte locali in static mode, API in node mode)
 - [ ] Mobile responsive
 - [ ] Performance OK
 
@@ -361,11 +377,12 @@ ls -la
 
 ### "Chat non funziona"
 
-**Causa:** Endpoint backend non raggiungibile
+**Causa:** Endpoint backend non raggiungibile oppure sito in modalità static-only
 
 **Soluzione:**
-- GitHub Pages usa solo risposte locali
-- Verifica che `getLocalResponse()` funzioni in `js/chat.js`
+- Se sei su GitHub Pages puro: è normale non avere `/api/*`
+- Se usi backend separato: verifica URL endpoint, CORS e variabili ambiente
+- Verifica che `getLocalResponse()` funzioni in fallback lato client
 
 ### "CSS/JS non caricano"
 
@@ -434,13 +451,21 @@ Aggiungi in `<head>` di `index.html`:
 ### SEO
 
 1. **Sitemap.xml**
+
+   Nel progetto reale la sitemap viene rigenerata da script (non a mano):
+
+   ```bash
+   npm run build:sitemap
+   ```
+
+   Esempio minimale valido (senza `priority`/`changefreq`):
+
    ```xml
    <?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <url>
        <loc>https://tuodominio.com/</loc>
        <lastmod>2024-01-01</lastmod>
-       <priority>1.0</priority>
      </url>
    </urlset>
    ```

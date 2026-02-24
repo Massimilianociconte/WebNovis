@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const BASE_URL = 'https://www.webnovis.com';
 const ROOT = path.resolve(__dirname);
@@ -19,7 +20,9 @@ const EXCLUDE_PATTERNS = [
     /^\./,
     /^blog\/auto-writer/,
     /^blog\/build-articles/,
+    /^portfolio\/(Aether-Digital|Ember-Oak|Lumina-Creative|Muse-Editorial|PopBlock-Studio|Structure-Arch)\.html$/i,
     /404\.html$/,
+    /grazie\.html$/,
     /newsletter-template/,
 ];
 
@@ -59,12 +62,28 @@ function collectHtmlFiles(dir, relBase = '') {
 }
 
 function toUrlPath(relPath) {
-    if (relPath === 'index.html') return '/';
-    return '/' + relPath.replace(/\\/g, '/');
+    const normalized = relPath.replace(/\\/g, '/');
+    if (normalized === 'index.html') return '/';
+    if (normalized.endsWith('/index.html')) {
+        return '/' + normalized.replace(/index\.html$/, '');
+    }
+    return '/' + normalized;
 }
 
 function formatDate(mtime) {
     return mtime.toISOString().split('T')[0];
+}
+
+// Try to get the last git commit date for a file (more accurate than mtime)
+function getGitDate(absPath) {
+    try {
+        const result = execSync(
+            `git log -1 --format=%aI -- "${path.relative(ROOT, absPath).replace(/\\/g, '/')}"`,
+            { cwd: ROOT, encoding: 'utf-8', timeout: 5000 }
+        ).trim();
+        if (result) return result.split('T')[0];
+    } catch (e) { /* git not available or file not tracked */ }
+    return null;
 }
 
 function xmlEscape(str) {
@@ -76,7 +95,7 @@ const entries = files.map(({ relPath, absPath }) => {
     const mtime = fs.statSync(absPath).mtime;
     const urlPath = toUrlPath(relPath);
     const loc = urlPath === '/' ? BASE_URL + '/' : BASE_URL + urlPath;
-    const lastmod = formatDate(mtime);
+    const lastmod = getGitDate(absPath) || formatDate(mtime);
     const images = PAGE_IMAGES[urlPath] || [];
     return { loc, lastmod, images };
 }).sort((a, b) => a.loc.localeCompare(b.loc));

@@ -38,9 +38,11 @@ build/
 
 # Newsletter logs (contiene email iscritti — sensibile)
 newsletter-log.json
+newsletter-log.jsonl
 
 # Lead capture logs (contiene email e IP — sensibile)
 leads-log.json
+leads-log.jsonl
 
 # Temporary files
 *.tmp
