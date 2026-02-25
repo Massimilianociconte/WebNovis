@@ -41,7 +41,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Web Development",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "accessibilita-web-guida",
@@ -70,7 +71,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Web Development",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "sicurezza-sito-web-guida",
@@ -187,7 +189,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "E-Commerce",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "seo-ecommerce-guida",
@@ -201,7 +204,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "E-Commerce",
-    "read_time": "11 min"
+    "read_time": "11 min",
+    "used": true
   },
   {
     "slug": "ecommerce-b2b-guida",
@@ -215,7 +219,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "E-Commerce",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "gestione-resi-ecommerce",
@@ -229,7 +234,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "E-Commerce",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "fotografia-prodotto-ecommerce",
@@ -243,7 +249,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "E-Commerce",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "marketplace-vs-ecommerce-proprio",
@@ -257,7 +264,8 @@
     "search_intent": "comparativo",
     "funnel_stage": "MOFU",
     "tag": "E-Commerce",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "email-marketing-ecommerce",
@@ -271,7 +279,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "E-Commerce",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "pagamenti-online-ecommerce",
@@ -285,7 +294,8 @@
     "search_intent": "comparativo",
     "funnel_stage": "MOFU",
     "tag": "E-Commerce",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "velocita-sito-web-guida",
