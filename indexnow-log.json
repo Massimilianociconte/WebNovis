@@ -17,5 +17,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-02-25T07:04:08.632Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/migrazione-sito-web-guida.html",
+      "https://www.webnovis.com/blog/progressive-web-app-pmi.html",
+      "https://www.webnovis.com/blog/checkout-ottimizzazione.html",
+      "https://www.webnovis.com/blog/seo-ecommerce-guida.html",
+      "https://www.webnovis.com/blog/ecommerce-b2b-guida.html",
+      "https://www.webnovis.com/blog/gestione-resi-ecommerce.html",
+      "https://www.webnovis.com/blog/fotografia-prodotto-ecommerce.html",
+      "https://www.webnovis.com/blog/marketplace-vs-ecommerce-proprio.html",
+      "https://www.webnovis.com/blog/email-marketing-ecommerce.html",
+      "https://www.webnovis.com/blog/pagamenti-online-ecommerce.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]

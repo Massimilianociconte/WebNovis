@@ -434,5 +434,540 @@
       ],
       "notes": ""
     }
+  },
+  {
+    "slug": "migrazione-sito-web-guida",
+    "title": "Migrazione Sito Web: Guida Definitiva per Non Perdere Traffico e SEO",
+    "description": "Evita cali di traffico e posizionamento durante il cambio hosting o piattaforma. Scopri la strategia di redirect migrazione e la checklist operativa di WebNovis per una migrazione sito senza perdere SEO. Richiedi una consulenza.",
+    "tag": "Web Development",
+    "date": "25 Febbraio 2026",
+    "isoDate": "2026-02-25",
+    "readTime": "9 min",
+    "generatedAt": "2026-02-25T06:56:16.961Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 3,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1653,
+      "keywordsSecondarieCoperte": [
+        "migrazione sito senza perdere SEO",
+        "cambio hosting",
+        "redirect migrazione"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Search Central",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale di Google"
+        },
+        {
+          "fonte": "Search Engine Journal",
+          "confidenza": "media",
+          "motivo": "Fonte di settore ampiamente citata"
+        },
+        {
+          "fonte": "Moz",
+          "confidenza": "media",
+          "motivo": "Fonte di settore ampiamente citata"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "progressive-web-app-pmi",
+    "title": "Progressive Web App: La Guida Completa per le PMI Italiane",
+    "description": "Scopri cosa sono le Progressive Web App (PWA) e come possono trasformare il tuo business. Migliora user experience, performance e costi per la tua PMI. Valuta se una PWA è la soluzione ideale.",
+    "tag": "Web Development",
+    "date": "25 Febbraio 2026",
+    "isoDate": "2026-02-25",
+    "readTime": "8 min",
+    "generatedAt": "2026-02-25T06:56:55.364Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1398,
+      "keywordsSecondarieCoperte": [
+        "PWA cos'è",
+        "PWA vs app nativa",
+        "PWA per aziende"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Developers",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria e autorevole per le tecnologie web."
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Fonte di dati statistici ampiamente riconosciuta."
+        },
+        {
+          "fonte": "Forrester",
+          "confidenza": "media",
+          "motivo": "Fonte autorevole, ma il dato sui costi è stato generalizzato per adattarsi al contesto PMI italiano, l'URL specifico potrebbe essere dietro paywall o riferirsi a un report più ampio."
+        }
+      ],
+      "notes": "Il dato sui costi di sviluppo PWA/App nativa è una stima basata su medie di mercato italiano, con riferimento generico a Forrester per l'importanza del digitale B2B. Non è un dato numerico preciso da un singolo report Forrester ma un'indicazione di settore."
+    }
+  },
+  {
+    "slug": "checkout-ottimizzazione",
+    "title": "Ottimizzazione Checkout: Strategie per Ridurre l'Abbandono del Carrello",
+    "description": "Scopri come ottimizzare il processo di checkout per ridurre l'abbandono del carrello e aumentare le conversioni nel tuo e-commerce. Guida pratica con esempi e dati.",
+    "tag": "E-Commerce",
+    "date": "25 Febbraio 2026",
+    "isoDate": "2026-02-25",
+    "readTime": "8 min",
+    "generatedAt": "2026-02-25T06:58:02.700Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1576,
+      "keywordsSecondarieCoperte": [
+        "abbandono carrello",
+        "checkout conversion rate",
+        "ridurre cart abandonment"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Baymard Institute",
+          "confidenza": "alta",
+          "motivo": "Studio di caso attendibile sull'usabilità del checkout"
+        },
+        {
+          "fonte": "Forrester",
+          "confidenza": "alta",
+          "motivo": "Rapporto di ricerca autorevole sulle piattaforme di esperienza digitale"
+        },
+        {
+          "fonte": "Google",
+          "confidenza": "alta",
+          "motivo": "Risorse ufficiali di Google per l'ottimizzazione del sito web"
+        }
+      ],
+      "notes": "L'articolo copre tutti gli aspetti dell'ottimizzazione del checkout, inclusi gli errori comuni da evitare e le best practice per aumentare le conversioni."
+    }
+  },
+  {
+    "slug": "seo-ecommerce-guida",
+    "title": "SEO Ecommerce: Guida Completa per Aumentare Vendite e Visibilità",
+    "description": "Scopri come migliorare la visibilità del tuo negozio online e aumentare le vendite con la nostra guida SEO ecommerce completa. Ottieni risultati concreti con strategie e tecniche operative.",
+    "tag": "E-Commerce",
+    "date": "25 Febbraio 2026",
+    "isoDate": "2026-02-25",
+    "readTime": "11 min",
+    "generatedAt": "2026-02-25T06:58:47.629Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 3,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1576,
+      "keywordsSecondarieCoperte": [
+        "ottimizzazione SEO negozio online",
+        "SEO prodotti",
+        "ecommerce Google"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        },
+        {
+          "fonte": "SEMrush",
+          "confidenza": "media",
+          "motivo": "strumento di analisi SEO"
+        },
+        {
+          "fonte": "Ahrefs",
+          "confidenza": "media",
+          "motivo": "strumento di analisi SEO"
+        }
+      ],
+      "notes": "La guida è completa e copre tutti gli aspetti fondamentali della SEO per ecommerce. Le fonti utilizzate sono attendibili e ben note nel settore."
+    }
+  },
+  {
+    "slug": "ecommerce-b2b-guida",
+    "title": "E-commerce B2B: Guida Completa per Vendere Online ad Aziende nel 2026",
+    "description": "Guida pratica all'ecommerce B2B: scopri come vendere online ad aziende con una piattaforma efficace. Strategie, tecnologie e best practice per il commercio elettronico aziendale nel 2026.",
+    "tag": "E-Commerce",
+    "date": "25 Febbraio 2026",
+    "isoDate": "2026-02-25",
+    "readTime": "9 min",
+    "generatedAt": "2026-02-25T07:00:05.011Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 6,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 4,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1982,
+      "keywordsSecondarieCoperte": [
+        "vendita B2B online",
+        "piattaforma ecommerce B2B",
+        "commercio elettronico aziende"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Accenture",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria di ricerca di una major consulting firm, con link diretto a report."
+        },
+        {
+          "fonte": "Forrester",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria di ricerca di una major research firm, con link diretto a report."
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Portale di dati statistici riconosciuto, con link diretto alla statistica specifica."
+        },
+        {
+          "fonte": "LinkedIn Marketing Solutions",
+          "confidenza": "alta",
+          "motivo": "Fonte ufficiale della piattaforma, documentazione diretta."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "gestione-resi-ecommerce",
+    "title": "Gestione Resi E-commerce: Strategie e Politiche per Fidelizzare i Clienti",
+    "description": "Scopri come una gestione resi e-commerce efficace trasforma i problemi in opportunità. Con politiche chiare e reverse logistics ottimizzata, puoi aumentare la customer retention e l'autorevolezza del tuo brand. Richiedi una consulenza WebNovis.",
+    "tag": "E-Commerce",
+    "date": "25 Febbraio 2026",
+    "isoDate": "2026-02-25",
+    "readTime": "7 min",
+    "generatedAt": "2026-02-25T07:00:40.176Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 5,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1391,
+      "keywordsSecondarieCoperte": [
+        "politica reso",
+        "reverse logistics",
+        "customer retention resi"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "UPS Pulse of the Online Shopper 2023",
+          "confidenza": "alta",
+          "motivo": "Report annuale di una primaria azienda logistica, URL diretto e affidabile."
+        },
+        {
+          "fonte": "Statista: Impact of return experience on customer loyalty worldwide (2023)",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria di dati statistici, URL diretto e specifico."
+        },
+        {
+          "fonte": "Codice del Consumo (D.Lgs. 206/2005)",
+          "confidenza": "alta",
+          "motivo": "Testo di legge ufficiale italiano, riferimento normativo primario."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "fotografia-prodotto-ecommerce",
+    "title": "Fotografia Prodotto E-commerce: Guida Pratica per Vendere di Più",
+    "description": "Scopri come la fotografia prodotto professionale e l'ottimizzazione delle immagini possono raddoppiare le conversioni del tuo e-commerce. Una guida pratica per imprenditori che vogliono vendere online con efficacia nel 2026.",
+    "tag": "E-Commerce",
+    "date": "25 Febbraio 2026",
+    "isoDate": "2026-02-25",
+    "readTime": "8 min",
+    "generatedAt": "2026-02-25T07:01:21.822Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1523,
+      "keywordsSecondarieCoperte": [
+        "foto prodotti online",
+        "still life ecommerce",
+        "immagini prodotto conversioni"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Shopify",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, documentazione ufficiale di piattaforma e-commerce leader."
+        },
+        {
+          "fonte": "BigCommerce",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, report di piattaforma e-commerce leader."
+        },
+        {
+          "fonte": "Google Developers",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria e ufficiale di Google, affidabilità massima per dati tecnici."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "marketplace-vs-ecommerce-proprio",
+    "title": "Marketplace vs E-commerce Proprietario: Quale Scelta per la tua PMI?",
+    "description": "Decidi tra marketplace e e-commerce proprietario per la tua PMI. Analizziamo vantaggi, costi e controllo per massimizzare la tua strategia online. Richiedi una consulenza strategica.",
+    "tag": "E-Commerce",
+    "date": "25 Febbraio 2026",
+    "isoDate": "2026-02-25",
+    "readTime": "9 min",
+    "generatedAt": "2026-02-25T07:02:10.857Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 6,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1493,
+      "keywordsSecondarieCoperte": [
+        "Amazon vs sito proprio",
+        "vantaggi ecommerce proprietario",
+        "vendere su marketplace"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, URL diretto a statistica rilevante."
+        },
+        {
+          "fonte": "Adobe",
+          "confidenza": "media",
+          "motivo": "Dato basato su report aziendale, ampiamente citato ma la fonte specifica potrebbe essere dietro paywall o richiedere ricerca approfondita per l'URL diretto."
+        },
+        {
+          "fonte": "Baymard Institute",
+          "confidenza": "alta",
+          "motivo": "Istituto di ricerca UX riconosciuto, URL diretto a pagina di ricerca sulla conversione e-commerce."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "email-marketing-ecommerce",
+    "title": "Email Marketing per E-commerce: 5 Automazioni che Convertono",
+    "description": "Scopri come migliorare la tua strategia di email marketing per e-commerce con 5 automazioni che aumentano le vendite e migliorano l'esperienza del cliente. CTA: Richiedi un audit gratuito del tuo portale e-commerce",
+    "tag": "E-Commerce",
+    "date": "25 Febbraio 2026",
+    "isoDate": "2026-02-25",
+    "readTime": "9 min",
+    "generatedAt": "2026-02-25T07:03:04.261Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "automazione email negozio",
+        "carrello abbandonato email",
+        "email post-acquisto"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "WebNovis",
+          "confidenza": "alta",
+          "motivo": "fonte primaria"
+        },
+        {
+          "fonte": "Forrester",
+          "confidenza": "media",
+          "motivo": "fonte secondaria"
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "fonte primaria"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "pagamenti-online-ecommerce",
+    "title": "Pagamenti Online E-commerce: Guida ai Gateway per PMI 2026",
+    "description": "Scegliere il payment gateway giusto è cruciale. Confronta Stripe, PayPal e altri sistemi di pagamenti online per e-commerce B2B, ottimizzando costi e sicurezza per la tua PMI.",
+    "tag": "E-Commerce",
+    "date": "25 Febbraio 2026",
+    "isoDate": "2026-02-25",
+    "readTime": "8 min",
+    "generatedAt": "2026-02-25T07:04:07.256Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 6,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 5,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1351,
+      "keywordsSecondarieCoperte": [
+        "payment gateway confronto",
+        "Stripe vs PayPal",
+        "PSD2 pagamenti"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "PwC Global Consumer Insights Survey 2023",
+          "confidenza": "media",
+          "motivo": "Report settoriale ampiamente citato, ma l'accesso diretto potrebbe richiedere registrazione."
+        },
+        {
+          "fonte": "European Central Bank - PSD2 Information",
+          "confidenza": "alta",
+          "motivo": "Fonte istituzionale e ufficiale sulla normativa."
+        },
+        {
+          "fonte": "Stripe Pricing Italy",
+          "confidenza": "alta",
+          "motivo": "Pagina ufficiale dei prezzi del servizio."
+        },
+        {
+          "fonte": "PayPal Business Fees Italy",
+          "confidenza": "alta",
+          "motivo": "Pagina ufficiale delle commissioni del servizio."
+        },
+        {
+          "fonte": "Statista - Digital Payment Market Value Italy 2023",
+          "confidenza": "alta",
+          "motivo": "Piattaforma di dati e statistiche affidabile e riconosciuta."
+        }
+      ],
+      "notes": ""
+    }
   }
 ]
