@@ -745,9 +745,12 @@ function postProcessContent(html) {
 
 // ─── Blog index updater ──────────────────────────────────────────────────────
 
-function buildBlogCardHTML(article) {
+function buildBlogCardHTML(article, customImageMap) {
   const category = TAG_TO_CATEGORY[article.tag] || 'marketing';
-  const coverBase = CATEGORY_COVER[category] || CATEGORY_COVER['web'];
+  const fallbackBase = CATEGORY_COVER[category] || CATEGORY_COVER['web'];
+
+  // Preserve per-article custom image if one was previously set in index.html
+  const coverBase = (customImageMap && customImageMap[article.slug]) || fallbackBase;
 
   return `                    <article class="blog-card" data-category="${category}">
                         <a href="${article.slug}.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
@@ -772,11 +775,35 @@ function escapeHTML(str) {
   return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
+function extractCustomImageMap(html) {
+  // Extract slug → image base path for any card NOT using a generic blog-cat-* image.
+  // This preserves manually-assigned per-article images across index rebuilds.
+  const customMap = {};
+  const cardRe = /href="([^"]+?)\.html"\s+class="blog-card-image"[\s\S]*?srcset="\.\.\/Img\/([^"]+?)\.webp"/g;
+  let m;
+  while ((m = cardRe.exec(html))) {
+    const slug = m[1];
+    const imgBase = m[2];
+    // Only store if it's NOT a generic category image
+    if (!imgBase.startsWith('blog-cat-')) {
+      customMap[slug] = imgBase;
+    }
+  }
+  return customMap;
+}
+
 function updateBlogIndex(allArticlesMeta) {
   let html = fs.readFileSync(BLOG_INDEX_FILE, 'utf-8');
 
+  // Extract existing custom (non-category) image mappings before rebuilding
+  const customImageMap = extractCustomImageMap(html);
+  const customCount = Object.keys(customImageMap).length;
+  if (customCount > 0) {
+    log(`Preserving ${customCount} custom article image(s) in blog/index.html`);
+  }
+
   // Build all cards
-  const cardsHTML = allArticlesMeta.map(a => buildBlogCardHTML(a)).join('\n\n');
+  const cardsHTML = allArticlesMeta.map(a => buildBlogCardHTML(a, customImageMap)).join('\n\n');
 
   // Replace blog grid content using regex
   // Pattern: <div class="blog-grid" id="blogGrid">...cards...</div>\n</div>\n</section>
