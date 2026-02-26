@@ -1,0 +1,192 @@
+# Analisi indicizzazione WebNovis — verifica e Implementation Plan V2
+
+## Premessa
+
+Questo documento aggiorna e corregge i due report (`analisi_indicizzazione.md.resolved` + `Report_Indicizzazione_WebNovis.docx`) con verifica sullo stato reale del progetto.
+
+---
+
+## Correzioni importanti rispetto ai report originali
+
+### 1) Dominio principale: non `webnovis.it`, ma `www.webnovis.com`
+
+Nei report viene usato `webnovis.it`, ma nel progetto:
+- `robots.txt` punta a `https://www.webnovis.com/sitemap.xml`
+- `sitemap.xml` contiene URL `https://www.webnovis.com/...`
+- `CNAME` è impostato su `www.webnovis.com`
+
+**Correzione:** tutte le azioni SEO vanno riferite al property/domain corretto (`webnovis.com`, preferibilmente property di tipo Domain in GSC).
+
+### 2) "Crawl budget" non va trattato come unica causa su un sito piccolo
+
+I report attribuiscono molto al crawl budget. In realtà, con ~130-150 URL, il problema più frequente è la combinazione di:
+- contenuti molto simili tra pagine locali
+- segnali di qualità insufficienti su parte degli URL
+- priorità interna non chiara (troppe pagine pubblicate insieme)
+
+**Correzione:** priorità a deduplicazione/qualità + architettura interna, non solo a "aspettare".
+
+### 3) Redirect e canonical: parzialmente presenti, con lacune importanti
+
+Nel codice (`server.js`) sono già presenti:
+- normalizzazione trailing slash (con eccezioni volute per `/blog/` e `/servizi/`)
+- strip parametri UTM/gclid/fbclid con 301
+- redirect legacy portfolio verso URL canonical (`/portfolio/case-study/*`)
+- sitemap generata escludendo URL legacy duplicate
+
+**Mancanti** (documentati in `CRAWL-AUDIT-IMPLEMENTATION-REPORT.md` come implementati, ma mai aggiunti al codice):
+- **Redirect 301 non-www → www** (FIX 3) — ✅ IMPLEMENTATO il 26/02/2026 in `server.js` linea 135-142
+- **Handler 410 Gone** (FIX 6) — il set `goneUrls` non esiste in `server.js` (priorità bassa, utile solo se ci sono URL obsolete note)
+- ~~Blocco AdsBot/Storebot in robots.txt (FIX 4)~~ — **NON necessario**: AdsBot e Storebot servono solo per Google Ads e Google Shopping, non influenzano l'indicizzazione organica
+
+**Correzione:** la parte redirect/canonical non va rifatta da zero. Il redirect non-www è stato implementato. Il 410 handler resta a priorità bassa.
+
+### 4) Il vero rischio è nel cluster pagine locali simili
+
+Le pagine `realizzazione-siti-web-*.html` sono 6 e hanno **89-93% di similarità testuale** tra loro:
+- stesso pattern di title, H1, meta description (cambia solo il nome città)
+- stesse 10 FAQ con solo il toponimo sostituito
+- stesso word count (~1500 parole)
+- struttura HTML e sezioni identiche
+
+Questo è il profilo classico delle **doorway pages** che Google filtra dal suo indice.
+
+Inoltre, le pagine `agenzia-web-arese.html`, `agenzia-web-garbagnate.html` e `agenzia-web-lainate.html` contengono **errori di copy-paste nelle FAQ**: le domande fanno riferimento a "Rho" invece del nome della città corretta. Questo segnala a Google contenuto generato meccanicamente.
+
+**Correzione:** lavorare su unicità reale per città (proof locali, casi, dati, differenze di servizio), correggere gli errori di copy-paste, oppure consolidare in parte.
+
+### 5) "Convalida GSC" va usata solo dove disponibile e dopo fix reali
+
+Nei report la convalida è trattata come step generale. È utile, ma **solo** dopo modifiche sostanziali sulle URL coinvolte e solo per issue che mostrano la funzione di validazione.
+
+---
+
+## Diagnosi aggiornata (pragmatica)
+
+### A. "Rilevata, ma attualmente non indicizzata" (93)
+
+Non è solo "normale e basta". È fisiologica in parte, ma va accelerata con:
+1. migliore priorità interna alle pagine strategiche
+2. riduzione URL deboli/simili in sitemap
+3. aggiornamenti regolari e non massivi
+
+### B. "Scansionata, ma attualmente non indicizzata" (11)
+
+Questa è la classe più critica: Google ha visto la pagina e ha deciso di non tenerla in indice.
+
+Probabili cause principali nel progetto:
+- sovrapposizione intent tra landing locali
+- contenuto troppo template-driven su alcune pagine geografiche
+- cannibalizzazione tra pagine simili sullo stesso cluster keyword
+
+### C. "Pagina con reindirizzamento" (3)
+
+Problema tecnico minore: va comunque chiuso mantenendo in sitemap solo URL finali 200 indexabili.
+
+### D. "Pagina alternativa con canonical appropriato" (2)
+
+Generalmente non critico. Da monitorare che non nasconda conflitti host (www/non-www) o varianti non desiderate.
+
+---
+
+## Implementation Plan V2 (senza stravolgere la piattaforma)
+
+## Fase 0 — 48 ore (baseline e priorità)
+
+1. Esportare da GSC le URL dei 4 bucket (93/11/3/2) in un foglio unico.
+2. Classificare ogni URL per tipo: homepage, servizio, blog, landing geo, portfolio.
+3. Assegnare priorità business (Alta/Media/Bassa) e decisione SEO:
+   - **Keep & improve**
+   - **Merge/consolidate**
+   - **Noindex, follow** (se pagina di supporto non strategica)
+
+### Deliverable
+- matrice URL con decisione per ogni pagina esclusa
+
+---
+
+## Fase 1 — 7 giorni (fix tecnici leggeri ma ad alto impatto)
+
+1. **Implementare redirect 301 non-www → www in `server.js`**
+   - il middleware documentato in `CRAWL-AUDIT-IMPLEMENTATION-REPORT.md` (FIX 3) non è mai stato aggiunto al codice
+   - va inserito prima di tutti gli altri middleware SEO, subito dopo `express.json()`
+   - attivo solo in produzione (`isProd`), trasparente in sviluppo locale
+
+2. **Correggere errori copy-paste nelle FAQ delle pagine `agenzia-web-*`**
+   - `agenzia-web-arese.html`, `agenzia-web-garbagnate.html`, `agenzia-web-lainate.html` hanno FAQ che citano "Rho" invece della città corretta
+   - fix immediato: sostituire i toponimi errati sia nell'HTML visibile sia nel JSON-LD schema
+
+3. **Sitemap chirurgica**
+   - tenere in sitemap solo URL 200, canonical, indexabili e con valore reale
+   - mantenere la generazione automatica già presente, aggiungendo controllo qualità pre-deploy
+   - la sitemap attuale è già pulita (0 URL con redirect), ma va monitorata
+
+4. **Internal link hygiene**
+   - aggiornare link interni verso URL finali (niente passaggi da redirect)
+   - attualmente: 6 link legacy solo nei vecchi file portfolio (impatto trascurabile, redirect li gestisce)
+
+5. **Request indexing selettivo**
+   - inviare solo URL strategiche dopo miglioramento contenuto (non "batch" indiscriminati)
+
+### KPI fase 1
+- azzerare URL con redirect in sitemap
+- 100% URL strategiche con canonical coerente e link interni diretti
+
+---
+
+## Fase 2 — 2-4 settimane (qualità contenuto e deduplicazione)
+
+1. **Cluster pagine locali (priorità alta)**
+   - evitare template quasi identici tra `realizzazione-siti-web-*`.
+   - per ogni città: aggiungere blocchi unici concreti (casi locali, FAQ locali, differenze di processo, contesto territoriale).
+
+2. **Consolidamento soft (se necessario)**
+   - se 2+ pagine coprono lo stesso intent senza differenze sostanziali:
+     - mantenerne una primaria
+     - trasformare le secondarie in supporto (`noindex, follow`) o unire contenuto nella primaria.
+
+3. **Calendarizzazione pubblicazione**
+   - ritmo regolare (1-3 contenuti/settimana), aggiornando anche contenuti esistenti.
+
+### KPI fase 2
+- ridurre "Scansionata ma non indicizzata" (11) di almeno 40-60%
+- aumentare quota URL indexate nel cluster locale
+
+---
+
+## Fase 3 — 1-3 mesi (autorità e consolidamento)
+
+1. **Entity/local trust building**
+   - coerenza NAP e citazioni locali di qualità
+   - recensioni reali e segnali E-E-A-T sulle pagine chiave
+
+2. **Internal linking strategico**
+   - blog cornerstone -> servizi -> landing locali (e ritorno)
+   - anchor semantiche non ripetitive
+
+3. **Monitoraggio mensile**
+   - trend dei bucket GSC
+   - pagine entrate/uscite dall'indice
+   - performance delle URL migliorate
+
+### KPI fase 3
+- crescita stabile delle pagine indicizzate
+- riduzione progressiva di "Rilevata ma non indicizzata"
+- incremento impressioni/click su URL strategiche
+
+---
+
+## Cosa NON fare (per evitare sprechi)
+
+1. Non inviare centinaia di richieste manuali di indicizzazione.
+2. Non creare nuove varianti geografiche prima di risolvere quelle già pubblicate.
+3. Non cambiare slug in massa se non strettamente necessario.
+4. Non fare link building spam da directory di basso valore.
+
+---
+
+## Conclusione operativa
+
+La situazione resta seria ma recuperabile senza rifare la piattaforma.
+
+La leva principale non è "aspettare": è **aumentare la qualità differenziale delle pagine locali**, mantenere una **sitemap selettiva**, e dare a Google segnali chiari su quali URL meritano priorità.

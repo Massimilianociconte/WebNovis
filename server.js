@@ -132,6 +132,15 @@ app.use(express.json({ limit: '16kb' })); // Prevenzione DoS da payload giganti
 
 // === SEO MIDDLEWARE STACK (Ref: SEO-playbook §1, §5) ===
 
+// 2.0 Canonical host redirect: non-www → www (Ref: CRAWL-AUDIT FIX 3)
+app.use((req, res, next) => {
+    const host = req.hostname || req.headers.host;
+    if (isProd && host === 'webnovis.com') {
+        return res.redirect(301, `https://www.webnovis.com${req.originalUrl}`);
+    }
+    next();
+});
+
 // 2.1 Security headers — trust signal + vulnerability prevention
 app.use((req, res, next) => {
     res.set({
@@ -268,8 +277,14 @@ const htmlCacheOptions = { setHeaders: (res) => res.set('Cache-Control', 'public
 app.use('/blog', express.static(path.join(__dirname, 'blog'), htmlCacheOptions));
 app.use('/servizi', express.static(path.join(__dirname, 'servizi'), htmlCacheOptions));
 app.use('/portfolio', express.static(path.join(__dirname, 'portfolio'), htmlCacheOptions));
+// AI-discoverable files: open CORS so any AI crawler/tool can fetch them regardless of Origin
+const aiOpenFiles = new Set(['robots.txt', 'sitemap.xml', 'ai.txt', 'llms.txt', 'webnovis-ai-data.json']);
+
 publicFiles.forEach(file => {
     app.get('/' + file, (req, res) => {
+        if (aiOpenFiles.has(file)) {
+            res.set('Access-Control-Allow-Origin', '*');
+        }
         if (isProd) {
             if (file.endsWith('.html')) {
                 res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');

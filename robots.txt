@@ -24,6 +24,7 @@ Disallow: /package-lock.json
 Disallow: /*.bat$
 Disallow: /*.md$
 Disallow: /test-*.html
+Disallow: /*?s=
 Disallow: /server-log.txt
 Disallow: /*.log$
 Disallow: /docs/
