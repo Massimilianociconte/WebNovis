@@ -323,7 +323,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Performance",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "caching-sito-web",
@@ -337,7 +338,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Performance",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "lighthouse-score-migliorare",
@@ -351,7 +353,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Performance",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "cdn-cos-e-quando-serve",
@@ -365,7 +368,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Performance",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "critical-rendering-path",
@@ -379,7 +383,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Performance",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "font-performance-web",
@@ -393,7 +398,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Performance",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "javascript-performance-ottimizzare",
@@ -407,7 +413,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Performance",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "ttfb-server-response-time",
@@ -421,7 +428,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Performance",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "performance-budget-sito",
@@ -435,7 +443,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Performance",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "schema-markup-guida",
@@ -463,7 +472,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "SEO Tecnica",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "robots-txt-sitemap-xml",

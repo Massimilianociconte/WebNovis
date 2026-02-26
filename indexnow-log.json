@@ -38,5 +38,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-02-26T07:00:13.412Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/ottimizzazione-immagini-web.html",
+      "https://www.webnovis.com/blog/caching-sito-web.html",
+      "https://www.webnovis.com/blog/lighthouse-score-migliorare.html",
+      "https://www.webnovis.com/blog/cdn-cos-e-quando-serve.html",
+      "https://www.webnovis.com/blog/critical-rendering-path.html",
+      "https://www.webnovis.com/blog/font-performance-web.html",
+      "https://www.webnovis.com/blog/javascript-performance-ottimizzare.html",
+      "https://www.webnovis.com/blog/ttfb-server-response-time.html",
+      "https://www.webnovis.com/blog/performance-budget-sito.html",
+      "https://www.webnovis.com/blog/canonical-tag-guida.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]
