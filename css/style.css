@@ -2721,19 +2721,15 @@ section {
         padding: 100px 0 2rem;
         min-height: 100vh;
         min-height: 100svh;
-        background-image: url('../Img/sfondo-mobile.webp');
+        background-image: url('../Img/sfondo-mobile-hq.webp');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
     }
 
-    /* Upgrade progressivo: su mobile passa allo sfondo HQ solo dopo idle-ready */
+    /* Upgrade progressivo: desktop full-res solo dopo idle su retina/high-DPR */
     .is-mobile.hero-fx-ready .hero {
-        background-image: url('../Img/sfondo-mobile-hq.webp');
-        background-image: image-set(
-            url('../Img/sfondo-mobile.webp') 1x,
-            url('../Img/sfondo-mobile-hq.webp') 2x
-        );
+        background-image: url('../Img/sfondo.webp');
     }
 
     .hero-badge {

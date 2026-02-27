@@ -24,7 +24,7 @@ function initTextReveal() {
     paragraph.appendChild(fragment);
 
     const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
-    const minOpacity = isMobileViewport ? 0.24 : 0.18;
+    const minOpacity = isMobileViewport ? 0.58 : 0.52;
     let isRevealActive = false;
 
     /* Scroll handler — maps scroll progress to per-word opacity.
