@@ -2285,7 +2285,7 @@ section {
 
 .footer-nap {
     font-style: normal;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.68);
     font-size: 0.82rem;
     line-height: 1.7;
     margin-bottom: 1.25rem;
@@ -2361,7 +2361,7 @@ section {
 
 .footer-column a {
     display: block;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.64);
     text-decoration: none;
     font-size: 0.88rem;
     padding: 0.3rem 0;
@@ -2413,7 +2413,7 @@ section {
 
 .footer-badges .review-badge-label {
     font-size: 0.6rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.58);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -2445,7 +2445,7 @@ section {
 .footer-bottom {
     text-align: center;
     padding: 1.5rem 0;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.62);
     font-size: 0.8rem;
     letter-spacing: 0.02em;
 }
@@ -2524,11 +2524,11 @@ section {
     }
 
     .nav {
-        top: 0.75rem;
-        left: 1rem;
+        top: 0.65rem;
+        left: 0.5rem;
         transform: none;
-        width: calc(100% - 2rem);
-        border-radius: 24px;
+        width: calc(100% - 1rem);
+        border-radius: 22px;
     }
 
     .ai-summary {
@@ -2546,8 +2546,37 @@ section {
     }
 
     .nav-container {
+        position: relative;
         height: 56px;
-        padding: 0 1.25rem;
+        padding: 0 0.75rem;
+    }
+
+    .logo {
+        position: relative;
+        z-index: 1001;
+    }
+
+    .logo-image {
+        width: clamp(96px, 30vw, 132px);
+        height: auto;
+    }
+
+    .search-mobile-toggle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 44px;
+        height: 44px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1001;
+    }
+
+    .nav-container .search-mobile-toggle.active {
+        transform: translate(-50%, -50%) scale(0.92);
     }
 
     .nav-menu {
@@ -2641,6 +2670,13 @@ section {
 
     .nav-toggle {
         display: flex;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        margin-left: auto;
+        position: relative;
+        z-index: 1001;
     }
 
     .hero-stats {
