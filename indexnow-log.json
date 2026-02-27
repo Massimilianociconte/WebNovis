@@ -59,5 +59,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-02-27T06:51:47.576Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/robots-txt-sitemap-xml.html",
+      "https://www.webnovis.com/blog/redirect-301-302-guida.html",
+      "https://www.webnovis.com/blog/indicizzazione-google-problemi.html",
+      "https://www.webnovis.com/blog/crawl-budget-ottimizzazione.html",
+      "https://www.webnovis.com/blog/hreflang-guida-seo-internazionale.html",
+      "https://www.webnovis.com/blog/errori-404-gestione-seo.html",
+      "https://www.webnovis.com/blog/internal-linking-strategia.html",
+      "https://www.webnovis.com/blog/log-analysis-seo.html",
+      "https://www.webnovis.com/blog/seo-blog-aziendale.html",
+      "https://www.webnovis.com/blog/aggiornamenti-algoritmo-google-2026.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]

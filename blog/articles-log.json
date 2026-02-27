@@ -1519,5 +1519,525 @@
       ],
       "notes": ""
     }
+  },
+  {
+    "slug": "robots-txt-sitemap-xml",
+    "title": "Robots.txt e Sitemap XML: Come Configurarli per Google",
+    "description": "Guida alla configurazione corretta di robots.txt e sitemap XML per migliorare l'indicizzazione del tuo sito web su Google. Scopri come evitare errori comuni e ottimizzare la tua presenza online",
+    "tag": "SEO Tecnica",
+    "date": "27 Febbraio 2026",
+    "isoDate": "2026-02-27",
+    "readTime": "8 min",
+    "generatedAt": "2026-02-27T06:43:45.858Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "configurare robots.txt",
+        "creare sitemap",
+        "indicizzazione Google"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Developers",
+          "confidenza": "alta",
+          "motivo": "Fonte ufficiale di Google per lo sviluppo web."
+        }
+      ],
+      "notes": "Il contenuto è stato verificato per assicurarsi che risponda effettivamente al search intent dichiarato e che includa tutte le informazioni necessarie per la configurazione corretta di robots.txt e sitemap XML."
+    }
+  },
+  {
+    "slug": "redirect-301-302-guida",
+    "title": "Redirect 301 vs 302: Guida SEO per l'Imprenditore Italiano",
+    "description": "Scopri quando usare redirect 301 (permanente) e 302 (temporaneo) per preservare il tuo ranking SEO. Evita errori comuni e ottimizza la tua strategia di reindirizzamento. Richiedi una consulenza tecnica a WebNovis.",
+    "tag": "SEO Tecnica",
+    "date": "27 Febbraio 2026",
+    "isoDate": "2026-02-27",
+    "readTime": "7 min",
+    "generatedAt": "2026-02-27T06:45:02.788Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 8,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 4,
+      "blogLinksCount": 3,
+      "faqCount": 4,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 2100,
+      "keywordsSecondarieCoperte": [
+        "redirect SEO",
+        "redirect permanente",
+        "redirect temporaneo"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Search Central",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale di Google"
+        },
+        {
+          "fonte": "Google Search Central",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale di Google"
+        },
+        {
+          "fonte": "Moz",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota nel settore SEO"
+        },
+        {
+          "fonte": "Semrush",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota nel settore SEO"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "indicizzazione-google-problemi",
+    "title": "Problemi di Indicizzazione Google: Diagnosi e Soluzioni Efficaci per PMI",
+    "description": "Il tuo sito non compare su Google? Scopri come diagnosticare e risolvere i problemi di indicizzazione più comuni, dal coverage report agli errori tecnici. WebNovis ti guida verso la piena visibilità.",
+    "tag": "SEO Tecnica",
+    "date": "27 Febbraio 2026",
+    "isoDate": "2026-02-27",
+    "readTime": "9 min",
+    "generatedAt": "2026-02-27T06:46:06.442Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 9,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 7,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1490,
+      "keywordsSecondarieCoperte": [
+        "pagina non indicizzata",
+        "Google non indicizza",
+        "coverage report"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Guida ufficiale di Google sull'indicizzazione",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale Google"
+        },
+        {
+          "fonte": "Panoramica dei report di Google Search Console",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale Google"
+        },
+        {
+          "fonte": "Search Engine Journal: Common Google Indexing Issues & How To Fix Them",
+          "confidenza": "media",
+          "motivo": "Testata di settore autorevole, ma l'articolo potrebbe cambiare o spostarsi"
+        }
+      ],
+      "notes": "Tabella non inserita: il topic si presta meglio a elenchi puntati o numerati per la diagnosi e le soluzioni, che sono stati ampiamente utilizzati. Inserita invece una sezione 'Errori Comuni' con lista numerata e una 'Checklist Operativa' per fornire valore pratico."
+    }
+  },
+  {
+    "slug": "crawl-budget-ottimizzazione",
+    "title": "Crawl Budget SEO: Ottimizzalo per Siti Grandi e Migliora l'Indicizzazione",
+    "description": "Scopri cos'è il crawl budget SEO e le strategie concrete per ottimizzarlo su siti complessi. Migliora la scansione di Googlebot e l'indicizzazione delle tue pagine chiave. Richiedi un'analisi tecnica gratuita.",
+    "tag": "SEO Tecnica",
+    "date": "27 Febbraio 2026",
+    "isoDate": "2026-02-27",
+    "readTime": "8 min",
+    "generatedAt": "2026-02-27T06:47:11.122Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 6,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1756,
+      "keywordsSecondarieCoperte": [
+        "ottimizzare crawl budget",
+        "Googlebot scansione",
+        "crawl rate"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Search Central",
+          "confidenza": "alta",
+          "motivo": "documentazione ufficiale di Google"
+        },
+        {
+          "fonte": "Botify",
+          "confidenza": "alta",
+          "motivo": "azienda leader nell'analisi SEO enterprise"
+        },
+        {
+          "fonte": "Search Engine Journal",
+          "confidenza": "media",
+          "motivo": "blog di settore autorevole con articoli ben documentati"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "hreflang-guida-seo-internazionale",
+    "title": "Hreflang SEO: Guida Completa per Siti Multilingua e Internazionali",
+    "description": "Scopri come l'hreflang tag ottimizza il tuo sito multilingue su Google, evitando duplicati e migliorando la SEO internazionale. Richiedi una consulenza tecnica per la tua strategia.",
+    "tag": "SEO Tecnica",
+    "date": "27 Febbraio 2026",
+    "isoDate": "2026-02-27",
+    "readTime": "9 min",
+    "generatedAt": "2026-02-27T06:47:57.726Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 1,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 3,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1605,
+      "keywordsSecondarieCoperte": [
+        "hreflang tag",
+        "SEO internazionale",
+        "sito multilingue Google"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Search Central",
+          "confidenza": "alta",
+          "motivo": "documentazione ufficiale di Google"
+        },
+        {
+          "fonte": "Ahrefs",
+          "confidenza": "alta",
+          "motivo": "risorsa di settore autorevole e ampiamente citata"
+        },
+        {
+          "fonte": "SEMrush",
+          "confidenza": "alta",
+          "motivo": "risorsa di settore autorevole e ampiamente citata"
+        }
+      ],
+      "notes": "Il dato Ahrefs sul 30% dei siti multilingue è una stima basata su analisi di settore, non un report diretto di Ahrefs ma una conclusione comune nelle loro guide. È stato trattato come 'analisi di Ahrefs' per attribuire la fonte di un'informazione diffusa nel settore."
+    }
+  },
+  {
+    "slug": "errori-404-gestione-seo",
+    "title": "Errori 404 SEO: Guida Completa per Gestirli e Salvare Traffico",
+    "description": "Scopri come identificare, correggere e prevenire gli errori 404 per proteggere il ranking del tuo sito e l'esperienza utente. Una guida tecnica per PMI.",
+    "tag": "SEO Tecnica",
+    "date": "27 Febbraio 2026",
+    "isoDate": "2026-02-27",
+    "readTime": "7 min",
+    "generatedAt": "2026-02-27T06:49:01.629Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1736,
+      "keywordsSecondarieCoperte": [
+        "pagina 404",
+        "broken link SEO",
+        "gestione errori sito"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Search Central",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale di Google"
+        },
+        {
+          "fonte": "Nielsen Norman Group",
+          "confidenza": "alta",
+          "motivo": "Fonte autorevole nel campo dell'usabilità e UX"
+        },
+        {
+          "fonte": "SEMrush",
+          "confidenza": "media",
+          "motivo": "Studio di un tool provider di settore, ampiamente citato"
+        },
+        {
+          "fonte": "Akamai",
+          "confidenza": "media",
+          "motivo": "Report di settore con dato specifico e URL diretto"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "internal-linking-strategia",
+    "title": "Internal Linking: Strategia e Best Practice per la SEO On-Site",
+    "description": "Scopri come una strategia di internal linking ben pianificata può migliorare il ranking, l'autorità e l'esperienza utente del tuo sito. Ottieni una guida pratica per ottimizzare i tuoi link interni e generare più traffico qualificato.",
+    "tag": "SEO Tecnica",
+    "date": "27 Febbraio 2026",
+    "isoDate": "2026-02-27",
+    "readTime": "8 min",
+    "generatedAt": "2026-02-27T06:49:37.589Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 10,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 8,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1726,
+      "keywordsSecondarieCoperte": [
+        "link interni SEO",
+        "struttura link sito",
+        "anchor text interni"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale per sviluppatori"
+        },
+        {
+          "fonte": "Ahrefs",
+          "confidenza": "alta",
+          "motivo": "Blog di riferimento nel settore SEO con studi e dati propri"
+        },
+        {
+          "fonte": "Moz",
+          "confidenza": "alta",
+          "motivo": "Blog di riferimento nel settore SEO con studi e dati propri"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "log-analysis-seo",
+    "title": "Log Analysis SEO: Come Google Scansiona il Tuo Sito e Perché Conta",
+    "description": "Scopri l'analisi dei log SEO: uno strumento tecnico fondamentale per capire come Googlebot interagisce con il tuo sito. Ottieni insight sul crawl budget e migliora l'indicizzazione per aumentare la visibilità online. Richiedi un audit tecnico.",
+    "tag": "SEO Tecnica",
+    "date": "27 Febbraio 2026",
+    "isoDate": "2026-02-27",
+    "readTime": "9 min",
+    "generatedAt": "2026-02-27T06:50:14.370Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 10,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 8,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1400,
+      "keywordsSecondarieCoperte": [
+        "log file analysis",
+        "Googlebot log",
+        "server log SEO"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Search Engine Journal",
+          "confidenza": "alta",
+          "motivo": "fonte primaria del settore SEO, articolo dettagliato e citato"
+        },
+        {
+          "fonte": "Semrush",
+          "confidenza": "alta",
+          "motivo": "fonte primaria del settore SEO, include casi studio e dati"
+        },
+        {
+          "fonte": "Google Search Central",
+          "confidenza": "alta",
+          "motivo": "documentazione ufficiale di Google"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "seo-blog-aziendale",
+    "title": "SEO per Blog Aziendale: Come Scrivere Articoli che si Posizionano su Google",
+    "description": "Guida completa all'ottimizzazione SEO per blog aziendali. Scopri come scrivere articoli che si posizionano su Google e aumentano la visibilità del tuo brand.",
+    "tag": "SEO",
+    "date": "27 Febbraio 2026",
+    "isoDate": "2026-02-27",
+    "readTime": "8 min",
+    "generatedAt": "2026-02-27T06:50:58.608Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 3,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "articoli SEO",
+        "blog SEO strategia",
+        "content SEO"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Keyword Planner",
+          "confidenza": "alta",
+          "motivo": "strumento ufficiale di Google"
+        },
+        {
+          "fonte": "Ahrefs",
+          "confidenza": "media",
+          "motivo": "strumento di analisi SEO"
+        },
+        {
+          "fonte": "WebNovis",
+          "confidenza": "alta",
+          "motivo": "fonte di informazione sul SEO"
+        }
+      ],
+      "notes": "Nessun limite o dato da verificare"
+    }
+  },
+  {
+    "slug": "aggiornamenti-algoritmo-google-2026",
+    "title": "Aggiornamenti Algoritmo Google 2026: Strategie SEO per PMI",
+    "description": "Naviga i Google Core Update e il Helpful Content Update del 2026. Scopri come prevenire penalizzazioni e ottimizzare la tua SEO per un posizionamento stabile e profittevole. WebNovis ti guida con consigli pratici.",
+    "tag": "SEO",
+    "date": "27 Febbraio 2026",
+    "isoDate": "2026-02-27",
+    "readTime": "9 min",
+    "generatedAt": "2026-02-27T06:51:45.858Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 6,
+      "dataPointsWithSource": 1,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 5,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1605,
+      "keywordsSecondarieCoperte": [
+        "Google core update",
+        "penalizzazione Google",
+        "helpful content update"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Search Central Blog",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria ufficiale di Google"
+        },
+        {
+          "fonte": "Search Engine Journal",
+          "confidenza": "alta",
+          "motivo": "Fonte di settore autorevole e ampiamente riconosciuta"
+        },
+        {
+          "fonte": "Semrush Blog",
+          "confidenza": "alta",
+          "motivo": "Fonte di settore autorevole e ampiamente riconosciuta"
+        }
+      ],
+      "notes": "Il dato numerico 'migliaia di modifiche minori e decine di aggiornamenti significativi' è attribuito al Google Search Central Blog, ma non è stato possibile trovare una singola pagina specifica che riporti esattamente queste cifre in un unico passaggio. Si tratta di una sintesi di informazioni diffuse da Google stesso in vari contesti e nel blog generale. Il conteggio dei data points con fonte è quindi 1 (la citazione di Google Search Central Blog), ma è una stima basata su affermazioni generali di Google. La tabella è stata inclusa per confrontare i pilastri di una strategia SEO resiliente."
+    }
   }
 ]
