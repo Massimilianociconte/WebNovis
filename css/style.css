@@ -2686,6 +2686,18 @@ section {
         min-height: 100vh;
         min-height: 100svh;
         background-image: url('../Img/sfondo-mobile.webp');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    /* Upgrade progressivo: su mobile passa allo sfondo HQ solo dopo idle-ready */
+    .is-mobile.hero-fx-ready .hero {
+        background-image: url('../Img/sfondo-mobile-hq.webp');
+        background-image: image-set(
+            url('../Img/sfondo-mobile.webp') 1x,
+            url('../Img/sfondo-mobile-hq.webp') 2x
+        );
     }
 
     .hero-badge {
@@ -5844,18 +5856,18 @@ img {
         width: 90vw;
         height: 50vh;
         background:
-            radial-gradient(ellipse 60% 50% at 50% 40%, rgba(37, 99, 235, 0.18) 0%, transparent 70%),
-            radial-gradient(ellipse 80% 60% at 40% 55%, rgba(91, 106, 174, 0.22) 0%, transparent 65%),
-            radial-gradient(ellipse 50% 40% at 65% 35%, rgba(59, 130, 246, 0.12) 0%, transparent 60%);
-        filter: blur(26px);
+            radial-gradient(ellipse 62% 52% at 50% 38%, rgba(37, 99, 235, 0.25) 0%, rgba(37, 99, 235, 0.12) 42%, transparent 78%),
+            radial-gradient(ellipse 84% 64% at 38% 58%, rgba(91, 106, 174, 0.26) 0%, rgba(91, 106, 174, 0.16) 38%, transparent 76%),
+            radial-gradient(ellipse 54% 44% at 66% 34%, rgba(59, 130, 246, 0.18) 0%, rgba(59, 130, 246, 0.08) 36%, transparent 72%);
         pointer-events: none;
         z-index: 0;
-        opacity: 0.85;
+        opacity: 0.82;
+        will-change: transform, opacity;
     }
 
     .hero-fx-ready .hero::before {
-        filter: blur(36px);
         animation: heroGlowBreathe 10s ease-in-out infinite;
+        opacity: 0.94;
     }
 
     /* ── Mobile Hero: Cinematic vignette for focus ── */
@@ -5865,8 +5877,8 @@ img {
         position: absolute;
         inset: 0;
         background:
-            radial-gradient(ellipse 70% 60% at 50% 45%, transparent 40%, rgba(10, 10, 10, 0.5) 100%),
-            linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, transparent 15%, transparent 80%, rgba(10, 10, 10, 0.6) 100%);
+            radial-gradient(ellipse 72% 62% at 50% 45%, transparent 46%, rgba(10, 10, 10, 0.42) 100%),
+            linear-gradient(180deg, rgba(10, 10, 10, 0.24) 0%, transparent 18%, transparent 78%, rgba(10, 10, 10, 0.52) 100%);
         pointer-events: none;
         z-index: 1;
     }
