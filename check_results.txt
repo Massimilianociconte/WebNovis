@@ -1,0 +1,30 @@
+migrazione-sito-web-guida.html
+  srcset: ../Img/blog/blog-migrazione-sito-web.webp
+  src:    ../Img/blog-cat-web.png
+
+progressive-web-app-pmi.html
+  srcset: ../Img/blog/blog-progressive-web-app.webp
+  src:    ../Img/blog-cat-web.png
+
+checkout-ottimizzazione.html
+  srcset: ../Img/blog/blog-checkout-ottimizzazione.webp
+  src:    ../Img/blog-cat-web.png
+
+seo-ecommerce-guida.html
+  srcset: ../Img/blog/blog-seo-ecommerce.webp
+  src:    ../Img/blog-cat-web.png
+
+come-scegliere-web-agency.html
+  srcset: ../Img/blog/blog-scegliere-web-agency.webp
+  src:    ../Img/blog-cat-marketing.png
+
+portare-attivita-online.html
+  srcset: ../Img/blog/blog-portare-attivita-online.webp
+  src:    ../Img/blog-cat-marketing.png
+
+Pattern "blog-cat-web" found 63 times
+Pattern "blog-cat-seo" found 15 times
+Pattern "blog-cat-marketing" found 24 times
+Pattern "blog-cat-social" found 10 times
+
+Total generic image references: 112

@@ -56,8 +56,13 @@ body.page-loaded { animation: pageIn .45s ease both; }
 /* AI Summary Block — compact extractable summary for LLMs */
 .ai-summary {
     padding: 2rem 0;
-    background: rgba(91, 106, 174, 0.06);
-    border-bottom: 1px solid rgba(91, 106, 174, 0.12);
+    background: #0f1014; /* opaque equiv of rgba(91,106,174,.06) over var(--dark) — prevents mobile repaint flash */
+    border-bottom: 1px solid #14161e; /* opaque equiv of rgba(91,106,174,.12) */
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .ai-summary-text {
@@ -2315,7 +2320,8 @@ section {
 }
 
 /* --- Footer link columns --- */
-.footer-column h3 {
+.footer-column h3,
+.footer-column .footer-heading {
     font-family: Syne, sans-serif;
     font-weight: 700;
     font-size: 0.82rem;
@@ -2325,9 +2331,11 @@ section {
     margin-bottom: 1.25rem;
     position: relative;
     padding-bottom: 0.75rem;
+    display: block;
 }
 
-.footer-column h3::after {
+.footer-column h3::after,
+.footer-column .footer-heading::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -2647,7 +2655,8 @@ section {
         gap: 0 1rem;
     }
 
-    .footer-column h3 {
+    .footer-column h3,
+    .footer-column .footer-heading {
         grid-column: 1 / -1;
     }
 
@@ -6252,7 +6261,8 @@ img {
         padding: 2rem 0 0;
     }
 
-    .footer-column h3 {
+    .footer-column h3,
+    .footer-column .footer-heading {
         font-size: 0.78rem;
         margin-bottom: 0.75rem;
         padding-bottom: 0.5rem;
@@ -6942,4 +6952,14 @@ img {
     .portfolio-grid.bento .portfolio-card:not(:nth-child(1)):not(:nth-child(8)) {
         height: 220px;
     }
+}
+
+/* --- Article updated badge (SEO: visible dateModified) --- */
+.article-updated {
+    color: var(--primary-light, #7b8cc9);
+    font-size: inherit;
+}
+
+.article-updated time {
+    font-weight: 500;
 }

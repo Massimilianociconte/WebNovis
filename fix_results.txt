@@ -1,0 +1,25 @@
+FIXED: migrazione-sito-web-guida.html -> ../Img/blog/blog-migrazione-sito-web.webp
+FIXED: progressive-web-app-pmi.html -> ../Img/blog/blog-progressive-web-app.webp
+FIXED: checkout-ottimizzazione.html -> ../Img/blog/blog-checkout-ottimizzazione.webp
+FIXED: seo-ecommerce-guida.html -> ../Img/blog/blog-seo-ecommerce.webp
+FIXED: ecommerce-b2b-guida.html -> ../Img/blog/blog-ecommerce-b2b.webp
+FIXED: gestione-resi-ecommerce.html -> ../Img/blog/blog-gestione-resi.webp
+FIXED: fotografia-prodotto-ecommerce.html -> ../Img/blog/blog-fotografia-prodotto.webp
+FIXED: marketplace-vs-ecommerce-proprio.html -> ../Img/blog/blog-marketplace-vs-ecommerce.webp
+FIXED: email-marketing-ecommerce.html -> ../Img/blog/blog-email-marketing-ecommerce.webp
+FIXED: pagamenti-online-ecommerce.html -> ../Img/blog/blog-pagamenti-online.webp
+FIXED: come-scegliere-web-agency.html -> ../Img/blog/blog-scegliere-web-agency.webp
+FIXED: seo-per-piccole-imprese.html -> ../Img/blog/blog-seo-piccole-imprese.webp
+FIXED: ottimizzazione-tasso-conversione.html -> ../Img/blog/blog-ottimizzazione-conversione.webp
+FIXED: ux-design-best-practice.html -> ../Img/blog/blog-ux-design.webp
+FIXED: ux-design-best-practice.html -> ../Img/blog/blog-ux-design.webp
+FIXED: strategia-digitale-pmi.html -> ../Img/blog/blog-strategia-digitale.webp
+FIXED: strategia-digitale-pmi.html -> ../Img/blog/blog-strategia-digitale.webp
+FIXED: portare-attivita-online.html -> ../Img/blog/blog-portare-attivita-online.webp
+
+Total cards fixed: 18
+Remaining "blog-cat-web": 50
+Remaining "blog-cat-seo": 14
+Remaining "blog-cat-marketing": 18
+Remaining "blog-cat-social": 10
+Total remaining generic refs: 92

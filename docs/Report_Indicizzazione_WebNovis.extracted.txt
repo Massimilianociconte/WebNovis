@@ -1,0 +1,100 @@
+0001	REPORT DI INDICIZZAZIONE
+0002	Google Search Console
+0003	webnovis.it
+0004	Web Agency – Rho (MI)
+0005	Data report: 26 febbraio 2026
+0006	Periodo analizzato: 28 nov 2025 – 24 feb 2026
+0007	1. Quadro Generale
+0008	⚠️ SITUAZIONE CRITICA: Solo il 16% delle pagine è indicizzato
+0009	Su 130 pagine totali note a Google, solo 21 risultano indicizzate. Le restanti 109 pagine (84%) presentano problemi che ne impediscono l’indicizzazione. Il sito è sostanzialmente invisibile su Google per la stragrande maggioranza dei suoi contenuti.
+0010	Il report analizza i dati esportati da Google Search Console relativi al sito webnovis.it nel periodo compreso tra il 28 novembre 2025 e il 24 febbraio 2026.
+0011	Metrica
+0012	Valore
+0013	Pagine totali note a Google
+0014	130
+0015	Pagine indicizzate
+0016	21 (16,2%)
+0017	Pagine NON indicizzate
+0018	109 (83,8%)
+0019	Impressioni totali (periodo)
+0020	~210
+0021	Picco impressioni giornaliero
+0022	55 (23 feb 2026)
+0023	Problemi non critici
+0024	Nessuno
+0025	2. Evoluzione Temporale
+0026	L’analisi del grafico temporale rivela tre fasi distinte nell’indicizzazione del sito:
+0027	Fase 1: Pre-indicizzazione (28 nov – 14 dic 2025)
+0028	In questo periodo Google non ha ancora iniziato a classificare le pagine. Le impressioni sono sporadiche (0–6 al giorno), il che suggerisce che il sito era appena stato pubblicato o sottomesso a GSC. Non sono disponibili dati sulle pagine indicizzate/non indicizzate.
+0029	Fase 2: Indicizzazione iniziale (15 dic 2025 – 21 feb 2026)
+0030	Dal 15 dicembre Google rileva 7 pagine non indicizzate e 1 sola pagina indicizzata. Dal 4 gennaio le pagine non indicizzate scendono a 3, suggerendo che alcune URL sono state rimosse o corrette. Tuttavia la situazione rimane stagnante per circa 2 mesi: una sola pagina indicizzata su tutto il sito. Le impressioni restano bassissime (0–7/giorno).
+0031	Fase 3: Esplosione di contenuti (22 feb 2026)
+0032	Il 22 febbraio si registra un salto improvviso: da 3 a 109 pagine non indicizzate e da 1 a 21 indicizzate. Questo indica che un grande numero di nuove pagine (probabilmente articoli del blog o pagine di servizio) sono state pubblicate e inviate a Google in un blocco unico. Le impressioni aumentano significativamente (fino a 55/giorno il 23 febbraio).
+0033	💡 Interpretazione
+0034	Il salto improvviso del 22 febbraio suggerisce una pubblicazione massiva di contenuti. Google ha ricevuto 130 URL in un colpo, ne ha indicizzate 21 rapidamente, ma le restanti 109 sono rimaste in coda. Questo è un pattern tipico di siti nuovi che pubblicano molti contenuti in una volta sola: Google li mette in "lista d’attesa" e li processa gradualmente.
+0035	3. Problemi Critici di Indicizzazione
+0036	Google Search Console segnala 4 tipologie di problemi critici, per un totale di 109 pagine non indicizzate. Nessuna convalida è stata avviata per nessuno di essi.
+0037	Problema
+0038	Sorgente
+0039	Convalida
+0040	Pagine
+0041	Rilevata, ma attualmente non indicizzata
+0042	Sistemi di Google
+0043	Non iniziata
+0044	93
+0045	Pagina scansionata, ma attualmente non indicizzata
+0046	Sistemi di Google
+0047	Non iniziata
+0048	11
+0049	Pagina con reindirizzamento
+0050	Sito web
+0051	Non iniziata
+0052	3
+0053	Pagina alternativa con tag canonical appropriato
+0054	Sito web
+0055	Non iniziata
+0056	2
+0057	3.1 “Rilevata, ma attualmente non indicizzata” – 93 pagine
+0058	🔴 PROBLEMA PRINCIPALE
+0059	Questo è il problema più grave e riguarda il 71,5% di tutte le pagine del sito. Google conosce l’esistenza di queste URL (le ha trovate nella sitemap o nei link interni), ma non le ha ancora nemmeno scansionate.
+0060	Cosa significa: Google ha scoperto queste pagine ma ha deciso di non visitarle (crawl) per il momento. Le ragioni possono essere molteplici:
+0061	Crawl budget insufficiente: il sito è nuovo e Google gli assegna poche risorse di scansione
+0062	Contenuti percepiti come di bassa qualità o duplicati rispetto ad altri siti
+0063	Server lento o con tempi di risposta elevati, che scoraggia Googlebot
+0064	Mancanza di autorità del dominio (backlink scarsi o assenti)
+0065	Pubblicazione massiva: troppe pagine inviate tutte insieme sovraccaricano la coda di crawl
+0066	3.2 “Pagina scansionata, ma attualmente non indicizzata” – 11 pagine
+0067	🟠 PROBLEMA SIGNIFICATIVO
+0068	Google ha effettivamente visitato (crawlato) queste 11 pagine, ma ha scelto di NON inserirle nel proprio indice. Questo è più preoccupante del problema precedente, perché indica un giudizio negativo esplicito sulla qualità.
+0069	Cosa significa: Googlebot ha visitato le pagine, ne ha letto il contenuto, e ha deciso che non sono abbastanza utili o originali per essere mostrate nei risultati di ricerca. Le cause tipiche:
+0070	Contenuto thin (troppo breve, generico, o privo di valore aggiunto rispetto a pagine già indicizzate)
+0071	Contenuto duplicato o troppo simile ad altre pagine dello stesso sito o di competitor
+0072	Pagine generate automaticamente (es. tag pages, archivi, pagine di categoria vuote)
+0073	Problemi di rendering JavaScript lato client che impediscono a Google di leggere il contenuto reale
+0074	3.3 “Pagina con reindirizzamento” – 3 pagine
+0075	Cosa significa: Queste 3 URL nella sitemap o nei link interni puntano a pagine che restituiscono un redirect (301 o 302) verso un’altra destinazione. Google non indicizza la URL di partenza, bensì quella di destinazione (se valida).
+0076	Azione necessaria: Verificare nella sitemap e nei link interni che non ci siano URL obsolete che puntano a redirect. Aggiornare tutti i riferimenti alla URL finale di destinazione. Rimuovere le URL con redirect dalla sitemap.xml.
+0077	3.4 “Pagina alternativa con tag canonical appropriato” – 2 pagine
+0078	Cosa significa: Queste 2 pagine hanno un tag canonical che punta a un’altra URL, dichiarando di essere versioni alternative (non la versione principale) di quel contenuto. Google rispetta il canonical e non le indicizza separatamente.
+0079	Valutazione: Se i canonical sono configurati correttamente (es. versione www vs non-www, o versione con trailing slash), questa è una situazione normale e non richiede intervento. Se invece i canonical sono errati, le pagine stanno cedendo autorità a URL sbagliate.
+0080	4. Visibilità su Google
+0081	Il sito webnovis.it risulta attualmente invisibile nelle SERP per ricerche legate al brand e ai servizi offerti. Una ricerca web per “webnovis agenzia web rho” non restituisce il sito nei risultati, confermando che l’indicizzazione è estremamente limitata.
+0082	Le ~210 impressioni totali nel periodo sono un valore molto basso per un sito di agenzia web attivo da circa 3 mesi. Per confronto, un sito di agenzia web correttamente indicizzato nella zona di Rho/Milano dovrebbe generare centinaia di impressioni giornaliere, non totali nell’arco di 3 mesi.
+0083	Il picco di 55 impressioni del 23 febbraio coincide con l’aumento delle pagine indicizzate a 21, segnale che quando Google indicizza, le impressioni crescono immediatamente. Questo conferma che il contenuto ha potenziale, ma è bloccato dalla mancata indicizzazione.
+0084	5. Piano d’Azione Raccomandato
+0085	Priorità 1 – Immediata (questa settimana)
+0086	Ispezionare le 11 pagine “scansionate ma non indicizzate”: Usare lo strumento “Controllo URL” di GSC per ciascuna di esse. Verificare se il contenuto è troppo simile ad altre pagine o troppo breve. Arricchire il contenuto o consolidare pagine ridondanti.
+0087	Correggere i 3 redirect: Identificare quali URL causano i redirect, aggiornare la sitemap e i link interni alle URL finali.
+0088	Verificare i 2 canonical: Controllare che puntino alla URL corretta e che non ci siano canonical auto-referenziali errati.
+0089	Priorità 2 – Breve termine (1–2 settimane)
+0090	Richiedere manualmente l’indicizzazione: Per le pagine più importanti (homepage, pagine servizi, landing page principali), usare “Controllo URL” > “Richiedi indicizzazione” in GSC. Limitarsi a 10–15 URL al giorno.
+0091	Ottimizzare la sitemap.xml: Includere solo le pagine che devono essere indicizzate. Rimuovere URL con redirect, parametri, pagine thin, pagine di tag/categoria vuote. Una sitemap pulita è un segnale di qualità per Google.
+0092	Verificare velocità del server: Tempi di risposta del server superiori a 500ms scoraggiano il crawling. Verificare con PageSpeed Insights e ottimizzare il TTFB.
+0093	Priorità 3 – Medio termine (1–3 mesi)
+0094	Costruire autorità di dominio: Il fattore più importante per sbloccare il crawl budget. Acquisire backlink di qualità da directory locali (ProntoPro, PagineGialle, Google Business Profile), partnership con aziende locali, guest posting su blog di settore.
+0095	Pubblicare contenuti gradualmente: Evitare pubblicazioni massive. Pubblicare 2–3 contenuti a settimana di alta qualità, dando tempo a Google di scansionarli e indicizzarli prima di aggiungerne altri.
+0096	Rafforzare il linking interno: Ogni pagina importante deve essere raggiungibile in massimo 3 click dalla homepage. Creare una struttura a silo con link contestuali tra pagine correlate.
+0097	Avviare la convalida in GSC: Per tutti e 4 i problemi critici, lo stato di convalida è “Non iniziata”. Dopo aver corretto i problemi, avviare la convalida per comunicare a Google che le correzioni sono state applicate.
+0098	6. Conclusione
+0099	📊 Sintesi della situazione
+0100	Il sito webnovis.it si trova nella fase critica iniziale tipica dei nuovi domini. L’indicizzazione è gravemente insufficiente (16%), causata principalmente dalla combinazione di: dominio nuovo con bassa autorità, pubblicazione massiva di contenuti, e possibili problemi di qualità/duplicazione su alcune pagine. La buona notizia è che le 21 pagine già indicizzate generano impressioni crescenti, dimostrando che il contenuto ha potenziale. L’intervento urgente sulle 11 pagine scansionate-ma-non-indicizzate e il lavoro sistematico di link building sono le leve principali per sbloccare la situazione.

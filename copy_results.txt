@@ -1,0 +1,40 @@
+=== STEP 1: Copying and converting images ===
+
+OK: blog_migrazione_sito -> blog-migrazione-sito-web.webp (640x640, 35KB)
+OK: blog_pwa -> blog-progressive-web-app.webp (640x640, 19KB)
+OK: blog_checkout -> blog-checkout-ottimizzazione.webp (640x640, 59KB)
+OK: blog_seo_ecommerce -> blog-seo-ecommerce.webp (640x640, 25KB)
+OK: blog_ecommerce_b2b -> blog-ecommerce-b2b.webp (640x640, 26KB)
+OK: blog_gestione_resi -> blog-gestione-resi.webp (640x640, 15KB)
+OK: blog_foto_prodotto -> blog-fotografia-prodotto.webp (640x640, 28KB)
+OK: blog_marketplace_vs -> blog-marketplace-vs-ecommerce.webp (640x640, 49KB)
+OK: blog_email_ecommerce -> blog-email-marketing-ecommerce.webp (640x640, 25KB)
+OK: blog_pagamenti_online -> blog-pagamenti-online.webp (640x640, 37KB)
+OK: blog_scegliere_agency -> blog-scegliere-web-agency.webp (640x640, 36KB)
+OK: blog_seo_piccole -> blog-seo-piccole-imprese.webp (640x640, 23KB)
+OK: blog_cro -> blog-ottimizzazione-conversione.webp (640x640, 31KB)
+OK: blog_ux_design -> blog-ux-design.webp (640x640, 28KB)
+OK: blog_strategia_digitale -> blog-strategia-digitale.webp (640x640, 48KB)
+OK: blog_portare_online -> blog-portare-attivita-online.webp (640x640, 31KB)
+
+=== STEP 2: Updating blog/index.html ===
+
+NO CHANGE: migrazione-sito-web-guida.html
+NO CHANGE: progressive-web-app-pmi.html
+NO CHANGE: checkout-ottimizzazione.html
+NO CHANGE: seo-ecommerce-guida.html
+NO CHANGE: ecommerce-b2b-guida.html
+NO CHANGE: gestione-resi-ecommerce.html
+NO CHANGE: fotografia-prodotto-ecommerce.html
+NO CHANGE: marketplace-vs-ecommerce-proprio.html
+NO CHANGE: email-marketing-ecommerce.html
+NO CHANGE: pagamenti-online-ecommerce.html
+NO CHANGE: come-scegliere-web-agency.html
+NO CHANGE: seo-per-piccole-imprese.html
+NO CHANGE: ottimizzazione-tasso-conversione.html
+NO CHANGE: ux-design-best-practice.html
+NO CHANGE: strategia-digitale-pmi.html
+NO CHANGE: portare-attivita-online.html
+
+Total HTML updates: 0
+Total images copied: 16

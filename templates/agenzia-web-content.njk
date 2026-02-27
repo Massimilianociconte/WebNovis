@@ -1,0 +1,235 @@
+{# 
+  WebNovis — Nunjucks template for "agenzia-web" geo page content sections
+  Variables: city, services, nearCitiesData, relatedPages, today, site
+#}
+<main>
+  <div class="container breadcrumb">
+    <a href="/">Home</a>
+    <span class="separator">/</span>
+    <span class="current-page">{{ city.breadcrumbLabel }}</span>
+  </div>
+
+  {# ═══ HERO — Answer capsule pattern (GEO: first 60 words = direct answer) ═══ #}
+  <section class="service-page-hero">
+    <div class="container">
+      <span class="section-tag">{{ city.name }} — Milano (MI) {{ city.cap }}</span>
+      <h1>{{ city.h1 }}</h1>
+      <p class="answer-capsule">{{ city.heroCapsule | safe }}</p>
+      <a href="contatti.html" class="btn btn-large btn-primary">
+        <span>Richiedi Preventivo Gratuito</span>
+        <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+      <p style="margin-top:1.5rem;font-size:.85rem;opacity:.5">
+        <time datetime="{{ today }}">{{ todayFormatted }}</time>
+        &nbsp;·&nbsp; Sede: Via S. Giorgio 2, 20017 Rho MI &nbsp;·&nbsp;
+        <a href="https://maps.google.com/?q=Via+S.+Giorgio+2%2C+20017+Rho+MI" target="_blank" rel="noopener" style="color:var(--primary-light)">Google Maps</a>
+      </p>
+    </div>
+  </section>
+
+  {# ═══ SECTION 1 — Local context: why a local agency matters ═══ #}
+  <section class="service-detail">
+    <div class="container">
+      <h2>{{ city.section1Title }}</h2>
+      <p>{{ city.section1Intro | safe }}</p>
+      <div class="service-grid">
+        {% for card in city.cards1 %}
+        <div class="service-card-mini">
+          <h3>{{ card.h3 }}</h3>
+          <p>{{ card.p | safe }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# ═══ SECTION 2 — Services grid with pricing (statistics density: prices per service) ═══ #}
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>Servizi web per imprese e professionisti di {{ city.name }}</h2>
+      <p>Sviluppo web, grafica e social media in un unico studio dell'hinterland milanese.</p>
+      <div class="service-grid">
+        {% for svc in services %}
+        <div class="service-card-mini">
+          <h3>{{ svc.shortName }}</h3>
+          <p>{{ svc.description }} <strong>Da €{{ svc.priceFrom }}{{ svc.priceUnit if svc.priceUnit }}</strong>.{% if loop.index <= 3 %} <a href="{{ svc.url }}">Scopri →</a>{% endif %}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# ═══ SECTION 3 — Area served with internal links (pSEO: algorithmic linking) ═══ #}
+  <section class="service-detail">
+    <div class="container">
+      <h2>Dove opera WebNovis nel territorio?</h2>
+      <p>Con sede a <strong>Rho</strong> (20017 MI), serviamo:
+        {% for nc in nearCitiesData %}
+        <strong>{{ nc.name }}</strong>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+        e tutta la Città Metropolitana di Milano.
+      </p>
+      {% if relatedPages | length > 0 %}
+      <p style="margin-top:1.5rem">Scopri anche i nostri servizi nelle città vicine:
+        {% for rp in relatedPages %}{% if loop.index <= 3 %}
+        <a href="{{ rp.url }}" style="color:var(--primary-light)">{{ rp.label }}</a> ({{ rp.distance }}){% if loop.index < 3 and relatedPages | length > loop.index %},{% endif %}
+        {% endif %}{% endfor %}
+      </p>
+      {% endif %}
+    </div>
+  </section>
+
+  {# ═══ SECTION 4 — Local economic context (unique per city, GEO: statistics + entity data) ═══ #}
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>{{ city.section3Title }}</h2>
+      {{ city.section3Text | safe }}
+    </div>
+  </section>
+
+  {# ═══ SECTION 5 — Comparison table (GEO: +115% visibility in AI citations) ═══ #}
+  <section class="service-detail">
+    <div class="container">
+      <h2>Confronto servizi e prezzi — {{ city.name }}</h2>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.95rem">
+          <thead>
+            <tr style="border-bottom:2px solid rgba(255,255,255,.1)">
+              <th scope="col" style="text-align:left;padding:12px 16px;color:var(--white);font-weight:600">Servizio</th>
+              <th scope="col" style="text-align:left;padding:12px 16px;color:var(--white);font-weight:600">Prezzo da</th>
+              <th scope="col" style="text-align:left;padding:12px 16px;color:var(--white);font-weight:600">Tempi</th>
+              <th scope="col" style="text-align:left;padding:12px 16px;color:var(--white);font-weight:600">Ideale per</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+              <td style="padding:12px 16px;color:var(--primary-light);font-weight:600">Landing Page</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">€500</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">5-7 giorni</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">Campagne, lead generation</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+              <td style="padding:12px 16px;color:var(--primary-light);font-weight:600">Sito Vetrina</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">€1.200</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">2-3 settimane</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">PMI, studi professionali</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+              <td style="padding:12px 16px;color:var(--primary-light);font-weight:600">E-Commerce</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">€3.500</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">4-8 settimane</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">Negozi, retail, vendita online</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+              <td style="padding:12px 16px;color:var(--primary-light);font-weight:600">Graphic Design</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">€400</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">1-2 settimane</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">Brand identity, logo</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px;color:var(--primary-light);font-weight:600">Social Media</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">€300/mese</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">Continuativo</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">Visibilità, advertising</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.85rem;color:var(--gray-light);opacity:.7">Prezzi IVA esclusa. Preventivo gratuito personalizzato entro 24 ore. Ultimo aggiornamento: {{ todayFormatted }}.</p>
+    </div>
+  </section>
+
+  {# ═══ SECTION 6 — Work process (unique content, GEO: statistics + authority signals) ═══ #}
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>Come lavoriamo con le aziende di {{ city.name }}</h2>
+      <p>Ogni progetto WebNovis segue un processo strutturato in <strong>5 fasi</strong>, dalla prima chiamata alla messa online. Trasparenza totale su tempi, costi e risultati attesi.</p>
+      <div class="service-grid">
+        <div class="service-card-mini">
+          <h3>1. Brief e Analisi</h3>
+          <p>Incontro gratuito{% if not city.isSede %} presso la tua sede a {{ city.name }}{% endif %} o in videochiamata. Analizziamo obiettivi, competitor locali e target di riferimento. <strong>Durata: 1-2 giorni</strong>.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>2. Wireframe e Architettura</h3>
+          <p>Struttura del sito, flussi utente e mappa delle pagine. Ogni sezione è progettata per convertire visitatori in contatti qualificati. <strong>Durata: 3-5 giorni</strong>.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>3. Design e Branding</h3>
+          <p>Design visivo completo con mockup desktop e mobile. Identità visiva coerente con il posizionamento della tua attività nel mercato di {{ city.name }}. <strong>Durata: 5-7 giorni</strong>.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>4. Sviluppo e SEO</h3>
+          <p>Codice 100% custom (HTML5, CSS3, JavaScript), SEO tecnica integrata con dati strutturati Schema.org, Core Web Vitals ottimizzati: LCP &lt; 2.5s, INP &lt; 200ms, CLS &lt; 0.1. <strong>Durata: 7-14 giorni</strong>.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>5. Lancio e Supporto</h3>
+          <p>Deploy, configurazione analytics GA4, test cross-browser e cross-device. <strong>30 giorni di supporto gratuito</strong> inclusi in ogni progetto. Manutenzione continuativa da €59/mese.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Tempi totali</h3>
+          <p>Landing Page: <strong>5-7 giorni</strong>. Sito Vetrina: <strong>2-3 settimane</strong>. E-Commerce: <strong>4-8 settimane</strong>. Tempi garantiti per contratto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# ═══ SECTION 7 — Local sectors (unique per-city content, boosts differentiation) ═══ #}
+  {% if city.localContext and city.localContext.settoriChiave %}
+  <section class="service-detail">
+    <div class="container">
+      <h2>Settori che serviamo a {{ city.name }} e nell'hinterland milanese</h2>
+      <p>WebNovis realizza siti web e soluzioni digitali per aziende di diversi settori. Ogni progetto è personalizzato in base al mercato di riferimento e alle esigenze specifiche del settore.</p>
+      <div class="service-grid">
+        {% for sector in city.localContext.settoriChiave %}
+        <div class="service-card-mini">
+          <h3 style="text-transform:capitalize">{{ sector }}</h3>
+          <p style="font-size:.9rem">Siti web professionali per il settore {{ sector }} a {{ city.name }}. Codice custom, SEO locale, design su misura per il tuo target.</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% if city.localContext.highlights %}
+      <p style="margin-top:2rem">Punti di riferimento del territorio: {% for hl in city.localContext.highlights %}<strong>{{ hl }}</strong>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  {# ═══ SECTION 8 — FAQ with FAQPage schema (GEO: question-based headings) ═══ #}
+  <section class="service-detail">
+    <div class="container">
+      <h2>Domande Frequenti — {{ city.breadcrumbLabel }}</h2>
+      {% for faq in city.faqs %}
+      <details class="faq-item">
+        <summary>{{ faq.q }}</summary>
+        <p>{{ faq.a | safe }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </section>
+
+  {# ═══ SECTION 7 — Blog links (internal linking: connect geo to blog authority) ═══ #}
+  {% if blogLinks | length > 0 %}
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>Approfondimenti dal blog WebNovis</h2>
+      <ul style="list-style:none;padding:0;margin:1rem 0">
+        {% for bl in blogLinks %}{% if loop.index <= 2 %}
+        <li style="margin-bottom:1rem"><a href="{{ bl.url }}" style="color:var(--primary-light);font-weight:600">{{ bl.title }}</a><br><span style="font-size:.9rem;color:var(--gray-light)">{{ bl.description }}</span></li>
+        {% endif %}{% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  {# ═══ CTA — Final conversion section ═══ #}
+  <section class="cta-inline">
+    <div class="container">
+      <h2>{{ city.ctaTitle }}</h2>
+      <p>Preventivo gratuito in 24 ore. Incontri presso la tua azienda{% if not city.isSede %} a {{ city.name }}{% endif %} o in videochiamata.</p>
+      <a href="contatti.html" class="btn btn-large btn-primary">
+        <span>Contattaci Ora</span>
+        <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+    </div>
+  </section>
+</main>

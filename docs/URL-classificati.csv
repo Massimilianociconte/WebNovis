@@ -1,0 +1,154 @@
+﻿Priorità (1-5),Livello,Categoria,URL,Stato GSC stimato,Azione consigliata
+1,CRITICA,Homepage,https://www.webnovis.com/,Indicizzata (confermata GSC),Monitorare. Verificare posizionamento keyword target
+1,CRITICA,Homepage,https://www.webnovis.com/index.html,Indicizzata (confermata GSC),Monitorare. Verificare posizionamento keyword target
+1,CRITICA,Landing Locale (agenzia-web),https://www.webnovis.com/agenzia-web-milano.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Landing Locale (agenzia-web),https://www.webnovis.com/agenzia-web-rho.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Landing Locale (realizzazione),https://www.webnovis.com/realizzazione-siti-web-rho.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Lead Generation,https://www.webnovis.com/preventivo.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Pagina Servizio,https://www.webnovis.com/servizi/,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Pagina Servizio,https://www.webnovis.com/servizi/accessibilita.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Pagina Servizio,https://www.webnovis.com/servizi/ecommerce.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Pagina Servizio,https://www.webnovis.com/servizi/graphic-design.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Pagina Servizio,https://www.webnovis.com/servizi/landing-page.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Pagina Servizio,https://www.webnovis.com/servizi/sito-vetrina.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Pagina Servizio,https://www.webnovis.com/servizi/social-media.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+1,CRITICA,Pagina Servizio,https://www.webnovis.com/servizi/sviluppo-web.html,Stato sconosciuto (verificare in GSC),PRIORITÀ MASSIMA: Richiedere indicizzazione manuale in GSC. Verificare contenuto unico e link interni
+2,ALTA,Indice Blog,https://www.webnovis.com/blog/,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Landing Locale (agenzia-web),https://www.webnovis.com/agenzia-web-arese.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Landing Locale (agenzia-web),https://www.webnovis.com/agenzia-web-garbagnate.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Landing Locale (agenzia-web),https://www.webnovis.com/agenzia-web-lainate.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Landing Locale (agenzie-web),https://www.webnovis.com/agenzie-web-rho.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Landing Locale (realizzazione),https://www.webnovis.com/realizzazione-siti-web-arese.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Landing Locale (realizzazione),https://www.webnovis.com/realizzazione-siti-web-cornaredo.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Landing Locale (realizzazione),https://www.webnovis.com/realizzazione-siti-web-lainate.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Landing Locale (realizzazione),https://www.webnovis.com/realizzazione-siti-web-pero.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Landing Locale (realizzazione),https://www.webnovis.com/realizzazione-siti-web-settimo-milanese.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Pagina Istituzionale,https://www.webnovis.com/chi-siamo.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Pagina Istituzionale,https://www.webnovis.com/come-lavoriamo.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Pagina Istituzionale,https://www.webnovis.com/contatti.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+2,ALTA,Pagina Portfolio,https://www.webnovis.com/portfolio.html,Stato sconosciuto (verificare in GSC),Richiedere indicizzazione. Verificare qualità contenuto e linking interno
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/brand-identity-guida-completa.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/come-scegliere-web-agency.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/content-marketing-per-pmi.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/creare-sito-con-intelligenza-artificiale.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/european-accessibility-act-siti-web.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/google-ads-guida-principianti.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/importanza-sito-web-attivita.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/intelligenza-artificiale-pmi.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/keyword-research-guida-2026.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/landing-page-efficace.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/marketing-digitale-attivita-locali-milano.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/normativa-accessibilita-web-2026.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/obblighi-legge-accessibilita-siti.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/personal-branding-online.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/portare-attivita-online.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/quanto-costa-brand-identity.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/quanto-costa-campagna-facebook-ads.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/quanto-costa-gestione-social-media.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/quanto-costa-un-ecommerce.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/quanto-costa-un-logo.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/quanto-costa-un-sito-web.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/quanto-costa-una-landing-page.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/sanzioni-sito-non-accessibile-2026.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/seo-locale-google-maps.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/seo-on-page-checklist.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/seo-per-ai-overviews.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/seo-per-piccole-imprese.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/serve-ancora-un-sito-web.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/shopify-vs-sito-ecommerce-custom.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/sito-web-fai-da-te-vs-professionale.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/sito-web-per-avvocati.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/sito-web-per-dentisti.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/sito-web-per-ristoranti.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/social-media-strategy-2026.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/strategia-digitale-pmi.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/web-design-trends-2026.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Articolo Blog,https://www.webnovis.com/blog/wordpress-vs-codice-custom.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/aether-digital.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/arconti31.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/ember-oak.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/fbtotalsecurity.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/lumina-creative.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/mikuna.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/mimmo-fratelli.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/muse-editorial.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/popblock-studio.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/quickseo.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+3,MEDIA-ALTA,Case Study,https://www.webnovis.com/portfolio/case-study/structure-arch.html,Stato sconosciuto (verificare in GSC),Verificare contenuto. Richiedere indicizzazione se unico e di qualità
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/accessibilita-web-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/architettura-informazioni-sito.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/caching-sito-web.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/caffe-sempione-caso-studio-locale.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/call-to-action-efficaci.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/canonical-tag-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/cdn-cos-e-quando-serve.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/chatbot-sito-web-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/checkout-ottimizzazione.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/chiedere-recensioni-clienti.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/colori-brand-psicologia.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/core-web-vitals-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/costi-progetto-web-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/critical-rendering-path.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/dati-obbligatori-sito-web-aziendale.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/ecommerce-b2b-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/ecommerce-che-vende.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/ecommerce-errori-da-evitare.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/email-marketing-ecommerce.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/email-marketing-guida-completa.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/errori-comuni-siti-web.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/facebook-ads-guida-pratica.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/featured-snippet-come-ottenere.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/font-performance-web.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/form-contatto-ottimizzazione.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/fotografia-prodotto-ecommerce.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/funnel-vendita-online.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/gdpr-sito-web-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/gestione-resi-ecommerce.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/google-analytics-4-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/google-search-console-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/ia-cartelle-cliniche-previsione-malattie.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/identificare-target-business.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/importanza-del-design-siti-web.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/instagram-per-aziende.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/javascript-performance-ottimizzare.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/lighthouse-score-migliorare.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/link-building-etica.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/logo-design-processo-creativo.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/manutenzione-sito-web.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/marketplace-vs-ecommerce-proprio.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/meta-ads-vs-google-ads.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/migrazione-sito-web-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/mockup-grafici-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/naming-aziendale-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/ottimizzazione-immagini-web.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/ottimizzazione-tasso-conversione.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/pagamenti-online-ecommerce.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/partita-iva-ecommerce.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/performance-budget-sito.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/piattaforme-ecommerce-confronto.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/preventivi-progetti-web.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/progressive-web-app-pmi.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/rebranding-aziendale-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/remarketing-retargeting-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/restyling-sito-web-quando-farlo.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/scegliere-hosting-sito-web.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/scheda-prodotto-perfetta.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/schema-markup-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/seo-ecommerce-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/seo-vs-sem-differenze.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/sicurezza-sito-web-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/sito-web-che-non-converte.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/sito-web-mobile-first.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/sito-web-multilingua.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/sito-web-per-startup.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/sito-web-professionale-checklist.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/strumenti-test-accessibilita.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/sviluppo-sito-web-da-zero.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/ttfb-server-response-time.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/ux-design-best-practice.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/velocita-sito-web-guida.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+4,MEDIA,Articolo Blog,https://www.webnovis.com/blog/web-agency-vs-freelance.html,Stato sconosciuto (verificare in GSC),Seconda fase: indicizzare dopo le pagine prioritarie
+5,BASSA,Pagina Legale,https://www.webnovis.com/cookie-policy.html,Stato sconosciuto (verificare in GSC),"Bassa priorità: noindex consigliato per pagine legali, rimuovere URL parametriche"
+5,BASSA,Pagina Legale,https://www.webnovis.com/privacy-policy.html,Stato sconosciuto (verificare in GSC),"Bassa priorità: noindex consigliato per pagine legali, rimuovere URL parametriche"
+5,BASSA,Pagina Legale,https://www.webnovis.com/termini-condizioni.html,Stato sconosciuto (verificare in GSC),"Bassa priorità: noindex consigliato per pagine legali, rimuovere URL parametriche"
+5,BASSA,URL Parametrica (search),https://www.webnovis.com/?s={search_term_string},Pagina con reindirizzamento / Parametrica,RIMUOVERE dalla sitemap. Bloccare con robots.txt o noindex. URL parametrica senza valore SEO

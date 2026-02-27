@@ -1,0 +1,182 @@
+{# 
+  WebNovis — Nunjucks template for service×city pSEO pages
+  URL pattern: /{service.slug}-{city.slug}.html
+  Example: /seo-locale-lainate.html, /ecommerce-arese.html
+  
+  Variables: city, service, nearCitiesData, relatedServicePages, relatedCityPages, today, site
+#}
+<main>
+  <div class="container breadcrumb">
+    <a href="/">Home</a>
+    <span class="separator">/</span>
+    <a href="{{ service.url }}">{{ service.shortName }}</a>
+    <span class="separator">/</span>
+    <span class="current-page">{{ service.shortName }} a {{ city.name }}</span>
+  </div>
+
+  {# ═══ HERO — Answer capsule (GEO: first 60 words = direct answer) ═══ #}
+  <section class="service-page-hero">
+    <div class="container">
+      <span class="section-tag">{{ service.shortName }} — {{ city.name }} ({{ city.province }}) {{ city.cap }}</span>
+      <h1>{{ service.name }} a {{ city.name }}: {{ service.idealFor }}</h1>
+      <p class="answer-capsule"><strong>WebNovis</strong> offre servizi di {{ service.name | lower }} per aziende e professionisti di {{ city.name }}. {{ service.shortDesc }} Sede a Rho ({{ city.distanzaSede }} da {{ city.name }}), codice 100% custom. Preventivo gratuito entro 24 ore.</p>
+      <a href="/contatti.html" class="btn btn-large btn-primary">
+        <span>Richiedi Preventivo Gratuito</span>
+        <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+      <p style="margin-top:1.5rem;font-size:.85rem;opacity:.5">
+        <time datetime="{{ today }}">{{ todayFormatted }}</time>
+        &nbsp;·&nbsp; Sede: Via S. Giorgio 2, 20017 Rho MI
+      </p>
+    </div>
+  </section>
+
+  {# ═══ SECTION 1 — Service description specific to this city ═══ #}
+  <section class="service-detail">
+    <div class="container">
+      <h2>{{ service.name }} per le aziende di {{ city.name }}</h2>
+      <p>{{ service.description }} WebNovis è l'agenzia web con sede a Rho che offre {{ service.name | lower }} alle imprese di {{ city.name }} e dell'hinterland milanese.{% if city.distanzaSedeKm <= 10 %} La nostra sede è a soli {{ city.distanzaSede }} da {{ city.name }}, garantendo incontri rapidi e comunicazione diretta.{% endif %}</p>
+      {% if city.localContext and city.localContext.settoriChiave %}
+      <p>A {{ city.name }}{% if city.population %} ({{ city.population | localeNumber }} abitanti){% endif %} i settori che beneficiano maggiormente di {{ service.name | lower }} includono: <strong>{{ city.localContext.settoriChiave | join('</strong>, <strong>') }}</strong>.</p>
+      {% endif %}
+      <div class="service-grid">
+        <div class="service-card-mini">
+          <h3>Prezzo</h3>
+          <p><strong>Da €{{ service.priceFrom }}{{ service.priceUnit if service.priceUnit }}</strong> — preventivo personalizzato gratuito entro 24 ore per la tua attività a {{ city.name }}.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Tempi</h3>
+          <p><strong>{{ service.timeEstimate }}</strong> — dal brief iniziale alla consegna, con un unico interlocutore dedicato.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Ideale per</h3>
+          <p>{{ service.idealFor }}. Ogni progetto è personalizzato per il mercato locale di {{ city.name }}.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# ═══ SECTION 2 — Why WebNovis for this service in this city ═══ #}
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>Perché scegliere WebNovis per {{ service.name | lower }} a {{ city.name }}?</h2>
+      <div class="service-grid">
+        <div class="service-card-mini">
+          <h3>{{ city.distanzaSede }} dalla tua sede</h3>
+          <p>WebNovis opera da Rho, a {{ city.distanzaSede }} da {{ city.name }}. Incontri in azienda, in sede o in videochiamata — mai un call center.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Codice 100% custom</h3>
+          <p>Nessun WordPress, nessun template preconfezionato. Ogni progetto di {{ service.name | lower }} è sviluppato da zero per la tua attività.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>SEO locale integrata</h3>
+          <p>Ogni progetto include ottimizzazione per ricerche geolocalizzate: "{{ service.targetKeyword }} {{ city.name }}" e query correlate del territorio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# ═══ SECTION 3 — Local market context (AI-enriched when available) ═══ #}
+  <section class="service-detail">
+    <div class="container">
+      <h2>{{ service.name }} nel contesto di {{ city.name }}</h2>
+      {% if aiContent %}
+      {{ aiContent | safe }}
+      {% else %}
+      {% if city.localContext %}
+      <p>{{ city.localContext.tessutoEconomico }}</p>
+      <p>{{ city.localContext.opportunitaDigitale }}</p>
+      {% endif %}
+      <p>Le attività di {{ city.name }} che investono in {{ service.name | lower }} possono intercettare la domanda locale e distinguersi dai competitor. Con prezzi a partire da <strong>€{{ service.priceFrom }}{{ service.priceUnit if service.priceUnit }}</strong> e tempi di <strong>{{ service.timeEstimate }}</strong>, WebNovis offre un percorso concreto verso la crescita digitale.</p>
+      {% endif %}
+      {% if city.localContext and city.localContext.highlights %}
+      <p>Punti di riferimento del territorio: {% for hl in city.localContext.highlights %}<strong>{{ hl }}</strong>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+      {% endif %}
+    </div>
+  </section>
+
+  {# ═══ SECTION 4 — Comparison table (GEO: +115% AI citation visibility) ═══ #}
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>Tutti i servizi WebNovis per {{ city.name }}</h2>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.95rem">
+          <thead>
+            <tr style="border-bottom:2px solid rgba(255,255,255,.1)">
+              <th scope="col" style="text-align:left;padding:12px 16px;color:var(--white);font-weight:600">Servizio</th>
+              <th scope="col" style="text-align:left;padding:12px 16px;color:var(--white);font-weight:600">Prezzo da</th>
+              <th scope="col" style="text-align:left;padding:12px 16px;color:var(--white);font-weight:600">Tempi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for svc in allCoreServices %}
+            <tr style="border-bottom:1px solid rgba(255,255,255,.05){% if svc.slug == service.slug %};background:rgba(91,106,174,.1){% endif %}">
+              <td style="padding:12px 16px;color:var(--primary-light);font-weight:{% if svc.slug == service.slug %}700{% else %}600{% endif %}">{{ svc.shortName }}{% if svc.slug == service.slug %} ←{% endif %}</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">€{{ svc.priceFrom }}{{ svc.priceUnit if svc.priceUnit }}</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">{{ svc.timeEstimate }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.85rem;color:var(--gray-light);opacity:.7">Prezzi IVA esclusa. Preventivo gratuito personalizzato entro 24 ore. Ultimo aggiornamento: {{ todayFormatted }}.</p>
+    </div>
+  </section>
+
+  {# ═══ SECTION 5 — FAQ (GEO: question-based headings) ═══ #}
+  {% if faqs | length > 0 %}
+  <section class="service-detail">
+    <div class="container">
+      <h2>Domande Frequenti — {{ service.shortName }} a {{ city.name }}</h2>
+      {% for faq in faqs %}
+      <details class="faq-item">
+        <summary>{{ faq.q }}</summary>
+        <p>{{ faq.a | safe }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {# ═══ SECTION 6 — Related pages: same service in nearby cities ═══ #}
+  {% if relatedCityPages | length > 0 %}
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>{{ service.shortName }} nei comuni vicini a {{ city.name }}</h2>
+      <p>
+        {% for rp in relatedCityPages %}{% if loop.index <= 3 %}
+        <a href="{{ rp.url }}" style="color:var(--primary-light)">{{ rp.label }}</a> ({{ rp.distance }}){% if loop.index < 3 and relatedCityPages | length > loop.index %},{% endif %}
+        {% endif %}{% endfor %}
+      </p>
+    </div>
+  </section>
+  {% endif %}
+
+  {# ═══ SECTION 7 — Related pages: other services in same city ═══ #}
+  {% if relatedServicePages | length > 0 %}
+  <section class="service-detail">
+    <div class="container">
+      <h2>Altri servizi WebNovis a {{ city.name }}</h2>
+      <p>
+        {% for rp in relatedServicePages %}{% if loop.index <= 3 %}
+        <a href="{{ rp.url }}" style="color:var(--primary-light)">{{ rp.label }}</a>{% if loop.index < 3 and relatedServicePages | length > loop.index %},{% endif %}
+        {% endif %}{% endfor %}
+        — <a href="/agenzia-web-{{ city.slug }}.html" style="color:var(--primary-light)">Tutti i servizi a {{ city.name }}</a>
+      </p>
+    </div>
+  </section>
+  {% endif %}
+
+  {# ═══ CTA ═══ #}
+  <section class="cta-inline">
+    <div class="container">
+      <h2>{{ service.shortName }} per la tua attività a {{ city.name }}?</h2>
+      <p>Preventivo gratuito in 24 ore. Da €{{ service.priceFrom }}{{ service.priceUnit if service.priceUnit }}. Incontri in azienda o in videochiamata.</p>
+      <a href="/contatti.html" class="btn btn-large btn-primary">
+        <span>Contattaci Ora</span>
+        <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,298 @@
+=== ARTICLES STILL USING GENERIC PLACEHOLDER IMAGES ===
+
+1. SLUG: migrazione-sito-web-guida.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Migrazione Sito Web: Guida Definitiva per Non Perdere Traffico e SEO
+
+2. SLUG: progressive-web-app-pmi.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Progressive Web App: La Guida Completa per le PMI Italiane
+
+3. SLUG: checkout-ottimizzazione.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Ottimizzazione Checkout: Strategie per Ridurre l&#39;Abbandono del Carrello
+
+4. SLUG: seo-ecommerce-guida.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: SEO Ecommerce: Guida Completa per Aumentare Vendite e VisibilitÓ
+
+5. SLUG: ecommerce-b2b-guida.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: E-commerce B2B: Guida Completa per Vendere Online ad Aziende nel 2026
+
+6. SLUG: gestione-resi-ecommerce.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Gestione Resi E-commerce: Strategie e Politiche per Fidelizzare i Clienti
+
+7. SLUG: fotografia-prodotto-ecommerce.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Fotografia Prodotto E-commerce: Guida Pratica per Vendere di Pi¨
+
+8. SLUG: marketplace-vs-ecommerce-proprio.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Marketplace vs E-commerce Proprietario: Quale Scelta per la tua PMI?
+
+9. SLUG: email-marketing-ecommerce.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Email Marketing per E-commerce: 5 Automazioni che Convertono
+
+10. SLUG: pagamenti-online-ecommerce.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Pagamenti Online E-commerce: Guida ai Gateway per PMI 2026
+
+11. SLUG: come-scegliere-web-agency.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Come Scegliere la Web Agency Giusta: 10 Criteri che Contano
+
+12. SLUG: seo-per-piccole-imprese.html
+   IMG: ../Img/blog-cat-seo.webp
+   ALT: SEO per Piccole Imprese: Guida Pratica per Farsi Trovare su Google
+
+13. SLUG: quanto-costa-un-logo.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Quanto Costa un Logo Professionale nel 2026? Guida Completa ai Prezzi
+
+14. SLUG: quanto-costa-una-landing-page.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Quanto Costa una Landing Page nel 2026? Prezzi, Fattori e ROI
+
+15. SLUG: quanto-costa-campagna-facebook-ads.html
+   IMG: ../Img/blog-cat-social.webp
+   ALT: Quanto Costa una Campagna Facebook Ads nel 2026? Budget, Costi e ROI
+
+16. SLUG: quanto-costa-brand-identity.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Quanto Costa una Brand Identity nel 2026? Prezzi per PMI e Startup
+
+17. SLUG: ottimizzazione-tasso-conversione.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: CRO: Come Ottimizzare il Tasso di Conversione del Tuo Sito nel 2026
+
+18. SLUG: strategia-digitale-pmi.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Strategia Digitale per PMI: Da Dove Iniziare nel 2026
+
+19. SLUG: ux-design-best-practice.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: UX Design: 10 Best Practice per un Sito che Funziona e Converte
+
+20. SLUG: portare-attivita-online.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Come Portare la Tua AttivitÓ Online: Guida Step-by-Step per PMI
+
+21. SLUG: marketing-digitale-attivita-locali-milano.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Marketing Digitale per AttivitÓ Locali: Guida per Milano e Hinterland
+
+22. SLUG: sito-web-professionale-checklist.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Come Deve Essere un Sito Web Professionale: Checklist Completa 2026
+
+23. SLUG: schema-markup-guida.html
+   IMG: ../Img/blog-cat-seo.webp
+   ALT: Schema Markup: Guida ai Dati Strutturati per la SEO nel 2026
+
+24. SLUG: creare-sito-con-intelligenza-artificiale.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Creare un Sito con l&#39;AI: VeritÓ e Limiti nel 2026
+
+25. SLUG: dati-obbligatori-sito-web-aziendale.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Dati Obbligatori sul Sito Web Aziendale: Guida Legale 2026
+
+26. SLUG: funnel-vendita-online.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Funnel di Vendita Online: Come Costruirlo Step by Step nel 2026
+
+27. SLUG: seo-locale-google-maps.html
+   IMG: ../Img/blog-cat-seo.webp
+   ALT: SEO Locale e Google Maps: Come Essere Primo nei Risultati nella Tua Zona
+
+28. SLUG: importanza-sito-web-attivita.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: PerchÚ Þ Importante Avere un Sito Web per la Tua AttivitÓ nel 2026
+
+29. SLUG: preventivi-progetti-web.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Come Leggere un Preventivo per un Sito Web: Guida per Aziende
+
+30. SLUG: costi-progetto-web-guida.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Come Calcolare i Costi di un Progetto Web: Cosa Determina il Prezzo
+
+31. SLUG: sito-web-professionale-checklist.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Come Deve Essere un Sito Web Professionale: Checklist Completa 2026
+
+32. SLUG: ecommerce-che-vende.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: E-commerce che Vende: Cosa Serve Davvero nel 2026
+
+33. SLUG: partita-iva-ecommerce.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Serve la Partita IVA per un E-commerce? Guida Fiscale Pratica 2026
+
+34. SLUG: google-search-console-guida.html
+   IMG: ../Img/blog-cat-seo.webp
+   ALT: Google Search Console: Guida Completa per Principianti nel 2026
+
+35. SLUG: featured-snippet-come-ottenere.html
+   IMG: ../Img/blog-cat-seo.webp
+   ALT: Featured Snippet: Come Conquistare la Posizione Zero su Google
+
+36. SLUG: seo-vs-sem-differenze.html
+   IMG: ../Img/blog-cat-seo.webp
+   ALT: SEO vs SEM: Differenze, Costi e Quando Usarli nel 2026
+
+37. SLUG: architettura-informazioni-sito.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Architettura delle Informazioni: Come Strutturare un Sito che Converte
+
+38. SLUG: mockup-grafici-guida.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Mockup Grafici: Cosa Sono e PerchÚ Servono Prima dello Sviluppo
+
+39. SLUG: ux-design-best-practice.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: UX Design: 10 Best Practice per un Sito che Funziona e Converte
+
+40. SLUG: call-to-action-efficaci.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Call to Action Efficaci: Come Scrivere CTA che Convertono
+
+41. SLUG: colori-brand-psicologia.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Psicologia dei Colori nel Branding: Guida alla Scelta della Palette
+
+42. SLUG: identificare-target-business.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Come Identificare il Target del Tuo Business Online: Framework Pratico
+
+43. SLUG: strategia-digitale-pmi.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Strategia Digitale per PMI: Da Dove Iniziare nel 2026
+
+44. SLUG: google-ads-guida-principianti.html
+   IMG: ../Img/blog-cat-social.webp
+   ALT: Google Ads per Principianti: Come Creare la Prima Campagna nel 2026
+
+45. SLUG: remarketing-retargeting-guida.html
+   IMG: ../Img/blog-cat-social.webp
+   ALT: Remarketing e Retargeting: Come Riconquistare i Visitatori nel 2026
+
+46. SLUG: email-marketing-guida-completa.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Email Marketing: Guida Completa per PMI e Professionisti nel 2026
+
+47. SLUG: sicurezza-sito-web-guida.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Sicurezza Sito Web: 10 Misure Essenziali per Proteggere il Tuo Business
+
+48. SLUG: velocita-sito-web-guida.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Come Velocizzare il Tuo Sito Web: Guida Tecnica Completa 2026
+
+49. SLUG: intelligenza-artificiale-pmi.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Intelligenza Artificiale per PMI: Applicazioni Pratiche e Tool Utili nel 2026
+
+50. SLUG: naming-aziendale-guida.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Naming Aziendale: Come Scegliere il Nome Perfetto per il Tuo Brand
+
+51. SLUG: chiedere-recensioni-clienti.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Come Chiedere Recensioni ai Clienti (e Metterle sul Sito)
+
+52. SLUG: social-media-strategy-2026.html
+   IMG: ../Img/blog-cat-social.webp
+   ALT: Social Media Strategy 2026: Cosa Funziona Davvero per le Aziende
+
+53. SLUG: restyling-sito-web-quando-farlo.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Restyling del Sito Web: Quando Farlo e Come Non Perdere il Posizionamento
+
+54. SLUG: instagram-per-aziende.html
+   IMG: ../Img/blog-cat-social.webp
+   ALT: Instagram per Aziende: Guida Completa alla Crescita Organica
+
+55. SLUG: sito-web-mobile-first.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Mobile First Design: PerchÚ il Tuo Sito Deve Partire dallo Smartphone
+
+56. SLUG: core-web-vitals-guida.html
+   IMG: ../Img/blog-cat-seo.webp
+   ALT: Core Web Vitals: Cosa Sono e Come Migliorarli per il Tuo Sito
+
+57. SLUG: wordpress-vs-codice-custom.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: WordPress vs Codice Custom: Quale Scegliere per il Tuo Progetto?
+
+58. SLUG: content-marketing-per-pmi.html
+   IMG: ../Img/blog-cat-marketing.webp
+   ALT: Content Marketing per PMI: Come Attrarre Clienti con i Contenuti
+
+59. SLUG: errori-comuni-siti-web.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: 10 Errori Comuni nei Siti Web che Ti Fanno Perdere Clienti
+
+60. SLUG: rebranding-aziendale-guida.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Rebranding Aziendale: Quando Farlo e Come Gestire il Cambiamento
+
+61. SLUG: ecommerce-errori-da-evitare.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: E-Commerce: 8 Errori che Uccidono le Vendite (e Come Evitarli)
+
+62. SLUG: personal-branding-online.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Personal Branding Online: Come Costruire la Tua AutoritÓ nel Digitale
+
+63. SLUG: google-analytics-4-guida.html
+   IMG: ../Img/blog-cat-seo.webp
+   ALT: Google Analytics 4: Guida Pratica per Capire i Dati del Tuo Sito
+
+64. SLUG: sviluppo-sito-web-da-zero.html
+   IMG: ../Img/blog-cat-web.webp
+   ALT: Sviluppo Sito Web da Zero: La Guida Completa per PMI Italiane nel 2026
+
+Total articles needing custom images: 64
+
+============================================================
+
+=== ARTICLES WITH CUSTOM IMAGES (already done) ===
+
+1. quanto-costa-gestione-social-media.html -> ../Img/blog/blog-gestione-social.webp
+2. web-agency-vs-freelance.html -> ../Img/blog/blog-agency-vs-freelance.webp
+3. sito-web-fai-da-te-vs-professionale.html -> ../Img/blog/blog-fai-da-te-vs-pro.webp
+4. serve-ancora-un-sito-web.html -> ../Img/blog/blog-serve-sito-web.webp
+5. shopify-vs-sito-ecommerce-custom.html -> ../Img/blog/blog-shopify-vs-custom.webp
+6. meta-ads-vs-google-ads.html -> ../Img/blog/blog-meta-vs-google-ads.webp
+7. sito-web-per-ristoranti.html -> ../Img/blog/blog-sito-ristoranti.webp
+8. sito-web-per-avvocati.html -> ../Img/blog/blog-sito-avvocati.webp
+9. sito-web-per-dentisti.html -> ../Img/blog/blog-sito-dentisti.webp
+10. sito-web-per-startup.html -> ../Img/blog/blog-sito-startup.webp
+11. manutenzione-sito-web.html -> ../Img/blog/blog-manutenzione-sito.webp
+12. european-accessibility-act-siti-web.html -> ../Img/blog/blog-european-accessibility-act.webp
+13. seo-per-ai-overviews.html -> ../Img/blog/blog-seo-ai-overviews.webp
+14. chatbot-sito-web-guida.html -> ../Img/blog/blog-chatbot-sito-web.webp
+15. gdpr-sito-web-guida.html -> ../Img/blog/blog-gdpr-sito-web.webp
+16. normativa-accessibilita-web-2026.html -> ../Img/blog/blog-normativa-accessibilita.webp
+17. obblighi-legge-accessibilita-siti.html -> ../Img/blog/blog-obblighi-accessibilita.webp
+18. strumenti-test-accessibilita.html -> ../Img/blog/blog-strumenti-accessibilita.webp
+19. keyword-research-guida-2026.html -> ../Img/blog/blog-keyword-research.webp
+20. seo-on-page-checklist.html -> ../Img/blog/blog-seo-on-page.webp
+21. link-building-etica.html -> ../Img/blog/blog-link-building.webp
+22. brand-identity-guida-completa.html -> ../Img/blog/blog-brand-identity-costi.webp
+23. landing-page-efficace.html -> ../Img/blog/blog-costo-landing-page.webp
+24. logo-design-processo-creativo.html -> ../Img/blog/blog-costo-logo.webp
+25. facebook-ads-guida-pratica.html -> ../Img/blog/blog-facebook-ads-costi.webp
+26. scegliere-hosting-sito-web.html -> ../Img/blog/blog-hosting-sito-web.webp
+27. accessibilita-web-guida.html -> ../Img/blog/blog-accessibilita-web.webp
+28. sito-web-multilingua.html -> ../Img/blog/blog-sito-multilingua.webp
+29. web-design-trends-2026.html -> ../Img/blog/blog-web-design-trends.webp
+30. form-contatto-ottimizzazione.html -> ../Img/blog/blog-form-contatto.webp
+31. piattaforme-ecommerce-confronto.html -> ../Img/blog/blog-ecommerce-confronto.webp
+32. scheda-prodotto-perfetta.html -> ../Img/blog/blog-scheda-prodotto.webp
+
+Total with custom images: 32

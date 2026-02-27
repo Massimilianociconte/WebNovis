@@ -10,9 +10,19 @@
     "build:watch": "nodemon --watch js --watch css --exec npm run build",
     "build:search-index": "node build-search-index.js",
     "build:sitemap": "node generate-sitemap.js",
+    "build:geo": "node scripts/generate-all-geo.js",
+    "build:geo:dry": "node scripts/generate-all-geo.js --dry-run",
+    "build:geo:validate": "node scripts/generate-all-geo.js --validate-only",
+    "build:ai-content": "node scripts/generate-ai-content.js",
+    "build:ai-content:dry": "node scripts/generate-ai-content.js --dry-run",
+    "validate:pages": "node scripts/validate-pages.js --verbose",
+    "validate:pages:all": "node scripts/validate-pages.js --all --verbose",
+    "monitor:seo": "node scripts/monitor-seo.js",
+    "monitor:seo:json": "node scripts/monitor-seo.js --json",
+    "expand:cities": "node scripts/expand-cities.js",
     "test:seo-smoke": "node tests/seo-smoke.test.js",
     "test:api": "node tests/api-endpoints.test.js",
-    "ci:quality": "npm run build && npm run build:search-index && npm run build:sitemap && npm run test:seo-smoke && npm run test:api"
+    "ci:quality": "npm run build:geo && npm run build && npm run build:search-index && npm run build:sitemap && npm run test:seo-smoke && npm run test:api"
   },
   "keywords": [
     "chatbot",
@@ -27,11 +37,13 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.5",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "nunjucks": "^3.2.4"
   },
   "devDependencies": {
     "clean-css": "^5.3.3",
     "html-minifier-terser": "^7.2.0",
+    "knip": "^5.85.0",
     "lightningcss": "^1.31.1",
     "nodemon": "^3.0.1",
     "sharp": "^0.34.5",

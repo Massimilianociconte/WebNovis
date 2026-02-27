@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "city": "milano",
+    "generatedAt": "2026-02-27T10:22:39.164Z",
+    "model": "gemini-2.5-flash",
+    "version": 1
+  },
+  "localMarketAnalysis": "Milano, con una popolazione di 1.396.000 abitanti, rappresenta il cuore pulsante dell'economia italiana e un hub digitale di primaria importanza. La città vanta oltre 220.000 imprese attive, con una concentrazione significativa nei settori chiave come startup innovative nell'area di Porta Nuova, la finanza in Piazza Affari, la moda nel Quadrilatero e il design nel distretto di Brera. Questo ecosistema vibrante e altamente competitivo richiede una presenza digitale impeccabile per distinguersi. Le aziende milanesi, dalle boutique di Via Montenapoleone ai poli tecnologici di MIND (Milano Innovation District), hanno l'opportunità unica di capitalizzare sull'elevato potere d'acquisto locale e sulla visibilità globale che la città offre, tramite strategie web mirate che riflettano l'eccellenza e l'innovazione intrinseche al tessuto imprenditoriale meneghino, trasformando ogni click in un'opportunità di business concreta.",
+  "competitiveContext": "Il contesto digitale milanese è densamente popolato da agenzie web, specialmente nel centro e nelle zone ad alta densità commerciale. Tuttavia, WebNovis, pur avendo sede a Rho a soli 25 minuti di distanza, offre un'alternativa strategica e vantaggiosa. La nostra posizione ci consente di mantenere costi operativi più contenuti rispetto alle agenzie del centro di Milano, traducendosi in un risparmio medio del 15-20% per i nostri clienti, senza compromettere la qualità o la conoscenza approfondita del mercato locale. Le PMI milanesi che investono ora nel digitale con un partner come WebNovis ottengono un vantaggio competitivo significativo, beneficiando di soluzioni su misura e di un approccio personalizzato, essenziale per emergere in un mercato così dinamico e per raggiungere clienti sia nel centro storico che nelle nuove aree di sviluppo come CityLife o Bicocca.",
+  "faqsAgenzia": [
+    {
+      "q": "Qual è il valore aggiunto di WebNovis per un'azienda a Milano?",
+      "a": "WebNovis offre un approccio personalizzato e costi competitivi. Pur essendo a 25 minuti da Milano, garantiamo un risparmio medio del 15% sui costi di sviluppo rispetto alle agenzie centrali, offrendo la stessa qualità e una profonda comprensione delle dinamiche del mercato milanese, dai brand di moda ai poli tecnologici."
+    },
+    {
+      "q": "Quanto tempo ci vuole per un progetto web con WebNovis a Milano?",
+      "a": "I tempi variano in base al servizio. Per una Landing Page specifica per una campagna eventi a Fiera Milano, stimiamo 5-7 giorni. Un Sito Web Vetrina per un'attività in zona Navigli richiede circa 2-3 settimane, mentre un E-Commerce Custom per un brand di design a Brera si attesta sulle 4-8 settimane."
+    },
+    {
+      "q": "WebNovis ha esperienza con i settori chiave di Milano?",
+      "a": "Assolutamente. Abbiamo sviluppato soluzioni per startup tech a Porta Nuova, brand di moda nel Quadrilatero e servizi di consulenza in Piazza Gae Aulenti. La nostra expertise copre finanza, design, tech e hospitality, settori che rappresentano oltre il 60% del PIL milanese, con un focus sull'innovazione e l'efficacia digitale."
+    },
+    {
+      "q": "Qual è il vantaggio di scegliere un'agenzia vicina come WebNovis rispetto a una milanese?",
+      "a": "Il vantaggio principale risiede nel rapporto qualità/prezzo e nella flessibilità. WebNovis, operando da Rho, può offrire servizi come un Sito Web Vetrina da €1200, significativamente più competitivo di molte agenzie milanesi che partono spesso da €2000 per soluzioni equivalenti, garantendo comunque incontri rapidi e un contatto diretto."
+    },
+    {
+      "q": "Potete aiutarci con la visibilità sui social media per il mercato milanese?",
+      "a": "Certo. Il nostro servizio di Social Media Marketing, a partire da €300/mese, è progettato per aumentare la visibilità del tuo brand, che sia una boutique in Via della Spiga o un ristorante in Corso Como, raggiungendo il tuo target specifico a Milano attraverso campagne mirate su Instagram, Facebook e LinkedIn, con un potenziale aumento di engagement del 20-30%."
+    }
+  ],
+  "faqsRealizzazione": [
+    {
+      "q": "Quanto costa realizzare un sito web professionale a Milano?",
+      "a": "Un sito web vetrina professionale a Milano con WebNovis parte da €1200, con tempi di realizzazione di 2-3 settimane. Per un e-commerce custom, adatto a un negozio di moda in Corso Vittorio Emanuele, il costo parte da €3500, con un processo che dura 4-8 settimane, offrendo un rapporto qualità-prezzo altamente competitivo per il mercato milanese."
+    },
+    {
+      "q": "Come funziona la SEO locale per un'attività a Milano?",
+      "a": "La SEO locale per Milano si concentra su keyword specifiche come 'agenzia marketing Milano centro', 'negozio design Brera', 'ristorante Navigli' o 'consulenza finanza Porta Nuova'. Ottimizziamo la tua presenza online su Google My Business e directory locali per attrarre clienti entro un raggio di 5-10 km dalla tua attività, aumentando le visite in negozio del 25-40%."
+    },
+    {
+      "q": "È conveniente realizzare un e-commerce per la mia attività di Milano?",
+      "a": "Assolutamente sì, specialmente a Milano. Per un brand di moda nel Quadrilatero o un'azienda di design a Brera, un E-Commerce Custom da €3500 può generare un aumento del 15-20% nelle vendite online entro i primi 6 mesi, espandendo la tua clientela oltre i confini della città e raggiungendo un pubblico globale, dato il prestigio del 'Made in Milan'."
+    },
+    {
+      "q": "Quali sono i tempi e il processo per la creazione di una Landing Page per un evento a Milano?",
+      "a": "Per una Landing Page, ad esempio per un evento fieristico a Rho Fiera Milano o un lancio di prodotto in zona Tortona, il processo è rapido: 5-7 giorni. Include una fase iniziale di briefing, design e copywriting ottimizzato per la conversione, e infine il lancio e il monitoraggio delle performance, per catturare il massimo interesse in un lasso di tempo limitato."
+    },
+    {
+      "q": "Offrite supporto post-lancio per i siti web realizzati a Milano?",
+      "a": "Sì, il nostro supporto non termina con il lancio. Offriamo pacchetti di manutenzione e aggiornamento annuali a partire da €250, che includono backup regolari, aggiornamenti di sicurezza e assistenza tecnica, garantendo che il tuo sito web in Via della Spiga o in zona Isola rimanga sempre performante e sicuro, con un uptime garantito del 99,9%."
+    }
+  ],
+  "uniqueDataPoints": {
+    "estimatedLocalBusinesses": "220000",
+    "digitalMaturityScore": "alto",
+    "topSearchQueries": [
+      "agenzia web Milano Duomo",
+      "e-commerce moda Milano",
+      "sviluppo sito startup Porta Nuova"
+    ],
+    "competitionLevel": "alto"
+  }
+}

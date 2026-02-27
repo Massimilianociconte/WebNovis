@@ -189,6 +189,15 @@ app.use((req, res, next) => {
     next();
 });
 
+// 2.6 Singular/plural location page canonicalization (301)
+app.use((req, res, next) => {
+    if (req.path === '/agenzie-web-rho.html') {
+        const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+        return res.redirect(301, '/agenzia-web-rho.html' + query);
+    }
+    next();
+});
+
 // 2.6 Legacy URL canonicalization for portfolio case studies (301)
 const legacyPortfolioRedirects = new Map([
     ['/portfolio/Aether-Digital.html', '/portfolio/case-study/aether-digital.html'],
@@ -254,7 +263,18 @@ app.use((req, res, next) => {
 });
 
 // Serve only safe public files (not server code, configs, .env, etc.)
-const publicFiles = ['index.html', 'portfolio.html', 'privacy-policy.html', 'cookie-policy.html', 'termini-condizioni.html', 'chi-siamo.html', 'contatti.html', 'agenzia-web-rho.html', 'agenzie-web-rho.html', 'agenzia-web-milano.html', 'agenzia-web-lainate.html', 'agenzia-web-arese.html', 'agenzia-web-garbagnate.html', 'preventivo.html', 'come-lavoriamo.html', 'grazie.html', '404.html', 'robots.txt', 'sitemap.xml', 'manifest.json', 'favicon.ico', 'ai.txt', 'llms.txt', 'webnovis-ai-data.json', 'search-index.json', 'CNAME', '8531a1fa-b8b0-4136-8741-b5895865d3c4.txt', 'realizzazione-siti-web-rho.html', 'realizzazione-siti-web-arese.html', 'realizzazione-siti-web-pero.html', 'realizzazione-siti-web-lainate.html', 'realizzazione-siti-web-cornaredo.html', 'realizzazione-siti-web-settimo-milanese.html'];
+// Core static pages (manually maintained)
+const corePublicFiles = ['index.html', 'portfolio.html', 'privacy-policy.html', 'cookie-policy.html', 'termini-condizioni.html', 'chi-siamo.html', 'contatti.html', 'preventivo.html', 'come-lavoriamo.html', 'grazie.html', '404.html', 'robots.txt', 'sitemap.xml', 'manifest.json', 'favicon.ico', 'ai.txt', 'llms.txt', 'webnovis-ai-data.json', 'search-index.json', 'CNAME', '8531a1fa-b8b0-4136-8741-b5895865d3c4.txt'];
+// Auto-discover all pSEO pages (geo + service×city) — scales without manual updates
+const pseoPatterns = ['agenzia-web-', 'agenzie-web-', 'realizzazione-siti-web-'];
+try {
+    const svcData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'services.json'), 'utf8'));
+    svcData.services.filter(s => s.tier === 'extended').forEach(s => pseoPatterns.push(s.slug + '-'));
+} catch (e) { /* services.json not available — use base patterns only */ }
+const geoFiles = fs.readdirSync(__dirname)
+    .filter(f => f.endsWith('.html') && pseoPatterns.some(p => f.startsWith(p)));
+const publicFiles = [...corePublicFiles, ...geoFiles];
+console.log(`📄 Public files: ${corePublicFiles.length} core + ${geoFiles.length} pSEO = ${publicFiles.length} total`);
 // 2.4 Static assets with no-cache for development (files use cache-busting ?v= params)
 const staticCacheOptions = {
     setHeaders: (res) => {

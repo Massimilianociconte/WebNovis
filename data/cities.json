@@ -1,0 +1,4614 @@
+{
+  "_meta": {
+    "description": "Centralized city data for WebNovis geo page generation",
+    "version": "2.0.0",
+    "lastUpdated": "2026-02-27",
+    "sede": {
+      "city": "Rho",
+      "cap": "20017",
+      "lat": 45.5299,
+      "lng": 9.0393,
+      "address": "Via S. Giorgio, 2"
+    }
+  },
+  "cities": [
+    {
+      "slug": "rho",
+      "name": "Rho",
+      "cap": "20017",
+      "lat": 45.5299,
+      "lng": 9.0393,
+      "population": 51000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Rho",
+      "distanzaSede": "0 min (sede)",
+      "distanzaSedeKm": 0,
+      "isSede": true,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "pregnana-milanese",
+        "vanzago",
+        "cornaredo",
+        "pogliano-milanese",
+        "arese",
+        "pero"
+      ],
+      "localContext": {
+        "highlights": [
+          "Polo fieristico Fiera Milano",
+          "Santuario della Beata Vergine Addolorata",
+          "Stazione ferroviaria RFI e linee S5/S6"
+        ],
+        "tessutoEconomico": "Hub fieristico internazionale con forte tessuto PMI manifatturiero, terziario e servizi B2B. La vicinanza a Fiera Milano e l'area ex-Expo generano un flusso costante di business internazionale.",
+        "settoriChiave": [
+          "fieristico",
+          "hotellerie",
+          "logistica",
+          "manifatturiero",
+          "servizi B2B"
+        ],
+        "opportunitaDigitale": "Rho è il punto di accesso al polo fieristico più grande d'Europa. Le attività locali che investono in un sito professionale intercettano sia il traffico locale che quello fieristico internazionale — un doppio bacino di clientela che pochi competitor stanno presidiando."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Polo fieristico Fiera Milano a Rho — hub business internazionale"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Ecosistema digitale integrato per le aziende di Rho e hinterland milanese"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Rho?",
+            "a": "I prezzi partono da <strong>€500</strong> per una Landing Page, da <strong>€1.200</strong> per un Sito Vetrina e da <strong>€3.500</strong> per un E-Commerce custom. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis?",
+            "a": "La nostra sede è a Rho, in Via S. Giorgio 2 (20017 MI). Incontriamo i clienti in sede, presso le loro aziende o in videochiamata."
+          },
+          {
+            "q": "Servite solo Rho o anche comuni vicini?",
+            "a": "Oltre a Rho serviamo Pero, Lainate, Arese, Garbagnate Milanese, Cornaredo, Settimo Milanese, Bollate, Milano e tutta la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress per i siti?",
+            "a": "No. Ogni sito WebNovis è sviluppato con codice 100% custom (HTML5, CSS3, JavaScript). Performance superiori, sicurezza nativa, SEO ottimizzato — nessun template."
+          },
+          {
+            "q": "Quanto tempo per un sito web?",
+            "a": "Landing Page: 5-7 giorni lavorativi. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Offrite assistenza dopo il lancio?",
+            "a": "30 giorni di supporto gratuito inclusi in ogni progetto. Piani di manutenzione continuativa da €59/mese con aggiornamenti, backup e monitoraggio."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Rho?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito e personalizzato entro 24 ore."
+          },
+          {
+            "q": "Perché scegliere WebNovis per la realizzazione del sito?",
+            "a": "Codice 100% custom (zero WordPress), SEO locale integrata, design premium, Core Web Vitals ottimizzati. Un unico interlocutore dal brief alla messa online."
+          },
+          {
+            "q": "Il sito sarà ottimizzato per Google?",
+            "a": "Sì. Ogni sito include SEO tecnica integrata: meta tag, dati strutturati Schema.org, Core Web Vitals ottimizzati (LCP < 2.5s, INP < 200ms, CLS < 0.1), sitemap XML e robots.txt."
+          },
+          {
+            "q": "Posso gestire il sito in autonomia dopo il lancio?",
+            "a": "Sì. Forniamo formazione e pannello di gestione contenuti. Per chi preferisce, offriamo piani di manutenzione da €59/mese."
+          },
+          {
+            "q": "Fate anche grafica e social media?",
+            "a": "Sì. WebNovis offre un approccio integrato: sviluppo web, graphic design (logo da €400), social media marketing (da €300/mese). Tutto coordinato in un unico ecosistema."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "lainate",
+      "name": "Lainate",
+      "cap": "20045",
+      "lat": 45.5736,
+      "lng": 9.0236,
+      "population": 26000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Lainate",
+      "distanzaSede": "8 min",
+      "distanzaSedeKm": 6,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "origgio",
+        "caronno-pertusella",
+        "garbagnate",
+        "nerviano",
+        "pogliano-milanese",
+        "arese"
+      ],
+      "localContext": {
+        "highlights": [
+          "Villa Litta con il celebre Ninfeo barocco",
+          "Autostrada A8 Milano–Laghi",
+          "Zona industriale attiva"
+        ],
+        "tessutoEconomico": "Centro industriale e commerciale vivace nel Nord-Ovest milanese. L'autostrada A8 e la tangenziale ovest collegano Lainate a tutto l'hinterland. Settori manifatturiero, logistico e terziario trainano l'economia locale.",
+        "settoriChiave": [
+          "manifatturiero",
+          "logistico",
+          "terziario",
+          "commercio"
+        ],
+        "opportunitaDigitale": "Il mercato digitale di Lainate presenta opportunità significative: molte attività locali non hanno ancora un sito web moderno o utilizzano soluzioni obsolete. Investire in un sito professionale con SEO locale permette di emergere nelle ricerche della zona e di attrarre clienti da Lainate, Arese, Rho e i comuni della direttrice autostradale."
+      },
+      "images": {
+        "img1": {
+          "file": "lainate-villa",
+          "alt": "Vista di Villa Litta e del patrimonio storico-culturale di Lainate"
+        },
+        "img2": {
+          "file": "lainate-growth",
+          "alt": "Visualizzazione della crescita digitale per le aziende di Lainate"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Lainate?",
+            "a": "I prezzi partono da <strong>€500</strong> per una Landing Page, da <strong>€1.200</strong> per un Sito Vetrina e da <strong>€3.500</strong> per un E-Commerce custom. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove siete rispetto a Lainate?",
+            "a": "La nostra sede è a Rho, in Via S. Giorgio 2 — a 8 minuti in auto da Lainate via SP ex-SS33. Incontriamo i clienti presso le loro aziende o in videochiamata."
+          },
+          {
+            "q": "Servite solo Lainate o anche comuni vicini?",
+            "a": "Oltre a Lainate serviamo Rho, Arese, Garbagnate Milanese, Nerviano, Pogliano Milanese, Bollate e tutta la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress per i siti?",
+            "a": "No. Ogni sito WebNovis è sviluppato con codice 100% custom (HTML5, CSS3, JavaScript). Performance superiori, sicurezza nativa, SEO ottimizzato — nessun template."
+          },
+          {
+            "q": "Quanto tempo per un sito web?",
+            "a": "Landing Page: 5-7 giorni lavorativi. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Offrite assistenza dopo il lancio?",
+            "a": "30 giorni di supporto gratuito inclusi in ogni progetto. Piani di manutenzione continuativa da €59/mese con aggiornamenti, backup e monitoraggio."
+          },
+          {
+            "q": "Perché scegliere WebNovis invece di una web agency milanese?",
+            "a": "Vicinanza (8 min da Lainate), comunicazione diretta con il fondatore, prezzi senza overhead delle agenzie di Milano centro, stessa qualità tecnica e risultati misurabili."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Lainate?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Perché scegliere WebNovis per la realizzazione siti a Lainate?",
+            "a": "Siamo a 8 minuti da Lainate, codice 100% custom, SEO locale integrata, design premium. Un unico interlocutore dal brief alla messa online."
+          },
+          {
+            "q": "Il sito sarà visibile su Google per ricerche locali?",
+            "a": "Sì. Ogni sito include SEO tecnica integrata con ottimizzazione per ricerche geolocalizzate come \"sito web Lainate\", \"web agency Lainate\" e simili."
+          },
+          {
+            "q": "Fate anche e-commerce per negozi di Lainate?",
+            "a": "Sì. E-commerce custom senza commissioni sulle vendite, catalogo illimitato, pagamenti sicuri. Ideale per il commercio locale di Lainate."
+          },
+          {
+            "q": "Offrite anche grafica e social media?",
+            "a": "Sì. Approccio integrato: sviluppo web + graphic design (logo da €400) + social media marketing (da €300/mese). Tutto coordinato."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "arese",
+      "name": "Arese",
+      "cap": "20044",
+      "lat": 45.5511,
+      "lng": 9.0764,
+      "population": 20000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Arese",
+      "distanzaSede": "10 min",
+      "distanzaSedeKm": 5,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "garbagnate",
+        "bollate",
+        "rho",
+        "baranzate",
+        "cesate",
+        "pero"
+      ],
+      "localContext": {
+        "highlights": [
+          "Il Centro — uno dei centri commerciali più grandi d'Europa",
+          "Museo Storico Alfa Romeo — La macchina del tempo",
+          "Hub commerciale e retail"
+        ],
+        "tessutoEconomico": "Arese è conosciuta per Il Centro, uno dei centri commerciali più grandi d'Europa, e per lo storico stabilimento Alfa Romeo. L'ecosistema commerciale e imprenditoriale genera un indotto di PMI, ristorazione e servizi che necessitano di presenza online professionale.",
+        "settoriChiave": [
+          "retail",
+          "ristorazione",
+          "automotive heritage",
+          "servizi",
+          "commercio"
+        ],
+        "opportunitaDigitale": "Con 20.000 abitanti e un'area commerciale che attira visitatori da tutta la Lombardia, Arese offre un mercato ricco per attività locali e e-commerce. Le ricerche locali come \"negozio online Arese\", \"web designer Arese\" e \"sito web per attività Arese\" hanno competizione quasi inesistente — un'opportunità concreta per chi investe ora."
+      },
+      "images": {
+        "img1": {
+          "file": "arese-commercial",
+          "alt": "Distretto commerciale moderno di Arese con attività locali"
+        },
+        "img2": {
+          "file": "arese-workspace",
+          "alt": "Workspace di design digitale per la creazione di siti web ad Arese"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web per un'attività di Arese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto ad Arese?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 10 minuti in auto da Arese. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Potete creare un e-commerce per un negozio di Arese?",
+            "a": "Sì. Realizziamo e-commerce custom senza commissioni sulle vendite, con catalogo illimitato, pagamenti sicuri e gestione autonoma. Ideale per il retail aresino."
+          },
+          {
+            "q": "Servite anche i comuni vicini ad Arese?",
+            "a": "Oltre ad Arese serviamo Rho, Lainate, Garbagnate, Bollate, Pero, Cornaredo e tutta la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi senza plugin di terze parti."
+          },
+          {
+            "q": "Quanto tempo per realizzare un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Offrite supporto dopo il lancio del sito?",
+            "a": "30 giorni di supporto gratuito inclusi. Piani di manutenzione continuativa da €59/mese con aggiornamenti, backup e monitoraggio performance."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web ad Arese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina ad Arese?",
+            "a": "Sì, la nostra sede è a Rho — 10 minuti in auto da Arese. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti e-commerce per il retail di Arese?",
+            "a": "Sì. E-commerce custom senza commissioni, catalogo illimitato, pagamenti sicuri. Ideale per l'ecosistema retail legato a Il Centro."
+          },
+          {
+            "q": "Il sito sarà ottimizzato per Google?",
+            "a": "Sì. SEO tecnica integrata con dati strutturati, Core Web Vitals ottimizzati e posizionamento per ricerche locali \"siti web Arese\"."
+          },
+          {
+            "q": "Offrite servizi integrati?",
+            "a": "Sì. Web development + graphic design (logo da €400) + social media marketing (da €300/mese). Un ecosistema coordinato."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "garbagnate",
+      "name": "Garbagnate Milanese",
+      "cap": "20024",
+      "lat": 45.5764,
+      "lng": 9.0794,
+      "population": 28000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Garbagnate_Milanese",
+      "distanzaSede": "12 min",
+      "distanzaSedeKm": 8,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "cesate",
+        "arese",
+        "caronno-pertusella",
+        "senago",
+        "limbiate",
+        "lainate"
+      ],
+      "localContext": {
+        "highlights": [
+          "Linea ferroviaria S2 Passante Milano",
+          "Ospedale Salvini — polo sanitario",
+          "Zona industriale sud con PMI meccaniche"
+        ],
+        "tessutoEconomico": "Comune industriale e residenziale nel cuore dell'hinterland Nord di Milano. La linea ferroviaria S2 Passante e la vicinanza alla Saronno-Monza (SP527) ne fanno un polo per PMI, artigiani e attività di servizio. L'Ospedale Salvini genera un indotto di servizi sanitari.",
+        "settoriChiave": [
+          "meccanico",
+          "elettrico",
+          "servizi B2B",
+          "sanitario",
+          "artigianato"
+        ],
+        "opportunitaDigitale": "Le ricerche \"web agency Garbagnate\", \"sito web artigiano Garbagnate\" e \"e-commerce Garbagnate Milanese\" hanno volume in crescita e competizione quasi nulla — chi investe ora cattura il mercato locale."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Zona industriale e produttiva dell'hinterland milanese nord"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per PMI e artigiani di Garbagnate Milanese"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Garbagnate Milanese?",
+            "a": "I prezzi partono da <strong>€500</strong> per una Landing Page, da <strong>€1.200</strong> per un Sito Vetrina e da <strong>€3.500</strong> per un E-Commerce custom. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove siete rispetto a Garbagnate?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 12 minuti in auto via SP527. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini?",
+            "a": "Oltre a Garbagnate serviamo Rho, Lainate, Bollate, Cesate, Senago, Arese e tutta la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance superiori, sicurezza nativa, personalizzazione illimitata."
+          },
+          {
+            "q": "Quanto tempo per un sito web?",
+            "a": "Landing Page: 5-7 giorni lavorativi. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Offrite supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito inclusi. Manutenzione continuativa da €59/mese con backup, aggiornamenti e monitoraggio performance."
+          },
+          {
+            "q": "Perché scegliere un'agenzia locale invece di una milanese?",
+            "a": "Vicinanza (12 min da Garbagnate), rapporto diretto con il fondatore, prezzi competitivi senza overhead da grande agenzia, conoscenza del tessuto imprenditoriale locale."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Garbagnate?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Siete vicini a Garbagnate Milanese?",
+            "a": "Sì, la nostra sede è a Rho — 12 minuti in auto via SP527. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per artigiani e PMI?",
+            "a": "Sì. Codice 100% custom con SEO tecnica integrata. Ideale per aziende meccaniche, studi professionali e artigiani del territorio."
+          },
+          {
+            "q": "Il sito sarà ottimizzato per ricerche locali?",
+            "a": "Sì. SEO locale integrata per posizionarsi su \"sito web Garbagnate\", \"web agency Garbagnate\" e ricerche del territorio."
+          },
+          {
+            "q": "Offrite grafica e social?",
+            "a": "Sì. Approccio integrato: web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "pero",
+      "name": "Pero",
+      "cap": "20016",
+      "lat": 45.5089,
+      "lng": 9.0899,
+      "population": 11000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Pero_(Italia)",
+      "distanzaSede": "5 min",
+      "distanzaSedeKm": 3,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "baranzate",
+        "cornaredo",
+        "settimo-milanese",
+        "rho",
+        "novate-milanese",
+        "bollate"
+      ],
+      "localContext": {
+        "highlights": [
+          "Complesso Fiera Milano (co-ospitante)",
+          "Area ex-Expo 2015",
+          "Polo logistico e fieristico"
+        ],
+        "tessutoEconomico": "Pero ospita parte del complesso Fiera Milano e l'area ex-Expo, rendendolo uno dei poli economici più strategici dell'hinterland milanese. Aziende del settore fieristico, hotellerie, logistica, ristorazione e servizi B2B trovano in Pero un'ubicazione ideale.",
+        "settoriChiave": [
+          "fieristico",
+          "hotellerie",
+          "logistica",
+          "ristorazione",
+          "servizi B2B"
+        ],
+        "opportunitaDigitale": "La vicinanza al polo fieristico genera un flusso costante di visitatori e professionisti che cercano servizi locali online. Un sito web ottimizzato per le ricerche degli utenti in transito e dei residenti permette alle attività di Pero di catturare domanda sia locale che internazionale."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Il polo fieristico di Fiera Milano tra Pero e Rho"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Ecosistema digitale integrato per le aziende dell'area Fiera di Pero"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Pero?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Pero?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — a soli 5 minuti in auto da Pero. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Fate siti per attività legate alla Fiera?",
+            "a": "Sì. Realizziamo siti per hotel, ristoranti, servizi B2B e attività dell'indotto fieristico. Siti multilingue e ottimizzati per traffico internazionale."
+          },
+          {
+            "q": "Servite anche i comuni vicini?",
+            "a": "Oltre a Pero serviamo Rho, Milano, Settimo Milanese, Cornaredo, Baranzate, Bollate e tutta la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione continuativa da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Pero?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Pero?",
+            "a": "Sì, siamo a Rho — 5 minuti in auto. Il comune più vicino alla nostra sede."
+          },
+          {
+            "q": "Fate siti multilingue per l'area Fiera?",
+            "a": "Sì. Siti in italiano, inglese e altre lingue per attività che servono il pubblico fieristico internazionale."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Ogni sito include SEO tecnica integrata con posizionamento per ricerche locali e internazionali."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese). Un ecosistema coordinato."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cornaredo",
+      "name": "Cornaredo",
+      "cap": "20010",
+      "lat": 45.4978,
+      "lng": 9.04,
+      "population": 20000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Cornaredo",
+      "distanzaSede": "12 min",
+      "distanzaSedeKm": 8,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "settimo-milanese",
+        "pregnana-milanese",
+        "rho",
+        "bareggio",
+        "pero",
+        "vanzago"
+      ],
+      "localContext": {
+        "highlights": [
+          "Direttrice autostradale A4/A8",
+          "Tessuto artigianale e imprenditoriale",
+          "Vicinanza a Milano Ovest"
+        ],
+        "tessutoEconomico": "Comune dell'hinterland milanese con un forte tessuto di piccole imprese, artigiani e professionisti. La collocazione tra Milano Ovest e la direttrice autostradale A4/A8 lo rende un nodo strategico per attività che servono il territorio circostante.",
+        "settoriChiave": [
+          "edilizia",
+          "servizi alla persona",
+          "artigianato",
+          "commercio",
+          "professionisti"
+        ],
+        "opportunitaDigitale": "Le aziende di Cornaredo operano in un mercato locale dove la visibilità online fa la differenza. Un sito web professionale, veloce e ottimizzato per le ricerche geolocalizzate permette di intercettare clienti che cercano servizi nelle zone di Cornaredo, Bareggio, Settimo Milanese e Milano Ovest."
+      },
+      "images": {
+        "img1": {
+          "file": "cornaredo-town",
+          "alt": "Centro storico di Cornaredo con le sue attività locali"
+        },
+        "img2": {
+          "file": "cornaredo-seo",
+          "alt": "Dashboard SEO e analytics per il posizionamento delle aziende di Cornaredo"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Cornaredo?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Cornaredo?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 12 minuti in auto. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini?",
+            "a": "Oltre a Cornaredo serviamo Settimo Milanese, Pero, Rho, Bareggio, Cusago, Milano e tutta la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione continuativa da €59/mese con aggiornamenti, backup e monitoraggio."
+          },
+          {
+            "q": "Perché un'agenzia locale?",
+            "a": "Vicinanza (12 min da Cornaredo), rapporto diretto con il fondatore, prezzi competitivi, conoscenza del tessuto imprenditoriale locale."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Cornaredo?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Cornaredo?",
+            "a": "Sì, la nostra sede è a Rho — 12 minuti in auto. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per artigiani e piccole imprese?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata. Ideale per edilizia, servizi e professionisti del territorio."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche come \"sito web Cornaredo\", \"web agency Cornaredo\" e query geolocalizzate."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "settimo-milanese",
+      "name": "Settimo Milanese",
+      "cap": "20019",
+      "lat": 45.4752,
+      "lng": 9.0563,
+      "population": 20000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Settimo_Milanese",
+      "distanzaSede": "14 min",
+      "distanzaSedeKm": 10,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "cornaredo",
+        "cusago",
+        "bareggio",
+        "pero",
+        "cesano-boscone",
+        "trezzano-sul-naviglio"
+      ],
+      "localContext": {
+        "highlights": [
+          "Direttrice Milano–Magenta",
+          "Mix artigianale e terziario",
+          "Vicinanza a Milano e Pero"
+        ],
+        "tessutoEconomico": "Comune dinamico alle porte di Milano, caratterizzato da un mix di attività artigianali, studi professionali con competenze specialistiche e PMI del settore terziario. La posizione lungo la direttrice Milano-Magenta lo rende facilmente accessibile.",
+        "settoriChiave": [
+          "artigianato",
+          "studi professionali",
+          "terziario",
+          "servizi alla persona"
+        ],
+        "opportunitaDigitale": "Per le attività di Settimo Milanese, essere visibili online nelle ricerche geolocalizzate significa intercettare residenti e lavoratori che cercano servizi nella zona. Un sito web progettato con SEO locale integrata può generare contatti qualificati dal territorio."
+      },
+      "images": {
+        "img1": {
+          "file": "settimo-skyline",
+          "alt": "Panorama di Settimo Milanese con lo skyline di Milano sullo sfondo"
+        },
+        "img2": {
+          "file": "settimo-devices",
+          "alt": "Sito web responsive visualizzato su laptop, tablet e smartphone per aziende di Settimo Milanese"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Settimo Milanese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 14 minuti in auto da Settimo Milanese. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini?",
+            "a": "Oltre a Settimo serviamo Cornaredo, Pero, Rho, Cusago, Trezzano sul Naviglio, Cesano Boscone, Milano e tutta la Città Metropolitana."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          },
+          {
+            "q": "Perché un'agenzia locale?",
+            "a": "Vicinanza (14 min), rapporto diretto con il fondatore, prezzi competitivi, conoscenza del territorio."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Settimo Milanese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Settimo Milanese?",
+            "a": "Sì, la nostra sede è a Rho — 14 minuti in auto. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per professionisti e studi?",
+            "a": "Sì. Codice 100% custom con SEO locale. Ideale per studi professionali, artigiani e PMI del territorio."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Settimo Milanese e Milano Ovest."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "milano",
+      "name": "Milano",
+      "cap": "20100",
+      "lat": 45.4642,
+      "lng": 9.19,
+      "population": 1396000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Milano",
+      "distanzaSede": "25 min",
+      "distanzaSedeKm": 18,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": false
+      },
+      "nearCities": [
+        "milano-ovest",
+        "milano-nord",
+        "corsico",
+        "assago",
+        "buccinasco",
+        "cesano-boscone"
+      ],
+      "localContext": {
+        "highlights": [
+          "Capitale economica d'Italia",
+          "Hub globale per moda, design e finanza",
+          "Ecosistema startup più grande d'Italia"
+        ],
+        "tessutoEconomico": "Milano è la capitale economica d'Italia con oltre 1,3 milioni di abitanti e un'area metropolitana di 3,2 milioni. Epicentro di moda, design, finanza, tecnologia e startup. Il tessuto imprenditoriale è il più denso e competitivo del Paese.",
+        "settoriChiave": [
+          "startup",
+          "finanza",
+          "moda",
+          "design",
+          "tech",
+          "consulenza",
+          "hospitality"
+        ],
+        "opportunitaDigitale": "Il mercato milanese è ultra-competitivo: le web agency di Milano centro hanno costi elevati (overhead affitto, team grandi). WebNovis offre la stessa qualità tecnica con prezzi dell'hinterland, vicinanza garantita (25 min da Milano centro) e comunicazione diretta con il fondatore."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Skyline di Milano — capitale economica d'Italia"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per startup e PMI milanesi"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Perché scegliere WebNovis da Rho per un progetto a Milano?",
+            "a": "Stessa qualità tecnica delle agenzie milanesi, prezzi senza overhead da Milano centro, comunicazione diretta con il fondatore, 25 minuti di distanza. Codice 100% custom, zero template."
+          },
+          {
+            "q": "Quanto costa un sito web per un'attività milanese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Prezzi competitivi rispetto alle agenzie di Milano centro."
+          },
+          {
+            "q": "Fate incontri a Milano?",
+            "a": "Sì. Incontriamo i clienti presso le loro sedi a Milano, nella nostra sede a Rho o in videochiamata."
+          },
+          {
+            "q": "Servite anche le zone periferiche di Milano?",
+            "a": "Sì. Serviamo tutta la Città Metropolitana di Milano: da Milano centro ai comuni dell'hinterland ovest, nord e sud."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione continuativa da €59/mese."
+          }
+        ],
+        "realizzazione": []
+      }
+    },
+    {
+      "slug": "bollate",
+      "name": "Bollate",
+      "cap": "20021",
+      "lat": 45.5465,
+      "lng": 9.1197,
+      "population": 37000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Bollate",
+      "distanzaSede": "10 min",
+      "distanzaSedeKm": 6,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "novate-milanese",
+        "baranzate",
+        "senago",
+        "arese",
+        "cormano",
+        "paderno-dugnano"
+      ],
+      "localContext": {
+        "highlights": [
+          "Parco delle Groane",
+          "Polo industriale e logistico nord Milano",
+          "Stazione S1 Passante"
+        ],
+        "tessutoEconomico": "Bollate è uno dei comuni più popolosi dell'hinterland nord con circa 37.000 abitanti. Il polo industriale, la vicinanza al Parco delle Groane e la stazione del Passante S1 ne fanno un centro attrattivo per PMI, studi professionali e attività commerciali.",
+        "settoriChiave": [
+          "industria",
+          "logistica",
+          "commercio",
+          "studi professionali",
+          "servizi"
+        ],
+        "opportunitaDigitale": "Con 37.000 abitanti e un tessuto produttivo diversificato, Bollate offre un mercato digitale ancora poco presidiato. Le ricerche \"web agency Bollate\", \"sito web Bollate\" hanno competizione minima — un'opportunità per chi investe ora."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area produttiva e commerciale dell'hinterland nord milanese"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Crescita digitale per le aziende di Bollate e nord Milano"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Bollate?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Bollate?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 10 minuti in auto da Bollate. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Bollate?",
+            "a": "Oltre a Bollate serviamo Rho, Arese, Garbagnate, Baranzate, Novate Milanese, Senago, Paderno Dugnano e tutta la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          },
+          {
+            "q": "Perché un'agenzia locale?",
+            "a": "Vicinanza (10 min da Bollate), rapporto diretto con il fondatore, prezzi competitivi, qualità tecnica da agenzia milanese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Bollate?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Bollate?",
+            "a": "Sì, la nostra sede è a Rho — 10 minuti in auto. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per industrie e studi professionali?",
+            "a": "Sì. Codice 100% custom con SEO locale. Ideale per il tessuto produttivo diversificato di Bollate."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per \"sito web Bollate\", \"web agency Bollate\" e ricerche del territorio."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "nerviano",
+      "name": "Nerviano",
+      "cap": "20014",
+      "lat": 45.5533,
+      "lng": 8.9756,
+      "population": 17000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Nerviano",
+      "distanzaSede": "10 min",
+      "distanzaSedeKm": 7,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "parabiago",
+        "pogliano-milanese",
+        "vanzago",
+        "lainate",
+        "pregnana-milanese",
+        "cerro-maggiore"
+      ],
+      "localContext": {
+        "highlights": [
+          "Storica industria farmaceutica (Nerviano Medical Sciences)",
+          "Linea ferroviaria Saronno–Milano",
+          "Tessuto manifatturiero consolidato"
+        ],
+        "tessutoEconomico": "Nerviano è un comune con una storica vocazione farmaceutica e manifatturiera. Nerviano Medical Sciences è un punto di riferimento della ricerca oncologica. Il tessuto imprenditoriale include PMI meccaniche, chimiche e di servizi.",
+        "settoriChiave": [
+          "farmaceutico",
+          "manifatturiero",
+          "chimico",
+          "servizi",
+          "commercio"
+        ],
+        "opportunitaDigitale": "Le attività di Nerviano beneficerebbero enormemente di visibilità digitale: poche hanno siti professionali e le ricerche locali hanno competizione quasi inesistente. Un investimento nel digitale oggi cattura posizioni che domani costeranno molto di più."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area industriale e produttiva del nord-ovest milanese"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Nerviano"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Nerviano?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Nerviano?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 10 minuti in auto da Nerviano. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini?",
+            "a": "Oltre a Nerviano serviamo Rho, Lainate, Pogliano Milanese, Parabiago, Vanzago, Pregnana Milanese e tutta la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Nerviano?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Nerviano?",
+            "a": "Sì, 10 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore farmaceutico e industriale?",
+            "a": "Sì. Codice 100% custom con SEO tecnica. Ideale per aziende manifatturiere e studi professionali."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Nerviano."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "pregnana-milanese",
+      "name": "Pregnana Milanese",
+      "cap": "20010",
+      "lat": 45.5206,
+      "lng": 9.0106,
+      "population": 7000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Pregnana_Milanese",
+      "distanzaSede": "8 min",
+      "distanzaSedeKm": 5,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "vanzago",
+        "pogliano-milanese",
+        "rho",
+        "cornaredo",
+        "nerviano",
+        "bareggio"
+      ],
+      "localContext": {
+        "highlights": [
+          "Posizione strategica tra Rho e Legnano",
+          "Zona residenziale e artigianale",
+          "Vicinanza a polo fieristico"
+        ],
+        "tessutoEconomico": "Pregnana Milanese è un comune residenziale e artigianale posizionato strategicamente tra Rho e Legnano. Le piccole imprese locali — dall'artigianato al commercio — costituiscono il cuore dell'economia.",
+        "settoriChiave": [
+          "artigianato",
+          "commercio",
+          "servizi alla persona",
+          "piccole imprese"
+        ],
+        "opportunitaDigitale": "Pregnana è un mercato digitale vergine: la quasi totalità delle attività locali non ha un sito professionale. Chi investe ora in una presenza online ottimizzata avrà un vantaggio competitivo significativo e duraturo."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Territorio dell'hinterland ovest milanese tra Rho e Legnano"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni web per le piccole imprese di Pregnana Milanese"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Pregnana Milanese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Pregnana?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 8 minuti in auto da Pregnana Milanese."
+          },
+          {
+            "q": "Servite anche i comuni vicini?",
+            "a": "Oltre a Pregnana serviamo Rho, Vanzago, Pogliano, Nerviano, Cornaredo, Pero e tutta la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Pregnana Milanese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Pregnana?",
+            "a": "Sì, 8 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per artigiani e piccole imprese?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche del territorio di Pregnana Milanese e hinterland."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "vanzago",
+      "name": "Vanzago",
+      "cap": "20010",
+      "lat": 45.525,
+      "lng": 8.995,
+      "population": 9000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Vanzago",
+      "distanzaSede": "10 min",
+      "distanzaSedeKm": 7,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "pregnana-milanese",
+        "pogliano-milanese",
+        "nerviano",
+        "rho",
+        "arluno",
+        "cornaredo"
+      ],
+      "localContext": {
+        "highlights": [
+          "Oasi WWF del Bosco di Vanzago",
+          "Vicinanza a Rho Fiera",
+          "Comune residenziale con PMI"
+        ],
+        "tessutoEconomico": "Vanzago è un comune di circa 9.000 abitanti noto per l'Oasi WWF del Bosco di Vanzago. Il tessuto economico è basato su piccole imprese, attività commerciali e studi professionali che servono il territorio tra Rho e Legnano.",
+        "settoriChiave": [
+          "commercio",
+          "servizi",
+          "piccole imprese",
+          "turismo naturalistico"
+        ],
+        "opportunitaDigitale": "Vanzago è un mercato digitale con competizione pressoché assente. Le attività che investono in un sito professionale oggi possono dominare le ricerche locali senza concorrenza significativa."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Territorio verde dell'hinterland ovest milanese"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Crescita digitale per le attività di Vanzago"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Vanzago?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Vanzago?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 10 minuti in auto."
+          },
+          {
+            "q": "Servite anche i comuni vicini?",
+            "a": "Oltre a Vanzago serviamo Rho, Pregnana, Pogliano, Nerviano, Arluno, Cornaredo e tutta la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Vanzago?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Vanzago?",
+            "a": "Sì, 10 minuti dalla nostra sede a Rho."
+          },
+          {
+            "q": "Fate siti per piccole attività?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per piccole imprese e commercio."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche del territorio di Vanzago e hinterland ovest."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "baranzate",
+      "name": "Baranzate",
+      "cap": "20021",
+      "lat": 45.5244,
+      "lng": 9.1111,
+      "population": 12000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Baranzate",
+      "distanzaSede": "8 min",
+      "distanzaSedeKm": 5,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "novate-milanese",
+        "pero",
+        "bollate",
+        "arese",
+        "cormano",
+        "milano-ovest"
+      ],
+      "localContext": {
+        "highlights": [
+          "Confine diretto con Milano (Quarto Oggiaro)",
+          "Hub commerciale e multiculturale",
+          "Zona industriale attiva"
+        ],
+        "tessutoEconomico": "Baranzate è il comune più densamente popolato della Città Metropolitana di Milano. Il suo confine diretto con Milano (Quarto Oggiaro) e la zona industriale attiva ne fanno un crocevia per commercio, servizi e piccole imprese.",
+        "settoriChiave": [
+          "commercio",
+          "servizi",
+          "piccola industria",
+          "logistica",
+          "ristorazione"
+        ],
+        "opportunitaDigitale": "La posizione strategica tra Milano e Rho rende Baranzate un mercato interessante per la SEO locale. Le attività che investono in visibilità digitale possono intercettare sia il traffico locale che quello in transito verso Milano."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana tra Baranzate e Milano"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Baranzate"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Baranzate?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Baranzate?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 8 minuti in auto."
+          },
+          {
+            "q": "Servite anche i comuni vicini?",
+            "a": "Oltre a Baranzate serviamo Rho, Pero, Bollate, Arese, Novate Milanese, Milano e tutta la Città Metropolitana."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Baranzate?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Baranzate?",
+            "a": "Sì, 8 minuti dalla nostra sede a Rho."
+          },
+          {
+            "q": "Fate siti per attività commerciali?",
+            "a": "Sì. Codice 100% custom con SEO locale. Ideale per commercio, ristorazione e servizi."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche del territorio di Baranzate e area Milano Ovest."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "pogliano-milanese",
+      "name": "Pogliano Milanese",
+      "cap": "20010",
+      "lat": 45.5375,
+      "lng": 8.9947,
+      "population": 8500,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Pogliano_Milanese",
+      "distanzaSede": "8 min",
+      "distanzaSedeKm": 4,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "vanzago",
+        "pregnana-milanese",
+        "nerviano",
+        "rho",
+        "parabiago",
+        "lainate"
+      ],
+      "localContext": {
+        "highlights": [
+          "Zona industriale attiva",
+          "Vicinanza a Rho e Nerviano"
+        ],
+        "tessutoEconomico": "Pogliano Milanese è un comune di 8500 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Zona industriale attiva.",
+        "settoriChiave": [
+          "manifatturiero",
+          "logistica",
+          "artigianato"
+        ],
+        "opportunitaDigitale": "Le attività di Pogliano Milanese operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Pogliano Milanese e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Pogliano Milanese"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Pogliano Milanese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Pogliano Milanese?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 8 minuti in auto da Pogliano Milanese. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Pogliano Milanese?",
+            "a": "Sì. Serviamo Pogliano Milanese e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Pogliano Milanese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Pogliano Milanese?",
+            "a": "Sì, 8 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore manifatturiero?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per manifatturiero e logistica di Pogliano Milanese."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Pogliano Milanese."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cesate",
+      "name": "Cesate",
+      "cap": "20031",
+      "lat": 45.5939,
+      "lng": 9.0847,
+      "population": 14000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Cesate",
+      "distanzaSede": "17 min",
+      "distanzaSedeKm": 8,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "garbagnate",
+        "solaro",
+        "caronno-pertusella",
+        "limbiate",
+        "senago",
+        "arese"
+      ],
+      "localContext": {
+        "highlights": [
+          "Parco delle Groane",
+          "Stazione S2 Passante Milano"
+        ],
+        "tessutoEconomico": "Cesate è un comune di 14.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Parco delle Groane.",
+        "settoriChiave": [
+          "commercio",
+          "servizi",
+          "residenziale"
+        ],
+        "opportunitaDigitale": "Le attività di Cesate operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Cesate e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Cesate"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Cesate?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Cesate?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 17 minuti in auto da Cesate. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Cesate?",
+            "a": "Sì. Serviamo Cesate e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Cesate?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Cesate?",
+            "a": "Sì, 17 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore commercio?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per commercio e servizi di Cesate."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Cesate."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "senago",
+      "name": "Senago",
+      "cap": "20030",
+      "lat": 45.5753,
+      "lng": 9.1281,
+      "population": 22000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Senago",
+      "distanzaSede": "19 min",
+      "distanzaSedeKm": 9,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "limbiate",
+        "paderno-dugnano",
+        "bollate",
+        "garbagnate",
+        "cesate",
+        "cormano"
+      ],
+      "localContext": {
+        "highlights": [
+          "Villa Sioli Legnani",
+          "Zona industriale nord"
+        ],
+        "tessutoEconomico": "Senago è un comune di 22.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Villa Sioli Legnani.",
+        "settoriChiave": [
+          "industria",
+          "commercio",
+          "artigianato",
+          "servizi"
+        ],
+        "opportunitaDigitale": "Le attività di Senago operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Senago e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Senago"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Senago?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Senago?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 19 minuti in auto da Senago. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Senago?",
+            "a": "Sì. Serviamo Senago e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Senago?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Senago?",
+            "a": "Sì, 19 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore industria?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per industria e commercio di Senago."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Senago."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "novate-milanese",
+      "name": "Novate Milanese",
+      "cap": "20026",
+      "lat": 45.5317,
+      "lng": 9.1389,
+      "population": 21000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Novate_Milanese",
+      "distanzaSede": "17 min",
+      "distanzaSedeKm": 8,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "bollate",
+        "baranzate",
+        "cormano",
+        "bresso",
+        "milano-nord",
+        "pero"
+      ],
+      "localContext": {
+        "highlights": [
+          "Confine con Milano Comasina",
+          "Linea M3 nelle vicinanze"
+        ],
+        "tessutoEconomico": "Novate Milanese è un comune di 21.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Confine con Milano Comasina.",
+        "settoriChiave": [
+          "terziario",
+          "commercio",
+          "logistica",
+          "servizi"
+        ],
+        "opportunitaDigitale": "Le attività di Novate Milanese operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Novate Milanese e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Novate Milanese"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Novate Milanese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Novate Milanese?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 17 minuti in auto da Novate Milanese. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Novate Milanese?",
+            "a": "Sì. Serviamo Novate Milanese e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Novate Milanese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Novate Milanese?",
+            "a": "Sì, 17 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore terziario?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per terziario e commercio di Novate Milanese."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Novate Milanese."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "paderno-dugnano",
+      "name": "Paderno Dugnano",
+      "cap": "20037",
+      "lat": 45.5697,
+      "lng": 9.165,
+      "population": 47000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Paderno_Dugnano",
+      "distanzaSede": "24 min",
+      "distanzaSedeKm": 11,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "cormano",
+        "senago",
+        "bresso",
+        "cinisello-balsamo",
+        "limbiate",
+        "bollate"
+      ],
+      "localContext": {
+        "highlights": [
+          "Centro commerciale Brianza",
+          "Zona industriale Palazzolo"
+        ],
+        "tessutoEconomico": "Paderno Dugnano è un comune di 47.000 abitanti nell'hinterland milanese. Centro commerciale Brianza.",
+        "settoriChiave": [
+          "industria",
+          "commercio",
+          "servizi",
+          "ristorazione"
+        ],
+        "opportunitaDigitale": "Le attività di Paderno Dugnano operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Paderno Dugnano e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Paderno Dugnano"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Paderno Dugnano?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Paderno Dugnano?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 24 minuti in auto da Paderno Dugnano. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Paderno Dugnano?",
+            "a": "Sì. Serviamo Paderno Dugnano e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Paderno Dugnano?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Paderno Dugnano?",
+            "a": "Sì, 24 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore industria?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per industria e commercio di Paderno Dugnano."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Paderno Dugnano."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "arluno",
+      "name": "Arluno",
+      "cap": "20010",
+      "lat": 45.5053,
+      "lng": 8.9486,
+      "population": 12000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Arluno",
+      "distanzaSede": "17 min",
+      "distanzaSedeKm": 8,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "vanzago",
+        "pogliano-milanese",
+        "pregnana-milanese",
+        "bareggio",
+        "nerviano",
+        "parabiago"
+      ],
+      "localContext": {
+        "highlights": [
+          "Direttrice Milano-Magenta",
+          "Tessuto agricolo e artigianale"
+        ],
+        "tessutoEconomico": "Arluno è un comune di 12.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Direttrice Milano-Magenta.",
+        "settoriChiave": [
+          "agricoltura",
+          "artigianato",
+          "piccole imprese",
+          "commercio"
+        ],
+        "opportunitaDigitale": "Le attività di Arluno operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Arluno e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Arluno"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Arluno?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Arluno?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 17 minuti in auto da Arluno. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Arluno?",
+            "a": "Sì. Serviamo Arluno e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Arluno?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Arluno?",
+            "a": "Sì, 17 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore agricoltura?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per agricoltura e artigianato di Arluno."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Arluno."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "parabiago",
+      "name": "Parabiago",
+      "cap": "20015",
+      "lat": 45.5586,
+      "lng": 8.9511,
+      "population": 28000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Parabiago",
+      "distanzaSede": "17 min",
+      "distanzaSedeKm": 8,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "nerviano",
+        "cerro-maggiore",
+        "pogliano-milanese",
+        "legnano",
+        "vanzago",
+        "lainate"
+      ],
+      "localContext": {
+        "highlights": [
+          "Distretto calzaturiero storico",
+          "Villa Corvini"
+        ],
+        "tessutoEconomico": "Parabiago è un comune di 28.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Distretto calzaturiero storico.",
+        "settoriChiave": [
+          "calzaturiero",
+          "manifatturiero",
+          "commercio",
+          "artigianato"
+        ],
+        "opportunitaDigitale": "Le attività di Parabiago operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Parabiago e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Parabiago"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Parabiago?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Parabiago?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 17 minuti in auto da Parabiago. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Parabiago?",
+            "a": "Sì. Serviamo Parabiago e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Parabiago?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Parabiago?",
+            "a": "Sì, 17 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore calzaturiero?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per calzaturiero e manifatturiero di Parabiago."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Parabiago."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "bareggio",
+      "name": "Bareggio",
+      "cap": "20010",
+      "lat": 45.4756,
+      "lng": 9.0025,
+      "population": 17500,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Bareggio",
+      "distanzaSede": "15 min",
+      "distanzaSedeKm": 7,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "cusago",
+        "cornaredo",
+        "settimo-milanese",
+        "pregnana-milanese",
+        "arluno",
+        "vanzago"
+      ],
+      "localContext": {
+        "highlights": [
+          "Villa Trivulzio",
+          "Posizione tra Milano e Abbiategrasso"
+        ],
+        "tessutoEconomico": "Bareggio è un comune di 17.500 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Villa Trivulzio.",
+        "settoriChiave": [
+          "servizi",
+          "commercio",
+          "artigianato",
+          "logistica"
+        ],
+        "opportunitaDigitale": "Le attività di Bareggio operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Bareggio e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Bareggio"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Bareggio?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Bareggio?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 15 minuti in auto da Bareggio. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Bareggio?",
+            "a": "Sì. Serviamo Bareggio e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Bareggio?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Bareggio?",
+            "a": "Sì, 15 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore servizi?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per servizi e commercio di Bareggio."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Bareggio."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cusago",
+      "name": "Cusago",
+      "cap": "20090",
+      "lat": 45.4486,
+      "lng": 9.0319,
+      "population": 4000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Cusago",
+      "distanzaSede": "20 min",
+      "distanzaSedeKm": 9,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "settimo-milanese",
+        "bareggio",
+        "trezzano-sul-naviglio",
+        "cesano-boscone",
+        "cornaredo",
+        "corsico"
+      ],
+      "localContext": {
+        "highlights": [
+          "Castello Visconteo",
+          "Comune residenziale di pregio"
+        ],
+        "tessutoEconomico": "Cusago è un comune di 4000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Castello Visconteo.",
+        "settoriChiave": [
+          "servizi",
+          "professionisti",
+          "ristorazione"
+        ],
+        "opportunitaDigitale": "Le attività di Cusago operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Cusago e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Cusago"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Cusago?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Cusago?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 20 minuti in auto da Cusago. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Cusago?",
+            "a": "Sì. Serviamo Cusago e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Cusago?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Cusago?",
+            "a": "Sì, 20 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore servizi?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per servizi e professionisti di Cusago."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Cusago."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "trezzano-sul-naviglio",
+      "name": "Trezzano sul Naviglio",
+      "cap": "20090",
+      "lat": 45.4228,
+      "lng": 9.0647,
+      "population": 22000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Trezzano_sul_Naviglio",
+      "distanzaSede": "27 min",
+      "distanzaSedeKm": 12,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "cesano-boscone",
+        "buccinasco",
+        "cusago",
+        "corsico",
+        "settimo-milanese",
+        "assago"
+      ],
+      "localContext": {
+        "highlights": [
+          "Naviglio Grande",
+          "Centro commerciale Bonola nelle vicinanze"
+        ],
+        "tessutoEconomico": "Trezzano sul Naviglio è un comune di 22.000 abitanti nell'hinterland milanese. Naviglio Grande.",
+        "settoriChiave": [
+          "industria",
+          "commercio",
+          "servizi",
+          "ristorazione"
+        ],
+        "opportunitaDigitale": "Le attività di Trezzano sul Naviglio operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Trezzano sul Naviglio e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Trezzano sul Naviglio"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Trezzano sul Naviglio?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Trezzano sul Naviglio?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 27 minuti in auto da Trezzano sul Naviglio. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Trezzano sul Naviglio?",
+            "a": "Sì. Serviamo Trezzano sul Naviglio e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Trezzano sul Naviglio?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Trezzano sul Naviglio?",
+            "a": "Sì, 27 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore industria?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per industria e commercio di Trezzano sul Naviglio."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Trezzano sul Naviglio."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cesano-boscone",
+      "name": "Cesano Boscone",
+      "cap": "20090",
+      "lat": 45.4328,
+      "lng": 9.0944,
+      "population": 24000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Cesano_Boscone",
+      "distanzaSede": "26 min",
+      "distanzaSedeKm": 12,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "corsico",
+        "buccinasco",
+        "trezzano-sul-naviglio",
+        "assago",
+        "cusago",
+        "settimo-milanese"
+      ],
+      "localContext": {
+        "highlights": [
+          "Confine con Milano Baggio",
+          "Area residenziale in crescita"
+        ],
+        "tessutoEconomico": "Cesano Boscone è un comune di 24.000 abitanti nell'hinterland milanese. Confine con Milano Baggio.",
+        "settoriChiave": [
+          "servizi",
+          "commercio",
+          "professionisti",
+          "ristorazione"
+        ],
+        "opportunitaDigitale": "Le attività di Cesano Boscone operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Cesano Boscone e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Cesano Boscone"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Cesano Boscone?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Cesano Boscone?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 26 minuti in auto da Cesano Boscone. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Cesano Boscone?",
+            "a": "Sì. Serviamo Cesano Boscone e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Cesano Boscone?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Cesano Boscone?",
+            "a": "Sì, 26 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore servizi?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per servizi e commercio di Cesano Boscone."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Cesano Boscone."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "buccinasco",
+      "name": "Buccinasco",
+      "cap": "20090",
+      "lat": 45.4192,
+      "lng": 9.1072,
+      "population": 27000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Buccinasco",
+      "distanzaSede": "29 min",
+      "distanzaSedeKm": 13,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "corsico",
+        "cesano-boscone",
+        "assago",
+        "trezzano-sul-naviglio",
+        "rozzano",
+        "cusago"
+      ],
+      "localContext": {
+        "highlights": [
+          "Naviglio Pavese",
+          "Area residenziale sud Milano"
+        ],
+        "tessutoEconomico": "Buccinasco è un comune di 27.000 abitanti nell'hinterland milanese. Naviglio Pavese.",
+        "settoriChiave": [
+          "commercio",
+          "servizi",
+          "ristorazione",
+          "professionisti"
+        ],
+        "opportunitaDigitale": "Le attività di Buccinasco operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Buccinasco e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Buccinasco"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Buccinasco?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Buccinasco?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 29 minuti in auto da Buccinasco. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Buccinasco?",
+            "a": "Sì. Serviamo Buccinasco e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Buccinasco?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Buccinasco?",
+            "a": "Sì, 29 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore commercio?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per commercio e servizi di Buccinasco."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Buccinasco."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cormano",
+      "name": "Cormano",
+      "cap": "20032",
+      "lat": 45.5483,
+      "lng": 9.1639,
+      "population": 20000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Cormano",
+      "distanzaSede": "22 min",
+      "distanzaSedeKm": 10,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "bresso",
+        "paderno-dugnano",
+        "novate-milanese",
+        "bollate",
+        "cinisello-balsamo",
+        "senago"
+      ],
+      "localContext": {
+        "highlights": [
+          "Must — Museo del Territorio",
+          "Confine con Bresso e Milano"
+        ],
+        "tessutoEconomico": "Cormano è un comune di 20.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Must — Museo del Territorio.",
+        "settoriChiave": [
+          "terziario",
+          "commercio",
+          "industria leggera"
+        ],
+        "opportunitaDigitale": "Le attività di Cormano operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Cormano e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Cormano"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Cormano?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Cormano?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 22 minuti in auto da Cormano. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Cormano?",
+            "a": "Sì. Serviamo Cormano e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Cormano?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Cormano?",
+            "a": "Sì, 22 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore terziario?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per terziario e commercio di Cormano."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Cormano."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "bresso",
+      "name": "Bresso",
+      "cap": "20091",
+      "lat": 45.5414,
+      "lng": 9.1833,
+      "population": 27000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Bresso",
+      "distanzaSede": "25 min",
+      "distanzaSedeKm": 11,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "cormano",
+        "cinisello-balsamo",
+        "paderno-dugnano",
+        "milano-nord",
+        "novate-milanese",
+        "sesto-san-giovanni"
+      ],
+      "localContext": {
+        "highlights": [
+          "Parco Nord Milano",
+          "Stazione M1 nelle vicinanze"
+        ],
+        "tessutoEconomico": "Bresso è un comune di 27.000 abitanti nell'hinterland milanese. Parco Nord Milano.",
+        "settoriChiave": [
+          "commercio",
+          "servizi",
+          "terziario",
+          "ristorazione"
+        ],
+        "opportunitaDigitale": "Le attività di Bresso operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Bresso e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Bresso"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Bresso?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Bresso?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 25 minuti in auto da Bresso. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Bresso?",
+            "a": "Sì. Serviamo Bresso e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Bresso?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Bresso?",
+            "a": "Sì, 25 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore commercio?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per commercio e servizi di Bresso."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Bresso."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cinisello-balsamo",
+      "name": "Cinisello Balsamo",
+      "cap": "20092",
+      "lat": 45.5575,
+      "lng": 9.2103,
+      "population": 76000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Cinisello_Balsamo",
+      "distanzaSede": "30 min",
+      "distanzaSedeKm": 14,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "bresso",
+        "sesto-san-giovanni",
+        "cormano",
+        "paderno-dugnano",
+        "milano-nord",
+        "monza"
+      ],
+      "localContext": {
+        "highlights": [
+          "Centro culturale Il Pertini",
+          "Hub commerciale nord Milano"
+        ],
+        "tessutoEconomico": "Cinisello Balsamo è un comune di 76.000 abitanti nell'hinterland milanese. Centro culturale Il Pertini.",
+        "settoriChiave": [
+          "industria",
+          "commercio",
+          "servizi",
+          "tech"
+        ],
+        "opportunitaDigitale": "Le attività di Cinisello Balsamo operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Cinisello Balsamo e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Cinisello Balsamo"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Cinisello Balsamo?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Cinisello Balsamo?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 30 minuti in auto da Cinisello Balsamo. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Cinisello Balsamo?",
+            "a": "Sì. Serviamo Cinisello Balsamo e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Cinisello Balsamo?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Cinisello Balsamo?",
+            "a": "Sì, 30 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore industria?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per industria e commercio di Cinisello Balsamo."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Cinisello Balsamo."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sesto-san-giovanni",
+      "name": "Sesto San Giovanni",
+      "cap": "20099",
+      "lat": 45.5347,
+      "lng": 9.2292,
+      "population": 82000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Sesto_San_Giovanni",
+      "distanzaSede": "33 min",
+      "distanzaSedeKm": 15,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "cinisello-balsamo",
+        "bresso",
+        "cologno-monzese",
+        "milano-nord",
+        "cormano",
+        "paderno-dugnano"
+      ],
+      "localContext": {
+        "highlights": [
+          "Ex area Falck — riqualificazione urbana",
+          "Stazione M1 Sesto",
+          "MIL — Made in Lambrate"
+        ],
+        "tessutoEconomico": "Sesto San Giovanni è un comune di 82.000 abitanti nell'hinterland milanese. Ex area Falck — riqualificazione urbana.",
+        "settoriChiave": [
+          "tech",
+          "industria",
+          "startup",
+          "servizi",
+          "commercio"
+        ],
+        "opportunitaDigitale": "Le attività di Sesto San Giovanni operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Sesto San Giovanni e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Sesto San Giovanni"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Sesto San Giovanni?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Sesto San Giovanni?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 33 minuti in auto da Sesto San Giovanni. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Sesto San Giovanni?",
+            "a": "Sì. Serviamo Sesto San Giovanni e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Sesto San Giovanni?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Sesto San Giovanni?",
+            "a": "Sì, 33 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore tech?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per tech e industria di Sesto San Giovanni."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Sesto San Giovanni."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "magenta",
+      "name": "Magenta",
+      "cap": "20013",
+      "lat": 45.4642,
+      "lng": 8.8833,
+      "population": 24000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Magenta",
+      "distanzaSede": "31 min",
+      "distanzaSedeKm": 14,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "arluno",
+        "bareggio",
+        "vanzago",
+        "cusago",
+        "pregnana-milanese",
+        "parabiago"
+      ],
+      "localContext": {
+        "highlights": [
+          "Storica Battaglia di Magenta",
+          "Ospedale Fornaroli",
+          "Direttrice Milano-Novara"
+        ],
+        "tessutoEconomico": "Magenta è un comune di 24.000 abitanti nell'hinterland milanese. Storica Battaglia di Magenta.",
+        "settoriChiave": [
+          "sanitario",
+          "commercio",
+          "servizi",
+          "agricoltura"
+        ],
+        "opportunitaDigitale": "Le attività di Magenta operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Magenta e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Magenta"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Magenta?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Magenta?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 31 minuti in auto da Magenta. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Magenta?",
+            "a": "Sì. Serviamo Magenta e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Magenta?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Magenta?",
+            "a": "Sì, 31 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore sanitario?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per sanitario e commercio di Magenta."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Magenta."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "legnano",
+      "name": "Legnano",
+      "cap": "20025",
+      "lat": 45.5958,
+      "lng": 8.9139,
+      "population": 61000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Legnano",
+      "distanzaSede": "27 min",
+      "distanzaSedeKm": 12,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "castellanza",
+        "cerro-maggiore",
+        "rescaldina",
+        "parabiago",
+        "nerviano",
+        "origgio"
+      ],
+      "localContext": {
+        "highlights": [
+          "Palio di Legnano",
+          "Distretto industriale storico",
+          "Centro città vivace"
+        ],
+        "tessutoEconomico": "Legnano è un comune di 61.000 abitanti nell'hinterland milanese. Palio di Legnano.",
+        "settoriChiave": [
+          "industria",
+          "tessile",
+          "meccanico",
+          "commercio",
+          "ristorazione"
+        ],
+        "opportunitaDigitale": "Le attività di Legnano operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Legnano e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Legnano"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Legnano?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Legnano?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 27 minuti in auto da Legnano. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Legnano?",
+            "a": "Sì. Serviamo Legnano e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Legnano?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Legnano?",
+            "a": "Sì, 27 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore industria?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per industria e tessile di Legnano."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Legnano."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "castellanza",
+      "name": "Castellanza",
+      "cap": "21053",
+      "lat": 45.61,
+      "lng": 8.8981,
+      "population": 14500,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Castellanza",
+      "distanzaSede": "31 min",
+      "distanzaSedeKm": 14,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "legnano",
+        "rescaldina",
+        "cerro-maggiore",
+        "parabiago",
+        "nerviano",
+        "origgio"
+      ],
+      "localContext": {
+        "highlights": [
+          "Università LIUC",
+          "Polo universitario e imprenditoriale"
+        ],
+        "tessutoEconomico": "Castellanza è un comune di 14.500 abitanti nell'hinterland milanese. Università LIUC.",
+        "settoriChiave": [
+          "formazione",
+          "tech",
+          "servizi",
+          "commercio"
+        ],
+        "opportunitaDigitale": "Le attività di Castellanza operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Castellanza e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Castellanza"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Castellanza?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Castellanza?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 31 minuti in auto da Castellanza. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Castellanza?",
+            "a": "Sì. Serviamo Castellanza e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Castellanza?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Castellanza?",
+            "a": "Sì, 31 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore formazione?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per formazione e tech di Castellanza."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Castellanza."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "saronno",
+      "name": "Saronno",
+      "cap": "21047",
+      "lat": 45.6256,
+      "lng": 9.0331,
+      "population": 40000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Saronno",
+      "distanzaSede": "23 min",
+      "distanzaSedeKm": 11,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "origgio",
+        "caronno-pertusella",
+        "solaro",
+        "cesate",
+        "lainate",
+        "rescaldina"
+      ],
+      "localContext": {
+        "highlights": [
+          "Santuario della Beata Vergine dei Miracoli",
+          "Nodo ferroviario FNM/RFI",
+          "Distretto dolciario (Amaretti)"
+        ],
+        "tessutoEconomico": "Saronno è un comune di 40.000 abitanti nell'hinterland milanese. Santuario della Beata Vergine dei Miracoli.",
+        "settoriChiave": [
+          "dolciario",
+          "meccanico",
+          "commercio",
+          "servizi",
+          "trasporti"
+        ],
+        "opportunitaDigitale": "Le attività di Saronno operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Saronno e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Saronno"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Saronno?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Saronno?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 23 minuti in auto da Saronno. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Saronno?",
+            "a": "Sì. Serviamo Saronno e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Saronno?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Saronno?",
+            "a": "Sì, 23 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore dolciario?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per dolciario e meccanico di Saronno."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Saronno."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "milano-ovest",
+      "name": "Milano Ovest",
+      "cap": "20151",
+      "lat": 45.4772,
+      "lng": 9.1356,
+      "population": 200000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Milano_Ovest",
+      "distanzaSede": "21 min",
+      "distanzaSedeKm": 10,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "milano",
+        "pero",
+        "milano-nord",
+        "corsico",
+        "baranzate",
+        "cesano-boscone"
+      ],
+      "localContext": {
+        "highlights": [
+          "QT8",
+          "San Siro",
+          "Fiera Citylife",
+          "De Angeli"
+        ],
+        "tessutoEconomico": "Milano Ovest è un comune di 200.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. QT8.",
+        "settoriChiave": [
+          "moda",
+          "design",
+          "startup",
+          "ristorazione",
+          "commercio"
+        ],
+        "opportunitaDigitale": "Le attività di Milano Ovest operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Milano Ovest e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Milano Ovest"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Milano Ovest?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Milano Ovest?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 21 minuti in auto da Milano Ovest. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Milano Ovest?",
+            "a": "Sì. Serviamo Milano Ovest e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Milano Ovest?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Milano Ovest?",
+            "a": "Sì, 21 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore moda?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per moda e design di Milano Ovest."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Milano Ovest."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "milano-nord",
+      "name": "Milano Nord",
+      "cap": "20161",
+      "lat": 45.51,
+      "lng": 9.18,
+      "population": 180000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Milano_Nord",
+      "distanzaSede": "25 min",
+      "distanzaSedeKm": 11,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "bresso",
+        "novate-milanese",
+        "cormano",
+        "sesto-san-giovanni",
+        "milano-ovest",
+        "milano"
+      ],
+      "localContext": {
+        "highlights": [
+          "Bicocca",
+          "Niguarda",
+          "Comasina",
+          "Affori"
+        ],
+        "tessutoEconomico": "Milano Nord è un comune di 180.000 abitanti nell'hinterland milanese. Bicocca.",
+        "settoriChiave": [
+          "università",
+          "sanitario",
+          "tech",
+          "servizi",
+          "commercio"
+        ],
+        "opportunitaDigitale": "Le attività di Milano Nord operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Milano Nord e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Milano Nord"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Milano Nord?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Milano Nord?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 25 minuti in auto da Milano Nord. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Milano Nord?",
+            "a": "Sì. Serviamo Milano Nord e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Milano Nord?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Milano Nord?",
+            "a": "Sì, 25 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore università?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per università e sanitario di Milano Nord."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Milano Nord."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solaro",
+      "name": "Solaro",
+      "cap": "20033",
+      "lat": 45.6167,
+      "lng": 9.0806,
+      "population": 14500,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Solaro",
+      "distanzaSede": "22 min",
+      "distanzaSedeKm": 10,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "cesate",
+        "caronno-pertusella",
+        "saronno",
+        "limbiate",
+        "garbagnate",
+        "origgio"
+      ],
+      "localContext": {
+        "highlights": [
+          "Parco delle Groane",
+          "Comune residenziale tranquillo"
+        ],
+        "tessutoEconomico": "Solaro è un comune di 14.500 abitanti nell'hinterland milanese. Parco delle Groane.",
+        "settoriChiave": [
+          "servizi",
+          "commercio",
+          "artigianato"
+        ],
+        "opportunitaDigitale": "Le attività di Solaro operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Solaro e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Solaro"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Solaro?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Solaro?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 22 minuti in auto da Solaro. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Solaro?",
+            "a": "Sì. Serviamo Solaro e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Solaro?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Solaro?",
+            "a": "Sì, 22 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore servizi?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per servizi e commercio di Solaro."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Solaro."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cerro-maggiore",
+      "name": "Cerro Maggiore",
+      "cap": "20023",
+      "lat": 45.5903,
+      "lng": 8.95,
+      "population": 15000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Cerro_Maggiore",
+      "distanzaSede": "21 min",
+      "distanzaSedeKm": 10,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "legnano",
+        "rescaldina",
+        "parabiago",
+        "nerviano",
+        "castellanza",
+        "origgio"
+      ],
+      "localContext": {
+        "highlights": [
+          "Tessuto manifatturiero",
+          "Vicinanza a Legnano"
+        ],
+        "tessutoEconomico": "Cerro Maggiore è un comune di 15.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Tessuto manifatturiero.",
+        "settoriChiave": [
+          "manifatturiero",
+          "commercio",
+          "artigianato"
+        ],
+        "opportunitaDigitale": "Le attività di Cerro Maggiore operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Cerro Maggiore e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Cerro Maggiore"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Cerro Maggiore?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Cerro Maggiore?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 21 minuti in auto da Cerro Maggiore. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Cerro Maggiore?",
+            "a": "Sì. Serviamo Cerro Maggiore e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Cerro Maggiore?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Cerro Maggiore?",
+            "a": "Sì, 21 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore manifatturiero?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per manifatturiero e commercio di Cerro Maggiore."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Cerro Maggiore."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rescaldina",
+      "name": "Rescaldina",
+      "cap": "20027",
+      "lat": 45.6197,
+      "lng": 8.9511,
+      "population": 14500,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Rescaldina",
+      "distanzaSede": "27 min",
+      "distanzaSedeKm": 12,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "cerro-maggiore",
+        "legnano",
+        "castellanza",
+        "origgio",
+        "saronno",
+        "parabiago"
+      ],
+      "localContext": {
+        "highlights": [
+          "Nodo ferroviario FNM",
+          "Area residenziale in crescita"
+        ],
+        "tessutoEconomico": "Rescaldina è un comune di 14.500 abitanti nell'hinterland milanese. Nodo ferroviario FNM.",
+        "settoriChiave": [
+          "servizi",
+          "commercio",
+          "professionisti"
+        ],
+        "opportunitaDigitale": "Le attività di Rescaldina operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Rescaldina e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Rescaldina"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Rescaldina?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Rescaldina?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 27 minuti in auto da Rescaldina. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Rescaldina?",
+            "a": "Sì. Serviamo Rescaldina e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Rescaldina?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Rescaldina?",
+            "a": "Sì, 27 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore servizi?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per servizi e commercio di Rescaldina."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Rescaldina."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "origgio",
+      "name": "Origgio",
+      "cap": "21040",
+      "lat": 45.5956,
+      "lng": 9.0194,
+      "population": 8000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Origgio",
+      "distanzaSede": "16 min",
+      "distanzaSedeKm": 7,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "caronno-pertusella",
+        "lainate",
+        "saronno",
+        "cesate",
+        "garbagnate",
+        "solaro"
+      ],
+      "localContext": {
+        "highlights": [
+          "Zona industriale est",
+          "Vicinanza a Saronno e Lainate"
+        ],
+        "tessutoEconomico": "Origgio è un comune di 8000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Zona industriale est.",
+        "settoriChiave": [
+          "logistica",
+          "industria",
+          "servizi"
+        ],
+        "opportunitaDigitale": "Le attività di Origgio operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Origgio e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Origgio"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Origgio?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Origgio?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 16 minuti in auto da Origgio. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Origgio?",
+            "a": "Sì. Serviamo Origgio e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Origgio?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Origgio?",
+            "a": "Sì, 16 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore logistica?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per logistica e industria di Origgio."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Origgio."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "caronno-pertusella",
+      "name": "Caronno Pertusella",
+      "cap": "21042",
+      "lat": 45.5958,
+      "lng": 9.05,
+      "population": 18000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Caronno_Pertusella",
+      "distanzaSede": "16 min",
+      "distanzaSedeKm": 7,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "origgio",
+        "cesate",
+        "garbagnate",
+        "lainate",
+        "solaro",
+        "saronno"
+      ],
+      "localContext": {
+        "highlights": [
+          "Stazione FNM Saronno Sud",
+          "Tessuto PMI consolidato"
+        ],
+        "tessutoEconomico": "Caronno Pertusella è un comune di 18.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Stazione FNM Saronno Sud.",
+        "settoriChiave": [
+          "PMI",
+          "commercio",
+          "artigianato",
+          "servizi"
+        ],
+        "opportunitaDigitale": "Le attività di Caronno Pertusella operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Caronno Pertusella e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Caronno Pertusella"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Caronno Pertusella?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Caronno Pertusella?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 16 minuti in auto da Caronno Pertusella. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Caronno Pertusella?",
+            "a": "Sì. Serviamo Caronno Pertusella e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Caronno Pertusella?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Caronno Pertusella?",
+            "a": "Sì, 16 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore PMI?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per PMI e commercio di Caronno Pertusella."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Caronno Pertusella."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "limbiate",
+      "name": "Limbiate",
+      "cap": "20812",
+      "lat": 45.595,
+      "lng": 9.1286,
+      "population": 36000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Limbiate",
+      "distanzaSede": "22 min",
+      "distanzaSedeKm": 10,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "senago",
+        "cesate",
+        "paderno-dugnano",
+        "garbagnate",
+        "solaro",
+        "bollate"
+      ],
+      "localContext": {
+        "highlights": [
+          "Villa Mella",
+          "Ospedale G. Salvini distaccamento"
+        ],
+        "tessutoEconomico": "Limbiate è un comune di 36.000 abitanti nell'hinterland milanese. Villa Mella.",
+        "settoriChiave": [
+          "servizi",
+          "commercio",
+          "industria leggera",
+          "sanitario"
+        ],
+        "opportunitaDigitale": "Le attività di Limbiate operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Limbiate e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Limbiate"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Limbiate?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Limbiate?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 22 minuti in auto da Limbiate. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Limbiate?",
+            "a": "Sì. Serviamo Limbiate e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Limbiate?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Limbiate?",
+            "a": "Sì, 22 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore servizi?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per servizi e commercio di Limbiate."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Limbiate."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "corsico",
+      "name": "Corsico",
+      "cap": "20094",
+      "lat": 45.4319,
+      "lng": 9.1133,
+      "population": 35000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Corsico",
+      "distanzaSede": "27 min",
+      "distanzaSedeKm": 12,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": true
+      },
+      "nearCities": [
+        "cesano-boscone",
+        "buccinasco",
+        "assago",
+        "trezzano-sul-naviglio",
+        "milano-ovest",
+        "rozzano"
+      ],
+      "localContext": {
+        "highlights": [
+          "Naviglio Grande",
+          "Zona industriale storica",
+          "Confine con Milano Giambellino"
+        ],
+        "tessutoEconomico": "Corsico è un comune di 35.000 abitanti nell'hinterland milanese. Naviglio Grande.",
+        "settoriChiave": [
+          "industria",
+          "commercio",
+          "servizi",
+          "ristorazione"
+        ],
+        "opportunitaDigitale": "Le attività di Corsico operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Corsico e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Corsico"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Corsico?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Corsico?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 27 minuti in auto da Corsico. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Corsico?",
+            "a": "Sì. Serviamo Corsico e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Corsico?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Corsico?",
+            "a": "Sì, 27 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore industria?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per industria e commercio di Corsico."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Corsico."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "assago",
+      "name": "Assago",
+      "cap": "20057",
+      "lat": 45.4056,
+      "lng": 9.1389,
+      "population": 10000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Assago",
+      "distanzaSede": "35 min",
+      "distanzaSedeKm": 16,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": false
+      },
+      "nearCities": [
+        "rozzano",
+        "buccinasco",
+        "corsico",
+        "cesano-boscone",
+        "trezzano-sul-naviglio",
+        "milano"
+      ],
+      "localContext": {
+        "highlights": [
+          "Milanofiori — polo business e commerciale",
+          "Forum di Assago"
+        ],
+        "tessutoEconomico": "Assago è un comune di 10.000 abitanti nell'hinterland milanese. Milanofiori — polo business e commerciale.",
+        "settoriChiave": [
+          "business",
+          "commercio",
+          "eventi",
+          "servizi"
+        ],
+        "opportunitaDigitale": "Le attività di Assago operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Assago e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Assago"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Assago?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Assago?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 35 minuti in auto da Assago. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Assago?",
+            "a": "Sì. Serviamo Assago e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Assago?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Assago?",
+            "a": "Sì, 35 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore business?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per business e commercio di Assago."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Assago."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rozzano",
+      "name": "Rozzano",
+      "cap": "20089",
+      "lat": 45.3847,
+      "lng": 9.1558,
+      "population": 43000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Rozzano",
+      "distanzaSede": "41 min",
+      "distanzaSedeKm": 19,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": false
+      },
+      "nearCities": [
+        "assago",
+        "buccinasco",
+        "corsico",
+        "cesano-boscone",
+        "trezzano-sul-naviglio",
+        "milano"
+      ],
+      "localContext": {
+        "highlights": [
+          "Humanitas Research Hospital",
+          "Centro commerciale Fiordaliso"
+        ],
+        "tessutoEconomico": "Rozzano è un comune di 43.000 abitanti nell'hinterland milanese. Humanitas Research Hospital.",
+        "settoriChiave": [
+          "sanitario",
+          "commercio",
+          "servizi",
+          "logistica"
+        ],
+        "opportunitaDigitale": "Le attività di Rozzano operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Rozzano e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Rozzano"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Rozzano?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Rozzano?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 41 minuti in auto da Rozzano. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Rozzano?",
+            "a": "Sì. Serviamo Rozzano e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Rozzano?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Rozzano?",
+            "a": "Sì, 41 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore sanitario?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per sanitario e commercio di Rozzano."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Rozzano."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "monza",
+      "name": "Monza",
+      "cap": "20900",
+      "lat": 45.5845,
+      "lng": 9.2744,
+      "population": 124000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Monza",
+      "distanzaSede": "42 min",
+      "distanzaSedeKm": 19,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": false
+      },
+      "nearCities": [
+        "cinisello-balsamo",
+        "cologno-monzese",
+        "sesto-san-giovanni",
+        "bresso",
+        "paderno-dugnano",
+        "cormano"
+      ],
+      "localContext": {
+        "highlights": [
+          "Autodromo Nazionale",
+          "Villa Reale e Parco",
+          "Capoluogo Brianza"
+        ],
+        "tessutoEconomico": "Monza è un comune di 124.000 abitanti nell'hinterland milanese. Autodromo Nazionale.",
+        "settoriChiave": [
+          "manifatturiero",
+          "finanziario",
+          "commercio",
+          "servizi",
+          "turismo"
+        ],
+        "opportunitaDigitale": "Le attività di Monza operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Monza e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Monza"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Monza?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Monza?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 42 minuti in auto da Monza. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Monza?",
+            "a": "Sì. Serviamo Monza e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Monza?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Monza?",
+            "a": "Sì, 42 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore manifatturiero?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per manifatturiero e finanziario di Monza."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Monza."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cologno-monzese",
+      "name": "Cologno Monzese",
+      "cap": "20093",
+      "lat": 45.5303,
+      "lng": 9.2792,
+      "population": 48000,
+      "province": "MI",
+      "wikipedia": "https://it.wikipedia.org/wiki/Cologno_Monzese",
+      "distanzaSede": "41 min",
+      "distanzaSedeKm": 19,
+      "isSede": false,
+      "generate": {
+        "agenzia": true,
+        "realizzazione": false
+      },
+      "nearCities": [
+        "sesto-san-giovanni",
+        "monza",
+        "cinisello-balsamo",
+        "bresso",
+        "milano-nord",
+        "cormano"
+      ],
+      "localContext": {
+        "highlights": [
+          "Studi Mediaset",
+          "Linea M2 Cologno",
+          "Hub media"
+        ],
+        "tessutoEconomico": "Cologno Monzese è un comune di 48.000 abitanti nell'hinterland milanese. Studi Mediaset.",
+        "settoriChiave": [
+          "media",
+          "servizi",
+          "commercio",
+          "terziario"
+        ],
+        "opportunitaDigitale": "Le attività di Cologno Monzese operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+      },
+      "images": {
+        "img1": {
+          "file": "rho-fiera-milano",
+          "alt": "Area metropolitana milanese — Cologno Monzese e hinterland"
+        },
+        "img2": {
+          "file": "rho-digital-ecosystem",
+          "alt": "Soluzioni digitali per le imprese di Cologno Monzese"
+        }
+      },
+      "faqs": {
+        "agenzia": [
+          {
+            "q": "Quanto costa un sito web a Cologno Monzese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "Dove si trova WebNovis rispetto a Cologno Monzese?",
+            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 41 minuti in auto da Cologno Monzese. Incontriamo i clienti in azienda o in videochiamata."
+          },
+          {
+            "q": "Servite anche i comuni vicini a Cologno Monzese?",
+            "a": "Sì. Serviamo Cologno Monzese e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano."
+          },
+          {
+            "q": "Usate WordPress?",
+            "a": "No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi."
+          },
+          {
+            "q": "Quanto tempo per un sito?",
+            "a": "Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane."
+          },
+          {
+            "q": "Supporto post-lancio?",
+            "a": "30 giorni di supporto gratuito. Manutenzione da €59/mese."
+          }
+        ],
+        "realizzazione": [
+          {
+            "q": "Quanto costa realizzare un sito web a Cologno Monzese?",
+            "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore."
+          },
+          {
+            "q": "WebNovis è vicina a Cologno Monzese?",
+            "a": "Sì, 41 minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata."
+          },
+          {
+            "q": "Fate siti per il settore media?",
+            "a": "Sì. Codice 100% custom con SEO locale integrata, ideale per media e servizi di Cologno Monzese."
+          },
+          {
+            "q": "SEO locale inclusa?",
+            "a": "Sì. Posizionamento per ricerche geolocalizzate del territorio di Cologno Monzese."
+          },
+          {
+            "q": "Servizi integrati?",
+            "a": "Sì. Web + graphic design (logo da €400) + social media (da €300/mese)."
+          }
+        ]
+      }
+    }
+  ]
+}

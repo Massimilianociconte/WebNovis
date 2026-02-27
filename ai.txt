@@ -85,7 +85,15 @@ WebNovis serve l'intero hinterland milanese con landing page dedicate per ogni a
 - **Lainate**: https://www.webnovis.com/agenzia-web-lainate.html (8 min da sede)
 - **Arese**: https://www.webnovis.com/agenzia-web-arese.html (10 min da sede)
 - **Garbagnate Milanese**: https://www.webnovis.com/agenzia-web-garbagnate.html (12 min da sede)
-- **Altri comuni serviti**: Pero, Bollate, Cesate, Nerviano, Pogliano Milanese, Settimo Milanese, Cornaredo, Senago
+- **Pero**: https://www.webnovis.com/agenzia-web-pero.html (5 min da sede)
+- **Cornaredo**: https://www.webnovis.com/agenzia-web-cornaredo.html (12 min da sede)
+- **Settimo Milanese**: https://www.webnovis.com/agenzia-web-settimo-milanese.html (14 min da sede)
+- **Bollate**: https://www.webnovis.com/agenzia-web-bollate.html (10 min da sede)
+- **Nerviano**: https://www.webnovis.com/agenzia-web-nerviano.html (10 min da sede)
+- **Pregnana Milanese**: https://www.webnovis.com/agenzia-web-pregnana-milanese.html (8 min da sede)
+- **Vanzago**: https://www.webnovis.com/agenzia-web-vanzago.html (10 min da sede)
+- **Baranzate**: https://www.webnovis.com/agenzia-web-baranzate.html (8 min da sede)
+- **Altri comuni serviti**: Cesate, Pogliano Milanese, Senago, Novate Milanese, Paderno Dugnano, Bareggio, Cusago
 
 ## Approccio e Filosofia
 
@@ -267,6 +275,6 @@ Profili in fase di approvazione: Yelp, ProntoPro, GoodFirms, Apple Business Conn
 
 ---
 
-**Ultimo aggiornamento**: 20 Febbraio 2026
-**Versione documento**: 4.0
+**Ultimo aggiornamento**: 27 Febbraio 2026
+**Versione documento**: 5.0
 **Formato**: AI-readable structured text
