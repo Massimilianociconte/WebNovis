@@ -147,7 +147,7 @@ app.use((req, res, next) => {
         'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
         'X-Content-Type-Options': 'nosniff',
         'X-Frame-Options': 'DENY',
-        'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://widget.trustpilot.com https://connect.facebook.net https://www.clarity.ms https://scripts.clarity.ms https://cdn.jsdelivr.net https://web3forms.com https://esm.sh https://www.designrush.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.designrush.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com https://www.designrush.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://widget.trustpilot.com; frame-src https://widget.trustpilot.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests",
+        'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://widget.trustpilot.com https://connect.facebook.net https://www.clarity.ms https://scripts.clarity.ms https://cdn.jsdelivr.net https://web3forms.com https://esm.sh https://www.designrush.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.designrush.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com https://www.designrush.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://widget.trustpilot.com; frame-src https://widget.trustpilot.com https://www.facebook.com https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests",
         'Referrer-Policy': 'strict-origin-when-cross-origin',
         'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
         'X-XSS-Protection': '0'
@@ -280,11 +280,20 @@ const geoFiles = fs.readdirSync(__dirname)
     .filter(f => f.endsWith('.html') && pseoPatterns.some(p => f.startsWith(p)));
 const publicFiles = [...corePublicFiles, ...geoFiles];
 console.log(`📄 Public files: ${corePublicFiles.length} core + ${geoFiles.length} pSEO = ${publicFiles.length} total`);
+
+const setSharedCacheHeaders = (res, value) => {
+    res.set('Cache-Control', value);
+    if (isProd) {
+        res.set('CDN-Cache-Control', value);
+        res.set('Surrogate-Control', value);
+    }
+};
+
 // 2.4 Static assets with no-cache for development (files use cache-busting ?v= params)
 const staticCacheOptions = {
     setHeaders: (res) => {
         if (isProd) {
-            res.set('Cache-Control', 'public, max-age=31536000, immutable');
+            setSharedCacheHeaders(res, 'public, max-age=31536000, immutable');
             return;
         }
         res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
@@ -298,7 +307,17 @@ app.use('/Img', express.static(path.join(__dirname, 'Img'), staticCacheOptions))
 app.use('/fonts', express.static(path.join(__dirname, 'fonts'), staticCacheOptions));
 
 // HTML directories with short cache + stale-while-revalidate
-const htmlCacheOptions = { setHeaders: (res) => res.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=7200') };
+const htmlCacheOptions = {
+    setHeaders: (res) => {
+        if (isProd) {
+            setSharedCacheHeaders(res, 'public, max-age=3600, stale-while-revalidate=7200');
+            return;
+        }
+        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+    }
+};
 app.use('/blog', express.static(path.join(__dirname, 'blog'), htmlCacheOptions));
 app.use('/agenzia-web', express.static(path.join(__dirname, 'agenzia-web'), htmlCacheOptions));
 app.use('/realizzazione-siti-web', express.static(path.join(__dirname, 'realizzazione-siti-web'), htmlCacheOptions));
@@ -315,9 +334,9 @@ publicFiles.forEach(file => {
         }
         if (isProd) {
             if (file.endsWith('.html')) {
-                res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
+                setSharedCacheHeaders(res, 'public, max-age=300, stale-while-revalidate=3600');
             } else {
-                res.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=7200');
+                setSharedCacheHeaders(res, 'public, max-age=3600, stale-while-revalidate=7200');
             }
         } else {
             res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
@@ -328,11 +347,11 @@ publicFiles.forEach(file => {
     });
 });
 app.get('/', (req, res) => {
-    res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
+    setSharedCacheHeaders(res, 'public, max-age=300, stale-while-revalidate=3600');
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 app.get('/servizi', (req, res) => {
-    res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
+    setSharedCacheHeaders(res, 'public, max-age=300, stale-while-revalidate=3600');
     res.sendFile(path.join(__dirname, 'servizi', 'index.html'));
 });
 

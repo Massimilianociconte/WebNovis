@@ -1194,7 +1194,7 @@
 }
 
 .text-reveal-word {
-    opacity: 0.12;
+    opacity: 0.18;
     transition: opacity 0.05s ease;
 }
 
@@ -1226,7 +1226,7 @@
     left: 0;
     top: 0;
     white-space: nowrap;
-    filter: blur(8px);
+    filter: blur(6px);
     opacity: 0;
     transition: filter 0.8s cubic-bezier(0.4, 0, 0.2, 1),
                 opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1240,7 +1240,7 @@
 }
 
 .morph-text.morph-exit {
-    filter: blur(8px);
+    filter: blur(6px);
     opacity: 0;
 }
 
@@ -1264,6 +1264,11 @@
     .morphing-text-line {
         font-size: 1.1rem;
         line-height: 1.6;
+    }
+
+    .morph-text,
+    .morph-text.morph-exit {
+        filter: blur(4px);
     }
 
     /* Counters: reduce spacing */

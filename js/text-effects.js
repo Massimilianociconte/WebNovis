@@ -23,6 +23,10 @@ function initTextReveal() {
     });
     paragraph.appendChild(fragment);
 
+    const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+    const minOpacity = isMobileViewport ? 0.24 : 0.18;
+    let isRevealActive = false;
+
     /* Scroll handler — maps scroll progress to per-word opacity.
      * Starts revealing when section is 40% into the viewport (not at the very top). */
     function updateReveal() {
@@ -44,12 +48,13 @@ function initTextReveal() {
         wordSpans.forEach(function (span, i) {
             var start = i / wordSpans.length;
             var wordP = Math.max(0, Math.min(1, (progress - start) * wordSpans.length));
-            span.style.opacity = 0.12 + wordP * 0.88;
+            span.style.opacity = minOpacity + wordP * (1 - minOpacity);
         });
     }
 
     var ticking = false;
     function onScroll() {
+        if (!isRevealActive) return;
         if (!ticking) {
             requestAnimationFrame(function () {
                 updateReveal();
@@ -58,9 +63,20 @@ function initTextReveal() {
             ticking = true;
         }
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('touchmove', onScroll, { passive: true });
 
+    const revealObserver = new IntersectionObserver(function(entries) {
+        isRevealActive = !!entries[0] && entries[0].isIntersecting;
+        if (isRevealActive) onScroll();
+    }, {
+        threshold: 0,
+        rootMargin: '220px 0px 220px 0px'
+    });
+    revealObserver.observe(wrapper);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    isRevealActive = true;
     updateReveal();
 }
 
@@ -87,6 +103,14 @@ function initMorphingText() {
         return measurer.offsetWidth;
     }
 
+    function getStableWidth() {
+        var maxWidth = 0;
+        for (var i = 0; i < texts.length; i++) {
+            maxWidth = Math.max(maxWidth, measureText(texts[i]));
+        }
+        return maxWidth;
+    }
+
     /* Create two overlapping elements for cross-fade morph */
     var elA = document.createElement('span');
     var elB = document.createElement('span');
@@ -97,8 +121,12 @@ function initMorphingText() {
     container.appendChild(elA);
     container.appendChild(elB);
 
-    /* Set initial width to first word */
-    container.style.width = measureText(texts[0]) + 'px';
+    /* Stabilize width once to avoid CLS while words rotate */
+    var stableWidth = getStableWidth();
+    if (stableWidth > 0) {
+        container.style.width = stableWidth + 'px';
+        container.style.minWidth = stableWidth + 'px';
+    }
 
     function morphNext() {
         currentIndex = (currentIndex + 1) % texts.length;
@@ -108,9 +136,6 @@ function initMorphingText() {
         var inactive = (active === elA) ? elB : elA;
 
         inactive.textContent = texts[currentIndex];
-
-        /* Dynamically resize container to current word width */
-        container.style.width = measureText(texts[currentIndex]) + 'px';
 
         active.classList.add('morph-exit');
         active.classList.remove('morph-active');
@@ -124,7 +149,32 @@ function initMorphingText() {
         }, 900);
     }
 
-    setInterval(morphNext, 3000);
+    var morphTimer = null;
+    var lowPriorityMode = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches;
+
+    function startMorphing() {
+        if (morphTimer || texts.length < 2) return;
+        morphTimer = setInterval(morphNext, lowPriorityMode ? 3600 : 3000);
+    }
+
+    function stopMorphing() {
+        if (!morphTimer) return;
+        clearInterval(morphTimer);
+        morphTimer = null;
+    }
+
+    if (lowPriorityMode) {
+        window.addEventListener('load', function() {
+            setTimeout(startMorphing, 1400);
+        }, { once: true });
+    } else {
+        startMorphing();
+    }
+
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) stopMorphing();
+        else startMorphing();
+    });
 }
 
 /* ---------- INIT ---------- */

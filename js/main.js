@@ -2,9 +2,42 @@
 
 // Mobile/Touch detection
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-let isMobile = window.innerWidth <= 768;
-window.addEventListener('resize', () => { isMobile = window.innerWidth <= 768; });
+const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
+let isMobile = mobileMediaQuery.matches;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function syncMobileState() {
+    isMobile = mobileMediaQuery.matches;
+    document.documentElement.classList.toggle('is-mobile', isMobile);
+}
+
+syncMobileState();
+if (typeof mobileMediaQuery.addEventListener === 'function') {
+    mobileMediaQuery.addEventListener('change', syncMobileState);
+} else {
+    window.addEventListener('resize', syncMobileState);
+}
+
+if (isMobile && !prefersReducedMotion) {
+    const activateHeroFx = () => {
+        document.documentElement.classList.add('hero-fx-ready');
+    };
+    const scheduleHeroFx = () => {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(activateHeroFx, { timeout: 2200 });
+        } else {
+            setTimeout(activateHeroFx, 1800);
+        }
+    };
+
+    if (document.readyState === 'complete') {
+        scheduleHeroFx();
+    } else {
+        window.addEventListener('load', scheduleHeroFx, { once: true });
+    }
+} else {
+    document.documentElement.classList.add('hero-fx-ready');
+}
 
 // Custom cursor is now handled by cursor.js
 
@@ -147,6 +180,43 @@ animatedElements.forEach(el => {
 const gradientOrbs = document.querySelectorAll('.gradient-orb');
 const allSections = document.querySelectorAll('section');
 const isHomepage = !document.querySelector('.portfolio-hero');
+const backToTopButton = document.getElementById('backToTop');
+const scrollProgressBar = document.querySelector('.scroll-progress');
+const whatsappFloatButton = document.getElementById('whatsappFloat');
+
+// Cache homepage section ranges used for background swaps to avoid per-frame reflow
+var homepageBackgroundCache = [];
+var homepageBackgroundCacheDirty = true;
+
+function buildHomepageBackgroundCache() {
+    homepageBackgroundCache = [];
+    allSections.forEach(function(section) {
+        var cls = section.className || '';
+        var background = '';
+        if (cls.indexOf('hero') !== -1) background = 'var(--dark)';
+        else if (cls.indexOf('triade') !== -1) background = 'linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%)';
+
+        if (!background) return;
+        homepageBackgroundCache.push({
+            top: section.offsetTop,
+            bottom: section.offsetTop + section.offsetHeight,
+            background: background
+        });
+    });
+    homepageBackgroundCacheDirty = false;
+}
+
+function getHomepageBackground(scrollY) {
+    if (homepageBackgroundCacheDirty) buildHomepageBackgroundCache();
+    var probe = scrollY + (window.innerHeight * 0.5);
+    for (var i = 0; i < homepageBackgroundCache.length; i++) {
+        var item = homepageBackgroundCache[i];
+        if (probe >= item.top && probe < item.bottom) {
+            return item.background;
+        }
+    }
+    return '';
+}
 
 (function() {
     var scrollTicking = false;
@@ -172,41 +242,30 @@ const isHomepage = !document.querySelector('.portfolio-hero');
 
         // 3. Background color change (homepage only)
         if (isHomepage) {
-            var newBackground = '';
-            for (var s = 0; s < allSections.length; s++) {
-                var rect = allSections[s].getBoundingClientRect();
-                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                    var cls = allSections[s].className;
-                    if (cls.indexOf('hero') !== -1) newBackground = 'var(--dark)';
-                    else if (cls.indexOf('triade') !== -1) newBackground = 'linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%)';
-                }
-            }
+            var newBackground = getHomepageBackground(scrollY);
             if (newBackground) document.body.style.background = newBackground;
         }
 
         // 4. Back to top button
-        var btt = document.getElementById('backToTop');
-        if (btt) {
+        if (backToTopButton) {
             var show = scrollY > 500;
-            if (show && !btt.classList.contains('visible')) btt.classList.add('visible');
-            else if (!show && btt.classList.contains('visible')) btt.classList.remove('visible');
+            if (show && !backToTopButton.classList.contains('visible')) backToTopButton.classList.add('visible');
+            else if (!show && backToTopButton.classList.contains('visible')) backToTopButton.classList.remove('visible');
         }
 
         // 5. Scroll progress bar (transform-based — no repaint)
-        var pb = document.querySelector('.scroll-progress');
-        if (pb && docH > 0) {
-            pb.style.transform = 'scaleX(' + (scrollY / docH) + ')';
+        if (scrollProgressBar && docH > 0) {
+            scrollProgressBar.style.transform = 'scaleX(' + (scrollY / docH) + ')';
         }
 
         // 6. WhatsApp float
-        var wa = document.getElementById('whatsappFloat');
-        if (wa) {
+        if (whatsappFloatButton) {
             if (scrollY > 300) {
-                wa.style.opacity = '1';
-                wa.style.transform = 'translateY(0)';
+                whatsappFloatButton.style.opacity = '1';
+                whatsappFloatButton.style.transform = 'translateY(0)';
             } else {
-                wa.style.opacity = '0';
-                wa.style.transform = 'translateY(20px)';
+                whatsappFloatButton.style.opacity = '0';
+                whatsappFloatButton.style.transform = 'translateY(20px)';
             }
         }
 
@@ -257,6 +316,8 @@ function buildSectionCache() {
 
 window.addEventListener('resize', function() { sectionCacheDirty = true; });
 window.addEventListener('load', function() { sectionCacheDirty = true; });
+window.addEventListener('resize', function() { homepageBackgroundCacheDirty = true; });
+window.addEventListener('load', function() { homepageBackgroundCacheDirty = true; });
 
 const highlightNav = () => {
     if (sectionCacheDirty) buildSectionCache();
@@ -1401,16 +1462,34 @@ const rotatingWords = document.querySelectorAll('.hero-rotating-word');
 if (rotatingWords.length > 0) {
     let currentWordIndex = 0;
     const rotatingWrapper = rotatingWords[0].closest('.hero-rotating-wrapper');
+    let rotationTimer = null;
+    let resizeTimer = null;
 
-    const updateWrapperWidth = (wordEl) => {
+    const setStableWrapperWidth = () => {
         if (!rotatingWrapper) return;
-        const measured = wordEl.scrollWidth || wordEl.offsetWidth;
-        if (measured > 0) rotatingWrapper.style.width = (measured + 12) + 'px';
+        let maxWidth = 0;
+        rotatingWords.forEach((wordEl) => {
+            const measured = wordEl.scrollWidth || wordEl.offsetWidth;
+            if (measured > maxWidth) maxWidth = measured;
+        });
+        if (maxWidth > 0) rotatingWrapper.style.width = (maxWidth + 12) + 'px';
     };
 
-    updateWrapperWidth(rotatingWords[currentWordIndex]);
+    const scheduleWidthMeasure = () => {
+        requestAnimationFrame(setStableWrapperWidth);
+    };
 
-    setInterval(() => {
+    scheduleWidthMeasure();
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(scheduleWidthMeasure).catch(() => {});
+    }
+
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(scheduleWidthMeasure, 120);
+    });
+
+    const rotateWords = () => {
         const currentWord = rotatingWords[currentWordIndex];
         currentWord.classList.remove('active');
         currentWord.classList.add('exit-up');
@@ -1422,8 +1501,38 @@ if (rotatingWords.length > 0) {
         currentWordIndex = (currentWordIndex + 1) % rotatingWords.length;
         const nextWord = rotatingWords[currentWordIndex];
         nextWord.classList.add('active');
-        updateWrapperWidth(nextWord);
-    }, 2500);
+    };
+
+    const startRotation = () => {
+        if (rotationTimer || rotatingWords.length < 2) return;
+        const intervalMs = isMobile ? 3200 : 2500;
+        rotationTimer = setInterval(rotateWords, intervalMs);
+    };
+
+    const stopRotation = () => {
+        if (!rotationTimer) return;
+        clearInterval(rotationTimer);
+        rotationTimer = null;
+    };
+
+    const startWhenReady = () => {
+        if (isMobile || prefersReducedMotion) {
+            setTimeout(startRotation, 1600);
+            return;
+        }
+        startRotation();
+    };
+
+    if (document.readyState === 'complete') {
+        startWhenReady();
+    } else {
+        window.addEventListener('load', startWhenReady, { once: true });
+    }
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopRotation();
+        else startRotation();
+    });
 }
 
 // 2. Animated Counters (NC Style)

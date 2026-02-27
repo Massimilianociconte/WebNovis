@@ -59,6 +59,44 @@ document.addEventListener('DOMContentLoaded', function () {
         messageCount: 0,
         sessionId: Date.now().toString(36)
     };
+    let keepAliveTimer = null;
+    let keepAliveStarted = false;
+
+    function startKeepAlive() {
+        if (keepAliveStarted) return;
+        keepAliveStarted = true;
+
+        const heartbeat = () => {
+            fetch(CHAT_CONFIG.healthCheckUrl, { keepalive: true }).catch(() => {});
+        };
+
+        heartbeat();
+
+        const interval = isMobileChat
+            ? CHAT_CONFIG.keepAliveInterval * 2
+            : CHAT_CONFIG.keepAliveInterval;
+        keepAliveTimer = setInterval(heartbeat, interval);
+    }
+
+    function setupKeepAlive() {
+        if (_isLocal) return;
+
+        const startOnIntent = () => startKeepAlive();
+        window.addEventListener('pointerdown', startOnIntent, { once: true, passive: true });
+        window.addEventListener('keydown', startOnIntent, { once: true });
+        window.addEventListener('scroll', startOnIntent, { once: true, passive: true });
+
+        const warmupDelay = isMobileChat ? 12000 : 5000;
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => setTimeout(startKeepAlive, warmupDelay), { timeout: 7000 });
+        } else {
+            setTimeout(startKeepAlive, warmupDelay);
+        }
+
+        window.addEventListener('beforeunload', () => {
+            if (keepAliveTimer) clearInterval(keepAliveTimer);
+        });
+    }
 
     // Char counter element (injected after input is found)
     let charCounter = null;
@@ -603,13 +641,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }, isMobileChat ? 5000 : 3000); // Longer delay on mobile
 
-    // Keep-Alive Heartbeat (production only)
-    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        setInterval(() => {
-            fetch(CHAT_CONFIG.healthCheckUrl).catch(() => { });
-        }, CHAT_CONFIG.keepAliveInterval);
-
-        // Wake up server on load
-        fetch(CHAT_CONFIG.healthCheckUrl).catch(() => { });
-    }
+    // Keep-Alive Heartbeat (production only, delayed)
+    setupKeepAlive();
 });

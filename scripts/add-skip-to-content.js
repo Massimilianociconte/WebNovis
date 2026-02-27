@@ -1,7 +1,7 @@
 /**
  * add-skip-to-content.js — Injects a skip-to-content link for accessibility (F2-10)
  * 
- * Adds <a href="#main" class="skip-link">Vai al contenuto</a> as first child of <body>
+ * Adds <a href="#main-content" class="skip-link">Vai al contenuto</a> as first child of <body>
  * and the corresponding CSS (visually hidden until focused).
  * 
  * Usage: node scripts/add-skip-to-content.js
@@ -9,12 +9,11 @@
 
 const fs = require('fs');
 const path = require('path');
-const glob = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 
 // Skip-link HTML + inline CSS (injected once per page)
-const SKIP_LINK = '<a href="#main" class="skip-link" style="position:absolute;top:-100%;left:0;z-index:100000;padding:.8rem 1.5rem;background:#7B8CC9;color:#fff;font-size:.9rem;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s">Vai al contenuto</a><style>.skip-link:focus{top:0}</style>';
+const SKIP_LINK = '<a href="#main-content" class="skip-link" style="position:absolute;top:-100%;left:0;z-index:100000;padding:.8rem 1.5rem;background:#7B8CC9;color:#fff;font-size:.9rem;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s">Vai al contenuto</a><style>.skip-link:focus{top:0}</style>';
 
 // Find all HTML files (excluding node_modules, blog auto-generated)
 function getHtmlFiles(dir) {
@@ -34,12 +33,20 @@ function getHtmlFiles(dir) {
 
 const files = getHtmlFiles(ROOT);
 let modified = 0;
+let fixed = 0;
 
 for (const file of files) {
     let content = fs.readFileSync(file, 'utf-8');
     
-    // Skip if already has skip-link
-    if (content.includes('skip-link')) continue;
+    // If skip-link already exists, normalize legacy #main target.
+    if (content.includes('skip-link')) {
+        const updated = content.replace(/href="#main"\s+class="skip-link"/g, 'href="#main-content" class="skip-link"');
+        if (updated !== content) {
+            fs.writeFileSync(file, updated, 'utf-8');
+            fixed++;
+        }
+        continue;
+    }
     
     // Insert after <body> or <body ...>
     const bodyMatch = content.match(/<body[^>]*>/i);
@@ -52,4 +59,4 @@ for (const file of files) {
     modified++;
 }
 
-console.log(`Added skip-to-content link to ${modified} HTML files`);
+console.log(`Added skip-to-content link to ${modified} HTML files; fixed legacy targets in ${fixed} files`);

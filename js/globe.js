@@ -1,75 +1,107 @@
 // ===== COBE GLOBE - WebNovis Contact Section =====
-// Vanilla JS implementation using cobe library via CDN
+// Vanilla JS implementation using cobe library via CDN (lazy initialized)
 
-(async function initGlobe() {
+(function setupGlobe() {
     const canvas = document.getElementById('cobeGlobe');
     if (!canvas) return;
 
-    // Dynamically import cobe from CDN
-    let createGlobe;
-    try {
-        const module = await import('https://esm.sh/cobe@0.6.3');
-        createGlobe = module.default;
-    } catch (e) {
-        console.warn('Globe: cobe library failed to load', e);
-        return;
+    const isMobileGlobe = window.matchMedia('(max-width: 768px)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let hasStarted = false;
+    let globe = null;
+    let visibilityObserver = null;
+    let width = 0;
+    let phi = 0;
+    let resizeRaf = 0;
+
+    function computeWidth() {
+        const wrapper = canvas.parentElement;
+        const nextWidth = wrapper ? wrapper.clientWidth : canvas.clientWidth;
+        width = nextWidth > 0 ? nextWidth : 280;
     }
 
-    let phi = 0;
-    let width = 0;
+    function onResize() {
+        if (resizeRaf) cancelAnimationFrame(resizeRaf);
+        resizeRaf = requestAnimationFrame(computeWidth);
+    }
 
-    const onResize = () => {
-        // Match the wrapper size
-        const wrapper = canvas.parentElement;
-        if (wrapper) {
-            width = wrapper.offsetWidth;
-        } else {
-            width = canvas.offsetWidth;
+    async function initGlobe() {
+        if (hasStarted) return;
+        hasStarted = true;
+
+        computeWidth();
+
+        let createGlobe;
+        try {
+            const module = await import('https://esm.sh/cobe@0.6.3');
+            createGlobe = module.default;
+        } catch (e) {
+            hasStarted = false;
+            console.warn('Globe: cobe library failed to load', e);
+            return;
         }
-    };
-    window.addEventListener('resize', onResize);
-    onResize();
 
-    const globe = createGlobe(canvas, {
-        devicePixelRatio: 2,
-        width: width * 2,
-        height: width * 2,
-        phi: 0,
-        theta: 0.3,
-        dark: 1,
-        diffuse: 3,
-        mapSamples: 36000,
-        mapBrightness: 2.5,
-        baseColor: [0.08, 0.33, 0.78],
-        markerColor: [0.36, 0.42, 0.68],
-        glowColor: [0.04, 0.19, 0.47],
-        markers: [],
-        onRender: (state) => {
-            state.phi = phi;
-            phi += 0.003;
+        const deviceRatio = isMobileGlobe ? 1.5 : 2;
+        const mapSamples = isMobileGlobe ? 22000 : 36000;
+        const spinSpeed = prefersReducedMotion ? 0.0015 : 0.003;
 
-            state.width = width * 2;
-            state.height = width * 2;
-        },
+        globe = createGlobe(canvas, {
+            devicePixelRatio: deviceRatio,
+            width: width * deviceRatio,
+            height: width * deviceRatio,
+            phi: 0,
+            theta: 0.3,
+            dark: 1,
+            diffuse: 3,
+            mapSamples: mapSamples,
+            mapBrightness: 2.5,
+            baseColor: [0.08, 0.33, 0.78],
+            markerColor: [0.36, 0.42, 0.68],
+            glowColor: [0.04, 0.19, 0.47],
+            markers: [],
+            onRender: (state) => {
+                state.phi = phi;
+                phi += spinSpeed;
+                state.width = width * deviceRatio;
+                state.height = width * deviceRatio;
+            },
+        });
+
+        window.addEventListener('resize', onResize, { passive: true });
+
+        visibilityObserver = new IntersectionObserver((entries) => {
+            const visible = entries.some((entry) => entry.isIntersecting);
+            if (globe && typeof globe.toggle === 'function') {
+                globe.toggle(visible);
+            }
+        }, { threshold: 0.1 });
+        visibilityObserver.observe(canvas);
+
+        window.addEventListener('beforeunload', () => {
+            if (resizeRaf) cancelAnimationFrame(resizeRaf);
+            window.removeEventListener('resize', onResize);
+            if (visibilityObserver) visibilityObserver.disconnect();
+            if (globe) globe.destroy();
+        });
+    }
+
+    const initObserver = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        initObserver.disconnect();
+
+        if (isMobileGlobe) {
+            setTimeout(() => {
+                if (!document.hidden) initGlobe();
+            }, 450);
+            return;
+        }
+
+        initGlobe();
+    }, {
+        threshold: 0.01,
+        rootMargin: '280px 0px 280px 0px'
     });
 
-    // Cleanup on page unload
-    window.addEventListener('beforeunload', () => {
-        globe.destroy();
-    });
-
-    // Pause animation when not visible (performance)
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    globe.toggle(true);
-                } else {
-                    globe.toggle(false);
-                }
-            });
-        },
-        { threshold: 0.1 }
-    );
-    observer.observe(canvas);
+    initObserver.observe(canvas);
 })();
