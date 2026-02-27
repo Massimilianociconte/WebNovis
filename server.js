@@ -18,11 +18,11 @@ async function getFetch() {
 function escapeHtml(unsafe) {
     if (!unsafe) return '';
     return String(unsafe)
-         .replace(/&/g, "&amp;")
-         .replace(/</g, "&lt;")
-         .replace(/>/g, "&gt;")
-         .replace(/"/g, "&quot;")
-         .replace(/'/g, "&#39;");
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
 }
 
 // Middleware: verifica admin secret per endpoint protetti
@@ -164,8 +164,10 @@ app.use((req, res, next) => {
 });
 
 // 2.6 Trailing slash normalization (301)
+// Exclude directories that serve index.html via express.static
+const trailingSlashExclusions = ['/blog/', '/servizi/', '/agenzia-web/', '/realizzazione-siti-web/', '/zone-servite/'];
 app.use((req, res, next) => {
-    if (req.path.length > 1 && req.path.endsWith('/') && !req.path.startsWith('/blog/') && req.path !== '/servizi/') {
+    if (req.path.length > 1 && req.path.endsWith('/') && !trailingSlashExclusions.some(ex => req.path.startsWith(ex))) {
         const query = req.url.slice(req.path.length);
         return res.redirect(301, req.path.slice(0, -1) + query);
     }
@@ -266,10 +268,13 @@ app.use((req, res, next) => {
 // Core static pages (manually maintained)
 const corePublicFiles = ['index.html', 'portfolio.html', 'privacy-policy.html', 'cookie-policy.html', 'termini-condizioni.html', 'chi-siamo.html', 'contatti.html', 'preventivo.html', 'come-lavoriamo.html', 'grazie.html', '404.html', 'robots.txt', 'sitemap.xml', 'manifest.json', 'favicon.ico', 'ai.txt', 'llms.txt', 'webnovis-ai-data.json', 'search-index.json', 'CNAME', '8531a1fa-b8b0-4136-8741-b5895865d3c4.txt'];
 // Auto-discover all pSEO pages (geo + service×city) — scales without manual updates
+// Must match generate-all-geo.js filter: all services where generateGeoPages !== false
 const pseoPatterns = ['agenzia-web-', 'agenzie-web-', 'realizzazione-siti-web-'];
 try {
     const svcData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'services.json'), 'utf8'));
-    svcData.services.filter(s => s.tier === 'extended').forEach(s => pseoPatterns.push(s.slug + '-'));
+    svcData.services
+        .filter(s => s.generateGeoPages !== false)
+        .forEach(s => pseoPatterns.push(s.slug + '-'));
 } catch (e) { /* services.json not available — use base patterns only */ }
 const geoFiles = fs.readdirSync(__dirname)
     .filter(f => f.endsWith('.html') && pseoPatterns.some(p => f.startsWith(p)));
@@ -295,6 +300,9 @@ app.use('/fonts', express.static(path.join(__dirname, 'fonts'), staticCacheOptio
 // HTML directories with short cache + stale-while-revalidate
 const htmlCacheOptions = { setHeaders: (res) => res.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=7200') };
 app.use('/blog', express.static(path.join(__dirname, 'blog'), htmlCacheOptions));
+app.use('/agenzia-web', express.static(path.join(__dirname, 'agenzia-web'), htmlCacheOptions));
+app.use('/realizzazione-siti-web', express.static(path.join(__dirname, 'realizzazione-siti-web'), htmlCacheOptions));
+app.use('/zone-servite', express.static(path.join(__dirname, 'zone-servite'), htmlCacheOptions));
 app.use('/servizi', express.static(path.join(__dirname, 'servizi'), htmlCacheOptions));
 app.use('/portfolio', express.static(path.join(__dirname, 'portfolio'), htmlCacheOptions));
 // AI-discoverable files: open CORS so any AI crawler/tool can fetch them regardless of Origin
@@ -640,9 +648,9 @@ app.post('/api/lead', leadLimiter, async (req, res) => {
         }
 
         const BREVO_API_KEY = process.env.BREVO_API_KEY;
-        const hasBravo = BREVO_API_KEY && BREVO_API_KEY !== 'xkeysib-your-api-key-here';
+        const hasBrevo = BREVO_API_KEY && BREVO_API_KEY !== 'xkeysib-your-api-key-here';
 
-        if (hasBravo) {
+        if (hasBrevo) {
             const fetch = await getFetch();
             const BREVO_LIST_ID = parseInt(process.env.BREVO_LIST_ID) || 2;
             const senderEmail = process.env.BREVO_SENDER_EMAIL || 'newsletter@webnovis.com';
@@ -808,15 +816,15 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
         if (!message || typeof message !== 'string') {
             return res.status(400).json({ error: 'Messaggio non valido.' });
         }
-        
+
         // Valida conversationHistory
         if (!Array.isArray(conversationHistory) || conversationHistory.length > 20) {
-             return res.status(400).json({ error: 'Cronologia chat non valida.' });
+            return res.status(400).json({ error: 'Cronologia chat non valida.' });
         }
-        
-        const validHistory = conversationHistory.filter(msg => 
-            msg && typeof msg === 'object' && 
-            (msg.role === 'user' || msg.role === 'assistant') && 
+
+        const validHistory = conversationHistory.filter(msg =>
+            msg && typeof msg === 'object' &&
+            (msg.role === 'user' || msg.role === 'assistant') &&
             typeof msg.content === 'string' && msg.content.length <= 1000
         );
 
@@ -993,7 +1001,7 @@ app.post('/api/newsletter/send', requireAdminAuth, async (req, res) => {
 
     } catch (error) {
         console.error('❌ Newsletter send error:', error.message);
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: 'Errore durante l\'invio della newsletter. Riprova.' });
     }
 });
 
@@ -1064,7 +1072,7 @@ app.get('/api/newsletter/unsubscribe', async (req, res) => {
 
         // Verifica HMAC token per prevenire disiscrizioni massive malevole
         if (!token) {
-             return res.status(403).send(`
+            return res.status(403).send(`
                 <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
                 <title>Errore Sicurezza - WebNovis</title>
                 <style>body{background:#0a0a0f;color:#e0e0e0;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
@@ -1103,7 +1111,7 @@ app.get('/api/newsletter/unsubscribe', async (req, res) => {
             .digest('hex');
 
         if (!crypto.timingSafeEqual(Buffer.from(providedToken), Buffer.from(expectedToken))) {
-             return res.status(403).send(`
+            return res.status(403).send(`
                 <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
                 <title>Errore Sicurezza - WebNovis</title>
                 <style>body{background:#0a0a0f;color:#e0e0e0;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
@@ -1123,7 +1131,7 @@ app.get('/api/newsletter/unsubscribe', async (req, res) => {
             h2{color:#14b8a6;margin-bottom:12px}p{color:#999;line-height:1.6}a{color:#7B8CC9}</style></head><body>
             <div class="card">
                 <h2>Disiscrizione completata</h2>
-                <p><strong style="color:#fff">${email.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}</strong> è stato rimosso dalla newsletter WebNovis.</p>
+                <p><strong style="color:#fff">${email.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))}</strong> è stato rimosso dalla newsletter WebNovis.</p>
                 <p>Non riceverai più email da noi. Se è stato un errore, puoi reiscriverti dal nostro <a href="https://www.webnovis.com/contatti.html">sito web</a>.</p>
             </div></body></html>
         `);
@@ -1171,7 +1179,7 @@ function startNewsletterCron() {
             const logPath = path.join(__dirname, 'newsletter-log.jsonl');
             let logsStr = '';
             try { logsStr = fs.readFileSync(logPath, 'utf8'); } catch { /* nessun log */ }
-            
+
             const logs = logsStr.split('\n').filter(Boolean).map(l => {
                 try { return JSON.parse(l); } catch { return null; }
             }).filter(Boolean);

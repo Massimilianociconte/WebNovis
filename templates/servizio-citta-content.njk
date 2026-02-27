@@ -9,7 +9,7 @@
   <div class="container breadcrumb">
     <a href="/">Home</a>
     <span class="separator">/</span>
-    <a href="{{ service.url }}">{{ service.shortName }}</a>
+    <a href="/zone-servite/#{{ service.slug }}">{{ service.shortName }}</a>
     <span class="separator">/</span>
     <span class="current-page">{{ service.shortName }} a {{ city.name }}</span>
   </div>
@@ -74,6 +74,31 @@
           <p>Ogni progetto include ottimizzazione per ricerche geolocalizzate: "{{ service.targetKeyword }} {{ city.name }}" e query correlate del territorio.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  {# ═══ SECTION 2b — How we work for this service ═══ #}
+  <section class="service-detail">
+    <div class="container">
+      <h2>Come funziona {{ service.name | lower }} con WebNovis a {{ city.name }}</h2>
+      <p>Il nostro processo per {{ service.name | lower }} segue un percorso strutturato e trasparente, dalla prima consulenza alla consegna finale.</p>
+      <div class="service-grid">
+        <div class="service-card-mini">
+          <h3>1. Analisi e brief</h3>
+          <p>Incontro gratuito{% if not city.isSede %} presso la tua sede a {{ city.name }}{% endif %} o in videochiamata. Analizziamo obiettivi, competitor del territorio e target di riferimento per {{ service.name | lower }}.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>2. Proposta personalizzata</h3>
+          <p>Preventivo dettagliato entro 24 ore con tempi certi: <strong>{{ service.timeEstimate }}</strong>. Nessun costo nascosto, massima trasparenza su ogni fase del progetto.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>3. Realizzazione e consegna</h3>
+          <p>Sviluppo con codice 100% custom, aggiornamenti regolari e test prima del lancio. <strong>30 giorni di supporto gratuito</strong> inclusi in ogni progetto di {{ service.name | lower }}.</p>
+        </div>
+      </div>
+      {% if city.localContext and city.localContext.settoriChiave %}
+      <p style="margin-top:1.5rem">A {{ city.name }}{% if city.population %} ({{ city.population | localeNumber }} abitanti){% endif %}, {{ service.name | lower }} è particolarmente rilevante per i settori: <strong>{{ city.localContext.settoriChiave | join('</strong>, <strong>') }}</strong>.</p>
+      {% endif %}
     </div>
   </section>
 

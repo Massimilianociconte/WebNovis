@@ -1,0 +1,75 @@
+{# 
+  WebNovis — Hub page template: Realizzazione Siti Web per tutti i comuni
+  URL: /realizzazione-siti-web/index.html
+  Variables: cities, site, today, todayFormatted, totalCities
+#}
+<main>
+  <div class="container breadcrumb">
+    <a href="/">Home</a>
+    <span class="separator">/</span>
+    <span class="current-page">Realizzazione Siti Web — Comuni Milano</span>
+  </div>
+
+  <section class="service-page-hero">
+    <div class="container">
+      <span class="section-tag">{{ totalCities }} Comuni serviti — Hinterland Milano</span>
+      <h1>Realizzazione Siti Web nei Comuni della Provincia di Milano</h1>
+      <p class="answer-capsule"><strong>WebNovis</strong> realizza siti web professionali per aziende in {{ totalCities }} comuni dell'hinterland milanese. Codice 100% custom, SEO integrata, design su misura. Sede a Rho. Trova il tuo comune e scopri cosa possiamo fare per la tua attività.</p>
+      <a href="/contatti.html" class="btn btn-large btn-primary">
+        <span>Richiedi Preventivo Gratuito</span>
+        <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+      <p style="margin-top:1.5rem;font-size:.85rem;opacity:.5">
+        <time datetime="{{ today }}">{{ todayFormatted }}</time>
+        &nbsp;·&nbsp; Sede: Via S. Giorgio 2, 20017 Rho MI
+      </p>
+    </div>
+  </section>
+
+  <section class="service-detail">
+    <div class="container">
+      <h2>Tutti i Comuni Serviti</h2>
+      <p>Selezione il tuo comune per scoprire i dettagli sui nostri servizi di realizzazione siti web nella tua zona.</p>
+      <div class="hub-city-grid">
+        {% for city in cities %}
+        <a href="/realizzazione-siti-web-{{ city.slug }}.html" class="hub-city-card" title="Realizzazione Siti Web a {{ city.name }}">
+          <span class="hub-city-name">{{ city.name }}</span>
+          <span class="hub-city-meta">{{ city.province }} · {{ city.distanzaSede }}</span>
+          {% if city.population %}<span class="hub-city-pop">{{ city.population | localeNumber }} ab.</span>{% endif %}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>Perché un sito web custom per la tua azienda?</h2>
+      <div class="service-grid">
+        <div class="service-card-mini">
+          <h3>Zero WordPress</h3>
+          <p>Nessun CMS generico, nessun template. Codice HTML5, CSS3 e JavaScript sviluppato da zero per massime performance e sicurezza.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>SEO integrata</h3>
+          <p>Ogni sito nasce ottimizzato per Google: struttura semantica, Core Web Vitals, dati strutturati JSON-LD e velocità di caricamento sotto i 2 secondi.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Design su misura</h3>
+          <p>Layout e identità visiva progettati intorno al tuo brand e al tuo mercato locale. Nessun compromesso sulla qualità.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-inline">
+    <div class="container">
+      <h2>Pronto a realizzare il tuo sito web?</h2>
+      <p>Preventivo gratuito in 24 ore. Incontri in azienda o in videochiamata.</p>
+      <a href="/contatti.html" class="btn btn-large btn-primary">
+        <span>Contattaci Ora</span>
+        <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+    </div>
+  </section>
+</main>

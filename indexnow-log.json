@@ -80,5 +80,34 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-02-27T11:52:11.435Z",
+    "urlCount": 589,
+    "urls": [
+      "https://www.webnovis.com/",
+      "https://www.webnovis.com/agenzia-web-arese.html",
+      "https://www.webnovis.com/agenzia-web-arluno.html",
+      "https://www.webnovis.com/agenzia-web-assago.html",
+      "https://www.webnovis.com/agenzia-web-baranzate.html",
+      "https://www.webnovis.com/agenzia-web-bareggio.html",
+      "https://www.webnovis.com/agenzia-web-bollate.html",
+      "https://www.webnovis.com/agenzia-web-bresso.html",
+      "https://www.webnovis.com/agenzia-web-buccinasco.html",
+      "https://www.webnovis.com/agenzia-web-caronno-pertusella.html",
+      "https://www.webnovis.com/agenzia-web-castellanza.html",
+      "https://www.webnovis.com/agenzia-web-cerro-maggiore.html",
+      "https://www.webnovis.com/agenzia-web-cesano-boscone.html",
+      "https://www.webnovis.com/agenzia-web-cesate.html",
+      "https://www.webnovis.com/agenzia-web-cinisello-balsamo.html",
+      "https://www.webnovis.com/agenzia-web-cologno-monzese.html",
+      "https://www.webnovis.com/agenzia-web-cormano.html",
+      "https://www.webnovis.com/agenzia-web-cornaredo.html",
+      "https://www.webnovis.com/agenzia-web-corsico.html",
+      "https://www.webnovis.com/agenzia-web-cusago.html"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]

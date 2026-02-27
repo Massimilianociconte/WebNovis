@@ -30,10 +30,24 @@ const nunjucks = require('nunjucks');
 // ─── Configuration ────────────────────────────────────────────────────────────
 const ROOT = path.join(__dirname, '..');
 const SITE = 'https://www.webnovis.com';
+const SEDE_LAT = '45.5299';
+const SEDE_LNG = '9.0393';
+const FIRST_DEPLOY_DATE = '2026-02-27';
 const TODAY = new Date().toISOString().split('T')[0];
 const TODAY_FORMATTED = new Date().toLocaleDateString('it-IT', {
     day: 'numeric', month: 'long', year: 'numeric'
 });
+
+// Cache for base HTML pages (read once, reuse for all cities)
+const _basePageCache = {};
+function getBasePage(filename) {
+    if (!_basePageCache[filename]) {
+        const p = path.join(ROOT, filename);
+        if (!fs.existsSync(p)) return null;
+        _basePageCache[filename] = fs.readFileSync(p, 'utf8');
+    }
+    return _basePageCache[filename];
+}
 
 // CLI args
 const args = process.argv.slice(2);
@@ -94,14 +108,14 @@ function haversineKm(lat1, lng1, lat2, lng2) {
     const dLat = (lat2 - lat1) * Math.PI / 180;
     const dLng = (lng2 - lng1) * Math.PI / 180;
     const a = Math.sin(dLat / 2) ** 2 +
-              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-              Math.sin(dLng / 2) ** 2;
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLng / 2) ** 2;
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
 function getNearestCities(city, allCities, limit = 5) {
     return allCities
-        .filter(c => c.slug !== city.slug && c.generate.agenzia)
+        .filter(c => c.slug !== city.slug)
         .map(c => ({
             ...c,
             distance: haversineKm(city.lat, city.lng, c.lat, c.lng)
@@ -164,12 +178,13 @@ function generateSchemas(city, pageType) {
     const faqs = (city.faqs && city.faqs[pageType]) || [];
 
     const schemas = [
-        // BreadcrumbList
+        // BreadcrumbList (3 levels: Home → Hub → City)
         {
             "@context": "https://schema.org", "@type": "BreadcrumbList",
             "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
-                { "@type": "ListItem", "position": 2, "name": breadcrumbLabel, "item": canonical }
+                { "@type": "ListItem", "position": 2, "name": "Agenzia Web", "item": SITE + "/agenzia-web/" },
+                { "@type": "ListItem", "position": 3, "name": breadcrumbLabel, "item": canonical }
             ]
         },
         // WebPage with SpeakableSpecification
@@ -182,7 +197,7 @@ function generateSchemas(city, pageType) {
             "inLanguage": "it",
             "isPartOf": { "@id": SITE + "/#website" },
             "about": { "@id": SITE + "/#organization" },
-            "datePublished": TODAY,
+            "datePublished": FIRST_DEPLOY_DATE,
             "dateModified": TODAY,
             "speakable": {
                 "@type": "SpeakableSpecification",
@@ -209,17 +224,17 @@ function generateSchemas(city, pageType) {
                 "addressLocality": "Rho", "addressRegion": "MI",
                 "postalCode": "20017", "addressCountry": "IT"
             },
-            "geo": { "@type": "GeoCoordinates", "latitude": String(city.lat), "longitude": String(city.lng) },
+            "geo": { "@type": "GeoCoordinates", "latitude": SEDE_LAT, "longitude": SEDE_LNG },
             "hasMap": "https://maps.google.com/?q=Via+S.+Giorgio+2%2C+20017+Rho+MI",
             "areaServed": nearCityObjects,
             "serviceArea": {
                 "@type": "GeoCircle",
-                "geoMidpoint": { "@type": "GeoCoordinates", "latitude": String(city.lat), "longitude": String(city.lng) },
-                "geoRadius": "15000"
+                "geoMidpoint": { "@type": "GeoCoordinates", "latitude": SEDE_LAT, "longitude": SEDE_LNG },
+                "geoRadius": "20000"
             },
             "openingHoursSpecification": [{
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                 "opens": "00:00", "closes": "23:59"
             }],
             "sameAs": [SITE + "/#organization"],
@@ -271,12 +286,11 @@ function generateSchemas(city, pageType) {
 // ─── Agenzia Page Generator (Nunjucks-based) ─────────────────────────────────
 
 function generateAgenziaPage(city) {
-    const rhoBasePath = path.join(ROOT, 'agenzia-web-rho.html');
-    if (!fs.existsSync(rhoBasePath)) {
+    const rhoPage = getBasePage('agenzia-web-rho.html');
+    if (!rhoPage) {
         console.error('❌ Base page agenzia-web-rho.html not found');
         return null;
     }
-    const rhoPage = fs.readFileSync(rhoBasePath, 'utf8');
 
     const canonical = `${SITE}/agenzia-web-${city.slug}.html`;
 
@@ -383,7 +397,7 @@ function generateAgenziaPage(city) {
     let footerHtml = rhoPage.substring(footerStart, footerEnd);
 
     // Inject geo links into footer Località section
-    footerHtml = injectFooterGeoLinks(footerHtml, city);
+    // Footer links managed by the Rho base template (Località section)
 
     // Get tail (CSS + scripts after footer)
     const afterFooter = rhoPage.substring(footerEnd);
@@ -405,12 +419,12 @@ function generateAgenziaPage(city) {
 // ─── Realizzazione Page Generator (regex-based on Rho template) ───────────────
 
 function generateRealizzazionePage(city) {
-    const templatePath = path.join(ROOT, 'realizzazione-siti-web-rho.html');
-    if (!fs.existsSync(templatePath)) {
+    const basePage = getBasePage('realizzazione-siti-web-rho.html');
+    if (!basePage) {
         console.error('❌ Base page realizzazione-siti-web-rho.html not found');
         return null;
     }
-    let page = fs.readFileSync(templatePath, 'utf8');
+    let page = basePage;
 
     const canonical = `${SITE}/realizzazione-siti-web-${city.slug}.html`;
 
@@ -542,18 +556,14 @@ function generateRealizzazionePage(city) {
     const geoLinksHtml = buildGeoLinksSection(city, 'realizzazione');
     page = page.replace('</main>', aiExtraHtml + geoLinksHtml + '</main>');
 
-    // Inject footer geo links
-    page = injectFooterGeoLinksInPage(page, city);
-
     return page;
 }
 
 // ─── Servizio×Città Page Generator (Nunjucks-based, third page type) ──────────
 
 function generateServizioCittaPage(service, city) {
-    const rhoBasePath = path.join(ROOT, 'agenzia-web-rho.html');
-    if (!fs.existsSync(rhoBasePath)) return null;
-    const rhoPage = fs.readFileSync(rhoBasePath, 'utf8');
+    const rhoPage = getBasePage('agenzia-web-rho.html');
+    if (!rhoPage) return null;
 
     const slug = `${service.slug}-${city.slug}`;
     const canonical = `${SITE}/${slug}.html`;
@@ -569,9 +579,10 @@ function generateServizioCittaPage(service, city) {
             distance: nc.distanzaSede
         }));
 
-    // Other services in the same city
-    const extendedServices = services.filter(s => s.tier === 'extended' && s.slug !== service.slug);
-    const relatedServicePages = extendedServices
+    // Other services in the same city (only link to services that have geo pages)
+    const geoServices = services.filter(s => s.generateGeoPages !== false && s.slug !== service.slug);
+    const relatedServicePages = geoServices
+        .filter(svc => city.population >= 15000 || svc.tier === 'core')
         .slice(0, 3)
         .map(svc => ({
             url: `${svc.slug}-${city.slug}.html`,
@@ -635,19 +646,23 @@ function generateServizioCittaPage(service, city) {
 
     // Schemas for service×city
     const schemas = [
-        { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
-            { "@type": "ListItem", "position": 2, "name": service.shortName, "item": SITE + service.url },
-            { "@type": "ListItem", "position": 3, "name": `${service.shortName} a ${city.name}`, "item": canonical }
-        ]},
-        { "@context": "https://schema.org", "@type": "Service",
+        {
+            "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
+                { "@type": "ListItem", "position": 2, "name": service.shortName, "item": SITE + "/zone-servite/#" + service.slug },
+                { "@type": "ListItem", "position": 3, "name": `${service.shortName} a ${city.name}`, "item": canonical }
+            ]
+        },
+        {
+            "@context": "https://schema.org", "@type": "Service",
             "serviceType": service.name, "name": `${service.name} a ${city.name}`,
             "description": `${service.shortDesc} Per aziende di ${city.name} e hinterland milanese.`,
             "provider": { "@id": SITE + "/#organization" },
             "areaServed": { "@type": "City", "name": city.name, "sameAs": city.wikipedia },
             "offers": { "@type": "Offer", "price": String(service.priceFrom), "priceCurrency": "EUR" }
         },
-        { "@context": "https://schema.org", "@type": "FAQPage",
+        {
+            "@context": "https://schema.org", "@type": "FAQPage",
             "mainEntity": faqs.map(f => ({
                 "@type": "Question", "name": f.q,
                 "acceptedAnswer": { "@type": "Answer", "text": f.a.replace(/<[^>]*>/g, '') }
@@ -657,6 +672,239 @@ function generateServizioCittaPage(service, city) {
     const schemasHtml = schemas.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n');
 
     return headBlock + '</head>' + navHtml + contentHtml + ' ' + footerHtml + '\n' + schemasHtml + '\n' + tailBlock;
+}
+
+// ─── Hub Pages Generator (Internal Linking Bridge) ────────────────────────────
+
+const HUB_CSS = `
+<style>
+.hub-city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
+.hub-city-grid--compact{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem}
+.hub-city-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem 1rem;text-decoration:none;display:flex;flex-direction:column;gap:.25rem;transition:all .25s ease}
+.hub-city-card:hover{border-color:rgba(91,106,174,.4);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.hub-city-card--sm{padding:.75rem;border-radius:8px}
+.hub-city-name{font-family:Syne,sans-serif;font-weight:700;color:var(--white);font-size:1rem}
+.hub-city-card--sm .hub-city-name{font-size:.9rem}
+.hub-city-meta{font-size:.8rem;color:var(--gray-light);opacity:.7}
+.hub-city-pop{font-size:.75rem;color:var(--primary-light);opacity:.8}
+@media(max-width:640px){.hub-city-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
+</style>`;
+
+function generateHubPages() {
+    const rhoPage = getBasePage('agenzia-web-rho.html');
+    if (!rhoPage) {
+        console.error('❌ Base page agenzia-web-rho.html not found — hub pages skipped');
+        return [];
+    }
+
+    const results = [];
+
+    // ── Shared page assembly helpers ──
+    function buildHubPage(hubSlug, title, description, keywords, contentHtml, schemaObjects) {
+        const canonical = `${SITE}/${hubSlug}/`;
+
+        // Extract head
+        const rhoHeadEnd = rhoPage.indexOf('</head>');
+        let headBlock = rhoPage.substring(0, rhoHeadEnd)
+            .replace(/<title>[^<]+<\/title>/, `<title>${title}</title>`)
+            .replace(/content="[^"]*" name="description"/, `content="${description}" name="description"`)
+            .replace(/content="[^"]*" name="keywords"/, `content="${keywords}" name="keywords"`)
+            .replace(/href="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `href="${canonical}"`)
+            .replace(/content="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `content="${canonical}"`)
+            .replace(/content="[^"]*" property="og:title"/, `content="${title}" property="og:title"`)
+            .replace(/content="[^"]*" property="og:description"/, `content="${description}" property="og:description"`);
+
+        // Inject hub CSS before </head>
+        headBlock += HUB_CSS;
+
+        // Extract nav, footer, tail
+        const bodyStart = rhoPage.indexOf('<body>');
+        const mainStart = rhoPage.indexOf('<main');
+        const navHtml = rhoPage.substring(bodyStart, mainStart);
+
+        const footerStart = rhoPage.indexOf('<footer');
+        const footerEnd = rhoPage.indexOf('</footer>') + '</footer>'.length;
+        const footerHtml = rhoPage.substring(footerStart, footerEnd);
+
+        const afterFooter = rhoPage.substring(footerEnd);
+        const searchCssIdx = afterFooter.indexOf('<link href="css/search');
+        const tailBlock = searchCssIdx >= 0 ? afterFooter.substring(searchCssIdx) : afterFooter;
+
+        // Schemas
+        const schemasHtml = schemaObjects.map(s =>
+            `<script type="application/ld+json">${JSON.stringify(s)}</script>`
+        ).join('\n');
+
+        let fullHtml = headBlock + '</head>' + navHtml + contentHtml + ' ' + footerHtml + '\n' + schemasHtml + '\n' + tailBlock;
+
+        // ── Convert relative paths to absolute for subdirectory serving ──
+        // Hub pages live in /agenzia-web/index.html, /zone-servite/index.html, etc.
+        // The base page (agenzia-web-rho.html) uses relative paths that break in subdirs.
+        fullHtml = fullHtml
+            .replace(/href="css\//g, 'href="/css/')
+            .replace(/src="js\//g, 'src="/js/')
+            .replace(/src="Img\//g, 'src="/Img/')
+            .replace(/srcset="Img\//g, 'srcset="/Img/')
+            .replace(/, Img\//g, ', /Img/')
+            .replace(/,Img\//g, ',/Img/')
+            .replace(/href="Img\//g, 'href="/Img/')
+            .replace(/href="fonts\//g, 'href="/fonts/')
+            .replace(/src="fonts\//g, 'src="/fonts/')
+            .replace(/href="index\.html"/g, 'href="/"')
+            .replace(/href="favicon\.ico/g, 'href="/favicon.ico')
+            .replace(/href="manifest\.json"/g, 'href="/manifest.json"')
+            .replace(/href="([a-z-]+)\.html"/g, 'href="/$1.html"')
+            .replace(/href="servizi\//g, 'href="/servizi/')
+            .replace(/href="blog\//g, 'href="/blog/')
+            .replace(/href="portfolio\./g, 'href="/portfolio.')
+            .replace(/src="search-index\.json"/g, 'src="/search-index.json"');
+
+        return fullHtml;
+    }
+
+    // ── 1. Agenzia Web Hub ──
+    const agenziaCities = cities.filter(c => c.generate.agenzia);
+    const agenziaData = {
+        cities: agenziaCities,
+        coreServices: coreServices,
+        totalCities: agenziaCities.length,
+        today: TODAY,
+        todayFormatted: TODAY_FORMATTED,
+        site: SITE
+    };
+    const agenziaContent = njkEnv.render('hub-agenzia-web.njk', agenziaData);
+    const agenziaSchemas = [
+        {
+            "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
+                { "@type": "ListItem", "position": 2, "name": "Agenzia Web — Comuni Milano", "item": SITE + "/agenzia-web/" }
+            ]
+        },
+        {
+            "@context": "https://schema.org", "@type": "CollectionPage",
+            "name": "Agenzia Web nei Comuni della Provincia di Milano",
+            "description": `WebNovis è l'agenzia web con sede a Rho che opera in ${agenziaCities.length} comuni dell'hinterland milanese.`,
+            "url": SITE + "/agenzia-web/",
+            "inLanguage": "it",
+            "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
+            "numberOfItems": agenziaCities.length,
+            "hasPart": agenziaCities.map(c => ({
+                "@type": "WebPage",
+                "name": `Agenzia Web ${c.name}`,
+                "url": `${SITE}/agenzia-web-${c.slug}.html`
+            }))
+        }
+    ];
+    const agenziaHtml = buildHubPage(
+        'agenzia-web',
+        'Agenzia Web nei Comuni di Milano — WebNovis | Web Agency Hinterland',
+        `Agenzia web per ${agenziaCities.length} comuni dell'hinterland milanese. Siti 100% custom, grafica e social. Sede a Rho. Preventivo gratuito.`,
+        'agenzia web Milano, web agency hinterland milanese, agenzia web comuni Milano, WebNovis',
+        agenziaContent,
+        agenziaSchemas
+    );
+    results.push({ dir: 'agenzia-web', html: agenziaHtml });
+
+    // ── 2. Realizzazione Siti Web Hub ──
+    const realizzazioneCities = cities.filter(c => c.generate.realizzazione);
+    const realizzazioneData = {
+        cities: realizzazioneCities,
+        totalCities: realizzazioneCities.length,
+        today: TODAY,
+        todayFormatted: TODAY_FORMATTED,
+        site: SITE
+    };
+    const realizzazioneContent = njkEnv.render('hub-realizzazione-siti-web.njk', realizzazioneData);
+    const realizzazioneSchemas = [
+        {
+            "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
+                { "@type": "ListItem", "position": 2, "name": "Realizzazione Siti Web — Comuni Milano", "item": SITE + "/realizzazione-siti-web/" }
+            ]
+        },
+        {
+            "@context": "https://schema.org", "@type": "CollectionPage",
+            "name": "Realizzazione Siti Web nei Comuni della Provincia di Milano",
+            "description": `Realizzazione siti web professionali per ${realizzazioneCities.length} comuni dell'hinterland milanese.`,
+            "url": SITE + "/realizzazione-siti-web/",
+            "inLanguage": "it",
+            "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
+            "numberOfItems": realizzazioneCities.length,
+            "hasPart": realizzazioneCities.map(c => ({
+                "@type": "WebPage",
+                "name": `Realizzazione Siti Web ${c.name}`,
+                "url": `${SITE}/realizzazione-siti-web-${c.slug}.html`
+            }))
+        }
+    ];
+    const realizzazioneHtml = buildHubPage(
+        'realizzazione-siti-web',
+        'Realizzazione Siti Web nei Comuni di Milano — WebNovis | Siti Custom',
+        `Siti web professionali per ${realizzazioneCities.length} comuni dell'hinterland milanese. Codice custom, SEO integrata. Sede a Rho.`,
+        'realizzazione siti web Milano, siti web hinterland milanese, creazione siti web comuni Milano, WebNovis',
+        realizzazioneContent,
+        realizzazioneSchemas
+    );
+    results.push({ dir: 'realizzazione-siti-web', html: realizzazioneHtml });
+
+    // ── 3. Zone Servite Hub (trasversale) ──
+    const geoEligibleServices = services.filter(s => s.generateGeoPages !== false);
+    const eligibleCities = cities.filter(c => c.population >= 15000 && c.slug !== 'rho');
+    const serviceCities = {};
+    const serviceCityCounts = {};
+    for (const svc of geoEligibleServices) {
+        serviceCities[svc.slug] = eligibleCities;
+        serviceCityCounts[svc.slug] = eligibleCities.length;
+    }
+
+    const zoneData = {
+        agenziaCities: agenziaCities,
+        agenziaCount: agenziaCities.length,
+        realizzazioneCities: realizzazioneCities,
+        realizzazioneCount: realizzazioneCities.length,
+        geoServices: geoEligibleServices,
+        serviceCities: serviceCities,
+        serviceCityCounts: serviceCityCounts,
+        today: TODAY,
+        todayFormatted: TODAY_FORMATTED,
+        site: SITE
+    };
+    const zoneContent = njkEnv.render('hub-zone-servite.njk', zoneData);
+
+    // Total items across all categories
+    const totalItems = agenziaCities.length + realizzazioneCities.length + (geoEligibleServices.length * eligibleCities.length);
+    const zoneSchemas = [
+        {
+            "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
+                { "@type": "ListItem", "position": 2, "name": "Zone Servite", "item": SITE + "/zone-servite/" }
+            ]
+        },
+        {
+            "@context": "https://schema.org", "@type": "CollectionPage",
+            "name": "Zone Servite da WebNovis — Servizi Web nell'Hinterland Milanese",
+            "description": "Mappa completa di tutti i servizi WebNovis per comune: sviluppo web, e-commerce, SEO locale, branding.",
+            "url": SITE + "/zone-servite/",
+            "inLanguage": "it",
+            "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
+            "numberOfItems": totalItems,
+            "hasPart": [
+                { "@type": "CollectionPage", "name": "Agenzia Web — Tutti i Comuni", "url": SITE + "/agenzia-web/" },
+                { "@type": "CollectionPage", "name": "Realizzazione Siti Web — Tutti i Comuni", "url": SITE + "/realizzazione-siti-web/" }
+            ]
+        }
+    ];
+    const zoneHtml = buildHubPage(
+        'zone-servite',
+        'Zone Servite da WebNovis — Tutti i Servizi Web per Comune | Hinterland Milano',
+        `Tutti i servizi WebNovis per comune: agenzia web, realizzazione siti, SEO locale e più in ${agenziaCities.length}+ comuni dell'hinterland milanese.`,
+        'zone servite WebNovis, servizi web comuni Milano, agenzia web hinterland, web agency zone Milano',
+        zoneContent,
+        zoneSchemas
+    );
+    results.push({ dir: 'zone-servite', html: zoneHtml });
+
+    return results;
 }
 
 // ─── Internal Linking Helpers ─────────────────────────────────────────────────
@@ -679,7 +927,7 @@ function buildGeoLinksSection(city, pageType) {
         `<a href="${prefix}${nc.slug}.html" style="color:var(--primary-light)">${label} a ${nc.name}</a> (${nc.distanzaSede})`
     );
     html += links.join(', ') + '.</p>';
-    html += `</div></div></section>\n`;
+    html += `</div></section>\n`;
     return html;
 }
 
@@ -700,26 +948,8 @@ function buildLocalContextHtml(city) {
     return html;
 }
 
-function injectFooterGeoLinks(footerHtml, currentCity) {
-    // Build list of all geo page links for footer
-    const geoLinks = cities
-        .filter(c => c.generate.agenzia && c.slug !== 'rho')
-        .slice(0, 8)
-        .map(c => `<a href="agenzia-web-${c.slug}.html">Web Agency ${c.name.split(' ')[0]}</a>`)
-        .join(' ');
-
-    // Try to inject after Web Agency Milano link
-    if (footerHtml.includes('agenzia-web-milano.html')) {
-        return footerHtml; // Links already present
-    }
-
-    return footerHtml;
-}
-
-function injectFooterGeoLinksInPage(page, currentCity) {
-    // For realizzazione pages, try to add geo cross-links to footer
-    return page;
-}
+// Footer injection removed — was dead code (bug #7). Footer links are managed by the
+// Rho base template which already contains geo links in the Località section.
 
 // ─── Validation ───────────────────────────────────────────────────────────────
 
@@ -807,7 +1037,7 @@ function main() {
     console.log(`  Type: ${GEN_TYPE} | Dry run: ${DRY_RUN} | Validate only: ${VALIDATE_ONLY}`);
     console.log(`  Date: ${TODAY}\n`);
 
-    const results = { agenzia: [], realizzazione: [], servizio: [], validations: [] };
+    const results = { agenzia: [], realizzazione: [], servizio: [], hubs: [], validations: [] };
     let generated = 0;
     let skipped = 0;
 
@@ -875,11 +1105,11 @@ function main() {
 
     // Generate servizio×città pages (third page type — the combinatorial matrix)
     if (GEN_TYPE === 'all' || GEN_TYPE === 'servizio') {
-        const extendedServices = services.filter(s => s.tier === 'extended');
+        const geoEligibleServices = services.filter(s => s.generateGeoPages !== false);
         const eligibleCities = cities.filter(c => c.population >= 15000 && c.slug !== 'rho');
-        console.log(`\n─── Generating servizio×città pages (${extendedServices.length} services × ${eligibleCities.length} cities) ───`);
+        console.log(`\n─── Generating servizio×città pages (${geoEligibleServices.length} services × ${eligibleCities.length} cities) ───`);
 
-        for (const service of extendedServices) {
+        for (const service of geoEligibleServices) {
             for (const city of eligibleCities) {
                 const html = generateServizioCittaPage(service, city);
                 if (!html) continue;
@@ -904,6 +1134,25 @@ function main() {
         }
     }
 
+    // Generate hub pages (internal linking bridge)
+    if (GEN_TYPE === 'all') {
+        console.log('\n─── Generating hub pages ───');
+        const hubResults = generateHubPages();
+        for (const hub of hubResults) {
+            const hubDir = path.join(ROOT, hub.dir);
+            if (!fs.existsSync(hubDir)) {
+                fs.mkdirSync(hubDir, { recursive: true });
+            }
+            if (!DRY_RUN && !VALIDATE_ONLY) {
+                fs.writeFileSync(path.join(hubDir, 'index.html'), hub.html, 'utf8');
+            }
+            const sizeKb = Math.round(Buffer.byteLength(hub.html) / 1024);
+            console.log(`  ✅ ${hub.dir}/index.html (${sizeKb}KB)`);
+            generated++;
+        }
+        results.hubs = hubResults.map(h => `${h.dir}/index.html`);
+    }
+
     // Generate link graph
     if (!DRY_RUN && !VALIDATE_ONLY) {
         const linkGraph = generateLinkGraph();
@@ -917,7 +1166,7 @@ function main() {
     // Summary
     console.log('\n══════════════════════════════════════════════════════');
     console.log(`  Generated: ${generated} | Skipped: ${skipped}`);
-    console.log(`  Agenzia: ${results.agenzia.length} | Realizzazione: ${results.realizzazione.length} | Servizio×Città: ${results.servizio.length}`);
+    console.log(`  Agenzia: ${results.agenzia.length} | Realizzazione: ${results.realizzazione.length} | Servizio×Città: ${results.servizio.length} | Hub: ${results.hubs.length}`);
 
     const warnings = results.validations.reduce((sum, v) => sum + v.issues.length, 0);
     if (warnings > 0) {

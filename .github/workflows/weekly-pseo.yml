@@ -1,0 +1,105 @@
+name: Weekly pSEO Generator
+
+on:
+  schedule:
+    # Every Sunday at 3:00 AM UTC (4:00 AM CET / 5:00 AM CEST)
+    # Runs weekly to refresh AI content blocks and regenerate geo pages
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+    inputs:
+      force_ai:
+        description: 'Force regenerate ALL AI content blocks (overwrite existing)'
+        required: false
+        default: 'false'
+      skip_ai:
+        description: 'Skip AI content generation (only rebuild pages from existing data)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  pseo-generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 1: Generate AI content blocks for new/missing cities
+      - name: Generate AI content blocks
+        if: ${{ github.event.inputs.skip_ai != 'true' }}
+        run: |
+          if [ "${{ github.event.inputs.force_ai }}" = "true" ]; then
+            echo "🔄 Force regenerating ALL AI content blocks..."
+            node scripts/generate-ai-content.js --force
+          else
+            echo "📝 Generating AI content for new/missing cities..."
+            node scripts/generate-ai-content.js
+          fi
+        env:
+          GEMINI_API_KEY_PSEO: ${{ secrets.GEMINI_API_KEY_PSEO }}
+          GEMINI_API_KEY_PSEO_2: ${{ secrets.GEMINI_API_KEY_PSEO_2 }}
+
+      # Step 2: Generate all geo pages (agenzia + realizzazione + servizio×città)
+      - name: Generate geo pages
+        run: node scripts/generate-all-geo.js
+
+      # Step 3: Rebuild search index and sitemap
+      - name: Rebuild search index
+        run: node build-search-index.js
+
+      - name: Rebuild sitemap
+        run: node generate-sitemap.js
+
+      # Step 4: Validate pages (non-blocking — logs warnings but doesn't fail)
+      - name: Validate page quality
+        run: node scripts/validate-pages.js || true
+
+      # Step 5: Run SEO monitoring report
+      - name: SEO monitoring report
+        run: node scripts/monitor-seo.js
+
+      # Step 6: Submit new/changed URLs to IndexNow
+      - name: Submit to IndexNow
+        run: node indexnow-submit.js --all
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+
+      # Step 7: Commit and push all changes
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🌍 pSEO: auto-generated geo pages & AI content [skip ci]"
+          file_pattern: |
+            agenzia-web-*.html
+            realizzazione-siti-web-*.html
+            seo-locale-*.html
+            restyling-sito-web-*.html
+            web-app-*.html
+            fotografia-aziendale-*.html
+            copywriting-*.html
+            email-marketing-*.html
+            google-ads-*.html
+            consulenza-digitale-*.html
+            manutenzione-sito-*.html
+            sviluppo-app-mobile-*.html
+            automazione-business-*.html
+            data/content-blocks/*.json
+            data/link-graph.json
+            sitemap.xml
+            search-index.json
+            indexnow-log.json
+          commit_author: "WebNovis Bot <bot@webnovis.com>"

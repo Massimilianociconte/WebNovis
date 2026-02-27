@@ -61,15 +61,28 @@ function analyzeSitemap() {
     }
 
     // Categorize by type
+    // Load service slugs for categorization
+    let serviceSlugs = [];
+    try {
+        const svcData = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'services.json'), 'utf8'));
+        serviceSlugs = svcData.services.map(s => s.slug);
+    } catch (e) { /* services.json not available */ }
+
     const categories = {
         geo_agenzia: urls.filter(u => u.url.includes('agenzia-web-')).length,
         geo_realizzazione: urls.filter(u => u.url.includes('realizzazione-siti-web-')).length,
+        geo_servizio: urls.filter(u => {
+            const filename = u.url.split('/').pop();
+            return serviceSlugs.some(s => filename.startsWith(s + '-')) &&
+                !filename.startsWith('agenzia-') && !filename.startsWith('realizzazione-');
+        }).length,
+        hub: urls.filter(u => u.url.match(/\/(agenzia-web|realizzazione-siti-web|zone-servite)\/$/)).length,
         blog: urls.filter(u => u.url.includes('/blog/')).length,
         servizi: urls.filter(u => u.url.includes('/servizi/')).length,
         portfolio: urls.filter(u => u.url.includes('/portfolio/')).length,
         core: 0
     };
-    categories.core = urls.length - categories.geo_agenzia - categories.geo_realizzazione - categories.blog - categories.servizi - categories.portfolio;
+    categories.core = urls.length - categories.geo_agenzia - categories.geo_realizzazione - categories.geo_servizio - categories.hub - categories.blog - categories.servizi - categories.portfolio;
 
     return { total: urls.length, urls, categories };
 }
@@ -193,7 +206,9 @@ function checkDataLayer() {
         cities: { total: totalCities, active: activeCities },
         services: { total: services.services.length, core: services.services.filter(s => s.tier === 'core').length },
         aiContent: { generated: aiContentCount, coverage: `${aiCoverage}%` },
-        potentialPages: activeCities * 2 // agenzia + realizzazione
+        potentialPages: activeCities * 2 + // agenzia + realizzazione
+            (cities.cities.filter(c => c.population >= 15000).length *
+                services.services.filter(s => s.generateGeoPages !== false).length) // servizio×città
     };
 }
 
@@ -213,7 +228,7 @@ function main() {
     report.sitemap = analyzeSitemap();
 
     // 2. Content freshness
-    if (!FRESHNESS_ONLY || FRESHNESS_ONLY) {
+    {
         report.freshness = checkFreshness(report.sitemap.urls);
         if (report.freshness.critical.length > 0) {
             report.alerts.push({ level: 'CRITICAL', msg: `${report.freshness.critical.length} pages not updated in ${FRESHNESS_CRITICAL_DAYS}+ days` });

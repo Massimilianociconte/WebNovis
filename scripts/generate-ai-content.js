@@ -17,7 +17,7 @@
  *   node scripts/generate-ai-content.js --force           Regenerate all (overwrite existing)
  *   node scripts/generate-ai-content.js --dry-run         Preview prompts without calling API
  *
- * Requires: GEMINI_API_KEY_SEARCH in .env (same key used by search-ai endpoint)
+ * Requires: GEMINI_API_KEY_PSEO and/or GEMINI_API_KEY_PSEO_2 in .env (dedicated keys, isolated from runtime)
  */
 
 require('dotenv').config({ path: require('path').resolve(__dirname, '..', '.env') });

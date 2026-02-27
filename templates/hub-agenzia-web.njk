@@ -1,0 +1,102 @@
+{# 
+  WebNovis — Hub page template: Agenzia Web per tutti i comuni
+  URL: /agenzia-web/index.html
+  Variables: cities, site, today, todayFormatted, totalCities
+#}
+<main>
+  <div class="container breadcrumb">
+    <a href="/">Home</a>
+    <span class="separator">/</span>
+    <span class="current-page">Agenzia Web — Comuni Milano</span>
+  </div>
+
+  <section class="service-page-hero">
+    <div class="container">
+      <span class="section-tag">{{ totalCities }} Comuni serviti — Hinterland Milano</span>
+      <h1>Agenzia Web nei Comuni della Provincia di Milano</h1>
+      <p class="answer-capsule"><strong>WebNovis</strong> è l'agenzia web con sede a Rho che opera in {{ totalCities }} comuni dell'hinterland milanese. Siti web 100% custom, graphic design e social media marketing per PMI e professionisti. Nessun WordPress, nessun template. Trova la pagina del tuo comune e richiedi un preventivo gratuito.</p>
+      <a href="/contatti.html" class="btn btn-large btn-primary">
+        <span>Richiedi Preventivo Gratuito</span>
+        <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+      <p style="margin-top:1.5rem;font-size:.85rem;opacity:.5">
+        <time datetime="{{ today }}">{{ todayFormatted }}</time>
+        &nbsp;·&nbsp; Sede: Via S. Giorgio 2, 20017 Rho MI
+      </p>
+    </div>
+  </section>
+
+  <section class="service-detail">
+    <div class="container">
+      <h2>Tutti i Comuni Serviti</h2>
+      <p>Clicca sul tuo comune per scoprire i servizi WebNovis nella tua zona. Ogni pagina include prezzi, servizi disponibili e informazioni sul contesto imprenditoriale locale.</p>
+      <div class="hub-city-grid">
+        {% for city in cities %}
+        <a href="/agenzia-web-{{ city.slug }}.html" class="hub-city-card" title="Agenzia Web a {{ city.name }}">
+          <span class="hub-city-name">{{ city.name }}</span>
+          <span class="hub-city-meta">{{ city.province }} · {{ city.distanzaSede }}</span>
+          {% if city.population %}<span class="hub-city-pop">{{ city.population | localeNumber }} ab.</span>{% endif %}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>Perché scegliere un'agenzia web locale?</h2>
+      <div class="service-grid">
+        <div class="service-card-mini">
+          <h3>Vicinanza geografica</h3>
+          <p>Sede a Rho, nel cuore dell'hinterland milanese. Incontri in azienda, comunicazione diretta. Nessun call center, nessun account manager esterno.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Conoscenza del territorio</h3>
+          <p>Conosciamo il tessuto imprenditoriale dell'hinterland: PMI manifatturiere, studi professionali, commercio locale. Sappiamo comunicare al mercato giusto.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Codice 100% custom</h3>
+          <p>Nessun WordPress, nessun template. Ogni sito è sviluppato da zero per le esigenze specifiche della tua attività e del tuo mercato locale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-detail">
+    <div class="container">
+      <h2>I Servizi WebNovis per le Aziende dell'Hinterland</h2>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.95rem">
+          <thead>
+            <tr style="border-bottom:2px solid rgba(255,255,255,.1)">
+              <th scope="col" style="text-align:left;padding:12px 16px;color:var(--white);font-weight:600">Servizio</th>
+              <th scope="col" style="text-align:left;padding:12px 16px;color:var(--white);font-weight:600">Prezzo da</th>
+              <th scope="col" style="text-align:left;padding:12px 16px;color:var(--white);font-weight:600">Tempi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for svc in coreServices %}
+            <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+              <td style="padding:12px 16px;color:var(--primary-light);font-weight:600">{{ svc.shortName }}</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">€{{ svc.priceFrom }}{{ svc.priceUnit if svc.priceUnit }}</td>
+              <td style="padding:12px 16px;color:var(--gray-light)">{{ svc.timeEstimate }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.85rem;color:var(--gray-light);opacity:.7">Prezzi IVA esclusa. Preventivo gratuito personalizzato entro 24 ore.</p>
+    </div>
+  </section>
+
+  <section class="cta-inline">
+    <div class="container">
+      <h2>Non trovi il tuo comune?</h2>
+      <p>Serviamo tutta la Città Metropolitana di Milano e oltre. Contattaci per un preventivo gratuito.</p>
+      <a href="/contatti.html" class="btn btn-large btn-primary">
+        <span>Contattaci Ora</span>
+        <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+    </div>
+  </section>
+</main>

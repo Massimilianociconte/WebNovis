@@ -125,12 +125,28 @@ function findGeoPages() {
     const files = fs.readdirSync(ROOT).filter(f => f.endsWith('.html'));
     const geoPages = [];
 
+    // Load service slugs for servizio×città detection
+    let serviceSlugs = [];
+    try {
+        const svcData = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'services.json'), 'utf8'));
+        serviceSlugs = svcData.services.map(s => s.slug);
+    } catch (e) { /* services.json not available */ }
+
     for (const f of files) {
         if (f.startsWith('agenzia-web-') && (!FILTER_TYPE || FILTER_TYPE === 'agenzia')) {
             geoPages.push({ file: f, type: 'agenzia', city: f.replace('agenzia-web-', '').replace('.html', '') });
         }
         if (f.startsWith('realizzazione-siti-web-') && (!FILTER_TYPE || FILTER_TYPE === 'realizzazione')) {
             geoPages.push({ file: f, type: 'realizzazione', city: f.replace('realizzazione-siti-web-', '').replace('.html', '') });
+        }
+        // Service×city pages (e.g. seo-locale-lainate.html)
+        if (!FILTER_TYPE || FILTER_TYPE === 'servizio') {
+            for (const slug of serviceSlugs) {
+                if (f.startsWith(slug + '-') && !f.startsWith('agenzia-') && !f.startsWith('realizzazione-')) {
+                    geoPages.push({ file: f, type: 'servizio', city: f.replace(slug + '-', '').replace('.html', '') });
+                    break;
+                }
+            }
         }
     }
 
@@ -139,7 +155,7 @@ function findGeoPages() {
 
 function findAllPages() {
     const results = [];
-    const scanDirs = ['.', 'blog', 'servizi', 'portfolio', 'portfolio/case-study'];
+    const scanDirs = ['.', 'blog', 'servizi', 'portfolio', 'portfolio/case-study', 'agenzia-web', 'realizzazione-siti-web', 'zone-servite'];
 
     for (const dir of scanDirs) {
         const fullDir = path.join(ROOT, dir);
@@ -305,7 +321,7 @@ function main() {
             results.push(result);
 
             const status = result.criticalCount > 0 ? '❌' :
-                          result.warningCount > 0 ? '⚠' : '✅';
+                result.warningCount > 0 ? '⚠' : '✅';
 
             if (VERBOSE || result.criticalCount > 0 || result.warningCount > 0) {
                 console.log(`${status} ${result.file}`);

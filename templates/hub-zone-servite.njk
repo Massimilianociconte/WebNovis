@@ -1,0 +1,83 @@
+{# 
+  WebNovis — Hub page template: Zone Servite (trasversale)
+  URL: /zone-servite/index.html
+  Variables: agenziaFCities, realizzazioneCities, geoServices, cities, site, today, todayFormatted
+  
+  Designed for 800+ page scale: uses service sections with anchorable IDs.
+  When expanding, each section can become a sub-hub (/zone-servite/seo-locale/).
+#}
+<main>
+  <div class="container breadcrumb">
+    <a href="/">Home</a>
+    <span class="separator">/</span>
+    <span class="current-page">Zone Servite</span>
+  </div>
+
+  <section class="service-page-hero">
+    <div class="container">
+      <span class="section-tag">Tutti i servizi · Tutti i comuni</span>
+      <h1>Zone Servite da WebNovis — Servizi Web nell'Hinterland Milanese</h1>
+      <p class="answer-capsule"><strong>WebNovis</strong> opera da Rho servendo PMI e professionisti in tutta la Città Metropolitana di Milano. Questa pagina raccoglie tutti i servizi disponibili per comune: sviluppo web, e-commerce, SEO locale, branding e molto altro.</p>
+    </div>
+  </section>
+
+  {# ═══ Agenzia Web section ═══ #}
+  <section class="service-detail" id="agenzia-web">
+    <div class="container">
+      <h2><a href="/agenzia-web/" style="color:var(--white);text-decoration:none">Agenzia Web</a> — {{ agenziaCount }} Comuni</h2>
+      <p>Servizi completi di web agency: sviluppo siti, grafica, social media e consulenza digitale.</p>
+      <div class="hub-city-grid hub-city-grid--compact">
+        {% for city in agenziaCities %}
+        <a href="/agenzia-web-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="Agenzia Web {{ city.name }}">
+          <span class="hub-city-name">{{ city.name }}</span>
+        </a>
+        {% endfor %}
+      </div>
+      <p style="margin-top:1rem"><a href="/agenzia-web/" style="color:var(--primary-light);font-weight:600">→ Vedi tutti i comuni per Agenzia Web</a></p>
+    </div>
+  </section>
+
+  {# ═══ Realizzazione Siti Web section ═══ #}
+  <section class="service-detail" id="realizzazione-siti-web" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2><a href="/realizzazione-siti-web/" style="color:var(--white);text-decoration:none">Realizzazione Siti Web</a> — {{ realizzazioneCount }} Comuni</h2>
+      <p>Siti web professionali con codice 100% custom, SEO locale integrata e design su misura.</p>
+      <div class="hub-city-grid hub-city-grid--compact">
+        {% for city in realizzazioneCities %}
+        <a href="/realizzazione-siti-web-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="Siti Web {{ city.name }}">
+          <span class="hub-city-name">{{ city.name }}</span>
+        </a>
+        {% endfor %}
+      </div>
+      <p style="margin-top:1rem"><a href="/realizzazione-siti-web/" style="color:var(--primary-light);font-weight:600">→ Vedi tutti i comuni per Realizzazione Siti Web</a></p>
+    </div>
+  </section>
+
+  {# ═══ Service×City sections (one per service, anchorable ID) ═══ #}
+  {% for service in geoServices %}
+  <section class="service-detail" id="{{ service.slug }}"{% if loop.index % 2 == 0 %} style="background:rgba(255,255,255,.01)"{% endif %}>
+    <div class="container">
+      <h2>{{ service.name }} — {{ serviceCityCounts[service.slug] }} Comuni</h2>
+      <p>{{ service.shortDesc }} Da €{{ service.priceFrom }}{{ service.priceUnit if service.priceUnit }}.</p>
+      <div class="hub-city-grid hub-city-grid--compact">
+        {% for city in serviceCities[service.slug] %}
+        <a href="/{{ service.slug }}-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="{{ service.shortName }} a {{ city.name }}">
+          <span class="hub-city-name">{{ city.name }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endfor %}
+
+  <section class="cta-inline">
+    <div class="container">
+      <h2>Cerchi un servizio specifico per il tuo comune?</h2>
+      <p>Contattaci per un preventivo gratuito. Rispondiamo entro 24 ore.</p>
+      <a href="/contatti.html" class="btn btn-large btn-primary">
+        <span>Contattaci Ora</span>
+        <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+    </div>
+  </section>
+</main>
