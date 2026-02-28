@@ -2039,5 +2039,198 @@
       ],
       "notes": "Il dato numerico 'migliaia di modifiche minori e decine di aggiornamenti significativi' è attribuito al Google Search Central Blog, ma non è stato possibile trovare una singola pagina specifica che riporti esattamente queste cifre in un unico passaggio. Si tratta di una sintesi di informazioni diffuse da Google stesso in vari contesti e nel blog generale. Il conteggio dei data points con fonte è quindi 1 (la citazione di Google Search Central Blog), ma è una stima basata su affermazioni generali di Google. La tabella è stata inclusa per confrontare i pilastri di una strategia SEO resiliente."
     }
+  },
+  {
+    "slug": "seo-youtube-video",
+    "title": "SEO YouTube: Guida Completa per Posizionare i Tuoi Video",
+    "description": "Scopri come ottimizzare i tuoi video YouTube per migliorare la visibilità e aumentare le visualizzazioni. Guida pratica all'SEO YouTube per risultati concreti.",
+    "tag": "SEO",
+    "date": "28 Febbraio 2026",
+    "isoDate": "2026-02-28",
+    "readTime": "9 min",
+    "generatedAt": "2026-02-28T06:29:52.698Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 0,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "ottimizzare video YouTube",
+        "YouTube ranking",
+        "video SEO"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Sito ufficiale di YouTube",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria e ufficiale"
+        }
+      ],
+      "notes": "Nessun dato numerico senza fonte è stato utilizzato. La strategia di SEO per YouTube è stata trattata in modo completo e dettagliato."
+    }
+  },
+  {
+    "slug": "headless-cms-guida",
+    "title": "Headless CMS: Guida Completa per Scelta e Implementazione",
+    "description": "Scopri come funziona un headless CMS, vantaggi e svantaggi, e quando conviene utilizzarlo per il tuo progetto web. Guida completa per scegliere il miglior headless CMS.",
+    "tag": "Tecnologia",
+    "date": "28 Febbraio 2026",
+    "isoDate": "2026-02-28",
+    "readTime": "8 min",
+    "generatedAt": "2026-02-28T06:30:14.535Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "CMS headless vs tradizionale",
+        "Strapi Contentful",
+        "API-first CMS"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Strapi",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota"
+        },
+        {
+          "fonte": "Contentful",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota"
+        },
+        {
+          "fonte": "Ghost",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "cloud-hosting-vs-tradizionale",
+    "title": "Cloud Hosting vs Tradizionale: Confronto per PMI nel 2026",
+    "description": "Scopri i vantaggi del cloud hosting rispetto all'hosting tradizionale per le PMI. Confronto dettagliato e consigli per la scelta migliore.",
+    "tag": "Tecnologia",
+    "date": "28 Febbraio 2026",
+    "isoDate": "2026-02-28",
+    "readTime": "8 min",
+    "generatedAt": "2026-02-28T06:30:56.783Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 3,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "hosting cloud vantaggi",
+        "AWS per PMI",
+        "hosting scalabile"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Forrester",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "media",
+          "motivo": "fonte ampiamente citata nel settore"
+        }
+      ],
+      "notes": "Nessun limite o dato da verificare"
+    }
+  },
+  {
+    "slug": "cyber-security-pmi",
+    "title": "Cyber Security per PMI: Minacce Comuni e Come Difendersi",
+    "description": "Scopri le minacce di cyber security più comuni per le PMI e come difenderti con strategie di sicurezza informatica efficaci",
+    "tag": "Tecnologia",
+    "date": "28 Febbraio 2026",
+    "isoDate": "2026-02-28",
+    "readTime": "9 min",
+    "generatedAt": "2026-02-28T06:31:39.479Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "sicurezza informatica aziende",
+        "phishing protezione",
+        "cybersecurity piccole imprese"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota"
+        },
+        {
+          "fonte": "Microsoft",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota"
+        },
+        {
+          "fonte": "Symantec",
+          "confidenza": "media",
+          "motivo": "Fonte ampiamente citata nel settore"
+        }
+      ],
+      "notes": "Nessun limite o dato da verificare"
+    }
   }
 ]
