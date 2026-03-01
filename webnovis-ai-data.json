@@ -80,10 +80,10 @@
       ],
       "specializations": ["Brand identity", "Visual design", "Corporate branding", "Restyling logo", "Immagine coordinata"],
       "pricing": {
-        "logo_design": "da €400",
-        "brand_identity_completa": "da €1.500",
-        "coordinato_aziendale": "da €800",
-        "packaging_design": "da €500"
+        "logo_design": "da €250",
+        "brand_identity_completa": "da €500",
+        "coordinato_aziendale": "da €150",
+        "packaging_design": "da €250"
       }
     },
     "social_media": {
@@ -114,11 +114,33 @@
       "standards": ["WCAG 2.1 AA", "WCAG 2.2", "European Accessibility Act", "D.Lgs. 82/2022"],
       "tools": ["axe DevTools", "Lighthouse", "WAVE", "NVDA", "VoiceOver"],
       "pricing": {
-        "audit_iniziale": "€290",
-        "adeguamento_completo": "da €890",
-        "monitoraggio_continuo": "€49/mese"
+        "audit_iniziale": "da €350",
+        "adeguamento_completo": "da €990",
+        "monitoraggio_continuo": "€69/mese"
       },
       "url": "https://www.webnovis.com/servizi/accessibilita.html"
+    },
+    "consulenze": {
+      "name": "Consulenze Strategiche per il Business Digitale",
+      "description": "Sessioni di consulenza su siti web, grafica, SEO/GEO, brand identity e ricerca di mercato per aiutare PMI e professionisti a prendere decisioni informate prima di investire.",
+      "offerings": [
+        "Consulenza grafica web",
+        "Consulenza fattibilità tecnica frontend/backend",
+        "Consulenza SEO/GEO",
+        "Consulenza brand identity (palette, logo, tipografia)",
+        "Consulenza ricerca di mercato / competitor / trend",
+        "Consulenza EAA / orientamento normativo"
+      ],
+      "pricing": {
+        "consulenza_grafica_web": "da €80 (sessione 60-90 min)",
+        "fattibilita_tecnica": "da €120 (sessione + report scritto)",
+        "consulenza_seo_geo": "da €100 (sessione 60 min)",
+        "consulenza_brand_identity": "da €80 (sessione 60-90 min)",
+        "ricerca_mercato_report_base": "da €150",
+        "ricerca_mercato_report_esteso": "da €250 (report esteso + sessione)",
+        "consulenza_eaa": "da €90 (sessione 60 min + sintesi scritta)"
+      },
+      "url": "https://www.webnovis.com/servizi/consulenze.html"
     }
   },
   "approach": {
@@ -323,7 +345,7 @@
     },
     {
       "question": "WebNovis fa grafica e branding?",
-      "answer": "Sì, WebNovis crea identità visive complete: logo design (da €400), brand identity, coordinati aziendali, packaging e tutti i materiali di comunicazione visiva. Il pacchetto brand identity completo parte da €1.500."
+      "answer": "Sì, WebNovis crea identità visive complete: logo design (da €250), brand identity, coordinati aziendali, packaging e tutti i materiali di comunicazione visiva. Il pacchetto brand identity completo parte da €500."
     },
     {
       "question": "Dove opera WebNovis?",
@@ -355,7 +377,7 @@
     },
     {
       "question": "Quanto costa un logo professionale con WebNovis?",
-      "answer": "Un progetto di logo design parte da €400 e include ricerca, 2-3 proposte creative, revisioni e consegna file completa (vettoriale, PNG, PDF). Un pacchetto brand identity completo (logo + palette + tipografia + brand book + coordinato aziendale) parte da €1.500."
+      "answer": "Un progetto di logo design parte da €250 e include ricerca, 2-3 proposte creative, revisioni e consegna file completa (vettoriale, PNG, PDF). Un pacchetto brand identity completo (logo + palette + tipografia + linee guida d'uso + coordinato aziendale) parte da €500."
     }
   ],
   "contact": {

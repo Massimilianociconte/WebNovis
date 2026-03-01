@@ -62,7 +62,7 @@
       "url": "/servizi/graphic-design.html",
       "hasPage": true,
       "tier": "core",
-      "priceFrom": 400,
+      "priceFrom": 250,
       "priceCurrency": "EUR",
       "timeEstimate": "1-2 settimane",
       "description": "Logo, identità visiva e coordinato aziendale.",
@@ -95,7 +95,7 @@
       "url": "/servizi/accessibilita.html",
       "hasPage": true,
       "tier": "core",
-      "priceFrom": 890,
+      "priceFrom": 990,
       "priceCurrency": "EUR",
       "timeEstimate": "2-4 settimane",
       "description": "Audit WCAG e adeguamento all'European Accessibility Act.",
@@ -282,6 +282,22 @@
       "shortDesc": "Automatizza fatturazione, CRM, email e processi ripetitivi.",
       "targetKeyword": "automazione processi aziendali",
       "idealFor": "PMI, e-commerce, studi professionali"
+    },
+    {
+      "slug": "consulenze",
+      "name": "Consulenze Strategiche",
+      "shortName": "Consulenze",
+      "schemaType": "Service",
+      "url": "/servizi/consulenze.html",
+      "hasPage": true,
+      "tier": "core",
+      "priceFrom": 80,
+      "priceCurrency": "EUR",
+      "timeEstimate": "1-2 ore",
+      "description": "Sessioni di consulenza su siti web, grafica, SEO/GEO, brand identity e ricerca di mercato.",
+      "shortDesc": "Consulenze personalizzate per decisioni informate sul tuo business digitale.",
+      "targetKeyword": "consulenza web",
+      "idealFor": "PMI, professionisti, startup"
     }
   ]
 }

@@ -10,7 +10,8 @@
 - [Sito Vetrina](https://www.webnovis.com/servizi/sito-vetrina.html): Siti multi-pagina professionali per presentare la tua attività online.
 - [Graphic Design e Branding](https://www.webnovis.com/servizi/graphic-design.html): Logo design, brand identity, coordinato aziendale, materiali pubblicitari.
 - [Social Media Marketing](https://www.webnovis.com/servizi/social-media.html): Ricerche di marketing, analisi competitor, creazione contenuti grafici e gestione campagne advertising su Instagram, Facebook (Meta) e LinkedIn.
-- [Accessibilità Web e Compliance EAA](https://www.webnovis.com/servizi/accessibilita.html): Audit accessibilità WCAG 2.1 AA, adeguamento all'European Accessibility Act e monitoraggio continuo. Audit da €890, monitoraggio da €49/mese.
+- [Accessibilità Web e Compliance EAA](https://www.webnovis.com/servizi/accessibilita.html): Audit accessibilità WCAG 2.1 AA, adeguamento all'European Accessibility Act e monitoraggio continuo. Audit da €350, adeguamento da €990, monitoraggio €69/mese.
+- [Consulenze Strategiche](https://www.webnovis.com/servizi/consulenze.html): Sessioni di consulenza su siti web, grafica, SEO/GEO, brand identity e ricerca di mercato. Da €80.
 
 ## Sedi Locali
 
@@ -85,7 +86,9 @@
 - E-commerce: da €3.500
 - Social Media Marketing (contenuti grafici): da €300/mese
 - Advertising Gestito (Meta Ads): da €500/mese
-- Graphic Design / Logo: da €400
+- Graphic Design / Logo: da €250
+- Brand Identity Completa: da €500
+- Consulenze: da €80
 
 ## Dati Strutturati
 

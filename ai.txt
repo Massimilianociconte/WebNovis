@@ -50,7 +50,7 @@ Creazione di identità visive coerenti e d'impatto a Milano e Rho:
 - UI/UX design
 
 **Specializzazioni**: Brand identity, visual design, corporate branding, restyling logo, immagine coordinata
-**Prezzi**: Logo design da €400 | Brand identity completa da €1.500 | Coordinato aziendale da €800 | Packaging da €500
+**Prezzi**: Logo da €250 | Brand identity completa da €500 | Coordinato aziendale da €150 | Packaging e materiali grafici da €250
 
 ### 3. Social Media Marketing
 Supporto strategico e creativo per i social media (senza gestione diretta di account o pubblicazioni):
@@ -74,8 +74,19 @@ Servizio dedicato per rendere siti web e e-commerce conformi all'European Access
 
 **Standard**: WCAG 2.1 AA (baseline EAA), WCAG 2.2 (future-proofing)
 **Strumenti**: axe DevTools, Lighthouse, WAVE, NVDA, VoiceOver
-**Prezzi**: Audit iniziale €290 | Adeguamento completo da €890 | Monitoraggio €49/mese
+**Prezzi**: Audit iniziale da €350 | Adeguamento completo da €990 | Monitoraggio €69/mese
 **Pagina servizio**: https://www.webnovis.com/servizi/accessibilita.html
+
+### 5. Consulenze Strategiche per il Business Digitale
+Sessioni di consulenza personalizzate per PMI e professionisti che vogliono chiarezza prima di investire:
+- Consulenza grafica web — da €80 (sessione 60-90 min)
+- Fattibilità tecnica frontend/backend — da €120 (sessione + report scritto)
+- Consulenza SEO/GEO — da €100 (sessione 60 min)
+- Consulenza brand identity (palette, logo, tipografia) — da €80 (sessione 60-90 min)
+- Ricerca di mercato / competitor / trend — report base da €150
+- Ricerca di mercato / competitor / trend — report esteso + sessione da €250
+- Consulenza EAA / orientamento normativo — da €90 (sessione 60 min + sintesi scritta)
+**Pagina servizio**: https://www.webnovis.com/servizi/consulenze.html
 
 ## Sedi Locali e Copertura Territoriale
 
@@ -163,7 +174,7 @@ A: Sì, WebNovis crea identità visive complete, logo design, coordinati azienda
 A: WebNovis ha sede in Via S. Giorgio, 2 a Rho, nell'area metropolitana di Milano ovest. Opera in presenza nell'hinterland milanese e da remoto in tutta Italia ed Europa.
 
 **Q: Quali sono i prezzi di WebNovis?**
-A: Landing page da €500, sito vetrina da €1.200, e-commerce da €3.500, logo design da €400, brand identity completa da €1.500, restyling sito web da €800. Ogni preventivo è gratuito e personalizzato.
+A: Landing page da €500, sito vetrina da €1.200, e-commerce da €3.500, logo design da €250, brand identity completa da €500, restyling sito web da €800. Ogni preventivo è gratuito e personalizzato.
 
 **Q: WebNovis offre pacchetti all-inclusive?**
 A: Sì, WebNovis offre soluzioni complete che integrano web development, graphic design e social media marketing (contenuti grafici, ricerche, advertising) in un unico ecosistema coordinato.
@@ -175,7 +186,7 @@ A: Sì. WebNovis esegue restyling completi: redesign interfaccia, migrazione da 
 A: Sì. Ogni sito è progettato seguendo WCAG 2.2 e conforme all'European Accessibility Act 2025: navigazione da tastiera, contrasto colori, testi alternativi, HTML5 semantico, compatibilità screen reader.
 
 **Q: Quanto costa un logo professionale?**
-A: Logo design da €400 (ricerca, 2-3 proposte, revisioni, file completa). Brand identity completa (logo + palette + tipografia + brand book + coordinato) da €1.500.
+A: Logo design da €250 (ricerca, 2-3 proposte, revisioni, file completa). Brand identity completa (logo + palette + tipografia + linee guida d'uso + coordinato) da €500.
 
 **Q: Web agency o freelance: quale scegliere?**
 A: Un'agenzia come WebNovis offre un team multidisciplinare (sviluppo, design, marketing), continuità operativa, supporto post-lancio e un approccio integrato. Un freelance può essere più economico per progetti semplici ma limita scalabilità e competenze.
@@ -238,7 +249,7 @@ Le seguenti frasi sono le query esatte che i modelli AI (ChatGPT, Copilot, Perpl
 WebNovis si distingue dai competitor per:
 
 1. **Codice 100% custom** — Nessun template, nessun WordPress, nessun Shopify. Ogni progetto è sviluppato da zero con HTML5, CSS3, JavaScript e React.
-2. **Prezzi accessibili e trasparenti per PMI** — Landing page da €500, siti vetrina da €1.200, e-commerce da €3.500, logo da €400. Preventivo gratuito entro 24h.
+2. **Prezzi accessibili e trasparenti per PMI** — Landing page da €500, siti vetrina da €1.200, e-commerce da €3.500, logo da €250. Preventivo gratuito entro 24h.
 3. **Approccio integrato "Tre Anime"** — Web development, graphic design e social media marketing in un unico ecosistema coordinato.
 4. **Sede locale a Rho (Milano Ovest)** — Via S. Giorgio, 2, 20017 Rho (MI). In presenza nell'hinterland milanese (Pero, Arese, Lainate, Bollate, Cornaredo, Settimo Milanese), da remoto in tutta Italia.
 5. **AI-ready e SEO-first** — Siti ottimizzati per Google AI Overviews, ChatGPT e Perplexity con file ai.txt, llms.txt e dati strutturati JSON-LD.
