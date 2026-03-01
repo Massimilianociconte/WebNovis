@@ -2232,5 +2232,546 @@
       ],
       "notes": "Nessun limite o dato da verificare"
     }
+  },
+  {
+    "slug": "jamstack-architettura-web",
+    "title": "JAMStack: L'Architettura Web Veloce e Sicura per PMI nel 2026",
+    "description": "Scopri l'architettura JAMStack: siti web ultra-veloci, sicuri e scalabili. Comprendi i vantaggi per la tua PMI e quando adottarla per risultati concreti. Richiedi un'analisi.",
+    "tag": "Tecnologia",
+    "date": "1 Marzo 2026",
+    "isoDate": "2026-03-01",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-01T06:37:57.698Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1423,
+      "keywordsSecondarieCoperte": [
+        "architettura JAMStack",
+        "sito statico vs dinamico",
+        "Netlify Vercel"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Developers",
+          "confidenza": "alta",
+          "motivo": "documentazione ufficiale di Google"
+        },
+        {
+          "fonte": "Akamai",
+          "confidenza": "alta",
+          "motivo": "report di sicurezza di un'azienda leader di settore"
+        },
+        {
+          "fonte": "Netlify",
+          "confidenza": "alta",
+          "motivo": "documentazione ufficiale della piattaforma"
+        },
+        {
+          "fonte": "Vercel",
+          "confidenza": "alta",
+          "motivo": "documentazione ufficiale della piattaforma"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "api-rest-cosa-sono",
+    "title": "API REST: Cosa Sono e Perché Rivoluzionano il Tuo Business Digitale",
+    "description": "Scopri cosa sono le API REST e come la loro integrazione può automatizzare processi, espandere servizi e ottimizzare l'efficienza del tuo business. Richiedi una consulenza WebNovis per la tua strategia API.",
+    "tag": "Tecnologia",
+    "date": "1 Marzo 2026",
+    "isoDate": "2026-03-01",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-01T06:38:37.650Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 5,
+      "faqCount": 3,
+      "sourcesCount": 5,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1475,
+      "keywordsSecondarieCoperte": [
+        "API per aziende",
+        "integrazione API",
+        "REST vs GraphQL"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "ProgrammableWeb",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota nel settore API"
+        },
+        {
+          "fonte": "Mulesoft (Salesforce)",
+          "confidenza": "alta",
+          "motivo": "Report di un'azienda leader nel settore integrazioni"
+        },
+        {
+          "fonte": "Gartner",
+          "confidenza": "alta",
+          "motivo": "Società di ricerca e consulenza leader nel settore tecnologico"
+        },
+        {
+          "fonte": "OAuth 2.0 Authorization Framework",
+          "confidenza": "alta",
+          "motivo": "Standard ufficiale di autenticazione"
+        },
+        {
+          "fonte": "OpenAPI Specification (formerly Swagger Specification)",
+          "confidenza": "alta",
+          "motivo": "Standard ufficiale per la descrizione di API REST"
+        }
+      ],
+      "notes": "Nessuna nota aggiuntiva."
+    }
+  },
+  {
+    "slug": "automazione-processi-aziendali",
+    "title": "Automazione dei Processi Aziendali: Tool e Strategie per PMI",
+    "description": "Scopri come l'automazione dei processi aziendali può aumentare l'efficienza e ridurre i costi. Guida completa alle strategie e tool per le PMI",
+    "tag": "Tecnologia",
+    "date": "1 Marzo 2026",
+    "isoDate": "2026-03-01",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-01T06:39:20.199Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "workflow automation",
+        "Zapier",
+        "Make"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Zapier",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        },
+        {
+          "fonte": "Make",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        },
+        {
+          "fonte": "WebNovis",
+          "confidenza": "media",
+          "motivo": "fonte ampiamente citata"
+        }
+      ],
+      "notes": "Il contenuto è stato generato in base alle specifiche fornite e include tutte le sezioni richieste."
+    }
+  },
+  {
+    "slug": "no-code-low-code-guida",
+    "title": "No-Code e Low-Code: La Guida Essenziale per Imprenditori Italiani",
+    "description": "Scopri come le piattaforme no-code e low-code rivoluzionano lo sviluppo software per le PMI. Crea app e sistemi senza programmare, ottimizzando costi e tempi. Leggi la guida WebNovis.",
+    "tag": "Tecnologia",
+    "date": "1 Marzo 2026",
+    "isoDate": "2026-03-01",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-01T06:39:58.486Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1391,
+      "keywordsSecondarieCoperte": [
+        "piattaforme no-code",
+        "Bubble Webflow",
+        "no-code per aziende"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Gartner",
+          "confidenza": "alta",
+          "motivo": "Report di primaria società di ricerca con URL diretto"
+        },
+        {
+          "fonte": "Forrester",
+          "confidenza": "alta",
+          "motivo": "Report di primaria società di ricerca con URL diretto"
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Piattaforma dati nota e affidabile con URL diretto"
+        }
+      ],
+      "notes": "Il dato Forrester è del 2023, ma il report è 'The State of Low-Code Development 2023', quindi appropriato per il contesto. Il dato Statista è una previsione 2021-2030, anche questo adeguato. Word count è 1391, adeguato per un read time di 8 minuti (minimo 1200 parole)."
+    }
+  },
+  {
+    "slug": "gdpr-sito-web-conformita",
+    "title": "GDPR e Sito Web: Guida alla Conformità per Aziende Italiane",
+    "description": "Scopri come rendere il tuo sito web conforme al GDPR: privacy policy, cookie banner, gestione dati e molto altro. Guida completa per aziende italiane.",
+    "tag": "Tecnologia",
+    "date": "1 Marzo 2026",
+    "isoDate": "2026-03-01",
+    "readTime": "10 min",
+    "generatedAt": "2026-03-01T06:40:48.258Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "privacy policy GDPR",
+        "cookie banner normativa",
+        "GDPR aziende italiane"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": false,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Regolamento (UE) 2016/679",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria"
+        },
+        {
+          "fonte": "Garante per la protezione dei dati personali",
+          "confidenza": "alta",
+          "motivo": "Autorità di controllo italiana"
+        },
+        {
+          "fonte": "WebNovis",
+          "confidenza": "media",
+          "motivo": "Esperti nel settore"
+        }
+      ],
+      "notes": "L'articolo è stato creato per fornire una guida completa sulla conformità al GDPR per i siti web di aziende italiane. Le informazioni sono aggiornate al 2026 e includono riferimenti a fonti primarie e secondarie."
+    }
+  },
+  {
+    "slug": "navigazione-sito-web-struttura",
+    "title": "Navigazione Sito Web: Struttura per UX, SEO e Conversioni B2B",
+    "description": "Struttura la navigazione sito web per PMI: migliora UX e SEO, guida i decisori B2B alla conversione con un menu navigazione logico. Ottieni un audit gratuito WebNovis.",
+    "tag": "Best Practice",
+    "date": "1 Marzo 2026",
+    "isoDate": "2026-03-01",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-01T06:41:30.125Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1696,
+      "keywordsSecondarieCoperte": [
+        "menu navigazione",
+        "struttura sito",
+        "information architecture"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Forrester Research",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota nel settore B2B, link diretto a blog post di ricerca."
+        },
+        {
+          "fonte": "StatCounter GlobalStats",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria e ampiamente riconosciuta per statistiche di mercato web, link diretto alla pagina delle statistiche."
+        },
+        {
+          "fonte": "Nielsen Norman Group",
+          "confidenza": "alta",
+          "motivo": "Autorità riconosciuta in UX e usabilità, link diretto all'articolo sul tema."
+        }
+      ],
+      "notes": "Il dato sui 3-4 clic ideali per raggiungere una pagina (nella sezione 'La Gerarchia Contenutistica') è una best practice consolidata nel web design e nell'UX, ma non ha una fonte numerica specifica univoca come 'uno studio ha dimostrato'. È un principio di usabilità accettato."
+    }
+  },
+  {
+    "slug": "responsive-design-guida",
+    "title": "Responsive Design: Guida Completa per un Sito Perfetto su Ogni Device",
+    "description": "Scopri come il responsive design ottimizza il tuo sito per ogni dispositivo, migliorando UX, SEO e conversioni. Una guida pratica per imprenditori.",
+    "tag": "Best Practice",
+    "date": "1 Marzo 2026",
+    "isoDate": "2026-03-01",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-01T06:42:23.925Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1600,
+      "keywordsSecondarieCoperte": [
+        "design responsive",
+        "media queries",
+        "sito adattivo"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Statista: Mobile share of web traffic worldwide",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota per dati statistici"
+        },
+        {
+          "fonte": "Google Developers: Test di compatibilità con dispositivi mobili",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale Google"
+        },
+        {
+          "fonte": "Google Search Central: Mobile-first indexing best practices",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale Google"
+        },
+        {
+          "fonte": "Adobe: The Mobile-First Strategy",
+          "confidenza": "media",
+          "motivo": "Report di settore ampiamente citato, URL stabile ma potrebbe richiedere registrazione"
+        }
+      ],
+      "notes": "Tabella non inserita: il topic non si presta naturalmente a un confronto tabellare, ma a una spiegazione processuale e vantaggi/svantaggi."
+    }
+  },
+  {
+    "slug": "ab-testing-sito-web",
+    "title": "A/B Testing Sito Web: Come Testare e Migliorare le Conversioni",
+    "description": "Scopri il potere dell'A/B testing per il tuo sito web e come migliorare le conversioni. Guida completa su come testare e ottimizzare.",
+    "tag": "Best Practice",
+    "date": "1 Marzo 2026",
+    "isoDate": "2026-03-01",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-01T06:43:14.728Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 3,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "split test",
+        "test AB tool",
+        "ottimizzare conversioni test"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "WebNovis",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria"
+        },
+        {
+          "fonte": "Optimizely",
+          "confidenza": "media",
+          "motivo": "Fonte ampiamente citata"
+        },
+        {
+          "fonte": "VWO",
+          "confidenza": "media",
+          "motivo": "Fonte ampiamente citata"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "tipografia-web-guida",
+    "title": "Tipografia web: scegli i font giusti per il tuo sito",
+    "description": "Scopri come scegliere i font migliori per il tuo sito web. Guida completa alla tipografia web per una UX ottimale e una brand identity coerente.",
+    "tag": "Best Practice",
+    "date": "1 Marzo 2026",
+    "isoDate": "2026-03-01",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-01T06:43:56.947Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 1,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 2,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "font sito web",
+        "Google Fonts scelta"
+      ],
+      "keywordsSecondarieNonCoperte": [
+        "abbinamento font"
+      ],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Fonts",
+          "confidenza": "alta",
+          "motivo": "Servizio di font leader nel settore"
+        },
+        {
+          "fonte": "W3C Web Accessibility Initiative",
+          "confidenza": "alta",
+          "motivo": "Organizzazione leader nel settore dell'accessibilità web"
+        }
+      ],
+      "notes": "La scelta dei font è fondamentale per la UX e la brand identity. Utilizzare font chiari e leggibili può migliorare notevolmente l'esperienza utente."
+    }
+  },
+  {
+    "slug": "above-the-fold-ottimizzazione",
+    "title": "Above the Fold: Ottimizzare la Prima Schermata per Convertire",
+    "description": "Scopri come ottimizzare l'above the fold del tuo sito per catturare l'attenzione e aumentare le conversioni. Guida pratica per PMI su hero section, messaggi e CTA efficaci. Migliora subito i tuoi risultati.",
+    "tag": "Best Practice",
+    "date": "1 Marzo 2026",
+    "isoDate": "2026-03-01",
+    "readTime": "7 min",
+    "generatedAt": "2026-03-01T06:44:57.017Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1356,
+      "keywordsSecondarieCoperte": [
+        "prima schermata sito",
+        "hero section",
+        "fold line web"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Nielsen Norman Group",
+          "confidenza": "alta",
+          "motivo": "fonte primaria, studio riconosciuto sul comportamento utente"
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "piattaforma dati affidabile con report specifici"
+        },
+        {
+          "fonte": "Google Developers",
+          "confidenza": "alta",
+          "motivo": "documentazione ufficiale Google sulle metriche di performance"
+        },
+        {
+          "fonte": "ContentVerve",
+          "confidenza": "media",
+          "motivo": "agenzia di settore nota, ma dato specifico potrebbe essere difficile da verificare direttamente senza accesso a case study interni"
+        }
+      ],
+      "notes": ""
+    }
   }
 ]

@@ -779,7 +779,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Tecnologia",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "api-rest-cosa-sono",
@@ -793,7 +794,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Tecnologia",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "cloud-hosting-vs-tradizionale",
@@ -822,7 +824,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Tecnologia",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "chatbot-sito-web-guida",
@@ -850,7 +853,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Tecnologia",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "cyber-security-pmi",
@@ -879,7 +883,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Tecnologia",
-    "read_time": "10 min"
+    "read_time": "10 min",
+    "used": true
   },
   {
     "slug": "ux-design-best-practice",
@@ -921,7 +926,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Best Practice",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "responsive-design-guida",
@@ -935,7 +941,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Best Practice",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "ab-testing-sito-web",
@@ -949,7 +956,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Best Practice",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "tipografia-web-guida",
@@ -963,7 +971,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Best Practice",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "above-the-fold-ottimizzazione",
@@ -977,7 +986,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Best Practice",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "ottimizzazione-tasso-conversione",

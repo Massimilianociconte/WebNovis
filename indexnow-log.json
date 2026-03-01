@@ -124,5 +124,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-01T06:45:00.238Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/jamstack-architettura-web.html",
+      "https://www.webnovis.com/blog/api-rest-cosa-sono.html",
+      "https://www.webnovis.com/blog/automazione-processi-aziendali.html",
+      "https://www.webnovis.com/blog/no-code-low-code-guida.html",
+      "https://www.webnovis.com/blog/gdpr-sito-web-conformita.html",
+      "https://www.webnovis.com/blog/navigazione-sito-web-struttura.html",
+      "https://www.webnovis.com/blog/responsive-design-guida.html",
+      "https://www.webnovis.com/blog/ab-testing-sito-web.html",
+      "https://www.webnovis.com/blog/tipografia-web-guida.html",
+      "https://www.webnovis.com/blog/above-the-fold-ottimizzazione.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]
