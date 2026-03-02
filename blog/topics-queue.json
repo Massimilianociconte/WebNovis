@@ -1029,7 +1029,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Conversioni",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "pagina-prezzi-ottimizzazione",
@@ -1043,7 +1044,8 @@
     "search_intent": "informativo",
     "funnel_stage": "BOFU",
     "tag": "Conversioni",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "copywriting-persuasivo-web",
@@ -1057,7 +1059,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Conversioni",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "lead-magnet-guida",
@@ -1071,7 +1074,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Conversioni",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "heatmap-analisi-comportamento",
@@ -1085,7 +1089,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Conversioni",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "exit-intent-popup",
@@ -1099,7 +1104,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Conversioni",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "trust-signals-ecommerce",
@@ -1113,7 +1119,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Conversioni",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "thank-you-page-ottimizzazione",
@@ -1127,7 +1134,8 @@
     "search_intent": "informativo",
     "funnel_stage": "BOFU",
     "tag": "Conversioni",
-    "read_time": "6 min"
+    "read_time": "6 min",
+    "used": true
   },
   {
     "slug": "naming-aziendale-guida",
@@ -1155,7 +1163,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Branding",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "brand-storytelling",
@@ -1169,7 +1178,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Branding",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "brand-awareness-strategie",

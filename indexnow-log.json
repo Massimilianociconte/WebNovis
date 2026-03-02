@@ -145,5 +145,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-02T06:57:43.084Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/social-proof-sito-web.html",
+      "https://www.webnovis.com/blog/pagina-prezzi-ottimizzazione.html",
+      "https://www.webnovis.com/blog/copywriting-persuasivo-web.html",
+      "https://www.webnovis.com/blog/lead-magnet-guida.html",
+      "https://www.webnovis.com/blog/heatmap-analisi-comportamento.html",
+      "https://www.webnovis.com/blog/exit-intent-popup.html",
+      "https://www.webnovis.com/blog/trust-signals-ecommerce.html",
+      "https://www.webnovis.com/blog/thank-you-page-ottimizzazione.html",
+      "https://www.webnovis.com/blog/brand-positioning-strategia.html",
+      "https://www.webnovis.com/blog/brand-storytelling.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]
