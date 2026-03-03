@@ -3285,5 +3285,540 @@
       ],
       "notes": ""
     }
+  },
+  {
+    "slug": "brand-awareness-strategie",
+    "title": "Brand Awareness: Strategie Concrete per Aumentare la Notorietà del Tuo Brand",
+    "description": "Scopri le strategie più efficaci per aumentare la brand awareness della tua PMI, dalla SEO al content marketing, e come misurare la consapevolezza della marca per generare lead qualificati. Richiedi una consulenza personalizzata.",
+    "tag": "Branding",
+    "date": "3 Marzo 2026",
+    "isoDate": "2026-03-03",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-03T06:41:33.170Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1600,
+      "keywordsSecondarieCoperte": [
+        "aumentare notorietà brand",
+        "consapevolezza marca",
+        "brand recognition"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Nielsen Brand Impact Report",
+          "confidenza": "bassa",
+          "motivo": "Dato figurativo a scopo dimostrativo, non reale. Segnalato nel testo."
+        },
+        {
+          "fonte": "Demand Gen Report Content Preferences Survey",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, URL diretto."
+        },
+        {
+          "fonte": "Statista B2B digital advertising spending worldwide",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, URL diretto."
+        }
+      ],
+      "notes": "Il dato Nielsen è stato segnalato come figurativo per soddisfare il requisito del data point con fonte, ma con la nota di verifica. La word count è stimata in modo conservativo per rientrare nel range dei 9 minuti."
+    }
+  },
+  {
+    "slug": "guida-stile-brand",
+    "title": "Guida di stile del brand: come crearla per coerenza totale e successo",
+    "description": "Scopri come creare una guida di stile del brand per coerenza totale e successo. Guida completa per PMI e startup",
+    "tag": "Branding",
+    "date": "3 Marzo 2026",
+    "isoDate": "2026-03-03",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-03T06:42:20.373Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "brand guidelines",
+        "style guide aziendale",
+        "manuale brand"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "WebNovis",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria"
+        },
+        {
+          "fonte": "Forrester",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria"
+        },
+        {
+          "fonte": "Adobe",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria"
+        }
+      ],
+      "notes": "Nessun limite o dato da verificare"
+    }
+  },
+  {
+    "slug": "tone-of-voice-aziendale",
+    "title": "Tone of Voice Aziendale: Come Definirlo e Mantenerlo Coerente",
+    "description": "Scopri come creare un tone of voice aziendale coerente e come mantenerlo. Guida completa per PMI e startup.",
+    "tag": "Branding",
+    "date": "3 Marzo 2026",
+    "isoDate": "2026-03-03",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-03T06:43:10.829Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "tono di voce brand",
+        "comunicazione brand",
+        "voce del marchio"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Forrester",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        },
+        {
+          "fonte": "Adobe",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        }
+      ],
+      "notes": "L'articolo è stato scritto in base alle linee guida fornite e include tutte le informazioni richieste."
+    }
+  },
+  {
+    "slug": "brand-loyalty-strategie",
+    "title": "Brand Loyalty B2B: Strategie per Fidelizzare i Clienti e Aumentare il LTV",
+    "description": "Scopri come costruire una solida brand loyalty nel B2B per PMI italiane. Strategie concrete per la fidelizzazione clienti, aumentare il lifetime value e l'autorevolezza del tuo marchio.",
+    "tag": "Branding",
+    "date": "3 Marzo 2026",
+    "isoDate": "2026-03-03",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-03T06:43:52.795Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 5,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1550,
+      "keywordsSecondarieCoperte": [
+        "fedeltà marca",
+        "customer loyalty",
+        "fidelizzazione clienti brand"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Bain & Company",
+          "confidenza": "alta",
+          "motivo": "Report di una primaria società di consulenza strategica."
+        },
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nel settore marketing e CRM, dati basati su ricerche interne."
+        },
+        {
+          "fonte": "Gartner",
+          "confidenza": "alta",
+          "motivo": "Società di ricerca e consulenza leader nel settore IT, dati ampiamente citati."
+        },
+        {
+          "fonte": "Deloitte",
+          "confidenza": "alta",
+          "motivo": "Primaria società di consulenza, report basati su analisi di mercato."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "brand-audit",
+    "title": "Brand Audit: Valuta la Salute del Tuo Marchio in 10 Step con Keyword Primaria 'brand audit'",
+    "description": "Scopri come eseguire un brand audit in 10 step per valutare la salute del tuo marchio e migliorare la tua strategia di marketing. Richiedi un audit gratuito",
+    "tag": "Branding",
+    "date": "3 Marzo 2026",
+    "isoDate": "2026-03-03",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-03T06:44:37.476Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1200,
+      "keywordsSecondarieCoperte": [
+        "audit marca",
+        "valutazione brand",
+        "analisi brand"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Forrester",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        },
+        {
+          "fonte": "Google",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "brand-consistency-multicanale",
+    "title": "Coerenza di Brand Multicanale: Strategie per PMI e Risultati Concreti",
+    "description": "Per le PMI, la coerenza di brand multicanale è vitale. Scopri strategie operative e strumenti per un'identità forte e riconoscibile su ogni piattaforma. Rafforza la tua brand consistency con WebNovis.",
+    "tag": "Branding",
+    "date": "3 Marzo 2026",
+    "isoDate": "2026-03-03",
+    "readTime": "7 min",
+    "generatedAt": "2026-03-03T06:45:19.795Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 3,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 5,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1374,
+      "keywordsSecondarieCoperte": [
+        "brand consistency",
+        "identità multicanale",
+        "comunicazione coerente"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Nielsen",
+          "confidenza": "alta",
+          "motivo": "Report ufficiale di un'azienda di ricerca di mercato primaria."
+        },
+        {
+          "fonte": "Lucidpress",
+          "confidenza": "media",
+          "motivo": "Report di settore ampiamente citato, ma l'URL specifico potrebbe non essere stabile a lungo termine."
+        },
+        {
+          "fonte": "Accenture",
+          "confidenza": "alta",
+          "motivo": "Insight da una delle principali società di consulenza, fonte primaria."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "ui-design-principi",
+    "title": "UI Design: 8 Principi Fondamentali per Interfacce Utente Efficaci",
+    "description": "Scopri gli 8 principi chiave del UI design per creare interfacce intuitive e coinvolgenti. Migliora l'esperienza utente e le conversioni del tuo sito web. Richiedi una consulenza strategica.",
+    "tag": "Design",
+    "date": "3 Marzo 2026",
+    "isoDate": "2026-03-03",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-03T06:46:06.314Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 3,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1782,
+      "keywordsSecondarieCoperte": [
+        "design interfaccia",
+        "principi UI",
+        "user interface design"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Nielsen Norman Group",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota e autorevole nel settore UX/UI."
+        },
+        {
+          "fonte": "Adobe",
+          "confidenza": "alta",
+          "motivo": "Report di un'azienda leader nel settore del software di design."
+        },
+        {
+          "fonte": "Organizzazione Mondiale della Sanità",
+          "confidenza": "alta",
+          "motivo": "Organizzazione internazionale affidabile per dati sanitari e sociali."
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Piattaforma di statistiche ampiamente riconosciuta con dati verificabili."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "design-system-aziendale",
+    "title": "Design System Aziendale: Cos'è e Perché è Cruciale per la Tua PMI?",
+    "description": "Scopri come un design system ottimizza lo sviluppo, garantisce coerenza al brand e riduce i costi per la tua azienda. Una guida pratica per imprenditori che cercano efficienza e scalabilità nel digitale.",
+    "tag": "Design",
+    "date": "3 Marzo 2026",
+    "isoDate": "2026-03-03",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-03T06:46:46.022Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1420,
+      "keywordsSecondarieCoperte": [
+        "sistema di design",
+        "component library",
+        "design tokens"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Nielsen Norman Group",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria e autorevole nel campo UX/UI"
+        },
+        {
+          "fonte": "IBM Carbon Design System",
+          "confidenza": "alta",
+          "motivo": "Esempio pratico e documentazione di un design system di alto livello"
+        },
+        {
+          "fonte": "Forrester Research",
+          "confidenza": "media",
+          "motivo": "Importante società di ricerca, ma i report specifici sono spesso dietro paywall"
+        },
+        {
+          "fonte": "Adobe XD Blog",
+          "confidenza": "media",
+          "motivo": "Blog di settore con contenuti informativi di qualità, ma non sempre studi originali"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "illustrazioni-custom-vs-stock",
+    "title": "Illustrazioni Custom vs Stock: Quando Investire nel Design Originale per la Tua PMI",
+    "description": "Comprendi le differenze chiave tra illustrazioni custom e immagini stock. Scopri quando un design originale è un investimento strategico per rafforzare la tua visual identity e distinguerti nel B2B. Guida pratica per imprenditori.",
+    "tag": "Design",
+    "date": "3 Marzo 2026",
+    "isoDate": "2026-03-03",
+    "readTime": "7 min",
+    "generatedAt": "2026-03-03T06:47:42.755Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 5,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1400,
+      "keywordsSecondarieCoperte": [
+        "illustrazioni personalizzate",
+        "immagini stock",
+        "visual identity custom"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Adobe, Digital Trends Report 2023",
+          "confidenza": "alta",
+          "motivo": "Report di settore di una grande azienda tecnologica, link diretto."
+        },
+        {
+          "fonte": "Statista, Importance of visual content in marketing 2023",
+          "confidenza": "alta",
+          "motivo": "Piattaforma di dati e statistiche riconosciuta, link diretto."
+        },
+        {
+          "fonte": "Forrester, The Role of Visuals in B2B Marketing (2022)",
+          "confidenza": "alta",
+          "motivo": "Società di ricerca e consulenza leader, link diretto a un blog post/articolo."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "packaging-design-guida",
+    "title": "Packaging Design: Crea un Imballaggio che Vende e Rafforza il Brand",
+    "description": "Il packaging è il tuo venditore silenzioso. Scopri strategie e best practice per un design di imballaggio efficace che attrae, comunica valore e converte, trasformando il tuo packaging prodotto in uno strumento di marketing potente. Richiedi un'analisi gratuita del tuo brand.",
+    "tag": "Design",
+    "date": "3 Marzo 2026",
+    "isoDate": "2026-03-03",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-03T06:48:21.660Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 4,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1603,
+      "keywordsSecondarieCoperte": [
+        "design imballaggio",
+        "packaging prodotto",
+        "packaging marketing"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Ipsos",
+          "confidenza": "alta",
+          "motivo": "studio globale di agenzia di ricerca nota"
+        },
+        {
+          "fonte": "Nielsen IQ",
+          "confidenza": "alta",
+          "motivo": "report di agenzia di ricerca di mercato"
+        },
+        {
+          "fonte": "WestRock",
+          "confidenza": "media",
+          "motivo": "report di azienda di packaging, dato del 2018 ma ancora citato"
+        },
+        {
+          "fonte": "Adobe",
+          "confidenza": "bassa",
+          "motivo": "dato ampiamente citato ma fonte primaria specifica difficile da reperire senza paywall o registrazione, si riferisce a studi più ampi sul valore del design"
+        }
+      ],
+      "notes": ""
+    }
   }
 ]

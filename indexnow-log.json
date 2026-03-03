@@ -166,5 +166,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-03T06:48:25.247Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/brand-awareness-strategie.html",
+      "https://www.webnovis.com/blog/guida-stile-brand.html",
+      "https://www.webnovis.com/blog/tone-of-voice-aziendale.html",
+      "https://www.webnovis.com/blog/brand-loyalty-strategie.html",
+      "https://www.webnovis.com/blog/brand-audit.html",
+      "https://www.webnovis.com/blog/brand-consistency-multicanale.html",
+      "https://www.webnovis.com/blog/ui-design-principi.html",
+      "https://www.webnovis.com/blog/design-system-aziendale.html",
+      "https://www.webnovis.com/blog/illustrazioni-custom-vs-stock.html",
+      "https://www.webnovis.com/blog/packaging-design-guida.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]

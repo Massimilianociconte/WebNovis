@@ -1193,7 +1193,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Branding",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "guida-stile-brand",
@@ -1207,7 +1208,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Branding",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "tone-of-voice-aziendale",
@@ -1221,7 +1223,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Branding",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "colori-brand-psicologia",
@@ -1249,7 +1252,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Branding",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "brand-audit-guida",
@@ -1263,7 +1267,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Branding",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "brand-consistency-multicanale",
@@ -1277,7 +1282,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Branding",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "ui-design-principi",
@@ -1291,7 +1297,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Design",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "design-system-aziendale",
@@ -1305,7 +1312,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Design",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "illustrazioni-custom-vs-stock",
@@ -1319,7 +1327,8 @@
     "search_intent": "comparativo",
     "funnel_stage": "MOFU",
     "tag": "Design",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "packaging-design-guida",
@@ -1333,7 +1342,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Design",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "infografiche-come-crearle",
