@@ -187,5 +187,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-04T06:46:07.836Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/infografiche-come-crearle.html",
+      "https://www.webnovis.com/blog/presentazioni-aziendali-design.html",
+      "https://www.webnovis.com/blog/motion-design-marketing.html",
+      "https://www.webnovis.com/blog/teoria-colore-design-web.html",
+      "https://www.webnovis.com/blog/design-thinking-business.html",
+      "https://www.webnovis.com/blog/biglietti-visita-design.html",
+      "https://www.webnovis.com/blog/linkedin-personal-branding.html",
+      "https://www.webnovis.com/blog/sito-personale-freelancer.html",
+      "https://www.webnovis.com/blog/portfolio-digitale-guida.html",
+      "https://www.webnovis.com/blog/thought-leadership-strategia.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]

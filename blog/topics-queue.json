@@ -1357,7 +1357,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Design",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "presentazioni-aziendali-design",
@@ -1371,7 +1372,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Design",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "motion-design-marketing",
@@ -1385,7 +1387,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Design",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "teoria-colore-design-web",
@@ -1399,7 +1402,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Design",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "design-thinking-business",
@@ -1413,7 +1417,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Design",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "biglietti-visita-design",
@@ -1427,7 +1432,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Design",
-    "read_time": "6 min"
+    "read_time": "6 min",
+    "used": true
   },
   {
     "slug": "linkedin-personal-branding",
@@ -1441,7 +1447,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Personal Brand",
-    "read_time": "10 min"
+    "read_time": "10 min",
+    "used": true
   },
   {
     "slug": "sito-personale-freelancer",
@@ -1455,7 +1462,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Personal Brand",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "portfolio-digitale-guida",
@@ -1469,7 +1477,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Personal Brand",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "thought-leadership-strategia",
@@ -1483,7 +1492,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Personal Brand",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "personal-brand-consulente",
