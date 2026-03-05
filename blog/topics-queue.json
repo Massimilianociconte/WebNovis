@@ -1507,7 +1507,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Personal Brand",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "newsletter-personale-guida",
@@ -1521,7 +1522,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Personal Brand",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "personal-brand-errori-comuni",
@@ -1535,7 +1537,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Personal Brand",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "networking-digitale-strategie",
@@ -1549,7 +1552,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Personal Brand",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "contenuti-personal-brand",
@@ -1563,7 +1567,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Personal Brand",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "speaker-professionista-guida",
@@ -1577,7 +1582,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Personal Brand",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "piano-editoriale-social",
@@ -1591,7 +1597,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "community-management-guida",
@@ -1605,7 +1612,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "social-media-analytics-metriche",
@@ -1619,7 +1627,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "tiktok-business-guida",
@@ -1633,7 +1642,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Social Media",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "social-media-crisis-management",

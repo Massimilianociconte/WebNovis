@@ -208,5 +208,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-05T06:49:54.384Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/personal-brand-consulente.html",
+      "https://www.webnovis.com/blog/newsletter-personale-guida.html",
+      "https://www.webnovis.com/blog/personal-brand-errori-comuni.html",
+      "https://www.webnovis.com/blog/networking-digitale-strategie.html",
+      "https://www.webnovis.com/blog/contenuti-personal-brand.html",
+      "https://www.webnovis.com/blog/speaker-professionista-guida.html",
+      "https://www.webnovis.com/blog/piano-editoriale-social.html",
+      "https://www.webnovis.com/blog/community-management-guida.html",
+      "https://www.webnovis.com/blog/social-media-analytics-metriche.html",
+      "https://www.webnovis.com/blog/tiktok-business-guida.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]

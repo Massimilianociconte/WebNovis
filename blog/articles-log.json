@@ -4327,5 +4327,520 @@
       ],
       "notes": "L'esempio pratico/mini-caso studio è stato creato ad hoc per dimostrare il concetto di E-E-A-T, in quanto non ho accesso a dati reali di clienti WebNovis. Il conteggio parole è approssimato, ma rientra nel range richiesto per il tempo di lettura."
     }
+  },
+  {
+    "slug": "personal-brand-consulente",
+    "title": "Personal Brand per Consulenti: Strategie Efficaci e Canali Chiave",
+    "description": "Scopri come un consulente può costruire un personal brand solido per attrarre clienti qualificati e posizionarsi come esperto di settore. Strategie pratiche per la tua crescita professionale.",
+    "tag": "Personal Brand",
+    "date": "5 Marzo 2026",
+    "isoDate": "2026-03-05",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-05T06:42:21.464Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1406,
+      "keywordsSecondarieCoperte": [
+        "branding consulente",
+        "marketing personale",
+        "posizionarsi come esperto"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "LinkedIn & Edelman",
+          "confidenza": "alta",
+          "motivo": "Studio ufficiale con URL diretto a PDF"
+        },
+        {
+          "fonte": "Oktopost",
+          "confidenza": "media",
+          "motivo": "Articolo di blog di un'azienda di settore, citato ampiamente"
+        },
+        {
+          "fonte": "HubSpot",
+          "confidenza": "media",
+          "motivo": "Dato ampiamente citato nel settore, fonte primaria (blog HubSpot)"
+        },
+        {
+          "fonte": "Harvard Business Review",
+          "confidenza": "alta",
+          "motivo": "Rivista accademica e di settore rinomata, URL diretto"
+        }
+      ],
+      "notes": "Tabella non inserita: il topic non si presta naturalmente a una comparazione tabellare."
+    }
+  },
+  {
+    "slug": "newsletter-personale-guida",
+    "title": "Newsletter Personale: Guida alla Costruzione di un'Audience Fedele",
+    "description": "Costruisci una newsletter personale efficace e fidelizza la tua audience con strategie concrete di content marketing e list building. Scopri come WebNovis può supportarti.",
+    "tag": "Personal Brand",
+    "date": "5 Marzo 2026",
+    "isoDate": "2026-03-05",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-05T06:43:01.117Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1502,
+      "keywordsSecondarieCoperte": [
+        "creare newsletter",
+        "email list building",
+        "newsletter professionale"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "Report annuale noto e URL diretto a pagina blog ufficiale."
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Piattaforma di dati e statistiche riconosciuta, URL diretto al grafico/report."
+        },
+        {
+          "fonte": "OptinMonster",
+          "confidenza": "media",
+          "motivo": "Blog di settore molto citato, ma il dato specifico è un'affermazione interna senza un link diretto a uno studio accademico."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "personal-brand-errori-comuni",
+    "title": "7 Errori di Personal Branding che Ti Costano Opportunità e Credibilità",
+    "description": "Scopri i 7 errori di personal branding più comuni che frenano la tua crescita professionale. Evita un personal brand sbagliato e costruisci un'immagine autorevole e coerente per attrarre nuove opportunità. Richiedi una consulenza strategica.",
+    "tag": "Personal Brand",
+    "date": "5 Marzo 2026",
+    "isoDate": "2026-03-05",
+    "readTime": "7 min",
+    "generatedAt": "2026-03-05T06:44:14.208Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 9,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1380,
+      "keywordsSecondarieCoperte": [
+        "personal brand sbagliato",
+        "errori branding personale",
+        "personal brand consigli"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Hinge Marketing",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, link diretto allo studio."
+        },
+        {
+          "fonte": "Stackla",
+          "confidenza": "alta",
+          "motivo": "Fonte ampiamente citata nel settore, link diretto al blog post con dati."
+        },
+        {
+          "fonte": "Sprout Social",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, link diretto alla pagina con statistiche."
+        },
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, link diretto al blog post con statistiche."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "networking-digitale-strategie",
+    "title": "Networking Digitale: Strategie Efficaci per Relazioni Professionali Online",
+    "description": "Scopri le migliori strategie per il networking digitale e le relazioni professionali online. Costruisci connessioni di valore su LinkedIn e trasforma i contatti in opportunità. Richiedi una consulenza WebNovis.",
+    "tag": "Personal Brand",
+    "date": "5 Marzo 2026",
+    "isoDate": "2026-03-05",
+    "readTime": "7 min",
+    "generatedAt": "2026-03-05T06:45:20.718Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 6,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1435,
+      "keywordsSecondarieCoperte": [
+        "networking online",
+        "relazioni professionali digitali",
+        "networking LinkedIn"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria rinomata nel settore marketing/vendite."
+        },
+        {
+          "fonte": "LinkedIn Business",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale della piattaforma stessa."
+        },
+        {
+          "fonte": "Forbes",
+          "confidenza": "alta",
+          "motivo": "Pubblicazione economica di alta reputazione."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "contenuti-personal-brand",
+    "title": "Contenuti Personal Brand: Strategie e Piattaforme per la Tua Autorità Digitale",
+    "description": "Definisci la tua content strategy per il personal brand e scopri cosa pubblicare online per costruire autorevolezza. Rafforza la tua presenza professionale e ottieni lead qualificati. Richiedi una consulenza.",
+    "tag": "Personal Brand",
+    "date": "5 Marzo 2026",
+    "isoDate": "2026-03-05",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-05T06:45:59.713Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1498,
+      "keywordsSecondarieCoperte": [
+        "content strategy personal brand",
+        "cosa pubblicare online",
+        "contenuti professionali"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Edelman-LinkedIn",
+          "confidenza": "alta",
+          "motivo": "Report congiunto di due autorità di settore, URL diretto e stabile."
+        },
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota nel marketing digitale, URL diretto e stabile."
+        },
+        {
+          "fonte": "LinkedIn",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale della piattaforma, URL diretto e stabile."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "speaker-professionista-guida",
+    "title": "Diventare Speaker Professionista: Guida Completa per il Successo",
+    "description": "Scopri come diventare un speaker professionista, migliorare le tue abilità di public speaking e aumentare la tua visibilità. Guida pratica per il successo.",
+    "tag": "Personal Brand",
+    "date": "5 Marzo 2026",
+    "isoDate": "2026-03-05",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-05T06:46:46.911Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 1,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 2,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "public speaking",
+        "speaker eventi",
+        "parlare in pubblico"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        }
+      ],
+      "notes": "Nessun limite o dato da verificare"
+    }
+  },
+  {
+    "slug": "piano-editoriale-social",
+    "title": "Piano Editoriale Social: Come Creare un Piano in 5 Step con Template",
+    "description": "Scopri come creare un piano editoriale social in 5 step con template. Migliora la tua strategia di contenuti e aumenta la tua presenza online.",
+    "tag": "Social Media",
+    "date": "5 Marzo 2026",
+    "isoDate": "2026-03-05",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-05T06:47:33.348Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 2,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "calendario editoriale",
+        "piano contenuti social",
+        "content plan social media"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "WebNovis",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota"
+        },
+        {
+          "fonte": "Social Media Strategy 2026",
+          "confidenza": "media",
+          "motivo": "Fonte ampiamente citata nel settore"
+        }
+      ],
+      "notes": "Nessun limite o dato da verificare"
+    }
+  },
+  {
+    "slug": "community-management-guida",
+    "title": "Community Management: Guida Pratica per Far Crescere la Tua Community",
+    "description": "Scopri come il community management strategico può trasformare i tuoi clienti in ambassador. Questa guida pratica offre tattiche concrete per gestire community social e online, aumentare l'engagement e generare valore per la tua PMI. Ottieni lead qualificati e rafforza l'autorevolezza del tuo brand.",
+    "tag": "Social Media",
+    "date": "5 Marzo 2026",
+    "isoDate": "2026-03-05",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-05T06:48:32.154Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1600,
+      "keywordsSecondarieCoperte": [
+        "gestire community social",
+        "community online",
+        "engagement community"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Gartner",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, URL diretto a sezione pertinente."
+        },
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, URL diretto a sezione pertinente."
+        },
+        {
+          "fonte": "Deloitte",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota, URL diretto a sezione pertinente."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "social-media-analytics-metriche",
+    "title": "Social Media Analytics B2B: Le Metriche che Contano Davvero per il Tuo Business",
+    "description": "Scopri quali metriche social media sono cruciali per il successo B2B. Analizziamo KPI specifici per generare lead qualificati e misurare il ROI, non solo l'engagement. Richiedi una consulenza strategica.",
+    "tag": "Social Media",
+    "date": "5 Marzo 2026",
+    "isoDate": "2026-03-05",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-05T06:49:11.432Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1502,
+      "keywordsSecondarieCoperte": [
+        "metriche social media",
+        "KPI social",
+        "analytics Instagram Facebook"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "LinkedIn Marketing Solutions",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria, report ufficiale della piattaforma."
+        },
+        {
+          "fonte": "Hootsuite Blog",
+          "confidenza": "media",
+          "motivo": "Blog di un'azienda leader nel settore, ma dato sul CPL è generico."
+        },
+        {
+          "fonte": "Sprout Social",
+          "confidenza": "media",
+          "motivo": "Blog di un'azienda leader nel settore, riferimento generale."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "tiktok-business-guida",
+    "title": "TikTok per Aziende nel 2026: Strategie e Opportunità per PMI",
+    "description": "Scopri come le PMI italiane possono sfruttare TikTok business nel 2026. Guida pratica al marketing TikTok: dalla strategia ai contenuti, per generare lead e aumentare la visibilità.",
+    "tag": "Social Media",
+    "date": "5 Marzo 2026",
+    "isoDate": "2026-03-05",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-05T06:49:50.450Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1403,
+      "keywordsSecondarieCoperte": [
+        "TikTok business",
+        "marketing TikTok",
+        "TikTok PMI"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota per dati statistici globali"
+        },
+        {
+          "fonte": "Hootsuite",
+          "confidenza": "media",
+          "motivo": "Fonte ampiamente citata nel settore per report e aggregazioni di dati"
+        },
+        {
+          "fonte": "TikTok For Business Blog Ufficiale",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria ufficiale della piattaforma"
+        }
+      ],
+      "notes": "Ho inserito un dato numerico da Hootsuite per l'engagement autentico, che è una media basata su loro analisi. Non ho trovato un terzo dato numerico con fonte specifica che fosse pertinente e non ripetitivo. La tabella confronta strategie organiche e paid, ritenuta più utile di un confronto con Instagram per questo specifico topic."
+    }
   }
 ]
