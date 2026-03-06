@@ -1657,7 +1657,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "user-generated-content",
@@ -1671,7 +1672,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "social-commerce-guida",
@@ -1685,7 +1687,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "influencer-marketing-pmi",
@@ -1699,7 +1702,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "social-media-automation-tool",
@@ -1713,7 +1717,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "tendenze-social-media-2026",
@@ -1727,7 +1732,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Social Media",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "instagram-reels-strategia",
@@ -1741,7 +1747,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "instagram-stories-business",
@@ -1755,7 +1762,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "instagram-hashtag-strategia",
@@ -1769,7 +1777,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "instagram-bio-ottimizzazione",
@@ -1783,7 +1792,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "6 min"
+    "read_time": "6 min",
+    "used": true
   },
   {
     "slug": "instagram-carousel-guida",

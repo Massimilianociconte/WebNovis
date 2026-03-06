@@ -229,5 +229,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-06T06:48:32.129Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/social-media-crisis-management.html",
+      "https://www.webnovis.com/blog/user-generated-content.html",
+      "https://www.webnovis.com/blog/social-commerce-guida.html",
+      "https://www.webnovis.com/blog/influencer-marketing-pmi.html",
+      "https://www.webnovis.com/blog/social-media-automation-tool.html",
+      "https://www.webnovis.com/blog/tendenze-social-media-2026.html",
+      "https://www.webnovis.com/blog/instagram-reels-strategia.html",
+      "https://www.webnovis.com/blog/instagram-stories-business.html",
+      "https://www.webnovis.com/blog/instagram-hashtag-strategia.html",
+      "https://www.webnovis.com/blog/instagram-bio-ottimizzazione.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]
