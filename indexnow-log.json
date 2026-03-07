@@ -250,5 +250,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-07T06:40:02.879Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/instagram-carousel-guida.html",
+      "https://www.webnovis.com/blog/instagram-algoritmo-2026.html",
+      "https://www.webnovis.com/blog/instagram-shop-guida.html",
+      "https://www.webnovis.com/blog/instagram-insights-guida.html",
+      "https://www.webnovis.com/blog/instagram-content-strategy.html",
+      "https://www.webnovis.com/blog/instagram-collaborazioni-brand.html",
+      "https://www.webnovis.com/blog/budget-advertising-online.html",
+      "https://www.webnovis.com/blog/landing-page-ads.html",
+      "https://www.webnovis.com/blog/copywriting-ads-tecniche.html",
+      "https://www.webnovis.com/blog/linkedin-ads-b2b.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]

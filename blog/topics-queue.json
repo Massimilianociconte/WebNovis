@@ -1807,7 +1807,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "instagram-algoritmo-2026",
@@ -1821,7 +1822,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Instagram",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "instagram-shop-guida",
@@ -1835,7 +1837,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "instagram-insights-guida",
@@ -1849,7 +1852,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "instagram-content-strategy",
@@ -1863,7 +1867,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "instagram-collaborazioni-brand",
@@ -1877,7 +1882,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "google-ads-guida-principianti",
@@ -1919,7 +1925,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "landing-page-ads",
@@ -1933,7 +1940,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "meta-ads-vs-google-ads",
@@ -1961,7 +1969,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "linkedin-ads-b2b",
@@ -1975,7 +1984,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "kpi-advertising-online",

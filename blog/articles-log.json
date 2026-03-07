@@ -5357,5 +5357,515 @@
       ],
       "notes": "Ho inserito due data point con fonte esplicita. Il terzo dato numerico nella sezione 'Headline chiara e proposizione di valore' (tasso di conversione del 15% superiore) è un dato che circola ampiamente nel settore ma la fonte primaria esatta è spesso difficile da ricondurre a un singolo studio specifico e verificabile. Ho deciso di mantenerlo e segnalarlo come 'dataPointsWithSource': 2 per non inventare una fonte. La CTA inline e finale sono diverse e specifiche. Ho utilizzato URL di esempio per le fonti, come da istruzioni, poiché non ho accesso a URL reali specifici per ogni dato."
     }
+  },
+  {
+    "slug": "instagram-carousel-guida",
+    "title": "Guida Completa al Carousel Instagram: Come Creare Post Multi-Immagini",
+    "description": "Scopri come creare post multi-immagine efficaci sul carousel Instagram per aumentare l'engagement e migliorare la tua strategia di marketing.",
+    "tag": "Instagram",
+    "date": "7 Marzo 2026",
+    "isoDate": "2026-03-07",
+    "readTime": "7 min",
+    "generatedAt": "2026-03-07T06:31:45.113Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 1,
+      "dataPointsWithSource": 0,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 1,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": false,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "post carosello",
+        "carousel engagement",
+        "formato carousel"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Documentazione ufficiale di Instagram",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria e affidabile"
+        }
+      ],
+      "notes": "Nessun limite o dato da verificare"
+    }
+  },
+  {
+    "slug": "instagram-algoritmo-2026",
+    "title": "Algoritmo Instagram 2026: La Guida Essenziale per PMI e Professionisti",
+    "description": "Decifra l'algoritmo Instagram 2026: guida per PMI e professionisti. Aumenta la reach organica, ottimizza i contenuti e genera lead qualificati. Massimizza la tua visibilità.",
+    "tag": "Instagram",
+    "date": "7 Marzo 2026",
+    "isoDate": "2026-03-07",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-07T06:33:13.560Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 5,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1720,
+      "keywordsSecondarieCoperte": [
+        "Instagram algoritmo",
+        "reach organica Instagram",
+        "come funziona Instagram"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Meta (Instagram) Official Blog",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria diretta da Meta/Instagram"
+        },
+        {
+          "fonte": "Sprout Social",
+          "confidenza": "media",
+          "motivo": "Report di un'azienda leader nel settore social media management, ampiamente citato."
+        },
+        {
+          "fonte": "Hootsuite Blog",
+          "confidenza": "media",
+          "motivo": "Blog di un'azienda leader nel settore social media management, con previsioni basate su dati."
+        },
+        {
+          "fonte": "Influencer Marketing Hub",
+          "confidenza": "media",
+          "motivo": "Studio di un portale autorevole nel settore influencer marketing."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "instagram-shop-guida",
+    "title": "Instagram Shopping: Guida Completa per Vendere con il Tuo Negozio Online",
+    "description": "Scopri come configurare Instagram Shopping per la tua PMI italiana. Questa guida operativa ti mostra i passaggi chiave per trasformare il tuo profilo in un potente canale di vendita e aumentare le conversioni.",
+    "tag": "Instagram",
+    "date": "7 Marzo 2026",
+    "isoDate": "2026-03-07",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-07T06:34:28.090Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 6,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 6,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1559,
+      "keywordsSecondarieCoperte": [
+        "shop Instagram",
+        "vendere su Instagram",
+        "Instagram commerce"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Instagram for Business",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale della piattaforma"
+        },
+        {
+          "fonte": "Meta Business Help Center",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale della piattaforma"
+        },
+        {
+          "fonte": "Meta Commerce Policies",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale della piattaforma"
+        },
+        {
+          "fonte": "Hootsuite",
+          "confidenza": "media",
+          "motivo": "Report di settore ampiamente citato"
+        },
+        {
+          "fonte": "Sprout Social",
+          "confidenza": "media",
+          "motivo": "Report di settore ampiamente citato"
+        },
+        {
+          "fonte": "Grand View Research",
+          "confidenza": "media",
+          "motivo": "Società di ricerca di mercato, report specifico"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "instagram-insights-guida",
+    "title": "Instagram Insights: La Guida Definitiva per PMI e Professionisti Italiani",
+    "description": "Trasforma i dati in strategia: scopri come leggere le metriche di Instagram Insights per ottimizzare la tua presenza aziendale, aumentare l'engagement e generare lead qualificati. Una guida pratica per imprenditori italiani.",
+    "tag": "Instagram",
+    "date": "7 Marzo 2026",
+    "isoDate": "2026-03-07",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-07T06:35:04.137Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 5,
+      "faqCount": 4,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1398,
+      "keywordsSecondarieCoperte": [
+        "metriche Instagram",
+        "analytics Instagram",
+        "statistiche Instagram"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Hootsuite",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota nel settore, URL diretto a statistiche."
+        },
+        {
+          "fonte": "Sprout Social",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota nel settore, URL diretto a statistiche."
+        },
+        {
+          "fonte": "Instagram Business",
+          "confidenza": "alta",
+          "motivo": "Fonte ufficiale della piattaforma, documentazione diretta."
+        }
+      ],
+      "notes": "Tabella non inserita: il topic si presta più a una spiegazione narrativa e a una checklist operativa piuttosto che a un confronto tabellare diretto tra elementi discreti."
+    }
+  },
+  {
+    "slug": "instagram-content-strategy",
+    "title": "Content Strategy per Instagram: Pilastri di Contenuto per Aziende",
+    "description": "Scopri come creare una strategia di contenuto efficace per Instagram, migliorare la tua presenza online e aumentare l'engagement con il tuo pubblico.",
+    "tag": "Instagram",
+    "date": "7 Marzo 2026",
+    "isoDate": "2026-03-07",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-07T06:35:48.167Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 1,
+      "dataPointsWithSource": 0,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 0,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": false,
+      "wordCount": 1260,
+      "keywordsSecondarieCoperte": [
+        "strategia contenuti Instagram",
+        "rubriche Instagram",
+        "piano Instagram"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Instagram",
+          "confidenza": "alta",
+          "motivo": "fonte primaria ufficiale"
+        },
+        {
+          "fonte": "WebNovis",
+          "confidenza": "media",
+          "motivo": "fonte secondaria attendibile"
+        },
+        {
+          "fonte": "Altro",
+          "confidenza": "bassa",
+          "motivo": "fonte non verificata"
+        }
+      ],
+      "notes": "La content strategy per Instagram è un piano che aiuta le aziende a creare e pubblicare contenuti rilevanti e coerenti per il loro pubblico, migliorando la loro presenza online e aumentando l'engagement."
+    }
+  },
+  {
+    "slug": "instagram-collaborazioni-brand",
+    "title": "Collaborazioni su Instagram: Come Trovare Partner e Creator per il Tuo Brand",
+    "description": "Scopri come trovare i migliori partner e creator su Instagram per aumentare la visibilità del tuo brand e generare leads qualificati. Guida pratica per PMI e professionisti.",
+    "tag": "Instagram",
+    "date": "7 Marzo 2026",
+    "isoDate": "2026-03-07",
+    "readTime": "7 min",
+    "generatedAt": "2026-03-07T06:36:35.495Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 0,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "collab Instagram",
+        "partnership creator",
+        "influencer collaborazione"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "WebNovis",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        }
+      ],
+      "notes": "Nessun limite o dato da verificare"
+    }
+  },
+  {
+    "slug": "budget-advertising-online",
+    "title": "Budget Advertising Online: Come Allocare le Risorse per Massimizzare il ROI",
+    "description": "Scopri come definire un budget advertising online efficace, allocare le risorse tra piattaforme come Google e Meta Ads, e ottimizzare la spesa per ottenere il massimo ritorno sull'investimento. Guida pratica per PMI.",
+    "tag": "Advertising",
+    "date": "7 Marzo 2026",
+    "isoDate": "2026-03-07",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-07T06:37:20.509Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 0,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1493,
+      "keywordsSecondarieCoperte": [
+        "budget ads",
+        "quanto investire ads",
+        "allocazione budget marketing"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "WordStream",
+          "confidenza": "alta",
+          "motivo": "Fonte di settore primaria e autorevole, dato numerico specifico con URL diretto."
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Fonte di dati statistici primaria e autorevole, dato numerico specifico con URL diretto."
+        },
+        {
+          "fonte": "Think with Google",
+          "confidenza": "alta",
+          "motivo": "Fonte ufficiale Google, dato di insight sul comportamento B2B con URL diretto."
+        }
+      ],
+      "notes": "Il link interno a 'servizi di posizionamento SEO' è stato usato per bilanciare i link interni, dato che gli articoli correlati non sono stati linkati direttamente nel corpo ma solo nella sezione 'relatedArticles' come da istruzioni per i link blog. La CTA inline e finale sono strategicamente diverse e mirate a benefici specifici. Il conteggio delle parole è stato effettuato escludendo i tag HTML."
+    }
+  },
+  {
+    "slug": "landing-page-ads",
+    "title": "Landing Page Ads: Come Creare Pagine che Convertono nel 2026",
+    "description": "Guida completa per creare landing page efficaci per campagne Ads: ottimizzazione, design, copywriting e strategie per aumentare le conversioni",
+    "tag": "Advertising",
+    "date": "7 Marzo 2026",
+    "isoDate": "2026-03-07",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-07T06:38:08.173Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 1,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 2,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "landing page campagna",
+        "pagina destinazione ads",
+        "landing page conversion"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "fonte primaria nota"
+        }
+      ],
+      "notes": "Nessun limite o dato da verificare"
+    }
+  },
+  {
+    "slug": "copywriting-ads-tecniche",
+    "title": "Copywriting per Ads: Tecniche per Scrivere Annunci che Convertono",
+    "description": "Impara a scrivere annunci pubblicitari efficaci con queste tecniche di copywriting per ads. Migliora la tua strategia di advertising online",
+    "tag": "Advertising",
+    "date": "7 Marzo 2026",
+    "isoDate": "2026-03-07",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-07T06:38:52.239Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1500,
+      "keywordsSecondarieCoperte": [
+        "testo annuncio efficace",
+        "copy ads Facebook",
+        "copy Google Ads"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Facebook Business",
+          "confidenza": "alta",
+          "motivo": "fonte ufficiale"
+        },
+        {
+          "fonte": "Google Ads",
+          "confidenza": "alta",
+          "motivo": "fonte ufficiale"
+        },
+        {
+          "fonte": "Instagram Business",
+          "confidenza": "alta",
+          "motivo": "fonte ufficiale"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "linkedin-ads-b2b",
+    "title": "LinkedIn Ads B2B: Guida Completa alla Pubblicità per PMI e Professionisti",
+    "description": "Scopri come le LinkedIn Ads B2B generano lead qualificati e rafforzano il tuo brand. Una guida pratica su targeting, formati e ottimizzazione per massimizzare il ROI. Richiedi una consulenza strategica.",
+    "tag": "Advertising",
+    "date": "7 Marzo 2026",
+    "isoDate": "2026-03-07",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-07T06:39:59.232Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 10,
+      "serviceLinksCount": 4,
+      "blogLinksCount": 6,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1239,
+      "keywordsSecondarieCoperte": [
+        "pubblicità LinkedIn",
+        "ads B2B",
+        "LinkedIn advertising"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "LinkedIn Business Blog",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria ufficiale della piattaforma."
+        },
+        {
+          "fonte": "HubSpot Blog",
+          "confidenza": "alta",
+          "motivo": "Blog di settore altamente reputato e fonte di ricerche originali."
+        },
+        {
+          "fonte": "WordStream",
+          "confidenza": "alta",
+          "motivo": "Risorsa autorevole nel settore dell'advertising online, con dati e benchmark."
+        }
+      ],
+      "notes": ""
+    }
   }
 ]
