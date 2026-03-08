@@ -271,5 +271,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-08T06:43:13.111Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/kpi-advertising-online.html",
+      "https://www.webnovis.com/blog/campagne-locali-google-ads.html",
+      "https://www.webnovis.com/blog/creative-fatigue-ads.html",
+      "https://www.webnovis.com/blog/blog-aziendale-perche.html",
+      "https://www.webnovis.com/blog/content-calendar-guida.html",
+      "https://www.webnovis.com/blog/pillar-page-strategia.html",
+      "https://www.webnovis.com/blog/video-marketing-pmi.html",
+      "https://www.webnovis.com/blog/storytelling-marketing-guida.html",
+      "https://www.webnovis.com/blog/content-repurposing.html",
+      "https://www.webnovis.com/blog/podcast-aziendale-guida.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]

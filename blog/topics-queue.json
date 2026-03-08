@@ -1999,7 +1999,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "campagne-locali-google-ads",
@@ -2013,7 +2014,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "creative-fatigue-ads",
@@ -2027,7 +2029,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "blog-aziendale-perche",
@@ -2041,7 +2044,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Content Marketing",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "content-calendar-guida",
@@ -2055,7 +2059,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Content Marketing",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "pillar-page-strategia",
@@ -2069,7 +2074,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Content Marketing",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "video-marketing-pmi",
@@ -2083,7 +2089,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Content Marketing",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "storytelling-marketing-guida",
@@ -2097,7 +2104,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Content Marketing",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "content-repurposing",
@@ -2111,7 +2119,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Content Marketing",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "podcast-aziendale-guida",
@@ -2125,7 +2134,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Content Marketing",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "email-marketing-guida-completa",
