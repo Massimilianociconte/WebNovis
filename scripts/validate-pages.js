@@ -21,8 +21,9 @@
 
 const fs = require('fs');
 const path = require('path');
+const { ROOT_DIR, getPublishDir } = require('../config/publish-targets');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = getPublishDir();
 const args = process.argv.slice(2);
 const VALIDATE_ALL = args.includes('--all');
 const VERBOSE = args.includes('--verbose');
@@ -128,7 +129,7 @@ function findGeoPages() {
     // Load service slugs for servizio×città detection
     let serviceSlugs = [];
     try {
-        const svcData = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'services.json'), 'utf8'));
+        const svcData = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data', 'services.json'), 'utf8'));
         serviceSlugs = svcData.services.map(s => s.slug);
     } catch (e) { /* services.json not available */ }
 
@@ -306,6 +307,7 @@ function main() {
     console.log('══════════════════════════════════════════════════════');
     console.log('  WebNovis — Page Quality Validator (pSEO)');
     console.log('══════════════════════════════════════════════════════\n');
+    console.log(`Publish dir: ${path.relative(ROOT_DIR, ROOT).replace(/\\/g, '/') || '.'}\n`);
 
     const pages = VALIDATE_ALL ? findAllPages() : findGeoPages();
     console.log(`Validating ${pages.length} pages...\n`);

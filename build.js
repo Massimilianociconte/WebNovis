@@ -15,10 +15,11 @@ const path = require('path');
 const { minify } = require('terser');
 const { transform } = require('lightningcss');
 const CleanCSS = require('clean-css');
+const { getPublishDir } = require('./config/publish-targets');
 let htmlMinifier;
 try { htmlMinifier = require('html-minifier-terser'); } catch (e) { htmlMinifier = null; }
 
-const PROJECT_ROOT = path.resolve(process.cwd());
+const PROJECT_ROOT = getPublishDir();
 
 const config = {
     discovery: {

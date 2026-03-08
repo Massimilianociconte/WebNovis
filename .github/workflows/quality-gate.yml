@@ -26,3 +26,7 @@ jobs:
 
       - name: Run quality gate
         run: npm run ci:quality
+
+      - name: Verify production headers
+        if: github.event_name == 'workflow_dispatch'
+        run: npm run verify:prod-headers

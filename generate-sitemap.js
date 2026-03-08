@@ -8,9 +8,10 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const { ROOT_DIR, getPublishDir } = require('./config/publish-targets');
 
 const BASE_URL = 'https://www.webnovis.com';
-const ROOT = path.resolve(__dirname);
+const ROOT = getPublishDir();
 const OUTPUT = path.join(ROOT, 'sitemap.xml');
 
 // Pages to EXCLUDE from sitemap
@@ -20,6 +21,7 @@ const EXCLUDE_PATTERNS = [
     /^\./,
     /^blog\/auto-writer/,
     /^blog\/build-articles/,
+    /agenzie-web-rho\.html$/,
     /^portfolio\/(Aether-Digital|Ember-Oak|Lumina-Creative|Muse-Editorial|PopBlock-Studio|Structure-Arch)\.html$/i,
     /404\.html$/,
     /grazie\.html$/,
@@ -78,8 +80,8 @@ function formatDate(mtime) {
 function getGitDate(absPath) {
     try {
         const result = execSync(
-            `git log -1 --format=%aI -- "${path.relative(ROOT, absPath).replace(/\\/g, '/')}"`,
-            { cwd: ROOT, encoding: 'utf-8', timeout: 5000 }
+            `git log -1 --format=%aI -- "${path.relative(ROOT_DIR, absPath).replace(/\\/g, '/')}"`,
+            { cwd: ROOT_DIR, encoding: 'utf-8', timeout: 5000 }
         ).trim();
         if (result) return result.split('T')[0];
     } catch (e) { /* git not available or file not tracked */ }
@@ -122,5 +124,5 @@ for (const entry of entries) {
 xml += `\n</urlset>\n`;
 
 fs.writeFileSync(OUTPUT, xml, 'utf8');
-console.log(`✅ sitemap.xml generated with ${entries.length} URLs`);
+console.log(`✅ sitemap.xml generated with ${entries.length} URLs → ${path.relative(ROOT_DIR, OUTPUT).replace(/\\/g, '/')}`);
 entries.forEach(e => console.log(`   ${e.lastmod}  ${e.loc}`));

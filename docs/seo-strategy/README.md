@@ -1,22 +1,33 @@
-# docs/seo-strategy/
+# SEO Strategy Docs
 
-Cartella dedicata alla documentazione strategica SEO, performance e indicizzazione del progetto WebNovis.
+Questa cartella raccoglie documentazione strategica e report SEO/GEO del progetto WebNovis. Non tutti i file hanno lo stesso peso operativo: alcuni sono piani attivi, altri sono audit storici o materiale di ricerca.
 
-## Contenuto
+## Fonti operative principali
 
-| File | Descrizione | Data |
-|------|-------------|:----:|
-| `REPORT-SEO-AVANZATO-2026.md` | Report analitico SEO & AI Dominance Protocol — scorecard, GEO, LLM sniffing, piano 90 giorni | 16/02/2026 |
-| `SEO-AUDIT.md` | Audit SEO completo — crawlability, CWV, on-page, schema, off-page, local SEO, AI readiness | 12/02/2026 |
-| `SEO-GEO.MD` | Guida strategica SEO + GEO (Generative Engine Optimization) + CRO per il blog | 2025-2026 |
-| `tecniche-SEO-avanzate.txt` | Master report originale: protocolli GEO, PAA loops, link building, on-page, newsletter | 2026 |
-| `Best-free-backlinks-platforms.MD` | 100+ piattaforme gratuite per backlink — directory, profili, PR, social, dofollow | 2026 |
-| `WEBSITE-AUDIT-REPORT.md` | Audit tecnico completo — SEO, security, performance, accessibility, code quality | 15/02/2026 |
-| `DIRECTORY-LISTINGS.md` | Dati pronti per registrazione su directory aziendali e piattaforme recensioni | 12/02/2026 |
-| `seo_webnovis_hierarchy.json` | Keyword hierarchy — 7 cluster, PAA, query seed, correlate, intent mapping | 2026 |
-| `PIANO-STRATEGICO-SEO-2026.md` | Piano strategico operativo — gap analysis, task list, roadmap 3-6 mesi | 17/02/2026 |
+| File | Uso consigliato |
+|------|------------------|
+| `../IMPLEMENTATION-BACKLOG-2026-03-08.md` | Fonte primaria per backlog tecnico verificato sul codice. |
+| `PIANO-STRATEGICO-SEO-2026.md` | Piano di medio periodo per priorita`, cluster e roadmap. |
+| `KEYWORD-RESEARCH-REPORT-2026.md` | Base keyword, intent mapping e supporto editoriale. |
+| `TOPIC-CLUSTER-SVILUPPO-WEB.md` | Struttura editoriale del cluster sviluppo web. |
+| `REPORT-IMPLEMENTAZIONE-AUDIT-UNIFICATO.md` | Storico implementativo utile per ricostruire fix gia` eseguiti. |
 
-## Note
+## Documenti storici o di supporto
 
-- Tutti i file `.md` e `.txt` sono bloccati dal crawling in `robots.txt` (`/*.md$` + `Disallow: /docs/`)
-- I path interni tra questi documenti sono stati aggiornati dopo la riorganizzazione
+| File | Nota |
+|------|------|
+| `SEO-AUDIT.md` | Audit ampio, ma precedente ai refactor recenti su header, footer e regression test. |
+| `REPORT-SEO-AVANZATO-2026.md` | Valido come analisi strategica, non come checklist tecnica puntuale. |
+| `SEO-GEO.MD` | Documento di indirizzo, da verificare sempre sul codice prima di applicarlo. |
+| `AUDIT-SEO-BRUTALE-WEBNOVIS.md` | Review critica storica, utile solo come confronto. |
+| `WEBSITE-AUDIT-REPORT.md` | Audit trasversale non allineato in ogni dettaglio allo stato attuale del repo. |
+
+## Materiale raw o derivato
+
+I file `.txt`, `.pdf`, `.json` e gli export esterni presenti in questa cartella vanno trattati come input di lavoro o archivio, non come documentazione finale.
+
+## Regole di manutenzione
+
+- Quando un audit viene superato da fix reali nel repository, aggiornarlo o spostarlo in archivio.
+- I documenti attivi devono descrivere stato verificabile nel codice o nella pipeline.
+- Tutta la documentazione sotto `docs/` resta esclusa dal crawling pubblico.

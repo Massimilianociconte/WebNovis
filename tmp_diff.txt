@@ -1,0 +1,58 @@
+diff --git a/blog/index.html b/blog/index.html
+index 6aebe1f..3c29fb4 100644
+--- a/blog/index.html
++++ b/blog/index.html
+@@ -2289,7 +2289,7 @@
+                     <article class="blog-card" data-category="web">
+                         <a href="headless-cms-guida.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+                             <picture>
+-                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
++                                <source srcset="../Img/blog/blog-headless-cms.webp" type="image/webp">
+                                 <img alt="Headless CMS: Guida Completa per Scelta e Implementazione" height="450" src="../Img/blog-cat-web.png" width="800" loading="lazy" fetchpriority="auto">
+                             </picture>
+                         </a>
+@@ -2307,7 +2307,7 @@
+                     <article class="blog-card" data-category="web">
+                         <a href="cloud-hosting-vs-tradizionale.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+                             <picture>
+-                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
++                                <source srcset="../Img/blog/blog-cloud-hosting.webp" type="image/webp">
+                                 <img alt="Cloud Hosting vs Tradizionale: Confronto per PMI nel 2026" height="450" src="../Img/blog-cat-web.png" width="800" loading="lazy" fetchpriority="auto">
+                             </picture>
+                         </a>
+@@ -2325,7 +2325,7 @@
+                     <article class="blog-card" data-category="web">
+                         <a href="cyber-security-pmi.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+                             <picture>
+-                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
++                                <source srcset="../Img/blog/blog-cyber-security.webp" type="image/webp">
+                                 <img alt="Cyber Security per PMI: Minacce Comuni e Come Difendersi" height="450" src="../Img/blog-cat-web.png" width="800" loading="lazy" fetchpriority="auto">
+                             </picture>
+                         </a>
+@@ -2415,7 +2415,7 @@
+                     <article class="blog-card" data-category="web">
+                         <a href="gdpr-sito-web-conformita.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+                             <picture>
+-                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
++                                <source srcset="../Img/blog/blog-gdpr-sito-web.webp" type="image/webp">
+                                 <img alt="GDPR e Sito Web: Guida alla Conformità per Aziende Italiane" height="450" src="../Img/blog-cat-web.png" width="800" loading="lazy" fetchpriority="auto">
+                             </picture>
+                         </a>
+@@ -2667,7 +2667,7 @@
+                     <article class="blog-card" data-category="design">
+                         <a href="brand-positioning-strategia.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+                             <picture>
+-                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
++                                <source srcset="../Img/blog/blog-brand-positioning.webp" type="image/webp">
+                                 <img alt="Brand Positioning: Strategia per Posizionare il Tuo Marchio e Conquistare Clienti" height="450" src="../Img/blog-cat-web.png" width="800" loading="lazy" fetchpriority="auto">
+                             </picture>
+                         </a>
+@@ -2685,7 +2685,7 @@
+                     <article class="blog-card" data-category="design">
+                         <a href="brand-storytelling.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+                             <picture>
+-                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
++                                <source srcset="../Img/blog/blog-brand-storytelling.webp" type="image/webp">
+                                 <img alt="Brand Storytelling: Guida per PMI a Raccontare la Storia del Marchio" height="450" src="../Img/blog-cat-web.png" width="800" loading="lazy" fetchpriority="auto">
+                             </picture>
+                         </a>

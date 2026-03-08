@@ -1,0 +1,38 @@
+
+  blog\index.html:2287:                    </article>
+  blog\index.html:2288:
+  blog\index.html:2289:                    <article class="blog-card" data-category="web">
+  blog\index.html:2290:                        <a href="headless-cms-guida.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+  blog\index.html:2291:                            <picture>
+> blog\index.html:2292:                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
+  blog\index.html:2305:                    </article>
+  blog\index.html:2306:
+  blog\index.html:2307:                    <article class="blog-card" data-category="web">
+  blog\index.html:2308:                        <a href="cloud-hosting-vs-tradizionale.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+  blog\index.html:2309:                            <picture>
+> blog\index.html:2310:                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
+  blog\index.html:2323:                    </article>
+  blog\index.html:2324:
+  blog\index.html:2325:                    <article class="blog-card" data-category="web">
+  blog\index.html:2326:                        <a href="cyber-security-pmi.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+  blog\index.html:2327:                            <picture>
+> blog\index.html:2328:                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
+  blog\index.html:2413:                    </article>
+  blog\index.html:2414:
+  blog\index.html:2415:                    <article class="blog-card" data-category="web">
+  blog\index.html:2416:                        <a href="gdpr-sito-web-conformita.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+  blog\index.html:2417:                            <picture>
+> blog\index.html:2418:                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
+  blog\index.html:2665:                    </article>
+  blog\index.html:2666:
+  blog\index.html:2667:                    <article class="blog-card" data-category="design">
+  blog\index.html:2668:                        <a href="brand-positioning-strategia.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+  blog\index.html:2669:                            <picture>
+> blog\index.html:2670:                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
+  blog\index.html:2683:                    </article>
+  blog\index.html:2684:
+  blog\index.html:2685:                    <article class="blog-card" data-category="design">
+  blog\index.html:2686:                        <a href="brand-storytelling.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
+  blog\index.html:2687:                            <picture>
+> blog\index.html:2688:                                <source srcset="../Img/blog-cat-web.webp" type="image/webp">
+

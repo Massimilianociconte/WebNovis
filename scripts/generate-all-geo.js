@@ -7,8 +7,8 @@
  *
  * Data sources:  data/cities.json, data/services.json
  * Templates:     templates/agenzia-web-content.njk (Nunjucks)
- *                realizzazione-siti-web-rho.html (regex base for "realizzazione" type)
- * Base page:     agenzia-web-rho.html (head/nav/footer extraction for "agenzia" type)
+ *                templates/base-pages/realizzazione-siti-web-source.html (regex base)
+ * Base page:     templates/base-pages/agenzia-web-source.html (head/nav/footer extraction)
  *
  * Features:
  *   - Centralized data layer (JSON)
@@ -16,11 +16,11 @@
  *   - Automatic internal linking between all geo pages
  *   - Automatic JSON-LD schema generation (BreadcrumbList, WebPage, LocalBusiness, Service, FAQPage)
  *   - GEO optimization: answer capsule, comparison table, statistics density
- *   - Blog cross-linking from search-index.json
+ *   - Blog cross-linking from search-index.json / dist/search-index.json
  *   - Validation: word count, link count, schema presence
  *   - Generates data/link-graph.json for cross-referencing
  *
- * Usage: node scripts/generate-all-geo.js [--dry-run] [--validate-only] [--type=agenzia|realizzazione|all]
+ * Usage: node scripts/generate-all-geo.js [--dry-run] [--validate-only] [--type=agenzia|realizzazione|all] [--out-dir=dist]
  */
 
 const fs = require('fs');
@@ -29,6 +29,7 @@ const nunjucks = require('nunjucks');
 
 // ─── Configuration ────────────────────────────────────────────────────────────
 const ROOT = path.join(__dirname, '..');
+const BASE_PAGE_DIR = path.join(ROOT, 'templates', 'base-pages');
 const SITE = 'https://www.webnovis.com';
 const SEDE_LAT = '45.5299';
 const SEDE_LNG = '9.0393';
@@ -42,7 +43,7 @@ const TODAY_FORMATTED = new Date().toLocaleDateString('it-IT', {
 const _basePageCache = {};
 function getBasePage(filename) {
     if (!_basePageCache[filename]) {
-        const p = path.join(ROOT, filename);
+        const p = path.join(BASE_PAGE_DIR, filename);
         if (!fs.existsSync(p)) return null;
         _basePageCache[filename] = fs.readFileSync(p, 'utf8');
     }
@@ -55,6 +56,18 @@ const DRY_RUN = args.includes('--dry-run');
 const VALIDATE_ONLY = args.includes('--validate-only');
 const typeArg = args.find(a => a.startsWith('--type='));
 const GEN_TYPE = typeArg ? typeArg.split('=')[1] : 'all';
+const outDirArg = args.find(a => a.startsWith('--out-dir='));
+const PUBLISH_DIR = path.resolve(ROOT, outDirArg ? outDirArg.split('=')[1] : (process.env.PUBLISH_DIR || '.'));
+
+function resolvePublishPath(...segments) {
+    return path.join(PUBLISH_DIR, ...segments);
+}
+
+function writePublishedFile(relativePath, html) {
+    const targetPath = resolvePublishPath(relativePath);
+    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+    fs.writeFileSync(targetPath, html, 'utf8');
+}
 
 // ─── Load Data ────────────────────────────────────────────────────────────────
 const citiesData = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'cities.json'), 'utf8'));
@@ -85,8 +98,11 @@ if (contentBlocks.size > 0) {
 
 // Load blog search index for cross-linking (optional)
 let blogIndex = [];
-const searchIndexPath = path.join(ROOT, 'search-index.json');
-if (fs.existsSync(searchIndexPath)) {
+const searchIndexPath = [
+    path.join(PUBLISH_DIR, 'search-index.json'),
+    path.join(ROOT, 'search-index.json')
+].find((candidate) => fs.existsSync(candidate));
+if (searchIndexPath) {
     try {
         const allIndex = JSON.parse(fs.readFileSync(searchIndexPath, 'utf8'));
         blogIndex = allIndex.filter(i => i.type === 'articolo' && i.url);
@@ -286,7 +302,7 @@ function generateSchemas(city, pageType) {
 // ─── Agenzia Page Generator (Nunjucks-based) ─────────────────────────────────
 
 function generateAgenziaPage(city) {
-    const rhoPage = getBasePage('agenzia-web-rho.html');
+    const rhoPage = getBasePage('agenzia-web-source.html');
     if (!rhoPage) {
         console.error('❌ Base page agenzia-web-rho.html not found');
         return null;
@@ -419,7 +435,7 @@ function generateAgenziaPage(city) {
 // ─── Realizzazione Page Generator (regex-based on Rho template) ───────────────
 
 function generateRealizzazionePage(city) {
-    const basePage = getBasePage('realizzazione-siti-web-rho.html');
+    const basePage = getBasePage('realizzazione-siti-web-source.html');
     if (!basePage) {
         console.error('❌ Base page realizzazione-siti-web-rho.html not found');
         return null;
@@ -562,7 +578,7 @@ function generateRealizzazionePage(city) {
 // ─── Servizio×Città Page Generator (Nunjucks-based, third page type) ──────────
 
 function generateServizioCittaPage(service, city) {
-    const rhoPage = getBasePage('agenzia-web-rho.html');
+    const rhoPage = getBasePage('agenzia-web-source.html');
     if (!rhoPage) return null;
 
     const slug = `${service.slug}-${city.slug}`;
@@ -571,7 +587,7 @@ function generateServizioCittaPage(service, city) {
     // Nearest cities that also have this service×city page
     const nearest = getNearestCities(city, cities, 5);
     const relatedCityPages = nearest
-        .filter(nc => nc.population >= 15000)
+        .filter(nc => !nc.isSede && nc.population >= 15000)
         .slice(0, 3)
         .map(nc => ({
             url: `${service.slug}-${nc.slug}.html`,
@@ -691,7 +707,7 @@ const HUB_CSS = `
 </style>`;
 
 function generateHubPages() {
-    const rhoPage = getBasePage('agenzia-web-rho.html');
+    const rhoPage = getBasePage('agenzia-web-source.html');
     if (!rhoPage) {
         console.error('❌ Base page agenzia-web-rho.html not found — hub pages skipped');
         return [];
@@ -1062,8 +1078,8 @@ function main() {
             }
 
             if (!DRY_RUN && !VALIDATE_ONLY) {
-                fs.writeFileSync(path.join(ROOT, filename), html, 'utf8');
-            }
+                    writePublishedFile(filename, html);
+                }
             const sizeKb = Math.round(Buffer.byteLength(html) / 1024);
             const issueStr = validation.issues.length > 0 ? ` [${validation.issues.length} warnings]` : '';
             console.log(`  ✅ ${filename} (${sizeKb}KB, ${validation.wordCount} words, ${validation.internalLinks} links)${issueStr}`);
@@ -1093,8 +1109,8 @@ function main() {
             }
 
             if (!DRY_RUN && !VALIDATE_ONLY) {
-                fs.writeFileSync(path.join(ROOT, filename), html, 'utf8');
-            }
+                    writePublishedFile(filename, html);
+                }
             const sizeKb = Math.round(Buffer.byteLength(html) / 1024);
             const issueStr = validation.issues.length > 0 ? ` [${validation.issues.length} warnings]` : '';
             console.log(`  ✅ ${filename} (${sizeKb}KB, ${validation.wordCount} words, ${validation.internalLinks} links)${issueStr}`);
@@ -1123,7 +1139,7 @@ function main() {
                 }
 
                 if (!DRY_RUN && !VALIDATE_ONLY) {
-                    fs.writeFileSync(path.join(ROOT, filename), html, 'utf8');
+                    writePublishedFile(filename, html);
                 }
                 results.servizio.push(filename);
                 generated++;
@@ -1139,12 +1155,8 @@ function main() {
         console.log('\n─── Generating hub pages ───');
         const hubResults = generateHubPages();
         for (const hub of hubResults) {
-            const hubDir = path.join(ROOT, hub.dir);
-            if (!fs.existsSync(hubDir)) {
-                fs.mkdirSync(hubDir, { recursive: true });
-            }
             if (!DRY_RUN && !VALIDATE_ONLY) {
-                fs.writeFileSync(path.join(hubDir, 'index.html'), hub.html, 'utf8');
+                writePublishedFile(path.join(hub.dir, 'index.html'), hub.html);
             }
             const sizeKb = Math.round(Buffer.byteLength(hub.html) / 1024);
             console.log(`  ✅ ${hub.dir}/index.html (${sizeKb}KB)`);

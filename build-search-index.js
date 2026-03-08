@@ -6,8 +6,9 @@
 
 const fs = require('fs');
 const path = require('path');
+const { ROOT_DIR, getPublishDir } = require('./config/publish-targets');
 
-const PROJECT_ROOT = __dirname;
+const PROJECT_ROOT = getPublishDir();
 const OUTPUT_FILE = path.join(PROJECT_ROOT, 'search-index.json');
 
 const STATIC_PAGES = [
@@ -100,5 +101,6 @@ function buildIndex() {
 }
 
 const index = buildIndex();
+fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
 fs.writeFileSync(OUTPUT_FILE, JSON.stringify(index, null, 2), 'utf-8');
-console.log(`✅ Search index built: ${index.length} pages indexed → search-index.json`);
+console.log(`✅ Search index built: ${index.length} pages indexed → ${path.relative(ROOT_DIR, OUTPUT_FILE).replace(/\\/g, '/')}`);
