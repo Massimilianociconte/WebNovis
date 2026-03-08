@@ -8,13 +8,14 @@
  * Recursively scans ALL .html files in the project (root, blog, servizi,
  * portfolio, hub dirs, etc.).
  * 
- * Usage: node scripts/update-footer.js [--dry-run]
+ * Usage: node scripts/update-footer.js [--dry-run] [--out-dir=dist]
  */
 
 const fs = require('fs');
 const path = require('path');
+const { getPublishDir } = require('../config/publish-targets');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = getPublishDir();
 const DRY_RUN = process.argv.includes('--dry-run');
 
 // ─── Configuration ────────────────────────────────────────────────────────────

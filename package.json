@@ -21,6 +21,8 @@
     "build:ai-content:dry": "node scripts/generate-ai-content.js --dry-run",
     "normalize:public-html": "node scripts/normalize-public-html.js",
     "normalize:public-html:dist": "node scripts/normalize-public-html.js --out-dir=dist",
+    "update:footer:dist": "node scripts/update-footer.js --out-dir=dist",
+    "build:site:dist": "npm run build:geo:dist && npm run normalize:public-html:dist && npm run update:footer:dist && npm run build:dist && npm run build:search-index:dist && npm run build:sitemap:dist && npm run validate:pages:dist",
     "validate:pages": "node scripts/validate-pages.js --verbose",
     "validate:pages:dist": "node scripts/validate-pages.js --all --verbose --out-dir=dist",
     "validate:pages:all": "node scripts/validate-pages.js --all --verbose",
@@ -30,9 +32,10 @@
     "update:footer": "node scripts/update-footer.js",
     "test:seo-smoke": "node tests/seo-smoke.test.js",
     "test:api": "node tests/api-endpoints.test.js",
-    "test:regressions": "node tests/image-template-regressions.test.js && node tests/geo-generator-regressions.test.js && node tests/public-html-regressions.test.js && node tests/widget-loader-regressions.test.js && node tests/security-and-legal-regressions.test.js && node tests/seo-regressions.test.js",
+    "test:regressions": "node tests/image-template-regressions.test.js && node tests/image-loading-policy.test.js && node tests/geo-generator-regressions.test.js && node tests/public-html-regressions.test.js && node tests/widget-loader-regressions.test.js && node tests/footer-widget-loader-regressions.test.js && node tests/security-and-legal-regressions.test.js && node tests/build-pipeline-regressions.test.js && node tests/header-verifier-regressions.test.js && node tests/seo-regressions.test.js",
     "verify:prod-headers": "node scripts/verify-prod-headers.js",
     "ci:quality": "npm run build:geo && npm run normalize:public-html && npm run update:footer && npm run build && npm run build:search-index && npm run build:sitemap && npm run validate:pages && npm run test:regressions && npm run test:seo-smoke && npm run test:api",
+    "ci:quality:dist": "npm run build:site:dist && npm run test:regressions && npm run test:seo-smoke && npm run test:api",
     "sync:headers": "node scripts/sync-security-headers.js"
   },
   "keywords": [

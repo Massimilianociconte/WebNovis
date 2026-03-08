@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { getBlogFooterHtml, normalizeFooterAssetMarkup } = require('../config/site-footer');
+const { normalizeImageLoadingInHtml } = require('../config/image-policy');
 const { ROOT_DIR, getPublishDir } = require('../config/publish-targets');
 
 const ROOT = getPublishDir();
@@ -8,6 +9,8 @@ const DRY_RUN = process.argv.includes('--dry-run');
 const EXCLUDED_DIRS = new Set(['node_modules', '.git', 'docs', 'scripts', 'css', 'js', 'Img', 'fonts', 'data', 'config', 'tests']);
 const BLOG_FOOTER_PATTERN = /<footer class="footer">\s*<div class="container">\s*<div class="footer-content">[\s\S]*?<\/footer>/;
 const DESIGNRUSH_SCRIPT_PATTERN = /<script\b[^>]*src="https:\/\/www\.designrush\.com\/topbest\/js\/widgets\/agency-reviews\.js"[^>]*><\/script>/gi;
+const DESIGNRUSH_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/designrush-loader\.js"[^>]*><\/script>/gi;
+const FOOTER_WIDGET_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader\.js"[^>]*><\/script>/i;
 const LEGACY_LINK_REPLACEMENTS = new Map([
   ['href="/personal-branding-online"', 'href="personal-branding-online.html"'],
   ['href="/sito-personale-freelancer"', 'href="sito-personale-freelancer.html"'],
@@ -58,9 +61,24 @@ function normalizeBlogFooter(html, relativePath) {
 }
 
 function normalizeDesignRushLoader(html, relativePath) {
-  if (!DESIGNRUSH_SCRIPT_PATTERN.test(html)) return html;
-  const loaderPath = `${getRootPrefix(relativePath)}js/designrush-loader.js`;
-  return html.replace(DESIGNRUSH_SCRIPT_PATTERN, `<script defer src="${loaderPath}"></script>`);
+  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.js`;
+  let updated = html.replace(DESIGNRUSH_SCRIPT_PATTERN, `<script defer src="${loaderPath}"></script>`);
+  updated = updated.replace(DESIGNRUSH_LOADER_PATTERN, `<script defer src="${loaderPath}"></script>`);
+  return updated;
+}
+
+function ensureFooterWidgetLoader(html, relativePath) {
+  const hasWidgets = /trustpilot-widget|data-designrush-widget/i.test(html);
+  if (!hasWidgets || FOOTER_WIDGET_LOADER_PATTERN.test(html)) return html;
+
+  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.js`;
+  const loaderTag = `<script defer src="${loaderPath}"></script>`;
+
+  if (/<script\b[^>]*src="([^"]*?)js\/main\.min\.js"[^>]*><\/script>/i.test(html)) {
+    return html.replace(/<script\b[^>]*src="([^"]*?)js\/main\.min\.js"[^>]*><\/script>/i, `${loaderTag} <script defer src="$1js/main.min.js"></script>`);
+  }
+
+  return html.replace(/<\/body>/i, `${loaderTag} </body>`);
 }
 
 function normalizeBlogIndexLinks(html) {
@@ -87,7 +105,9 @@ for (const filePath of walk(ROOT)) {
   const original = fs.readFileSync(filePath, 'utf8');
   let updated = normalizeBlogFooter(original, relativePath);
   updated = normalizeFooterAssetMarkup(updated);
+  updated = normalizeImageLoadingInHtml(updated);
   updated = normalizeDesignRushLoader(updated, relativePath);
+  updated = ensureFooterWidgetLoader(updated, relativePath);
   updated = normalizeBlogIndexLinks(updated);
   updated = normalizeLegacyLinks(updated);
   if (updated !== original) {

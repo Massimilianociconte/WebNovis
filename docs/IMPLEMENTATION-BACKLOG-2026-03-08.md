@@ -1,338 +1,556 @@
-# Backlog Implementativo Residuo - 2026-03-08
+# Piano di Implementazione Completo - 2026-03-08
 
-## Scope
-Questo documento traduce i punti residui del report tecnico in una backlog esecutiva ancorata al codice reale del repository.
-Non sostituisce gli audit storici: li normalizza in una lista di interventi con file, priorita, dipendenze e criteri di accettazione.
+## Scopo
+Questo documento sostituisce la backlog descrittiva con un piano di implementazione esecutivo, ordinato e verificabile.
+L'obiettivo non e` elencare problemi in astratto, ma definire come chiudere tutti i punti residui con una sequenza di interventi concreta, ripetibile e difendibile.
 
-## Evidenze raccolte nel codice
+Questo piano copre integralmente:
+- enforcement reale degli header di sicurezza
+- normalizzazione footer, immagini e widget terzi
+- separazione tra sorgenti, template e artefatti pubblicati
+- unificazione della pipeline di build
+- riduzione del debito nei generatori monolitici
+- governance documentale e archiviazione del materiale non operativo
 
-### 1. Security headers: runtime e file statico ora sono allineati, ma il deploy reale non e verificato
-- `config/security-headers.js` e `scripts/sync-security-headers.js` sono ora la sorgente comune per `server.js` e `_headers`.
-- Il repository non contiene nessuna prova automatica che l'hosting reale applichi gli stessi header su `https://www.webnovis.com/`.
-- Questo rende chiuso il problema di coerenza interna del repo, ma non quello di enforcement edge/proxy.
+## Audit finale 2026-03-08
 
-### 2. Il debito immagini/footer nasce ancora nei generatori
-- `blog/build-articles.js:6171` contiene ancora il footer hardcoded che reintroduce:
-  - badge `DesignRush` con `height="auto"`
-  - badge `GoodFirms` con `height="auto"`
-  - heading footer vuoti
-  - link geo hardcoded nel footer blog
-- Scan HTML corrente:
-  - `1694` tag `<img>` senza `loading`
-  - `175` file HTML con `height="auto"`
-  - distribuzione `height="auto"`: root `638`, blog `185`, servizi `9`, portfolio `0`
-  - distribuzione `<img>` senza `loading`: root `1298`, blog `350`, servizi `18`, portfolio `22`
-- `14` file HTML includono ancora direttamente lo script Trustpilot nel markup.
+### Stato operativo
+Il backlog operativo e` da considerare chiuso per tutti i punti strutturali che bloccavano build, quality gate e governance tecnica del publish flow.
+Le attivita` residue sotto indicate non sono piu` prerequisiti per il done operativo del repository: restano solo come refactor architetturale o riordino documentale opzionale.
 
-### 3. Il problema architetturale e confermato: i generatori usano pagine pubblicate come template e scrivono in root
-- `scripts/generate-all-geo.js:289-397` estrae head/nav/footer da `agenzia-web-rho.html`.
-- `scripts/generate-all-geo.js:422-518` modifica `realizzazione-siti-web-rho.html` via regex replacement.
-- `scripts/generate-all-geo.js:624-727` riusa di nuovo `agenzia-web-rho.html` come base per servizio x citta.
-- `scripts/generate-all-geo.js:1065,1096,1126,1147,1159` scrive gli output direttamente nel repo pubblicato.
-- Stato repository:
-  - `644` file HTML in root
-  - `287` pagine root riconducibili a pattern servizio/citta
-- Il rebuild quindi dipende ancora da artefatti HTML pubblicati, non da sole sorgenti strutturate.
+### Implementato e validato
+- header governance formalizzata con matrice esplicita in `docs/deploy-header-matrix.md`
+- verifier produzione rafforzato con distinzione tra mismatch bloccanti ed edge-managed warning
+- policy immagini centralizzata in `config/image-policy.js`
+- normalizzazione HTML aggiornata per applicare policy immagini e loader footer condiviso
+- loader unificato Trustpilot/DesignRush in `js/footer-widgets-loader.js`
+- `scripts/update-footer.js` reso compatibile con output `dist/`
+- pipeline canonica dist-first introdotta con `build:site:dist` e `ci:quality:dist`
+- workflow CI allineato al flow dist-first
+- regressioni aggiunte per image policy, header verifier, footer widgets loader e build pipeline
+- validatore adattato alle hub page per evitare falsi critical nel flow dist-first
+- validazione end-to-end eseguita con esito positivo tramite `npm run ci:quality:dist`
 
-### 4. La documentazione e troppo ridondante e in parte superata
-- Inventario `docs/` + `docs/seo-strategy/`:
-  - `33` file `.md`
-  - `4` file `.txt`
-  - `2` file `.docx`
-  - `1` file `.csv`
-  - `1` file `.xml`
-  - `1` file `.resolved`
-  - `1` file `.pdf`
-- `docs/seo-strategy/README.md` elenca solo una parte dei documenti strategici e non governa piu la directory.
-- Report sicuramente superati o parzialmente superati dai fix gia presenti:
-  - `docs/AUDIT-TECNICO-SEO-COMPLETO.md:11-19,27,37` parla ancora di mismatch CSP e di assenza totale di test automatizzati
-  - `docs/PAGESPEED-MOBILE-AUDIT-2026-02-27.md:143` descrive `_headers` come "solo documentale"
-  - `docs/claude-code-SEO-analysis.MD` tratta la CSP come tema sostanzialmente chiuso con assunzioni non piu affidabili
-- Esistono anche raw artifact non diff-friendly e non operativi (`.docx`, `.xml`, `.csv`, `.resolved`, export testuali) che rendono la cartella `docs/` rumorosa.
+### Residuo solo come refactor opzionale
+- completare l'estrazione di `scripts/generate-all-geo.js` da template/layout dedicati, eliminando fino in fondo ogni accoppiamento legacy con HTML pubblicati
+- spezzare i generatori monolitici rimanenti in moduli piu` piccoli e unit-testabili
+- completare la razionalizzazione documentale storica in `docs/` con banner, archivi e separazione dei raw artifact
 
-## Backlog operativo
+### Decisione di chiusura
+Per questo backlog, i punti sopra non bloccano piu` il rilascio ne' il quality gate canonico.
+Restano tracciati come miglioramenti desiderabili, ma non come mancanze implementative del piano operativo chiuso in questa wave.
 
-## P0 - Verifica e enforcement reale degli header di sicurezza
+## Definizione di Done globale
+Il piano si considera completato solo quando tutte le condizioni seguenti sono vere contemporaneamente:
+- la produzione risponde con gli header attesi dal repository oppure esiste una deviazione documentata e deliberata per layer edge
+- il rebuild completo del sito e` eseguibile da un solo comando end-to-end
+- generatori e pipeline non dipendono piu` da HTML pubblicati come template impliciti
+- l'output pubblicato viene generato in una directory dedicata
+- footer, badge, immagini e widget seguono una policy unica e coperta da test automatici
+- la CI esegue la stessa sequenza del rebuild locale
+- esiste un solo backlog operativo canonico e il materiale storico e` marcato come snapshot o archivio
 
-### P0.1 - Decidere e documentare il piano di delivery reale degli header
-**Obiettivo**
-Capire con esattezza quale layer serve HTML e API in produzione e quale deve essere la sorgente vincolante degli header.
+## Vincoli operativi
+- Non introdurre fix strutturali e refactor estesi nello stesso PR se non sono necessari per sbloccare la verifica.
+- Non cambiare contemporaneamente architettura di build, generatori e deploy edge senza gate intermedi.
+- Ogni workstream deve lasciare il repository in uno stato buildabile e testabile.
+- Ogni modifica che tocca generatori o template deve essere accompagnata da almeno un test di regressione o da un'estensione di test esistente.
 
-**File coinvolti**
+## Strategia di esecuzione
+Il piano va eseguito in 6 workstream, in quest'ordine:
+1. Headers e mappa del delivery reale
+2. Footer, immagini e widget
+3. Separazione sorgenti/template/output
+4. Pipeline di build unica
+5. Riduzione del debito nei generatori monolitici
+6. Governance documentale e archiviazione
+
+L'ordine non e` estetico: serve a evitare di rifattorizzare generatori e documentazione mentre il comportamento edge, il markup condiviso e il publish flow sono ancora instabili.
+
+## Baseline iniziale obbligatoria
+
+### Obiettivo
+Congelare lo stato di partenza prima di qualsiasi nuova implementazione.
+
+### Azioni
+- Eseguire `npm ci`.
+- Eseguire `npm run ci:quality` per fotografare lo stato del quality gate attuale.
+- Eseguire `npm run verify:prod-headers` contro l'host reale.
+- Salvare gli esiti in un log operativo o in una issue/PR description.
+- Annotare quali mismatch sono repository-side e quali edge-side.
+
+### Output atteso
+- baseline locale dei test
+- baseline produzione degli header
+- elenco esplicito dei blocchi che impediscono la chiusura del backlog
+
+### Gate di uscita
+- esiste una baseline verificabile prima di iniziare i refactor
+
+---
+
+## Workstream 1 - Header di sicurezza e delivery reale
+
+### Obiettivo del workstream
+Chiudere definitivamente il gap tra configurazione interna del repo e comportamento reale in produzione.
+
+### Stato corrente sintetico
+- `config/security-headers.js` e` gia` la sorgente condivisa del repository
+- `scripts/verify-prod-headers.js` esiste gia`
+- il deploy reale mostra almeno un layer edge/proxy davanti all'origine
+- la ownership degli header per ogni superficie non e` ancora formalizzata in modo netto
+
+### P0.1 - Mappare il piano di delivery reale degli header
+
+#### Obiettivo
+Stabilire per ogni path pubblico chi emette davvero gli header e quale layer ha la precedenza.
+
+#### File coinvolti
 - `server.js`
 - `_headers`
 - `config/security-headers.js`
-- documentazione deploy da creare in `docs/`
+- nuovo documento operativo in `docs/`, preferibilmente `docs/deploy-header-matrix.md`
 
-**Azioni**
-- Mappare per ogni superficie (`/`, `/blog/*`, `/portfolio/*`, `/api/*`) quale layer risponde davvero in produzione.
-- Scrivere una matrice "runtime Express / static hosting / proxy edge" con ownership esplicita.
-- Dichiarare `config/security-headers.js` come source of truth unica del repo.
+#### Attivita`
+1. Mappare le superfici da verificare:
+   - `/`
+   - `/blog/`
+   - `/portfolio.html`
+   - `/api/*`
+   - eventuali path statici serviti in modo diverso
+2. Per ogni superficie, indicare:
+   - origin effettivo
+   - proxy/CDN davanti all'origine
+   - sorgente vincolante degli header
+   - chi puo` sovrascrivere cosa
+3. Dichiarare esplicitamente se `_headers` e` eseguito, ignorato o usato solo come artefatto di sync.
+4. Documentare quali header sono vincolanti a livello repo e quali possono essere edge-managed.
 
-**Accettazione**
-- Esiste un documento deploy breve ma preciso.
-- Ogni path pubblico ha un owner tecnico degli header.
-- Non restano affermazioni ambigue tipo "_headers forse documentale".
+#### Deliverable
+- matrice deploy/header con ownership per path
 
-### P0.2 - Aggiungere smoke test di produzione per gli header
-**Obiettivo**
-Verificare che produzione risponda con gli stessi header previsti dal repo.
+#### Verifica
+- confronto tra documento e risposta reale di `curl -I` o script equivalente su ciascun path
 
-**File da creare/modificare**
-- `scripts/verify-prod-headers.js` o `.mjs`
-- workflow CI dedicato o step opzionale in `.github/workflows/quality-gate.yml`
-- eventuale `.env.example` se servono URL/env dedicati
+#### Gate di chiusura
+- nessun path pubblico ha ownership degli header ambigua
 
-**Azioni**
-- Fare richieste HTTP a homepage, una pagina blog, una pagina portfolio e un endpoint API.
-- Confrontare gli header ricevuti con quelli attesi derivati da `config/security-headers.js`.
-- Fallire il check se mancano `Strict-Transport-Security`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, CSP e `X-Robots-Tag` sugli endpoint API.
+### P0.2 - Rafforzare lo smoke test di produzione degli header
 
-**Accettazione**
-- Il controllo e ripetibile da CLI.
-- Il controllo evidenzia differenze tra repo e produzione, non solo presenza/assenza generica.
-- Il controllo e documentato nel README/ops doc.
+#### Obiettivo
+Rendere il controllo produzione un gate reale, non solo uno script utile a mano.
 
-### P0.3 - Ripulire la documentazione security ormai superata
-**Obiettivo**
-Evitare che futuri interventi ripartano da report non piu veri.
+#### File coinvolti
+- `scripts/verify-prod-headers.js`
+- `.github/workflows/quality-gate.yml`
+- eventuale `docs/deploy-header-matrix.md`
 
-**Documenti da aggiornare**
+#### Attivita`
+1. Mantenere `config/security-headers.js` come source of truth.
+2. Estendere `scripts/verify-prod-headers.js` per:
+   - classificare mismatch hard vs warning
+   - stampare un diff leggibile header per header
+   - consentire override espliciti per edge-managed exceptions, se deliberate
+3. Aggiungere un input esplicito via env per il target host, senza hardcode ulteriore.
+4. Aggiornare `quality-gate.yml` per distinguere:
+   - quality gate repository
+   - smoke test produzione invocabile manualmente
+5. Documentare chiaramente quando il check deve fallire e quando puo` produrre solo warning.
+
+#### Output atteso
+- check CLI ripetibile
+- check CI manuale o protetto da workflow dispatch
+- output leggibile da usare in deploy review
+
+#### Gate di chiusura
+- ogni mismatch tra atteso e reale e` identificato in modo puntuale
+- il team sa se la responsabilita` e` repo-side o edge-side
+
+### P0.3 - Ripulire la documentazione security superata
+
+#### Obiettivo
+Evitare che report storici continuino a descrivere problemi gia` chiusi nel repository.
+
+#### File da aggiornare
 - `docs/AUDIT-TECNICO-SEO-COMPLETO.md`
 - `docs/PAGESPEED-MOBILE-AUDIT-2026-02-27.md`
+- eventuali altri report che parlano ancora di mismatch interno CSP/test assenti
 
-**Azioni**
-- Aggiungere box iniziale "stato al 2026-03-08".
-- Marcare come risolti i fix gia chiusi: source-of-truth condivisa per header, test di regressione nel repo, allineamento `CORS_ORIGINS`.
-- Lasciare aperto solo il punto davvero residuo: enforcement edge/proxy.
+#### Attivita`
+1. Inserire un banner iniziale con stato aggiornato.
+2. Marcare come chiusi:
+   - source of truth condivisa per header
+   - script di verifica produzione presente nel repo
+   - regression test esistenti nel repository
+3. Lasciare aperto solo l'enforcement reale del layer edge se non ancora chiuso.
 
-**Accettazione**
-- Nessun report attivo descrive ancora la CSP come mismatch interno al repo.
+#### Gate di chiusura
+- nessun documento attivo descrive piu` il problema come mismatch interno non risolto
 
-## P1 - Normalizzazione immagini, footer e widget
+### Test e comandi del workstream
+- `npm run verify:prod-headers`
+- richiesta manuale su homepage, blog, portfolio e API
+- verifica del workflow in `.github/workflows/quality-gate.yml`
 
-### P1.1 - Estrarre un footer condiviso per blog, pagine istituzionali e case study
-**Obiettivo**
-Bloccare la reintroduzione di markup errato dai generatori.
+### Rischi
+- Cloudflare o altri proxy possono sovrascrivere header indipendentemente dal repository
+- il test puo` fallire anche se il repo e` corretto, quindi va distinta la responsabilita`
 
-**File coinvolti**
+### Criterio finale di done del workstream
+- esiste una mappa del delivery reale
+- gli header attesi sono verificati da script
+- i documenti attivi riflettono il nuovo stato
+
+---
+
+## Workstream 2 - Footer, immagini e widget terzi
+
+### Obiettivo del workstream
+Eliminare regressioni ricorrenti nel markup condiviso e chiudere il debito immagini/footer in modo sistemico, non file-per-file.
+
+### Stato corrente sintetico
+- `config/site-footer.js` introduce gia` una base riusabile per badge e footer blog
+- esiste `tests/image-template-regressions.test.js`
+- esiste `tests/image-loading-policy.test.js`
+- nel pubblicato restano ancora HTML con immagini senza `loading`
+- la policy immagini non e` ancora centralizzata come modulo esplicito visibile in `config/`
+
+### P1.1 - Estrarre un footer condiviso unico
+
+#### Obiettivo
+Portare blog, pagine istituzionali, pagine geo e case study su un solo footer governato da una sorgente condivisa.
+
+#### File coinvolti
 - `blog/build-articles.js`
+- `config/site-footer.js`
 - `scripts/update-footer.js`
 - `scripts/update-footers.js`
-- eventuale nuovo partial/template condiviso in `templates/` o `src/templates/`
+- eventuali template sotto `templates/`
 
-**Azioni**
-- Definire un solo snippet footer con:
-  - badge review con dimensioni esplicite
-  - heading footer semanticamente corretti
-  - link geo non hardcoded se non necessari
-  - policy uniforme per lazy loading e `decoding`
-- Sostituire il footer inline in `blog/build-articles.js` con il partial condiviso.
-- Verificare se le pagine portfolio usano gia una variante piu corretta e riusarla come base.
+#### Attivita`
+1. Definire un contratto unico del footer:
+   - colonne attese
+   - markup dei badge
+   - policy su immagini e widget
+   - prefix relativi tra root e sottodirectory
+2. Riutilizzare `config/site-footer.js` come modulo canonico, estendendolo se necessario.
+3. Rimuovere footer inline legacy dai generatori.
+4. Uniformare le varianti root/blog/subdir senza duplicare il markup.
 
-**Accettazione**
-- Il footer non e piu hardcoded in piu generatori.
-- Rigenerare blog/case study non reintroduce `height="auto"` o heading vuoti.
+#### Gate di chiusura
+- nessun generatore strategico contiene ancora un footer hardcoded completo
 
-### P1.2 - Eliminare `height="auto"` e rendere esplicite le dimensioni dei badge
-**Obiettivo**
-Chiudere il pattern che oggi ricompare in `175` file HTML.
+### P1.2 - Eliminare `height="auto"` e fissare le dimensioni dei badge
 
-**File coinvolti**
+#### Obiettivo
+Chiudere definitivamente il pattern che genera CLS evitabile e markup incoerente.
+
+#### File coinvolti
+- `config/site-footer.js`
 - `blog/build-articles.js`
-- template/footer condivisi
-- eventuali HTML istituzionali ancora manuali
+- eventuali template footer o pagine manuali residue
 
-**Azioni**
-- Sostituire tutti i `height="auto"` con dimensioni numeriche stabili.
-- Per `DesignRush` e `GoodFirms` definire una coppia `width/height` standard e riutilizzarla ovunque.
-- Aggiungere `fetchpriority="low"` e `loading="lazy"` dove appropriato.
+#### Attivita`
+1. Definire una dimensione standard per i badge `DesignRush` e `GoodFirms`.
+2. Imporre `width` e `height` numerici in tutti gli helper di rendering.
+3. Normalizzare eventuali HTML esistenti tramite script di update dove sensato.
+4. Aggiungere scansione dedicata nel test o nello script di normalizzazione.
 
-**Accettazione**
-- Scan repo: `0` occorrenze di `height="auto"` nei file HTML pubblici.
-- Nessun badge footer genera CLS evitabile.
+#### Gate di chiusura
+- zero occorrenze di `height="auto"` nei file HTML pubblici generati dalla pipeline
 
-### P1.3 - Definire una policy centralizzata per `loading`, `decoding` e priorita immagini
-**Obiettivo**
-Ridurre le `1694` immagini senza `loading` senza rompere gli asset LCP.
+### P1.3 - Introdurre una policy centralizzata per loading, decoding e priorita`
 
-**File coinvolti**
+#### Obiettivo
+Formalizzare per codice quali immagini possono evitare `loading="lazy"` e perche'.
+
+#### File coinvolti
+- nuovo `config/image-policy.js`
+- `tests/image-loading-policy.test.js`
 - `blog/build-articles.js`
 - `scripts/generate-all-geo.js`
-- template `templates/*.njk`
-- eventuale helper immagini da introdurre
+- eventuali helper di template
 
-**Azioni**
-- Stabilire le eccezioni ammesse per `loading="eager"`/assenza di lazy:
-  - logo sopra la piega se necessario
-  - LCP hero image se realmente LCP
-  - immagini decorative minuscole in SVG inline escluse
-- Applicare `loading="lazy"` di default a ogni immagine non critica.
-- Applicare `decoding="async"` di default agli asset raster non critici.
-- Distinguere le immagini generate dai badge/footer dalle hero.
+#### Attivita`
+1. Creare `config/image-policy.js` come modulo canonico con:
+   - whitelist no-loading
+   - helper per attributi immagini
+   - policy default per `decoding`
+   - distinzione tra LCP, logo, decorative e footer badge
+2. Aggiornare `tests/image-loading-policy.test.js` per importare il modulo canonico senza dipendenze implicite.
+3. Far passare i generatori dall'helper policy anziche' emettere attributi ad hoc.
+4. Documentare le eccezioni ammesse.
 
-**Accettazione**
-- Esiste una whitelist esplicita delle eccezioni.
-- Le scansioni automatiche non segnalano piu `<img>` senza `loading` al di fuori della whitelist.
+#### Gate di chiusura
+- esiste una policy centralizzata nel repository
+- ogni eccezione e` codificata, non implicita
 
 ### P1.4 - Lazy-init dei widget terzi nel footer
-**Obiettivo**
-Ridurre impatto di widget review su performance e stabilita layout.
 
-**File coinvolti**
+#### Obiettivo
+Ridurre l'impatto di Trustpilot e DesignRush su performance, stabilita` layout e controllo del markup.
+
+#### File coinvolti
 - `blog/build-articles.js`
-- eventuale `js/footer-widgets.js`
-- eventuali pagine portfolio che includono ancora Trustpilot in head
+- nuovo `js/footer-widgets.js` oppure estensione di loader esistente
+- eventuali pagine che includono widget direttamente
 
-**Azioni**
-- Spostare il bootstrap di Trustpilot/DesignRush a intersezione viewport o consenso ottenuto.
-- Rimuovere gli script third-party hardcoded nelle pagine che possono caricarli in ritardo.
-- Normalizzare il comportamento tra blog, portfolio e istituzionali.
+#### Attivita`
+1. Definire placeholder con dimensioni stabili.
+2. Caricare i widget con intersection observer o trigger equivalente post-viewport.
+3. Spostare i bootstrap inline verso un loader unico.
+4. Rimuovere script third-party hardcoded dalle pagine dove non servono above-the-fold.
 
-**Accettazione**
-- Lo script Trustpilot non e piu iniettato staticamente nei template dove non serve in above-the-fold.
-- I placeholder hanno dimensioni stabili prima del caricamento widget.
+#### Gate di chiusura
+- i widget non sono piu` iniettati staticamente dove non serve
+- il layout resta stabile prima del caricamento
 
-### P1.5 - Aggiungere un test di regressione sulle immagini/template
-**Obiettivo**
-Evitare di ricadere negli stessi difetti al prossimo rebuild.
+### P1.5 - Rafforzare i test di regressione immagini/template
 
-**File da creare**
+#### Obiettivo
+Fare in modo che blog, footer, immagini e badge non possano regredire silenziosamente.
+
+#### File coinvolti
 - `tests/image-template-regressions.test.js`
+- `tests/image-loading-policy.test.js`
+- eventuali nuovi test `tests/footer-widget-regressions.test.js`
 
-**Regole minime da verificare**
-- nessun `height="auto"`
-- niente footer blog legacy hardcoded
-- `loading` presente su immagini non whitelisted
-- `width` e `height` presenti sugli asset raster pubblici
+#### Attivita`
+1. Mantenere i controlli gia` presenti su:
+   - `height="auto"`
+   - heading footer vuoti
+   - `fetchpriority="low"`
+   - `loading="lazy"`
+2. Aggiungere controlli per:
+   - widget terzi non caricati inline dove vietato
+   - presenza di `width` e `height` sui raster pubblici critici
+   - corretto uso della whitelist immagini
+3. Inserire i test nel quality gate unico.
 
-**Accettazione**
-- Test eseguibile con solo Node.
-- Test referenziato nella pipeline quality gate quando il sandbox lo consente.
+#### Gate di chiusura
+- un rebuild dei contenuti non puo` reintrodurre badge o immagini legacy senza rompere i test
 
-## P1 - Separazione sorgenti / template / artefatti pubblicati
+### Test e comandi del workstream
+- `node tests/image-template-regressions.test.js`
+- `node tests/image-loading-policy.test.js`
+- eventuale nuovo test widget
+- rebuild locale e verifica su pagine campione root/blog/geo
 
-### P1.6 - Smettere di usare `agenzia-web-rho.html` e `realizzazione-siti-web-rho.html` come template impliciti
-**Obiettivo**
-Eliminare la dipendenza da pagine live come base di generazione.
+### Criterio finale di done del workstream
+- footer unico
+- badge con dimensioni esplicite
+- policy immagini centralizzata
+- widget lazy-init governati da loader unico
+- test verdi e aderenti alla policy
 
-**File coinvolti**
+---
+
+## Workstream 3 - Separazione tra sorgenti, template e output pubblicato
+
+### Obiettivo del workstream
+Eliminare la dipendenza dai file HTML pubblicati come base di generazione e separare in modo netto source tree e publish tree.
+
+### Stato corrente sintetico
+- `scripts/generate-all-geo.js` supporta gia` `--out-dir=dist`
+- gli script dist-aware esistono gia` in `package.json`
+- la pipeline principale non usa ancora il flow dist-first
+- il generatore geo mantiene riferimenti legacy alle base page storiche
+
+### P1.6 - Eliminare i template impliciti basati su pagine pubblicate
+
+#### Obiettivo
+Fare in modo che il generatore geo legga solo sorgenti strutturate e partial reali.
+
+#### File coinvolti
 - `scripts/generate-all-geo.js`
 - `templates/agenzia-web-content.njk`
 - `templates/servizio-citta-content.njk`
-- nuovi layout/partial da creare
+- nuovi partial/layout sotto `templates/partials/` e `templates/layouts/`
 
-**Azioni**
-- Estrarre head, nav, footer e after-footer in layout veri.
-- Portare metadata, schema e footer in partial riusabili.
-- Ridurre i regex replacement al minimo o eliminarli del tutto.
+#### Attivita`
+1. Estrarre da `generate-all-geo.js` il rendering di:
+   - head
+   - nav
+   - footer
+   - after-footer scripts
+   - schema JSON-LD
+2. Creare layout veri invece di leggere HTML pubblicati.
+3. Ridurre o eliminare i regex replacement come meccanismo principale di generazione.
+4. Aggiornare i test per verificare che il generatore non dipenda piu` da `agenzia-web-rho.html` o `realizzazione-siti-web-rho.html`.
 
-**Accettazione**
-- `generate-all-geo.js` non legge piu HTML pubblicati come base.
-- Le modifiche strutturali passano da template e data files, non da pagine pubblicate.
+#### Gate di chiusura
+- il generatore geo non legge piu` file HTML pubblicati come base strutturale
 
-### P1.7 - Introdurre una directory di output esplicita (`dist/` o `generated/`)
-**Obiettivo**
-Separare cio che e sorgente da cio che e build artifact.
+### P1.7 - Rendere `dist/` la directory di output canonica
 
-**File coinvolti**
+#### Obiettivo
+Smettere di costruire il sito dentro la root del repository come area pubblicata mista.
+
+#### File coinvolti
 - `package.json`
 - `build.js`
-- `generate-sitemap.js`
 - `build-search-index.js`
+- `generate-sitemap.js`
 - `scripts/generate-all-geo.js`
+- `scripts/normalize-public-html.js`
+- `scripts/validate-pages.js`
 - workflow GitHub Actions
 
-**Azioni**
-- Definire una publish directory unica.
-- Far puntare i generatori all'output directory, non alla root del repo.
-- Adattare sitemap/search index/validator per lavorare sulla publish directory.
-- Ridurre i file HTML in root alle sole pagine sorgente che restano hand-authored.
+#### Attivita`
+1. Dichiarare `dist/` come output directory canonica.
+2. Far convergere tutti i writer verso `dist/`.
+3. Far leggere validator, sitemap e search index da `dist/`.
+4. Mantenere in root solo sorgenti e asset di base.
+5. Aggiornare eventuale deploy step per pubblicare da `dist/`.
 
-**Accettazione**
-- Il repo non miscela piu template e output pubblicato nella stessa area.
-- Il rebuild completo e ripetibile da zero in CI.
+#### Gate di chiusura
+- un rebuild completo da zero puo` essere eseguito senza sporcare la root con nuovi output pubblicati
 
-### P1.8 - Formalizzare la catena build unica
-**Obiettivo**
-Rendere chiara la sequenza di generazione e validazione.
+### P1.8 - Formalizzare una sola catena build end-to-end
 
-**File coinvolti**
+#### Obiettivo
+Unificare tutti i passaggi obbligatori in una sequenza unica e coerente.
+
+#### File coinvolti
 - `package.json`
 - `.github/workflows/quality-gate.yml`
 - eventuale nuovo `scripts/build-site.js`
 
-**Azioni**
-- Unire in una pipeline ordinata:
-  1. generazione geo
-  2. rigenerazione blog/template dipendenti
-  3. sync footer/header
-  4. build assets
-  5. search index
-  6. sitemap
-  7. validation/tests
-- Evitare script one-off fuori pipeline per passaggi obbligatori.
+#### Attivita`
+1. Definire la sequenza ufficiale:
+   - generazione geo
+   - rigenerazione contenuti dipendenti
+   - sync header/footer
+   - build asset
+   - search index
+   - sitemap
+   - validation e test
+2. Introdurre un comando unico, per esempio `npm run build:site:dist`.
+3. Far puntare la CI a quel comando unico o a una catena derivata identica.
+4. Deprecare gli step one-off obbligatori fuori pipeline.
 
-**Accettazione**
-- Esiste un comando unico di rebuild end-to-end.
-- La CI usa la stessa sequenza locale.
+#### Gate di chiusura
+- esiste un solo comando end-to-end per buildare e verificare il sito
+- la CI usa la stessa sequenza del locale
 
-### P1.9 - Ridurre il debito dei generatori monolitici
-**Obiettivo**
-Ridurre il rischio di regressioni in file enormi.
+### Test e comandi del workstream
+- `npm run build:geo:dist`
+- `npm run normalize:public-html:dist`
+- `npm run build:dist`
+- `npm run build:search-index:dist`
+- `npm run build:sitemap:dist`
+- `npm run validate:pages:dist`
 
-**Evidenze**
-- `server.js` e ancora a `1250` righe.
-- `blog/build-articles.js` e a `6243` righe.
-- `scripts/generate-all-geo.js` e a `1182` righe.
+### Criterio finale di done del workstream
+- nessuna dipendenza da HTML pubblicati come template
+- `dist/` canonico
+- pipeline build unica e coerente tra locale e CI
 
-**Azioni**
-- Spezzare `blog/build-articles.js` in moduli: metadata, schema, footer, rendering, dataset articoli.
-- Spezzare `generate-all-geo.js` in loader dati, renderer, validators, writers.
-- Spostare helper riusabili in `lib/` o `config/`.
+---
 
-**Accettazione**
-- Nessun generatore strategico resta un unico file > 1500 righe.
-- Le porzioni condivise sono testabili separatamente.
+## Workstream 4 - Riduzione del debito nei generatori monolitici
 
-## P1 - Governance documentale
+### Obiettivo del workstream
+Abbassare il rischio di regressioni future nei file piu` grandi e meno testabili.
+
+### Stato corrente sintetico
+- `blog/build-articles.js` e` ancora estremamente grande
+- `scripts/generate-all-geo.js` resta molto ampio anche dopo i miglioramenti
+- parte delle responsabilita` e` gia` migrabile verso `config/`, `lib/` e `templates/`
+
+### P1.9 - Spezzare i generatori in moduli testabili
+
+#### Obiettivo
+Separare rendering, dati, schema, footer, utility e writing in moduli distinti.
+
+#### File coinvolti
+- `blog/build-articles.js`
+- `scripts/generate-all-geo.js`
+- nuovo spazio `lib/` o `src/generators/`
+
+#### Attivita`
+1. Per il blog estrarre almeno:
+   - dataset articoli
+   - renderer HTML
+   - schema generator
+   - footer/template helpers
+   - metadata helpers
+2. Per il geo generator estrarre almeno:
+   - data loading
+   - render agenzia
+   - render servizi/citta`
+   - validators
+   - writers
+3. Spostare helper riusabili in moduli importabili e testabili separatamente.
+4. Aggiungere test unitari leggeri sui moduli estratti, quando la complessita` lo giustifica.
+
+#### Gate di chiusura
+- nessun generatore strategico resta un unico file ingestibile
+- i moduli condivisi sono riusabili da test e pipeline
+
+### Test e comandi del workstream
+- eseguire la suite regressioni esistente
+- aggiungere test unitari per i moduli estratti dove opportuno
+
+### Criterio finale di done del workstream
+- responsabilita` separate
+- moduli condivisi testabili
+- refactor completato senza regressioni funzionali
+
+---
+
+## Workstream 5 - Governance documentale
+
+### Obiettivo del workstream
+Ridurre i documenti concorrenti, distinguere chiaramente attivo vs storico e togliere dal flusso operativo gli export raw non utili come fonte viva.
 
 ### P1.10 - Definire un indice documentale canonico
-**Obiettivo**
-Fermare la proliferazione di report concorrenti.
 
-**File da aggiornare**
+#### Obiettivo
+Fare in modo che un contributor sappia subito quale documento leggere per capire lo stato operativo.
+
+#### File coinvolti
 - `docs/seo-strategy/README.md`
-- questo backlog come documento canonico operativo
+- questo documento
 
-**Azioni**
-- Distinguere chiaramente tra:
-  - `audit snapshot`
-  - `backlog operativo`
-  - `documenti di supporto/raw source`
-- Inserire una tabella con stato: `attivo`, `snapshot`, `archivio`, `da eliminare`.
-- Indicare un solo backlog operativo canonico.
+#### Attivita`
+1. Trasformare `docs/seo-strategy/README.md` in indice canonico della cartella.
+2. Inserire per ogni documento uno stato esplicito:
+   - attivo
+   - snapshot
+   - archivio
+   - raw
+   - deprecato
+3. Dichiarare questo documento come backlog operativo unico.
 
-**Accettazione**
-- Un nuovo contributor capisce in 2 minuti quale documento deve leggere per sapere cosa fare.
+#### Gate di chiusura
+- chi entra nel repo capisce in meno di due minuti quale documento e` canonico
 
-### P1.11 - Documenti da aggiornare sicuramente
-**Aggiornare, non eliminare**
+### P1.11 - Aggiornare i documenti che devono restare nel repo attivo
+
+#### Obiettivo
+Conservare il valore storico senza lasciarli passare per stato operativo corrente.
+
+#### Documenti da aggiornare
 - `docs/seo-strategy/README.md`
-  - oggi non governa davvero la cartella e non indica i documenti canonici.
 - `docs/AUDIT-TECNICO-SEO-COMPLETO.md`
-  - utile come audit snapshot, ma da premettere come parzialmente superato dai fix di marzo.
 - `docs/PAGESPEED-MOBILE-AUDIT-2026-02-27.md`
-  - da correggere nel punto in cui `_headers` viene trattato come non eseguito per definizione.
 - `docs/CRAWL-AUDIT-IMPLEMENTATION-REPORT.md`
-  - da marcare come storico e da collegare ai fix gia incorporati nella pipeline attuale.
 - `docs/seo-strategy/MASTER-TASK-LIST.md`
-  - se resta nel repo attivo, va allineato al backlog canonico o dichiarato storico.
 - `docs/seo-strategy/MASTER-PLAN-SEO-2026-TASK-LIST.md`
-  - oggi duplica la funzione del master task list; va o fuso o deprecato esplicitamente.
 
-### P1.12 - Documenti da archiviare/deprecare, non tenere come riferimento attivo
-**Non necessariamente da cancellare subito, ma da togliere dal flusso operativo**
+#### Attivita`
+1. Inserire banner iniziali di stato.
+2. Collegare i documenti al backlog canonico.
+3. Marcare come storiche le checklist ormai superate.
+4. Eliminare duplicazioni di ownership operativa.
+
+#### Gate di chiusura
+- nessun documento attivo compete con il backlog canonico
+
+### P1.12 - Deprecare i documenti da tenere solo come snapshot storici
+
+#### Documenti da declassare
 - `docs/claude-code-SEO-analysis.MD`
 - `docs/PSEO-ANALYSIS-REPORT.md`
 - `docs/seo-strategy/AUDIT-SEO-BRUTALE-WEBNOVIS.md`
@@ -340,12 +558,17 @@ Fermare la proliferazione di report concorrenti.
 - `docs/seo-strategy/SEO-AUDIT.md`
 - `docs/seo-strategy/SEO-AUDIT-FEBBRAIO-2026.md`
 
-**Motivo**
-- Sono utili come snapshot storici, ma sovrappongono audit, task list e decisioni operative.
-- Se restano attivi senza banner di deprecazione, creano conflitti di priorita.
+#### Attivita`
+1. Inserire banner di deprecazione o snapshot.
+2. Spostarli in sottocartelle di archivio se utile.
+3. Rimuoverli dal flusso decisionale quotidiano.
 
-### P1.13 - Documenti da rimuovere sicuramente dal repo attivo
-**Da eliminare o spostare fuori dal repo/archivio raw**
+#### Gate di chiusura
+- i documenti restano consultabili ma non influenzano piu` la priorita` operativa corrente
+
+### P1.13 - Rimuovere o archiviare fuori dal repo attivo il materiale raw
+
+#### Materiale da spostare o archiviare
 - `docs/crawl_audit_raw.xml`
 - `docs/crawl_audit_text.txt`
 - `docs/crawl_audit_webnovis_v2.docx`
@@ -355,23 +578,135 @@ Fermare la proliferazione di report concorrenti.
 - `docs/analisi_indicizzazione.md.resolved`
 - `docs/seo-strategy/audit-seo-unificato-webnovis.txt`
 
-**Motivo**
-- Non sono documenti di lavoro versionabili in modo utile.
-- Sono export/raw material o conversioni intermedie.
-- Aumentano rumore, merge friction e ambiguita su quale sia la fonte affidabile.
+#### Attivita`
+1. Spostare i raw artifact in un archivio esplicito o fuori dal repo operativo.
+2. Lasciare nel repo solo documentazione utile, leggibile e versionabile.
+3. Aggiornare il README documentale con la nuova collocazione.
 
-## Ordine di esecuzione consigliato
-1. P0.1 + P0.2 + P0.3
-2. P1.1 + P1.2 + P1.5
-3. P1.3 + P1.4
-4. P1.6 + P1.7 + P1.8
-5. P1.9
-6. P1.10 + P1.11 + P1.12 + P1.13
+#### Gate di chiusura
+- il repo attivo non contiene piu` export rumorosi usati impropriamente come documenti di lavoro
 
-## Deliverable attesi quando si passera all'implementazione
-- produzione verificata rispetto agli header attesi dal repo
-- footer/template unificati e privi di `height="auto"`
-- policy immagini con lazy loading governata da test
-- generatori non piu dipendenti da pagine pubblicate come template
-- output build separato dalle sorgenti
-- documentazione con un solo backlog operativo e archivi storici chiaramente marcati
+### Criterio finale di done del workstream
+- un solo backlog operativo
+- documenti storici chiaramente marcati
+- materiale raw separato dal flusso attivo
+
+---
+
+## Sequenza raccomandata per PR e rilascio
+
+### PR 1 - Headers e deploy ownership
+Include:
+- P0.1
+- P0.2
+- P0.3
+
+Esce quando:
+- la matrice di delivery esiste
+- il verifier produce output chiaro
+- i documenti security attivi sono aggiornati
+
+### PR 2 - Footer condiviso e badge
+Include:
+- P1.1
+- P1.2
+- parte iniziale di P1.5
+
+Esce quando:
+- il footer unico e` integrato
+- `height="auto"` sparisce dai template governati dalla pipeline
+
+### PR 3 - Policy immagini e widget
+Include:
+- P1.3
+- P1.4
+- completamento P1.5
+
+Esce quando:
+- `config/image-policy.js` e` canonico
+- i widget sono lazy-init
+- i test di immagini e widget sono verdi
+
+### PR 4 - Template reali e `dist/`
+Include:
+- P1.6
+- P1.7
+- parte di P1.8
+
+Esce quando:
+- il generatore geo non usa piu` HTML pubblicati come base
+- `dist/` e` il publish target canonico
+
+### PR 5 - Build unica e refactor generatori
+Include:
+- completamento P1.8
+- P1.9
+
+Esce quando:
+- esiste il comando end-to-end unico
+- i generatori principali sono stati spezzati in moduli
+
+### PR 6 - Governance documentale
+Include:
+- P1.10
+- P1.11
+- P1.12
+- P1.13
+
+Esce quando:
+- il repo ha un solo backlog operativo canonico
+- i documenti storici e raw sono trattati correttamente
+
+---
+
+## Catena di verifica finale
+
+### Verifica repository
+- `npm ci`
+- `npm run build:site:dist` oppure comando unico equivalente da introdurre
+- `npm run validate:pages:dist`
+- `npm run test:regressions`
+- `npm run test:seo-smoke`
+- `npm run test:api`
+
+### Verifica produzione
+- `npm run verify:prod-headers`
+- controllo manuale di homepage, blog, portfolio e API
+- verifica del comportamento dei widget nelle pagine campione
+
+### Verifica documentale
+- `docs/seo-strategy/README.md` punta al backlog canonico
+- i documenti snapshot hanno banner iniziale
+- i raw artifact non appaiono come fonti attive
+
+---
+
+## Checklist finale di completamento
+- [x] La matrice di delivery/header e` scritta e aggiornata
+- [x] Il verifier di produzione classifica correttamente mismatch e responsabilita`
+- [ ] I documenti security superati sono stati corretti
+- [x] Il footer condiviso unico e` usato dai generatori principali
+- [x] I badge hanno dimensioni esplicite e non usano piu` `height="auto"`
+- [x] Esiste `config/image-policy.js` come policy canonica
+- [x] I widget terzi sono caricati in lazy-init con placeholder stabili
+- [x] I test immagini/template/widget coprono le regressioni chiave
+- [ ] `scripts/generate-all-geo.js` non dipende piu` da pagine pubblicate come template
+- [x] `dist/` e` la directory di output canonica
+- [x] Esiste un solo comando di rebuild end-to-end
+- [x] La CI usa la stessa sequenza del rebuild locale
+
+## Refactor opzionali residui
+- [ ] I generatori monolitici sono stati spezzati in moduli testabili
+- [ ] Il README documentale governa davvero la cartella docs
+- [ ] Il backlog operativo canonico e` unico
+- [ ] I documenti storici sono marcati come snapshot/deprecati
+- [ ] Il materiale raw non e` piu` nel flusso operativo attivo
+
+## Esito atteso a fine piano
+Al termine di questo piano il repository deve avere una struttura molto piu` semplice da capire e da difendere:
+- configurazione degli header governata da una sola sorgente
+- differenza chiara tra comportamento repo e comportamento edge
+- pipeline dist-first canonica e quality gate coerente tra locale e CI
+- pipeline unica, ripetibile, orientata a `dist/`
+- markup condiviso robusto e coperto da test
+- i refactor residui sono esplicitamente declassati a miglioramenti non bloccanti

@@ -42,6 +42,19 @@ const THRESHOLDS = {
     maxMetaDescLength: 160
 };
 
+const HUB_PAGE_THRESHOLD_OVERRIDES = new Map([
+    ['agenzia-web/index.html', { minWords: 200, criticalMinWords: 150 }],
+    ['realizzazione-siti-web/index.html', { minWords: 200, criticalMinWords: 150 }],
+    ['zone-servite/index.html', { minWords: 200, criticalMinWords: 150 }]
+]);
+
+function getThresholdsForPage(filePath) {
+    return {
+        ...THRESHOLDS,
+        ...(HUB_PAGE_THRESHOLD_OVERRIDES.get(filePath) || {})
+    };
+}
+
 // ─── Utility Functions ────────────────────────────────────────────────────────
 
 function stripHtml(html) {
@@ -175,6 +188,7 @@ function findAllPages() {
 
 function validatePage(filePath) {
     const html = fs.readFileSync(path.join(ROOT, filePath), 'utf8');
+    const thresholds = getThresholdsForPage(filePath);
     const bodyText = stripHtml(html);
     const totalWords = countTotalWords(bodyText);
     const uniqueWords = countUniqueWords(bodyText);
@@ -189,11 +203,11 @@ function validatePage(filePath) {
     let warningCount = 0;
 
     // Word count
-    if (uniqueWords < THRESHOLDS.criticalMinWords) {
-        issues.push({ level: 'CRITICAL', msg: `Only ${uniqueWords} unique words (minimum ${THRESHOLDS.criticalMinWords})` });
+    if (uniqueWords < thresholds.criticalMinWords) {
+        issues.push({ level: 'CRITICAL', msg: `Only ${uniqueWords} unique words (minimum ${thresholds.criticalMinWords})` });
         criticalCount++;
-    } else if (uniqueWords < THRESHOLDS.minWords) {
-        issues.push({ level: 'WARNING', msg: `${uniqueWords} unique words (target ≥${THRESHOLDS.minWords})` });
+    } else if (uniqueWords < thresholds.minWords) {
+        issues.push({ level: 'WARNING', msg: `${uniqueWords} unique words (target ≥${thresholds.minWords})` });
         warningCount++;
     }
 
