@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto'); // Per timing-safe auth
 const aiConfig = require('./ai-config'); // Configurazione AI
+const { SECURITY_HEADERS, getAllowedCorsOrigins } = require('./config/security-headers');
 
 // Global fetch instance
 let _fetch;
@@ -82,16 +83,7 @@ try {
 } catch (e) {
     console.warn('⚠️ compression not installed. Run: npm install compression');
 }
-const corsOriginFromEnv = (process.env.CORS_ORIGINS || '')
-    .split(',')
-    .map(origin => origin.trim())
-    .filter(Boolean);
-const allowedCorsOrigins = new Set([
-    'https://www.webnovis.com',
-    'https://webnovis.com',
-    'https://webnovis-chat.onrender.com',
-    ...corsOriginFromEnv
-]);
+const allowedCorsOrigins = getAllowedCorsOrigins(process.env);
 
 // Rate limiter for chat API (30 requests per 15 minutes per IP)
 const chatLimiter = rateLimit ? rateLimit({
@@ -143,15 +135,7 @@ app.use((req, res, next) => {
 
 // 2.1 Security headers — trust signal + vulnerability prevention
 app.use((req, res, next) => {
-    res.set({
-        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
-        'X-Content-Type-Options': 'nosniff',
-        'X-Frame-Options': 'DENY',
-        'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://widget.trustpilot.com https://connect.facebook.net https://www.clarity.ms https://scripts.clarity.ms https://cdn.jsdelivr.net https://web3forms.com https://esm.sh https://www.designrush.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.designrush.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com https://www.designrush.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://widget.trustpilot.com; frame-src https://widget.trustpilot.com https://www.facebook.com https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests",
-        'Referrer-Policy': 'strict-origin-when-cross-origin',
-        'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-        'X-XSS-Protection': '0'
-    });
+    res.set(SECURITY_HEADERS);
     next();
 });
 

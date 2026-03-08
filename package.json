@@ -23,7 +23,8 @@
     "update:footer": "node scripts/update-footer.js",
     "test:seo-smoke": "node tests/seo-smoke.test.js",
     "test:api": "node tests/api-endpoints.test.js",
-    "ci:quality": "npm run build:geo && npm run update:footer && npm run build && npm run build:search-index && npm run build:sitemap && npm run validate:pages && npm run test:seo-smoke && npm run test:api"
+    "ci:quality": "npm run build:geo && npm run update:footer && npm run build && npm run build:search-index && npm run build:sitemap && npm run validate:pages && npm run test:seo-smoke && npm run test:api",
+    "sync:headers": "node scripts/sync-security-headers.js"
   },
   "keywords": [
     "chatbot",
