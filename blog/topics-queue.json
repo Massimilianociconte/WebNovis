@@ -1657,7 +1657,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "user-generated-content",
@@ -1671,7 +1672,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "social-commerce-guida",
@@ -1685,7 +1687,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "influencer-marketing-pmi",
@@ -1699,7 +1702,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "social-media-automation-tool",
@@ -1713,7 +1717,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Social Media",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "tendenze-social-media-2026",
@@ -1727,7 +1732,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Social Media",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "instagram-reels-strategia",
@@ -1741,7 +1747,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "instagram-stories-business",
@@ -1755,7 +1762,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "instagram-hashtag-strategia",
@@ -1769,7 +1777,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "instagram-bio-ottimizzazione",
@@ -1783,7 +1792,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "6 min"
+    "read_time": "6 min",
+    "used": true
   },
   {
     "slug": "instagram-carousel-guida",
@@ -1797,7 +1807,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "instagram-algoritmo-2026",
@@ -1811,7 +1822,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Instagram",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "instagram-shop-guida",
@@ -1825,7 +1837,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "instagram-insights-guida",
@@ -1839,7 +1852,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "instagram-content-strategy",
@@ -1853,7 +1867,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "instagram-collaborazioni-brand",
@@ -1867,7 +1882,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Instagram",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "google-ads-guida-principianti",
@@ -1909,7 +1925,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "landing-page-ads",
@@ -1923,7 +1940,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "meta-ads-vs-google-ads",
@@ -1951,7 +1969,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "linkedin-ads-b2b",
@@ -1965,7 +1984,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "kpi-advertising-online",
@@ -1979,7 +1999,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "campagne-locali-google-ads",
@@ -1993,7 +2014,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "creative-fatigue-ads",
@@ -2007,7 +2029,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Advertising",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "blog-aziendale-perche",
@@ -2021,7 +2044,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Content Marketing",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "content-calendar-guida",
@@ -2035,7 +2059,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Content Marketing",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "pillar-page-strategia",
@@ -2049,7 +2074,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Content Marketing",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "video-marketing-pmi",
@@ -2063,7 +2089,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Content Marketing",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "storytelling-marketing-guida",
@@ -2077,7 +2104,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Content Marketing",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "content-repurposing",
@@ -2091,7 +2119,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Content Marketing",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "podcast-aziendale-guida",
@@ -2105,7 +2134,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Content Marketing",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "email-marketing-guida-completa",
