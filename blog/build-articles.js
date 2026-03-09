@@ -5794,7 +5794,7 @@ const stubArticles = [
 
 function generateStubContent(a) {
   const serviceLink = resolveServiceLink(a.tag);
-  
+
   return `
 <p><strong>Risposta rapida:</strong> ${a.keyword} incide direttamente su visibilità, qualità del traffico e conversioni. Se vuoi risultati misurabili nel 2026, devi combinare contenuti utili, struttura tecnica corretta e ottimizzazione continua: è questo mix che rende il sito più citabile dalle AI e più competitivo su Google.</p>
 
@@ -6168,13 +6168,15 @@ function buildArticleHTML(a, contentHTML, options = {}) {
                 </div>`}
             </div>
         </article>
-    </main>
+    </main>
+
     ${getBlogFooterHtml()}
     <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Consenso cookie"><div class="cookie-banner-inner"><p class="cookie-text">Utilizziamo cookie tecnici e, con il tuo consenso, cookie analitici (Google Analytics 4) per migliorare la tua esperienza. Consulta la nostra <a href="../cookie-policy.html">Cookie Policy</a>.</p><div class="cookie-actions"><button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accetta</button><button class="cookie-btn cookie-btn-reject" id="cookieReject">Solo necessari</button></div></div></div>
     <div class="search-overlay" id="searchOverlay"></div>
     <script src="../js/main.min.js" defer></script>
     <script src="../js/cursor.min.js" defer></script>
     <script src="../js/search.min.js" defer></script>
+    <script src="../js/footer-widgets-loader.js" defer></script>
     <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
     <script type="application/ld+json">${JSON.stringify(personSchema)}</script>
     <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
