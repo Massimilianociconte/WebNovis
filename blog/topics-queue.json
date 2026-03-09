@@ -2163,7 +2163,8 @@
     "search_intent": "informativo",
     "funnel_stage": "BOFU",
     "tag": "Content Marketing",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "content-audit-guida",
@@ -2177,7 +2178,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Content Marketing",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "google-tag-manager-guida",
@@ -2191,7 +2193,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Analytics",
-    "read_time": "10 min"
+    "read_time": "10 min",
+    "used": true
   },
   {
     "slug": "dashboard-marketing-kpi",
@@ -2205,7 +2208,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Analytics",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "attribution-marketing-modelli",
@@ -2219,7 +2223,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Analytics",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "google-search-console-avanzato",
@@ -2233,7 +2238,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Analytics",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "analisi-competitiva-online",
@@ -2247,7 +2253,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Analytics",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "roi-marketing-digitale",
@@ -2261,7 +2268,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Analytics",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "web-analytics-privacy",
@@ -2275,7 +2283,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Analytics",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "conversion-tracking-guida",
@@ -2289,7 +2298,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Analytics",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "bounce-rate-ridurre",

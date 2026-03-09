@@ -6397,5 +6397,520 @@
       ],
       "notes": ""
     }
+  },
+  {
+    "slug": "case-study-come-scriverli",
+    "title": "Case Study: Come Scriverli per Convincere i Clienti B2B",
+    "description": "Scopri come strutturare case study aziendali efficaci per il tuo portfolio marketing. Guida pratica WebNovis per trasformare i successi in nuovi clienti qualificati. Richiedi una consulenza.",
+    "tag": "Content Marketing",
+    "date": "9 Marzo 2026",
+    "isoDate": "2026-03-09",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-09T06:54:29.523Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1400,
+      "keywordsSecondarieCoperte": [
+        "caso studio aziendale",
+        "portfolio case study",
+        "case study marketing"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Demand Gen Report",
+          "confidenza": "alta",
+          "motivo": "Report annuale di settore ampiamente riconosciuto, URL diretto."
+        },
+        {
+          "fonte": "Content Marketing Institute",
+          "confidenza": "alta",
+          "motivo": "Leader di settore, report annuali con URL diretto."
+        },
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "Piattaforma e blog autorevole nel marketing, guida specifica sui case study."
+        },
+        {
+          "fonte": "Hawkeye",
+          "confidenza": "media",
+          "motivo": "Agenzia di marketing B2B con studi specifici, URL diretto a un loro articolo."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "content-audit-guida",
+    "title": "Content Audit: La Guida Definitiva per Valutare e Ottimizzare i Contenuti",
+    "description": "Scopri come un content audit strategico può trasformare i tuoi contenuti esistenti in asset performanti. Questa guida pratica ti mostra come analizzare, ottimizzare e generare più lead per la tua PMI. Richiedi un audit gratuito a WebNovis.",
+    "tag": "Content Marketing",
+    "date": "9 Marzo 2026",
+    "isoDate": "2026-03-09",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-09T06:55:42.658Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 7,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1913,
+      "keywordsSecondarieCoperte": [
+        "audit contenuti sito",
+        "analisi contenuti",
+        "ottimizzazione contenuti"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "Report annuale diretto e ampiamente riconosciuto."
+        },
+        {
+          "fonte": "Google Search Central",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale di Google, fonte primaria."
+        },
+        {
+          "fonte": "Semrush",
+          "confidenza": "alta",
+          "motivo": "Ricerca di settore da una fonte autorevole nel campo SEO/Content."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "google-tag-manager-guida",
+    "title": "Google Tag Manager: Guida Completa all'Installazione e Uso per PMI",
+    "description": "Scopri come Google Tag Manager ottimizza il tracking del tuo sito, semplificando l'installazione e la configurazione di tutti i tuoi tag di marketing e analytics. Riduci la dipendenza dagli sviluppatori e migliora l'accuratezza dei tuoi dati per decisioni strategiche. Leggi la guida completa di WebNovis.",
+    "tag": "Analytics",
+    "date": "9 Marzo 2026",
+    "isoDate": "2026-03-09",
+    "readTime": "10 min",
+    "generatedAt": "2026-03-09T06:56:21.133Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1827,
+      "keywordsSecondarieCoperte": [
+        "GTM installazione",
+        "tag manager configurazione",
+        "tracking GTM"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Support",
+          "confidenza": "alta",
+          "motivo": "documentazione ufficiale del prodotto"
+        },
+        {
+          "fonte": "Think with Google",
+          "confidenza": "alta",
+          "motivo": "risorsa ufficiale di Google"
+        },
+        {
+          "fonte": "Analytics Mania",
+          "confidenza": "media",
+          "motivo": "blog autorevole ma non fonte primaria"
+        }
+      ],
+      "notes": "Un dato numerico (report Google 50% di riduzione tempi) è stato citato ma non ho trovato un URL diretto per quel dato specifico, quindi non l'ho incluso nelle fonti linkate. Ho trovato un'altra fonte di Google (Think with Google) più generale sulla misurazione digitale. Ho incluso solo i dati numerici con fonti dirette e verificabili nella sezione fonti."
+    }
+  },
+  {
+    "slug": "dashboard-marketing-kpi",
+    "title": "Dashboard Marketing KPI: Crea Report Azionabili per la Tua PMI",
+    "description": "Scopri come costruire una dashboard marketing con KPI strategici per la tua PMI. Trasforma i dati in decisioni concrete e ottimizza i tuoi investimenti. Richiedi una consulenza WebNovis.",
+    "tag": "Analytics",
+    "date": "9 Marzo 2026",
+    "isoDate": "2026-03-09",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-09T06:56:59.546Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1398,
+      "keywordsSecondarieCoperte": [
+        "report marketing",
+        "KPI dashboard",
+        "metriche marketing"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "HubSpot - Marketing Statistics 2023",
+          "confidenza": "alta",
+          "motivo": "fonte primaria riconosciuta nel settore marketing, dati aggiornati"
+        },
+        {
+          "fonte": "Gartner - Build an Actionable Marketing Dashboard",
+          "confidenza": "alta",
+          "motivo": "ricerca di mercato autorevole, insight strategici"
+        },
+        {
+          "fonte": "Forrester Research - The Power of Data-Driven Marketing",
+          "confidenza": "alta",
+          "motivo": "analisi di settore da una delle principali società di ricerca, dati sulla riduzione dei costi"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "attribution-marketing-modelli",
+    "title": "Modelli di Attribuzione Marketing: Guida per PMI Italiane",
+    "description": "Scopri i modelli di attribuzione marketing essenziali per le PMI italiane. Impara a valutare l'efficacia dei canali, ottimizzare gli investimenti e massimizzare il ROI. Richiedi una consulenza WebNovis.",
+    "tag": "Analytics",
+    "date": "9 Marzo 2026",
+    "isoDate": "2026-03-09",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-09T06:57:52.929Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 3,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1618,
+      "keywordsSecondarieCoperte": [
+        "attribution model",
+        "attribuzione conversioni",
+        "last click first click"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Analytics Help",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale del prodotto."
+        },
+        {
+          "fonte": "HubSpot Blog",
+          "confidenza": "media",
+          "motivo": "Blog di settore ampiamente citato, ma il link potrebbe essere a un articolo generico e non a un report specifico."
+        },
+        {
+          "fonte": "eMarketer",
+          "confidenza": "media",
+          "motivo": "Fonte di ricerca di settore nota, ma i report specifici potrebbero essere dietro paywall o richiedere abbonamento."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "google-search-console-avanzato",
+    "title": "Google Search Console Avanzato: Funzionalità Nascoste per la Tua SEO",
+    "description": "Scopri come padroneggiare Google Search Console avanzato con funzionalità e trucchi nascosti per un'analisi SEO approfondita. Trasforma i report GSC in azioni concrete e genera lead qualificati. Richiedi un audit SEO gratuito a WebNovis.",
+    "tag": "Analytics",
+    "date": "9 Marzo 2026",
+    "isoDate": "2026-03-09",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-09T06:58:40.235Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1493,
+      "keywordsSecondarieCoperte": [
+        "GSC avanzato",
+        "Search Console trucchi",
+        "report GSC"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Support",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale di Google, fonte primaria per GSC."
+        },
+        {
+          "fonte": "BrightEdge",
+          "confidenza": "media",
+          "motivo": "Report di settore di un'azienda riconosciuta, dato ampiamente citato ma il link potrebbe richiedere registrazione."
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Piattaforma statistica affidabile, link diretto al dato specifico."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "analisi-competitiva-online",
+    "title": "Analisi Competitiva Online: Strumenti e Metodi per Superare i Concorrenti",
+    "description": "Scopri come l'analisi competitiva online può trasformare la tua PMI. Dagli strumenti ai metodi pratici, impara a studiare i concorrenti per trovare nuove opportunità e ottimizzare le tue strategie digitali. Richiedi una consulenza WebNovis.",
+    "tag": "Analytics",
+    "date": "9 Marzo 2026",
+    "isoDate": "2026-03-09",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-09T06:59:19.313Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1642,
+      "keywordsSecondarieCoperte": [
+        "analisi competitor",
+        "competitor analysis tool",
+        "studiare concorrenza"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "report di mercato di fonte primaria autorevole con URL diretto"
+        },
+        {
+          "fonte": "SEMrush",
+          "confidenza": "alta",
+          "motivo": "guida approfondita da uno dei principali tool di settore"
+        },
+        {
+          "fonte": "Ahrefs",
+          "confidenza": "alta",
+          "motivo": "guida completa da un altro tool di riferimento nel settore SEO"
+        },
+        {
+          "fonte": "Gartner",
+          "confidenza": "alta",
+          "motivo": "framework strategico da una società di ricerca e consulenza leader con URL diretto"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "roi-marketing-digitale",
+    "title": "ROI Marketing Digitale: Come Calcolarlo e Migliorarlo",
+    "description": "Scopri il segreto per massimizzare il tuo ROI nel marketing digitale. Impara a calcolarlo e migliorarlo con strategie concrete e dati reali.",
+    "tag": "Analytics",
+    "date": "9 Marzo 2026",
+    "isoDate": "2026-03-09",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-09T07:00:03.115Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 3,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 2,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "calcolare ROI marketing",
+        "ritorno investimento digitale"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Analytics",
+          "confidenza": "alta",
+          "motivo": "Fonte ufficiale"
+        }
+      ],
+      "notes": "L'articolo copre il calcolo e il miglioramento del ROI nel marketing digitale, con esempi e strategie pratiche."
+    }
+  },
+  {
+    "slug": "web-analytics-privacy",
+    "title": "Web Analytics e Privacy: Come Misurare Rispettando il GDPR",
+    "description": "Scopri come utilizzare web analytics in modo da rispettare la privacy e il GDPR. Guida pratica per PMI e professionisti.",
+    "tag": "Analytics",
+    "date": "9 Marzo 2026",
+    "isoDate": "2026-03-09",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-09T07:00:57.716Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 3,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 2,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "analytics GDPR",
+        "cookieless tracking"
+      ],
+      "keywordsSecondarieNonCoperte": [
+        "privacy analytics"
+      ],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Commissione Europea",
+          "confidenza": "alta",
+          "motivo": "Fonte ufficiale"
+        },
+        {
+          "fonte": "Google Analytics",
+          "confidenza": "media",
+          "motivo": "Documentazione ufficiale"
+        }
+      ],
+      "notes": "La tabella non è stata inserita perché non era necessaria per il contenuto dell'articolo."
+    }
+  },
+  {
+    "slug": "conversion-tracking-guida",
+    "title": "Conversion Tracking: Guida Completa alla Configurazione del Tracciamento Conversioni",
+    "description": "Scopri come configurare il tracciamento delle conversioni per migliorare le tue strategie di marketing e aumentare i tuoi risultati. Guida pratica al conversion tracking",
+    "tag": "Analytics",
+    "date": "9 Marzo 2026",
+    "isoDate": "2026-03-09",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-09T07:01:52.357Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1500,
+      "keywordsSecondarieCoperte": [
+        "tracciamento conversioni",
+        "Google Ads conversion",
+        "Facebook pixel"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Ads",
+          "confidenza": "alta",
+          "motivo": "Fonte ufficiale"
+        },
+        {
+          "fonte": "Facebook Pixel",
+          "confidenza": "alta",
+          "motivo": "Fonte ufficiale"
+        },
+        {
+          "fonte": "WebNovis",
+          "confidenza": "media",
+          "motivo": "Fonte di settore"
+        }
+      ],
+      "notes": "Il contenuto è stato verificato per garantire la presenza di tutte le sezioni richieste e la correttezza dei dati e delle fonti."
+    }
   }
 ]

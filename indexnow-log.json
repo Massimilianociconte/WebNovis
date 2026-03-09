@@ -292,5 +292,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-09T07:01:56.052Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/case-study-come-scriverli.html",
+      "https://www.webnovis.com/blog/content-audit-guida.html",
+      "https://www.webnovis.com/blog/google-tag-manager-guida.html",
+      "https://www.webnovis.com/blog/dashboard-marketing-kpi.html",
+      "https://www.webnovis.com/blog/attribution-marketing-modelli.html",
+      "https://www.webnovis.com/blog/google-search-console-avanzato.html",
+      "https://www.webnovis.com/blog/analisi-competitiva-online.html",
+      "https://www.webnovis.com/blog/roi-marketing-digitale.html",
+      "https://www.webnovis.com/blog/web-analytics-privacy.html",
+      "https://www.webnovis.com/blog/conversion-tracking-guida.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]
