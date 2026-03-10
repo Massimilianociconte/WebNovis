@@ -313,5 +313,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-10T06:48:33.320Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/bounce-rate-ridurre.html",
+      "https://www.webnovis.com/blog/data-driven-marketing.html",
+      "https://www.webnovis.com/blog/marketing-plan-modello.html",
+      "https://www.webnovis.com/blog/customer-journey-mapping.html",
+      "https://www.webnovis.com/blog/unique-selling-proposition.html",
+      "https://www.webnovis.com/blog/omnichannel-strategia.html",
+      "https://www.webnovis.com/blog/growth-hacking-pmi.html",
+      "https://www.webnovis.com/blog/competitor-analysis-metodo.html",
+      "https://www.webnovis.com/blog/digital-transformation-pmi.html",
+      "https://www.webnovis.com/blog/outsourcing-vs-inhouse-marketing.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]

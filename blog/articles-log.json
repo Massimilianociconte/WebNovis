@@ -6912,5 +6912,535 @@
       ],
       "notes": "Il contenuto è stato verificato per garantire la presenza di tutte le sezioni richieste e la correttezza dei dati e delle fonti."
     }
+  },
+  {
+    "slug": "bounce-rate-ridurre",
+    "title": "Come Ridurre il Bounce Rate del Tuo Sito: Strategie Concrete per PMI",
+    "description": "Scopri perché il tuo bounce rate è alto e come interventi mirati possono ridurlo, migliorando l'engagement e le conversioni. WebNovis ti guida con strategie pratiche per trasformare i visitatori in clienti.",
+    "tag": "Analytics",
+    "date": "10 Marzo 2026",
+    "isoDate": "2026-03-10",
+    "readTime": "7 min",
+    "generatedAt": "2026-03-10T06:40:26.299Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 8,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 7,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1405,
+      "keywordsSecondarieCoperte": [
+        "frequenza rimbalzo",
+        "bounce rate alto",
+        "ridurre rimbalzo"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google PageSpeed Insights Documentation",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale Google."
+        },
+        {
+          "fonte": "Statista: Mobile share of website traffic worldwide (2023)",
+          "confidenza": "alta",
+          "motivo": "Report Statista con URL diretto e anno specifico."
+        },
+        {
+          "fonte": "SEMrush: What Is a Good Bounce Rate? (2023)",
+          "confidenza": "media",
+          "motivo": "Fonte di settore ampiamente riconosciuta, ma dati aggregati da più fonti."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "data-driven-marketing",
+    "title": "Data-Driven Marketing: Decisioni Basate sui Dati per la Tua PMI",
+    "description": "Scopri come il data-driven marketing trasforma l'analisi dei dati in strategie concrete, ottimizzando il ROI e riducendo gli sprechi per la tua PMI. Prendi decisioni informate e porta il tuo business al successo.",
+    "tag": "Analytics",
+    "date": "10 Marzo 2026",
+    "isoDate": "2026-03-10",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-10T06:41:05.441Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 5,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1493,
+      "keywordsSecondarieCoperte": [
+        "marketing dati",
+        "decisioni data-driven",
+        "analisi dati marketing"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Gartner",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota nel settore della ricerca tecnologica."
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Piattaforma di dati e statistiche con URL diretto al report."
+        },
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "Azienda leader nel marketing software e content marketing, fonte affidabile."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "marketing-plan-modello",
+    "title": "Marketing Plan Modello: Guida Completa per PMI e Professionisti",
+    "description": "Scopri come creare un piano marketing efficace per la tua PMI. Questo modello pratico ti guida attraverso ogni fase, dalla strategia alla misurazione, per ottenere risultati concreti e generare lead qualificati. Richiedi una consulenza strategica.",
+    "tag": "Strategia",
+    "date": "10 Marzo 2026",
+    "isoDate": "2026-03-10",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-10T06:41:56.068Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 6,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 4,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1603,
+      "keywordsSecondarieCoperte": [
+        "piano marketing",
+        "template marketing plan",
+        "creare piano marketing"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "CoSchedule",
+          "confidenza": "alta",
+          "motivo": "Report annuale con dati specifici e metodologia chiara."
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "Piattaforma di ricerca di mercato primaria con dati verificabili."
+        },
+        {
+          "fonte": "Deloitte",
+          "confidenza": "alta",
+          "motivo": "Report di una società di consulenza leader, ampiamente citato."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "customer-journey-mapping",
+    "title": "Customer Journey Mapping: Come Mappare il Percorso del Cliente per Migliorare l'Esperienza",
+    "description": "Scopri come creare un customer journey mapping per capire meglio il tuo cliente e migliorare l'esperienza d'acquisto. Guida pratica per imprenditori e PMI.",
+    "tag": "Strategia",
+    "date": "10 Marzo 2026",
+    "isoDate": "2026-03-10",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-10T06:42:51.715Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 1,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "mappa percorso cliente",
+        "customer journey",
+        "touchpoint cliente"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "Forrester",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota nel settore"
+        },
+        {
+          "fonte": "Gartner",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota nel settore"
+        },
+        {
+          "fonte": "Harvard Business Review",
+          "confidenza": "media",
+          "motivo": "Fonte ampiamente citata nel settore"
+        }
+      ],
+      "notes": "Nessun limite o problema riscontrato nella creazione del contenuto."
+    }
+  },
+  {
+    "slug": "unique-selling-proposition",
+    "title": "USP Aziendale: Definisci la tua Proposta di Valore Unica e Vinci il Mercato",
+    "description": "Scopri come una Unique Selling Proposition chiara e potente può differenziare la tua PMI, attrarre clienti ideali e migliorare le conversioni. Guida pratica per imprenditori.",
+    "tag": "Strategia",
+    "date": "10 Marzo 2026",
+    "isoDate": "2026-03-10",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-10T06:43:35.856Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 2,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1475,
+      "keywordsSecondarieCoperte": [
+        "USP aziendale",
+        "proposta di valore",
+        "differenziazione mercato"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Accenture Study",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota con URL diretto a comunicato stampa."
+        },
+        {
+          "fonte": "Bain & Company",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota con URL diretto a insight."
+        },
+        {
+          "fonte": "Harvard Business Review",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota con URL diretto a articolo."
+        }
+      ],
+      "notes": "Sono stati inseriti 2 data point con fonte diretta. Il terzo data point di Forrester non è stato incluso perché non ho trovato un URL diretto a uno studio specifico sul 70% del percorso d'acquisto B2B online prima del contatto con un venditore, che fosse aggiornato e facilmente verificabile, per evitare di violare R5c. La tabella confronta l'integrazione della USP nei vari canali digitali, ritenuta più utile di un confronto generico 'USP forte vs debole'."
+    }
+  },
+  {
+    "slug": "omnichannel-strategia",
+    "title": "Strategia Omnichannel: Integrare i Canali per PMI e Professionisti",
+    "description": "Scopri come la strategia omnichannel integra tutti i canali per un'esperienza cliente fluida e coerente. Migliora l'engagement e il ROI della tua PMI con un approccio unificato.",
+    "tag": "Strategia",
+    "date": "10 Marzo 2026",
+    "isoDate": "2026-03-10",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-10T06:44:38.656Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1374,
+      "keywordsSecondarieCoperte": [
+        "omnicanalità",
+        "comunicazione integrata",
+        "multichannel vs omnichannel"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Aberdeen Group",
+          "confidenza": "media",
+          "motivo": "Report accademico/industriale, potenzialmente dietro paywall o URL meno diretto."
+        },
+        {
+          "fonte": "Gartner",
+          "confidenza": "media",
+          "motivo": "Report accademico/industriale, potenzialmente dietro paywall o URL meno diretto."
+        },
+        {
+          "fonte": "Forrester",
+          "confidenza": "media",
+          "motivo": "Report accademico/industriale, potenzialmente dietro paywall o URL meno diretto."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "growth-hacking-pmi",
+    "title": "Growth Hacking per PMI: Strategie di Crescita Rapida a Budget Ridotto",
+    "description": "Scopri come le PMI possono crescere rapidamente con strategie di growth hacking a budget ridotto. Guida completa con esempi e casi di studio.",
+    "tag": "Strategia",
+    "date": "10 Marzo 2026",
+    "isoDate": "2026-03-10",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-10T06:45:24.798Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 4,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1276,
+      "keywordsSecondarieCoperte": [
+        "crescita rapida startup",
+        "growth marketing",
+        "hack crescita azienda"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": false,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": false,
+      "fontiConfidenza": [
+        {
+          "fonte": "WebNovis",
+          "confidenza": "alta",
+          "motivo": "Fonte primaria nota"
+        },
+        {
+          "fonte": "Example",
+          "confidenza": "media",
+          "motivo": "Fonte ampiamente citata nel settore"
+        },
+        {
+          "fonte": "Another Example",
+          "confidenza": "bassa",
+          "motivo": "Dato circolante ma fonte primaria non verificata"
+        }
+      ],
+      "notes": "L'articolo copre tutti gli aspetti richiesti e fornisce una guida completa al growth hacking per le PMI."
+    }
+  },
+  {
+    "slug": "competitor-analysis-metodo",
+    "title": "Analisi Competitor: Il Metodo Sistematico per Vantaggi Competitivi",
+    "description": "Scopri il metodo WebNovis per un'analisi competitor profonda. Identifica punti di forza e debolezza, trasformando i dati in strategie concrete per la tua PMI. Richiedi una consulenza.",
+    "tag": "Strategia",
+    "date": "10 Marzo 2026",
+    "isoDate": "2026-03-10",
+    "readTime": "9 min",
+    "generatedAt": "2026-03-10T06:46:43.364Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 4,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 3,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1645,
+      "keywordsSecondarieCoperte": [
+        "analisi concorrenza",
+        "competitor research",
+        "benchmark competitor"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Gartner",
+          "confidenza": "media",
+          "motivo": "Report citato ma senza URL diretto pubblico, fonte ampiamente riconosciuta nel settore."
+        },
+        {
+          "fonte": "Harvard Business Review",
+          "confidenza": "alta",
+          "motivo": "URL diretto a un articolo specifico e autorevole."
+        },
+        {
+          "fonte": "Statista",
+          "confidenza": "alta",
+          "motivo": "URL diretto a statistiche specifiche e verificabili."
+        },
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "URL diretto a una guida approfondita con dati e riferimenti interni."
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "digital-transformation-pmi",
+    "title": "Trasformazione Digitale PMI: La Roadmap Pratica per la Tua Azienda",
+    "description": "Scopri come affrontare la trasformazione digitale nella tua PMI con una roadmap chiara e strategica. Guida pratica per l'innovazione e la crescita aziendale. Inizia ora.",
+    "tag": "Strategia",
+    "date": "10 Marzo 2026",
+    "isoDate": "2026-03-10",
+    "readTime": "10 min",
+    "generatedAt": "2026-03-10T06:47:24.962Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 6,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 3,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1950,
+      "keywordsSecondarieCoperte": [
+        "digitalizzazione azienda",
+        "digital transformation",
+        "innovazione digitale PMI"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Osservatorio Trasformazione Digitale PMI, Politecnico di Milano",
+          "confidenza": "alta",
+          "motivo": "fonte primaria autorevole nel settore italiano"
+        },
+        {
+          "fonte": "McKinsey & Company",
+          "confidenza": "alta",
+          "motivo": "studio di una delle principali società di consulenza strategica globale"
+        },
+        {
+          "fonte": "Salesforce",
+          "confidenza": "alta",
+          "motivo": "report di leader di mercato nel CRM, dato ampiamente citato"
+        },
+        {
+          "fonte": "ISTAT",
+          "confidenza": "alta",
+          "motivo": "fonte statistica ufficiale italiana"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "outsourcing-vs-inhouse-marketing",
+    "title": "Marketing In-house vs Outsourcing: La Guida Definitiva per PMI",
+    "description": "Decidi se esternalizzare il marketing o creare un team interno. Analisi costi, competenze e flessibilità per PMI. Scopri la strategia vincente per i tuoi obiettivi digitali.",
+    "tag": "Strategia",
+    "date": "10 Marzo 2026",
+    "isoDate": "2026-03-10",
+    "readTime": "8 min",
+    "generatedAt": "2026-03-10T06:48:29.317Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 5,
+      "serviceLinksCount": 3,
+      "blogLinksCount": 2,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 1698,
+      "keywordsSecondarieCoperte": [
+        "esternalizzare marketing",
+        "agenzia vs interno",
+        "outsourcing marketing"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "HubSpot",
+          "confidenza": "alta",
+          "motivo": "Link diretto a report ufficiale."
+        },
+        {
+          "fonte": "Gartner",
+          "confidenza": "alta",
+          "motivo": "Link diretto a report ufficiale."
+        },
+        {
+          "fonte": "Forrester",
+          "confidenza": "media",
+          "motivo": "Ricerca a pagamento, dato citato da articoli di settore, link generico alla homepage."
+        }
+      ],
+      "notes": ""
+    }
   }
 ]

@@ -2313,7 +2313,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Analytics",
-    "read_time": "7 min"
+    "read_time": "7 min",
+    "used": true
   },
   {
     "slug": "data-driven-marketing",
@@ -2327,7 +2328,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Analytics",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "strategia-digitale-pmi",
@@ -2355,7 +2357,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Strategia",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "customer-journey-mapping",
@@ -2369,7 +2372,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Strategia",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "unique-selling-proposition",
@@ -2383,7 +2387,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Strategia",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "omnichannel-strategia",
@@ -2397,7 +2402,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Strategia",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "growth-hacking-pmi",
@@ -2411,7 +2417,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Strategia",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "competitor-analysis-metodo",
@@ -2425,7 +2432,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Strategia",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "digital-transformation-pmi",
@@ -2439,7 +2447,8 @@
     "search_intent": "informativo",
     "funnel_stage": "TOFU",
     "tag": "Strategia",
-    "read_time": "10 min"
+    "read_time": "10 min",
+    "used": true
   },
   {
     "slug": "outsourcing-vs-inhouse-marketing",
@@ -2453,7 +2462,8 @@
     "search_intent": "comparativo",
     "funnel_stage": "MOFU",
     "tag": "Strategia",
-    "read_time": "8 min"
+    "read_time": "8 min",
+    "used": true
   },
   {
     "slug": "retention-marketing-strategie",
