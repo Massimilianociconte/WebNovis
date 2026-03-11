@@ -334,5 +334,26 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-11T06:54:05.604Z",
+    "urlCount": 12,
+    "urls": [
+      "https://www.webnovis.com/blog/retention-marketing-strategie.html",
+      "https://www.webnovis.com/blog/marketing-digitale-attivita-locali.html",
+      "https://www.webnovis.com/blog/email-vs-sms-marketing.html",
+      "https://www.webnovis.com/blog/sito-intelligenza-artificiale-limiti.html",
+      "https://www.webnovis.com/blog/tradurre-sito-web-guida.html",
+      "https://www.webnovis.com/blog/url-strane-search-console.html",
+      "https://www.webnovis.com/blog/engagement-sito-web-strategie.html",
+      "https://www.webnovis.com/blog/dati-obbligatori-sito-web.html",
+      "https://www.webnovis.com/blog/alternativa-linktree-link-in-bio.html",
+      "https://www.webnovis.com/blog/canva-vs-designer-professionista.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]

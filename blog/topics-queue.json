@@ -2477,7 +2477,8 @@
     "search_intent": "informativo",
     "funnel_stage": "MOFU",
     "tag": "Strategia",
-    "read_time": "9 min"
+    "read_time": "9 min",
+    "used": true
   },
   {
     "slug": "importanza-sito-web-attivita",
@@ -2647,7 +2648,8 @@
     "tag": "Strategia",
     "read_time": "10 min",
     "competitor_cluster": "4-marketing-locale",
-    "priority": "alta"
+    "priority": "alta",
+    "used": true
   },
   {
     "slug": "identificare-target-business",
@@ -2732,7 +2734,8 @@
     "tag": "Content Marketing",
     "read_time": "8 min",
     "competitor_cluster": "5-email",
-    "priority": "media"
+    "priority": "media",
+    "used": true
   },
   {
     "slug": "chiedere-recensioni-clienti",
@@ -2766,7 +2769,8 @@
     "tag": "Tecnologia",
     "read_time": "9 min",
     "competitor_cluster": "7-ia",
-    "priority": "media"
+    "priority": "media",
+    "used": true
   },
   {
     "slug": "tradurre-sito-web-guida",
@@ -2783,7 +2787,8 @@
     "tag": "Web Development",
     "read_time": "8 min",
     "competitor_cluster": "8-multilingue",
-    "priority": "bassa"
+    "priority": "bassa",
+    "used": true
   },
   {
     "slug": "url-strane-search-console",
@@ -2800,7 +2805,8 @@
     "tag": "SEO Tecnica",
     "read_time": "8 min",
     "competitor_cluster": "9-seo",
-    "priority": "media"
+    "priority": "media",
+    "used": true
   },
   {
     "slug": "engagement-sito-web-strategie",
@@ -2817,7 +2823,8 @@
     "tag": "Conversioni",
     "read_time": "8 min",
     "competitor_cluster": "9-seo",
-    "priority": "media"
+    "priority": "media",
+    "used": true
   },
   {
     "slug": "dati-obbligatori-sito-web",
@@ -2834,7 +2841,8 @@
     "tag": "Web Development",
     "read_time": "7 min",
     "competitor_cluster": "9-seo",
-    "priority": "media"
+    "priority": "media",
+    "used": true
   },
   {
     "slug": "alternativa-linktree-link-in-bio",
@@ -2851,7 +2859,8 @@
     "tag": "Branding",
     "read_time": "7 min",
     "competitor_cluster": "10-branding",
-    "priority": "media"
+    "priority": "media",
+    "used": true
   },
   {
     "slug": "canva-vs-designer-professionista",
@@ -2868,7 +2877,8 @@
     "tag": "Design",
     "read_time": "8 min",
     "competitor_cluster": "10-branding",
-    "priority": "media"
+    "priority": "media",
+    "used": true
   },
   {
     "slug": "sito-web-che-non-converte",
