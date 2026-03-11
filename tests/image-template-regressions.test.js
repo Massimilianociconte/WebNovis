@@ -5,6 +5,10 @@ const {
   buildArticleHTML
 } = require('../blog/build-articles');
 
+function buildFooterHeadingRegex(label) {
+  return new RegExp(`<strong[^>]*class="footer-heading"[^>]*>${label}<\\/strong>`);
+}
+
 function main() {
   const sampleArticle = articles[0];
   const html = buildArticleHTML(sampleArticle, sampleArticle.content, { skipFinalCta: true });
@@ -14,10 +18,13 @@ function main() {
     !html.includes('<strong class="footer-heading" role="heading" aria-level="3"></strong>'),
     'Blog article template must not emit empty footer headings'
   );
-  assert.match(html, /<strong class="footer-heading" role="heading" aria-level="3">Servizi<\/strong>/);
-  assert.match(html, /<strong class="footer-heading" role="heading" aria-level="3">Azienda<\/strong>/);
-  assert.match(html, /<strong class="footer-heading" role="heading" aria-level="3">Legale<\/strong>/);
-  assert.match(html, /<strong class="footer-heading" role="heading" aria-level="3">Social<\/strong>/);
+  assert.match(html, buildFooterHeadingRegex('Servizi'));
+  assert.match(html, buildFooterHeadingRegex('Azienda'));
+  assert.match(html, buildFooterHeadingRegex('Zone Servite'));
+  assert.match(html, buildFooterHeadingRegex('Legale'));
+  assert.ok(html.includes('class="footer-grid"'), 'Blog article footer should use the shared footer grid layout');
+  assert.ok(html.includes('class="footer-badges"'), 'Blog article footer should render the shared footer badges row');
+  assert.ok(html.includes('class="footer-social-icons"'), 'Blog article footer should expose the shared social icon cluster');
   assert.ok(
     html.includes('fetchpriority="low"') && html.includes('loading="lazy"'),
     'Footer badges should use low-priority lazy loading'
