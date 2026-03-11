@@ -150,22 +150,19 @@ const articles = [
     ],
     content: `
 <p>Scegliere la web agency sbagliata può costarti migliaia di euro e mesi di ritardo. Eppure la maggior parte degli imprenditori sceglie basandosi solo sul prezzo o sulle "belle parole" di un commerciale. In questa guida ti diamo <strong>10 criteri concreti</strong> per valutare un'agenzia digitale prima di firmare qualsiasi contratto.</p>
-
 <h2>1. Portfolio Reale con Progetti Verificabili</h2>
 <p>La prima cosa da controllare è il portfolio. Ma non fermarti alle immagini: <strong>visita i siti che hanno realizzato</strong>. Funzionano? Sono veloci? Il design è coerente? Se l'agenzia non ha un portfolio o mostra solo mockup, è un campanello d'allarme.</p>
 <p>Bonus: cerca le testimonianze dei clienti nel portfolio. Un'agenzia sicura del proprio lavoro non ha problemi a mostrarti i risultati.</p>
 
-<h2>2. Trasparenza su Prezzi e Tempistiche</h2>
+<h2>2. Preventivo Chiaro e Trasparente</h2>
 <p>Un'agenzia seria ti fornisce un <strong>preventivo dettagliato</strong> con voci specifiche (design, sviluppo, contenuti, SEO) e tempistiche realistiche. Se il preventivo è un numero singolo senza spiegazioni, rischi sorprese in corso d'opera.</p>
 <p>Chiedi sempre: "Cosa succede se il progetto richiede più tempo del previsto?" La risposta ti dice molto sulla serietà dell'agenzia.</p>
 
 <h2>3. Competenze Tecniche Dimostrabili</h2>
-<p>Chiedi con quali tecnologie lavorano. Un'agenzia che sa spiegare perché usa React piuttosto che WordPress per il tuo progetto specifico dimostra competenza. Diffida di chi propone sempre la stessa soluzione per tutti.</p>
 <p>Verifica anche se hanno competenze SEO interne — un sito bello ma invisibile su Google è un investimento sprecato.</p>
 
 <h2>4. Processo di Lavoro Strutturato</h2>
 <p>Le agenzie professionali hanno un processo definito: briefing → wireframe → design → sviluppo → test → lancio. Chiedi come funziona il loro workflow e come ti terranno aggiornato. Se la risposta è vaga, aspettati un progetto caotico.</p>
-
 <h2>5. Comunicazione e Reattività</h2>
 <p>Come rispondono alla tua prima richiesta di informazioni? Se impiegano 5 giorni per rispondere a un'email prima di avere il tuo denaro, immagina dopo. La velocità di risposta iniziale è un indicatore affidabile della comunicazione durante il progetto.</p>
 
@@ -211,6 +208,134 @@ const articles = [
       { slug: 'quanto-costa-un-sito-web', title: 'Quanto Costa un Sito Web nel 2026?', desc: 'Guida completa ai prezzi per ogni tipologia di sito.' },
       { slug: 'errori-comuni-siti-web', title: '10 Errori Comuni nei Siti Web', desc: 'Gli errori che ti fanno perdere clienti.' },
       { slug: 'wordpress-vs-codice-custom', title: 'WordPress vs Codice Custom', desc: 'Come scegliere la tecnologia giusta.' }
+    ]
+  },
+  {
+    slug: 'quanto-costa-un-sito-web',
+    title: 'Quanto Costa un Sito Web? Prezzi Reali 2026',
+    description: 'Prezzi reali per landing page, siti vetrina ed e-commerce: scopri quanto costa un sito web professionale e da cosa dipende il preventivo.',
+    tag: 'Web Development',
+    date: '12 Febbraio 2026',
+    isoDate: '2026-02-12',
+    updatedDate: '14 Febbraio 2026',
+    updatedIsoDate: '2026-02-14',
+    readTime: '8 min',
+    faq: [
+      {
+        question: 'Quanto costa un sito web professionale nel 2026?',
+        answer: 'I prezzi variano da €300 per una landing page semplice a oltre €30.000 per progetti complessi. Un sito vetrina per PMI rientra spesso tra €800 e €5.000, mentre e-commerce e web app richiedono budget più alti per funzionalità, integrazioni e scalabilità.'
+      },
+      {
+        question: 'È meglio scegliere un freelancer o un\'agenzia?',
+        answer: 'Dipende dagli obiettivi. Un freelancer può ridurre il costo iniziale, mentre un\'agenzia offre team multidisciplinare, processi più solidi e maggiore continuità. Per progetti strategici, con SEO e conversioni al centro, l\'agenzia tende a ridurre i rischi operativi.'
+      },
+      {
+        question: 'Quali costi extra devo considerare oltre allo sviluppo?',
+        answer: 'Oltre alla realizzazione, vanno pianificati dominio, hosting, manutenzione, produzione contenuti e attività SEO continuativa. Questi elementi incidono direttamente su performance, visibilità e ROI del sito nel tempo.'
+      }
+    ],
+    content: `
+<p>"Quanto costa un sito web?" è probabilmente la domanda che riceviamo più spesso. La risposta onesta è: <strong>dipende</strong>. Ma non è una scusa per non darti numeri concreti. In questa guida analizziamo tutti i fattori che influenzano il prezzo e ti diamo range realistici basati sulla nostra esperienza.</p>
+
+<h2>I Fattori che Determinano il Prezzo</h2>
+<p>Il costo di un sito web non dipende solo dal "numero di pagine". Ecco i principali fattori:</p>
+<ul>
+    <li><strong>Tipologia di sito</strong>: landing page, sito vetrina, e-commerce, web app. Ognuno ha complessità diverse</li>
+    <li><strong>Design</strong>: template predefinito vs design personalizzato da zero. La differenza di prezzo è significativa</li>
+    <li><strong>Funzionalità</strong>: blog, area riservata, prenotazioni online, integrazione con CRM, pagamenti. Più funzionalità, più costo</li>
+    <li><strong>Contenuti</strong>: chi scrive i testi? Chi fa le foto? Se l\'agenzia si occupa anche dei contenuti, il prezzo sale</li>
+    <li><strong>SEO</strong>: ottimizzazione base vs strategia SEO completa. La differenza si vede nei risultati e nel prezzo</li>
+    <li><strong>Manutenzione</strong>: un sito va mantenuto, aggiornato e monitorato. Questo ha un costo ricorrente</li>
+</ul>
+
+<h2>Tabella Prezzi: Quanto Costa Davvero</h2>
+<p>Ecco i range di prezzo che puoi aspettarti nel mercato italiano nel 2026, basati su centinaia di preventivi analizzati:</p>
+<table class="price-table">
+<thead>
+<tr>
+<th>Tipologia</th>
+<th>Range Prezzo</th>
+<th>Tempistica</th>
+<th>Per Chi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong>Landing Page</strong></td><td>€300 - €1.500</td><td>1-2 settimane</td><td>Campagne marketing, lanci prodotto</td></tr>
+<tr><td><strong>Sito Vetrina</strong> (5-10 pag)</td><td>€800 - €5.000</td><td>3-6 settimane</td><td>PMI, professionisti, attività locali</td></tr>
+<tr><td><strong>Sito Corporate</strong> (10-20 pag)</td><td>€3.000 - €15.000</td><td>4-10 settimane</td><td>Aziende strutturate, B2B</td></tr>
+<tr><td><strong>E-Commerce</strong></td><td>€2.000 - €30.000+</td><td>6-16 settimane</td><td>Vendita prodotti online</td></tr>
+<tr><td><strong>Web App</strong></td><td>€5.000 - €50.000+</td><td>8-24 settimane</td><td>Startup, SaaS, piattaforme</td></tr>
+</tbody>
+</table>
+
+<h2>Landing Page: €300 - €1.500</h2>
+<p>Una landing page è una pagina singola progettata con un obiettivo preciso: raccogliere contatti, vendere un prodotto o promuovere un evento. Il prezzo varia in base a:</p>
+<ul>
+    <li><strong>Design base</strong> (€300-500): layout semplice, template personalizzato, form di contatto</li>
+    <li><strong>Design professionale</strong> (€500-1.000): design custom, copy persuasivo, A/B testing, integrazione analytics</li>
+    <li><strong>Design premium</strong> (€1.000-1.500): animazioni avanzate, video background, funnel completo, pixel tracking</li>
+</ul>
+<p>Se stai lanciando una campagna marketing o hai bisogno di testare un\'idea, una landing page è l\'investimento più efficiente. <a href="../servizi/sviluppo-web.html">I nostri pacchetti landing page partono da €500</a> con design personalizzato e SEO inclusa.</p>
+
+<h2>Sito Vetrina: €800 - €5.000</h2>
+<p>Il classico sito aziendale con 5-10 pagine: homepage, chi siamo, servizi, portfolio, contatti. È la scelta più comune per professionisti e piccole imprese che vogliono una presenza online professionale.</p>
+<p>La differenza di prezzo dipende principalmente dal <strong>livello di personalizzazione del design</strong>:</p>
+<ul>
+    <li><strong>Template personalizzato</strong> (€800-1.500): si parte da un template esistente che viene adattato ai colori e contenuti del cliente</li>
+    <li><strong>Design su misura</strong> (€1.500-3.500): progettazione da zero con wireframe, mockup in Figma e sviluppo custom</li>
+    <li><strong>Design premium + strategia</strong> (€3.500-5.000): include brand guidelines, copywriting professionale, SEO avanzata e formazione</li>
+</ul>
+
+<blockquote>
+    <p>"Un sito vetrina non è un costo, è un investimento che lavora per te 24/7. La domanda giusta non è 'quanto costa' ma 'quanto mi costa non averlo'."</p>
+</blockquote>
+
+<h2>E-Commerce: €2.000 - €30.000+</h2>
+<p>Un negozio online è il progetto più variabile in termini di costo. Un e-commerce con 20 prodotti su Shopify è molto diverso da una piattaforma custom con 10.000 SKU, magazzino sincronizzato e marketplace.</p>
+<p>Per approfondire i costi specifici dell\'e-commerce, leggi il nostro articolo dedicato: <a href="quanto-costa-un-ecommerce.html">Quanto costa un e-commerce?</a></p>
+
+<h2>I Costi Nascosti: Cosa Includere nel Budget</h2>
+<p>Il prezzo del sito web è solo una parte dell\'investimento. Ecco i costi aggiuntivi da considerare:</p>
+<h3>Dominio e Hosting</h3>
+<p>Un dominio .it costa circa €10-15/anno. L\'hosting varia da €50/anno (condiviso) a €200-500/anno (VPS o dedicato). Per la maggior parte dei siti vetrina, un hosting da €80-120/anno è più che sufficiente.</p>
+<h3>Manutenzione e Aggiornamenti</h3>
+<p>Un sito web va mantenuto: aggiornamenti di sicurezza, backup, monitoraggio, piccole modifiche. Un piano di manutenzione professionale costa tipicamente €50-200/mese a seconda della complessità.</p>
+<h3>Contenuti e Copywriting</h3>
+<p>Se non hai testi e immagini pronti, dovrai investire in copywriting (€100-300 per pagina) e fotografia professionale (€300-1.000 per shooting). Molte agenzie offrono questi servizi come add-on.</p>
+<h3>SEO Continuativa</h3>
+<p>L\'ottimizzazione SEO on-page è generalmente inclusa nel prezzo del sito. Ma per un posizionamento competitivo su keyword difficili, serve una strategia SEO continuativa che costa €300-1.000/mese.</p>
+
+<h2>Freelancer vs Agenzia: Quale Scegliere?</h2>
+<p>I freelancer sono generalmente più economici, ma un\'agenzia offre:</p>
+<ul>
+    <li><strong>Team multidisciplinare</strong>: designer, developer, copywriter, SEO specialist. Non una persona sola che fa tutto</li>
+    <li><strong>Continuità</strong>: se il freelancer si ammala o sparisce, il tuo progetto si ferma</li>
+    <li><strong>Garanzia</strong>: un\'agenzia ha processi strutturati, contratti chiari e reputazione da proteggere</li>
+    <li><strong>Scalabilità</strong>: quando cresci, l\'agenzia cresce con te</li>
+</ul>
+<p>Per sapere come valutare una web agency, leggi: <a href="come-scegliere-web-agency.html">Come scegliere la web agency giusta</a>.</p>
+
+<h2>Come Risparmiare Senza Sacrificare la Qualità</h2>
+<ol>
+    <li><strong>Prepara i contenuti in anticipo</strong>: testi, foto e materiali pronti riducono tempi e costi dell\'agenzia</li>
+    <li><strong>Definisci bene gli obiettivi</strong>: un brief chiaro evita revisioni infinite e costi extra</li>
+    <li><strong>Parti dal minimo necessario</strong>: lancia con le funzionalità essenziali e aggiungi il resto nel tempo</li>
+    <li><strong>Investi nel design</strong>: un sito bello e semplice converte più di uno pieno di feature inutili</li>
+    <li><strong>Scegli il partner giusto al primo tentativo</strong>: rifare un sito fatto male costa il doppio</li>
+</ol>
+
+<h2>I Nostri Prezzi: Trasparenti e Personalizzati</h2>
+<p>In WebNovis crediamo nella trasparenza. Ecco i nostri pacchetti di partenza:</p>
+<ul>
+    <li><strong>Landing Page</strong>: da €500. Design personalizzato, SEO base, form contatto, consegna in 1-2 settimane</li>
+    <li><strong>Sito Vetrina</strong>: da €1.200. Design premium su misura, SEO completa, blog integrato, consegna in 3-4 settimane</li>
+    <li><strong>E-Commerce</strong>: da €3.500. Catalogo prodotti, pagamenti sicuri, SEO avanzata, consegna in 6-8 settimane</li>
+</ul>
+<p>Ogni preventivo viene personalizzato dopo un briefing iniziale gratuito. <a href="../servizi/sviluppo-web.html">Scopri tutti i dettagli dei nostri servizi di sviluppo web →</a></p>`,
+    relatedArticles: [
+      { slug: 'quanto-costa-un-ecommerce', title: 'Quanto Costa un E-Commerce?', desc: 'Budget, piattaforme e ROI per il tuo negozio online.' },
+      { slug: 'come-scegliere-web-agency', title: 'Come Scegliere la Web Agency Giusta', desc: '10 criteri pratici per valutare un\'agenzia digitale.' },
+      { slug: 'wordpress-vs-codice-custom', title: 'WordPress vs Codice Custom', desc: 'Quale tecnologia scegliere per il tuo progetto web.' }
     ]
   },
   {
@@ -422,8 +547,8 @@ const articles = [
   },
   {
     slug: 'quanto-costa-una-landing-page',
-    title: 'Quanto Costa una Landing Page nel 2026? Prezzi, Fattori e ROI',
-    description: 'Guida completa ai costi di una landing page: dal template al design custom, cosa influisce sul prezzo, come calcolare il ROI e quando conviene investire di più.',
+    title: 'Quanto Costa una Landing Page? Prezzi 2026',
+    description: 'Quanto costa una landing page professionale nel 2026, cosa incide sul prezzo e quando conviene investire in design, copy e tracking.',
     tag: 'Conversioni',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -1129,8 +1254,8 @@ const articles = [
   },
   {
     slug: 'shopify-vs-sito-ecommerce-custom',
-    title: 'Shopify vs Sito E-commerce Custom: Quale Conviene nel 2026?',
-    description: 'Confronto completo Shopify vs e-commerce su misura: costi, performance, SEO, scalabilità e personalizzazione. Guida per PMI che devono scegliere la piattaforma.',
+    title: 'Shopify vs E-commerce Custom: Costi e SEO',
+    description: 'Confronto tra Shopify e sito e-commerce custom: costi reali, limiti SEO, commissioni, flessibilità e quando conviene una soluzione su misura.',
     tag: 'E-Commerce',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -2856,8 +2981,8 @@ const articles = [
   },
   {
     slug: 'importanza-sito-web-attivita',
-    title: 'Perché è Importante Avere un Sito Web per la Tua Attività nel 2026',
-    description: 'Vantaggi concreti di un sito web aziendale per PMI e attività locali a Milano e Rho: visibilità, credibilità, conversioni e ROI misurabile.',
+    title: 'Perché un Sito Web Serve alla Tua Attività',
+    description: 'Perché avere un sito web è ancora decisivo nel 2026: più visibilità, credibilità e contatti per PMI, professionisti e attività locali.',
     tag: 'Web Development',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -3360,8 +3485,8 @@ const articles = [
   },
   {
     slug: 'partita-iva-ecommerce',
-    title: 'Serve la Partita IVA per un E-commerce? Guida Fiscale Pratica 2026',
-    description: 'Obblighi fiscali per vendere online in Italia: Partita IVA, regime forfettario, adempimenti e costi. Guida pratica per e-commerce.',
+    title: 'Partita IVA per E-commerce: Regole e Costi 2026',
+    description: 'Quando serve la partita IVA per vendere online, quanto costa aprirla e quali adempimenti devi prevedere per il tuo e-commerce nel 2026.',
     tag: 'E-Commerce',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',

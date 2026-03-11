@@ -299,6 +299,32 @@ function generateSchemas(city, pageType) {
     return schemas;
 }
 
+function stripJsonLdFromHead(headHtml) {
+    return headHtml
+        .replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '')
+        .replace(/\n{3,}/g, '\n\n');
+}
+
+function updateDerivedHeadMeta(headHtml, meta) {
+    let updated = stripJsonLdFromHead(headHtml)
+        .replace(/<title>[^<]+<\/title>/, `<title>${meta.title}</title>`)
+        .replace(/content="[^"]*" name="description"/, `content="${meta.description}" name="description"`)
+        .replace(/href="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `href="${meta.canonical}"`)
+        .replace(/content="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `content="${meta.canonical}"`)
+        .replace(/content="[^"]*" property="og:title"/, `content="${meta.ogTitle || meta.title}" property="og:title"`)
+        .replace(/content="[^"]*" property="og:description"/, `content="${meta.ogDescription || meta.description}" property="og:description"`)
+        .replace(/content="[^"]*" name="twitter:title"/, `content="${meta.twitterTitle || meta.ogTitle || meta.title}" name="twitter:title"`)
+        .replace(/content="[^"]*" property="twitter:title"/, `content="${meta.twitterTitle || meta.ogTitle || meta.title}" property="twitter:title"`)
+        .replace(/content="[^"]*" name="twitter:description"/, `content="${meta.twitterDescription || meta.ogDescription || meta.description}" name="twitter:description"`)
+        .replace(/content="[^"]*" property="twitter:description"/, `content="${meta.twitterDescription || meta.ogDescription || meta.description}" property="twitter:description"`);
+
+    if (meta.keywords) {
+        updated = updated.replace(/content="[^"]*" name="keywords"/, `content="${meta.keywords}" name="keywords"`);
+    }
+
+    return updated;
+}
+
 // ─── Agenzia Page Generator (Nunjucks-based) ─────────────────────────────────
 
 function generateAgenziaPage(city) {
@@ -393,15 +419,15 @@ function generateAgenziaPage(city) {
 
     // Extract head from Rho base, replace meta
     const rhoHeadEnd = rhoPage.indexOf('</head>');
-    let headBlock = rhoPage.substring(0, rhoHeadEnd)
-        .replace(/<title>[^<]+<\/title>/, `<title>Agenzia Web a ${city.name} (Milano) — WebNovis | Siti Web Custom, Grafica e Social</title>`)
-        .replace(/content="[^"]*" name="description"/, `content="Agenzia web per ${city.name}: siti 100% custom, grafica e social. Sede a Rho, ${city.distanzaSede}. Preventivo gratuito 24h." name="description"`)
-        .replace(/content="[^"]*" name="keywords"/, `content="agenzia web ${city.name}, web agency ${city.name} Milano, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}" name="keywords"`)
-        .replace(/href="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `href="${canonical}"`)
-        .replace(/content="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `content="${canonical}"`)
-        .replace(/content="[^"]*" property="og:title"/, `content="Agenzia Web a ${city.name} — WebNovis | Siti Web Custom e Digital Marketing" property="og:title"`)
-        .replace(/content="[^"]*" property="og:description"/, `content="WebNovis è l'agenzia web per ${city.name} e hinterland milanese. Siti 100% custom, grafica e social. Sede a Rho, ${city.distanzaSede}. Preventivo gratuito." property="og:description"`);
 
+    let headBlock = updateDerivedHeadMeta(rhoPage.substring(0, rhoHeadEnd), {
+        title: `Agenzia Web a ${city.name} (Milano) — WebNovis | Siti Web Custom, Grafica e Social`,
+        description: `Agenzia web per ${city.name}: siti 100% custom, grafica e social. Sede a Rho, ${city.distanzaSede}. Preventivo gratuito 24h.`,
+        keywords: `agenzia web ${city.name}, web agency ${city.name} Milano, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}`,
+        canonical,
+        ogTitle: `Agenzia Web a ${city.name} — WebNovis | Siti Web Custom e Digital Marketing`,
+        ogDescription: `WebNovis è l'agenzia web per ${city.name} e hinterland milanese. Siti 100% custom, grafica e social. Sede a Rho, ${city.distanzaSede}. Preventivo gratuito.`
+    });
     // Extract nav from Rho body
     const bodyStart = rhoPage.indexOf('<body>');
     const mainStart = rhoPage.indexOf('<main');
@@ -639,15 +665,15 @@ function generateServizioCittaPage(service, city) {
 
     // Extract head, nav, footer from Rho base (same as agenzia pages)
     const rhoHeadEnd = rhoPage.indexOf('</head>');
-    let headBlock = rhoPage.substring(0, rhoHeadEnd)
-        .replace(/<title>[^<]+<\/title>/, `<title>${service.name} a ${city.name} — WebNovis | ${service.idealFor}</title>`)
-        .replace(/content="[^"]*" name="description"/, `content="${service.shortDesc} A ${city.name}, da €${service.priceFrom}${service.priceUnit || ''}. Sede a Rho, ${city.distanzaSede}." name="description"`)
-        .replace(/content="[^"]*" name="keywords"/, `content="${service.targetKeyword} ${city.name}, ${service.slug.replace(/-/g, ' ')} ${city.name}, WebNovis ${city.name}" name="keywords"`)
-        .replace(/href="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `href="${canonical}"`)
-        .replace(/content="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `content="${canonical}"`)
-        .replace(/content="[^"]*" property="og:title"/, `content="${service.name} a ${city.name} — WebNovis" property="og:title"`)
-        .replace(/content="[^"]*" property="og:description"/, `content="${service.shortDesc} Da €${service.priceFrom}${service.priceUnit || ''}. Sede a Rho, ${city.distanzaSede}." property="og:description"`);
 
+    let headBlock = updateDerivedHeadMeta(rhoPage.substring(0, rhoHeadEnd), {
+        title: `${service.name} a ${city.name} — WebNovis | ${service.idealFor}`,
+        description: `${service.shortDesc} A ${city.name}, da €${service.priceFrom}${service.priceUnit || ''}. Sede a Rho, ${city.distanzaSede}.`,
+        keywords: `${service.targetKeyword} ${city.name}, ${service.slug.replace(/-/g, ' ')} ${city.name}, WebNovis ${city.name}`,
+        canonical,
+        ogTitle: `${service.name} a ${city.name} — WebNovis`,
+        ogDescription: `${service.shortDesc} Da €${service.priceFrom}${service.priceUnit || ''}. Sede a Rho, ${city.distanzaSede}.`
+    });
     const bodyStart = rhoPage.indexOf('<body>');
     const mainStart = rhoPage.indexOf('<main');
     const navHtml = rhoPage.substring(bodyStart, mainStart);
@@ -721,15 +747,15 @@ function generateHubPages() {
 
         // Extract head
         const rhoHeadEnd = rhoPage.indexOf('</head>');
-        let headBlock = rhoPage.substring(0, rhoHeadEnd)
-            .replace(/<title>[^<]+<\/title>/, `<title>${title}</title>`)
-            .replace(/content="[^"]*" name="description"/, `content="${description}" name="description"`)
-            .replace(/content="[^"]*" name="keywords"/, `content="${keywords}" name="keywords"`)
-            .replace(/href="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `href="${canonical}"`)
-            .replace(/content="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `content="${canonical}"`)
-            .replace(/content="[^"]*" property="og:title"/, `content="${title}" property="og:title"`)
-            .replace(/content="[^"]*" property="og:description"/, `content="${description}" property="og:description"`);
 
+        let headBlock = updateDerivedHeadMeta(rhoPage.substring(0, rhoHeadEnd), {
+            title,
+            description,
+            keywords,
+            canonical,
+            ogTitle: title,
+            ogDescription: description
+        });
         // Inject hub CSS before </head>
         headBlock += HUB_CSS;
 

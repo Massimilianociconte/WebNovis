@@ -817,20 +817,22 @@ function updateBlogIndex(allArticlesMeta) {
 
   html = html.replace(gridRegex, `$1\n\n${cardsHTML}\n\n                $3`);
 
-  // Update CollectionPage numberOfItems
-  html = html.replace(
-    /"numberOfItems":\s*\d+/,
-    `"numberOfItems": ${allArticlesMeta.length}`
-  );
-
-  // Update CollectionPage itemListElement
   const itemListJSON = allArticlesMeta.map((a, i) =>
     `{"@type":"ListItem","position":${i + 1},"url":"${SITE_URL}/blog/${a.slug}.html","name":"${a.title.replace(/"/g, '\\"')}"}`
   ).join(',\n                ');
 
+  const breadcrumbScript = `<script type="application/ld+json"> {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"${SITE_URL}/"},{"@type":"ListItem","position":2,"name":"Blog","item":"${SITE_URL}/blog/"}]} </script>`;
+
+  const collectionPageScript = `<script type="application/ld+json"> {"@context":"https://schema.org","@type":"CollectionPage","name":"Blog WebNovis","description":"Articoli, guide e consigli pratici su sviluppo siti web, SEO, branding, social media e marketing digitale.","url":"${SITE_URL}/blog/","isPartOf":{"@type":"WebSite","name":"WebNovis","url":"${SITE_URL}"},"mainEntity":{"@type":"ItemList","numberOfItems":${allArticlesMeta.length},"itemListElement":[\n                ${itemListJSON}\n            ]}} </script>`;
+
   html = html.replace(
-    /"itemListElement":\s*\[[\s\S]*?\]/,
-    `"itemListElement": [\n                ${itemListJSON}\n            ]`
+    /<script type="application\/ld\+json">\s*\{"@context":"https:\/\/schema\.org","@type":"BreadcrumbList"[\s\S]*?<\/script>/,
+    breadcrumbScript
+  );
+
+  html = html.replace(
+    /<script type="application\/ld\+json">\s*\{"@context":"https:\/\/schema\.org","@type":"CollectionPage"[\s\S]*?<\/script>/,
+    collectionPageScript
   );
 
   fs.writeFileSync(BLOG_INDEX_FILE, html, 'utf-8');
