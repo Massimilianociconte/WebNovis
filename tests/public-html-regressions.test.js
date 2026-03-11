@@ -20,14 +20,24 @@ function walk(dir, files = []) {
 
 function main() {
   const offenders = [];
+  const legacyBlogFooterOffenders = [];
   for (const filePath of walk(ROOT)) {
     const html = fs.readFileSync(filePath, 'utf8');
     if (html.includes('height="auto"')) {
       offenders.push(path.relative(ROOT, filePath));
     }
+
+    if (path.relative(ROOT, filePath).startsWith(`blog${path.sep}`) && html.includes('class="footer-content"')) {
+      legacyBlogFooterOffenders.push(path.relative(ROOT, filePath));
+    }
   }
 
   assert.deepEqual(offenders, [], `Public HTML must not contain height="auto". Found: ${offenders.slice(0, 20).join(', ')}`);
+  assert.deepEqual(
+    legacyBlogFooterOffenders,
+    [],
+    `Blog article pages must not contain the legacy footer-content markup. Found: ${legacyBlogFooterOffenders.slice(0, 20).join(', ')}`
+  );
 }
 
 try {
