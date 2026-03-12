@@ -7986,5 +7986,116 @@
       ],
       "notes": ""
     }
+  },
+  {
+    "slug": "sito-non-appare-su-google",
+    "title": "Sito non appare su Google? Diagnosi e Soluzioni per l'Indicizzazione",
+    "description": "Il tuo sito non appare su Google? Questa guida WebNovis diagnostica i problemi di indicizzazione e visibilità, offrendo soluzioni pratiche per farti trovare dai tuoi clienti.",
+    "tag": "SEO",
+    "date": "12 Marzo 2026",
+    "isoDate": "2026-03-12",
+    "readTime": "14 min",
+    "generatedAt": "2026-03-12T06:45:38.525Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 2,
+      "dataPointsWithSource": 3,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 5,
+      "faqCount": 3,
+      "sourcesCount": 3,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 2049,
+      "keywordsSecondarieCoperte": [
+        "sito non indicizzato",
+        "Google non trova il mio sito",
+        "come farsi trovare su Google",
+        "problemi indicizzazione sito"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google Developers",
+          "confidenza": "alta",
+          "motivo": "documentazione ufficiale di Google"
+        },
+        {
+          "fonte": "Think with Google",
+          "confidenza": "alta",
+          "motivo": "report e insight diretti di Google"
+        },
+        {
+          "fonte": "Google Search Central Blog",
+          "confidenza": "alta",
+          "motivo": "blog ufficiale di Google per aggiornamenti e guide SEO"
+        }
+      ],
+      "notes": ""
+    }
+  },
+  {
+    "slug": "sito-wordpress-lento-hackerato",
+    "title": "Sito WordPress Lento o Hackerato: Cause, Soluzioni e Migrazione",
+    "description": "Il tuo sito WordPress è lento o violato? Scopri cause, soluzioni immediate per velocità e sicurezza, e quando una migrazione diventa essenziale per la crescita del tuo business.",
+    "tag": "Web Development",
+    "date": "12 Marzo 2026",
+    "isoDate": "2026-03-12",
+    "readTime": "13 min",
+    "generatedAt": "2026-03-12T06:47:03.371Z",
+    "qualityChecks": {
+      "searchIntentMatch": true,
+      "directAnswerBlocks": 5,
+      "dataPointsWithSource": 4,
+      "internalLinksCount": 7,
+      "serviceLinksCount": 2,
+      "blogLinksCount": 5,
+      "faqCount": 3,
+      "sourcesCount": 4,
+      "ctaInlinePresent": true,
+      "ctaFinalPresent": true,
+      "eeatSignalsPresent": true,
+      "wordCount": 2097,
+      "keywordsSecondarieCoperte": [
+        "WordPress hackerato cosa fare",
+        "WordPress lento soluzioni",
+        "migrare da WordPress",
+        "alternative WordPress"
+      ],
+      "keywordsSecondarieNonCoperte": [],
+      "tabellaPresente": true,
+      "checklistPresente": true,
+      "erroriComuniPresente": true,
+      "casoStudioPresente": true,
+      "fontiConfidenza": [
+        {
+          "fonte": "Google PageSpeed Insights Documentation",
+          "confidenza": "alta",
+          "motivo": "Documentazione ufficiale Google."
+        },
+        {
+          "fonte": "W3Techs - Usage of Content Management Systems",
+          "confidenza": "alta",
+          "motivo": "Fonte statistica autorevole e ampiamente citata."
+        },
+        {
+          "fonte": "Sucuri Hacked Website Report 2023",
+          "confidenza": "alta",
+          "motivo": "Report annuale di un'azienda leader nella sicurezza web."
+        },
+        {
+          "fonte": "Statista - Website load time and bounce rate impact",
+          "confidenza": "alta",
+          "motivo": "Piattaforma statistica riconosciuta."
+        }
+      ],
+      "notes": ""
+    }
   }
 ]

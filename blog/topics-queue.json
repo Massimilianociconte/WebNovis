@@ -2912,7 +2912,8 @@
     "tag": "SEO",
     "read_time": "14 min",
     "pillar": true,
-    "priority": "alta"
+    "priority": "alta",
+    "used": true
   },
   {
     "slug": "sito-wordpress-lento-hackerato",
@@ -2929,7 +2930,8 @@
     "tag": "Web Development",
     "read_time": "13 min",
     "pillar": true,
-    "priority": "alta"
+    "priority": "alta",
+    "used": true
   },
   {
     "slug": "sanzioni-sito-non-accessibile-2026",

@@ -355,5 +355,18 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-03-12T06:47:06.696Z",
+    "urlCount": 4,
+    "urls": [
+      "https://www.webnovis.com/blog/sito-non-appare-su-google.html",
+      "https://www.webnovis.com/blog/sito-wordpress-lento-hackerato.html",
+      "https://www.webnovis.com/blog/",
+      "https://www.webnovis.com/"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]
