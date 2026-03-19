@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { getBlogFooterHtml, normalizeFooterAssetMarkup } = require('../config/site-footer');
 const { normalizeImageLoadingInHtml } = require('../config/image-policy');
+const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
 const { ROOT_DIR, getPublishDir } = require('../config/publish-targets');
 
 const ROOT = getPublishDir();
@@ -110,6 +111,7 @@ for (const filePath of walk(ROOT)) {
   updated = ensureFooterWidgetLoader(updated, relativePath);
   updated = normalizeBlogIndexLinks(updated);
   updated = normalizeLegacyLinks(updated);
+  updated = applySeoHtmlTransforms(updated, relativePath);
   if (updated !== original) {
     changed++;
     if (!DRY_RUN) {

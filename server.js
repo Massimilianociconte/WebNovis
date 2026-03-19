@@ -7,6 +7,7 @@ const path = require('path');
 const crypto = require('crypto'); // Per timing-safe auth
 const aiConfig = require('./ai-config'); // Configurazione AI
 const { SECURITY_HEADERS, getAllowedCorsOrigins } = require('./config/security-headers');
+const { getIndexationDirectivesForPath } = require('./config/pseo-governance');
 
 // Global fetch instance
 let _fetch;
@@ -143,6 +144,11 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     if (req.path.match(/^\/(api|admin)/)) {
         res.set('X-Robots-Tag', 'noindex, nofollow');
+        return next();
+    }
+    const indexationDirectives = getIndexationDirectivesForPath(req.path);
+    if (indexationDirectives === 'noindex, follow') {
+        res.set('X-Robots-Tag', indexationDirectives);
     }
     next();
 });

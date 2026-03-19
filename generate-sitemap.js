@@ -9,6 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 const { ROOT_DIR, getPublishDir } = require('./config/publish-targets');
+const { shouldIncludeInSitemapPath } = require('./config/pseo-governance');
 
 const BASE_URL = 'https://www.webnovis.com';
 const ROOT = getPublishDir();
@@ -99,8 +100,9 @@ const entries = files.map(({ relPath, absPath }) => {
     const loc = urlPath === '/' ? BASE_URL + '/' : BASE_URL + urlPath;
     const lastmod = getGitDate(absPath) || formatDate(mtime);
     const images = PAGE_IMAGES[urlPath] || [];
-    return { loc, lastmod, images };
-}).sort((a, b) => a.loc.localeCompare(b.loc));
+    return { urlPath, loc, lastmod, images };
+}).filter((entry) => shouldIncludeInSitemapPath(entry.urlPath))
+    .sort((a, b) => a.loc.localeCompare(b.loc));
 
 // Build XML
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
