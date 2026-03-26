@@ -774,77 +774,6 @@ body {
     animation: fadeInUp 0.8s ease 0.6s backwards;
 }
 
-.hero-core-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.75rem;
-    margin-top: 1.1rem;
-    animation: fadeInUp 0.8s ease 0.7s backwards;
-}
-
-.hero-core-links-label {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.42rem 0.9rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.62);
-    font-size: 0.74rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.hero-core-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 2.5rem;
-    padding: 0.55rem 1rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 10px 24px rgba(3, 8, 20, 0.16);
-    color: rgba(255, 255, 255, 0.92);
-    font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-    transition:
-        transform 0.25s var(--ease-smooth),
-        background 0.25s var(--ease-smooth),
-        border-color 0.25s var(--ease-smooth),
-        box-shadow 0.25s var(--ease-smooth),
-        color 0.25s var(--ease-smooth);
-}
-
-.hero-core-link:hover {
-    transform: translateY(-2px);
-    background: rgba(91, 106, 174, 0.18);
-    border-color: rgba(96, 165, 250, 0.52);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 16px 32px rgba(15, 23, 42, 0.22);
-    color: #fff;
-}
-
-.hero-core-link:focus-visible {
-    outline: none;
-    transform: translateY(-2px);
-    background: rgba(91, 106, 174, 0.18);
-    border-color: rgba(147, 197, 253, 0.75);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.14),
-        0 0 0 3px rgba(96, 165, 250, 0.18),
-        0 16px 32px rgba(15, 23, 42, 0.22);
-    color: #fff;
-}
-
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -6078,30 +6007,6 @@ img {
         width: 100%;
         padding: 0 1.5rem;
         gap: 1rem;
-    }
-
-    .hero-core-links {
-        gap: 0.55rem;
-        margin-top: 1.35rem;
-        padding: 0 1.1rem;
-    }
-
-    .hero-core-links-label {
-        flex: 1 0 100%;
-        justify-content: center;
-        padding: 0;
-        background: none;
-        border: none;
-        box-shadow: none;
-        font-size: 0.72rem;
-        color: rgba(255, 255, 255, 0.54);
-    }
-
-    .hero-core-link {
-        min-height: 2.3rem;
-        padding: 0.5rem 0.92rem;
-        font-size: 0.88rem;
-        background: rgba(255, 255, 255, 0.05);
     }
 
     .hero-cta .btn-primary {
