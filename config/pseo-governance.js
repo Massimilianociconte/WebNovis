@@ -1,4 +1,7 @@
-const PHASE1_DEAMPLIFIED_PATHS = [
+const servicesData = require('../data/services.json');
+const citiesData = require('../data/cities.json');
+
+const EXPLICIT_DEAMPLIFIED_PATHS = [
   '/google-ads-milano.html',
   '/sviluppo-app-mobile-milano.html',
   '/sviluppo-app-mobile-milano-ovest.html',
@@ -10,6 +13,19 @@ const PHASE1_DEAMPLIFIED_PATHS = [
   '/social-media-bresso.html'
 ];
 
+const EXTENDED_GEO_SERVICE_SLUGS = (servicesData.services || [])
+  .filter((service) => service && service.hasPage === false && service.slug)
+  .map((service) => service.slug);
+
+const CITY_SLUGS = (citiesData.cities || [])
+  .map((city) => city && city.slug)
+  .filter(Boolean);
+
+const AUTO_DEAMPLIFIED_GEO_PATHS = EXTENDED_GEO_SERVICE_SLUGS.flatMap((serviceSlug) =>
+  CITY_SLUGS.map((citySlug) => `/${serviceSlug}-${citySlug}.html`)
+);
+
+const PHASE1_DEAMPLIFIED_PATHS = [...new Set([...EXPLICIT_DEAMPLIFIED_PATHS, ...AUTO_DEAMPLIFIED_GEO_PATHS])];
 const DEAMPLIFIED_SET = new Set(PHASE1_DEAMPLIFIED_PATHS);
 
 function normalizePathname(pathname = '/') {
@@ -45,6 +61,8 @@ function shouldIncludeInSitemapPath(pathname) {
 }
 
 module.exports = {
+  EXPLICIT_DEAMPLIFIED_PATHS,
+  AUTO_DEAMPLIFIED_GEO_PATHS,
   PHASE1_DEAMPLIFIED_PATHS,
   normalizePathname,
   isDeAmplifiedPath,

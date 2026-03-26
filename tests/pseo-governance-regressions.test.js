@@ -54,9 +54,39 @@ function main() {
   );
 
   assert.equal(
+    governance.getIndexationDirectivesForPath('/copywriting-arese.html'),
+    'noindex, follow',
+    'copywriting-arese.html should be de-amplified because extended geo-service pages dilute index quality'
+  );
+
+  assert.equal(
+    governance.getIndexationDirectivesForPath('/web-app-corsico.html'),
+    'noindex, follow',
+    'web-app-corsico.html should be de-amplified because extended geo-service pages dilute index quality'
+  );
+
+  assert.equal(
+    governance.getIndexationDirectivesForPath('/seo-locale-rozzano.html'),
+    'noindex, follow',
+    'seo-locale-rozzano.html should be de-amplified because extended geo-service pages dilute index quality'
+  );
+
+  assert.equal(
+    governance.getIndexationDirectivesForPath('/automazione-business-monza.html'),
+    'noindex, follow',
+    'automazione-business-monza.html should be de-amplified because extended geo-service pages dilute index quality'
+  );
+
+  assert.equal(
     governance.getIndexationDirectivesForPath('/agenzia-web-rho.html'),
     'index, follow',
     'agenzia-web-rho.html must remain indexable as a core geo page'
+  );
+
+  assert.equal(
+    governance.getIndexationDirectivesForPath('/landing-page-bollate.html'),
+    'index, follow',
+    'landing-page-bollate.html must remain indexable as a core geo page'
   );
 
   const sitemap = readText('sitemap.xml');
@@ -95,6 +125,22 @@ function main() {
   assert.ok(
     !sitemap.includes('https://www.webnovis.com/google-ads-milano-nord.html'),
     'sitemap.xml must exclude de-amplified page google-ads-milano-nord.html'
+  );
+  assert.ok(
+    !sitemap.includes('https://www.webnovis.com/copywriting-arese.html'),
+    'sitemap.xml must exclude de-amplified page copywriting-arese.html'
+  );
+  assert.ok(
+    !sitemap.includes('https://www.webnovis.com/web-app-corsico.html'),
+    'sitemap.xml must exclude de-amplified page web-app-corsico.html'
+  );
+  assert.ok(
+    !sitemap.includes('https://www.webnovis.com/seo-locale-rozzano.html'),
+    'sitemap.xml must exclude de-amplified page seo-locale-rozzano.html'
+  );
+  assert.ok(
+    !sitemap.includes('https://www.webnovis.com/automazione-business-monza.html'),
+    'sitemap.xml must exclude de-amplified page automazione-business-monza.html'
   );
 
   const homepage = readText('index.html');

@@ -16,6 +16,7 @@ const { minify } = require('terser');
 const { transform } = require('lightningcss');
 const CleanCSS = require('clean-css');
 const { getPublishDir } = require('./config/publish-targets');
+const { applySeoHtmlTransforms } = require('./config/seo-html-transforms');
 let htmlMinifier;
 try { htmlMinifier = require('html-minifier-terser'); } catch (e) { htmlMinifier = null; }
 
@@ -426,9 +427,10 @@ async function build() {
                 const absPath = path.resolve(PROJECT_ROOT, htmlFile);
                 const source = fs.readFileSync(absPath, 'utf8');
                 const origSize = Buffer.byteLength(source, 'utf8');
-                const minified = await htmlMinifier.minify(source, htmlMinifyOptions);
+                const transformed = applySeoHtmlTransforms(source, htmlFile);
+                const minified = await htmlMinifier.minify(transformed, htmlMinifyOptions);
                 const minSize = Buffer.byteLength(minified, 'utf8');
-                if (minSize < origSize) {
+                if (minified !== source) {
                     fs.writeFileSync(absPath, minified, 'utf8');
                     htmlOrigTotal += origSize;
                     htmlMinTotal += minSize;
@@ -439,8 +441,17 @@ async function build() {
             }
         }
         if (htmlSuccess > 0) {
-            const { saved: hSaved, percent: hPercent } = getSavings(htmlOrigTotal, htmlMinTotal);
-            log('OK', `HTML: ${htmlSuccess} files minified (${formatBytes(htmlOrigTotal)} -> ${formatBytes(htmlMinTotal)}, -${hPercent}%, saved ${formatBytes(hSaved)})`);
+            const htmlDelta = htmlMinTotal - htmlOrigTotal;
+            const htmlPercent = htmlOrigTotal > 0
+                ? ((Math.abs(htmlDelta) / htmlOrigTotal) * 100).toFixed(1)
+                : '0.0';
+            const htmlDirection = htmlDelta <= 0 ? 'saved' : 'added';
+            const htmlDeltaLabel = formatBytes(Math.abs(htmlDelta));
+            const htmlScaleLabel = htmlDelta <= 0 ? 'smaller' : 'larger';
+            log(
+                'OK',
+                `HTML: ${htmlSuccess} files minified (${formatBytes(htmlOrigTotal)} -> ${formatBytes(htmlMinTotal)}, ${htmlDirection} ${htmlDeltaLabel}, ${htmlPercent}% ${htmlScaleLabel})`
+            );
             totalOriginal += htmlOrigTotal;
             totalMinified += htmlMinTotal;
         }

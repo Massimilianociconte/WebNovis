@@ -6,12 +6,19 @@
 const fs = require('fs');
 const path = require('path');
 const { getBlogFooterHtml } = require('../config/site-footer');
+const servicesCatalog = require('../data/services.json');
 
 const BLOG_DIR = __dirname;
 const SITE_URL = 'https://www.webnovis.com';
 const GLOBAL_CONTENT_REFRESH_DATE_ISO = '2026-02-17';
 const GLOBAL_CONTENT_REFRESH_DATE_HUMAN = '17 Febbraio 2026';
 const DEFAULT_SERVICE_LINK = '../servizi/sviluppo-web.html';
+const SERVICE_ENTRIES = Array.isArray(servicesCatalog.services) ? servicesCatalog.services : [];
+const SERVICE_DETAILS_BY_BLOG_LINK = new Map(
+  SERVICE_ENTRIES
+    .filter((service) => typeof service.url === 'string' && service.url.startsWith('/'))
+    .map((service) => [`..${service.url}`, service])
+);
 
 const AUTHOR_PROFILE = {
   id: `${SITE_URL}/#author-webnovis-editorial-team`,
@@ -32,7 +39,7 @@ const AUTHOR_PROFILE = {
 
 const SERVICE_LINKS = {
   'Web Development': '../servizi/sviluppo-web.html',
-  'E-Commerce': '../servizi/sviluppo-web.html',
+  'E-Commerce': '../servizi/ecommerce.html',
   'Performance': '../servizi/sviluppo-web.html',
   'SEO Tecnica': '../servizi/sviluppo-web.html',
   'SEO': '../servizi/sviluppo-web.html',
@@ -55,6 +62,16 @@ const INLINE_CTA_BY_SERVICE = {
     title: 'Vuoi trasformare questi consigli in risultati concreti?',
     text: 'Possiamo preparare una roadmap tecnica e SEO personalizzata sul tuo progetto, partendo dalle priorità ad alto impatto.',
     linkLabel: 'Scopri il servizio Web Development'
+  },
+  '../servizi/ecommerce.html': {
+    title: 'Vuoi validare il tuo e-commerce prima di investire male il budget?',
+    text: 'Possiamo definire piattaforma, funnel, costi fissi e priorità di conversione con un piano concreto prima del lancio.',
+    linkLabel: 'Scopri il servizio E-Commerce'
+  },
+  '../servizi/accessibilita.html': {
+    title: 'Ti serve un percorso pratico di adeguamento EAA e WCAG?',
+    text: 'Partiamo da un audit chiaro, fissiamo le priorità e trasformiamo l’accessibilità in un requisito operativo, non in un progetto vago.',
+    linkLabel: 'Scopri il servizio Accessibilità'
   },
   '../servizi/graphic-design.html': {
     title: 'Il tuo brand comunica davvero il valore che offri?',
@@ -79,6 +96,18 @@ const CONTENT_UPGRADES_BY_SERVICE = {
     description: 'Ricevi la checklist pratica che usiamo per audit tecnici, contenuti citabili dalle AI e priorità di ottimizzazione mensile.',
     cta: 'Richiedi la checklist gratuita',
     slug: 'checklist-seo-geo-2026'
+  },
+  '../servizi/ecommerce.html': {
+    title: 'Checklist pre-lancio e-commerce',
+    description: 'Una lista operativa per validare catalogo, checkout, pagamenti, aspetti fiscali e conversioni prima di andare online.',
+    cta: 'Richiedi la checklist e-commerce',
+    slug: 'checklist-pre-lancio-ecommerce'
+  },
+  '../servizi/accessibilita.html': {
+    title: 'Checklist accessibilità EAA/WCAG',
+    description: 'Una traccia pratica per verificare contrasti, navigazione da tastiera, form, contenuti e priorità di adeguamento.',
+    cta: 'Richiedi la checklist accessibilità',
+    slug: 'checklist-accessibilita-eaa-wcag'
   },
   '../servizi/graphic-design.html': {
     title: 'Template Brand Brief per PMI',
@@ -106,6 +135,16 @@ const SOURCE_SETS_BY_SERVICE = {
     { name: 'web.dev — Core Web Vitals', url: 'https://web.dev/vitals/' },
     { name: 'Google Business Profile Help', url: 'https://support.google.com/business' }
   ],
+  '../servizi/ecommerce.html': [
+    { name: 'Google Search Central', url: 'https://developers.google.com/search' },
+    { name: 'Google Merchant Center Help', url: 'https://support.google.com/merchants' },
+    { name: 'Google Business Profile Help', url: 'https://support.google.com/business' }
+  ],
+  '../servizi/accessibilita.html': [
+    { name: 'AgID — Accessibilità e usabilità', url: 'https://www.agid.gov.it/it/design-servizi/accessibilita' },
+    { name: 'European Commission — Web accessibility', url: 'https://digital-strategy.ec.europa.eu/en/policies/web-accessibility' },
+    { name: 'W3C — WCAG 2 Overview', url: 'https://www.w3.org/WAI/standards-guidelines/wcag/' }
+  ],
   '../servizi/graphic-design.html': [
     { name: 'Nielsen Norman Group — UX Research', url: 'https://www.nngroup.com/articles/' },
     { name: 'Google Search Central', url: 'https://developers.google.com/search' },
@@ -120,6 +159,93 @@ const SOURCE_SETS_BY_SERVICE = {
     { name: 'Google Search Quality Evaluator Guidelines', url: 'https://developers.google.com/search/docs/fundamentals/creating-helpful-content' },
     { name: 'Google Search Central', url: 'https://developers.google.com/search' },
     { name: 'Google Analytics Help', url: 'https://support.google.com/analytics' }
+  ]
+};
+
+const STRATEGIC_HUBS_BY_SERVICE = {
+  '../servizi/sviluppo-web.html': [
+    {
+      href: '/realizzazione-siti-web/',
+      label: 'Hub locale',
+      title: 'Siti Web per i Comuni serviti',
+      desc: 'La raccolta dei comuni dove presidiamo l’intento locale più vicino allo sviluppo web.'
+    },
+    {
+      href: '/agenzia-web/',
+      label: 'Hub territoriale',
+      title: 'Agenzia Web per Comuni',
+      desc: 'Il nodo principale per spingere la domanda commerciale locale verso le pagine più forti.'
+    }
+  ],
+  '../servizi/ecommerce.html': [
+    {
+      href: '/zone-servite/#ecommerce',
+      label: 'Hub e-commerce',
+      title: 'E-Commerce per Comune',
+      desc: 'Il cluster locale dedicato alle aziende che cercano supporto e-commerce nell’hinterland milanese.'
+    },
+    {
+      href: '/realizzazione-siti-web/',
+      label: 'Hub locale',
+      title: 'Siti Web per i Comuni serviti',
+      desc: 'La porta d’ingresso verso il presidio locale delle query commerciali più vicine alla vendita online.'
+    }
+  ],
+  '../servizi/accessibilita.html': [
+    {
+      href: '/zone-servite/#accessibilita',
+      label: 'Hub accessibilità',
+      title: 'Accessibilità Web per Comune',
+      desc: 'Le pagine territoriali per audit, adeguamento EAA e interventi WCAG rivolti alle imprese locali.'
+    },
+    {
+      href: '/agenzia-web/',
+      label: 'Hub territoriale',
+      title: 'Agenzia Web per Comuni',
+      desc: 'Il nodo commerciale utile per intercettare la domanda locale legata a siti e compliance.'
+    }
+  ],
+  '../servizi/graphic-design.html': [
+    {
+      href: '/zone-servite/#graphic-design',
+      label: 'Hub design',
+      title: 'Graphic Design per Comune',
+      desc: 'Il cluster locale per branding, identità visiva e supporto creativo a livello territoriale.'
+    },
+    {
+      href: '/agenzia-web/',
+      label: 'Hub territoriale',
+      title: 'Agenzia Web per Comuni',
+      desc: 'La raccolta delle aree dove presidiamo domanda locale legata a brand, siti e supporto continuativo.'
+    }
+  ],
+  '../servizi/social-media.html': [
+    {
+      href: '/zone-servite/#social-media',
+      label: 'Hub social',
+      title: 'Social Media per Comune',
+      desc: 'Le pagine territoriali che intercettano la domanda locale su contenuti, advertising e gestione social.'
+    },
+    {
+      href: '/agenzia-web/',
+      label: 'Hub territoriale',
+      title: 'Agenzia Web per Comuni',
+      desc: 'Il nodo principale che unisce servizi digitali e visibilità locale nei comuni serviti.'
+    }
+  ],
+  '../chi-siamo.html': [
+    {
+      href: '/agenzia-web/',
+      label: 'Hub territoriale',
+      title: 'Agenzia Web per Comuni',
+      desc: 'La raccolta completa dei comuni coperti dalla nostra offerta di agenzia web.'
+    },
+    {
+      href: '/zone-servite/',
+      label: 'Mappa servizi',
+      title: 'Tutte le Zone Servite',
+      desc: 'Il punto di ingresso per vedere servizi, comuni coperti e cluster locali disponibili.'
+    }
   ]
 };
 
@@ -547,11 +673,13 @@ const articles = [
   },
   {
     slug: 'quanto-costa-una-landing-page',
-    title: 'Quanto Costa una Landing Page? Prezzi 2026',
-    description: 'Quanto costa una landing page professionale nel 2026, cosa incide sul prezzo e quando conviene investire in design, copy e tracking.',
+    title: 'Quanto Costa una Landing Page nel 2026? Prezzi e ROI',
+    description: 'Prezzi reali 2026 per una landing page professionale: cosa incide sul costo, quali elementi fanno salire il budget e quando l\'investimento si ripaga davvero.',
     tag: 'Conversioni',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
+    updatedDate: '26 Marzo 2026',
+    updatedIsoDate: '2026-03-26',
     readTime: '8 min',
     faq: [
       {
@@ -568,7 +696,7 @@ const articles = [
       }
     ],
     content: `
-<p>Una landing page è lo strumento più diretto per convertire visitatori in lead o clienti. Ma <strong>quanto costa farla realizzare nel 2026?</strong> E soprattutto: quanto rende? In questa guida analizziamo i prezzi reali del mercato italiano, i fattori che influenzano il costo e come calcolare se l\'investimento conviene.</p>
+<p>Nel 2026 una landing page professionale costa in genere da <strong>€300 a €3.000+</strong>, ma per la maggior parte delle PMI italiane il budget realistico è <strong>€600-1.500</strong>. A fare la differenza sono copy, tracking, integrazioni e livello di personalizzazione. In questa guida trovi i prezzi reali del mercato italiano e come capire se l\'investimento si ripaga davvero.</p>
 
 <h2>Prezzi di una Landing Page nel 2026: Il Quadro Completo</h2>
 
@@ -3485,12 +3613,30 @@ const articles = [
   },
   {
     slug: 'partita-iva-ecommerce',
-    title: 'Partita IVA per E-commerce: Regole e Costi 2026',
-    description: 'Quando serve la partita IVA per vendere online, quanto costa aprirla e quali adempimenti devi prevedere per il tuo e-commerce nel 2026.',
+    title: 'Partita IVA E-commerce: Costi e Regole in Italia 2026',
+    description: 'Quando serve la partita IVA per vendere online in Italia, quanto costa aprirla e quali adempimenti devi prevedere per il tuo e-commerce nel 2026.',
     tag: 'E-Commerce',
+    serviceLink: '../servizi/ecommerce.html',
+    strategicGuideSlugs: ['shopify-vs-sito-ecommerce-custom'],
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
+    updatedDate: '26 Marzo 2026',
+    updatedIsoDate: '2026-03-26',
     readTime: '8 min',
+    sources: [
+      {
+        name: 'Agenzia delle Entrate — Come aprire una Partita IVA',
+        url: 'https://www.agenziaentrate.gov.it/portale/schede/istanze/aa9_11-apertura-variazione-chiusura-pf/quando-utilizzare-imprese'
+      },
+      {
+        name: 'INPS — Gestione artigiani e commercianti: contributi per il 2025',
+        url: 'https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2025.02.gestione-artigiani-e-commercianti-contributi-per-il-2025.html'
+      },
+      {
+        name: 'Registro Imprese',
+        url: 'https://www.registroimprese.it'
+      }
+    ],
     faq: [
       {
         question: 'Serve la Partita IVA per vendere online?',
@@ -3506,7 +3652,7 @@ const articles = [
       }
     ],
     content: `
-<p>Vuoi aprire un negozio online ma non sai se ti serve la Partita IVA? È una delle domande più frequenti tra chi si avvicina all\'e-commerce. La risposta breve è: <strong>sì, quasi sempre</strong>. Ma ci sono sfumature importanti da conoscere prima di procedere.</p>
+<p>Se vuoi vendere online in modo <strong>abituale e organizzato in Italia</strong>, nella pratica la Partita IVA serve quasi sempre. Il punto non è solo quanto fatturi, ma se l\'attività è continuativa e strutturata. In questa guida trovi costi, regime forfettario e adempimenti da considerare prima di aprire un e-commerce.</p>
 
 <h2>Quando Serve la Partita IVA per Vendere Online</h2>
 <p>In Italia, la regola è semplice: se la vendita è <strong>abituale e continuativa</strong>, serve la Partita IVA. Non conta il fatturato — anche se vendi €100/mese, se lo fai regolarmente sei obbligato ad aprirla.</p>
@@ -3700,9 +3846,27 @@ const articles = [
     title: 'Siti Web Accessibili: Obblighi di Legge per Aziende Italiane nel 2026',
     description: 'Obblighi legali di accessibilità web per aziende private in Italia: soglie, normativa AGID, adempimenti pratici e sanzioni. Guida aggiornata 2026.',
     tag: 'Web Development',
+    serviceLink: '../servizi/accessibilita.html',
+    strategicGuideSlugs: ['european-accessibility-act-siti-web'],
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
+    updatedDate: '26 Marzo 2026',
+    updatedIsoDate: '2026-03-26',
     readTime: '9 min',
+    sources: [
+      {
+        name: 'AgID — Accessibilità e usabilità',
+        url: 'https://www.agid.gov.it/it/design-servizi/accessibilita'
+      },
+      {
+        name: 'European Commission — Web accessibility',
+        url: 'https://digital-strategy.ec.europa.eu/en/policies/web-accessibility'
+      },
+      {
+        name: 'W3C — WCAG 2 Overview',
+        url: 'https://www.w3.org/WAI/standards-guidelines/wcag/'
+      }
+    ],
     faq: [
       {
         question: 'Le PMI sono obbligate a rendere accessibile il sito web?',
@@ -3718,7 +3882,7 @@ const articles = [
       }
     ],
     content: `
-<p>Dal 2025 l\'accessibilità web è un obbligo legale per molte aziende italiane. Ma <strong>quali aziende devono adeguarsi?</strong> Cosa devono fare concretamente? E cosa succede se non lo fanno? Ecco la guida pratica agli obblighi di legge.</p>
+<p>Dal <strong>28 giugno 2025</strong> molte aziende private che vendono prodotti o servizi digitali ai consumatori nell\'UE devono trattare l\'accessibilità web come un requisito di conformità, non più come un extra. In questa guida vedi quali soglie contano davvero in Italia, cosa fare operativamente e dove sono i punti da verificare prima di esporti a rischi inutili.</p>
 
 <h2>Il Quadro Normativo Italiano</h2>
 <p>In Italia l\'accessibilità web è regolata da:</p>
@@ -4224,16 +4388,33 @@ const articles = [
     title: 'Google Search Console: Guida Completa per Principianti nel 2026',
     description: 'Come configurare e usare Google Search Console: report, metriche, indicizzazione, errori. Guida pratica per monitorare e migliorare il posizionamento del sito.',
     tag: 'SEO',
+    strategicGuideSlugs: ['quanto-costa-una-landing-page'],
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
+    updatedDate: '26 Marzo 2026',
+    updatedIsoDate: '2026-03-26',
     readTime: '10 min',
+    sources: [
+      {
+        name: 'Google Search Central — How To Use Search Console',
+        url: 'https://developers.google.com/search/docs/monitor-debug/search-console-start'
+      },
+      {
+        name: 'Guida di Search Console — Definizione di impressioni, posizione e clic',
+        url: 'https://support.google.com/webmasters/answer/7042828?hl=it'
+      },
+      {
+        name: 'Guida di Search Console — Strumento Controllo URL',
+        url: 'https://support.google.com/webmasters/answer/9012289?hl=it'
+      }
+    ],
     faq: [
       { question: 'Cos\'è Google Search Console e a cosa serve?', answer: 'Google Search Console (GSC) è uno strumento gratuito di Google che mostra come il motore di ricerca vede il tuo sito. Permette di monitorare indicizzazione, query di ricerca, click, posizioni medie, errori tecnici e Core Web Vitals. È indispensabile per qualsiasi strategia SEO.' },
       { question: 'Come configurare Google Search Console?', answer: 'Vai su search.google.com/search-console, aggiungi il tuo sito come proprietà (consigliato: dominio), verifica la proprietà tramite record DNS, tag HTML o Google Analytics. Dopo la verifica, i dati inizieranno ad apparire entro 24-48 ore. Invia la sitemap XML per accelerare l\'indicizzazione.' },
       { question: 'Quali metriche di Search Console devo monitorare?', answer: 'Le metriche chiave sono: impressioni (quante volte appari nei risultati), click (quanti utenti cliccano), CTR (rapporto click/impressioni), posizione media per le keyword principali, pagine indicizzate vs non indicizzate, errori di scansione e Core Web Vitals. Monitora settimanalmente.' }
     ],
     content: `
-<p>Google Search Console è lo strumento più importante per capire come Google vede il tuo sito — ed è <strong>completamente gratuito</strong>. Se non lo usi, stai volando alla cieca. Ecco come configurarlo e usarlo per migliorare il posizionamento.</p>
+<p>Se vuoi capire perché una pagina cresce, perde click o non viene indicizzata, <strong>Google Search Console</strong> è il primo strumento da aprire. Ti mostra query, impressioni, clic, stato di indicizzazione e problemi tecnici direttamente dal punto di vista di Google. Ecco come usarla bene nel 2026, senza perderti nei report inutili.</p>
 
 <h2>Configurazione Iniziale (10 Minuti)</h2>
 <ol>
@@ -5918,7 +6099,7 @@ const stubArticles = [
 ];
 
 function generateStubContent(a) {
-  const serviceLink = resolveServiceLink(a.tag);
+  const serviceLink = resolveServiceLink(a);
 
   return `
 <p><strong>Risposta rapida:</strong> ${a.keyword} incide direttamente su visibilità, qualità del traffico e conversioni. Se vuoi risultati misurabili nel 2026, devi combinare contenuti utili, struttura tecnica corretta e ottimizzazione continua: è questo mix che rende il sito più citabile dalle AI e più competitivo su Google.</p>
@@ -5972,8 +6153,12 @@ function generateDefaultFaq(a) {
   ];
 }
 
-function resolveServiceLink(tag) {
-  return SERVICE_LINKS[tag] || DEFAULT_SERVICE_LINK;
+function resolveServiceLink(articleOrTag) {
+  if (articleOrTag && typeof articleOrTag === 'object') {
+    return articleOrTag.serviceLink || SERVICE_LINKS[articleOrTag.tag] || DEFAULT_SERVICE_LINK;
+  }
+
+  return SERVICE_LINKS[articleOrTag] || DEFAULT_SERVICE_LINK;
 }
 
 function resolveInlineCta(serviceLink) {
@@ -6028,6 +6213,88 @@ function buildSourceReferencesHTML(sources = [], articleTag = '') {
                 </section>`;
 }
 
+function resolveServiceCard(serviceLink) {
+  const serviceDetails = SERVICE_DETAILS_BY_BLOG_LINK.get(serviceLink);
+  if (serviceDetails) {
+    return {
+      href: serviceLink,
+      label: 'Servizio correlato',
+      title: serviceDetails.name,
+      desc: serviceDetails.shortDesc || serviceDetails.description
+    };
+  }
+
+  if (serviceLink === '../servizi/sviluppo-web.html') {
+    return {
+      href: serviceLink,
+      label: 'Servizio correlato',
+      title: 'Sviluppo Web su Misura',
+      desc: 'Strategia, UX e sviluppo custom per trasformare visibilità in richieste concrete e lead qualificati.'
+    };
+  }
+
+  if (serviceLink === '../chi-siamo.html') {
+    return {
+      href: serviceLink,
+      label: 'Team WebNovis',
+      title: 'Metodo e governance del progetto',
+      desc: 'Approccio, processo e responsabilità chiare per evitare lavori scollegati dagli obiettivi di business.'
+    };
+  }
+
+  return null;
+}
+
+function resolveStrategicGuideCards(article, pool = []) {
+  const guideSlugs = Array.isArray(article.strategicGuideSlugs) ? article.strategicGuideSlugs : [];
+
+  return guideSlugs
+    .map((slug) => pool.find((candidate) => candidate.slug === slug))
+    .filter(Boolean)
+    .filter((candidate) => candidate.slug !== article.slug)
+    .map((candidate) => ({
+      href: `${candidate.slug}.html`,
+      label: 'Guida consigliata',
+      title: candidate.title,
+      desc: candidate.description
+    }));
+}
+
+function resolveStrategicLinks(article, pool = [], serviceLink = DEFAULT_SERVICE_LINK) {
+  const cards = [];
+  const serviceCard = resolveServiceCard(serviceLink);
+
+  if (serviceCard) {
+    cards.push(serviceCard);
+  }
+
+  cards.push(...(STRATEGIC_HUBS_BY_SERVICE[serviceLink] || []));
+  cards.push(...resolveStrategicGuideCards(article, pool));
+
+  const seen = new Set();
+  return cards
+    .filter((card) => {
+      if (!card || !card.href || seen.has(card.href)) return false;
+      seen.add(card.href);
+      return true;
+    })
+    .slice(0, 4);
+}
+
+function buildStrategicLinksHTML(cards = [], title = 'Percorsi consigliati') {
+  if (!cards.length) {
+    return '';
+  }
+
+  return `
+                <section class="article-strategic-links" aria-labelledby="strategic-links-title">
+                    <h2 id="strategic-links-title">${title}</h2>
+                    <div class="article-strategic-grid">
+                        ${cards.map((card) => `<a href="${card.href}" class="article-strategic-card"><span class="article-strategic-label">${card.label}</span><h3>${card.title}</h3><p>${card.desc}</p></a>`).join('')}
+                    </div>
+                </section>`;
+}
+
 function buildRelatedArticlesHTML(relatedArticles = [], articleTag = '') {
   if (!relatedArticles.length) {
     return '';
@@ -6074,13 +6341,16 @@ function buildArticleHTML(a, contentHTML, options = {}) {
   const publishedDateIso = a.isoDate;
   const modifiedDateIso = a.updatedIsoDate || GLOBAL_CONTENT_REFRESH_DATE_ISO;
   const modifiedDateHuman = a.updatedDate || GLOBAL_CONTENT_REFRESH_DATE_HUMAN;
-  const serviceLink = resolveServiceLink(a.tag);
+  const serviceLink = resolveServiceLink(a);
   const inlineCtaData = resolveInlineCta(serviceLink);
   const contentUpgradeData = resolveContentUpgrade(serviceLink);
-  const sourceReferences = resolveSourceSet(serviceLink);
+  const sourceReferences = (Array.isArray(a.sources) && a.sources.length)
+    ? a.sources
+    : resolveSourceSet(serviceLink);
   const articleFaq = (a.faq && a.faq.length) ? a.faq : generateDefaultFaq(a);
   const faqHTML = buildFaqHTML(articleFaq, a.tag);
   const inlineCtaHTML = options.skipInlineCta ? '' : buildInlineCtaHTML(inlineCtaData, serviceLink, utmSlug);
+  const strategicLinksHTML = options.skipStrategicLinks ? '' : buildStrategicLinksHTML(options.strategicLinks || []);
   const contentUpgradeHTML = buildContentUpgradeHTML(contentUpgradeData, utmSlug);
   const sourceReferencesHTML = options.skipSourceReferences ? '' : buildSourceReferencesHTML(sourceReferences, a.tag);
 
@@ -6250,6 +6520,13 @@ function buildArticleHTML(a, contentHTML, options = {}) {
         .article-sources{padding:2.2rem 0;border-top:1px solid rgba(255,255,255,.06)}
         .article-sources ul{margin:1rem 0 0;padding-left:1.2rem}
         .article-sources li{margin:.45rem 0}
+        .article-strategic-links{padding:2.4rem 0;border-top:1px solid rgba(255,255,255,.06)}
+        .article-strategic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.35rem}
+        .article-strategic-card{display:block;padding:1.3rem;border-radius:14px;border:1px solid rgba(96,165,250,.18);background:linear-gradient(180deg,rgba(255,255,255,.04) 0%,rgba(91,106,174,.08) 100%);text-decoration:none!important;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+        .article-strategic-card:hover{transform:translateY(-2px);border-color:rgba(96,165,250,.35);background:linear-gradient(180deg,rgba(255,255,255,.05) 0%,rgba(91,106,174,.13) 100%)}
+        .article-strategic-label{display:inline-flex;margin-bottom:.7rem;padding:.3rem .65rem;border-radius:999px;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.18);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary-light)}
+        .article-strategic-card h3{margin:0 0 .5rem;font-size:1rem;color:var(--white)}
+        .article-strategic-card p{margin:0;font-size:.9rem;line-height:1.6;color:var(--text-muted)}
         .article-upgrade{background:linear-gradient(135deg,rgba(37,99,235,.07) 0%,rgba(91,106,174,.06) 100%);border:1px solid rgba(96,165,250,.22);border-radius:14px;padding:1.7rem;margin:2rem 0 1rem;position:relative;overflow:hidden}
         .article-upgrade::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#2563EB,#60A5FA,#2563EB);opacity:.6;pointer-events:none}
         .article-upgrade h3{margin:.1rem 0 .6rem;font-size:1.1rem;color:var(--white)}
@@ -6284,6 +6561,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
                 ${inlineCtaHTML}
                 ${faqHTML}
                 ${sourceReferencesHTML}
+                ${strategicLinksHTML}
                 ${contentUpgradeHTML}
                 ${options.skipFinalCta ? '' : `<div class="article-cta">
                     <h3>Hai Bisogno di Aiuto con il Tuo Progetto?</h3>
@@ -6299,7 +6577,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Consenso cookie"><div class="cookie-banner-inner"><p class="cookie-text">Utilizziamo cookie tecnici e, con il tuo consenso, cookie analitici (Google Analytics 4) per migliorare la tua esperienza. Consulta la nostra <a href="../cookie-policy.html">Cookie Policy</a>.</p><div class="cookie-actions"><button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accetta</button><button class="cookie-btn cookie-btn-reject" id="cookieReject">Solo necessari</button></div></div></div>
     <div class="search-overlay" id="searchOverlay"></div>
     <script src="../js/main.min.js" defer></script>
-    <script src="../js/cursor.min.js" defer></script>
+    <script src="../js/noncritical-loader.min.js" defer></script>
     <script src="../js/search.min.js" defer></script>
     <script src="../js/footer-widgets-loader.js" defer></script>
     <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
@@ -6329,8 +6607,10 @@ module.exports = {
   buildInlineCtaHTML,
   buildContentUpgradeHTML,
   buildSourceReferencesHTML,
+  buildStrategicLinksHTML,
   buildRelatedArticlesHTML,
   getAutomaticRelatedArticles,
+  resolveStrategicLinks,
   generateStubContent,
   generateDefaultFaq,
   GLOBAL_CONTENT_REFRESH_DATE_ISO,
@@ -6347,7 +6627,8 @@ if (require.main === module) {
       ? a.relatedArticles
       : getAutomaticRelatedArticles(a, allArticles);
     const relatedHTML = buildRelatedArticlesHTML(relatedArticles, a.tag);
-    const html = buildArticleHTML(a, `${a.content}${relatedHTML}`);
+    const strategicLinks = resolveStrategicLinks(a, allArticles, resolveServiceLink(a));
+    const html = buildArticleHTML(a, `${a.content}${relatedHTML}`, { strategicLinks });
     const filepath = path.join(BLOG_DIR, `${a.slug}.html`);
     const existed = fs.existsSync(filepath);
     fs.writeFileSync(filepath, html, 'utf-8');
@@ -6360,7 +6641,8 @@ if (require.main === module) {
     const relatedArticles = getAutomaticRelatedArticles(a, allArticles);
     const relatedHTML = buildRelatedArticlesHTML(relatedArticles, a.tag);
     const content = `${generateStubContent(a)}${relatedHTML}`;
-    const html = buildArticleHTML(a, content);
+    const strategicLinks = resolveStrategicLinks(a, allArticles, resolveServiceLink(a));
+    const html = buildArticleHTML(a, content, { strategicLinks });
     const existed = fs.existsSync(filepath);
     fs.writeFileSync(filepath, html, 'utf-8');
     generated++;
