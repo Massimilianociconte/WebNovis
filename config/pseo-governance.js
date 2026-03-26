@@ -1,7 +1,12 @@
 const PHASE1_DEAMPLIFIED_PATHS = [
   '/google-ads-milano.html',
   '/sviluppo-app-mobile-milano.html',
+  '/sviluppo-app-mobile-milano-ovest.html',
+  '/sviluppo-app-mobile-milano-nord.html',
+  '/email-marketing-milano.html',
   '/email-marketing-milano-nord.html',
+  '/ecommerce-milano.html',
+  '/google-ads-milano-nord.html',
   '/social-media-bresso.html'
 ];
 

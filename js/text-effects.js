@@ -1,5 +1,9 @@
 /* ===== TEXT EFFECTS — Vanilla JS implementations ===== */
 
+function initTextEffects() {
+    if (window.__webnovisTextEffectsInitialized) return;
+    window.__webnovisTextEffectsInitialized = true;
+
 /* ---------- 1. TEXT REVEAL (scroll-linked word opacity) ---------- */
 function initTextReveal() {
     const wrapper = document.querySelector('.text-reveal-wrapper');
@@ -178,7 +182,12 @@ function initMorphingText() {
 }
 
 /* ---------- INIT ---------- */
-document.addEventListener('DOMContentLoaded', function () {
     initTextReveal();
     initMorphingText();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTextEffects, { once: true });
+} else {
+    initTextEffects();
+}

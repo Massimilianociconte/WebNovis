@@ -12,6 +12,14 @@ const BLOG_FOOTER_PATTERN = /<footer class="footer">\s*<div class="container">\s
 const DESIGNRUSH_SCRIPT_PATTERN = /<script\b[^>]*src="https:\/\/www\.designrush\.com\/topbest\/js\/widgets\/agency-reviews\.js"[^>]*><\/script>/gi;
 const DESIGNRUSH_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/designrush-loader\.js"[^>]*><\/script>/gi;
 const FOOTER_WIDGET_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader\.js"[^>]*><\/script>/i;
+const NONCRITICAL_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/noncritical-loader(?:\.min)?\.js"[^>]*><\/script>/i;
+const MAIN_MIN_SCRIPT_PATTERN = /<script\b[^>]*src="([^"]*?)js\/main\.min\.js"[^>]*><\/script>/i;
+const NONCRITICAL_SCRIPT_PATTERNS = [
+  /<script\b[^>]*src="([^"]*?)js\/chat(?:\.min)?\.js"[^>]*><\/script>\s*/gi,
+  /<script\b[^>]*src="([^"]*?)js\/cursor(?:\.min)?\.js"[^>]*><\/script>\s*/gi,
+  /<script\b[^>]*src="([^"]*?)js\/text-effects(?:\.min)?\.js"[^>]*><\/script>\s*/gi,
+  /<script\b[^>]*src="([^"]*?)js\/globe(?:\.min)?\.js"[^>]*><\/script>\s*/gi
+];
 const LEGACY_LINK_REPLACEMENTS = new Map([
   ['href="/personal-branding-online"', 'href="personal-branding-online.html"'],
   ['href="/sito-personale-freelancer"', 'href="sito-personale-freelancer.html"'],
@@ -82,6 +90,24 @@ function ensureFooterWidgetLoader(html, relativePath) {
   return html.replace(/<\/body>/i, `${loaderTag} </body>`);
 }
 
+function normalizeNonCriticalLoader(html, relativePath) {
+  const loaderPath = `${getRootPrefix(relativePath)}js/noncritical-loader.min.js`;
+  const loaderTag = `<script defer src="${loaderPath}"></script>`;
+  let updated = html;
+
+  for (const pattern of NONCRITICAL_SCRIPT_PATTERNS) {
+    updated = updated.replace(pattern, '');
+  }
+
+  updated = updated.replace(NONCRITICAL_LOADER_PATTERN, '');
+
+  if (MAIN_MIN_SCRIPT_PATTERN.test(updated)) {
+    return updated.replace(MAIN_MIN_SCRIPT_PATTERN, (match) => `${match} ${loaderTag}`);
+  }
+
+  return updated.replace(/<\/body>/i, `${loaderTag} </body>`);
+}
+
 function normalizeBlogIndexLinks(html) {
   return html
     .replace(/href="(\.{1,2}\/)+blog\/index\.html"index\.html"/g, (match) => {
@@ -109,6 +135,7 @@ for (const filePath of walk(ROOT)) {
   updated = normalizeImageLoadingInHtml(updated);
   updated = normalizeDesignRushLoader(updated, relativePath);
   updated = ensureFooterWidgetLoader(updated, relativePath);
+  updated = normalizeNonCriticalLoader(updated, relativePath);
   updated = normalizeBlogIndexLinks(updated);
   updated = normalizeLegacyLinks(updated);
   updated = applySeoHtmlTransforms(updated, relativePath);

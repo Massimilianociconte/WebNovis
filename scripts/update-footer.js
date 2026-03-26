@@ -23,7 +23,7 @@ const DRY_RUN = process.argv.includes('--dry-run');
 // New footer column content — uses DIRECT <a> tags (NO <ul>/<li>)
 // to match the existing footer-column structure used in all other columns.
 // This preserves the CSS grid layout.
-const NEW_FOOTER_COLUMN = `<div class="footer-column"> <strong class="footer-heading" role="heading" aria-level="3">Zone Servite</strong> <a href="/zone-servite/" title="Zone Servite WebNovis">Tutte le Zone</a> <a href="/agenzia-web/" title="Web Agency — Comuni Milano">Agenzia Web — Comuni</a> <a href="/realizzazione-siti-web/" title="Siti Web — Comuni Milano">Realizzazione Siti Web</a> <a href="/agenzia-web-rho.html" title="Web Agency Rho">Web Agency Rho</a> <a href="/agenzia-web-milano.html" title="Web Agency Milano">Web Agency Milano</a> </div>`;
+const NEW_FOOTER_COLUMN = `<div class="footer-column"> <strong class="footer-heading" role="heading" aria-level="3">Zone Servite</strong> <a href="/zone-servite/" title="Zone Servite WebNovis">Tutte le Zone</a> <a href="/agenzia-web/" title="Hub Agenzia Web per Comuni">Agenzia Web per Comuni</a> <a href="/realizzazione-siti-web/" title="Hub Siti Web per Comuni">Siti Web per Comuni</a> </div>`;
 
 // ─── Footer Column Detection ──────────────────────────────────────────────────
 
@@ -38,9 +38,11 @@ const NEW_FOOTER_COLUMN = `<div class="footer-column"> <strong class="footer-hea
 function findAndReplaceFooterColumn(html) {
     // This regex matches a footer-column div containing "Località" or "Zone Servite"
     // It captures: <div class="footer-column"> ... heading ... all links ... </div>
+    // The heading matcher tolerates minified variants where the class attribute
+    // is not the first attribute on the <strong> tag.
     // The key insight: the column ends at the NEXT </div> that is followed by either
     // another <div class="footer-column"> or a </div> (closing footer-grid)
-    const pattern = /<div class="footer-column">\s*<strong class="footer-heading"[^>]*>(?:Località|Zone Servite)<\/strong>[\s\S]*?<\/div>(?=\s*<div class="footer-column">|\s*<\/div>\s*<div class="footer-badges|<\/div>\s*<\/div>)/;
+    const pattern = /<div class="footer-column">\s*<strong\b[^>]*class="footer-heading"[^>]*>(?:Località|Zone Servite)<\/strong>[\s\S]*?<\/div>(?=\s*<div class="footer-column">|\s*<\/div>\s*<div class="footer-badges|<\/div>\s*<\/div>)/;
 
     const match = html.match(pattern);
     if (!match) return null;
@@ -60,7 +62,7 @@ function findAllHtmlFiles(rootDir) {
     // Directories to EXCLUDE (node_modules, .git, deployment artifacts, etc.)
     const excludeDirs = new Set([
         'node_modules', '.git', '.github', '.gemini', '.agent',
-        'scripts', 'css', 'js', 'Img', 'fonts'
+        'scripts', 'css', 'js', 'Img', 'fonts', 'dist'
     ]);
 
     function walk(dir) {

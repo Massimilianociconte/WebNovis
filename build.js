@@ -27,7 +27,7 @@ const config = {
         skipDirs: ['.git', 'node_modules']
     },
     js: {
-        explicitInputs: ['js/main.js', 'js/chat.js', 'js/text-effects.js', 'js/search.js', 'js/web-vitals-reporter.js'],
+        explicitInputs: ['js/main.js', 'js/chat.js', 'js/text-effects.js', 'js/noncritical-loader.js', 'js/search.js', 'js/web-vitals-reporter.js'],
         suffix: '.min.js',
         skip: [],
         overrides: {},

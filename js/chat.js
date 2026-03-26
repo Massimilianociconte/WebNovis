@@ -32,7 +32,10 @@ const LEAD_INTENT_PATTERNS = [
 // Mobile detection (renamed to avoid conflict with main.js)
 const isMobileChat = window.innerWidth <= 768 || 'ontouchstart' in window;
 
-document.addEventListener('DOMContentLoaded', function () {
+function initWebyChatbot() {
+    if (window.__webnovisChatInitialized) return;
+    window.__webnovisChatInitialized = true;
+
     // DOM Elements
     const elements = {
         button: document.getElementById('chatButton'),
@@ -643,4 +646,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Keep-Alive Heartbeat (production only, delayed)
     setupKeepAlive();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWebyChatbot, { once: true });
+} else {
+    initWebyChatbot();
+}

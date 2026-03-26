@@ -1,6 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { getBlogFooterHtml } = require(path.join(process.cwd(), 'config', 'site-footer.js'));
 
 const ROOT = process.cwd();
 
@@ -34,6 +35,15 @@ function main() {
   const indexHtml = readText('index.html');
   assert.match(
     indexHtml,
+    /<h1 class="hero-title">[\s\S]*WebNovis[\s\S]*agenzia web a Rho e Milano/i,
+    'Homepage hero H1 must make the brand and the primary geo intent explicit'
+  );
+  assert.ok(
+    indexHtml.includes('Percorsi principali'),
+    'Homepage hero must expose a body-level cluster of primary section links'
+  );
+  assert.match(
+    indexHtml,
     /<input[^>]+name="email"[^>]+aria-label="Iscriviti alla newsletter"[^>]*>/,
     'Homepage newsletter email input must expose an accessible label'
   );
@@ -41,6 +51,30 @@ function main() {
     indexHtml,
     /<input[^>]+id="chatInput"[^>]+aria-label="Scrivi un messaggio a Weby"[^>]*>/,
     'Homepage chat input must expose an accessible label'
+  );
+  assert.ok(
+    !indexHtml.includes('/agenzia-web-rho.html') &&
+      !indexHtml.includes('/agenzia-web-milano.html'),
+    'Homepage must not keep direct city footer links after the geo de-amplification pass'
+  );
+  assert.ok(
+    indexHtml.includes('/zone-servite/') &&
+      indexHtml.includes('/agenzia-web/') &&
+      indexHtml.includes('/realizzazione-siti-web/'),
+    'Homepage footer must surface hub links that consolidate local intent'
+  );
+
+  const blogFooterHtml = getBlogFooterHtml('..');
+  assert.ok(
+    blogFooterHtml.includes('/zone-servite/') &&
+      blogFooterHtml.includes('/agenzia-web/') &&
+      blogFooterHtml.includes('/realizzazione-siti-web/'),
+    'Shared footer must keep the local hub links that consolidate geo intent'
+  );
+  assert.ok(
+    !blogFooterHtml.includes('/agenzia-web-rho.html') &&
+      !blogFooterHtml.includes('/agenzia-web-milano.html'),
+    'Shared footer must not promote direct city landing pages sitewide'
   );
 
   const caseStudyFiles = [

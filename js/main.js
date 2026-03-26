@@ -364,6 +364,68 @@ function debounce(func, wait) {
 
 // highlightNav is now called from the unified scroll controller above
 
+// Cache pointer geometry on enter and update transforms at most once per frame.
+const pointerRectInvalidators = [];
+let pointerRectInvalidationBound = false;
+
+function registerPointerRectInvalidator(invalidator) {
+    pointerRectInvalidators.push(invalidator);
+    if (pointerRectInvalidationBound) return;
+    pointerRectInvalidationBound = true;
+
+    const clearPointerRects = () => {
+        pointerRectInvalidators.forEach(fn => fn());
+    };
+
+    window.addEventListener('resize', clearPointerRects, { passive: true });
+    window.addEventListener('orientationchange', clearPointerRects, { passive: true });
+}
+
+function bindPointerTransform(element, computeTransform, resetTransform) {
+    if (!element) return;
+
+    let cachedRect = null;
+    let frameRequested = false;
+    let lastClientX = 0;
+    let lastClientY = 0;
+
+    const invalidateRect = () => {
+        cachedRect = null;
+    };
+
+    const getRect = () => {
+        if (!cachedRect) {
+            cachedRect = element.getBoundingClientRect();
+        }
+        return cachedRect;
+    };
+
+    registerPointerRectInvalidator(invalidateRect);
+
+    element.addEventListener('mouseenter', () => {
+        getRect();
+    });
+
+    element.addEventListener('mousemove', (event) => {
+        lastClientX = event.clientX;
+        lastClientY = event.clientY;
+
+        if (frameRequested) return;
+        frameRequested = true;
+
+        requestAnimationFrame(() => {
+            frameRequested = false;
+            computeTransform(getRect(), lastClientX, lastClientY);
+        });
+    }, { passive: true });
+
+    element.addEventListener('mouseleave', () => {
+        frameRequested = false;
+        invalidateRect();
+        resetTransform();
+    });
+}
+
 
 // ===== EFFETTI CLAMOROSI AVANZATI =====
 
@@ -372,118 +434,131 @@ const canvas = document.getElementById('particlesCanvas');
 
 // Skip particles on mobile or if reduced motion is preferred
 if (canvas && !prefersReducedMotion) {
-    const ctx = canvas.getContext('2d');
-    const particleCount = isMobile ? 30 : 100;
-    const connectionDistance = isMobile ? 60 : 100;
-    let canvasVisible = true;
+    const initParticlesCanvas = () => {
+        if (window.__webnovisParticlesInitialized) return;
+        window.__webnovisParticlesInitialized = true;
 
-    // Stop animation when canvas is not visible
-    const canvasObserver = new IntersectionObserver((entries) => {
-        canvasVisible = entries[0].isIntersecting;
-    }, { threshold: 0 });
-    canvasObserver.observe(canvas);
+        const ctx = canvas.getContext('2d');
+        const particleCount = isMobile ? 30 : 100;
+        const connectionDistance = isMobile ? 60 : 100;
+        let canvasVisible = true;
+        let animationFrameId = 0;
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
+        const canvasObserver = new IntersectionObserver((entries) => {
+            canvasVisible = entries[0].isIntersecting;
+            if (canvasVisible && !animationFrameId) {
+                animationFrameId = requestAnimationFrame(animateParticles);
+            }
+        }, { threshold: 0 });
+        canvasObserver.observe(canvas);
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 0.5;
-            this.speedX = Math.random() * 0.5 - 0.25;
-            this.speedY = Math.random() * 0.5 - 0.25;
-            this.opacity = Math.random() * 0.5 + 0.2;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
 
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-            if (this.x > canvas.width) this.x = 0;
-            if (this.x < 0) this.x = canvas.width;
-            if (this.y > canvas.height) this.y = 0;
-            if (this.y < 0) this.y = canvas.height;
-        }
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
 
-        draw() {
-            ctx.fillStyle = `rgba(91, 106, 174, ${this.opacity})`;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
 
-    const particles = [];
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-    }
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
 
-    var particleFrameCount = 0;
-
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        for (var pi = 0; pi < particles.length; pi++) {
-            particles[pi].update();
-            particles[pi].draw();
-        }
-
-        // Connetti particelle vicine — frame-skip: draw connections every 2nd frame
-        if (++particleFrameCount % 2 === 0 && (!isMobile || window.innerWidth > 480)) {
-            const maxDistSq = connectionDistance * connectionDistance;
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distSq = dx * dx + dy * dy;
-
-                    if (distSq < maxDistSq) {
-                        const distance = Math.sqrt(distSq);
-                        ctx.strokeStyle = `rgba(91, 106, 174, ${0.2 * (1 - distance / connectionDistance)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
+            draw() {
+                ctx.fillStyle = `rgba(91, 106, 174, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
 
-        if (canvasVisible) requestAnimationFrame(animateParticles);
+        const particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        var particleFrameCount = 0;
+
+        function animateParticles() {
+            animationFrameId = 0;
+            if (!canvasVisible) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (var pi = 0; pi < particles.length; pi++) {
+                particles[pi].update();
+                particles[pi].draw();
+            }
+
+            // Connetti particelle vicine — frame-skip: draw connections every 2nd frame
+            if (++particleFrameCount % 2 === 0 && (!isMobile || window.innerWidth > 480)) {
+                const maxDistSq = connectionDistance * connectionDistance;
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distSq = dx * dx + dy * dy;
+
+                        if (distSq < maxDistSq) {
+                            const distance = Math.sqrt(distSq);
+                            ctx.strokeStyle = `rgba(91, 106, 174, ${0.2 * (1 - distance / connectionDistance)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(animateParticles);
+        }
+
+        animationFrameId = requestAnimationFrame(animateParticles);
+    };
+
+    const scheduleParticlesInit = () => {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(initParticlesCanvas, { timeout: 2200 });
+        } else {
+            setTimeout(initParticlesCanvas, 1200);
+        }
+    };
+
+    if (document.readyState === 'complete') {
+        scheduleParticlesInit();
+    } else {
+        window.addEventListener('load', scheduleParticlesInit, { once: true });
     }
-
-    animateParticles();
-
-    // Re-start animation when canvas becomes visible again
-    const restartObserver = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && canvasVisible) animateParticles();
-    }, { threshold: 0 });
-    restartObserver.observe(canvas);
 }
 
 // Effetto Magnetico sulle Card
 const magneticElements = document.querySelectorAll('.magnetic');
 
 magneticElements.forEach(element => {
-    element.addEventListener('mousemove', (e) => {
-        const rect = element.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
+    bindPointerTransform(element, (rect, clientX, clientY) => {
+        const x = clientX - rect.left - rect.width / 2;
+        const y = clientY - rect.top - rect.height / 2;
 
-        const moveX = x * 0.15;
-        const moveY = y * 0.15;
-
-        element.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
-    });
-
-    element.addEventListener('mouseleave', () => {
+        element.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.05)`;
+    }, () => {
         element.style.transform = 'translate(0, 0) scale(1)';
     });
 });
@@ -493,21 +568,14 @@ const visualCards = document.querySelectorAll('.floating-3d');
 
 if (!isTouchDevice) {
     visualCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = (y - centerY) / 15;
-            const rotateY = (centerX - x) / 15;
+        bindPointerTransform(card, (rect, clientX, clientY) => {
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+            const rotateX = (y - rect.height / 2) / 15;
+            const rotateY = (rect.width / 2 - x) / 15;
 
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
+        }, () => {
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
         });
     });
@@ -706,6 +774,9 @@ const orbsParallax = document.querySelectorAll('.gradient-orb');
 (function() {
     var mouseParallaxActive = false;
     var heroSection = document.querySelector('.hero');
+    var parallaxTicking = false;
+    var parallaxClientX = window.innerWidth * 0.5;
+    var parallaxClientY = window.innerHeight * 0.5;
     if (heroSection) {
         var parallaxVisObserver = new IntersectionObserver(function(entries) {
             mouseParallaxActive = entries[0].isIntersecting;
@@ -713,10 +784,12 @@ const orbsParallax = document.querySelectorAll('.gradient-orb');
         parallaxVisObserver.observe(heroSection);
     }
 
-    document.addEventListener('mousemove', function(e) {
+    function applyMouseParallax() {
+        parallaxTicking = false;
         if (!mouseParallaxActive || isMobile) return;
-        var mx = e.clientX / window.innerWidth;
-        var my = e.clientY / window.innerHeight;
+
+        var mx = parallaxClientX / window.innerWidth;
+        var my = parallaxClientY / window.innerHeight;
 
         for (var i = 0; i < floatingCardsParallax.length; i++) {
             var speed = (i + 1) * 10;
@@ -727,6 +800,15 @@ const orbsParallax = document.querySelectorAll('.gradient-orb');
             var sp = (j + 1) * 20;
             orbsParallax[j].style.transform = 'translate(' + ((mx - 0.5) * sp) + 'px,' + ((my - 0.5) * sp) + 'px)';
         }
+    }
+
+    document.addEventListener('mousemove', function(e) {
+        if (!mouseParallaxActive || isMobile) return;
+        parallaxClientX = e.clientX;
+        parallaxClientY = e.clientY;
+        if (parallaxTicking) return;
+        parallaxTicking = true;
+        requestAnimationFrame(applyMouseParallax);
     }, { passive: true });
 })();
 
@@ -1119,15 +1201,12 @@ const createTypingEffect = (element, text, speed = 100) => {
 const buttons = document.querySelectorAll('.btn');
 
 buttons.forEach(button => {
-    button.addEventListener('mousemove', (e) => {
-        const rect = button.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
+    bindPointerTransform(button, (rect, clientX, clientY) => {
+        const x = clientX - rect.left - rect.width / 2;
+        const y = clientY - rect.top - rect.height / 2;
 
         button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-    });
-
-    button.addEventListener('mouseleave', () => {
+    }, () => {
         button.style.transform = 'translate(0, 0)';
     });
 });
@@ -1831,10 +1910,13 @@ if (multistepForm) {
         const targetStep = multistepForm.querySelector(`.ms-step[data-step="${stepNum}"]`);
         if (targetStep) {
             targetStep.classList.add('active');
-            // Re-trigger animation
+            // Re-trigger animation without forcing a sync reflow.
             targetStep.style.animation = 'none';
-            targetStep.offsetHeight; // reflow
-            targetStep.style.animation = '';
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    targetStep.style.animation = '';
+                });
+            });
         }
 
         // Update progress bar
@@ -1917,8 +1999,13 @@ if (processLineGlow && processLineDot && processLineSvg && !isMobile) {
     const lineLength = 1000; // viewBox width
     processLineGlow.style.strokeDasharray = lineLength;
     processLineGlow.style.strokeDashoffset = lineLength;
+    let processLineVisible = false;
+    let processLineTicking = false;
 
     const animateProcessLine = () => {
+        processLineTicking = false;
+        if (!processLineVisible) return;
+
         const svgRect = processLineSvg.getBoundingClientRect();
         const viewportH = window.innerHeight;
 
@@ -1942,12 +2029,25 @@ if (processLineGlow && processLineDot && processLineSvg && !isMobile) {
         processLineDot.classList.toggle('visible', progress > 0.02 && progress < 0.98);
     };
 
-    window.addEventListener('scroll', function() {
+    const queueProcessLineFrame = () => {
+        if (!processLineVisible || processLineTicking) return;
+        processLineTicking = true;
         requestAnimationFrame(animateProcessLine);
-    }, { passive: true });
+    };
+
+    const processLineObserver = new IntersectionObserver((entries) => {
+        processLineVisible = entries[0].isIntersecting;
+        if (processLineVisible) {
+            queueProcessLineFrame();
+        }
+    }, { rootMargin: '260px 0px 260px 0px' });
+    processLineObserver.observe(processLineSvg);
+
+    window.addEventListener('scroll', queueProcessLineFrame, { passive: true });
+    window.addEventListener('resize', queueProcessLineFrame, { passive: true });
 
     // Initial call
-    animateProcessLine();
+    queueProcessLineFrame();
 }
 
 // ===== TRUSTPILOT WIDGET — Lazy-loaded with observer + fallback timer =====

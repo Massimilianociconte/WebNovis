@@ -18,6 +18,8 @@ const OUTPUT = path.join(ROOT, 'sitemap.xml');
 // Pages to EXCLUDE from sitemap
 const EXCLUDE_PATTERNS = [
     /^docs\//,
+    /^dist\//,
+    /^templates\//,
     /^node_modules\//,
     /^\./,
     /^blog\/auto-writer/,
