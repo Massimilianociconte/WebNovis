@@ -5,6 +5,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { getClusterStrategicLinks } = require('../config/blog-cluster-links');
 const { getBlogFooterHtml } = require('../config/site-footer');
 const servicesCatalog = require('../data/services.json');
 
@@ -6261,6 +6262,11 @@ function resolveStrategicGuideCards(article, pool = []) {
 }
 
 function resolveStrategicLinks(article, pool = [], serviceLink = DEFAULT_SERVICE_LINK) {
+  const clusterOverride = getClusterStrategicLinks(article.slug);
+  if (clusterOverride && Array.isArray(clusterOverride.cards) && clusterOverride.cards.length) {
+    return clusterOverride;
+  }
+
   const cards = [];
   const serviceCard = resolveServiceCard(serviceLink);
 
@@ -6350,7 +6356,10 @@ function buildArticleHTML(a, contentHTML, options = {}) {
   const articleFaq = (a.faq && a.faq.length) ? a.faq : generateDefaultFaq(a);
   const faqHTML = buildFaqHTML(articleFaq, a.tag);
   const inlineCtaHTML = options.skipInlineCta ? '' : buildInlineCtaHTML(inlineCtaData, serviceLink, utmSlug);
-  const strategicLinksHTML = options.skipStrategicLinks ? '' : buildStrategicLinksHTML(options.strategicLinks || []);
+  const strategicLinksData = options.strategicLinks || [];
+  const strategicLinksCards = Array.isArray(strategicLinksData) ? strategicLinksData : strategicLinksData.cards || [];
+  const strategicLinksTitle = Array.isArray(strategicLinksData) ? 'Percorsi consigliati' : strategicLinksData.title || 'Percorsi consigliati';
+  const strategicLinksHTML = options.skipStrategicLinks ? '' : buildStrategicLinksHTML(strategicLinksCards, strategicLinksTitle);
   const contentUpgradeHTML = buildContentUpgradeHTML(contentUpgradeData, utmSlug);
   const sourceReferencesHTML = options.skipSourceReferences ? '' : buildSourceReferencesHTML(sourceReferences, a.tag);
 
