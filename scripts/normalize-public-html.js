@@ -7,6 +7,16 @@ const { ROOT_DIR, getPublishDir } = require('../config/publish-targets');
 
 const ROOT = getPublishDir();
 const DRY_RUN = process.argv.includes('--dry-run');
+const ONLY_ARGS = process.argv.filter((arg) => arg.startsWith('--only='));
+const ONLY_PATHS = new Set(
+  ONLY_ARGS.flatMap((arg) =>
+    arg
+      .slice('--only='.length)
+      .split(',')
+      .map((value) => value.trim().replace(/\\/g, '/').replace(/^\.\//, ''))
+      .filter(Boolean)
+  )
+);
 const EXCLUDED_DIRS = new Set(['node_modules', '.git', 'docs', 'scripts', 'css', 'js', 'Img', 'fonts', 'data', 'config', 'tests']);
 const BLOG_FOOTER_PATTERN = /<footer class="footer">\s*<div class="container">\s*<div class="footer-content">[\s\S]*?<\/footer>/;
 const DESIGNRUSH_SCRIPT_PATTERN = /<script\b[^>]*src="https:\/\/www\.designrush\.com\/topbest\/js\/widgets\/agency-reviews\.js"[^>]*><\/script>/gi;
@@ -129,6 +139,10 @@ function normalizeLegacyLinks(html) {
 let changed = 0;
 for (const filePath of walk(ROOT)) {
   const relativePath = path.relative(ROOT, filePath);
+  const normalizedRelativePath = relativePath.replace(/\\/g, '/');
+  if (ONLY_PATHS.size > 0 && !ONLY_PATHS.has(normalizedRelativePath)) {
+    continue;
+  }
   const original = fs.readFileSync(filePath, 'utf8');
   let updated = normalizeBlogFooter(original, relativePath);
   updated = normalizeFooterAssetMarkup(updated);

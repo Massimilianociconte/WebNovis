@@ -26,6 +26,7 @@
 const fs = require('fs');
 const path = require('path');
 const nunjucks = require('nunjucks');
+const { getIndexationDirectivesForPath } = require('../config/pseo-governance');
 
 // ─── Configuration ────────────────────────────────────────────────────────────
 const ROOT = path.join(__dirname, '..');
@@ -57,7 +58,21 @@ const VALIDATE_ONLY = args.includes('--validate-only');
 const typeArg = args.find(a => a.startsWith('--type='));
 const GEN_TYPE = typeArg ? typeArg.split('=')[1] : 'all';
 const outDirArg = args.find(a => a.startsWith('--out-dir='));
+const cityArg = args.find(a => a.startsWith('--city='));
+const serviceArg = args.find(a => a.startsWith('--service='));
 const PUBLISH_DIR = path.resolve(ROOT, outDirArg ? outDirArg.split('=')[1] : (process.env.PUBLISH_DIR || '.'));
+const TARGET_CITY_SLUGS = new Set(
+    (cityArg ? cityArg.split('=')[1] : '')
+        .split(',')
+        .map(value => value.trim().toLowerCase())
+        .filter(Boolean)
+);
+const TARGET_SERVICE_SLUGS = new Set(
+    (serviceArg ? serviceArg.split('=')[1] : '')
+        .split(',')
+        .map(value => value.trim().toLowerCase())
+        .filter(Boolean)
+);
 
 function resolvePublishPath(...segments) {
     return path.join(PUBLISH_DIR, ...segments);
@@ -67,6 +82,14 @@ function writePublishedFile(relativePath, html) {
     const targetPath = resolvePublishPath(relativePath);
     fs.mkdirSync(path.dirname(targetPath), { recursive: true });
     fs.writeFileSync(targetPath, html, 'utf8');
+}
+
+function matchesTargetCity(city) {
+    return TARGET_CITY_SLUGS.size === 0 || TARGET_CITY_SLUGS.has(city.slug);
+}
+
+function matchesTargetService(service) {
+    return TARGET_SERVICE_SLUGS.size === 0 || TARGET_SERVICE_SLUGS.has(service.slug);
 }
 
 // ─── Load Data ────────────────────────────────────────────────────────────────
@@ -167,6 +190,309 @@ function xmlEscape(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+function escapeRegex(value) {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function escapeHtmlAttr(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+function buildRobotsContent(pathname) {
+    return `${getIndexationDirectivesForPath(pathname)}, max-image-preview:large, max-snippet:-1, max-video-preview:-1`;
+}
+
+function formatPrice(service) {
+    return `€${service.priceFrom}${service.priceUnit || ''}`;
+}
+
+function getServicePrimaryUrl(service) {
+    return service.hasPage ? service.url : `/zone-servite/#${service.slug}`;
+}
+
+function getServicePrimaryLabel(service) {
+    return service.hasPage
+        ? `la pagina servizio ${service.shortName}`
+        : `il riepilogo ${service.shortName} nelle zone servite`;
+}
+
+function isContinuousService(service) {
+    return new Set([
+        'seo-locale',
+        'social-media',
+        'email-marketing',
+        'google-ads',
+        'manutenzione-sito',
+        'consulenza-digitale'
+    ]).has(service.slug);
+}
+
+function getServiceLocalSeoCopy(service, city) {
+    const price = formatPrice(service);
+    const primaryUrl = getServicePrimaryUrl(service);
+    const primaryLabel = getServicePrimaryLabel(service);
+
+    const fallback = {
+        title: `${service.shortName} a ${city.name}: da ${price} | WebNovis`,
+        description: `${service.shortDesc} A ${city.name}, da ${price}. Gestione diretta da Rho (${city.distanzaSede}) e preventivo gratuito entro 24 ore.`,
+        ogDescription: `${service.shortDesc} A ${city.name}, da ${price}.`,
+        heroTag: `${service.shortName} per ${city.name} · ${price}`,
+        heroH1: `${service.shortName} a ${city.name} per aziende e professionisti`,
+        heroCapsule: `<strong>WebNovis</strong> offre ${service.shortName.toLowerCase()} a ${city.name} con un approccio su misura, tempi chiari e gestione diretta da Rho (${city.distanzaSede}). Investimento da <strong>${price}</strong> e preventivo gratuito entro 24 ore.`,
+        heroHighlights: [
+            { label: 'Investimento', value: `Da ${price}` },
+            { label: 'Tempi', value: service.timeEstimate },
+            { label: 'Focus', value: service.idealFor }
+        ],
+        sectionTitle: `${service.shortName} a ${city.name}: cosa serve per ottenere risultati`,
+        sectionIntro: `${service.description} Lavoriamo con obiettivi chiari, deliverable definiti e una priorità costante: trasformare il servizio in richieste, appuntamenti o vendite.`,
+        whyTitle: `Perché scegliere WebNovis per ${service.shortName.toLowerCase()} a ${city.name}?`,
+        whyCards: isContinuousService(service)
+            ? [
+                {
+                    title: `${city.distanzaSede} dalla tua sede`,
+                    text: `Operiamo da Rho, a ${city.distanzaSede} da ${city.name}. Confronto veloce, risposte rapide e nessun passaggio dispersivo.`
+                },
+                {
+                    title: 'Piano operativo su misura',
+                    text: `Ogni attività parte da audit, obiettivi e priorità reali: niente pacchetti standard uguali per tutti.`
+                },
+                {
+                    title: 'Ottimizzazione continua',
+                    text: `Monitoriamo risultati, correggiamo le leve che non funzionano e ti lasciamo sempre report leggibili.`
+                }
+            ]
+            : [
+                {
+                    title: `${city.distanzaSede} dalla tua sede`,
+                    text: `Operiamo da Rho, a ${city.distanzaSede} da ${city.name}. Possiamo sentirci in video o incontrarci rapidamente sul territorio.`
+                },
+                {
+                    title: 'Progetto costruito su misura',
+                    text: `Struttura, copy e deliverable vengono adattati al tuo obiettivo e al contesto competitivo locale.`
+                },
+                {
+                    title: 'Conversioni e chiarezza',
+                    text: `Ogni pagina o asset nasce per rendere più chiara l'offerta e facilitare il contatto o la vendita.`
+                }
+            ],
+        processTitle: `Come lavoriamo su ${service.shortName.toLowerCase()} a ${city.name}`,
+        processIntro: isContinuousService(service)
+            ? `Partiamo da audit e priorità, poi impostiamo il piano operativo e monitoriamo i risultati mese dopo mese.`
+            : `Partiamo da obiettivo, contesto competitivo e materiali disponibili, poi progettiamo e rilasciamo una soluzione pronta a lavorare.`,
+        processSteps: isContinuousService(service)
+            ? [
+                {
+                    title: '1. Audit e priorità',
+                    text: `Analizziamo obiettivi, punto di partenza e competitor di ${city.name} per capire dove intervenire prima.`
+                },
+                {
+                    title: '2. Piano operativo',
+                    text: `Definiamo attività, tempistiche, KPI e budget con un preventivo chiaro entro 24 ore.`
+                },
+                {
+                    title: '3. Monitoraggio e ottimizzazione',
+                    text: `Attiviamo il lavoro, leggiamo i dati e correggiamo progressivamente ciò che non sta performando.`
+                }
+            ]
+            : [
+                {
+                    title: '1. Analisi e brief',
+                    text: `Raccogliamo obiettivi, offerta, competitor e priorità commerciali per il tuo progetto a ${city.name}.`
+                },
+                {
+                    title: '2. Struttura e proposta',
+                    text: `Ricevi una proposta chiara con deliverable, tempistiche (${service.timeEstimate}) e investimento da ${price}.`
+                },
+                {
+                    title: '3. Produzione e rilascio',
+                    text: `Realizziamo, testiamo e consegniamo con supporto iniziale incluso e un unico referente dedicato.`
+                }
+            ],
+        ctaTitle: `${service.shortName} per la tua attività a ${city.name}?`,
+        ctaCopy: `Scrivici obiettivo, settore e tempistiche: ti rispondiamo con un preventivo gratuito entro 24 ore.`,
+        primaryPageUrl: primaryUrl,
+        primaryPageLabel: primaryLabel,
+        schemaDescription: `${service.shortDesc} Per aziende e professionisti di ${city.name}, con gestione diretta da Rho (${city.distanzaSede}).`
+    };
+
+    const overrides = {
+        'landing-page': {
+            title: `Landing Page a ${city.name}: lead generation da ${price} | WebNovis`,
+            description: `Landing page a ${city.name} per Google Ads, Meta Ads ed eventi: copy, design e tracking orientati ai lead. Da ${price}. Preventivo in 24 ore.`,
+            ogDescription: `Landing page a ${city.name} pensate per aumentare richieste e conversioni. Da ${price}.`,
+            heroTag: `Landing Page · ${city.name} · ${price}`,
+            heroH1: `Landing Page a ${city.name} per campagne che portano contatti`,
+            heroCapsule: `<strong>WebNovis</strong> crea landing page a ${city.name} con copy, design e tracking pensati per aumentare richieste e conversioni. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroHighlights: [
+                { label: 'Investimento', value: `Da ${price}` },
+                { label: 'Tempi', value: service.timeEstimate },
+                { label: 'Focus', value: 'Lead generation' }
+            ],
+            sectionTitle: `Landing page a ${city.name} per non sprecare budget ads`,
+            sectionIntro: `Se investi in Google Ads, Meta Ads o campagne locali, la pagina conta quanto l'annuncio. Progettiamo strutture snelle, messaggi chiari e CTA pensate per trasformare clic in contatti.`,
+            whyCards: [
+                {
+                    title: `${city.distanzaSede} dalla tua sede`,
+                    text: `Siamo a Rho, quindi possiamo coordinare rapidamente il lancio anche con team commerciali o agenzie media di ${city.name}.`
+                },
+                {
+                    title: 'Copy, design e tracking',
+                    text: `Non consegniamo solo una pagina: impostiamo messaggio, struttura, form, eventi e monitoraggio conversioni.`
+                },
+                {
+                    title: 'Conversioni prima dei fronzoli',
+                    text: `Ogni blocco della landing nasce per ridurre dispersione e aumentare richieste, demo o appuntamenti.`
+                }
+            ],
+            processIntro: `Partiamo da offerta, pubblico e canale di traffico. Poi costruiamo una landing che renda la conversione più semplice e misurabile.`,
+            ctaTitle: `Vuoi una landing page che trasformi clic in contatti a ${city.name}?`,
+            ctaCopy: `Mandaci obiettivo, canale e offerta: ti rispondiamo con struttura consigliata e preventivo entro 24 ore.`,
+            schemaDescription: `Landing page a ${city.name} per campagne Google Ads, Meta Ads ed eventi, con copy, design e tracking orientati ai lead.`
+        },
+        'sito-vetrina': {
+            title: `Sito Vetrina a ${city.name}: sito professionale da ${price} | WebNovis`,
+            description: `Sito vetrina a ${city.name} con design custom, SEO integrata e struttura orientata ai contatti. Da ${price}. Preventivo gratuito entro 24 ore.`,
+            ogDescription: `Sito vetrina a ${city.name} con design custom e SEO integrata. Da ${price}.`,
+            heroTag: `Sito Vetrina · ${city.name} · ${price}`,
+            heroH1: `Sito Vetrina a ${city.name} per aziende che vogliono più richieste`,
+            heroCapsule: `<strong>WebNovis</strong> realizza siti vetrina a ${city.name} con design su misura, SEO tecnica integrata e struttura pensata per facilitare il contatto. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroHighlights: [
+                { label: 'Investimento', value: `Da ${price}` },
+                { label: 'Tempi', value: service.timeEstimate },
+                { label: 'Focus', value: 'Contatti qualificati' }
+            ],
+            sectionTitle: `Siti vetrina a ${city.name} per presentare bene l'offerta e farsi scegliere`,
+            sectionIntro: `Un sito vetrina funziona quando rende chiari posizionamento, servizi e differenze rispetto ai competitor. Strutturiamo pagine, contenuti e CTA per aiutare le aziende di ${city.name} a generare richieste più qualificate.`,
+            ctaTitle: `Vuoi un sito vetrina che faccia percepire meglio il tuo valore a ${city.name}?`,
+            ctaCopy: `Possiamo aiutarti con struttura, copy e UX orientati ai contatti: preventivo gratuito entro 24 ore.`,
+            schemaDescription: `Sito vetrina a ${city.name} con design personalizzato, SEO integrata e architettura orientata ai contatti.`
+        },
+        ecommerce: {
+            title: `E-Commerce a ${city.name}: shop online da ${price} | WebNovis`,
+            description: `E-commerce custom a ${city.name}: catalogo, pagamenti, checkout e SEO tecnica per vendere online senza commissioni piattaforma. Da ${price}.`,
+            ogDescription: `E-commerce custom a ${city.name} per vendere online con catalogo, checkout e SEO tecnica. Da ${price}.`,
+            heroTag: `E-Commerce · ${city.name} · ${price}`,
+            heroH1: `E-Commerce a ${city.name} per vendere online senza vincoli`,
+            heroCapsule: `<strong>WebNovis</strong> sviluppa e-commerce a ${city.name} con catalogo, checkout, pagamenti e SEO tecnica pensati per la vendita online. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroHighlights: [
+                { label: 'Investimento', value: `Da ${price}` },
+                { label: 'Tempi', value: service.timeEstimate },
+                { label: 'Focus', value: 'Vendite online' }
+            ],
+            sectionTitle: `E-commerce a ${city.name} per trasformare catalogo e traffico in ordini`,
+            sectionIntro: `Un negozio online deve essere facile da gestire, veloce da usare e solido lato SEO e checkout. Progettiamo e-commerce pensati per margini, conversione e crescita nel tempo.`,
+            ctaTitle: `Vuoi un e-commerce più credibile e più facile da far crescere a ${city.name}?`,
+            ctaCopy: `Scrivici catalogo, obiettivi e complessità operativa: ti rispondiamo con un perimetro chiaro e un preventivo entro 24 ore.`,
+            schemaDescription: `E-commerce custom a ${city.name} con catalogo, checkout, pagamenti e SEO tecnica per aziende che vogliono vendere online.`
+        },
+        'social-media': {
+            title: `Social Media a ${city.name}: gestione da ${price} | WebNovis`,
+            description: `Gestione social a ${city.name}: piano editoriale, contenuti e campagne Meta per aumentare visibilità, lead e richieste. Da ${price}.`,
+            ogDescription: `Gestione social a ${city.name} con piano editoriale, creatività e campagne Meta. Da ${price}.`,
+            heroTag: `Social Media · ${city.name} · ${price}`,
+            heroH1: `Social Media a ${city.name} per visibilità, contenuti e lead`,
+            heroCapsule: `<strong>WebNovis</strong> segue la gestione social a ${city.name} con piano editoriale, creatività e campagne Meta orientate a risultati misurabili. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroHighlights: [
+                { label: 'Investimento', value: `Da ${price}` },
+                { label: 'Formato', value: 'Contenuti + ads' },
+                { label: 'Metodo', value: 'Report mensili' }
+            ],
+            sectionTitle: `Social media a ${city.name} per smettere di pubblicare senza obiettivo`,
+            sectionIntro: `Costruiamo un piano che collega rubriche, creatività, advertising e KPI commerciali, così i social smettono di essere solo presenza e iniziano a diventare un canale utile.`,
+            ctaTitle: `Vuoi una gestione social più misurabile a ${city.name}?`,
+            ctaCopy: `Possiamo aiutarti a definire format, KPI e frequenza di pubblicazione con un piano operativo chiaro.`,
+            schemaDescription: `Gestione social media a ${city.name} con contenuti, creatività e campagne Meta orientate a visibilità e lead.`
+        },
+        accessibilita: {
+            title: `Accessibilità Web a ${city.name}: audit EAA da ${price} | WebNovis`,
+            description: `Accessibilità web a ${city.name}: audit WCAG, adeguamento EAA e supporto operativo per siti aziendali. Da ${price}. Preventivo in 24 ore.`,
+            ogDescription: `Audit accessibilità e adeguamento EAA/WCAG a ${city.name}. Da ${price}.`,
+            heroTag: `Accessibilità Web · ${city.name} · ${price}`,
+            heroH1: `Accessibilità Web a ${city.name}: audit WCAG e adeguamento EAA`,
+            heroCapsule: `<strong>WebNovis</strong> aiuta aziende e professionisti di ${city.name} con audit accessibilità, remediation tecnica e supporto sull'adeguamento EAA. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroHighlights: [
+                { label: 'Investimento', value: `Da ${price}` },
+                { label: 'Tempi', value: service.timeEstimate },
+                { label: 'Focus', value: 'WCAG + EAA' }
+            ],
+            sectionTitle: `Accessibilità web a ${city.name} per ridurre rischi e blocchi operativi`,
+            sectionIntro: `Lavoriamo su audit, priorità tecniche e adeguamenti concreti. L'obiettivo non è solo la checklist: è rendere il sito più usabile, più chiaro e più allineato alle richieste normative.`,
+            whyCards: [
+                {
+                    title: `${city.distanzaSede} dalla tua sede`,
+                    text: `Siamo a Rho, quindi possiamo lavorare rapidamente con team interni, referenti IT o fornitori già coinvolti.`
+                },
+                {
+                    title: 'Audit + remediation',
+                    text: `Individuiamo criticità reali e ti aiutiamo a tradurle in interventi tecnici e contenutistici prioritizzati.`
+                },
+                {
+                    title: 'Supporto operativo',
+                    text: `Ti accompagniamo tra verifiche, adeguamento e monitoraggio, senza lasciarti con un report non eseguibile.`
+                }
+            ],
+            ctaTitle: `Hai bisogno di capire se il tuo sito è davvero conforme a ${city.name}?`,
+            ctaCopy: `Mandaci URL e contesto: ti aiutiamo a definire priorità tecniche e perimetro di adeguamento.`,
+            schemaDescription: `Audit accessibilità e adeguamento EAA/WCAG a ${city.name} per siti aziendali e professionali.`
+        },
+        'seo-locale': {
+            title: `SEO Locale a ${city.name}: Google Maps da ${price} | WebNovis`,
+            description: `SEO locale a ${city.name}: Google Business Profile, pagine locali e ottimizzazione on-page per farti trovare su Maps e ricerche ad alta intenzione. Da ${price}.`,
+            ogDescription: `SEO locale a ${city.name} per Google Maps e ricerche ad alta intenzione. Da ${price}.`,
+            heroTag: `SEO Locale · ${city.name} · ${price}`,
+            heroH1: `SEO Locale a ${city.name} per farti trovare su Google Maps`,
+            heroCapsule: `<strong>WebNovis</strong> aiuta attività e professionisti di ${city.name} a comparire meglio su Google Maps e nelle ricerche locali che portano chiamate, richieste e visite in sede. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroHighlights: [
+                { label: 'Investimento', value: `Da ${price}` },
+                { label: 'Leve', value: 'Maps + on-page' },
+                { label: 'Metodo', value: 'Report mensili' }
+            ],
+            sectionTitle: `SEO locale a ${city.name} per intercettare ricerche con intento di contatto`,
+            sectionIntro: `Lavoriamo su Google Business Profile, struttura locale delle pagine e ottimizzazione on-page per aumentare la visibilità sulle ricerche che contano davvero per chi opera sul territorio.`,
+            ctaTitle: `Vuoi più richieste da Google Maps a ${city.name}?`,
+            ctaCopy: `Possiamo partire con un audit locale e un piano operativo chiaro per query, pagine e profilo aziendale.`,
+            schemaDescription: `SEO locale a ${city.name} con ottimizzazione Google Business Profile, pagine locali e attività on-page per ricerche ad alta intenzione.`
+        },
+        'email-marketing': {
+            title: `Email Marketing a ${city.name}: automazioni da ${price} | WebNovis`,
+            description: `Email marketing a ${city.name} per newsletter, automazioni e recupero clienti. Strategia, copy e setup operativo da ${price}.`,
+            ogDescription: `Email marketing a ${city.name} con newsletter e automazioni per fidelizzazione e vendita. Da ${price}.`,
+            heroTag: `Email Marketing · ${city.name} · ${price}`,
+            heroH1: `Email Marketing a ${city.name} per newsletter e automazioni che vendono`,
+            heroCapsule: `<strong>WebNovis</strong> imposta email marketing a ${city.name} con newsletter, automazioni e flussi di recupero pensati per aumentare riacquisti e richieste. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroHighlights: [
+                { label: 'Investimento', value: `Da ${price}` },
+                { label: 'Leve', value: 'Newsletter + flow' },
+                { label: 'Focus', value: 'Fidelizzazione' }
+            ],
+            sectionTitle: `Email marketing a ${city.name} per non lasciare clienti e lead inattivi`,
+            sectionIntro: `Newsletter e automazioni funzionano quando segmentazione, offerta e frequenza sono coerenti. Ti aiutiamo a trasformare liste dormienti in un canale che riattiva clienti e opportunità.`,
+            ctaTitle: `Vuoi usare newsletter e automazioni in modo più strategico a ${city.name}?`,
+            ctaCopy: `Raccontaci database, obiettivi e stack attuale: ti proponiamo il setup più utile da cui partire.`,
+            schemaDescription: `Email marketing a ${city.name} con newsletter, automazioni e flussi di recupero per fidelizzazione e vendita.`
+        }
+    };
+
+    return { ...fallback, ...(overrides[service.slug] || {}) };
+}
+
+function getRealizzazioneSeoCopy(city) {
+    return {
+        title: `Siti Web a ${city.name}: da €1.200, SEO integrata | WebNovis`,
+        description: `Realizzazione siti web a ${city.name} per PMI e professionisti: landing da €500, siti vetrina da €1.200, e-commerce da €3.500. Preventivo gratuito entro 24 ore.`,
+        ogTitle: `Realizzazione Siti Web a ${city.name}: preventivo in 24 ore | WebNovis`,
+        ogDescription: `Siti web custom a ${city.name} con SEO tecnica integrata, design orientato ai contatti e gestione diretta da Rho (${city.distanzaSede}).`,
+        heroTag: `Siti Web ${city.name} · preventivo in 24 ore`,
+        heroH1: `Realizzazione Siti Web a ${city.name} per PMI e professionisti`,
+        heroCapsule: `Cerchi una <strong>web agency a ${city.name}</strong> per creare un sito che trasmetta valore e porti richieste concrete? WebNovis realizza landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con <strong>codice 100% custom</strong>, SEO tecnica integrata e gestione diretta da Rho (${city.distanzaSede}).`
+    };
+}
+
 // ─── Schema Generation ───────────────────────────────────────────────────────
 
 function generateSchemas(city, pageType) {
@@ -174,9 +500,31 @@ function generateSchemas(city, pageType) {
         ? `agenzia-web-${city.slug}.html`
         : `realizzazione-siti-web-${city.slug}.html`;
     const canonical = `${SITE}/${slug}`;
-    const breadcrumbLabel = pageType === 'agenzia'
+    const isAgenziaPage = pageType === 'agenzia';
+    const breadcrumbLabel = isAgenziaPage
         ? `Agenzia Web ${city.name}`
         : `Realizzazione Siti Web a ${city.name}`;
+    const hubCrumb = isAgenziaPage
+        ? { name: 'Agenzia Web', item: `${SITE}/agenzia-web/` }
+        : { name: 'Siti Web per Comuni', item: `${SITE}/realizzazione-siti-web/` };
+    const webPageDescription = isAgenziaPage
+        ? `WebNovis è l'agenzia web per ${city.name} e hinterland milanese. Siti 100% custom, graphic design, social media. Sede a Rho, ${city.distanzaSede} da ${city.name}.`
+        : `Realizzazione siti web a ${city.name} per PMI e professionisti: landing page, siti vetrina ed e-commerce custom con SEO tecnica integrata e gestione diretta da Rho (${city.distanzaSede}).`;
+    const localBusinessName = isAgenziaPage
+        ? `WebNovis — Agenzia Web ${city.name}`
+        : `WebNovis — Realizzazione Siti Web ${city.name}`;
+    const localBusinessDescription = isAgenziaPage
+        ? `Agenzia web per ${city.name} e hinterland milanese specializzata in siti web 100% custom, graphic design e social media marketing. Sede a Rho (MI), ${city.distanzaSede} da ${city.name}.`
+        : `Realizzazione siti web a ${city.name} per PMI e professionisti con codice 100% custom, SEO tecnica integrata e design orientato ai contatti. Sede a Rho (MI), ${city.distanzaSede} da ${city.name}.`;
+    const offerCatalogName = isAgenziaPage
+        ? `Servizi Web a ${city.name}`
+        : `Servizi di Realizzazione Siti Web a ${city.name}`;
+    const serviceName = isAgenziaPage
+        ? `Sviluppo Siti Web a ${city.name}`
+        : `Realizzazione Siti Web a ${city.name}`;
+    const serviceDescription = isAgenziaPage
+        ? `Realizzazione siti web 100% custom per aziende di ${city.name} e comuni limitrofi.`
+        : `Realizzazione siti web 100% custom per aziende e professionisti di ${city.name}, con landing page, siti vetrina ed e-commerce orientati ai contatti.`;
 
     // Build areaServed from nearCities
     const nearCityObjects = (city.nearCities || []).map(ncSlug => {
@@ -199,7 +547,7 @@ function generateSchemas(city, pageType) {
             "@context": "https://schema.org", "@type": "BreadcrumbList",
             "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
-                { "@type": "ListItem", "position": 2, "name": "Agenzia Web", "item": SITE + "/agenzia-web/" },
+                { "@type": "ListItem", "position": 2, "name": hubCrumb.name, "item": hubCrumb.item },
                 { "@type": "ListItem", "position": 3, "name": breadcrumbLabel, "item": canonical }
             ]
         },
@@ -208,7 +556,7 @@ function generateSchemas(city, pageType) {
             "@context": "https://schema.org", "@type": "WebPage",
             "@id": canonical,
             "name": breadcrumbLabel + " — WebNovis",
-            "description": `WebNovis è l'agenzia web per ${city.name} e hinterland milanese. Siti 100% custom, graphic design, social media. Sede a Rho, ${city.distanzaSede} da ${city.name}.`,
+            "description": webPageDescription,
             "url": canonical,
             "inLanguage": "it",
             "isPartOf": { "@id": SITE + "/#website" },
@@ -225,11 +573,11 @@ function generateSchemas(city, pageType) {
             "@context": "https://schema.org",
             "@type": ["LocalBusiness", "ProfessionalService"],
             "@id": canonical + "#localbusiness-" + city.slug,
-            "name": "WebNovis — Agenzia Web " + city.name,
+            "name": localBusinessName,
             "alternateName": "Web Novis " + city.name,
             "url": canonical,
             "parentOrganization": { "@id": SITE + "/#organization" },
-            "description": `Agenzia web per ${city.name} e hinterland milanese specializzata in siti web 100% custom, graphic design e social media marketing. Sede a Rho (MI), ${city.distanzaSede} da ${city.name}.`,
+            "description": localBusinessDescription,
             "telephone": "+393802647367",
             "email": "hello@webnovis.com",
             "priceRange": "€€",
@@ -256,7 +604,7 @@ function generateSchemas(city, pageType) {
             "sameAs": [SITE + "/#organization"],
             "hasOfferCatalog": {
                 "@type": "OfferCatalog",
-                "name": "Servizi Web a " + city.name,
+                "name": offerCatalogName,
                 "itemListElement": services.map(svc => ({
                     "@type": "Offer",
                     "itemOffered": {
@@ -272,8 +620,8 @@ function generateSchemas(city, pageType) {
             "@context": "https://schema.org", "@type": "Service",
             "@id": canonical + "#service",
             "serviceType": "Web Development",
-            "name": "Sviluppo Siti Web a " + city.name,
-            "description": `Realizzazione siti web 100% custom per aziende di ${city.name} e comuni limitrofi.`,
+            "name": serviceName,
+            "description": serviceDescription,
             "provider": { "@id": SITE + "/#organization" },
             "areaServed": nearCityObjects.slice(0, 6),
             "offers": [
@@ -305,21 +653,71 @@ function stripJsonLdFromHead(headHtml) {
         .replace(/\n{3,}/g, '\n\n');
 }
 
-function updateDerivedHeadMeta(headHtml, meta) {
-    let updated = stripJsonLdFromHead(headHtml)
-        .replace(/<title>[^<]+<\/title>/, `<title>${meta.title}</title>`)
-        .replace(/content="[^"]*" name="description"/, `content="${meta.description}" name="description"`)
-        .replace(/href="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `href="${meta.canonical}"`)
-        .replace(/content="https:\/\/www\.webnovis\.com\/agenzia-web-rho\.html"/g, `content="${meta.canonical}"`)
-        .replace(/content="[^"]*" property="og:title"/, `content="${meta.ogTitle || meta.title}" property="og:title"`)
-        .replace(/content="[^"]*" property="og:description"/, `content="${meta.ogDescription || meta.description}" property="og:description"`)
-        .replace(/content="[^"]*" name="twitter:title"/, `content="${meta.twitterTitle || meta.ogTitle || meta.title}" name="twitter:title"`)
-        .replace(/content="[^"]*" property="twitter:title"/, `content="${meta.twitterTitle || meta.ogTitle || meta.title}" property="twitter:title"`)
-        .replace(/content="[^"]*" name="twitter:description"/, `content="${meta.twitterDescription || meta.ogDescription || meta.description}" name="twitter:description"`)
-        .replace(/content="[^"]*" property="twitter:description"/, `content="${meta.twitterDescription || meta.ogDescription || meta.description}" property="twitter:description"`);
+function replaceMetaTagContent(html, attrName, attrValue, content) {
+    const escapedAttrValue = escapeRegex(attrValue);
+    const escapedContent = escapeHtmlAttr(content);
+    let updated = html.replace(
+        new RegExp(`(<meta\\b[^>]*\\b${attrName}="${escapedAttrValue}"[^>]*\\bcontent=")[^"]*("[^>]*>)`, 'i'),
+        `$1${escapedContent}$2`
+    );
+
+    if (updated !== html) return updated;
+
+    updated = html.replace(
+        new RegExp(`(<meta\\b[^>]*\\bcontent=")[^"]*("[^>]*\\b${attrName}="${escapedAttrValue}"[^>]*>)`, 'i'),
+        `$1${escapedContent}$2`
+    );
+
+    return updated;
+}
+
+function replaceLinkHref(html, attrName, attrValue, href) {
+    const escapedAttrValue = escapeRegex(attrValue);
+    let updated = html.replace(
+        new RegExp(`(<link\\b[^>]*\\b${attrName}=(["'])${escapedAttrValue}\\2[^>]*\\bhref=(["']))[^"']*(\\3[^>]*>)`, 'i'),
+        `$1${href}$4`
+    );
+
+    if (updated !== html) return updated;
+
+    updated = html.replace(
+        new RegExp(`(<link\\b[^>]*\\bhref=(["']))[^"']*(\\2[^>]*\\b${attrName}=(["'])${escapedAttrValue}\\4[^>]*>)`, 'i'),
+        `$1${href}$3`
+    );
+
+    return updated;
+}
+
+function ensureSelfHreflang(headHtml, canonical) {
+    const hreflangTag = `<link rel="alternate" hreflang="it-IT" href="${canonical}">`;
+    const withoutExisting = headHtml.replace(/\s*<link\b[^>]*\bhreflang=["']it-IT["'][^>]*>/gi, '');
+
+    if (/<link\b[^>]*rel=["']canonical["'][^>]*>/i.test(withoutExisting)) {
+        return withoutExisting.replace(/(<link\b[^>]*rel=["']canonical["'][^>]*>)/i, `$1 ${hreflangTag}`);
+    }
+
+    return withoutExisting.replace(/<\/head>/i, `${hreflangTag}</head>`);
+}
+
+function updateDerivedHeadMeta(headHtml, meta, options = {}) {
+    const { stripJsonLd = true } = options;
+    let updated = (stripJsonLd ? stripJsonLdFromHead(headHtml) : headHtml)
+        .replace(/<title>[\s\S]*?<\/title>/i, `<title>${meta.title}</title>`);
+
+    updated = replaceMetaTagContent(updated, 'name', 'description', meta.description);
+    updated = replaceMetaTagContent(updated, 'property', 'og:url', meta.canonical);
+    updated = replaceMetaTagContent(updated, 'property', 'og:title', meta.ogTitle || meta.title);
+    updated = replaceMetaTagContent(updated, 'property', 'og:description', meta.ogDescription || meta.description);
+    updated = replaceMetaTagContent(updated, 'name', 'twitter:title', meta.twitterTitle || meta.ogTitle || meta.title);
+    updated = replaceMetaTagContent(updated, 'property', 'twitter:title', meta.twitterTitle || meta.ogTitle || meta.title);
+    updated = replaceMetaTagContent(updated, 'name', 'twitter:description', meta.twitterDescription || meta.ogDescription || meta.description);
+    updated = replaceMetaTagContent(updated, 'property', 'twitter:description', meta.twitterDescription || meta.ogDescription || meta.description);
+    updated = replaceMetaTagContent(updated, 'name', 'robots', meta.robots || buildRobotsContent(new URL(meta.canonical).pathname));
+    updated = replaceLinkHref(updated, 'rel', 'canonical', meta.canonical);
+    updated = ensureSelfHreflang(updated, meta.canonical);
 
     if (meta.keywords) {
-        updated = updated.replace(/content="[^"]*" name="keywords"/, `content="${meta.keywords}" name="keywords"`);
+        updated = replaceMetaTagContent(updated, 'name', 'keywords', meta.keywords);
     }
 
     return updated;
@@ -425,6 +823,7 @@ function generateAgenziaPage(city) {
         description: `Agenzia web per ${city.name}: siti 100% custom, grafica e social. Sede a Rho, ${city.distanzaSede}. Preventivo gratuito 24h.`,
         keywords: `agenzia web ${city.name}, web agency ${city.name} Milano, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}`,
         canonical,
+        robots: buildRobotsContent(`/agenzia-web-${city.slug}.html`),
         ogTitle: `Agenzia Web a ${city.name} — WebNovis | Siti Web Custom e Digital Marketing`,
         ogDescription: `WebNovis è l'agenzia web per ${city.name} e hinterland milanese. Siti 100% custom, grafica e social. Sede a Rho, ${city.distanzaSede}. Preventivo gratuito.`
     });
@@ -469,42 +868,36 @@ function generateRealizzazionePage(city) {
     let page = basePage;
 
     const canonical = `${SITE}/realizzazione-siti-web-${city.slug}.html`;
+    const realizzazioneSeo = getRealizzazioneSeoCopy(city);
+    const headEnd = page.indexOf('</head>');
 
-    // Title and meta
-    page = page.replace(/Creazione Siti Web a Rho \| Web Agency Locale — WebNovis/g,
-        `Creazione Siti Web a ${city.name} | Web Agency Locale — WebNovis`);
+    if (headEnd > 0) {
+        const updatedHead = updateDerivedHeadMeta(page.substring(0, headEnd), {
+            title: realizzazioneSeo.title,
+            description: realizzazioneSeo.description,
+            keywords: `realizzazione siti web ${city.slug.replace(/-/g, ' ')}, siti web ${city.name.toLowerCase()}, landing page ${city.name.toLowerCase()}, e-commerce ${city.name.toLowerCase()}, web agency ${city.name.toLowerCase()}, sviluppo siti web ${city.name.toLowerCase()}`,
+            canonical,
+            robots: buildRobotsContent(`/realizzazione-siti-web-${city.slug}.html`),
+            ogTitle: realizzazioneSeo.ogTitle,
+            ogDescription: realizzazioneSeo.ogDescription,
+            twitterTitle: realizzazioneSeo.ogTitle,
+            twitterDescription: realizzazioneSeo.ogDescription
+        });
+        page = updatedHead + page.substring(headEnd);
+    }
+
     page = page.replace(/realizzazione siti web a Rho/gi, `realizzazione siti web a ${city.name}`);
     page = page.replace(/creazione di siti web a Rho/gi, `creazione di siti web a ${city.name}`);
     page = page.replace(/realizzazione-siti-web-rho\.html/g, `realizzazione-siti-web-${city.slug}.html`);
-
-    // Meta description
-    page = page.replace(/Cerchi un partner per la creazione di siti web a Rho\?[^"]+/,
-        `Cerchi un partner per la creazione di siti web a ${city.name}? WebNovis realizza siti professionali, veloci e ottimizzati SEO per aziende e professionisti di ${city.name} e hinterland milanese. Preventivo gratuito in 24h →`);
-
-    // Keywords
-    page = page.replace(/realizzazione siti web rho, creazione siti web rho, siti web rho, web agency rho, siti internet rho, agenzia web rho, sviluppo siti web rho, siti web professionali rho Milano/,
-        `realizzazione siti web ${city.slug.replace(/-/g, ' ')}, creazione siti web ${city.name.toLowerCase()}, siti web ${city.name.toLowerCase()}, web agency ${city.name.toLowerCase()}, siti internet ${city.name.toLowerCase()}, agenzia web ${city.name.toLowerCase()}, sviluppo siti web ${city.name.toLowerCase()}, siti web professionali ${city.name.toLowerCase()} Milano`);
-
-    // OG tags
-    page = page.replace(/Creazione Siti Web a Rho — Web Agency Locale per PMI e Professionisti/g,
-        `Creazione Siti Web a ${city.name} — Web Agency Locale per PMI e Professionisti`);
-    page = page.replace(/WebNovis realizza siti web professionali a Rho: codice 100% custom, SEO integrata, design premium\. Il partner digitale dell'hinterland milanese\./g,
-        `WebNovis realizza siti web professionali a ${city.name}: codice 100% custom, SEO integrata, design premium. Il partner digitale dell'hinterland milanese.`);
-    page = page.replace(/WebNovis realizza siti web professionali a Rho: codice 100% custom, SEO integrata, design premium\. Partner digitale dell'hinterland milanese\./g,
-        `WebNovis realizza siti web professionali a ${city.name}: codice 100% custom, SEO integrata, design premium. Partner digitale dell'hinterland milanese.`);
-    page = page.replace(/Siti professionali, veloci e ottimizzati SEO per aziende di Rho e hinterland milanese/,
-        `Siti professionali, veloci e ottimizzati SEO per aziende di ${city.name} e hinterland milanese`);
 
     // Breadcrumb
     page = page.replace(/Realizzazione Siti Web a Rho<\/span>/g, `Realizzazione Siti Web a ${city.name}</span>`);
     page = page.replace(/"name": "Realizzazione Siti Web a Rho"/g, `"name": "Realizzazione Siti Web a ${city.name}"`);
 
     // Hero
-    page = page.replace(/Web Agency Rho — Aggiornato 2026/, `Web Agency ${city.name} — Aggiornato 2026`);
-    page = page.replace(/Realizzazione Siti Web a Rho — Il Tuo Partner Digitale Locale/,
-        `Realizzazione Siti Web a ${city.name} — Il Tuo Partner Digitale Locale`);
-    page = page.replace(/Cerchi una <strong>web agency a Rho<\/strong> per creare un sito web professionale[^<]+/,
-        `Cerchi una <strong>web agency a ${city.name}</strong> per creare un sito web professionale che porti risultati concreti? WebNovis è il partner digitale dell'hinterland milanese: sviluppiamo siti su misura con <strong>codice 100% custom</strong>, design premium e SEO locale integrata. Dal brief alla messa online, un unico interlocutore dedicato.`);
+    page = page.replace(/<span class="section-tag">[\s\S]*?<\/span>/, `<span class="section-tag">${realizzazioneSeo.heroTag}</span>`);
+    page = page.replace(/<h1>[\s\S]*?<\/h1>/, `<h1>${realizzazioneSeo.heroH1}</h1>`);
+    page = page.replace(/<p class="answer-capsule">[\s\S]*?<\/p>/, `<p class="answer-capsule">${realizzazioneSeo.heroCapsule}</p>`);
     page = page.replace(/Rho, Milano \(MI\) 20017/, `${city.name}, Milano (MI) ${city.cap}`);
 
     // Schema LocalBusiness
@@ -544,15 +937,13 @@ function generateRealizzazionePage(city) {
         page = page.replace(
             /Img\/rho-fiera-milano-sm\.webp 320w, Img\/rho-fiera-milano\.webp 600w/,
             `Img/${city.images.img1.file}-sm.webp 320w, Img/${city.images.img1.file}.webp 600w`);
-        page = page.replace(
-            /src="Img\/rho-fiera-milano\.png" alt="[^"]+"/,
-            `src="Img/${city.images.img1.file}.png" alt="${city.images.img1.alt}"`);
+        page = page.replace(/src="Img\/rho-fiera-milano\.png"/, `src="Img/${city.images.img1.file}.png"`);
+        page = page.replace(/alt="Vista panoramica di Rho e del polo fieristico di Fiera Milano"/, `alt="${escapeHtmlAttr(city.images.img1.alt)}"`);
         page = page.replace(
             /Img\/rho-digital-ecosystem-sm\.webp 320w, Img\/rho-digital-ecosystem\.webp 600w/,
             `Img/${city.images.img2.file}-sm.webp 320w, Img/${city.images.img2.file}.webp 600w`);
-        page = page.replace(
-            /src="Img\/rho-digital-ecosystem\.png" alt="[^"]+"/,
-            `src="Img/${city.images.img2.file}.png" alt="${city.images.img2.alt}"`);
+        page = page.replace(/src="Img\/rho-digital-ecosystem\.png"/, `src="Img/${city.images.img2.file}.png"`);
+        page = page.replace(/alt="Ecosistema digitale integrato: sito web, SEO, social media e analytics per aziende di Rho"/, `alt="${escapeHtmlAttr(city.images.img2.alt)}"`);
     }
 
     // Market intro — inject unique local context (AI-enriched when available)
@@ -570,6 +961,10 @@ function generateRealizzazionePage(city) {
                 <p>La differenza tra un sito che "c'è" e un sito che <strong>lavora per te 24/7</strong> sta nella qualità dell'agenzia che lo realizza: strategia, codice, design e SEO devono essere eccellenti, non "sufficienti".</p>`
         );
     }
+    page = page.replace(
+        /(<p>La differenza tra un sito che "c'è" e un sito che <strong>lavora per te 24\/7<\/strong> sta nella qualità dell'agenzia che lo realizza: strategia, codice, design e SEO devono essere eccellenti, non "sufficienti"\.<\/p>)\s*\1/,
+        '$1'
+    );
 
     // Areas served
     const nearNames = (city.nearCities || []).map(ncSlug => {
@@ -598,6 +993,12 @@ function generateRealizzazionePage(city) {
     const geoLinksHtml = buildGeoLinksSection(city, 'realizzazione');
     page = page.replace('</main>', aiExtraHtml + geoLinksHtml + '</main>');
 
+    const schemasHtml = generateSchemas(city, 'realizzazione')
+        .filter((schema) => schema['@type'] !== 'FAQPage')
+        .map((schema) => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
+        .join('\n');
+    page = page.replace(/<\/footer>/i, `</footer>\n${schemasHtml}`);
+
     return page;
 }
 
@@ -609,6 +1010,8 @@ function generateServizioCittaPage(service, city) {
 
     const slug = `${service.slug}-${city.slug}`;
     const canonical = `${SITE}/${slug}.html`;
+    const seo = getServiceLocalSeoCopy(service, city);
+    const servicePrimaryUrl = `${SITE}${getServicePrimaryUrl(service)}`;
 
     // Nearest cities that also have this service×city page
     const nearest = getNearestCities(city, cities, 5);
@@ -647,6 +1050,7 @@ function generateServizioCittaPage(service, city) {
     const templateData = {
         city: city,
         service: service,
+        seo: seo,
         nearCitiesData: (city.nearCities || []).slice(0, 5).map(ncSlug => {
             const nc = cityMap.get(ncSlug);
             return nc ? { name: nc.name } : { name: ncSlug };
@@ -667,12 +1071,13 @@ function generateServizioCittaPage(service, city) {
     const rhoHeadEnd = rhoPage.indexOf('</head>');
 
     let headBlock = updateDerivedHeadMeta(rhoPage.substring(0, rhoHeadEnd), {
-        title: `${service.name} a ${city.name} — WebNovis | ${service.idealFor}`,
-        description: `${service.shortDesc} A ${city.name}, da €${service.priceFrom}${service.priceUnit || ''}. Sede a Rho, ${city.distanzaSede}.`,
+        title: seo.title,
+        description: seo.description,
         keywords: `${service.targetKeyword} ${city.name}, ${service.slug.replace(/-/g, ' ')} ${city.name}, WebNovis ${city.name}`,
         canonical,
-        ogTitle: `${service.name} a ${city.name} — WebNovis`,
-        ogDescription: `${service.shortDesc} Da €${service.priceFrom}${service.priceUnit || ''}. Sede a Rho, ${city.distanzaSede}.`
+        robots: buildRobotsContent(`/${slug}.html`),
+        ogTitle: seo.title,
+        ogDescription: seo.ogDescription
     });
     const bodyStart = rhoPage.indexOf('<body>');
     const mainStart = rhoPage.indexOf('<main');
@@ -696,19 +1101,79 @@ function generateServizioCittaPage(service, city) {
             ]
         },
         {
-            "@context": "https://schema.org", "@type": "Service",
-            "serviceType": service.name, "name": `${service.name} a ${city.name}`,
-            "description": `${service.shortDesc} Per aziende di ${city.name} e hinterland milanese.`,
-            "provider": { "@id": SITE + "/#organization" },
-            "areaServed": { "@type": "City", "name": city.name, "sameAs": city.wikipedia },
-            "offers": { "@type": "Offer", "price": String(service.priceFrom), "priceCurrency": "EUR" }
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": canonical,
+            "name": seo.heroH1,
+            "description": seo.description,
+            "url": canonical,
+            "inLanguage": "it",
+            "isPartOf": { "@id": SITE + "/#website" },
+            "about": { "@id": canonical + "#localbusiness" },
+            "datePublished": FIRST_DEPLOY_DATE,
+            "dateModified": TODAY
         },
         {
-            "@context": "https://schema.org", "@type": "FAQPage",
-            "mainEntity": faqs.map(f => ({
-                "@type": "Question", "name": f.q,
-                "acceptedAnswer": { "@type": "Answer", "text": f.a.replace(/<[^>]*>/g, '') }
-            }))
+            "@context": "https://schema.org",
+            "@type": ["LocalBusiness", "ProfessionalService"],
+            "@id": canonical + "#localbusiness",
+            "name": `WebNovis — ${service.shortName} a ${city.name}`,
+            "url": canonical,
+            "parentOrganization": { "@id": SITE + "/#organization" },
+            "description": seo.schemaDescription,
+            "telephone": "+393802647367",
+            "email": "hello@webnovis.com",
+            "priceRange": "€€",
+            "currenciesAccepted": "EUR",
+            "address": {
+                "@type": "PostalAddress",
+                "@id": SITE + "/#address",
+                "streetAddress": "Via S. Giorgio, 2",
+                "addressLocality": "Rho",
+                "addressRegion": "MI",
+                "postalCode": "20017",
+                "addressCountry": "IT"
+            },
+            "geo": { "@type": "GeoCoordinates", "latitude": SEDE_LAT, "longitude": SEDE_LNG },
+            "areaServed": [
+                { "@type": "City", "name": city.name, "sameAs": city.wikipedia },
+                ...nearest.slice(0, 3).map((nearCity) => ({
+                    "@type": "City",
+                    "name": nearCity.name,
+                    "sameAs": nearCity.wikipedia
+                }))
+            ],
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": `${service.shortName} per ${city.name}`,
+                "itemListElement": [{
+                    "@type": "Offer",
+                    "url": canonical,
+                    "price": String(service.priceFrom),
+                    "priceCurrency": "EUR",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": `${service.shortName} a ${city.name}`,
+                        "url": servicePrimaryUrl
+                    }
+                }]
+            }
+        },
+        {
+            "@context": "https://schema.org", "@type": "Service",
+            "@id": canonical + "#service",
+            "serviceType": service.name,
+            "name": `${service.shortName} a ${city.name}`,
+            "description": seo.schemaDescription,
+            "provider": { "@id": canonical + "#localbusiness" },
+            "areaServed": { "@type": "City", "name": city.name, "sameAs": city.wikipedia },
+            "url": canonical,
+            "offers": {
+                "@type": "Offer",
+                "url": canonical,
+                "price": String(service.priceFrom),
+                "priceCurrency": "EUR"
+            }
         }
     ];
     const schemasHtml = schemas.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n');
@@ -1077,7 +1542,14 @@ function main() {
     console.log('══════════════════════════════════════════════════════');
     console.log(`  Cities: ${cities.length} | Services: ${services.length}`);
     console.log(`  Type: ${GEN_TYPE} | Dry run: ${DRY_RUN} | Validate only: ${VALIDATE_ONLY}`);
-    console.log(`  Date: ${TODAY}\n`);
+    console.log(`  Date: ${TODAY}`);
+    if (TARGET_CITY_SLUGS.size > 0) {
+        console.log(`  City filter: ${Array.from(TARGET_CITY_SLUGS).join(', ')}`);
+    }
+    if (TARGET_SERVICE_SLUGS.size > 0) {
+        console.log(`  Service filter: ${Array.from(TARGET_SERVICE_SLUGS).join(', ')}`);
+    }
+    console.log('');
 
     const results = { agenzia: [], realizzazione: [], servizio: [], hubs: [], validations: [] };
     let generated = 0;
@@ -1089,6 +1561,7 @@ function main() {
         for (const city of cities) {
             if (!city.generate.agenzia) { skipped++; continue; }
             if (city.slug === 'rho') { skipped++; continue; } // Rho is the hand-crafted base
+            if (!matchesTargetCity(city)) { skipped++; continue; }
 
             const html = generateAgenziaPage(city);
             if (!html) { console.error(`  ❌ Failed: agenzia-web-${city.slug}.html`); continue; }
@@ -1120,6 +1593,7 @@ function main() {
         for (const city of cities) {
             if (!city.generate.realizzazione) { skipped++; continue; }
             if (city.slug === 'rho') { skipped++; continue; } // Rho is the hand-crafted base
+            if (!matchesTargetCity(city)) { skipped++; continue; }
 
             const html = generateRealizzazionePage(city);
             if (!html) { console.error(`  ❌ Failed: realizzazione-siti-web-${city.slug}.html`); continue; }
@@ -1147,8 +1621,8 @@ function main() {
 
     // Generate servizio×città pages (third page type — the combinatorial matrix)
     if (GEN_TYPE === 'all' || GEN_TYPE === 'servizio') {
-        const geoEligibleServices = services.filter(s => s.generateGeoPages !== false);
-        const eligibleCities = cities.filter(c => c.population >= 15000 && c.slug !== 'rho');
+        const geoEligibleServices = services.filter(s => s.generateGeoPages !== false && matchesTargetService(s));
+        const eligibleCities = cities.filter(c => c.population >= 15000 && c.slug !== 'rho' && matchesTargetCity(c));
         console.log(`\n─── Generating servizio×città pages (${geoEligibleServices.length} services × ${eligibleCities.length} cities) ───`);
 
         for (const service of geoEligibleServices) {

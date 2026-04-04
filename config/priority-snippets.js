@@ -12,8 +12,28 @@ module.exports = {
     description: 'Guida pratica 2026 sugli obblighi di accessibilità per siti web aziendali in Italia: soglie, scadenze, adempimenti e rischi da verificare.'
   },
   'blog/google-search-console-guida.html': {
-    title: 'Google Search Console 2026: Guida Pratica | WebNovis',
-    description: 'Guida pratica 2026 a Google Search Console: configurazione, report, impressioni, clic, indicizzazione e controlli da fare ogni settimana.'
+    title: 'Google Search Console 2026: Guida per Query, CTR e Indicizzazione | WebNovis',
+    description: 'Guida pratica 2026 a Google Search Console: query, impressioni, CTR, indicizzazione e controlli settimanali per capire cosa migliorare davvero.'
+  },
+  'blog/quanto-costa-gestione-social-media.html': {
+    title: 'Quanto Costa Gestire i Social nel 2026? Prezzi Agenzia e Freelance | WebNovis',
+    description: 'Prezzi reali 2026 per gestione social media: freelance, agenzia, contenuti, advertising e range mensili per PMI. Checklist per evitare preventivi confusi.'
+  },
+  'blog/quanto-costa-campagna-facebook-ads.html': {
+    title: 'Quanto Costa una Campagna Facebook Ads nel 2026? Budget e CPM | WebNovis',
+    description: 'Budget minimo, costi di gestione, CPM, CPC e range realistici 2026 per Meta Ads. Guida pratica per PMI, lead generation e campagne locali.'
+  },
+  'blog/quanto-costa-un-ecommerce.html': {
+    title: 'Quanto Costa un E-Commerce nel 2026? Prezzi, Shopify o Custom | WebNovis',
+    description: 'Prezzi reali 2026 per aprire un e-commerce: Shopify, WooCommerce o custom, costi nascosti, tempi e ROI per PMI e negozi che vogliono vendere online.'
+  },
+  'blog/instagram-algoritmo-2026.html': {
+    title: 'Algoritmo Instagram 2026: Come Aumentare Reach e Lead | WebNovis',
+    description: 'Guida 2026 per PMI: come funziona l’algoritmo Instagram, cosa premia davvero e quali contenuti aumentano reach, salvataggi e contatti.'
+  },
+  'blog/dati-obbligatori-sito-web-aziendale.html': {
+    title: 'Dati Obbligatori Sito Web Aziendale: Checklist 2026 | WebNovis',
+    description: 'Checklist 2026 dei dati obbligatori per sito aziendale: partita IVA, REA, PEC, privacy, cookie e note legali da verificare subito.'
   },
   'blog/javascript-performance-ottimizzare.html': {
     title: 'JavaScript Performance 2026: Come Ottimizzare | WebNovis',
