@@ -95,6 +95,7 @@ function initMorphingText() {
     if (!texts || texts.length < 2) return;
 
     var currentIndex = 0;
+    var resizeRaf = null;
 
     /* Hidden element to measure text widths accurately */
     var measurer = document.createElement('span');
@@ -104,15 +105,7 @@ function initMorphingText() {
 
     function measureText(str) {
         measurer.textContent = str;
-        return measurer.offsetWidth;
-    }
-
-    function getStableWidth() {
-        var maxWidth = 0;
-        for (var i = 0; i < texts.length; i++) {
-            maxWidth = Math.max(maxWidth, measureText(texts[i]));
-        }
-        return maxWidth;
+        return Math.ceil(measurer.offsetWidth) + 1;
     }
 
     /* Create two overlapping elements for cross-fade morph */
@@ -125,12 +118,25 @@ function initMorphingText() {
     container.appendChild(elA);
     container.appendChild(elB);
 
-    /* Stabilize width once to avoid CLS while words rotate */
-    var stableWidth = getStableWidth();
-    if (stableWidth > 0) {
-        container.style.width = stableWidth + 'px';
-        container.style.minWidth = stableWidth + 'px';
+    function applyWidth(index, immediate) {
+        var width = measureText(texts[index]);
+        if (!width) return;
+
+        if (immediate) {
+            var previousTransition = container.style.transition;
+            container.style.transition = 'none';
+            container.style.width = width + 'px';
+            container.style.minWidth = '0px';
+            container.offsetWidth;
+            container.style.transition = previousTransition || '';
+            return;
+        }
+
+        container.style.width = width + 'px';
+        container.style.minWidth = '0px';
     }
+
+    applyWidth(currentIndex, true);
 
     function morphNext() {
         currentIndex = (currentIndex + 1) % texts.length;
@@ -140,6 +146,7 @@ function initMorphingText() {
         var inactive = (active === elA) ? elB : elA;
 
         inactive.textContent = texts[currentIndex];
+        applyWidth(currentIndex, false);
 
         active.classList.add('morph-exit');
         active.classList.remove('morph-active');
@@ -151,6 +158,18 @@ function initMorphingText() {
             active.classList.remove('morph-exit');
             active.textContent = texts[nextIndex];
         }, 900);
+    }
+
+    function refreshWidth() {
+        applyWidth(currentIndex, true);
+    }
+
+    function onResize() {
+        if (resizeRaf) cancelAnimationFrame(resizeRaf);
+        resizeRaf = requestAnimationFrame(function () {
+            refreshWidth();
+            resizeRaf = null;
+        });
     }
 
     var morphTimer = null;
@@ -179,6 +198,13 @@ function initMorphingText() {
         if (document.hidden) stopMorphing();
         else startMorphing();
     });
+
+    window.addEventListener('resize', onResize, { passive: true });
+    window.addEventListener('load', refreshWidth, { once: true });
+
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(refreshWidth).catch(function () {});
+    }
 }
 
 /* ---------- INIT ---------- */

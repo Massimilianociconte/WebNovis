@@ -27,6 +27,48 @@ function escapeHtml(unsafe) {
         .replace(/'/g, "&#39;");
 }
 
+function getRedirectQuerySuffix(req) {
+    return req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+}
+
+function resolveDistCanonicalPath(reqPath) {
+    if (!reqPath.startsWith('/dist/')) return null;
+
+    const strippedPath = reqPath.replace(/^\/dist/, '');
+    const normalizedPath = path.posix.normalize(strippedPath);
+    const relativeTarget = normalizedPath.slice(1);
+
+    if (!normalizedPath.startsWith('/')) return null;
+    if (!relativeTarget) return '/';
+
+    const fsTarget = path.join(__dirname, relativeTarget);
+
+    let stats;
+    try {
+        stats = fs.statSync(fsTarget);
+    } catch (error) {
+        return null;
+    }
+
+    if (stats.isDirectory()) {
+        return normalizedPath.endsWith('/') ? normalizedPath : `${normalizedPath}/`;
+    }
+
+    if (!stats.isFile()) return null;
+
+    const safeLegacyExtensions = new Set(['.html', '.xml', '.txt', '.ico', '.json']);
+    if (!safeLegacyExtensions.has(path.extname(normalizedPath))) {
+        return null;
+    }
+
+    if (normalizedPath === '/index.html') return '/';
+    if (normalizedPath.endsWith('/index.html')) {
+        return normalizedPath.slice(0, -'index.html'.length);
+    }
+
+    return normalizedPath;
+}
+
 // Middleware: verifica admin secret per endpoint protetti
 function requireAdminAuth(req, res, next) {
     const secret = process.env.NEWSLETTER_ADMIN_SECRET;
@@ -153,6 +195,30 @@ app.use((req, res, next) => {
     next();
 });
 
+// 2.4 Legacy build-artifact redirects — collapse stale /dist/ URLs to canonical public paths
+const legacyPathRedirects = new Map([
+    ['/accessibilita-rho.html', '/servizi/accessibilita.html'],
+    ['/social-media-rho.html', '/servizi/social-media.html'],
+    ['/chiedere-recensioni-clienti', '/blog/chiedere-recensioni-clienti.html'],
+    ['/blog/*', '/blog/']
+]);
+
+app.use((req, res, next) => {
+    const query = getRedirectQuerySuffix(req);
+    const distCanonicalPath = resolveDistCanonicalPath(req.path);
+
+    if (distCanonicalPath) {
+        return res.redirect(301, distCanonicalPath + query);
+    }
+
+    const explicitRedirect = legacyPathRedirects.get(req.path);
+    if (explicitRedirect) {
+        return res.redirect(301, explicitRedirect + query);
+    }
+
+    next();
+});
+
 // 2.6 Trailing slash normalization (301)
 // Exclude directories that serve index.html via express.static
 const trailingSlashExclusions = ['/blog/', '/servizi/', '/agenzia-web/', '/realizzazione-siti-web/', '/zone-servite/'];
@@ -184,7 +250,7 @@ app.use((req, res, next) => {
 // 2.6 Singular/plural location page canonicalization (301)
 app.use((req, res, next) => {
     if (req.path === '/agenzie-web-rho.html') {
-        const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+        const query = getRedirectQuerySuffix(req);
         return res.redirect(301, '/agenzia-web-rho.html' + query);
     }
     next();
@@ -204,7 +270,7 @@ app.use((req, res, next) => {
     const canonicalPath = legacyPortfolioRedirects.get(req.path);
     if (!canonicalPath) return next();
 
-    const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+    const query = getRedirectQuerySuffix(req);
     return res.redirect(301, canonicalPath + query);
 });
 
@@ -248,7 +314,7 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     if (req.path.startsWith('/public/')) {
         const canonical = req.path.replace(/^\/public/, '');
-        const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+        const query = getRedirectQuerySuffix(req);
         return res.redirect(301, canonical + query);
     }
     next();
