@@ -6587,7 +6587,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <div class="search-overlay" id="searchOverlay"></div>
     <script src="../js/main.min.js" defer></script>
     <script src="../js/noncritical-loader.min.js" defer></script>
-    <script src="../js/search.min.js" defer></script>
+    <script src="../js/search.min.js?v=2.1" defer></script>
     <script src="../js/footer-widgets-loader.js" defer></script>
     <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
     <script type="application/ld+json">${JSON.stringify(personSchema)}</script>

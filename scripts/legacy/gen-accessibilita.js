@@ -95,7 +95,7 @@ const styleEnd = sviluppo.indexOf('</style>') + '</style>'.length;
 const existingInlineStyle = sviluppo.substring(styleStart, styleEnd);
 
 // Get scripts block
-const searchMinStart = sviluppo.indexOf('<script src="../js/search.min.js"');
+const searchMinStart = sviluppo.indexOf('<script src="../js/search.min.js?v=2.1"');
 const endBody = sviluppo.indexOf('</body>');
 const existingScriptsBlock = sviluppo.substring(searchMinStart, endBody);
 
