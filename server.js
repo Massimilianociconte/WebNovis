@@ -7,7 +7,8 @@ const path = require('path');
 const crypto = require('crypto'); // Per timing-safe auth
 const aiConfig = require('./ai-config'); // Configurazione AI
 const { createSearchAiEngine, normalizePath: normalizeSearchPath } = require('./search-ai-engine');
-const { SECURITY_HEADERS, getAllowedCorsOrigins, buildCspWithNonce } = require('./config/security-headers');
+const { SECURITY_HEADERS, getAllowedCorsOrigins } = require('./config/security-headers');
+const { buildCspWithNonce } = require('./config/security-headers');
 const { getIndexationDirectivesForPath } = require('./config/pseo-governance');
 
 // Global fetch instance — eagerly imported at boot to avoid cold-start latency
