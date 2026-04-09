@@ -29,6 +29,7 @@
   var selectedIdx = -1;
   var debounceTimer = null;
   var aiAbort = null;
+  var aiDisabledUntil = 0;
 
   // ─── DOM cache (lazy) ────────────────────────────────────────────────────────
   var el = {};
@@ -177,6 +178,10 @@
 
   // ─── AI search (background) ──────────────────────────────────────────────────
   function searchAI(query) {
+    if (Date.now() < aiDisabledUntil) {
+      return Promise.resolve(null);
+    }
+
     if (aiAbort) aiAbort.abort();
     aiAbort = new AbortController();
 
@@ -186,7 +191,13 @@
       body: JSON.stringify({ query: query, currentPage: window.location.pathname }),
       signal: aiAbort.signal
     })
-      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (r) {
+        if (r.ok) return r.json();
+        if (r.status === 503) {
+          aiDisabledUntil = Date.now() + (5 * 60 * 1000);
+        }
+        return null;
+      })
       .catch(function () { return null; });
   }
 

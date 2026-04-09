@@ -772,7 +772,11 @@ app.post('/api/search-ai', searchAiLimiter, async (req, res) => {
 
         const GEMINI_API_KEY_SEARCH = process.env.GEMINI_API_KEY_SEARCH;
         if (!GEMINI_API_KEY_SEARCH) {
-            return res.status(503).json({ error: 'Servizio AI non configurato.' });
+            const fallback = searchAiEngine.buildFallbackResponse(
+                sanitizedQuery,
+                searchAiEngine.search(sanitizedQuery, safeCurrentPage, 8)
+            );
+            return res.json(fallback);
         }
 
         // Check cache first
