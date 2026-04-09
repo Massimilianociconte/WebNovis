@@ -28,8 +28,24 @@ function main() {
   }
 
   const searchIndex = JSON.parse(readText('search-index.json'));
+  const searchAiIndex = JSON.parse(readText('search-ai-index.json'));
   const portfolioEntries = searchIndex.filter(entry => entry.type === 'portfolio');
   assert.ok(portfolioEntries.length > 0, 'search-index.json has no portfolio entries');
+  assert.ok(searchAiIndex.length >= searchIndex.length, 'search-ai-index.json must be at least as rich as search-index.json');
+  assert.ok(searchIndex.every(entry => entry.indexable !== false), 'search-index.json must not expose de-amplified entries');
+  assert.ok(searchIndex.some(entry => entry.type === 'locale'), 'search-index.json must include local commercial pages');
+  assert.ok(
+    searchIndex.some(entry => entry.url === '/realizzazione-siti-web-arese.html'),
+    'search-index.json must include a representative geo commercial page'
+  );
+  assert.ok(
+    searchAiIndex.some(entry => entry.url === '/zone-servite/'),
+    'search-ai-index.json must include the local hub page'
+  );
+  assert.ok(
+    searchIndex.some(entry => String(entry.keywords || '').trim().length > 0),
+    'search-index.json must contain generated keywords for retrieval quality'
+  );
 
   for (const entry of portfolioEntries) {
     assert.ok(

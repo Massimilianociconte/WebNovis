@@ -408,7 +408,6 @@ function initWebyChatbot() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: message,
-                    conversationHistory: state.history,
                     sessionId: state.sessionId
                 }),
                 signal: controller.signal
@@ -418,6 +417,8 @@ function initWebyChatbot() {
             if (!res.ok) throw new Error(`API Error: ${res.status}`);
 
             const data = await res.json();
+            // Accept server-assigned sessionId (server is source-of-truth)
+            if (data.sessionId) state.sessionId = data.sessionId;
             const responseText = data.response || data.fallback || '';
 
             // Adaptive typing delay: proportional to response length, capped

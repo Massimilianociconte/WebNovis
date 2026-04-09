@@ -16,6 +16,6 @@ module.exports = {
 
     // API key separation (tutte Gemini, chiavi diverse per diluire i consumi):
     // GEMINI_API_KEY_CHAT   → chatbot (gemini-2.5-flash)
-    // GEMINI_API_KEY_SEARCH → search bar AI (gemini-2.5-flash)
+    // GEMINI_API_KEY_SEARCH → search bar AI (gemini-2.5-flash-lite — fast, no thinking overhead)
     // GEMINI_API_KEY_WRITER → auto blog writer (gemini-2.5-flash)
 };

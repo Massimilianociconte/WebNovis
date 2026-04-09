@@ -10,11 +10,16 @@
   'use strict';
 
   // ─── Config ──────────────────────────────────────────────────────────────────
+  var IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
   var DEBOUNCE_MS = 150;
   var MIN_QUERY_LEN = 2;
-  var AI_WORD_THRESHOLD = 4;
+  var AI_WORD_THRESHOLD = 5;
+  var AI_CHAR_THRESHOLD = 26;
+  var STRONG_LOCAL_SCORE_THRESHOLD = 0.12;
+  var WEAK_LOCAL_SCORE_THRESHOLD = 0.23;
   var MAX_LOCAL_RESULTS = 8;
-  var AI_ENDPOINT = '/api/search-ai';
+  var SEARCH_API_BASE = window.WEBNOVIS_SEARCH_API_BASE || (IS_LOCAL ? 'http://localhost:3000' : 'https://webnovis-chat.onrender.com');
+  var AI_ENDPOINT = SEARCH_API_BASE + '/api/search-ai';
   var FUSE_CDN = 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js';
 
   // ─── State ───────────────────────────────────────────────────────────────────
@@ -95,12 +100,15 @@
     page: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
     servizio: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>',
     articolo: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18h-5"/><path d="M18 14h-8"/><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/><rect width="8" height="4" x="10" y="6" rx="1"/></svg>',
-    portfolio: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h10"/><path d="M5 6h14"/><rect width="18" height="12" x="3" y="10" rx="2"/></svg>'
+    portfolio: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h10"/><path d="M5 6h14"/><rect width="18" height="12" x="3" y="10" rx="2"/></svg>',
+    locale: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-4.35-6-10a6 6 0 1 1 12 0c0 5.65-6 10-6 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>',
+    hub: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>',
+    legale: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 5 3.4 7.74 8 8 4.6-.26 8-3 8-8V7l-8-4Z"/><path d="m9.5 12 1.7 1.7 3.8-3.8"/></svg>'
   };
   var FALLBACK_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
   var AI_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>';
   var NO_RESULTS_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m13.5 8.5-5 5"/><path d="m8.5 8.5 5 5"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>';
-  var TYPE_LABELS = { page: 'Pagina', servizio: 'Servizio', articolo: 'Blog', portfolio: 'Portfolio' };
+  var TYPE_LABELS = { page: 'Pagina', servizio: 'Servizio', articolo: 'Blog', portfolio: 'Portfolio', locale: 'Locale', hub: 'Hub', legale: 'Legale' };
 
   function typeIcon(t) { return TYPE_ICONS[t] || FALLBACK_ICON; }
   function typeLabel(t) { return TYPE_LABELS[t] || 'Pagina'; }
@@ -133,13 +141,14 @@
       .then(function () {
         fuse = new window.Fuse(searchIndex, {
           keys: [
-            { name: 'title', weight: 0.35 },
-            { name: 'description', weight: 0.25 },
-            { name: 'keywords', weight: 0.15 },
-            { name: 'headings', weight: 0.15 },
-            { name: 'content', weight: 0.1 }
+            { name: 'title', weight: 0.32 },
+            { name: 'description', weight: 0.2 },
+            { name: 'keywords', weight: 0.18 },
+            { name: 'headings', weight: 0.12 },
+            { name: 'url', weight: 0.12 },
+            { name: 'content', weight: 0.06 }
           ],
-          threshold: 0.35,
+          threshold: 0.32,
           distance: 200,
           includeScore: true,
           includeMatches: true,
@@ -179,6 +188,32 @@
     })
       .then(function (r) { return r.ok ? r.json() : null; })
       .catch(function () { return null; });
+  }
+
+  function getTopLocalScore(localResults) {
+    if (!localResults || !localResults.length) return 1;
+    return typeof localResults[0].score === 'number' ? localResults[0].score : 1;
+  }
+
+  function shouldRunAiSearch(query, localResults) {
+    var trimmed = (query || '').trim();
+    if (!trimmed) return false;
+
+    var wordCount = trimmed.split(/\s+/).filter(Boolean).length;
+    var charCount = trimmed.length;
+
+    if (!localResults || !localResults.length) return true;
+
+    var topScore = getTopLocalScore(localResults);
+    var hasStrongLocalMatch = localResults.length >= 3 && topScore <= STRONG_LOCAL_SCORE_THRESHOLD;
+
+    if (wordCount <= 3 && hasStrongLocalMatch) return false;
+    if (wordCount >= 8 || charCount >= 42) return true;
+    if (wordCount >= AI_WORD_THRESHOLD || charCount >= AI_CHAR_THRESHOLD) {
+      return topScore > STRONG_LOCAL_SCORE_THRESHOLD || localResults.length < 3;
+    }
+
+    return topScore > WEAK_LOCAL_SCORE_THRESHOLD;
   }
 
   // ─── Render (target-aware) ───────────────────────────────────────────────────
@@ -256,10 +291,62 @@
     renderResultsTo(e.results, e.input, local, ai, query, selectedIdx);
   }
 
+  // ─── Incremental AI append (avoids full re-render flicker) ─────────────────
+  function buildAiSectionHTML(ai, inputEl) {
+    var html = '<div class="search-results-section search-ai-section">';
+    html += '<div class="search-results-label"><span class="search-ai-badge">AI</span> Risposta intelligente</div>';
+    html += '<div class="search-ai-answer">' + renderAiAnswer(ai.answer) + '</div>';
+    if (ai.suggestedPages && ai.suggestedPages.length) {
+      ai.suggestedPages.forEach(function (p) {
+        html += '<a href="' + escHTML(p.url) + '" class="search-result-item search-ai-suggestion">' +
+          '<span class="search-result-icon">' + AI_ICON + '</span>' +
+          '<div class="search-result-content"><div class="search-result-title">' + escHTML(p.title) + '</div></div>' +
+          '<span class="search-result-relevance">' + Math.round((p.relevance || 0) * 100) + '%</span>' +
+          '</a>';
+      });
+    }
+    if (ai.relatedQueries && ai.relatedQueries.length) {
+      html += '<div class="search-related">';
+      ai.relatedQueries.forEach(function (q) {
+        html += '<button class="search-related-tag" data-query="' + escHTML(q) + '">' + escHTML(q) + '</button>';
+      });
+      html += '</div>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function appendAiSectionTo(resultsEl, inputEl, ai) {
+    if (!resultsEl || !ai || !ai.answer) return;
+    // Remove loading indicator
+    var loader = resultsEl.querySelector('.search-ai-loading');
+    if (loader) loader.remove();
+    // Don't duplicate
+    var existing = resultsEl.querySelector('.search-ai-section');
+    if (existing) existing.remove();
+    // Build AI section as DOM fragment
+    var temp = document.createElement('div');
+    temp.innerHTML = buildAiSectionHTML(ai, inputEl);
+    var aiSection = temp.firstElementChild;
+    // Insert before footer if present
+    var footer = resultsEl.querySelector('.search-footer');
+    if (footer) resultsEl.insertBefore(aiSection, footer);
+    else resultsEl.appendChild(aiSection);
+    // Bind related query buttons
+    aiSection.querySelectorAll('.search-related-tag').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (inputEl) inputEl.value = btn.dataset.query;
+        handleSearchTo(resultsEl, inputEl, btn.dataset.query);
+      });
+    });
+  }
+
   function showAiLoadingTo(resultsEl) {
     if (!resultsEl) return;
     var existing = resultsEl.querySelector('.search-ai-section');
     if (existing) return;
+    var existingLoader = resultsEl.querySelector('.search-ai-loading');
+    if (existingLoader) return;
     var loader = document.createElement('div');
     loader.className = 'search-ai-loading';
     loader.innerHTML = '<span class="search-ai-loading-dot"></span><span class="search-ai-loading-dot"></span><span class="search-ai-loading-dot"></span><span class="search-ai-loading-text">Ricerca AI...</span>';
@@ -302,12 +389,11 @@
     searchLocal(query).then(function (localResults) {
       if (!inputEl || inputEl.value.trim() !== currentQuery) return;
       renderResultsTo(resultsEl, inputEl, localResults, null, query, -1);
-      var wordCount = query.trim().split(/\s+/).length;
-      if (wordCount >= AI_WORD_THRESHOLD || localResults.length === 0) {
+      if (shouldRunAiSearch(query, localResults)) {
         showAiLoadingTo(resultsEl);
         searchAI(query).then(function (aiResult) {
           if (!inputEl || inputEl.value.trim() !== currentQuery) return;
-          if (aiResult) renderResultsTo(resultsEl, inputEl, localResults, aiResult, query, -1);
+          if (aiResult) appendAiSectionTo(resultsEl, inputEl, aiResult);
         });
       }
     });
@@ -332,14 +418,13 @@
       selectedIdx = -1;
       renderResults(localResults, null, query);
 
-      // AI search for longer queries or no results
-      var wordCount = query.trim().split(/\s+/).length;
-      if (wordCount >= AI_WORD_THRESHOLD || localResults.length === 0) {
+      // AI search only when local confidence is weak or the query is genuinely complex
+      if (shouldRunAiSearch(query, localResults)) {
         showAiLoading();
         searchAI(query).then(function (aiResult) {
           if (e.input.value.trim() !== currentQuery) return;
           if (aiResult) {
-            renderResults(localResults, aiResult, query);
+            appendAiSectionTo(e.results, e.input, aiResult);
           }
         });
       }
