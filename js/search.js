@@ -34,6 +34,7 @@
 
   // ─── State ───────────────────────────────────────────────────────────────────
   var searchIndex = null;
+  var semanticIndex = null;
   var fuse = null;
   var fuseReady = false;
   var selectedIdx = -1;
@@ -138,6 +139,16 @@
     return (boundary > Math.floor(maxLength * 0.6) ? slice.slice(0, boundary) : slice).trim();
   }
 
+  function normalizePath(value) {
+    var raw = String(value || '/').split('#')[0].split('?')[0].trim();
+    if (!raw) return '/';
+    var withSlash = raw.charAt(0) === '/' ? raw : '/' + raw;
+    if (withSlash.length > 1 && withSlash.charAt(withSlash.length - 1) === '/') {
+      return withSlash.slice(0, -1);
+    }
+    return withSlash;
+  }
+
   function inferIntent(query) {
     var queryNorm = normalizeText(query);
     if (/(prezz|cost|preventiv|budget|quotazion|quanto costa)/.test(queryNorm)) return 'pricing';
@@ -157,6 +168,13 @@
   }
 
   function toLocalSuggestion(item) {
+    if (typeof item.relevance === 'number') {
+      return {
+        title: safeText(item.title, 100),
+        url: item.url,
+        relevance: Math.max(0.35, Math.min(0.99, item.relevance))
+      };
+    }
     var score = typeof item.score === 'number' ? item.score : 0.22;
     return {
       title: safeText(item.title, 100),
@@ -179,6 +197,124 @@
     });
 
     return related.slice(0, 4);
+  }
+
+  function sameSection(urlA, urlB) {
+    function firstSegment(value) {
+      return normalizePath(value).split('/').filter(Boolean)[0] || '';
+    }
+    return firstSegment(urlA) && firstSegment(urlA) === firstSegment(urlB);
+  }
+
+  function buildSemanticIndex() {
+    if (semanticIndex) return semanticIndex;
+    semanticIndex = (searchIndex || []).map(function (doc) {
+      var url = String(doc.url || '/').trim() || '/';
+      var headings = Array.isArray(doc.headings) ? doc.headings.slice(0, 8) : [];
+      return {
+        id: doc.id,
+        url: url,
+        type: String(doc.type || 'page'),
+        title: safeText(doc.title, 160),
+        description: safeText(doc.description, 260),
+        keywords: safeText(doc.keywords, 220),
+        headings: headings,
+        content: safeText(doc.content, 900),
+        indexable: doc.indexable !== false,
+        _urlNorm: normalizeText(url.replace(/[/.]+/g, ' ')),
+        _titleNorm: normalizeText(doc.title),
+        _descriptionNorm: normalizeText(doc.description),
+        _headingsNorm: normalizeText(headings.join(' ')),
+        _contentNorm: normalizeText(doc.content),
+        _urlTokens: tokenize(url.replace(/[/.]+/g, ' ')),
+        _titleTokens: tokenize(doc.title),
+        _descriptionTokens: tokenize(doc.description),
+        _keywordTokens: tokenize(doc.keywords),
+        _headingTokens: tokenize(headings.join(' '))
+      };
+    });
+    return semanticIndex;
+  }
+
+  function hasToken(list, token) {
+    return Array.isArray(list) && list.indexOf(token) !== -1;
+  }
+
+  function scoreSemanticDoc(doc, queryNorm, queryTokens, intent, currentPage, localBoosts) {
+    var score = 0;
+    var haystack = doc._titleNorm + ' ' + doc._descriptionNorm + ' ' + doc._contentNorm;
+
+    if (!queryNorm) return 0;
+
+    if (doc._titleNorm.indexOf(queryNorm) !== -1) score += 22;
+    if (doc._urlNorm.indexOf(queryNorm) !== -1) score += 24;
+    if (doc._descriptionNorm.indexOf(queryNorm) !== -1) score += 12;
+    if (doc._headingsNorm.indexOf(queryNorm) !== -1) score += 10;
+    if (doc._contentNorm.indexOf(queryNorm) !== -1) score += 6;
+
+    queryTokens.forEach(function (token) {
+      if (hasToken(doc._titleTokens, token)) score += 7;
+      if (hasToken(doc._urlTokens, token)) score += 6;
+      if (hasToken(doc._keywordTokens, token)) score += 5;
+      if (hasToken(doc._headingTokens, token)) score += 4;
+      if (hasToken(doc._descriptionTokens, token)) score += 3;
+      if (doc._contentNorm.indexOf(token) !== -1) score += 1;
+    });
+
+    if (intent === 'pricing' && /(quanto costa|prezzo|costo|budget|preventiv)/.test(haystack)) score += 9;
+    if (intent === 'contact' && doc.url === '/contatti.html') score += 14;
+    if (intent === 'portfolio' && (doc.type === 'portfolio' || doc.url === '/portfolio.html')) score += 10;
+    if (intent === 'about' && doc.url === '/chi-siamo.html') score += 10;
+    if (intent === 'informational' && (doc.type === 'articolo' || doc.url === '/blog/')) score += 6;
+    if (intent === 'local' && doc.type === 'locale') score += 8;
+
+    if (currentPage && sameSection(doc.url, currentPage)) score += 2;
+    if (doc.type === 'servizio' || doc.type === 'locale') score += 1;
+    if (doc.indexable === false) score *= 0.45;
+    if (localBoosts && localBoosts[normalizePath(doc.url)]) score += localBoosts[normalizePath(doc.url)];
+
+    return score;
+  }
+
+  function semanticLocalSearch(query, currentPage, localResults, limit) {
+    var queryNorm = normalizeText(query);
+    var queryTokens = tokenize(query);
+    var intent = inferIntent(queryNorm);
+    var localBoosts = {};
+    var ranked;
+
+    (localResults || []).forEach(function (item, index) {
+      localBoosts[normalizePath(item.url)] = Math.max(1.5, (MAX_LOCAL_RESULTS - index) * 0.65);
+    });
+
+    ranked = buildSemanticIndex().map(function (doc) {
+      var rankScore = scoreSemanticDoc(doc, queryNorm, queryTokens, intent, currentPage, localBoosts);
+      return {
+        id: doc.id,
+        url: normalizePath(doc.url),
+        type: doc.type,
+        title: doc.title,
+        description: doc.description,
+        keywords: doc.keywords,
+        headings: doc.headings,
+        content: doc.content,
+        indexable: doc.indexable,
+        rankScore: rankScore
+      };
+    }).filter(function (doc) {
+      return doc.rankScore > 0 && doc.indexable !== false;
+    }).sort(function (a, b) {
+      return b.rankScore - a.rankScore || a.url.localeCompare(b.url);
+    });
+
+    if (!ranked.length) return [];
+
+    var topScore = Math.max(ranked[0].rankScore || 1, 1);
+    return ranked.slice(0, limit || 5).map(function (doc) {
+      var item = Object.assign({}, doc);
+      item.relevance = Math.max(0.35, Math.min(0.99, item.rankScore / topScore));
+      return item;
+    });
   }
 
   function rerankLocalResults(query, localResults) {
@@ -217,8 +353,9 @@
     });
   }
 
-  function buildLocalAiResponse(query, localResults) {
-    var ranked = rerankLocalResults(query, localResults).slice(0, 3);
+  function buildLocalAiResponse(query, localResults, currentPage) {
+    var semanticRanked = semanticLocalSearch(query, currentPage, localResults, 5);
+    var ranked = semanticRanked.length ? semanticRanked.slice(0, 3) : rerankLocalResults(query, localResults).slice(0, 3);
     if (!ranked.length) return null;
 
     var intent = inferIntent(query);
@@ -300,7 +437,11 @@
         if (!r.ok) throw new Error('Index fetch failed');
         return r.json();
       })
-      .then(function (data) { searchIndex = data; return data; });
+      .then(function (data) {
+        searchIndex = data;
+        semanticIndex = null;
+        return data;
+      });
   }
 
   function initFuse() {
@@ -344,8 +485,8 @@
   }
 
   // ─── AI search (background) ──────────────────────────────────────────────────
-  function searchAI(query, localResults) {
-    var localAiResponse = buildLocalAiResponse(query, localResults);
+  function searchAI(query, localResults, currentPage) {
+    var localAiResponse = buildLocalAiResponse(query, localResults, currentPage);
     if (!canUseRemoteAi()) {
       return Promise.resolve(localAiResponse);
     }
@@ -356,7 +497,7 @@
     return fetch(AI_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: query, currentPage: window.location.pathname }),
+      body: JSON.stringify({ query: query, currentPage: currentPage || window.location.pathname }),
       signal: aiAbort.signal
     })
       .then(function (r) {
@@ -380,14 +521,15 @@
 
     var wordCount = trimmed.split(/\s+/).filter(Boolean).length;
     var charCount = trimmed.length;
+    var looksConversational = /[?]/.test(trimmed) || /^(come|quale|quali|quanto|posso|vorrei|cerco|mi serve|ho bisogno|chi|dove|perche|perché)\b/i.test(trimmed);
 
-    if (!localResults || !localResults.length) return true;
+    if (!localResults || !localResults.length) return wordCount >= 3 || charCount >= 18 || looksConversational;
 
     var topScore = getTopLocalScore(localResults);
     var hasStrongLocalMatch = localResults.length >= 3 && topScore <= STRONG_LOCAL_SCORE_THRESHOLD;
 
     if (wordCount <= 3 && hasStrongLocalMatch) return false;
-    if (wordCount >= 8 || charCount >= 42) return true;
+    if (wordCount >= 6 || charCount >= 32 || looksConversational) return true;
     if (wordCount >= AI_WORD_THRESHOLD || charCount >= AI_CHAR_THRESHOLD) {
       return topScore > STRONG_LOCAL_SCORE_THRESHOLD || localResults.length < 3;
     }
@@ -570,7 +712,7 @@
       renderResultsTo(resultsEl, inputEl, localResults, null, query, -1);
       if (shouldRunAiSearch(query, localResults)) {
         if (canUseRemoteAi()) showAiLoadingTo(resultsEl);
-        searchAI(query, localResults).then(function (aiResult) {
+        searchAI(query, localResults, window.location.pathname).then(function (aiResult) {
           if (!inputEl || inputEl.value.trim() !== currentQuery) return;
           if (aiResult) appendAiSectionTo(resultsEl, inputEl, aiResult);
         });
@@ -600,7 +742,7 @@
       // AI search only when local confidence is weak or the query is genuinely complex
       if (shouldRunAiSearch(query, localResults)) {
         if (canUseRemoteAi()) showAiLoading();
-        searchAI(query, localResults).then(function (aiResult) {
+        searchAI(query, localResults, window.location.pathname).then(function (aiResult) {
           if (e.input.value.trim() !== currentQuery) return;
           if (aiResult) {
             appendAiSectionTo(e.results, e.input, aiResult);
