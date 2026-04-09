@@ -1,5 +1,14 @@
 const path = require('path');
 
+const PHONE_NUMBER_DISPLAY = '+39 380 264 7367';
+const PHONE_NUMBER_TEL = '+393802647367';
+const PHONE_TEXT_PATTERN = /(?:\+39(?:\s|&nbsp;)*380(?:\s|&nbsp;)*264(?:\s|&nbsp;)*7367|\+393802647367)/gi;
+const PROTECTED_BLOCK_PATTERN = /<script\b[\s\S]*?<\/script>|<style\b[\s\S]*?<\/style>/gi;
+const CODE_BLOCK_PATTERN = /<pre\b[\s\S]*?<\/pre>|<code\b[\s\S]*?<\/code>/gi;
+const PHONE_CTA_INNER_PATTERN = /<a\b[^>]*class="phone-cta"[^>]*>[\s\S]*?<\/a>/gi;
+const BROKEN_PHONE_CTA_SR_ONLY_PATTERN = /<span class="sr-only">\s*al numero\s*<a\b[^>]*class="phone-cta"[\s\S]*?<\/a>\s*<\/span>/gi;
+const LEGACY_PHONE_SR_ONLY_PATTERN = /<span class="sr-only">\s*al numero\s*(?:\+39(?:\s|&nbsp;)*380(?:\s|&nbsp;)*264(?:\s|&nbsp;)*7367|\+393802647367)\s*<\/span>/gi;
+
 function escapeAttribute(value) {
   return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
@@ -14,6 +23,46 @@ function buildImageTag({ alt, src, width, height, style = '', extraAttributes = 
   const styleAttribute = trimmedStyle ? ` style="${escapeAttribute(trimmedStyle)}"` : '';
   const extra = extraAttributes ? ` ${extraAttributes.trim()}` : '';
   return `<img alt="${escapeAttribute(alt)}" decoding="async" height="${height}" src="${escapeAttribute(src)}" width="${width}" fetchpriority="low" loading="lazy"${extra}${styleAttribute}>`;
+}
+
+function buildPhoneCtaHtml({ label = 'Chiama WebNovis', title = 'Chiama Web Novis' } = {}) {
+  const safeLabel = escapeAttribute(label);
+  const safeTitle = escapeAttribute(title);
+  const safePhone = escapeAttribute(PHONE_NUMBER_DISPLAY);
+  return `<a href="tel:${PHONE_NUMBER_TEL}" title="${safeTitle}" class="phone-cta" aria-label="${safeLabel} al numero ${safePhone}" data-contact-phone="${PHONE_NUMBER_TEL}"><span class="phone-cta-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="phone-cta-label">${safeLabel}</span></a>`;
+}
+
+function withProtectedBlocks(html, transform) {
+  const protectedBlocks = [];
+  const tokenized = html.replace(PROTECTED_BLOCK_PATTERN, (match) => {
+    const token = `__WEBNOVIS_BLOCK_${protectedBlocks.length}__`;
+    protectedBlocks.push(match);
+    return token;
+  });
+
+  const transformed = transform(tokenized);
+  return transformed.replace(/__WEBNOVIS_BLOCK_(\d+)__/g, (_, index) => protectedBlocks[Number(index)] || '');
+}
+
+function replaceVisiblePhoneText(html) {
+  return html.replace(/>([^<>]*?(?:\+39(?:\s|&nbsp;)*380(?:\s|&nbsp;)*264(?:\s|&nbsp;)*7367|\+393802647367)[^<>]*?)</gi, (match, textNode) => {
+    const updatedTextNode = textNode.replace(PHONE_TEXT_PATTERN, buildPhoneCtaHtml());
+    return `>${updatedTextNode}<`;
+  });
+}
+
+function restorePhoneTextInCodeBlocks(html) {
+  return html.replace(CODE_BLOCK_PATTERN, (block) =>
+    block
+      .replace(PHONE_CTA_INNER_PATTERN, PHONE_NUMBER_DISPLAY)
+      .replace(/(?:\+39(?:\s|&nbsp;)*380(?:\s|&nbsp;)*264(?:\s|&nbsp;)*7367|\+393802647367)<\/span><\/a>/gi, PHONE_NUMBER_DISPLAY)
+  );
+}
+
+function sanitizeBrokenPhoneCtaMarkup(html) {
+  return html
+    .replace(BROKEN_PHONE_CTA_SR_ONLY_PATTERN, '')
+    .replace(LEGACY_PHONE_SR_ONLY_PATTERN, '');
 }
 
 function buildReviewBadgesInnerHtml(prefix = '..') {
@@ -42,7 +91,7 @@ function buildReviewBadgesHtml(prefix = '..', wrapperClass = 'footer-reviews-bad
 
 function getBlogFooterHtml(prefix = '..') {
   const base = normalizeRelativePrefix(prefix);
-  return `<footer class="footer"> <div class="container"> <div class="footer-grid"> <div class="footer-brand"> <a href="${base}index.html" title="Web Novis — Homepage" class="logo"> <picture><source srcset="${base}Img/webnovis-logo-bianco-150.webp 150w, ${base}Img/webnovis-logo-bianco.webp 300w" type="image/webp" sizes="150px"><img alt="Web Novis Logo" decoding="async" height="40" src="${base}Img/webnovis-logo-bianco-300.png" width="150" class="logo-image"></picture> </a> <p class="footer-tagline">Creiamo esperienze digitali memorabili</p> <address class="footer-nap">Via S. Giorgio, 2 — 20017 Rho (MI)<br><a href="tel:+393802647367" title="Chiama Web Novis">+39 380 264 7367</a><br><a href="mailto:hello@webnovis.com" title="Scrivi a Web Novis">hello@webnovis.com</a></address> <div class="footer-social-icons"> <a href="https://www.instagram.com/web.novis" title="Seguici su Instagram" rel="noopener noreferrer" target="_blank" aria-label="Seguici su Instagram" class="footer-social-link"><svg viewBox="0 0 24 24" fill="currentColor" height="18" width="18" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a> <a href="https://www.facebook.com/share/1C7hNnkqEU/" title="Seguici su Facebook" rel="noopener noreferrer" target="_blank" aria-label="Seguici su Facebook" class="footer-social-link"><svg viewBox="0 0 24 24" fill="currentColor" height="18" width="18" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg><span>Facebook</span></a> </div> </div> <div class="footer-column"> <strong aria-level="3" class="footer-heading" role="heading">Servizi</strong> <a href="${base}servizi/sviluppo-web.html" title="Sviluppo Web — Siti e e-commerce">Web Development</a> <a href="${base}servizi/graphic-design.html" title="Graphic Design e Brand Identity">Graphic Design</a> <a href="${base}servizi/social-media.html" title="Social Media Marketing e Advertising">Social Media</a> <a href="${base}servizi/accessibilita.html" title="Accessibilità Web — Conformità WCAG">Accessibilità EAA</a> </div> <div class="footer-column"> <strong aria-level="3" class="footer-heading" role="heading">Azienda</strong> <a href="${base}chi-siamo.html" title="Chi siamo — Il team Web Novis">Chi Siamo</a> <a href="${base}contatti.html" title="Contatti Web Novis">Contatti</a> <a href="${base}portfolio.html" title="Portfolio progetti Web Novis">Portfolio</a> <a href="index.html" title="Blog Web Novis — Guide e risorse">Blog</a> <a href="${base}come-lavoriamo.html" title="Come lavoriamo — Processo in 5 fasi">Come Lavoriamo</a> <a href="${base}preventivo.html" title="Richiedi preventivo gratuito">Preventivo</a> </div> <div class="footer-column"> <strong aria-level="3" class="footer-heading" role="heading">Zone Servite</strong> <a href="/zone-servite/" title="Zone Servite WebNovis">Tutte le Zone</a> <a href="/agenzia-web/" title="Hub Agenzia Web per Comuni">Agenzia Web per Comuni</a> <a href="/realizzazione-siti-web/" title="Hub Siti Web per Comuni">Siti Web per Comuni</a> </div> <div class="footer-column"> <strong aria-level="3" class="footer-heading" role="heading">Legale</strong> <a href="${base}privacy-policy.html" title="Privacy Policy Web Novis">Privacy Policy</a> <a href="${base}cookie-policy.html" title="Cookie Policy Web Novis">Cookie Policy</a> <a href="${base}termini-condizioni.html" title="Termini e Condizioni Web Novis">Termini e Condizioni</a> </div> </div> <div class="footer-badges">${buildReviewBadgesInnerHtml(prefix)}</div> <div class="footer-bottom"> <p>&copy; <time datetime="2026" id="copyrightYear">2026</time> WebNovis. Tutti i diritti riservati.</p> <script>document.getElementById("copyrightYear").textContent=(new Date).getFullYear()</script> </div> </div> </footer>`;
+  return `<footer class="footer"> <div class="container"> <div class="footer-grid"> <div class="footer-brand"> <a href="${base}index.html" title="Web Novis — Homepage" class="logo"> <picture><source srcset="${base}Img/webnovis-logo-bianco-150.webp 150w, ${base}Img/webnovis-logo-bianco.webp 300w" type="image/webp" sizes="150px"><img alt="Web Novis Logo" decoding="async" height="40" src="${base}Img/webnovis-logo-bianco-300.png" width="150" class="logo-image"></picture> </a> <p class="footer-tagline">Creiamo esperienze digitali memorabili</p> <address class="footer-nap">Via S. Giorgio, 2 — 20017 Rho (MI)<br>${buildPhoneCtaHtml()}<br><a href="mailto:hello@webnovis.com" title="Scrivi a Web Novis">hello@webnovis.com</a></address> <div class="footer-social-icons"> <a href="https://www.instagram.com/web.novis" title="Seguici su Instagram" rel="noopener noreferrer" target="_blank" aria-label="Seguici su Instagram" class="footer-social-link"><svg viewBox="0 0 24 24" fill="currentColor" height="18" width="18" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a> <a href="https://www.facebook.com/share/1C7hNnkqEU/" title="Seguici su Facebook" rel="noopener noreferrer" target="_blank" aria-label="Seguici su Facebook" class="footer-social-link"><svg viewBox="0 0 24 24" fill="currentColor" height="18" width="18" aria-hidden="true" style="flex-shrink:0;display:block"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg><span>Facebook</span></a> </div> </div> <div class="footer-column"> <strong aria-level="3" class="footer-heading" role="heading">Servizi</strong> <a href="${base}servizi/sviluppo-web.html" title="Sviluppo Web — Siti e e-commerce">Web Development</a> <a href="${base}servizi/graphic-design.html" title="Graphic Design e Brand Identity">Graphic Design</a> <a href="${base}servizi/social-media.html" title="Social Media Marketing e Advertising">Social Media</a> <a href="${base}servizi/accessibilita.html" title="Accessibilità Web — Conformità WCAG">Accessibilità EAA</a> </div> <div class="footer-column"> <strong aria-level="3" class="footer-heading" role="heading">Azienda</strong> <a href="${base}chi-siamo.html" title="Chi siamo — Il team Web Novis">Chi Siamo</a> <a href="${base}contatti.html" title="Contatti Web Novis">Contatti</a> <a href="${base}portfolio.html" title="Portfolio progetti Web Novis">Portfolio</a> <a href="index.html" title="Blog Web Novis — Guide e risorse">Blog</a> <a href="${base}come-lavoriamo.html" title="Come lavoriamo — Processo in 5 fasi">Come Lavoriamo</a> <a href="${base}preventivo.html" title="Richiedi preventivo gratuito">Preventivo</a> </div> <div class="footer-column"> <strong aria-level="3" class="footer-heading" role="heading">Zone Servite</strong> <a href="/zone-servite/" title="Zone Servite WebNovis">Tutte le Zone</a> <a href="/agenzia-web/" title="Hub Agenzia Web per Comuni">Agenzia Web per Comuni</a> <a href="/realizzazione-siti-web/" title="Hub Siti Web per Comuni">Siti Web per Comuni</a> </div> <div class="footer-column"> <strong aria-level="3" class="footer-heading" role="heading">Legale</strong> <a href="${base}privacy-policy.html" title="Privacy Policy Web Novis">Privacy Policy</a> <a href="${base}cookie-policy.html" title="Cookie Policy Web Novis">Cookie Policy</a> <a href="${base}termini-condizioni.html" title="Termini e Condizioni Web Novis">Termini e Condizioni</a> </div> </div> <div class="footer-badges">${buildReviewBadgesInnerHtml(prefix)}</div> <div class="footer-bottom"> <p>&copy; <time datetime="2026" id="copyrightYear">2026</time> WebNovis. Tutti i diritti riservati.</p> <script>document.getElementById("copyrightYear").textContent=(new Date).getFullYear()</script> </div> </div> </footer>`;
 }
 
 function normalizeFooterAssetMarkup(html) {
@@ -55,8 +104,27 @@ function normalizeFooterAssetMarkup(html) {
     });
 }
 
+function normalizePhoneCtaMarkup(html) {
+  return restorePhoneTextInCodeBlocks(
+    withProtectedBlocks(html, (safeHtml) =>
+      replaceVisiblePhoneText(
+        sanitizeBrokenPhoneCtaMarkup(safeHtml)
+          .replace(
+            /<a\b(?=[^>]*class="phone-cta")(?=[^>]*href="tel:\+393802647367")[^>]*>[\s\S]*?<\/a>/gi,
+            buildPhoneCtaHtml()
+          )
+          .replace(
+            /<a\b[^>]*href="tel:\+393802647367"[^>]*>\s*(?:\+39(?:\s|&nbsp;)*380(?:\s|&nbsp;)*264(?:\s|&nbsp;)*7367|\+393802647367)\s*<\/a>/gi,
+            buildPhoneCtaHtml()
+          )
+      )
+    )
+  );
+}
+
 module.exports = {
   buildReviewBadgesHtml,
   getBlogFooterHtml,
-  normalizeFooterAssetMarkup
+  normalizeFooterAssetMarkup,
+  normalizePhoneCtaMarkup
 };
