@@ -1213,6 +1213,7 @@
     position: relative;
     display: inline-block;
     vertical-align: baseline;
+    min-width: 0;
     transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1264,6 +1265,10 @@
     .morphing-text-line {
         font-size: 1.1rem;
         line-height: 1.6;
+    }
+
+    .morphing-text-container {
+        transition-duration: 0.45s;
     }
 
     .morph-text,

@@ -88,6 +88,12 @@ async function postJson(url, body) {
   });
 }
 
+async function expectRedirect(pathname, expectedLocation) {
+  const res = await httpFetch(`${BASE_URL}${pathname}`, { redirect: 'manual' });
+  assert.equal(res.status, 301, `Expected 301 for ${pathname}`);
+  assert.equal(res.headers.get('location'), expectedLocation, `Unexpected redirect target for ${pathname}`);
+}
+
 async function run() {
   const server = startServer();
 
@@ -105,6 +111,14 @@ async function run() {
 
     const invalidEmailRes = await httpFetch(`${BASE_URL}/api/newsletter/unsubscribe?email=invalid&token=abc`);
     assert.equal(invalidEmailRes.status, 400, 'Expected 400 for invalid unsubscribe email');
+
+    await expectRedirect('/dist/landing-page-cinisello-balsamo.html', '/landing-page-cinisello-balsamo.html');
+    await expectRedirect('/dist/zone-servite/', '/zone-servite/');
+    await expectRedirect('/dist/seo-locale-magenta.html', '/seo-locale-magenta.html');
+    await expectRedirect('/accessibilita-rho.html', '/servizi/accessibilita.html');
+    await expectRedirect('/social-media-rho.html', '/servizi/social-media.html');
+    await expectRedirect('/chiedere-recensioni-clienti', '/blog/chiedere-recensioni-clienti.html');
+    await expectRedirect('/blog/*', '/blog/');
 
     console.log('API endpoint smoke tests passed.');
   } finally {
