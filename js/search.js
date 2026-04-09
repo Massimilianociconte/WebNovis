@@ -1,7 +1,8 @@
 /**
  * WebNovis Intelligent Search System
  * - Fuse.js fuzzy local search (< 50ms, debounce 150ms)
- * - AI-powered semantic search via server proxy (< 2s)
+ * - Smart answer synthesis grounded on the local site index
+ * - Optional remote AI enrichment via server proxy (< 2s)
  * - Keyboard accessible (Tab, Enter, Esc, arrows, Ctrl+K)
  * - Progressive enhancement (local first, AI enrichment)
  * - API key NEVER in frontend — AI calls proxied through /api/search-ai
@@ -18,9 +19,18 @@
   var STRONG_LOCAL_SCORE_THRESHOLD = 0.12;
   var WEAK_LOCAL_SCORE_THRESHOLD = 0.23;
   var MAX_LOCAL_RESULTS = 8;
+  var ENABLE_REMOTE_AI = window.WEBNOVIS_ENABLE_REMOTE_SEARCH_AI === true || IS_LOCAL;
   var SEARCH_API_BASE = window.WEBNOVIS_SEARCH_API_BASE || (IS_LOCAL ? 'http://localhost:3000' : 'https://webnovis-chat.onrender.com');
   var AI_ENDPOINT = SEARCH_API_BASE + '/api/search-ai';
   var FUSE_CDN = 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js';
+  var LOCAL_AI_STOP_WORDS = {
+    a: true, ad: true, ai: true, al: true, alla: true, allo: true, all: true, anche: true, che: true, chi: true,
+    ci: true, con: true, da: true, dal: true, dalla: true, dei: true, del: true, della: true, delle: true,
+    di: true, e: true, ed: true, gli: true, ha: true, i: true, il: true, in: true, la: true, le: true,
+    lo: true, ma: true, mi: true, nel: true, nella: true, nelle: true, non: true, o: true, per: true,
+    piu: true, puo: true, se: true, si: true, sul: true, sulla: true, tra: true, un: true, una: true,
+    uno: true, webnovis: true, web: true, www: true
+  };
 
   // ─── State ───────────────────────────────────────────────────────────────────
   var searchIndex = null;
@@ -95,6 +105,163 @@
     if (!words.length) return safe;
     var pattern = words.map(function (w) { return w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|');
     return safe.replace(new RegExp('(' + pattern + ')', 'gi'), '<mark>$1</mark>');
+  }
+
+  function normalizeText(value) {
+    return String(value || '')
+      .toLowerCase()
+      .replace(/\be[\s-]?commerce\b/g, 'ecommerce')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[-/.]+/g, ' ')
+      .replace(/[^a-z0-9 ]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function tokenize(value) {
+    return normalizeText(value)
+      .split(/\s+/)
+      .filter(function (token) {
+        return token.length >= 3 && !LOCAL_AI_STOP_WORDS[token];
+      })
+      .filter(function (token, index, arr) {
+        return arr.indexOf(token) === index;
+      });
+  }
+
+  function safeText(text, maxLength) {
+    var clean = String(text || '').replace(/\s+/g, ' ').trim();
+    if (!maxLength || clean.length <= maxLength) return clean;
+    var slice = clean.slice(0, maxLength);
+    var boundary = Math.max(slice.lastIndexOf('. '), slice.lastIndexOf(' '));
+    return (boundary > Math.floor(maxLength * 0.6) ? slice.slice(0, boundary) : slice).trim();
+  }
+
+  function inferIntent(query) {
+    var queryNorm = normalizeText(query);
+    if (/(prezz|cost|preventiv|budget|quotazion|quanto costa)/.test(queryNorm)) return 'pricing';
+    if (/(contatt|email|telefono|whatsapp|parlare|chiamare)/.test(queryNorm)) return 'contact';
+    if (/(portfolio|progett|case study|lavori|esempi)/.test(queryNorm)) return 'portfolio';
+    if (/(chi siamo|agenzia|team|azienda|storia)/.test(queryNorm)) return 'about';
+    if (/(blog|guida|articolo|come fare|cos e|cose|differenza)/.test(queryNorm)) return 'informational';
+    if (/(rho|milano|monza|bollate|arese|bresso|buccinasco|legnano|comune|zona|vicino)/.test(queryNorm)) return 'local';
+    return 'general';
+  }
+
+  function stripSiteSuffix(title) {
+    return safeText(title, 90)
+      .replace(/\s*[|].*$/, '')
+      .replace(/\s*[—-]\s*Web\s*Novis.*$/i, '')
+      .trim();
+  }
+
+  function toLocalSuggestion(item) {
+    var score = typeof item.score === 'number' ? item.score : 0.22;
+    return {
+      title: safeText(item.title, 100),
+      url: item.url,
+      relevance: Math.max(0.35, Math.min(0.99, 1 - score))
+    };
+  }
+
+  function buildRelatedQueries(query, docs) {
+    var queryNorm = normalizeText(query);
+    var seen = {};
+    var related = [];
+
+    docs.slice(0, 5).forEach(function (doc) {
+      var clean = stripSiteSuffix(doc.title);
+      var key = normalizeText(clean);
+      if (!clean || !key || key === queryNorm || seen[key]) return;
+      seen[key] = true;
+      related.push(clean);
+    });
+
+    return related.slice(0, 4);
+  }
+
+  function rerankLocalResults(query, localResults) {
+    var intent = inferIntent(query);
+    var tokens = tokenize(query);
+
+    return (localResults || []).map(function (item) {
+      var bonus = 0;
+      var titleNorm = normalizeText(item.title);
+      var descNorm = normalizeText(item.description);
+      var urlNorm = normalizeText(item.url);
+      var haystack = titleNorm + ' ' + descNorm + ' ' + urlNorm;
+
+      if (intent === 'pricing' && /(quanto costa|prezzo|costo|budget|preventiv)/.test(haystack)) bonus += 0.08;
+      if (intent === 'contact' && item.url === '/contatti.html') bonus += 0.12;
+      if (intent === 'portfolio' && (item.type === 'portfolio' || item.url === '/portfolio.html')) bonus += 0.08;
+      if (intent === 'about' && item.url === '/chi-siamo.html') bonus += 0.08;
+      if (intent === 'informational' && item.type === 'articolo') bonus += 0.05;
+      if (intent === 'local' && item.type === 'locale') bonus += 0.06;
+
+      tokens.forEach(function (token) {
+        if (titleNorm.indexOf(token) !== -1) bonus += 0.015;
+        if (urlNorm.indexOf(token) !== -1) bonus += 0.01;
+      });
+
+      return {
+        item: item,
+        adjustedScore: Math.max(0, (typeof item.score === 'number' ? item.score : 0.32) - bonus)
+      };
+    }).sort(function (a, b) {
+      return a.adjustedScore - b.adjustedScore;
+    }).map(function (entry) {
+      var cloned = Object.assign({}, entry.item);
+      cloned.score = entry.adjustedScore;
+      return cloned;
+    });
+  }
+
+  function buildLocalAiResponse(query, localResults) {
+    var ranked = rerankLocalResults(query, localResults).slice(0, 3);
+    if (!ranked.length) return null;
+
+    var intent = inferIntent(query);
+    var suggestions = ranked.map(toLocalSuggestion);
+    var primary = suggestions[0];
+    var secondary = suggestions[1];
+    var primaryTitle = stripSiteSuffix(primary.title);
+    var secondaryTitle = secondary ? stripSiteSuffix(secondary.title) : '';
+    var answer = '';
+
+    if (intent === 'contact') {
+      answer = 'Per contattare WebNovis ti conviene partire da [Contatti](/contatti.html) e, se vuoi arrivare già con i dettagli giusti, aprire anche [Preventivo](/preventivo.html).';
+    } else if (intent === 'portfolio') {
+      answer = secondary
+        ? 'Per vedere esempi concreti ti consiglio di partire da [' + primaryTitle + '](' + primary.url + ') e poi aprire [' + secondaryTitle + '](' + secondary.url + ').'
+        : 'La pagina più pertinente per esempi e progetti è [' + primaryTitle + '](' + primary.url + ').';
+    } else if (intent === 'pricing') {
+      answer = secondary
+        ? 'Per costi, range e preventivi ti conviene partire da [' + primaryTitle + '](' + primary.url + ') e poi confrontare [' + secondaryTitle + '](' + secondary.url + ').'
+        : 'Per costi e preventivi la pagina più utile è [' + primaryTitle + '](' + primary.url + ').';
+    } else if (intent === 'local') {
+      answer = secondary
+        ? 'Per una risposta affidabile sulla tua zona, inizia da [' + primaryTitle + '](' + primary.url + ') e poi guarda anche [' + secondaryTitle + '](' + secondary.url + ').'
+        : 'La pagina locale più pertinente per questa ricerca è [' + primaryTitle + '](' + primary.url + ').';
+    } else if (intent === 'informational') {
+      answer = secondary
+        ? 'Ho trovato due risorse molto pertinenti: [' + primaryTitle + '](' + primary.url + ') e [' + secondaryTitle + '](' + secondary.url + ').'
+        : 'La guida più pertinente per questa ricerca è [' + primaryTitle + '](' + primary.url + ').';
+    } else {
+      answer = secondary
+        ? 'Le pagine più pertinenti per questa ricerca sono [' + primaryTitle + '](' + primary.url + ') e [' + secondaryTitle + '](' + secondary.url + ').'
+        : 'La pagina più pertinente per questa ricerca è [' + primaryTitle + '](' + primary.url + ').';
+    }
+
+    return {
+      answer: safeText(answer, 520),
+      suggestedPages: suggestions,
+      relatedQueries: buildRelatedQueries(query, ranked)
+    };
+  }
+
+  function canUseRemoteAi() {
+    return ENABLE_REMOTE_AI && Date.now() >= aiDisabledUntil;
   }
 
   var TYPE_ICONS = {
@@ -177,9 +344,10 @@
   }
 
   // ─── AI search (background) ──────────────────────────────────────────────────
-  function searchAI(query) {
-    if (Date.now() < aiDisabledUntil) {
-      return Promise.resolve(null);
+  function searchAI(query, localResults) {
+    var localAiResponse = buildLocalAiResponse(query, localResults);
+    if (!canUseRemoteAi()) {
+      return Promise.resolve(localAiResponse);
     }
 
     if (aiAbort) aiAbort.abort();
@@ -196,9 +364,9 @@
         if (r.status === 503) {
           aiDisabledUntil = Date.now() + (5 * 60 * 1000);
         }
-        return null;
+        return localAiResponse;
       })
-      .catch(function () { return null; });
+      .catch(function () { return localAiResponse; });
   }
 
   function getTopLocalScore(localResults) {
@@ -401,8 +569,8 @@
       if (!inputEl || inputEl.value.trim() !== currentQuery) return;
       renderResultsTo(resultsEl, inputEl, localResults, null, query, -1);
       if (shouldRunAiSearch(query, localResults)) {
-        showAiLoadingTo(resultsEl);
-        searchAI(query).then(function (aiResult) {
+        if (canUseRemoteAi()) showAiLoadingTo(resultsEl);
+        searchAI(query, localResults).then(function (aiResult) {
           if (!inputEl || inputEl.value.trim() !== currentQuery) return;
           if (aiResult) appendAiSectionTo(resultsEl, inputEl, aiResult);
         });
@@ -431,8 +599,8 @@
 
       // AI search only when local confidence is weak or the query is genuinely complex
       if (shouldRunAiSearch(query, localResults)) {
-        showAiLoading();
-        searchAI(query).then(function (aiResult) {
+        if (canUseRemoteAi()) showAiLoading();
+        searchAI(query, localResults).then(function (aiResult) {
           if (e.input.value.trim() !== currentQuery) return;
           if (aiResult) {
             appendAiSectionTo(e.results, e.input, aiResult);
