@@ -7,14 +7,16 @@
   <div class="container breadcrumb">
     <a href="/">Home</a>
     <span class="separator">/</span>
+    <a href="/zone-servite/">Zone Servite</a>
+    <span class="separator">/</span>
     <span class="current-page">Realizzazione Siti Web — Comuni Milano</span>
   </div>
 
   <section class="service-page-hero">
     <div class="container">
-      <span class="section-tag">{{ totalCities }} Comuni serviti — Hinterland Milano</span>
+      <span class="section-tag">{{ networkCoverageCount }} comuni serviti da WebNovis</span>
       <h1>Realizzazione Siti Web nei Comuni della Provincia di Milano</h1>
-      <p class="answer-capsule"><strong>WebNovis</strong> realizza siti web professionali per aziende in {{ totalCities }} comuni dell'hinterland milanese. Codice 100% custom, SEO integrata, design su misura. Sede a Rho. Trova il tuo comune e scopri cosa possiamo fare per la tua attività.</p>
+      <p class="answer-capsule"><strong>WebNovis</strong> realizza siti web professionali per aziende in tutta la rete territoriale WebNovis. Su questa pagina trovi le landing “realizzazione siti web” già pubblicate e navigabili per i comuni attivi, con codice 100% custom, SEO integrata e design su misura.</p>
       <a href="/contatti.html" class="btn btn-large btn-primary">
         <span>Richiedi Preventivo Gratuito</span>
         <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
@@ -28,14 +30,21 @@
 
   <section class="service-detail">
     <div class="container">
-      <h2>Tutti i Comuni Serviti</h2>
-      <p>Selezione il tuo comune per scoprire i dettagli sui nostri servizi di realizzazione siti web nella tua zona.</p>
+      <h2>Tutte le Landing Core Attive</h2>
+      <p>Questa pagina raccoglie solo i comuni in cui la landing “realizzazione siti web” è già presente e navigabile come hub dedicato. In questo modo manteniamo copertura reale, coerente e verificabile.</p>
       <div class="hub-city-grid">
         {% for city in cities %}
         <a href="/realizzazione-siti-web-{{ city.slug }}.html" class="hub-city-card" title="Realizzazione Siti Web a {{ city.name }}">
-          <span class="hub-city-name">{{ city.name }}</span>
-          <span class="hub-city-meta">{{ city.province }} · {{ city.distanzaSede }}</span>
-          {% if city.population %}<span class="hub-city-pop">{{ city.population | localeNumber }} ab.</span>{% endif %}
+          {% if city.avatarSrc %}
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="" width="52" height="52" loading="lazy" decoding="async"></span>
+          {% else %}
+          <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
+          {% endif %}
+          <span class="hub-city-content">
+            <span class="hub-city-name">{{ city.name }}</span>
+            <span class="hub-city-meta">{{ city.province }} · {{ city.distanzaSede }}</span>
+            {% if city.population %}<span class="hub-city-pop">{{ city.population | localeNumber }} ab.</span>{% endif %}
+          </span>
         </a>
         {% endfor %}
       </div>

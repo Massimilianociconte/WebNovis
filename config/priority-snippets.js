@@ -170,5 +170,45 @@ module.exports = {
   'realizzazione-siti-web-arese.html': {
     title: 'Realizzazione siti web ad Arese: da €1.200 e SEO | WebNovis',
     description: 'Realizzazione siti web ad Arese per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e preventivo in 24 ore.'
+  },
+  'ecommerce-legnano.html': {
+    title: 'E-commerce a Legnano: Shopify, WooCommerce o custom | WebNovis',
+    description: 'E-commerce a Legnano per negozi e brand locali: Shopify, WooCommerce o custom con SEO integrata, UX orientata alle vendite e preventivo rapido.'
+  },
+  'landing-page-monza.html': {
+    title: 'Landing page a Monza: da €500 per lead e campagne | WebNovis',
+    description: 'Landing page a Monza per Google Ads, Meta Ads e campagne lead generation: copy, design e tracking pensati per convertire traffico in richieste.'
+  },
+  'graphic-design-milano.html': {
+    title: 'Graphic design a Milano: logo, brand identity e visual | WebNovis',
+    description: 'Graphic design a Milano per PMI, studi e brand locali: logo, brand identity, coordinato visivo e supporti digitali con approccio strategico.'
+  },
+  'social-media-legnano.html': {
+    title: 'Social media a Legnano: contenuti, Meta Ads e lead | WebNovis',
+    description: 'Social media marketing a Legnano per PMI e professionisti: contenuti, creatività, analisi competitor e campagne Meta Ads orientate ai contatti.'
+  },
+  'email-marketing-legnano.html': {
+    title: 'Email marketing a Legnano: newsletter e automazioni | WebNovis',
+    description: 'Email marketing a Legnano con newsletter, automazioni e flussi di recupero per aumentare richieste, riacquisti e fidelizzazione.'
+  },
+  'accessibilita-cinisello-balsamo.html': {
+    title: 'Accessibilità web a Cinisello Balsamo: audit EAA e WCAG | WebNovis',
+    description: 'Accessibilità web a Cinisello Balsamo per aziende e professionisti: audit EAA, adeguamento WCAG e piano operativo per ridurre rischi e blocchi di compliance.'
+  },
+  'social-media-monza.html': {
+    title: 'Social media a Monza: contenuti, advertising e lead | WebNovis',
+    description: 'Social media marketing a Monza con contenuti, creatività per campagne Meta e strategia editoriale orientata a visibilità e richieste.'
+  },
+  'landing-page-legnano.html': {
+    title: 'Landing page a Legnano: da €500 per campagne e lead | WebNovis',
+    description: 'Landing page a Legnano per campagne Meta e Google Ads: struttura, copy e tracking pensati per migliorare conversioni, contatti e richieste.'
+  },
+  'graphic-design-legnano.html': {
+    title: 'Graphic design a Legnano: logo, visual e brand identity | WebNovis',
+    description: 'Graphic design a Legnano per logo, brand identity, materiali coordinati e visual digitali con approccio strategico e preventivo rapido.'
+  },
+  'email-marketing-cinisello-balsamo.html': {
+    title: 'Email marketing a Cinisello Balsamo: automazioni e CRM | WebNovis',
+    description: 'Email marketing a Cinisello Balsamo con newsletter, automazioni e flussi CRM per aumentare riacquisti, richieste e relazione con i clienti.'
   }
 };

@@ -15,21 +15,70 @@
 
   <section class="service-page-hero">
     <div class="container">
-      <span class="section-tag">Tutti i servizi · Tutti i comuni</span>
+      <span class="section-tag">{{ networkCoverageCount }} comuni serviti da WebNovis</span>
       <h1>Zone Servite da WebNovis — Servizi Web nell'Hinterland Milanese</h1>
-      <p class="answer-capsule"><strong>WebNovis</strong> opera da Rho servendo PMI e professionisti in tutta la Città Metropolitana di Milano. Questa pagina raccoglie tutti i servizi disponibili per comune: sviluppo web, e-commerce, SEO locale, branding e molto altro.</p>
+      <p class="answer-capsule"><strong>WebNovis</strong> opera da Rho servendo PMI e professionisti in tutta la Città Metropolitana di Milano. Questa pagina raccoglie la copertura reale del sito in modo più leggibile: presenza complessiva del brand, landing siti già pubblicate e matrice completa dei servizi locali attivi su tutta la rete WebNovis.</p>
+      <div class="hub-intro-grid">
+        {% for scope in coverageScopes %}
+        <article class="hub-scope-card">
+          <strong>{{ scope.label }}</strong>
+          {% if scope.key == 'agenzia' %}
+          <span class="hub-scope-count">{{ networkCoverageCount }} comuni serviti da WebNovis</span>
+          {% elseif scope.key == 'realizzazione' %}
+          <span class="hub-scope-count">landing siti già pubblicate nei territori attivi</span>
+          {% else %}
+          <span class="hub-scope-count">{{ scope.count }} comuni con landing servizio attive</span>
+          {% endif %}
+          <p>{{ scope.description }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="service-detail hub-atlas">
+    <div class="container">
+      <div class="hub-atlas-header">
+        <div>
+          <h2>Atlante territori</h2>
+          <p>Una panoramica rapida dei comuni coperti. Gli avatar aiutano a rendere più leggibile la navigazione territoriale senza appesantire le sezioni ripetute per servizio.</p>
+        </div>
+        <a href="/agenzia-web/" style="color:var(--primary-light);font-weight:600">→ Vai all'hub completo Agenzia Web</a>
+      </div>
+      <div class="hub-city-grid">
+        {% for city in featuredCities %}
+        <a href="/agenzia-web-{{ city.slug }}.html" class="hub-city-card" title="Agenzia Web {{ city.name }}">
+          {% if city.avatarSrc %}
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="" width="52" height="52" loading="lazy" decoding="async"></span>
+          {% else %}
+          <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
+          {% endif %}
+          <span class="hub-city-content">
+            <span class="hub-city-name">{{ city.name }}</span>
+            <span class="hub-city-meta">{{ city.province }} · {{ city.distanzaSede }}</span>
+          </span>
+        </a>
+        {% endfor %}
+      </div>
     </div>
   </section>
 
   {# ═══ Agenzia Web section ═══ #}
   <section class="service-detail" id="agenzia-web">
     <div class="container">
-      <h2><a href="/agenzia-web/" style="color:var(--white);text-decoration:none">Agenzia Web</a> — {{ agenziaCount }} Comuni</h2>
+      <h2><a href="/agenzia-web/" style="color:var(--white);text-decoration:none">Agenzia Web</a> — tutti i comuni serviti</h2>
       <p>Servizi completi di web agency: sviluppo siti, grafica, social media e consulenza digitale.</p>
       <div class="hub-city-grid hub-city-grid--compact">
         {% for city in agenziaCities %}
         <a href="/agenzia-web-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="Agenzia Web {{ city.name }}">
-          <span class="hub-city-name">{{ city.name }}</span>
+          {% if city.avatarSrc %}
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="" width="40" height="40" loading="lazy" decoding="async"></span>
+          {% else %}
+          <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
+          {% endif %}
+          <span class="hub-city-content">
+            <span class="hub-city-name">{{ city.name }}</span>
+          </span>
         </a>
         {% endfor %}
       </div>
@@ -40,12 +89,19 @@
   {# ═══ Realizzazione Siti Web section ═══ #}
   <section class="service-detail" id="realizzazione-siti-web" style="background:rgba(255,255,255,.01)">
     <div class="container">
-      <h2><a href="/realizzazione-siti-web/" style="color:var(--white);text-decoration:none">Realizzazione Siti Web</a> — {{ realizzazioneCount }} Comuni</h2>
-      <p>Siti web professionali con codice 100% custom, SEO locale integrata e design su misura.</p>
+      <h2><a href="/realizzazione-siti-web/" style="color:var(--white);text-decoration:none">Realizzazione Siti Web</a> — landing già pubblicate</h2>
+      <p>Siti web professionali con codice 100% custom, SEO locale integrata e design su misura. Qui mostriamo solo i comuni in cui la landing “realizzazione siti web” è già attiva come hub dedicato.</p>
       <div class="hub-city-grid hub-city-grid--compact">
         {% for city in realizzazioneCities %}
         <a href="/realizzazione-siti-web-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="Siti Web {{ city.name }}">
-          <span class="hub-city-name">{{ city.name }}</span>
+          {% if city.avatarSrc %}
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="" width="40" height="40" loading="lazy" decoding="async"></span>
+          {% else %}
+          <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
+          {% endif %}
+          <span class="hub-city-content">
+            <span class="hub-city-name">{{ city.name }}</span>
+          </span>
         </a>
         {% endfor %}
       </div>
@@ -57,15 +113,23 @@
   {% for service in geoServices %}
   <section class="service-detail" id="{{ service.slug }}"{% if loop.index % 2 == 0 %} style="background:rgba(255,255,255,.01)"{% endif %}>
     <div class="container">
-      <h2>{{ service.name }} — {{ serviceCityCounts[service.slug] }} Comuni</h2>
+      <h2>{{ service.name }} — presidio locale attivo</h2>
       <p>{{ service.shortDesc }} Da €{{ service.priceFrom }}{{ service.priceUnit if service.priceUnit }}.</p>
       <div class="hub-city-grid hub-city-grid--compact">
         {% for city in serviceCities[service.slug] %}
         <a href="/{{ service.slug }}-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="{{ service.shortName }} a {{ city.name }}">
-          <span class="hub-city-name">{{ city.name }}</span>
+          {% if city.avatarSrc %}
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="" width="40" height="40" loading="lazy" decoding="async"></span>
+          {% else %}
+          <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
+          {% endif %}
+          <span class="hub-city-content">
+            <span class="hub-city-name">{{ city.name }}</span>
+          </span>
         </a>
         {% endfor %}
       </div>
+      <p class="service-scope-note">Questa matrice segue la stessa copertura territoriale della rete WebNovis: ogni comune mostrato qui ha una landing servizio dedicata e navigabile.</p>
     </div>
   </section>
   {% endfor %}

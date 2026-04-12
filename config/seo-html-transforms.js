@@ -12,6 +12,95 @@ const HOMEPAGE_MOBILE_PRELOAD_OLD = '<link href="Img/sfondo-mobile.webp" rel="pr
 const HOMEPAGE_MOBILE_PRELOAD_NEW = '<link href="Img/sfondo-mobile-hq.webp" rel="preload" media="(max-width: 768px)" as="image" fetchpriority="high" type="image/webp">';
 const HOMEPAGE_FONT_PRELOAD_PATTERN = /\s*<link href="https:\/\/fonts\.googleapis\.com\/css2\?family=Inter:wght@400;600;700&family=Space\+Grotesk:wght@600;700&family=Syne:wght@600;700;800&display=swap" rel="preload" as="style">\s*/i;
 const STRATEGIC_LINKS_STYLE_BLOCK = '<style data-webnovis-cluster-links>.article-strategic-links{padding:2.4rem 0;border-top:1px solid rgba(255,255,255,.06)}.article-strategic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.35rem}.article-strategic-card{display:block;padding:1.3rem;border-radius:14px;border:1px solid rgba(96,165,250,.18);background:linear-gradient(180deg,rgba(255,255,255,.04) 0%,rgba(91,106,174,.08) 100%);text-decoration:none!important;transition:transform .2s ease,border-color .2s ease,background .2s ease}.article-strategic-card:hover{transform:translateY(-2px);border-color:rgba(96,165,250,.35);background:linear-gradient(180deg,rgba(255,255,255,.05) 0%,rgba(91,106,174,.13) 100%)}.article-strategic-label{display:inline-flex;margin-bottom:.7rem;padding:.3rem .65rem;border-radius:999px;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.18);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary-light)}.article-strategic-card h3{margin:0 0 .5rem;font-size:1rem;color:var(--white)}.article-strategic-card p{margin:0;font-size:.9rem;line-height:1.6;color:var(--text-muted)}</style>';
+const LEGAL_PAGES = new Set(['privacy-policy.html', 'cookie-policy.html', 'termini-condizioni.html']);
+const LOCAL_PAGES_ALREADY_OPTIMIZED = new Set([
+  'sito-vetrina-bollate.html',
+  'graphic-design-bareggio.html',
+  'realizzazione-siti-web-garbagnate.html',
+  'realizzazione-siti-web-bresso.html',
+  'landing-page-milano.html',
+  'ecommerce-milano.html',
+  'sviluppo-app-mobile-milano.html',
+  'email-marketing-monza.html',
+  'google-ads-monza.html',
+  'ecommerce-senago.html',
+  'seo-locale-bresso.html',
+  'seo-locale-cormano.html',
+  'seo-locale-buccinasco.html',
+  'seo-locale-lainate.html',
+  'seo-locale-nerviano.html',
+  'seo-locale-cologno-monzese.html',
+  'realizzazione-siti-web-arese.html'
+]);
+const CONTACT_INFO_CARDS_PATTERN = /<div class="contatti-info-cards">[\s\S]*?<div class="contatti-map">[\s\S]*?<\/div>\s*<\/div>/i;
+const CONTACT_INFO_CARDS_REPLACEMENT = `<div class="contatti-info-cards"> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M3 8L10.89 13.26C11.54 13.67 12.46 13.67 13.11 13.26L21 8M5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19Z"/></svg> <h3>Email</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <a href="mailto:hello@webnovis.com" class="contatti-card-link">hello@webnovis.com</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <h3>Telefono</h3> </div> <div class="contatti-card-body contatti-card-body--offset contatti-card-stack"> <a href="tel:+393802647367" title="Chiama Web Novis" class="phone-cta" aria-label="Chiama WebNovis al numero +39 380 264 7367" data-contact-phone="+393802647367"><span class="phone-cta-label">Chiama WebNovis</span></a> <a href="https://wa.me/393802647367?text=Ciao%20Web%20Novis%2C%20vorrei%20maggiori%20informazioni" target="_blank" rel="noopener noreferrer" class="contatti-card-link">Scrivici su WhatsApp →</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> <h3>Sede</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Via S. Giorgio, 2<br>20017 Rho (MI), Italia</p> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <h3>Orari</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Aperto 24 ore su 24<br>7 giorni su 7</p> </div> </article> <div class="contatti-map"> <iframe allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.5!2d9.0393!3d45.5299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c1237f2e291d%3A0x7e38e24c285e5a0!2sVia%20S.%20Giorgio%2C%202%2C%2020017%20Rho%20MI!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" title="Sede Web Novis — Via S. Giorgio 2, Rho (MI)"></iframe> </div> </div>`;
+const LEGAL_NAV_MENU = '<ul class="nav-menu" id="navMenu"> <li><a href="servizi/" class="nav-link">Servizi</a></li> <li><a href="portfolio.html" class="nav-link">Portfolio</a></li> <li><a href="chi-siamo.html" class="nav-link">Chi Siamo</a></li> <li><a href="blog/" class="nav-link">Blog</a></li> <li><a href="contatti.html" class="nav-link">Contatti</a></li> <li><a href="preventivo.html" class="nav-link nav-cta">Inizia Ora</a></li> </ul>';
+const PORTFOLIO_GRAPHIC_SECTION_PATTERN = /<section class="portfolio-section" style="padding:4rem 0" id="portfolio-grafico">[\s\S]*?<\/section>/i;
+const PORTFOLIO_SOCIAL_SECTION_PATTERN = /<section class="portfolio-section" style="padding:4rem 0;background:rgba\(255,255,255,.01\)" id="portfolio-social">[\s\S]*?<\/section>/i;
+const PORTFOLIO_GRAPHIC_SECTION_REPLACEMENT = `<section class="portfolio-section portfolio-capability-section" id="portfolio-grafico"> <div class="container"> <div class="portfolio-capability-shell"> <div class="portfolio-capability-header"> <span class="portfolio-capability-kicker">Graphic Design</span> <h2>Identità visive, sistemi grafici e materiali che danno spessore al brand</h2> <p class="portfolio-section-lead">Nel portfolio grafico inseriamo ciò che realizziamo davvero per i clienti: logo, brand system, coordinato, packaging leggero e supporti digitali. Quando un progetto completo non è pubblico o è coperto da NDA, mostriamo comunque il tipo di output e il livello di profondità del lavoro.</p> </div> <div class="portfolio-capability-grid"> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Logo & brand mark</span> <h3>Identità visive memorabili</h3> <p>Marchi originali, versioni responsive, palette, tipografia e regole d’uso pensate per rendere il brand riconoscibile sia sul web sia nei materiali stampati.</p> <ul class="portfolio-capability-list"> <li>Logo principale e versioni secondarie</li> <li>Palette, tipografia e tono visivo</li> <li>Linee guida d’uso essenziali</li> </ul> </article> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Brand system</span> <h3>Coordinato coerente e riutilizzabile</h3> <p>Sistemi visivi che non si fermano al logo: pattern, iconografia, layout ricorrenti e materiali coerenti per sito, presentazioni, social e supporti offline.</p> <ul class="portfolio-capability-list"> <li>Biglietti da visita e supporti corporate</li> <li>Presentazioni, brochure e mini kit stampa</li> <li>Template digitali coordinati</li> </ul> </article> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Packaging & visual</span> <h3>Elementi grafici pensati per vendere meglio</h3> <p>Visual per campagne, packaging leggero, etichette, menu e materiali promozionali progettati per aumentare qualità percepita e chiarezza del messaggio.</p> <ul class="portfolio-capability-list"> <li>Packaging essenziale e label design</li> <li>Menu, leaflet e materiali promozionali</li> <li>Creative per campagne e annunci</li> </ul> </article> </div> <p class="portfolio-capability-note">Alcuni lavori grafici vengono mostrati integralmente solo in call o su richiesta, perché spesso nascono dentro progetti più ampi di branding, sito o advertising.</p> <div class="portfolio-capability-cta"> <a href="contatti.html?servizio=graphic-design" class="pf-btn pf-btn-primary">Richiedi un progetto grafico <svg viewBox="0 0 24 24" fill="none" height="14" width="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a> </div> </div> </div> </section>`;
+const PORTFOLIO_SOCIAL_SECTION_REPLACEMENT = `<section class="portfolio-section portfolio-capability-section portfolio-capability-section--muted" id="portfolio-social"> <div class="container"> <div class="portfolio-capability-shell"> <div class="portfolio-capability-header"> <span class="portfolio-capability-kicker">Social & content</span> <h2>Creative social, campagne e contenuti pensati per essere usati davvero</h2> <p class="portfolio-section-lead">La parte social del portfolio non viene mostrata come una galleria finta di feed inventati: presentiamo invece i sistemi creativi che sviluppiamo per Instagram, Facebook e LinkedIn, spesso integrati con advertising, branding e pagine landing.</p> </div> <div class="portfolio-capability-grid"> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Template social</span> <h3>Post, stories e carousel coerenti</h3> <p>Template riutilizzabili per rubriche, post educativi, highlights e stories con una gerarchia visiva chiara e coerente con il brand.</p> <ul class="portfolio-capability-list"> <li>Template per feed e stories</li> <li>Copertine carousel e highlights</li> <li>Sistemi grafici per piani editoriali</li> </ul> </article> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Advertising creative</span> <h3>Visual per Meta Ads e campagne locali</h3> <p>Creatività per campagne conversion e lead generation con varianti A/B, CTA leggibili e visual pensati per funzionare anche in formati piccoli e rapidi.</p> <ul class="portfolio-capability-list"> <li>Visual statici per campagne Meta</li> <li>Varianti per test creativi</li> <li>Coerenza tra annuncio e landing</li> </ul> </article> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Art direction</span> <h3>Impostazione visuale del profilo</h3> <p>Direzione creativa per profili aziendali che devono sembrare più professionali: ritmo del feed, palette, copertine e tono visivo coordinato.</p> <ul class="portfolio-capability-list"> <li>Setup visuale del feed</li> <li>Moodboard e linee guida rapide</li> <li>Supporto grafico per contenuti ricorrenti</li> </ul> </article> </div> <p class="portfolio-capability-note">Molti lavori social cambiano nel tempo o vengono prodotti in continuità: per questo mostriamo soprattutto struttura, approccio e qualità del sistema creativo, non una vetrina artificiale di post casuali.</p> <div class="portfolio-capability-cta"> <a href="contatti.html?servizio=social-media" class="pf-btn pf-btn-primary">Parliamo dei tuoi contenuti social <svg viewBox="0 0 24 24" fill="none" height="14" width="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a> </div> </div> </div> </section>`;
+const LOCAL_PAGE_CONTENT_UPGRADES = {
+  'ecommerce-legnano.html': {
+    sectionTag: 'E-commerce a Legnano · Shopify, WooCommerce o custom',
+    h1: 'E-commerce a Legnano per negozi, retail e brand che vogliono vendere meglio',
+    answer: '<strong>WebNovis</strong> realizza e-commerce a Legnano per negozi, brand e attività locali che vogliono vendere online con una struttura più solida: Shopify, WooCommerce o custom, SEO integrata, UX orientata alle conversioni e preventivo rapido.',
+    lead: '<strong>Legnano</strong> ha un tessuto commerciale e artigianale molto competitivo: per un e-commerce locale non basta “andare online”, serve scegliere la piattaforma giusta, lavorare su checkout, SEO e fiducia percepita fin dal primo accesso.'
+  },
+  'landing-page-monza.html': {
+    sectionTag: 'Landing page a Monza · da €500 · lead generation locale',
+    h1: 'Landing page a Monza per campagne che devono generare richieste vere',
+    answer: '<strong>WebNovis</strong> crea landing page a Monza per campagne Google Ads, Meta Ads e acquisizione lead locale. Copy, design e tracking vengono progettati per trasformare il traffico in richieste concrete, non in semplici visite.',
+    lead: 'A <strong>Monza</strong> le campagne funzionano quando la pagina di atterraggio è coerente con l’annuncio, chiarisce subito proposta e fiducia, e riduce al minimo i passaggi tra click e richiesta.'
+  },
+  'graphic-design-milano.html': {
+    sectionTag: 'Graphic design a Milano · logo, brand identity e materiali visivi',
+    h1: 'Graphic design a Milano per brand che vogliono sembrare subito più credibili',
+    answer: '<strong>WebNovis</strong> segue progetti di graphic design a Milano per logo, brand identity, coordinato e visual digitali. L’obiettivo non è solo “fare qualcosa di bello”, ma dare al brand un sistema visivo chiaro, coerente e riutilizzabile.',
+    lead: 'Nel mercato di <strong>Milano</strong> la percezione visiva pesa moltissimo: logo, palette, tipografia e materiali coordinati influenzano fiducia, premium positioning e capacità di farsi ricordare.'
+  },
+  'social-media-legnano.html': {
+    sectionTag: 'Social media a Legnano · contenuti, Meta Ads e lead',
+    h1: 'Social media a Legnano per PMI e professionisti che vogliono più richieste',
+    answer: '<strong>WebNovis</strong> gestisce social media a Legnano con contenuti, creatività e campagne Meta pensate per portare visibilità utile, più fiducia e più contatti, non solo numeri da vanity metrics.',
+    lead: 'Per molte attività di <strong>Legnano</strong>, il vero salto non arriva dalla semplice presenza sui social ma da una strategia capace di collegare contenuti, advertising e conversione locale.'
+  },
+  'email-marketing-legnano.html': {
+    sectionTag: 'Email marketing a Legnano · newsletter e automazioni',
+    h1: 'Email marketing a Legnano per fidelizzare, recuperare e vendere meglio',
+    answer: '<strong>WebNovis</strong> imposta email marketing a Legnano con newsletter, automazioni e flussi CRM pensati per aumentare richieste, riacquisti e relazione con i clienti senza disperdere contatti acquisiti.',
+    lead: 'Per chi lavora a <strong>Legnano</strong> con clienti ricorrenti, lead o riacquisti, l’email marketing resta uno dei canali più efficienti: costa poco, si misura bene e aiuta a non perdere opportunità già generate.'
+  },
+  'accessibilita-cinisello-balsamo.html': {
+    sectionTag: 'Accessibilità web a Cinisello Balsamo · audit EAA e WCAG',
+    h1: 'Accessibilità web a Cinisello Balsamo per ridurre rischi e blocchi di compliance',
+    answer: '<strong>WebNovis</strong> supporta aziende e professionisti di Cinisello Balsamo con audit EAA, adeguamento WCAG e priorità operative chiare. L’obiettivo è capire cosa va corretto davvero e come intervenire senza rifare tutto da zero.',
+    lead: 'A <strong>Cinisello Balsamo</strong>, come nel resto dell’area milanese, l’accessibilità non è più solo una buona pratica: per molti progetti è una questione concreta di compliance, reputazione e continuità operativa.'
+  },
+  'social-media-monza.html': {
+    sectionTag: 'Social media a Monza · contenuti, advertising e lead',
+    h1: 'Social media a Monza per brand che vogliono più visibilità utile e più contatti',
+    answer: '<strong>WebNovis</strong> cura social media a Monza con contenuti, campagne e direzione creativa pensati per aumentare riconoscibilità, qualità percepita e richieste commerciali in modo misurabile.',
+    lead: 'Per un brand che lavora su <strong>Monza</strong>, i social non devono solo “presidiare il feed”: devono sostenere posizionamento, fiducia, advertising e continuità della relazione col pubblico giusto.'
+  },
+  'landing-page-legnano.html': {
+    sectionTag: 'Landing page a Legnano · da €500 · campagne e contatti',
+    h1: 'Landing page a Legnano per campagne che devono convertire davvero',
+    answer: '<strong>WebNovis</strong> progetta landing page a Legnano per campagne Google Ads e Meta Ads con una struttura orientata a click qualificati, moduli più chiari e messaggi coerenti con l’intento di ricerca.',
+    lead: 'A <strong>Legnano</strong> una landing efficace fa la differenza soprattutto nei servizi locali e nelle campagne lead generation: meno dispersione, più chiarezza, più possibilità di richiesta.'
+  },
+  'graphic-design-legnano.html': {
+    sectionTag: 'Graphic design a Legnano · logo, visual e brand identity',
+    h1: 'Graphic design a Legnano per brand che vogliono distinguersi con più coerenza',
+    answer: '<strong>WebNovis</strong> offre graphic design a Legnano per logo, visual, brand identity e materiali coordinati. Ogni progetto nasce per alzare qualità percepita, coerenza visiva e memorabilità del brand.',
+    lead: 'Per molte attività di <strong>Legnano</strong>, il primo problema non è l’assenza di servizi ma un’immagine visiva troppo generica. Una brand identity più chiara aiuta a sembrare più affidabili e più professionali.'
+  },
+  'email-marketing-cinisello-balsamo.html': {
+    sectionTag: 'Email marketing a Cinisello Balsamo · automazioni e CRM',
+    h1: 'Email marketing a Cinisello Balsamo per trasformare contatti in clienti più spesso',
+    answer: '<strong>WebNovis</strong> imposta email marketing a Cinisello Balsamo con newsletter, automazioni e flussi CRM pensati per aumentare riacquisti, richieste e qualità della relazione con i clienti già acquisiti.',
+    lead: 'Per attività e PMI di <strong>Cinisello Balsamo</strong>, l’email marketing diventa davvero utile quando è collegato a preventivi, form, e-commerce o customer journey già esistenti, non quando viene trattato come un canale isolato.'
+  }
+};
 
 function normalizeRelativePath(relativePath = '') {
   return String(relativePath || '').replace(/\\/g, '/').replace(/^\.\//, '');
@@ -111,6 +200,13 @@ function replaceAnswerCapsule(html, content) {
 
 function replaceFirstParagraphAfterH1(html, content) {
   return html.replace(/(<h1>[\s\S]*?<\/h1>\s*<p>)[\s\S]*?(<\/p>)/i, `$1${content}$2`);
+}
+
+function replaceFirstServiceDetailIntro(html, content) {
+  return html.replace(
+    /(<section class="service-detail">[\s\S]*?<div class="container">\s*<h2>[\s\S]*?<\/h2>\s*<p>)[\s\S]*?(<\/p>)/i,
+    `$1${content}$2`
+  );
 }
 
 function replaceArticleUpgrade(html, { title, description, href, label }) {
@@ -682,10 +778,91 @@ function alignClusterStrategicLinks(html, relativePath) {
   return updated.replace(/<\/article>/i, `${strategicLinksHtml} </article>`);
 }
 
+function alignContactPageInfoCards(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  if (normalizedPath !== 'contatti.html') return html;
+  if (!CONTACT_INFO_CARDS_PATTERN.test(html)) return html;
+  return html.replace(CONTACT_INFO_CARDS_PATTERN, CONTACT_INFO_CARDS_REPLACEMENT);
+}
+
+function alignLegalNavbar(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  if (!LEGAL_PAGES.has(normalizedPath)) return html;
+  return html.replace(/<ul class="nav-menu" id="navMenu">[\s\S]*?<\/ul>/i, LEGAL_NAV_MENU);
+}
+
+function alignPortfolioExperience(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  if (normalizedPath !== 'portfolio.html') return html;
+
+  let updated = html;
+
+  if (PORTFOLIO_GRAPHIC_SECTION_PATTERN.test(updated)) {
+    updated = updated.replace(PORTFOLIO_GRAPHIC_SECTION_PATTERN, PORTFOLIO_GRAPHIC_SECTION_REPLACEMENT);
+  }
+
+  if (PORTFOLIO_SOCIAL_SECTION_PATTERN.test(updated)) {
+    updated = updated.replace(PORTFOLIO_SOCIAL_SECTION_PATTERN, PORTFOLIO_SOCIAL_SECTION_REPLACEMENT);
+  }
+
+  const internalDemos = [
+    { demo: 'portfolio/Aether-Digital.html', caseStudy: 'portfolio/case-study/aether-digital.html' },
+    { demo: 'portfolio/Lumina-Creative.html', caseStudy: 'portfolio/case-study/lumina-creative.html' },
+    { demo: 'portfolio/Muse-Editorial.html', caseStudy: 'portfolio/case-study/muse-editorial.html' },
+    { demo: 'portfolio/PopBlock-Studio.html', caseStudy: 'portfolio/case-study/popblock-studio.html' },
+    { demo: 'portfolio/Structure-Arch.html', caseStudy: 'portfolio/case-study/structure-arch.html' },
+    { demo: 'portfolio/Ember-Oak.html', caseStudy: 'portfolio/case-study/ember-oak.html' }
+  ];
+
+  for (const { demo, caseStudy } of internalDemos) {
+    const escapedHref = escapeRegex(demo);
+    const escapedCaseStudy = escapeRegex(caseStudy);
+    updated = updated.replace(
+      new RegExp(`<a href="${escapedHref}" class="pf-btn pf-btn-outline" rel="noopener noreferrer" target="_blank">([\\s\\S]*?)Visita Sito\\s*<\\/a>`, 'g'),
+      `<a href="${demo}" class="pf-btn pf-btn-outline">$1Apri Demo</a>`
+    );
+    updated = updated.replace(
+      new RegExp(`<a href="${escapedCaseStudy}" class="pf-card-img-link"`, 'g'),
+      `<a href="${demo}" class="pf-card-img-link"`
+    );
+  }
+
+  updated = updated.replace(
+    /<a href="#" class="pf-card-img-link" aria-label="DreamSense AI">/g,
+    '<a href="https://www.mydreamsense.app" class="pf-card-img-link" aria-label="Visita DreamSense" rel="noopener noreferrer" target="_blank">'
+  );
+
+  updated = updated.replace(
+    /("name":\s*"DreamSense"[\s\S]*?"url":\s*")https:\/\/www\.webnovis\.com\/portfolio\/case-study\/dreamsense\.html(")/i,
+    '$1https://www.mydreamsense.app$2'
+  );
+
+  return updated;
+}
+
+function alignLocalPageOpportunityTransforms(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  if (LOCAL_PAGES_ALREADY_OPTIMIZED.has(normalizedPath)) return html;
+
+  const upgrade = LOCAL_PAGE_CONTENT_UPGRADES[normalizedPath];
+  if (!upgrade) return html;
+
+  let updated = html;
+  updated = replaceSectionTag(updated, upgrade.sectionTag);
+  updated = replaceFirstH1(updated, upgrade.h1);
+  updated = replaceAnswerCapsule(updated, upgrade.answer);
+  updated = replaceFirstServiceDetailIntro(updated, upgrade.lead);
+  return updated;
+}
+
 function applySeoHtmlTransforms(html, relativePath) {
   let updated = html;
   updated = alignPrioritySnippet(updated, relativePath);
   updated = alignPriorityContentTransforms(updated, relativePath);
+  updated = alignLocalPageOpportunityTransforms(updated, relativePath);
+  updated = alignContactPageInfoCards(updated, relativePath);
+  updated = alignLegalNavbar(updated, relativePath);
+  updated = alignPortfolioExperience(updated, relativePath);
   updated = alignClusterStrategicLinks(updated, relativePath);
   updated = ensureSelfHreflang(updated, relativePath);
   updated = alignRobotsDirectives(updated, relativePath);
@@ -702,6 +879,10 @@ module.exports = {
   ensureSelfHreflang,
   alignPrioritySnippet,
   alignPriorityContentTransforms,
+  alignLocalPageOpportunityTransforms,
+  alignContactPageInfoCards,
+  alignLegalNavbar,
+  alignPortfolioExperience,
   alignClusterStrategicLinks,
   alignRobotsDirectives,
   alignHomepageBrandExperience,

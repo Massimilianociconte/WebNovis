@@ -94,9 +94,47 @@
 
   function renderAiAnswer(text) {
     if (!text) return '';
-    // Escape HTML first, then convert [text](url) markdown links to <a> tags
-    var safe = escHTML(text);
-    return safe.replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, '<a href="$2" class="search-ai-link">$1</a>');
+    function formatInline(line) {
+      return escHTML(line)
+        .replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, '<a href="$2" class="search-ai-link">$1</a>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>');
+    }
+
+    var normalized = String(text)
+      .replace(/\r\n?/g, '\n')
+      .replace(/([1-9])️⃣/g, '$1. ')
+      .trim();
+
+    if (!normalized) return '';
+
+    var blocks = normalized
+      .split(/\n{2,}/)
+      .map(function (block) { return block.trim(); })
+      .filter(Boolean);
+
+    return blocks.map(function (block) {
+      var lines = block
+        .split('\n')
+        .map(function (line) { return line.trim(); })
+        .filter(Boolean);
+
+      if (!lines.length) return '';
+
+      var ordered = lines.every(function (line) { return /^\d+\.\s+/.test(line); });
+      var unordered = lines.every(function (line) { return /^(?:[-*•])\s+/.test(line); });
+
+      if (ordered || unordered) {
+        var tag = ordered ? 'ol' : 'ul';
+        var pattern = ordered ? /^\d+\.\s+/ : /^(?:[-*•])\s+/;
+        var items = lines.map(function (line) {
+          return '<li>' + formatInline(line.replace(pattern, '')) + '</li>';
+        }).join('');
+        return '<' + tag + ' class="search-ai-list">' + items + '</' + tag + '>';
+      }
+
+      return '<p>' + lines.map(formatInline).join('<br>') + '</p>';
+    }).join('');
   }
 
   function highlight(text, query) {

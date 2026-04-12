@@ -36,6 +36,7 @@ const SEDE_LAT = '45.5299';
 const SEDE_LNG = '9.0393';
 const FIRST_DEPLOY_DATE = '2026-02-27';
 const TODAY = new Date().toISOString().split('T')[0];
+const CITY_AVATAR_PUBLIC_DIR = '/Img/cities';
 const TODAY_FORMATTED = new Date().toLocaleDateString('it-IT', {
     day: 'numeric', month: 'long', year: 'numeric'
 });
@@ -84,6 +85,22 @@ function writePublishedFile(relativePath, html) {
     fs.writeFileSync(targetPath, html, 'utf8');
 }
 
+function getCityAvatarPublicPath(city) {
+    const filename = `${city.slug}.webp`;
+    const publishPath = resolvePublishPath('Img', 'cities', filename);
+    const rootPath = path.join(ROOT, 'Img', 'cities', filename);
+    if (!fs.existsSync(publishPath) && !fs.existsSync(rootPath)) return '';
+    return `${CITY_AVATAR_PUBLIC_DIR}/${filename}`;
+}
+
+function withCityUiMeta(cityList) {
+    return cityList.map((city) => ({
+        ...city,
+        avatarSrc: getCityAvatarPublicPath(city),
+        avatarAlt: `Avatar territoriale di ${city.name}`
+    }));
+}
+
 function matchesTargetCity(city) {
     return TARGET_CITY_SLUGS.size === 0 || TARGET_CITY_SLUGS.has(city.slug);
 }
@@ -99,6 +116,9 @@ const cities = citiesData.cities;
 const services = servicesData.services;
 const coreServices = services.filter(s => s.tier === 'core');
 const sede = citiesData._meta.sede;
+const serviceCoverageCitySlugs = new Set(
+    cities.filter((city) => city.generate?.agenzia).map((city) => city.slug)
+);
 
 // Build city lookup map
 const cityMap = new Map();
@@ -218,6 +238,35 @@ function getServicePrimaryLabel(service) {
     return service.hasPage
         ? `la pagina servizio ${service.shortName}`
         : `il riepilogo ${service.shortName} nelle zone servite`;
+}
+
+function buildCoverageScopes(agenziaCities, realizzazioneCities, serviceCoverageCities) {
+    return [
+        {
+            key: 'agenzia',
+            label: 'Copertura completa',
+            count: agenziaCities.length,
+            helper: 'comuni serviti da WebNovis',
+            description: 'Comuni in cui presidiamo la presenza come agenzia web completa: sito, design, social e consulenza.',
+            href: '/agenzia-web/'
+        },
+        {
+            key: 'realizzazione',
+            label: 'Landing core attive',
+            count: realizzazioneCities.length,
+            helper: 'landing siti già pubblicate',
+            description: 'Comuni in cui il cluster “realizzazione siti web” ha una landing dedicata e navigabile.',
+            href: '/realizzazione-siti-web/'
+        },
+        {
+            key: 'extended',
+            label: 'Servizi locali attivi',
+            count: serviceCoverageCities.length,
+            helper: 'comuni con landing servizio attive',
+            description: 'Ogni servizio elencato in questa pagina ha una landing locale navigabile in tutti i territori del network WebNovis.',
+            href: '/zone-servite/'
+        }
+    ];
 }
 
 function isContinuousService(service) {
@@ -1016,7 +1065,7 @@ function generateServizioCittaPage(service, city) {
     // Nearest cities that also have this service×city page
     const nearest = getNearestCities(city, cities, 5);
     const relatedCityPages = nearest
-        .filter(nc => !nc.isSede && nc.population >= 15000)
+        .filter(nc => !nc.isSede && serviceCoverageCitySlugs.has(nc.slug))
         .slice(0, 3)
         .map(nc => ({
             url: `${service.slug}-${nc.slug}.html`,
@@ -1027,7 +1076,6 @@ function generateServizioCittaPage(service, city) {
     // Other services in the same city (only link to services that have geo pages)
     const geoServices = services.filter(s => s.generateGeoPages !== false && s.slug !== service.slug);
     const relatedServicePages = geoServices
-        .filter(svc => city.population >= 15000 || svc.tier === 'core')
         .slice(0, 3)
         .map(svc => ({
             url: `${svc.slug}-${city.slug}.html`,
@@ -1185,16 +1233,31 @@ function generateServizioCittaPage(service, city) {
 
 const HUB_CSS = `
 <style>
+.hub-intro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2rem}
+.hub-scope-card{padding:1.35rem;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(91,106,174,.06));backdrop-filter:blur(12px)}
+.hub-scope-card strong{display:block;margin-bottom:.45rem;color:var(--white);font-family:Syne,sans-serif;font-size:1rem}
+.hub-scope-count{display:inline-flex;align-items:center;gap:.45rem;margin-bottom:.7rem;padding:.38rem .72rem;border-radius:999px;background:rgba(91,106,174,.12);border:1px solid rgba(123,140,201,.24);font-size:.82rem;color:var(--primary-light);font-weight:700}
+.hub-scope-card p{margin:0;color:var(--gray-light);font-size:.95rem;line-height:1.65}
 .hub-city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
-.hub-city-grid--compact{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem}
-.hub-city-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem 1rem;text-decoration:none;display:flex;flex-direction:column;gap:.25rem;transition:all .25s ease}
-.hub-city-card:hover{border-color:rgba(91,106,174,.4);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
-.hub-city-card--sm{padding:.75rem;border-radius:8px}
+.hub-city-grid--compact{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.8rem}
+.hub-city-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1rem;text-decoration:none;display:flex;align-items:center;gap:.85rem;transition:all .25s ease;min-height:88px}
+.hub-city-card:hover{border-color:rgba(91,106,174,.4);transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.22)}
+.hub-city-card--sm{padding:.82rem .9rem;border-radius:12px;min-height:auto}
+.hub-city-card--sm .hub-city-avatar{width:40px;height:40px}
+.hub-city-avatar{width:52px;height:52px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid rgba(255,255,255,.14);background:radial-gradient(circle at 30% 30%,rgba(123,140,201,.4),rgba(13,16,28,.92));box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+.hub-city-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.hub-city-avatar--fallback::before{content:attr(data-initials);display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:Syne,sans-serif;font-size:1rem;font-weight:700;color:var(--white)}
+.hub-city-content{display:flex;flex-direction:column;gap:.18rem;min-width:0}
 .hub-city-name{font-family:Syne,sans-serif;font-weight:700;color:var(--white);font-size:1rem}
-.hub-city-card--sm .hub-city-name{font-size:.9rem}
-.hub-city-meta{font-size:.8rem;color:var(--gray-light);opacity:.7}
-.hub-city-pop{font-size:.75rem;color:var(--primary-light);opacity:.8}
-@media(max-width:640px){.hub-city-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
+.hub-city-card--sm .hub-city-name{font-size:.92rem}
+.hub-city-meta{font-size:.8rem;color:var(--gray-light);opacity:.78}
+.hub-city-pop{font-size:.75rem;color:var(--primary-light);opacity:.84}
+.hub-atlas{padding-top:1rem}
+.hub-atlas-header{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.hub-atlas-header p{max-width:740px;margin:0;color:var(--gray-light)}
+.service-scope-note{margin-top:.9rem;font-size:.88rem;color:var(--gray-light);opacity:.82}
+@media(max-width:900px){.hub-intro-grid{grid-template-columns:1fr}.hub-atlas-header{align-items:flex-start}}
+@media(max-width:640px){.hub-city-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.hub-city-card{padding:.85rem;gap:.7rem}.hub-city-avatar{width:46px;height:46px}}
 </style>`;
 
 function generateHubPages() {
@@ -1271,9 +1334,11 @@ function generateHubPages() {
 
     // ── 1. Agenzia Web Hub ──
     const agenziaCities = cities.filter(c => c.generate.agenzia);
+    const agenziaCitiesUi = withCityUiMeta(agenziaCities);
     const agenziaData = {
-        cities: agenziaCities,
+        cities: agenziaCitiesUi,
         coreServices: coreServices,
+        networkCoverageCount: agenziaCities.length,
         totalCities: agenziaCities.length,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
@@ -1314,8 +1379,10 @@ function generateHubPages() {
 
     // ── 2. Realizzazione Siti Web Hub ──
     const realizzazioneCities = cities.filter(c => c.generate.realizzazione);
+    const realizzazioneCitiesUi = withCityUiMeta(realizzazioneCities);
     const realizzazioneData = {
-        cities: realizzazioneCities,
+        cities: realizzazioneCitiesUi,
+        networkCoverageCount: agenziaCities.length,
         totalCities: realizzazioneCities.length,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
@@ -1332,7 +1399,7 @@ function generateHubPages() {
         {
             "@context": "https://schema.org", "@type": "CollectionPage",
             "name": "Realizzazione Siti Web nei Comuni della Provincia di Milano",
-            "description": `Realizzazione siti web professionali per ${realizzazioneCities.length} comuni dell'hinterland milanese.`,
+            "description": `Landing siti web già pubblicate in ${realizzazioneCities.length} comuni di una rete WebNovis che serve ${agenziaCities.length} territori tra Milano, Rho e hinterland.`,
             "url": SITE + "/realizzazione-siti-web/",
             "inLanguage": "it",
             "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
@@ -1347,7 +1414,7 @@ function generateHubPages() {
     const realizzazioneHtml = buildHubPage(
         'realizzazione-siti-web',
         'Realizzazione Siti Web nei Comuni di Milano — WebNovis | Siti Custom',
-        `Siti web professionali per ${realizzazioneCities.length} comuni dell'hinterland milanese. Codice custom, SEO integrata. Sede a Rho.`,
+        `Landing siti web già pubblicate in ${realizzazioneCities.length} comuni, dentro una rete WebNovis che serve ${agenziaCities.length} territori tra Milano, Rho e hinterland. Codice custom e SEO integrata.`,
         'realizzazione siti web Milano, siti web hinterland milanese, creazione siti web comuni Milano, WebNovis',
         realizzazioneContent,
         realizzazioneSchemas
@@ -1356,22 +1423,27 @@ function generateHubPages() {
 
     // ── 3. Zone Servite Hub (trasversale) ──
     const geoEligibleServices = services.filter(s => s.generateGeoPages !== false);
-    const eligibleCities = cities.filter(c => c.population >= 15000 && c.slug !== 'rho');
+    const serviceCoverageCities = agenziaCities;
+    const coverageScopes = buildCoverageScopes(agenziaCities, realizzazioneCities, serviceCoverageCities);
+    const featuredCities = withCityUiMeta(agenziaCities.filter((city) => city.slug !== 'rho'));
     const serviceCities = {};
     const serviceCityCounts = {};
     for (const svc of geoEligibleServices) {
-        serviceCities[svc.slug] = eligibleCities;
-        serviceCityCounts[svc.slug] = eligibleCities.length;
+        serviceCities[svc.slug] = withCityUiMeta(serviceCoverageCities);
+        serviceCityCounts[svc.slug] = serviceCoverageCities.length;
     }
 
     const zoneData = {
-        agenziaCities: agenziaCities,
+        agenziaCities: withCityUiMeta(agenziaCities),
         agenziaCount: agenziaCities.length,
-        realizzazioneCities: realizzazioneCities,
+        networkCoverageCount: agenziaCities.length,
+        realizzazioneCities: withCityUiMeta(realizzazioneCities),
         realizzazioneCount: realizzazioneCities.length,
         geoServices: geoEligibleServices,
         serviceCities: serviceCities,
         serviceCityCounts: serviceCityCounts,
+        coverageScopes: coverageScopes,
+        featuredCities: featuredCities,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
         site: SITE
@@ -1379,7 +1451,7 @@ function generateHubPages() {
     const zoneContent = njkEnv.render('hub-zone-servite.njk', zoneData);
 
     // Total items across all categories
-    const totalItems = agenziaCities.length + realizzazioneCities.length + (geoEligibleServices.length * eligibleCities.length);
+    const totalItems = agenziaCities.length + realizzazioneCities.length + (geoEligibleServices.length * serviceCoverageCities.length);
     const zoneSchemas = [
         {
             "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -1622,7 +1694,7 @@ function main() {
     // Generate servizio×città pages (third page type — the combinatorial matrix)
     if (GEN_TYPE === 'all' || GEN_TYPE === 'servizio') {
         const geoEligibleServices = services.filter(s => s.generateGeoPages !== false && matchesTargetService(s));
-        const eligibleCities = cities.filter(c => c.population >= 15000 && c.slug !== 'rho' && matchesTargetCity(c));
+        const eligibleCities = cities.filter(c => c.generate?.agenzia && matchesTargetCity(c));
         console.log(`\n─── Generating servizio×città pages (${geoEligibleServices.length} services × ${eligibleCities.length} cities) ───`);
 
         for (const service of geoEligibleServices) {
@@ -1651,7 +1723,7 @@ function main() {
     }
 
     // Generate hub pages (internal linking bridge)
-    if (GEN_TYPE === 'all') {
+    if (GEN_TYPE === 'all' || GEN_TYPE === 'hubs') {
         console.log('\n─── Generating hub pages ───');
         const hubResults = generateHubPages();
         for (const hub of hubResults) {

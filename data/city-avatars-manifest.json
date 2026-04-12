@@ -1,0 +1,314 @@
+{
+  "generatedAt": "2026-04-12T13:40:20.576Z",
+  "provider": "Wikipedia summary thumbnails + MediaWiki pageimages fallback",
+  "items": [
+    {
+      "slug": "rho",
+      "file": "Img/cities/rho.webp",
+      "source": "https://it.wikipedia.org/wiki/Rho",
+      "status": "existing"
+    },
+    {
+      "slug": "lainate",
+      "file": "Img/cities/lainate.webp",
+      "source": "https://it.wikipedia.org/wiki/Lainate",
+      "status": "existing"
+    },
+    {
+      "slug": "arese",
+      "file": "Img/cities/arese.webp",
+      "source": "https://it.wikipedia.org/wiki/Arese",
+      "status": "existing"
+    },
+    {
+      "slug": "garbagnate",
+      "file": "Img/cities/garbagnate.webp",
+      "source": "https://it.wikipedia.org/wiki/Garbagnate_Milanese",
+      "status": "existing"
+    },
+    {
+      "slug": "pero",
+      "file": "Img/cities/pero.webp",
+      "source": "https://it.wikipedia.org/wiki/Pero_(Italia)",
+      "status": "existing"
+    },
+    {
+      "slug": "cornaredo",
+      "file": "Img/cities/cornaredo.webp",
+      "source": "https://it.wikipedia.org/wiki/Cornaredo",
+      "status": "existing"
+    },
+    {
+      "slug": "settimo-milanese",
+      "file": "Img/cities/settimo-milanese.webp",
+      "source": "https://it.wikipedia.org/wiki/Settimo_Milanese",
+      "status": "existing"
+    },
+    {
+      "slug": "milano",
+      "file": "Img/cities/milano.webp",
+      "source": "https://it.wikipedia.org/wiki/Milano",
+      "status": "existing"
+    },
+    {
+      "slug": "bollate",
+      "file": "Img/cities/bollate.webp",
+      "source": "https://it.wikipedia.org/wiki/Bollate",
+      "status": "existing"
+    },
+    {
+      "slug": "nerviano",
+      "file": "Img/cities/nerviano.webp",
+      "source": "https://it.wikipedia.org/wiki/Nerviano",
+      "status": "existing"
+    },
+    {
+      "slug": "pregnana-milanese",
+      "file": "Img/cities/pregnana-milanese.webp",
+      "source": "https://it.wikipedia.org/wiki/Pregnana_Milanese",
+      "status": "existing"
+    },
+    {
+      "slug": "vanzago",
+      "file": "Img/cities/vanzago.webp",
+      "source": "https://it.wikipedia.org/wiki/Vanzago",
+      "status": "existing"
+    },
+    {
+      "slug": "baranzate",
+      "file": "Img/cities/baranzate.webp",
+      "source": "https://it.wikipedia.org/wiki/Baranzate",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "pogliano-milanese",
+      "file": "Img/cities/pogliano-milanese.webp",
+      "source": "https://it.wikipedia.org/wiki/Pogliano_Milanese",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "cesate",
+      "file": "Img/cities/cesate.webp",
+      "source": "https://it.wikipedia.org/wiki/Cesate",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "senago",
+      "file": "Img/cities/senago.webp",
+      "source": "https://it.wikipedia.org/wiki/Senago",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "novate-milanese",
+      "file": "Img/cities/novate-milanese.webp",
+      "source": "https://it.wikipedia.org/wiki/Novate_Milanese",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "paderno-dugnano",
+      "file": "Img/cities/paderno-dugnano.webp",
+      "source": "https://it.wikipedia.org/wiki/Paderno_Dugnano",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "arluno",
+      "file": "Img/cities/arluno.webp",
+      "source": "https://it.wikipedia.org/wiki/Arluno",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "parabiago",
+      "file": "Img/cities/parabiago.webp",
+      "source": "https://it.wikipedia.org/wiki/Parabiago",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "bareggio",
+      "file": "Img/cities/bareggio.webp",
+      "source": "https://it.wikipedia.org/wiki/Bareggio",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "cusago",
+      "file": "Img/cities/cusago.webp",
+      "source": "https://it.wikipedia.org/wiki/Cusago",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "trezzano-sul-naviglio",
+      "file": "Img/cities/trezzano-sul-naviglio.webp",
+      "source": "https://it.wikipedia.org/wiki/Trezzano_sul_Naviglio",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "cesano-boscone",
+      "file": "Img/cities/cesano-boscone.webp",
+      "source": "https://it.wikipedia.org/wiki/Cesano_Boscone",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "buccinasco",
+      "file": "Img/cities/buccinasco.webp",
+      "source": "https://it.wikipedia.org/wiki/Buccinasco",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "cormano",
+      "file": "Img/cities/cormano.webp",
+      "source": "https://it.wikipedia.org/wiki/Cormano",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "bresso",
+      "file": "Img/cities/bresso.webp",
+      "source": "https://it.wikipedia.org/wiki/Bresso",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "cinisello-balsamo",
+      "file": "Img/cities/cinisello-balsamo.webp",
+      "source": "https://it.wikipedia.org/wiki/Cinisello_Balsamo",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "sesto-san-giovanni",
+      "file": "Img/cities/sesto-san-giovanni.webp",
+      "source": "https://it.wikipedia.org/wiki/Sesto_San_Giovanni",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "magenta",
+      "file": "Img/cities/magenta.webp",
+      "source": "https://it.wikipedia.org/wiki/Magenta_(Italia)",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "legnano",
+      "file": "Img/cities/legnano.webp",
+      "source": "https://it.wikipedia.org/wiki/Legnano",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "castellanza",
+      "file": "Img/cities/castellanza.webp",
+      "source": "https://it.wikipedia.org/wiki/Castellanza",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "saronno",
+      "file": "Img/cities/saronno.webp",
+      "source": "https://it.wikipedia.org/wiki/Saronno",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "milano-ovest",
+      "file": "Img/cities/milano-ovest.webp",
+      "source": "https://it.wikipedia.org/wiki/Milano_Ovest",
+      "status": "existing"
+    },
+    {
+      "slug": "milano-nord",
+      "file": "Img/cities/milano-nord.webp",
+      "source": "https://it.wikipedia.org/wiki/Milano_Nord",
+      "status": "existing"
+    },
+    {
+      "slug": "solaro",
+      "file": "Img/cities/solaro.webp",
+      "source": "https://it.wikipedia.org/wiki/Solaro_(Italia)",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "cerro-maggiore",
+      "file": "Img/cities/cerro-maggiore.webp",
+      "source": "https://it.wikipedia.org/wiki/Cerro_Maggiore",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "rescaldina",
+      "file": "Img/cities/rescaldina.webp",
+      "source": "https://it.wikipedia.org/wiki/Rescaldina",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "origgio",
+      "file": "Img/cities/origgio.webp",
+      "source": "https://it.wikipedia.org/wiki/Origgio",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "caronno-pertusella",
+      "file": "Img/cities/caronno-pertusella.webp",
+      "source": "https://it.wikipedia.org/wiki/Caronno_Pertusella",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "limbiate",
+      "file": "Img/cities/limbiate.webp",
+      "source": "https://it.wikipedia.org/wiki/Limbiate",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "corsico",
+      "file": "Img/cities/corsico.webp",
+      "source": "https://it.wikipedia.org/wiki/Corsico",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "assago",
+      "file": "Img/cities/assago.webp",
+      "source": "https://it.wikipedia.org/wiki/Assago",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "rozzano",
+      "file": "Img/cities/rozzano.webp",
+      "source": "https://it.wikipedia.org/wiki/Rozzano",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "monza",
+      "file": "Img/cities/monza.webp",
+      "source": "https://it.wikipedia.org/wiki/Monza",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    },
+    {
+      "slug": "cologno-monzese",
+      "file": "Img/cities/cologno-monzese.webp",
+      "source": "https://it.wikipedia.org/wiki/Cologno_Monzese",
+      "provider": "Wikipedia REST summary thumbnails",
+      "status": "downloaded"
+    }
+  ]
+}

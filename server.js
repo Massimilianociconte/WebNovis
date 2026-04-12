@@ -699,7 +699,7 @@ async function executeSearchAI(sanitizedQuery, currentPage) {
     const timeout = setTimeout(() => controller.abort(), 4000);
 
     const geminiRes = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${process.env.GEMINI_API_KEY_SEARCH}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/${aiConfig.searchModel}:generateContent?key=${process.env.GEMINI_API_KEY_SEARCH}`,
         {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1207,7 +1207,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
         let geminiResponse;
         try {
             geminiResponse = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY_CHAT}`,
+                `https://generativelanguage.googleapis.com/v1beta/models/${aiConfig.chatModel}:generateContent?key=${GEMINI_API_KEY_CHAT}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1575,7 +1575,7 @@ app.listen(PORT, () => {
     console.log(`🔑 Gemini Chat: ${process.env.GEMINI_API_KEY_CHAT ? '✅ Configured' : '❌ Missing'}`);
     console.log(`🔍 Gemini Search: ${process.env.GEMINI_API_KEY_SEARCH ? '✅ Configured' : '❌ Missing'}`);
     console.log(`✍️ Gemini Writer: ${process.env.GEMINI_API_KEY_WRITER ? '✅ Configured' : '❌ Missing'}`);
-    console.log(`🤖 Chat Model: gemini-2.5-flash | Search: gemini-2.5-flash-lite`);
+    console.log(`🤖 Chat Model: ${aiConfig.chatModel} | Search: ${aiConfig.searchModel} | Writer: ${aiConfig.writerModel}`);
     console.log(`📋 Config loaded: ${Object.keys(config).length} sections`);
     console.log(`📬 Newsletter engine: ${process.env.GROQ_API_KEY ? '✅ Groq configured' : '⚠️ GROQ_API_KEY missing'}`);
     console.log(`📨 Brevo: ${process.env.BREVO_API_KEY ? '✅ Configured' : '⚠️ BREVO_API_KEY missing'}`);

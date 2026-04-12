@@ -339,6 +339,43 @@
     border-left: 2px solid var(--primary-light);
 }
 
+.search-ai-answer p,
+.search-ai-answer ul,
+.search-ai-answer ol {
+    margin: 0;
+}
+
+.search-ai-answer p + p,
+.search-ai-answer p + ul,
+.search-ai-answer p + ol,
+.search-ai-answer ul + p,
+.search-ai-answer ol + p,
+.search-ai-answer ul + ul,
+.search-ai-answer ol + ol {
+    margin-top: 0.6rem;
+}
+
+.search-ai-answer strong {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.search-ai-answer code {
+    display: inline-block;
+    padding: 0.08rem 0.38rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--primary-light);
+    font-size: 0.86em;
+}
+
+.search-ai-list {
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 0.32rem;
+}
+
 .search-ai-link {
     color: var(--primary-light);
     text-decoration: none;
