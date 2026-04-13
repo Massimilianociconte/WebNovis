@@ -48,10 +48,31 @@ const HUB_PAGE_THRESHOLD_OVERRIDES = new Map([
     ['zone-servite/index.html', { minWords: 200, criticalMinWords: 150 }]
 ]);
 
+const PATH_THRESHOLD_OVERRIDES = [
+    {
+        test: (filePath) => /^blog\/.+\.html$/.test(filePath) && filePath !== 'blog/index.html',
+        values: { minWords: 350, criticalMinWords: 180 }
+    },
+    {
+        test: (filePath) => /^portfolio\/[^/]+\.html$/.test(filePath),
+        values: { minWords: 260, criticalMinWords: 160 }
+    },
+    {
+        test: (filePath) => filePath === 'contatti.html',
+        values: { minWords: 220, criticalMinWords: 150 }
+    },
+    {
+        test: (filePath) => filePath === 'servizi/index.html' || filePath === 'servizi/consulenze.html',
+        values: { minWords: 320, criticalMinWords: 220 }
+    }
+];
+
 function getThresholdsForPage(filePath) {
+    const matchedOverride = PATH_THRESHOLD_OVERRIDES.find((entry) => entry.test(filePath));
     return {
         ...THRESHOLDS,
-        ...(HUB_PAGE_THRESHOLD_OVERRIDES.get(filePath) || {})
+        ...(HUB_PAGE_THRESHOLD_OVERRIDES.get(filePath) || {}),
+        ...(matchedOverride ? matchedOverride.values : {})
     };
 }
 

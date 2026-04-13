@@ -2545,12 +2545,12 @@
       ],
       "localContext": {
         "highlights": [
-          "Must — Museo del Territorio",
-          "Confine con Bresso e Milano"
+          "Villa Manzoni a Brusuglio",
+          "Stazione Cormano-Cusano Milanino"
         ],
-        "tessutoEconomico": "Cormano è un comune di 20.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Must — Museo del Territorio.",
+        "tessutoEconomico": "Cormano è un comune di 20.000 abitanti nel Nord Milano, tra Brusuglio, Ospitaletto e il confine con Bresso. La vicinanza a Milano e ai collegamenti ferroviari lo rende interessante per commercio, servizi e attività B2B di prossimità.",
         "settoriChiave": [
-          "terziario",
+          "servizi",
           "commercio",
           "industria leggera"
         ],
@@ -4038,15 +4038,15 @@
       ],
       "localContext": {
         "highlights": [
-          "Villa Mella",
-          "Ospedale G. Salvini distaccamento"
+          "Parco delle Groane",
+          "Mombello"
         ],
-        "tessutoEconomico": "Limbiate è un comune di 36.000 abitanti nell'hinterland milanese. Villa Mella.",
+        "tessutoEconomico": "Limbiate è un comune di 36.000 abitanti tra Groane, Mombello e l'asse verso Senago e Paderno Dugnano. Il territorio ha un tessuto diffuso di commercio, servizi, artigianato e attività legate alla prossimità.",
         "settoriChiave": [
           "servizi",
           "commercio",
-          "industria leggera",
-          "sanitario"
+          "artigianato",
+          "benessere"
         ],
         "opportunitaDigitale": "Le attività di Limbiate operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
       },

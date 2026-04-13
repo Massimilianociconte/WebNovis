@@ -383,24 +383,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// 2.6 Legacy URL canonicalization for portfolio case studies (301)
-const legacyPortfolioRedirects = new Map([
-    ['/portfolio/Aether-Digital.html', '/portfolio/case-study/aether-digital.html'],
-    ['/portfolio/Ember-Oak.html', '/portfolio/case-study/ember-oak.html'],
-    ['/portfolio/Lumina-Creative.html', '/portfolio/case-study/lumina-creative.html'],
-    ['/portfolio/Muse-Editorial.html', '/portfolio/case-study/muse-editorial.html'],
-    ['/portfolio/PopBlock-Studio.html', '/portfolio/case-study/popblock-studio.html'],
-    ['/portfolio/Structure-Arch.html', '/portfolio/case-study/structure-arch.html']
-]);
-
-app.use((req, res, next) => {
-    const canonicalPath = legacyPortfolioRedirects.get(req.path);
-    if (!canonicalPath) return next();
-
-    const query = getRedirectQuerySuffix(req);
-    return res.redirect(301, canonicalPath + query);
-});
-
 // 2.3 Bot detection logging — crawl intelligence for GEO strategy
 const botPatterns = new Map([
     ['Googlebot', /Googlebot/i], ['Bingbot', /bingbot/i],
@@ -1107,23 +1089,24 @@ function appendChatSessionTurn(session, userMessage, assistantMessage) {
     }
 }
 
+// v4.1 Smart routing: only TRIVIAL messages (pure greetings, thanks) get hardcoded
+// responses to save API tokens. Everything else goes through Gemini AI.
 function getDeterministicChatResponse(message) {
-    const lowerMessage = String(message || '').toLowerCase();
-    if (!lowerMessage || lowerMessage.length > 180) return '';
+    const lower = String(message || '').toLowerCase().trim();
+    if (!lower) return '';
 
-    const deterministicPatterns = [
-        /^(ciao|salve|buongiorno|buonasera|hello|hi)\b/i,
-        /(prezz|cost|preventiv|quotazion|budget)/i,
-        /(servizi|cosa fate|di cosa vi occupate)/i,
-        /(contatt|email|telefono|whatsapp|ricontatt)/i,
-        /(portfolio|progetti|lavori|case study|esempi)/i,
-        /(tempi|quanto ci vuole|quanto tempo|come funziona|processo|step)/i,
-        /(chi siete|chi sei|presentati|chi e webnovis)/i
-    ];
+    // Only intercept pure greetings (short, no follow-up question)
+    if (/^(ciao|salve|buongiorno|buonasera|hey|hello|hi|hola|salut)[!.\s]*$/i.test(lower)) {
+        return "Ciao! Sono Weby, l'assistente AI di WebNovis.\nCi occupiamo di siti web, grafica e social media.\n\nCome posso aiutarti oggi?";
+    }
 
-    return deterministicPatterns.some((pattern) => pattern.test(lowerMessage))
-        ? getLocalResponse(message)
-        : '';
+    // Only intercept pure thanks (no follow-up)
+    if (/^(grazie|thanks|ok grazie|grazie mille|perfetto grazie|ottimo grazie)[!.\s]*$/i.test(lower)) {
+        return "Prego! Se hai altre domande sono qui.\nBuona giornata!";
+    }
+
+    // Everything else → Gemini AI
+    return '';
 }
 
 // Endpoint per la chat (con rate limiting) — Powered by Gemini Flash Lite
@@ -1152,9 +1135,12 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
         console.log(`💬 New message [${sessionId.substring(0, 8)}…]: "${cleanMessage}"`);
         console.log(`📚 Server-side history length: ${session.history.length}`);
 
+        // v4.1 Smart routing: only pure greetings/thanks are handled locally.
+        // All substantive questions (prices, services, contacts, etc.) go to Gemini AI.
         const deterministicResponse = getDeterministicChatResponse(cleanMessage);
         if (deterministicResponse) {
             appendChatSessionTurn(session, cleanMessage, deterministicResponse);
+            console.log('📋 Smart local response (trivial greeting/thanks)');
             return res.json({ response: deterministicResponse, sessionId });
         }
 

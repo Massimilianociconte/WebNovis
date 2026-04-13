@@ -33,6 +33,7 @@
   <section class="service-detail">
     <div class="container">
       <h2>{{ city.section1Title }}</h2>
+      <!-- CUSTOM:geo-positioning:START -->
       <p>{{ city.section1Intro | safe }}</p>
       <div class="service-grid">
         {% for card in city.cards1 %}
@@ -42,6 +43,7 @@
         </div>
         {% endfor %}
       </div>
+      <!-- CUSTOM:geo-positioning:END -->
     </div>
   </section>
 
@@ -85,9 +87,13 @@
   <section class="service-detail" style="background:rgba(255,255,255,.01)">
     <div class="container">
       <h2>{{ city.section3Title }}</h2>
+      <!-- CUSTOM:geo-market-context:START -->
       {{ city.section3Text | safe }}
+      <!-- CUSTOM:geo-market-context:END -->
     </div>
   </section>
+
+  <!-- CUSTOM:geo-proof:START --><!-- CUSTOM:geo-proof:END -->
 
   {# ═══ SECTION 5 — Comparison table (GEO: +115% visibility in AI citations) ═══ #}
   <section class="service-detail">
@@ -200,12 +206,14 @@
   <section class="service-detail">
     <div class="container">
       <h2>Domande Frequenti — {{ city.breadcrumbLabel }}</h2>
+      <!-- CUSTOM:geo-faqs:START -->
       {% for faq in city.faqs %}
       <details class="faq-item">
         <summary>{{ faq.q }}</summary>
         <p>{{ faq.a | safe }}</p>
       </details>
       {% endfor %}
+      <!-- CUSTOM:geo-faqs:END -->
     </div>
   </section>
 

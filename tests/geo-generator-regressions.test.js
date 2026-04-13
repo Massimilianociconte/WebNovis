@@ -19,6 +19,7 @@ function main() {
   );
 
   const generator = readText('scripts/generate-all-geo.js');
+  const agenziaTemplate = readText('templates/agenzia-web-content.njk');
   assert.ok(
     !generator.includes("getBasePage('agenzia-web-rho.html')"),
     'Geo generator must not read agenzia-web-rho.html as its source template'
@@ -30,6 +31,22 @@ function main() {
   assert.ok(
     generator.includes('PUBLISH_DIR'),
     'Geo generator should support an explicit publish directory configuration'
+  );
+  assert.ok(
+    generator.includes("page = page.replace(/studio del mercato di Rho/g, `studio del mercato di ${city.name}`);"),
+    'Realizzazione generator must replace the Rho market placeholder with the current city'
+  );
+  assert.ok(
+    generator.includes("page = page.replace(/mercato di Rho/g, `mercato di ${city.name}`);"),
+    'Realizzazione generator must not leak \"mercato di Rho\" into non-Rho geo pages'
+  );
+  assert.ok(
+    generator.includes('preserveCustomBlocks(targetPath, html)'),
+    'Geo generator should preserve marked custom content blocks during regeneration'
+  );
+  assert.ok(
+    agenziaTemplate.includes('CUSTOM:geo-proof:START'),
+    'Agenzia template should expose preserved custom content markers for manual rewrites'
   );
 }
 

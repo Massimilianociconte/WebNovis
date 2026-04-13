@@ -1,7 +1,7 @@
 // Configurazione AI condivisa per runtime e script.
 // Manteniamo nomi espliciti per evitare hardcode sparsi in server.js e negli script di build.
 const models = {
-    chat: 'gemini-2.5-flash',
+    chat: 'gemini-2.5-flash-lite',
     search: 'gemini-2.5-flash-lite',
     writer: 'gemini-2.5-flash'
 };

@@ -1,7 +1,6 @@
 """Analyze blog/index.html to find articles still using generic placeholder images."""
 import re
-
-html_path = r'C:\Users\Massi\Documents\Webnovis_kiro - backup\blog\index.html'
+html_path = 'blog/index.html'
 with open(html_path, 'r', encoding='utf-8') as f:
     html = f.read()
 
