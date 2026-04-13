@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { getBlogFooterHtml, normalizeFooterAssetMarkup } = require('../config/site-footer');
+const { getBlogFooterHtml, normalizeFooterAssetMarkup, normalizePhoneCtaMarkup } = require('../config/site-footer');
 const { normalizeImageLoadingInHtml } = require('../config/image-policy');
 const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
 const { ROOT_DIR, getPublishDir } = require('../config/publish-targets');
@@ -146,6 +146,7 @@ for (const filePath of walk(ROOT)) {
   const original = fs.readFileSync(filePath, 'utf8');
   let updated = normalizeBlogFooter(original, relativePath);
   updated = normalizeFooterAssetMarkup(updated);
+  updated = normalizePhoneCtaMarkup(updated);
   updated = normalizeImageLoadingInHtml(updated);
   updated = normalizeDesignRushLoader(updated, relativePath);
   updated = ensureFooterWidgetLoader(updated, relativePath);

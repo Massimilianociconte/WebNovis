@@ -23,11 +23,12 @@
 require('dotenv').config({ path: require('path').resolve(__dirname, '..', '.env') });
 const fs = require('fs');
 const path = require('path');
+const aiConfig = require('../ai-config');
 
 // ─── Configuration ────────────────────────────────────────────────────────────
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'data', 'content-blocks');
-const MODEL = 'gemini-2.5-flash';
+const MODEL = aiConfig.writerModel || 'gemini-2.5-flash';
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 const MAX_RETRIES = 3;
 

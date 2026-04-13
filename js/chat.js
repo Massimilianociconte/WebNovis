@@ -297,6 +297,56 @@ function initWebyChatbot() {
         chevronDown: '<svg class="chat-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>'
     };
 
+    function formatInlineBotContent(rawText) {
+        return escapeHtml(rawText)
+            .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
+            .replace(/\[icon:([a-zA-Z]+)\]/g, (match, iconName) => ICONS[iconName] || '')
+            .replace(/`([^`]+)`/g, '<code>$1</code>')
+            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+            .replace(/(hello@webnovis\.com)/gi, '<a href="mailto:$1" style="color:#a8b4f8;text-decoration:underline;">$1</a>')
+            .replace(/wa\.me\/([^\s<"]+)/gi, '<a href="https://wa.me/$1" target="_blank" rel="noopener noreferrer" style="color:#a8b4f8;text-decoration:underline;">WhatsApp</a>')
+            .replace(/(https?:\/\/(?!wa\.me)[^\s<"]+)/gi, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#a8b4f8;text-decoration:underline;">$1</a>');
+    }
+
+    function formatBotMessage(content) {
+        const normalized = content
+            .replace(/\r\n?/g, '\n')
+            .replace(/([1-9])️⃣/g, '$1. ')
+            .trim();
+        if (!normalized) {
+            return '<p>Ti aiuto volentieri. Scrivimi pure in modo un po’ più dettagliato.</p>';
+        }
+
+        const blocks = normalized
+            .split(/\n{2,}/)
+            .map((block) => block.trim())
+            .filter(Boolean);
+
+        return blocks.map((block) => {
+            const lines = block
+                .split('\n')
+                .map((line) => line.trim())
+                .filter(Boolean);
+
+            if (!lines.length) return '';
+
+            const isOrderedList = lines.every((line) => /^\d+\.\s+/.test(line));
+            const isUnorderedList = lines.every((line) => /^(?:[-*•])\s+/.test(line));
+
+            if (isOrderedList || isUnorderedList) {
+                const listTag = isOrderedList ? 'ol' : 'ul';
+                const itemPattern = isOrderedList ? /^\d+\.\s+/ : /^(?:[-*•])\s+/;
+                const items = lines
+                    .map((line) => `<li>${formatInlineBotContent(line.replace(itemPattern, ''))}</li>`)
+                    .join('');
+
+                return `<${listTag} class="chat-rich-list${isOrderedList ? ' chat-rich-list--ordered' : ''}">${items}</${listTag}>`;
+            }
+
+            return `<p>${lines.map((line) => formatInlineBotContent(line)).join('<br>')}</p>`;
+        }).join('');
+    }
+
     function appendMessage(content, type = 'bot') {
         const msgDiv = document.createElement('div');
         msgDiv.className = `chat-message ${type === 'user' ? 'user-message' : 'bot-message'}`;
@@ -306,22 +356,14 @@ function initWebyChatbot() {
         const avatar = type === 'user' ? userAvatar : botAvatar;
         const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-        // Format bot messages: escape HTML, linkify, preserve line breaks
-        let formattedContent = escapeHtml(content);
-        if (type === 'bot') {
-            formattedContent = formattedContent
-                .replace(/\n/g, '<br>')
-                .replace(/(hello@webnovis\.com)/g, '<a href="mailto:$1" style="color:#a8b4f8;text-decoration:underline;">$1</a>')
-                .replace(/wa\.me\/(\S+)/g, '<a href="https://wa.me/$1" target="_blank" rel="noopener noreferrer" style="color:#a8b4f8;text-decoration:underline;">WhatsApp</a>')
-                .replace(/(https?:\/\/(?!wa\.me)[^\s<"]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#a8b4f8;text-decoration:underline;">$1</a>')
-                .replace(/\[icon:([a-zA-Z]+)\]/g, (match, iconName) => ICONS[iconName] || '')
-                .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, ''); // Remove any lingering emojis
-        }
+        const formattedContent = type === 'bot'
+            ? `<div class="message-rich-content">${formatBotMessage(content)}</div>`
+            : `<p>${escapeHtml(content)}</p>`;
 
         msgDiv.innerHTML = `
             <div class="message-avatar">${avatar}</div>
             <div class="message-content">
-                <p>${formattedContent}</p>
+                ${formattedContent}
                 <span class="message-time">${time}</span>
             </div>
         `;
@@ -408,7 +450,6 @@ function initWebyChatbot() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: message,
-                    conversationHistory: state.history,
                     sessionId: state.sessionId
                 }),
                 signal: controller.signal
@@ -418,6 +459,8 @@ function initWebyChatbot() {
             if (!res.ok) throw new Error(`API Error: ${res.status}`);
 
             const data = await res.json();
+            // Accept server-assigned sessionId (server is source-of-truth)
+            if (data.sessionId) state.sessionId = data.sessionId;
             const responseText = data.response || data.fallback || '';
 
             // Adaptive typing delay: proportional to response length, capped

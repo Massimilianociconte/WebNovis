@@ -10,7 +10,6 @@
  * 4. BASSO: Remove hreflang tags from monolingual site (unnecessary overhead)
  * 5. MEDIO: Fix H3 in footer → <strong> semantic tags
  * 6. BASSO: Show "ultimo aggiornamento" date in blog article frontend
- * 7. ALTO: Add meta refresh to portfolio uppercase files (static hosting fallback)
  *
  * Usage: node scripts/seo-bulk-fix.js [--dry-run]
  */
@@ -28,7 +27,6 @@ const stats = {
   hreflangRemoved: 0,
   footerH3Fixed: 0,
   dateModifiedShown: 0,
-  portfolioMetaRefresh: 0,
   filesProcessed: 0,
   errors: []
 };
@@ -219,52 +217,6 @@ function main() {
     }
   }
   
-  // ─── Portfolio uppercase meta refresh (Fix 7) ────────────────────────────
-  const portfolioRedirects = {
-    'Aether-Digital.html': 'case-study/aether-digital.html',
-    'Ember-Oak.html': 'case-study/ember-oak.html',
-    'Lumina-Creative.html': 'case-study/lumina-creative.html',
-    'Muse-Editorial.html': 'case-study/muse-editorial.html',
-    'PopBlock-Studio.html': 'case-study/popblock-studio.html',
-    'Structure-Arch.html': 'case-study/structure-arch.html'
-  };
-  
-  for (const [oldFile, newPath] of Object.entries(portfolioRedirects)) {
-    const filePath = path.join(ROOT, 'portfolio', oldFile);
-    if (!fs.existsSync(filePath)) continue;
-    
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const canonicalUrl = `https://www.webnovis.com/portfolio/${newPath}`;
-    
-    // Check if meta refresh already exists
-    if (content.includes('http-equiv="refresh"')) {
-      log(`  ⊘ Portfolio ${oldFile}: meta refresh already present`);
-      continue;
-    }
-    
-    // Add meta refresh right after <head> or after <meta charset>
-    const redirectPage = `<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=${newPath}">
-    <link rel="canonical" href="${canonicalUrl}">
-    <title>Redirect — WebNovis</title>
-    <meta name="robots" content="noindex, follow">
-</head>
-<body>
-    <p>Pagina spostata. <a href="${newPath}">Clicca qui</a> se non vieni reindirizzato automaticamente.</p>
-</body>
-</html>`;
-    
-    stats.portfolioMetaRefresh++;
-    log(`  ✓ Portfolio meta refresh: ${oldFile} → ${newPath}`);
-    
-    if (!DRY_RUN) {
-      fs.writeFileSync(filePath, redirectPage, 'utf-8');
-    }
-  }
-  
   // ─── Summary ────────────────────────────────────────────────────────────
   console.log('\n═══════════════════════════════════════════════════════');
   console.log('  SUMMARY');
@@ -276,7 +228,6 @@ function main() {
   console.log(`  hreflang removed:       ${stats.hreflangRemoved}`);
   console.log(`  footer H3 fixed:        ${stats.footerH3Fixed}`);
   console.log(`  dateModified shown:     ${stats.dateModifiedShown}`);
-  console.log(`  portfolio meta refresh: ${stats.portfolioMetaRefresh}`);
   if (stats.errors.length) {
     console.log(`  ERRORS: ${stats.errors.length}`);
     stats.errors.forEach(e => console.log(`    ⚠ ${e}`));

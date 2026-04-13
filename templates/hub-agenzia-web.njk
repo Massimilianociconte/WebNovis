@@ -7,12 +7,14 @@
   <div class="container breadcrumb">
     <a href="/">Home</a>
     <span class="separator">/</span>
+    <a href="/zone-servite/">Zone Servite</a>
+    <span class="separator">/</span>
     <span class="current-page">Agenzia Web — Comuni Milano</span>
   </div>
 
   <section class="service-page-hero">
     <div class="container">
-      <span class="section-tag">{{ totalCities }} Comuni serviti — Hinterland Milano</span>
+      <span class="section-tag">{{ networkCoverageCount }} comuni serviti da WebNovis</span>
       <h1>Agenzia Web nei Comuni della Provincia di Milano</h1>
       <p class="answer-capsule"><strong>WebNovis</strong> è l'agenzia web con sede a Rho che opera in {{ totalCities }} comuni dell'hinterland milanese. Siti web 100% custom, graphic design e social media marketing per PMI e professionisti. Nessun WordPress, nessun template. Trova la pagina del tuo comune e richiedi un preventivo gratuito.</p>
       <a href="/contatti.html" class="btn btn-large btn-primary">
@@ -33,9 +35,16 @@
       <div class="hub-city-grid">
         {% for city in cities %}
         <a href="/agenzia-web-{{ city.slug }}.html" class="hub-city-card" title="Agenzia Web a {{ city.name }}">
-          <span class="hub-city-name">{{ city.name }}</span>
-          <span class="hub-city-meta">{{ city.province }} · {{ city.distanzaSede }}</span>
-          {% if city.population %}<span class="hub-city-pop">{{ city.population | localeNumber }} ab.</span>{% endif %}
+          {% if city.avatarSrc %}
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="" width="52" height="52" loading="lazy" decoding="async"></span>
+          {% else %}
+          <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
+          {% endif %}
+          <span class="hub-city-content">
+            <span class="hub-city-name">{{ city.name }}</span>
+            <span class="hub-city-meta">{{ city.province }} · {{ city.distanzaSede }}</span>
+            {% if city.population %}<span class="hub-city-pop">{{ city.population | localeNumber }} ab.</span>{% endif %}
+          </span>
         </a>
         {% endfor %}
       </div>

@@ -6,15 +6,19 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto'); // Per timing-safe auth
 const aiConfig = require('./ai-config'); // Configurazione AI
+const { createSearchAiEngine, normalizePath: normalizeSearchPath } = require('./search-ai-engine');
 const { SECURITY_HEADERS, getAllowedCorsOrigins } = require('./config/security-headers');
+const { buildCspWithNonce } = require('./config/security-headers');
 const { getIndexationDirectivesForPath } = require('./config/pseo-governance');
 
-// Global fetch instance
+// Global fetch instance — eagerly imported at boot to avoid cold-start latency
 let _fetch;
 async function getFetch() {
     if (!_fetch) _fetch = (await import('node-fetch')).default;
     return _fetch;
 }
+// Pre-warm fetch at startup (non-blocking)
+getFetch().catch(() => {});
 
 // Utility per escape HTML
 function escapeHtml(unsafe) {
@@ -89,13 +93,131 @@ function requireAdminAuth(req, res, next) {
     next();
 }
 
-// Rate Limiting per protezione API
+// Rate Limiting per protezione API (HARD REQUIREMENT in production)
 let rateLimit;
 try {
     rateLimit = require('express-rate-limit');
 } catch (e) {
-    console.warn('⚠️ express-rate-limit non installato. Rate limiting disabilitato.');
+    if (process.env.NODE_ENV === 'production') {
+        console.error('🚨 FATAL: express-rate-limit is NOT installed. Refusing to start without rate limiting in production.');
+        console.error('   Run: npm install express-rate-limit');
+        process.exit(1);
+    }
+    console.warn('⚠️ express-rate-limit non installato. Rate limiting disabilitato (solo dev).');
     rateLimit = null;
+}
+
+// ========== SECURITY: IP anonymization (GDPR compliance) ==========
+// Truncate last octet (IPv4) or last 80 bits (IPv6) to remove PII
+// while preserving enough info for geographic/abuse analysis.
+function anonymizeIp(ip) {
+    if (!ip) return 'unknown';
+    const raw = ip.replace(/^::ffff:/, ''); // normalize IPv4-mapped IPv6
+    if (raw.includes(':')) {
+        // IPv6: keep first 3 groups, zero the rest
+        const parts = raw.split(':');
+        return parts.slice(0, 3).join(':') + ':0:0:0:0:0';
+    }
+    // IPv4: zero the last octet
+    const parts = raw.split('.');
+    if (parts.length === 4) {
+        parts[3] = '0';
+        return parts.join('.');
+    }
+    return 'unknown';
+}
+
+// ========== SECURITY: Shared prompt-injection guard (defense-in-depth) ==========
+// Matches known injection patterns in Italian + English, including:
+// - Leetspeak/spacing tricks (i g n o r a, ign0ra)
+// - Indirect injection ("traduci:", "ripeti:", "scrivi:")
+// - Role-play escalation, jailbreak keywords, DAN mode
+// - Multi-turn preamble attacks ("da ora in poi", "nuova personalità")
+const INJECTION_PATTERNS = new RegExp([
+    // Italian direct
+    'ignora\\s*(tutte\\s*)?le\\s*istruzioni',
+    'dimentica\\s*(tutte\\s*)?le\\s*(regole|istruzioni)',
+    'quali sono le tue istruzioni',
+    'dimmi il tuo prompt',
+    'mostrami le (istruzioni|regole|configurazione)',
+    'ripeti il testo (sopra|precedente)',
+    'cosa (dice|c\'è) nel (tuo )?system prompt',
+    'da ora in poi (sei|rispondi|comportati|fai)',
+    'nuova personalit[àa]',
+    'cambia (ruolo|personalit[àa]|comportamento)',
+    'rispondi senza (restrizioni|limiti|regole|filtri)',
+    // Italian indirect / encoding tricks
+    'i\\s+g\\s+n\\s+o\\s+r\\s+a',      // spaced-out "ignora"
+    'ign[o0]ra\\s*(tutte)?\\s*le',         // leetspeak "ign0ra"
+    'traduci[:\\s].{0,60}ignor',              // indirect via translation
+    '(scrivi|ripeti|traduci)[:\\s].{0,60}prompt', // indirect extraction
+    // English direct
+    'forget\\s*(all\\s*)?instructions',
+    'ignore\\s*(all\\s*)?(previous|prior|above)',
+    'reveal your (instructions|prompt|system|rules)',
+    'repeat the (text|words|instructions) above',
+    'what (are|is) your (system )?(prompt|instructions|rules)',
+    'show me your (prompt|instructions|config)',
+    'you are now',
+    'act as (?!un cliente|un\'azienda)',
+    'pretend to be',
+    'from now on (you are|act|behave|respond)',
+    'respond without (restrictions|limits|rules|filters)',
+    'new persona',
+    // Universal keywords
+    'jailbreak',
+    'DAN mode',
+    'developer mode',
+    'bypass (filter|safety|content|restriction)',
+    'override (instructions|safety|rules)',
+    '\\[system\\]',
+    '<\\|im_start\\|>',
+    'SUDO mode'
+].join('|'), 'i');
+
+const INJECTION_SAFE_RESPONSE_CHAT = 'Sono Weby, l\'assistente di WebNovis! Come posso aiutarti con siti web, grafica o social media? 😊';
+const INJECTION_SAFE_RESPONSE_SEARCH = { answer: '', suggestedPages: [], relatedQueries: [] };
+
+// ========== SECURITY: API quota monitoring (prevents runaway spend / abuse) ==========
+// Per-key daily counters with configurable warn/hard-cap thresholds.
+// Gemini free tier = 1,500 req/day per project. Warn at 80%, block at 100%.
+const API_QUOTA = {
+    GEMINI_API_KEY_CHAT:   { daily: 1500, warnPct: 0.80 },
+    GEMINI_API_KEY_SEARCH: { daily: 1500, warnPct: 0.80 }
+};
+const apiUsage = new Map(); // key-name → { count, date (YYYY-MM-DD) }
+
+function getApiUsageBucket(keyName) {
+    const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+    let bucket = apiUsage.get(keyName);
+    if (!bucket || bucket.date !== today) {
+        bucket = { count: 0, date: today };
+        apiUsage.set(keyName, bucket);
+    }
+    return bucket;
+}
+
+/**
+ * Increment usage counter for a Gemini key.
+ * Returns { allowed: boolean, remaining: number }.
+ * Logs warnings when approaching the daily cap.
+ */
+function trackApiCall(keyName) {
+    const quota = API_QUOTA[keyName];
+    if (!quota) return { allowed: true, remaining: Infinity }; // unknown key, no cap
+    const bucket = getApiUsageBucket(keyName);
+    bucket.count++;
+    const remaining = quota.daily - bucket.count;
+    const usagePct = bucket.count / quota.daily;
+
+    if (bucket.count >= quota.daily) {
+        console.error(`🚨 QUOTA EXCEEDED: ${keyName} hit daily limit (${bucket.count}/${quota.daily}). Blocking further calls.`);
+        return { allowed: false, remaining: 0 };
+    }
+    if (usagePct >= quota.warnPct && (bucket.count % 50 === 0 || bucket.count === Math.ceil(quota.daily * quota.warnPct))) {
+        console.warn(`⚠️ QUOTA WARNING: ${keyName} at ${bucket.count}/${quota.daily} (${Math.round(usagePct * 100)}%) — ${remaining} remaining today`);
+    }
+    return { allowed: true, remaining };
 }
 
 console.log('🔧 AI Config loaded:', aiConfig);
@@ -177,8 +299,13 @@ app.use((req, res, next) => {
 });
 
 // 2.1 Security headers — trust signal + vulnerability prevention
+// Per-request CSP nonce: modern browsers enforce nonce over 'unsafe-inline'
 app.use((req, res, next) => {
+    const nonce = crypto.randomBytes(16).toString('base64');
+    res.locals.cspNonce = nonce;
+    // Set all static security headers first, then override CSP with nonce
     res.set(SECURITY_HEADERS);
+    res.set('Content-Security-Policy', buildCspWithNonce(nonce));
     next();
 });
 
@@ -254,24 +381,6 @@ app.use((req, res, next) => {
         return res.redirect(301, '/agenzia-web-rho.html' + query);
     }
     next();
-});
-
-// 2.6 Legacy URL canonicalization for portfolio case studies (301)
-const legacyPortfolioRedirects = new Map([
-    ['/portfolio/Aether-Digital.html', '/portfolio/case-study/aether-digital.html'],
-    ['/portfolio/Ember-Oak.html', '/portfolio/case-study/ember-oak.html'],
-    ['/portfolio/Lumina-Creative.html', '/portfolio/case-study/lumina-creative.html'],
-    ['/portfolio/Muse-Editorial.html', '/portfolio/case-study/muse-editorial.html'],
-    ['/portfolio/PopBlock-Studio.html', '/portfolio/case-study/popblock-studio.html'],
-    ['/portfolio/Structure-Arch.html', '/portfolio/case-study/structure-arch.html']
-]);
-
-app.use((req, res, next) => {
-    const canonicalPath = legacyPortfolioRedirects.get(req.path);
-    if (!canonicalPath) return next();
-
-    const query = getRedirectQuerySuffix(req);
-    return res.redirect(301, canonicalPath + query);
 });
 
 // 2.3 Bot detection logging — crawl intelligence for GEO strategy
@@ -463,6 +572,43 @@ Usa queste informazioni per rispondere. Mantieni un tono professionale ma cordia
 // Cache system prompt at startup (static content, no need to regenerate per-request)
 const cachedSystemPrompt = createSystemPrompt();
 
+// ========== SECURITY: Server-side session store (prevents history forgery) ==========
+// The server is the source-of-truth for conversation history.
+// Client-sent conversationHistory is IGNORED — only server-tracked history is used.
+const SESSION_MAX_AGE_MS = 30 * 60 * 1000; // 30 minutes
+const SESSION_MAX_MESSAGES = 20;            // max messages per session (matches ai-config)
+const SESSION_MAX_CONCURRENT = 1000;        // max concurrent sessions (memory guard)
+const chatSessions = new Map();
+
+function getOrCreateSession(sessionId) {
+    if (!sessionId || typeof sessionId !== 'string' || sessionId.length > 50) {
+        sessionId = crypto.randomBytes(12).toString('hex');
+    }
+    let session = chatSessions.get(sessionId);
+    if (!session) {
+        // Evict oldest sessions if at capacity
+        if (chatSessions.size >= SESSION_MAX_CONCURRENT) {
+            let oldestKey = null, oldestTime = Infinity;
+            for (const [key, val] of chatSessions) {
+                if (val.lastActivity < oldestTime) { oldestTime = val.lastActivity; oldestKey = key; }
+            }
+            if (oldestKey) chatSessions.delete(oldestKey);
+        }
+        session = { history: [], lastActivity: Date.now() };
+        chatSessions.set(sessionId, session);
+    }
+    session.lastActivity = Date.now();
+    return { sessionId, session };
+}
+
+// Periodic cleanup of expired sessions (every 5 minutes)
+setInterval(() => {
+    const now = Date.now();
+    for (const [key, val] of chatSessions) {
+        if (now - val.lastActivity > SESSION_MAX_AGE_MS) chatSessions.delete(key);
+    }
+}, 5 * 60 * 1000);
+
 // Cache 404 page existence at startup (avoid sync I/O on every 404)
 const notFoundPath = path.join(__dirname, '404.html');
 const has404Page = fs.existsSync(notFoundPath);
@@ -485,6 +631,105 @@ const searchAiLimiter = rateLimit ? rateLimit({
     legacyHeaders: false
 }) : (req, res, next) => next();
 
+const searchAiEngine = createSearchAiEngine({ rootDir: __dirname });
+console.log(`🔎 Search AI corpus loaded: ${searchAiEngine.corpusSize} documents`);
+
+// ─── Search AI: in-memory cache (TTL 5 min, max 100 entries) ─────────────────
+const SEARCH_AI_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const SEARCH_AI_CACHE_MAX = 100;
+const searchAiCache = new Map();
+// In-flight deduplication: coalesce concurrent identical queries into one API call
+const searchAiInflight = new Map();
+
+function normalizeSearchQuery(q) {
+    return q.toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+function getSearchCacheKey(normalizedQuery, currentPage) {
+    return searchAiEngine.getCacheKey(normalizedQuery, currentPage);
+}
+
+function pruneSearchCache() {
+    if (searchAiCache.size <= SEARCH_AI_CACHE_MAX) return;
+    // Evict oldest entries first
+    const entries = [...searchAiCache.entries()];
+    entries.sort((a, b) => a[1].ts - b[1].ts);
+    const toRemove = entries.slice(0, entries.length - SEARCH_AI_CACHE_MAX);
+    for (const [key] of toRemove) searchAiCache.delete(key);
+}
+
+function sanitizeSearchCurrentPage(value) {
+    const normalized = normalizeSearchPath(value || '/');
+    return /^\/[a-z0-9\-./]*$/i.test(normalized) ? normalized : '/';
+}
+
+// Core AI search logic — shared between cache-miss and deduplication
+async function executeSearchAI(sanitizedQuery, currentPage) {
+    const retrievedDocs = searchAiEngine.search(sanitizedQuery, currentPage, 8);
+    const fallbackResult = searchAiEngine.buildFallbackResponse(sanitizedQuery, retrievedDocs);
+
+    // Quota guard: block if daily limit reached
+    const quota = trackApiCall('GEMINI_API_KEY_SEARCH');
+    if (!quota.allowed) {
+        return fallbackResult;
+    }
+
+    const fetch = await getFetch();
+    const prompt = searchAiEngine.buildPrompt(sanitizedQuery, currentPage, retrievedDocs);
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 4000);
+
+    const geminiRes = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${aiConfig.searchModel}:generateContent?key=${process.env.GEMINI_API_KEY_SEARCH}`,
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                systemInstruction: { parts: [{ text: prompt.systemInstruction }] },
+                contents: [{ parts: [{ text: prompt.userPrompt }] }],
+                generationConfig: {
+                    temperature: 0.25,
+                    maxOutputTokens: 512,
+                    responseMimeType: 'application/json'
+                }
+            }),
+            signal: controller.signal
+        }
+    );
+    clearTimeout(timeout);
+
+    if (!geminiRes.ok) {
+        throw new Error(`Gemini API error: ${geminiRes.status}`);
+    }
+
+    const data = await geminiRes.json();
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!text) throw new Error('Empty Gemini response');
+
+    // Robust JSON parsing — handle truncated output from Gemini
+    let result;
+    try {
+        result = JSON.parse(text);
+    } catch {
+        // Try to extract what we can from truncated JSON
+        const answerMatch = text.match(/"answer"\s*:\s*"([^"]*)/);
+        const urlMatches = [...text.matchAll(/"url"\s*:\s*"([^"]*)/g)];
+        const titleMatches = [...text.matchAll(/"title"\s*:\s*"([^"]*)/g)];
+        result = {
+            answer: answerMatch ? answerMatch[1] : '',
+            suggestedPages: urlMatches.map((m, i) => ({
+                title: titleMatches[i] ? titleMatches[i][1] : '',
+                url: m[1],
+                relevance: 0.8
+            })),
+            relatedQueries: []
+        };
+    }
+
+    return searchAiEngine.sanitizeResult(result, retrievedDocs, sanitizedQuery);
+}
+
 // POST /api/search-ai — Intelligent search powered by Gemini (key NEVER exposed to frontend)
 app.post('/api/search-ai', searchAiLimiter, async (req, res) => {
     try {
@@ -494,116 +739,69 @@ app.post('/api/search-ai', searchAiLimiter, async (req, res) => {
             return res.status(400).json({ error: 'Query non valida.' });
         }
 
-        // Sanitize: strip HTML tags and trim
-        const sanitizedQuery = query.replace(/<[^>]*>/g, '').trim();
+        // Sanitize: strip HTML tags, normalize for cache key
+        const sanitizedQuery = query.replace(/<[^>]*>/g, '').trim().slice(0, 320);
+        const safeCurrentPage = sanitizeSearchCurrentPage(currentPage);
+        const cacheKey = getSearchCacheKey(normalizeSearchQuery(sanitizedQuery), safeCurrentPage);
+
+        if (INJECTION_PATTERNS.test(sanitizedQuery)) {
+            const safeFallback = searchAiEngine.buildFallbackResponse(
+                sanitizedQuery,
+                searchAiEngine.search(sanitizedQuery, safeCurrentPage, 8)
+            );
+            return res.json(safeFallback);
+        }
 
         const GEMINI_API_KEY_SEARCH = process.env.GEMINI_API_KEY_SEARCH;
         if (!GEMINI_API_KEY_SEARCH) {
-            return res.status(503).json({ error: 'Servizio AI non configurato.' });
+            const fallback = searchAiEngine.buildFallbackResponse(
+                sanitizedQuery,
+                searchAiEngine.search(sanitizedQuery, safeCurrentPage, 8)
+            );
+            return res.json(fallback);
         }
 
-        const fetch = await getFetch();
+        // Check cache first
+        const cached = searchAiCache.get(cacheKey);
+        if (cached && (Date.now() - cached.ts) < SEARCH_AI_CACHE_TTL) {
+            return res.json(cached.data);
+        }
 
-        const prompt = `Sei l'assistente di ricerca intelligente per il sito WebNovis (https://www.webnovis.com).
-WebNovis è un'agenzia web a Milano/Rho specializzata in: sviluppo siti web, e-commerce, graphic design, logo e branding, social media management e advertising.
-
-L'utente cerca: "${sanitizedQuery}"
-${currentPage ? `Pagina corrente: ${currentPage}` : ''}
-
-Rispondi SOLO con JSON valido:
-{
-  "answer": "Risposta completa e utile (3-5 frasi, max 500 caratteri). Inserisci link inline nel formato [testo visibile](url) per collegare direttamente alle pagine pertinenti del sito. La risposta deve essere conclusa e non troncata.",
-  "suggestedPages": [{"title": "Titolo pagina", "url": "/percorso.html", "relevance": 0.95}],
-  "relatedQueries": ["ricerca correlata 1", "ricerca correlata 2"]
-}
-
-Pagine disponibili (usa SOLO questi URL nei link inline e in suggestedPages):
-- / (Homepage — panoramica servizi e agenzia)
-- /servizi/sviluppo-web.html (Sviluppo Siti Web, E-commerce, Landing Page, SEO tecnica)
-- /servizi/graphic-design.html (Graphic Design, Logo, Branding, Identità visiva)
-- /servizi/social-media.html (Social Media Management, Advertising, Campagne)
-- /chi-siamo.html (Chi Siamo, Team, Valori, Storia)
-- /contatti.html (Contatti, Richiedi Preventivo Gratuito)
-- /portfolio.html (Portfolio lavori e progetti realizzati)
-- /blog/ (Blog con articoli su web, design, marketing)
-
-REGOLE IMPORTANTI:
-- La risposta in "answer" DEVE essere completa, mai troncata a metà frase.
-- Includi almeno 1-2 link inline [testo](url) nella risposta per guidare l'utente.
-- Suggerisci SOLO URL dalla lista sopra.
-- Rispondi SOLO con JSON valido, nessun testo fuori dal JSON.`;
-
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 8000);
-
-        const geminiRes = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY_SEARCH}`,
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: prompt }] }],
-                    generationConfig: {
-                        temperature: 0.3,
-                        maxOutputTokens: 1024,
-                        responseMimeType: 'application/json'
-                    }
-                }),
-                signal: controller.signal
+        // Deduplication: if an identical query is already in-flight, wait for it
+        if (searchAiInflight.has(cacheKey)) {
+            try {
+                const inflightResult = await searchAiInflight.get(cacheKey);
+                return res.json(inflightResult);
+            } catch {
+                // In-flight request failed, fall through to make a new request
             }
-        );
-        clearTimeout(timeout);
-
-        if (!geminiRes.ok) {
-            throw new Error(`Gemini API error: ${geminiRes.status}`);
         }
 
-        const data = await geminiRes.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (!text) throw new Error('Empty Gemini response');
+        // Execute API call with deduplication
+        const promise = executeSearchAI(sanitizedQuery, safeCurrentPage);
+        searchAiInflight.set(cacheKey, promise);
 
-        // Robust JSON parsing — handle truncated output from Gemini
-        let result;
         try {
-            result = JSON.parse(text);
-        } catch {
-            // Try to extract what we can from truncated JSON
-            const answerMatch = text.match(/"answer"\s*:\s*"([^"]*)/);
-            const urlMatches = [...text.matchAll(/"url"\s*:\s*"([^"]*)/g)];
-            const titleMatches = [...text.matchAll(/"title"\s*:\s*"([^"]*)/g)];
-            result = {
-                answer: answerMatch ? answerMatch[1] : '',
-                suggestedPages: urlMatches.map((m, i) => ({
-                    title: titleMatches[i] ? titleMatches[i][1] : '',
-                    url: m[1],
-                    relevance: 0.8
-                })),
-                relatedQueries: []
-            };
+            const sanitizedResult = await promise;
+
+            // Store in cache
+            searchAiCache.set(cacheKey, { data: sanitizedResult, ts: Date.now() });
+            pruneSearchCache();
+
+            res.json(sanitizedResult);
+        } finally {
+            searchAiInflight.delete(cacheKey);
         }
-
-        // Validate and sanitize output — never leak internal data
-        const sanitizeInternalPath = (value) => {
-            const normalized = String(value || '').trim();
-            if (!normalized.startsWith('/')) return '/';
-            if (!/^\/[a-z0-9\-./]*$/i.test(normalized)) return '/';
-            return normalized;
-        };
-
-        res.json({
-            answer: String(result.answer || '').slice(0, 600),
-            suggestedPages: (result.suggestedPages || []).slice(0, 5).map(p => ({
-                title: String(p.title || '').slice(0, 100),
-                url: sanitizeInternalPath(String(p.url || '/').slice(0, 200)),
-                relevance: Math.min(1, Math.max(0, parseFloat(p.relevance) || 0))
-            })),
-            relatedQueries: (result.relatedQueries || []).slice(0, 4).map(q => String(q || '').slice(0, 80))
-        });
 
     } catch (error) {
         console.error('❌ Search AI error:', error.message);
-        // Return empty result instead of 500 — search AI is non-critical
-        res.json({ answer: '', suggestedPages: [], relatedQueries: [] });
+        const safeQuery = typeof req.body?.query === 'string' ? req.body.query.replace(/<[^>]*>/g, '').trim().slice(0, 320) : '';
+        const safeCurrentPage = sanitizeSearchCurrentPage(req.body?.currentPage);
+        const fallback = searchAiEngine.buildFallbackResponse(
+            safeQuery,
+            searchAiEngine.search(safeQuery, safeCurrentPage, 8)
+        );
+        res.json(fallback);
     }
 });
 
@@ -713,7 +911,7 @@ app.post('/api/lead', leadLimiter, async (req, res) => {
             email: cleanEmail,
             url: cleanUrl || null,
             type: leadType,
-            ip: req.ip
+            ip: anonymizeIp(req.ip)
         };
         const logPath = path.join(__dirname, 'leads-log.jsonl');
         try {
@@ -834,7 +1032,7 @@ app.post('/api/chat-lead', chatLimiter, async (req, res) => {
             sessionId: cleanSession,
             page: cleanPage || null,
             messageCount: messageCount || null,
-            ip: req.ip
+            ip: anonymizeIp(req.ip)
         };
         const logPath = path.join(__dirname, 'leads-log.jsonl');
         try {
@@ -883,82 +1081,137 @@ app.post('/api/chat-lead', chatLimiter, async (req, res) => {
     }
 });
 
+function appendChatSessionTurn(session, userMessage, assistantMessage) {
+    session.history.push({ role: 'user', content: userMessage });
+    session.history.push({ role: 'assistant', content: assistantMessage });
+    if (session.history.length > SESSION_MAX_MESSAGES * 2) {
+        session.history = session.history.slice(-SESSION_MAX_MESSAGES * 2);
+    }
+}
+
+// v4.1 Smart routing: only TRIVIAL messages (pure greetings, thanks) get hardcoded
+// responses to save API tokens. Everything else goes through Gemini AI.
+function getDeterministicChatResponse(message) {
+    const lower = String(message || '').toLowerCase().trim();
+    if (!lower) return '';
+
+    // Only intercept pure greetings (short, no follow-up question)
+    if (/^(ciao|salve|buongiorno|buonasera|hey|hello|hi|hola|salut)[!.\s]*$/i.test(lower)) {
+        return "Ciao! Sono Weby, l'assistente AI di WebNovis.\nCi occupiamo di siti web, grafica e social media.\n\nCome posso aiutarti oggi?";
+    }
+
+    // Only intercept pure thanks (no follow-up)
+    if (/^(grazie|thanks|ok grazie|grazie mille|perfetto grazie|ottimo grazie)[!.\s]*$/i.test(lower)) {
+        return "Prego! Se hai altre domande sono qui.\nBuona giornata!";
+    }
+
+    // Everything else → Gemini AI
+    return '';
+}
+
 // Endpoint per la chat (con rate limiting) — Powered by Gemini Flash Lite
+// SECURITY: Server-side session store is the ONLY source-of-truth for history.
+// Client-sent conversationHistory is IGNORED to prevent history forgery attacks.
 app.post('/api/chat', chatLimiter, async (req, res) => {
     try {
-        const { message, conversationHistory = [] } = req.body;
+        const { message, sessionId: clientSessionId } = req.body;
 
         if (!message || typeof message !== 'string') {
             return res.status(400).json({ error: 'Messaggio non valido.' });
         }
 
-        // Valida conversationHistory
-        if (!Array.isArray(conversationHistory) || conversationHistory.length > 20) {
-            return res.status(400).json({ error: 'Cronologia chat non valida.' });
-        }
-
-        const validHistory = conversationHistory.filter(msg =>
-            msg && typeof msg === 'object' &&
-            (msg.role === 'user' || msg.role === 'assistant') &&
-            typeof msg.content === 'string' && msg.content.length <= 1000
-        );
-
         // Sanitize inputs
         const cleanMessage = escapeHtml(message.trim()).slice(0, 500);
 
         // Server-side prompt injection guard (defense-in-depth, saves tokens on obvious attacks)
-        const INJECTION_PATTERNS = /ignora\s*(tutte\s*)?le\s*istruzioni|system\s*prompt|quali sono le tue istruzioni|dimmi il tuo prompt|mostrami le istruzioni|ripeti il testo sopra|forget\s*(all\s*)?instructions|ignore\s*(all\s*)?(previous|prior)|reveal your (instructions|prompt)|repeat the (text|words) above|you are now|act as (?!un cliente|un'azienda)|pretend to be|jailbreak|DAN mode/i;
         if (INJECTION_PATTERNS.test(cleanMessage)) {
-            return res.json({ response: 'Sono Weby, l\'assistente di WebNovis! Come posso aiutarti con siti web, grafica o social media? 😊' });
+            console.warn('🛡️ Chat injection blocked:', cleanMessage.substring(0, 80));
+            return res.json({ response: INJECTION_SAFE_RESPONSE_CHAT });
         }
 
-        console.log(`💬 New message: "${cleanMessage}"`);
-        console.log(`📚 Conversation history length: ${validHistory.length}`);
+        // Retrieve or create server-side session (client cannot forge history)
+        const { sessionId, session } = getOrCreateSession(clientSessionId);
+
+        console.log(`💬 New message [${sessionId.substring(0, 8)}…]: "${cleanMessage}"`);
+        console.log(`📚 Server-side history length: ${session.history.length}`);
+
+        // v4.1 Smart routing: only pure greetings/thanks are handled locally.
+        // All substantive questions (prices, services, contacts, etc.) go to Gemini AI.
+        const deterministicResponse = getDeterministicChatResponse(cleanMessage);
+        if (deterministicResponse) {
+            appendChatSessionTurn(session, cleanMessage, deterministicResponse);
+            console.log('📋 Smart local response (trivial greeting/thanks)');
+            return res.json({ response: deterministicResponse, sessionId });
+        }
 
         const GEMINI_API_KEY_CHAT = process.env.GEMINI_API_KEY_CHAT;
 
         if (!GEMINI_API_KEY_CHAT) {
             console.log('⚠️ No GEMINI_API_KEY_CHAT found, using local responses');
             const response = getLocalResponse(cleanMessage);
+            appendChatSessionTurn(session, cleanMessage, response);
             console.log(`📤 Local response: ${response.substring(0, 50)}...`);
-            return res.json({ response });
+            return res.json({ response, sessionId });
+        }
+
+        // Quota guard: block if daily limit reached
+        const quota = trackApiCall('GEMINI_API_KEY_CHAT');
+        if (!quota.allowed) {
+            const fallback = getLocalResponse(cleanMessage);
+            appendChatSessionTurn(session, cleanMessage, fallback);
+            console.warn('🚨 Chat quota exceeded — serving local fallback');
+            return res.json({ response: fallback, sessionId });
         }
 
         console.log('🤖 Calling Gemini Flash Lite API...');
 
         const fetch = await getFetch();
+        const chatGroundingContext = cleanMessage.length >= 24
+            ? searchAiEngine.buildChatGroundingContext(cleanMessage, '/')
+            : '';
 
-        // Build Gemini-compatible conversation
-        const systemPrompt = cachedSystemPrompt;
+        // Build Gemini-compatible conversation from SERVER-SIDE history (tamper-proof)
+        const systemPrompt = chatGroundingContext
+            ? `${cachedSystemPrompt}\n\nCONTESTO INTERNO RILEVANTE:\n${chatGroundingContext}\n\nUsa il contesto solo se pertinente. Se il contesto non basta, dillo chiaramente senza inventare dettagli.`
+            : cachedSystemPrompt;
         const contents = [];
 
-        // Add conversation history (Gemini uses 'user'/'model' roles)
-        for (const msg of validHistory) {
+        // Add server-tracked conversation history (Gemini uses 'user'/'model' roles)
+        for (const msg of session.history) {
             contents.push({
                 role: msg.role === 'assistant' ? 'model' : 'user',
-                parts: [{ text: escapeHtml(msg.content) }]
+                parts: [{ text: msg.content }]
             });
         }
 
         // Add current user message
         contents.push({ role: 'user', parts: [{ text: cleanMessage }] });
 
-        const geminiResponse = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY_CHAT}`,
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    systemInstruction: { parts: [{ text: systemPrompt }] },
-                    contents,
-                    generationConfig: {
-                        temperature: aiConfig.temperature,
-                        maxOutputTokens: aiConfig.maxTokens,
-                        topP: 0.95
-                    }
-                })
-            }
-        );
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 9000);
+
+        let geminiResponse;
+        try {
+            geminiResponse = await fetch(
+                `https://generativelanguage.googleapis.com/v1beta/models/${aiConfig.chatModel}:generateContent?key=${GEMINI_API_KEY_CHAT}`,
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        systemInstruction: { parts: [{ text: systemPrompt }] },
+                        contents,
+                        generationConfig: {
+                            temperature: aiConfig.temperature,
+                            maxOutputTokens: aiConfig.maxTokens,
+                            topP: 0.95
+                        }
+                    }),
+                    signal: controller.signal
+                }
+            );
+        } finally {
+            clearTimeout(timeout);
+        }
 
         const data = await geminiResponse.json();
 
@@ -979,8 +1232,10 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
             .replace(/\-\s/g, '• ')  // Sostituisce trattini con pallini
             .replace(/\[.*?\]/g, ''); // Rimuove link markdown
 
+        appendChatSessionTurn(session, cleanMessage, response);
+
         console.log(`✅ Gemini response: ${response.substring(0, 100)}...`);
-        res.json({ response });
+        res.json({ response, sessionId });
 
     } catch (error) {
         console.error('❌ Gemini chat error:', error.message);
@@ -988,8 +1243,10 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
         // Graceful fallback: return local response with 200 so chatbot stays functional
         if (aiConfig.useFallbackOnError) {
             const fallback = getLocalResponse(req.body.message);
+            const { sessionId, session } = getOrCreateSession(req.body.sessionId);
+            appendChatSessionTurn(session, escapeHtml(String(req.body.message || '').trim()).slice(0, 500), fallback);
             console.log('📤 Fallback response sent (Gemini unavailable)');
-            return res.json({ response: fallback });
+            return res.json({ response: fallback, sessionId });
         }
 
         res.status(500).json({
@@ -1304,7 +1561,7 @@ app.listen(PORT, () => {
     console.log(`🔑 Gemini Chat: ${process.env.GEMINI_API_KEY_CHAT ? '✅ Configured' : '❌ Missing'}`);
     console.log(`🔍 Gemini Search: ${process.env.GEMINI_API_KEY_SEARCH ? '✅ Configured' : '❌ Missing'}`);
     console.log(`✍️ Gemini Writer: ${process.env.GEMINI_API_KEY_WRITER ? '✅ Configured' : '❌ Missing'}`);
-    console.log(`🤖 Chat Model: gemini-2.5-flash | Search: gemini-2.5-flash`);
+    console.log(`🤖 Chat Model: ${aiConfig.chatModel} | Search: ${aiConfig.searchModel} | Writer: ${aiConfig.writerModel}`);
     console.log(`📋 Config loaded: ${Object.keys(config).length} sections`);
     console.log(`📬 Newsletter engine: ${process.env.GROQ_API_KEY ? '✅ Groq configured' : '⚠️ GROQ_API_KEY missing'}`);
     console.log(`📨 Brevo: ${process.env.BREVO_API_KEY ? '✅ Configured' : '⚠️ BREVO_API_KEY missing'}`);

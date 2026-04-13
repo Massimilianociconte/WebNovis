@@ -1,4 +1,9 @@
 const PAGE_CARDS = {
+  'blog/aggiornamenti-algoritmo-google-2026.html': {
+    label: 'SEO update',
+    title: 'Aggiornamenti algoritmo Google 2026',
+    desc: 'Come leggere i core update senza mosse impulsive e trasformare i segnali in priorita SEO concrete.'
+  },
   'blog/google-search-console-guida.html': {
     label: 'Guida base',
     title: 'Google Search Console: guida completa',
@@ -49,10 +54,20 @@ const PAGE_CARDS = {
     title: 'Dati obbligatori su un sito web',
     desc: 'Panoramica essenziale dei dati legali da mostrare per non lasciare buchi di compliance.'
   },
+  'blog/gdpr-sito-web-guida.html': {
+    label: 'Compliance',
+    title: 'GDPR e sito web: obblighi pratici',
+    desc: 'Privacy, cookie banner, consenso, form e gestione dati: cosa controllare per non lasciare rischi aperti.'
+  },
   'blog/instagram-per-aziende.html': {
     label: 'Guida base',
     title: 'Instagram per aziende',
     desc: 'Profilo business, contenuti, KPI e crescita organica con obiettivi business chiari.'
+  },
+  'blog/instagram-insights-guida.html': {
+    label: 'Metriche',
+    title: 'Instagram Insights: guida pratica',
+    desc: 'Le metriche utili per capire cosa funziona davvero tra reach, salvataggi, retention e click.'
   },
   'blog/instagram-content-strategy.html': {
     label: 'Content strategy',
@@ -73,6 +88,16 @@ const PAGE_CARDS = {
     label: 'Formato',
     title: 'Carousel Instagram: guida',
     desc: 'Come usare i caroselli per spiegare, convertire e far scorrere contenuti piu profondi.'
+  },
+  'blog/instagram-reels-strategia.html': {
+    label: 'Formato',
+    title: 'Instagram Reels: strategia',
+    desc: 'Ganci, durata, storyboard e CTA per trasformare i reels in reach utile e lead più maturi.'
+  },
+  'blog/instagram-shop-guida.html': {
+    label: 'Conversione',
+    title: 'Instagram Shop: guida operativa',
+    desc: 'Requisiti, catalogo e limiti di Instagram Shop per capire quando conviene davvero attivarlo.'
   },
   'blog/quanto-costa-gestione-social-media.html': {
     label: 'Prezzi',
@@ -104,6 +129,11 @@ const PAGE_CARDS = {
     title: 'Partita IVA per e-commerce',
     desc: 'Regime, costi fissi, adempimenti e documenti da mettere in conto prima di vendere online.'
   },
+  'blog/internal-linking-strategia.html': {
+    label: 'Architettura',
+    title: 'Internal linking: strategia',
+    desc: 'Come distribuire meglio autorita, contesto e priorita commerciali tra blog, hub e money pages.'
+  },
   'blog/shopify-vs-sito-ecommerce-custom.html': {
     label: 'Confronto',
     title: 'Shopify vs e-commerce custom',
@@ -113,6 +143,26 @@ const PAGE_CARDS = {
     label: 'Conversioni',
     title: 'E-commerce che vende',
     desc: 'Cosa deve avere un negozio online per convertire meglio tra UX, trust e funnel.'
+  },
+  'blog/piattaforme-ecommerce-confronto.html': {
+    label: 'Confronto',
+    title: 'Piattaforme e-commerce a confronto',
+    desc: 'Shopify, WooCommerce, PrestaShop e alternative: come scegliere la piattaforma giusta in base a costi e vincoli.'
+  },
+  'blog/pagamenti-online-ecommerce.html': {
+    label: 'Checkout',
+    title: 'Pagamenti online e-commerce',
+    desc: 'Gateway, commissioni, checkout e metodi di pagamento da valutare prima di andare online.'
+  },
+  'blog/sito-web-per-ristoranti.html': {
+    label: 'Verticale',
+    title: 'Sito web per ristoranti',
+    desc: 'Menu, prenotazioni, delivery e SEO locale: cosa deve avere un sito che porta coperti e ordini.'
+  },
+  'blog/campagne-locali-google-ads.html': {
+    label: 'Lead locali',
+    title: 'Campagne locali Google Ads',
+    desc: 'Come usare search, maps e landing dedicate per generare richieste nella tua zona.'
   }
 };
 
@@ -134,6 +184,12 @@ const SERVICE_CARDS = {
     label: 'Servizio correlato',
     title: 'Social Media Marketing',
     desc: 'Strategia editoriale, contenuti e campagne Meta orientate a visibilita e lead qualificati.'
+  },
+  ads: {
+    href: '../landing-page-milano.html',
+    label: 'Pagina correlata',
+    title: 'Landing page per campagne Google Ads',
+    desc: 'Una landing progettata per trasformare click geolocalizzati in richieste reali e tracciabili.'
   },
   ecommerce: {
     href: '../servizi/ecommerce.html',
@@ -162,15 +218,48 @@ const HUB_CARDS = {
     title: 'Social Media per Comune',
     desc: 'Le landing territoriali per contenuti, advertising e gestione social con taglio business.'
   },
+  socialLocal: {
+    href: '/landing-page-milano.html',
+    label: 'Pagina locale',
+    title: 'Landing page a Milano per lead generation',
+    desc: 'Una landing locale gia pronta per Google Ads e Meta Ads, pensata per trasformare traffico in contatti.'
+  },
+  adsLocal: {
+    href: '/google-ads-monza.html',
+    label: 'Pagina locale',
+    title: 'Google Ads a Monza per lead generation',
+    desc: 'La landing locale più vicina a chi cerca campagne search e contatti qualificati nel territorio.'
+  },
   ecommerce: {
     href: '/zone-servite/#ecommerce',
     label: 'Hub locale',
     title: 'E-Commerce per Comune',
     desc: 'Il presidio locale per aziende che cercano supporto e-commerce nell\'hinterland milanese.'
+  },
+  ecommerceLocal: {
+    href: '/ecommerce-milano.html',
+    label: 'Pagina locale',
+    title: 'E-commerce a Milano',
+    desc: 'La landing locale piu vicina a chi cerca uno shop custom tra Milano e hinterland.'
   }
 };
 
 const CLUSTERS = [
+  {
+    id: 'seo-updates',
+    title: 'Percorsi consigliati nel cluster SEO',
+    pillar: 'blog/aggiornamenti-algoritmo-google-2026.html',
+    serviceCard: 'webdev',
+    hubCard: 'webdev',
+    pages: [
+      'blog/aggiornamenti-algoritmo-google-2026.html'
+    ],
+    extraCards: [
+      'blog/google-search-console-guida.html',
+      'blog/google-search-console-avanzato.html',
+      'blog/internal-linking-strategia.html'
+    ]
+  },
   {
     id: 'search-console',
     title: 'Percorsi consigliati nel cluster Search Console',
@@ -205,7 +294,8 @@ const CLUSTERS = [
     hubCard: 'webdev',
     pages: [
       'blog/dati-obbligatori-sito-web-aziendale.html',
-      'blog/dati-obbligatori-sito-web.html'
+      'blog/dati-obbligatori-sito-web.html',
+      'blog/gdpr-sito-web-guida.html'
     ],
     extraCards: ['blog/obblighi-legge-accessibilita-siti.html']
   },
@@ -216,11 +306,14 @@ const CLUSTERS = [
     serviceCard: 'social',
     hubCard: 'social',
     pages: [
+      'blog/instagram-insights-guida.html',
       'blog/instagram-per-aziende.html',
       'blog/instagram-content-strategy.html',
       'blog/instagram-hashtag-strategia.html',
       'blog/instagram-algoritmo-2026.html',
-      'blog/instagram-carousel-guida.html'
+      'blog/instagram-carousel-guida.html',
+      'blog/instagram-reels-strategia.html',
+      'blog/instagram-shop-guida.html'
     ]
   },
   {
@@ -228,7 +321,7 @@ const CLUSTERS = [
     title: 'Percorsi consigliati nel cluster Social Media',
     pillar: 'blog/quanto-costa-gestione-social-media.html',
     serviceCard: 'social',
-    hubCard: 'social',
+    hubCard: 'socialLocal',
     pages: [
       'blog/quanto-costa-gestione-social-media.html',
       'blog/social-media-strategy-2026.html',
@@ -245,8 +338,25 @@ const CLUSTERS = [
     pages: [
       'blog/quanto-costa-un-ecommerce.html',
       'blog/partita-iva-ecommerce.html',
+      'blog/piattaforme-ecommerce-confronto.html',
+      'blog/pagamenti-online-ecommerce.html',
       'blog/shopify-vs-sito-ecommerce-custom.html',
-      'blog/ecommerce-che-vende.html'
+      'blog/ecommerce-che-vende.html',
+      'blog/sito-web-per-ristoranti.html'
+    ]
+  },
+  {
+    id: 'google-ads-locali',
+    title: 'Percorsi consigliati nel cluster Google Ads locali',
+    pillar: 'blog/campagne-locali-google-ads.html',
+    serviceCard: 'ads',
+    hubCard: 'adsLocal',
+    pages: [
+      'blog/campagne-locali-google-ads.html'
+    ],
+    extraCards: [
+      'blog/quanto-costa-campagna-facebook-ads.html',
+      'blog/facebook-ads-guida-pratica.html'
     ]
   }
 ];

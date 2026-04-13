@@ -17,6 +17,7 @@
     "build:geo:dist": "node scripts/generate-all-geo.js --out-dir=dist",
     "build:geo:dry": "node scripts/generate-all-geo.js --dry-run",
     "build:geo:validate": "node scripts/generate-all-geo.js --validate-only",
+    "build:city-avatars": "node scripts/fetch-city-avatars.js",
     "build:ai-content": "node scripts/generate-ai-content.js",
     "build:ai-content:dry": "node scripts/generate-ai-content.js --dry-run",
     "normalize:public-html": "node scripts/normalize-public-html.js",

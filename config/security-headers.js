@@ -6,11 +6,11 @@ const DEFAULT_CORS_ORIGINS = [
 
 const CONTENT_SECURITY_POLICY_DIRECTIVES = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://widget.trustpilot.com https://connect.facebook.net https://www.clarity.ms https://scripts.clarity.ms https://cdn.jsdelivr.net https://web3forms.com https://esm.sh https://www.designrush.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://widget.trustpilot.com https://connect.facebook.net https://www.clarity.ms https://scripts.clarity.ms https://cdn.jsdelivr.net https://web3forms.com https://esm.sh https://www.designrush.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.designrush.com",
   "img-src 'self' data: https: blob:",
   "font-src 'self' https://fonts.gstatic.com https://www.designrush.com",
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://widget.trustpilot.com",
+  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://widget.trustpilot.com https://webnovis-chat.onrender.com",
   "frame-src https://widget.trustpilot.com https://www.facebook.com https://www.google.com https://maps.google.com",
   "object-src 'none'",
   "base-uri 'self'",
@@ -19,6 +19,22 @@ const CONTENT_SECURITY_POLICY_DIRECTIVES = [
 ];
 
 const CONTENT_SECURITY_POLICY = CONTENT_SECURITY_POLICY_DIRECTIVES.join('; ');
+
+/**
+ * Build a dynamic CSP with a per-request nonce.
+ * CSP Level 2+ browsers: nonce overrides 'unsafe-inline' for script-src,
+ * so only scripts with the correct nonce attribute will execute.
+ * CSP Level 1 browsers: fall back to 'unsafe-inline' (same as before).
+ * 'unsafe-eval' has been removed — GTM/Clarity work via whitelisted domains.
+ */
+function buildCspWithNonce(nonce) {
+  return CONTENT_SECURITY_POLICY_DIRECTIVES.map(directive => {
+    if (directive.startsWith("script-src ")) {
+      return directive.replace("'unsafe-inline'", `'unsafe-inline' 'nonce-${nonce}'`);
+    }
+    return directive;
+  }).join('; ');
+}
 
 const SECURITY_HEADERS = {
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
@@ -86,6 +102,7 @@ module.exports = {
   CONTENT_SECURITY_POLICY_DIRECTIVES,
   DEFAULT_CORS_ORIGINS,
   SECURITY_HEADERS,
+  buildCspWithNonce,
   buildStaticHeadersFile,
   getAllowedCorsOrigins,
   parseCorsOrigins

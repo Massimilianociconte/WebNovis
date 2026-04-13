@@ -104,7 +104,10 @@ async function run() {
     assert.equal(invalidQueryRes.status, 400, 'Expected 400 for invalid short search query');
 
     const noKeyRes = await postJson(`${BASE_URL}/api/search-ai`, { query: 'sviluppo siti web a milano' });
-    assert.equal(noKeyRes.status, 503, 'Expected 503 when GEMINI_API_KEY_SEARCH is not configured');
+    assert.equal(noKeyRes.status, 200, 'Expected graceful fallback when GEMINI_API_KEY_SEARCH is not configured');
+    const noKeyPayload = await noKeyRes.json();
+    assert.ok(typeof noKeyPayload.answer === 'string', 'Expected fallback payload with answer');
+    assert.ok(Array.isArray(noKeyPayload.suggestedPages), 'Expected fallback payload with suggestedPages');
 
     const missingTokenRes = await httpFetch(`${BASE_URL}/api/newsletter/unsubscribe?email=test@example.com`);
     assert.equal(missingTokenRes.status, 403, 'Expected 403 for unsubscribe without token');

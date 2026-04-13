@@ -13,12 +13,18 @@
 const fs = require('fs');
 const path = require('path');
 const { minify } = require('terser');
-const { transform } = require('lightningcss');
 const CleanCSS = require('clean-css');
 const { getPublishDir } = require('./config/publish-targets');
 const { applySeoHtmlTransforms } = require('./config/seo-html-transforms');
 let htmlMinifier;
 try { htmlMinifier = require('html-minifier-terser'); } catch (e) { htmlMinifier = null; }
+let lightningTransform = null;
+let lightningLoadError = null;
+try {
+    ({ transform: lightningTransform } = require('lightningcss'));
+} catch (error) {
+    lightningLoadError = error;
+}
 
 const PROJECT_ROOT = getPublishDir();
 
@@ -295,9 +301,12 @@ async function minifyJsFile(filePath) {
 }
 
 function minifyCssWithLightning(filePath, source) {
+    if (!lightningTransform) {
+        throw lightningLoadError || new Error('lightningcss unavailable');
+    }
     const override = config.css.overrides[filePath];
     const lightningOptions = deepMerge(config.css.lightningOptions, override);
-    const transformed = transform({
+    const transformed = lightningTransform({
         ...lightningOptions,
         filename: path.resolve(PROJECT_ROOT, filePath),
         code: Buffer.from(source, 'utf8')
