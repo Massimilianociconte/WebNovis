@@ -82,7 +82,8 @@ function resolvePublishPath(...segments) {
 function writePublishedFile(relativePath, html) {
     const targetPath = resolvePublishPath(relativePath);
     fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-    fs.writeFileSync(targetPath, preserveCustomBlocks(targetPath, html), 'utf8');
+    const clean = preserveCustomBlocks(targetPath, html).replace(/^\uFEFF/, '');
+    fs.writeFileSync(targetPath, clean, 'utf8');
 }
 
 function getCityAvatarPublicPath(city) {
@@ -115,6 +116,7 @@ const servicesData = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'service
 const cities = citiesData.cities;
 const services = servicesData.services;
 const coreServices = services.filter(s => s.tier === 'core');
+const tableServices = services.filter(s => s.tier === 'core' || s.generateGeoPages !== false);
 const sede = citiesData._meta.sede;
 const serviceCoverageCitySlugs = new Set(
     cities.filter((city) => city.generate?.agenzia).map((city) => city.slug)
@@ -579,18 +581,18 @@ function getServiceLocalSeoCopy(service, city) {
         },
         'restyling-sito-web': {
             title: `Restyling Sito Web a ${city.name}: redesign con migrazione SEO da ${price} | WebNovis`,
-            description: `Restyling sito web a ${city.name}: redesign, revisione contenuti, performance e migrazione SEO senza perdere visibilita. Da ${price}.`,
+            description: `Restyling sito web a ${city.name}: redesign, revisione contenuti, performance UX e migrazione SEO senza perdere visibilità. Da ${price}.`,
             ogDescription: `Restyling sito web a ${city.name} con redesign, UX e migrazione SEO. Da ${price}.`,
             heroTag: `Restyling Sito Web · ${city.name} · ${price}`,
             heroH1: `Restyling sito web a ${city.name} per aggiornare immagine e risultati`,
-            heroCapsule: `<strong>WebNovis</strong> gestisce restyling siti web a ${city.name} quando serve migliorare percezione, usabilita e performance senza disperdere il lavoro SEO gia fatto. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroCapsule: `<strong>WebNovis</strong> gestisce restyling siti web a ${city.name} quando serve migliorare percezione, usabilità e performance senza disperdere il lavoro SEO già fatto. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'Redesign + migrazione SEO' }
             ],
             sectionTitle: `Restyling siti web a ${city.name} per uscire da layout vecchi e poco credibili`,
-            sectionIntro: `Quando il sito appare datato o dispersivo, spesso il problema non e solo estetico: cala la fiducia, peggiora la navigazione e diventa piu difficile convertire. Ridisegniamo struttura, contenuti e UI mantenendo sotto controllo redirect, SEO e continuita operativa.`,
+            sectionIntro: `Quando il sito appare datato o dispersivo, spesso il problema non è solo estetico: cala la fiducia, peggiora la navigazione e diventa più difficile convertire. Ridisegniamo struttura, contenuti e UI mantenendo sotto controllo redirect, SEO e continuità operativa.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
@@ -598,18 +600,18 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: 'Restyling senza perdere asset utili',
-                    text: `Analizziamo cosa va conservato, cosa va riposizionato e cosa va eliminato per non buttare via contenuti, ranking e pagine gia utili.`
+                    text: `Analizziamo cosa va conservato, cosa va riposizionato e cosa va eliminato per non buttare via contenuti, ranking e pagine già utili.`
                 },
                 {
-                    title: 'Immagine piu attuale, sito piu efficace',
+                    title: 'Immagine più attuale, sito più efficace',
                     text: `Il redesign non si ferma ai colori: lavoriamo su gerarchia, messaggi, CTA e performance percepita per migliorare contatti e autorevolezza.`
                 }
             ],
-            processIntro: `Partiamo dal sito attuale, leggiamo limiti di design, UX e SEO, poi progettiamo un restyling che migliori immagine, chiarezza e continuita tecnica.`,
+            processIntro: `Partiamo dal sito attuale, leggiamo limiti di design, UX e SEO, poi progettiamo un restyling che migliori immagine, chiarezza e continuità tecnica.`,
             processSteps: [
                 {
                     title: '1. Audit del sito esistente',
-                    text: `Rivediamo pagine, contenuti, performance e criticita SEO del progetto attuale per capire cosa proteggere e cosa cambiare.`
+                    text: `Rivediamo pagine, contenuti, performance e criticità SEO del progetto attuale per capire cosa proteggere e cosa cambiare.`
                 },
                 {
                     title: '2. Nuova struttura e nuovo design',
@@ -617,7 +619,7 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: '3. Migrazione e rilascio ordinato',
-                    text: `Gestiamo redirect, QA, messa online e supporto iniziale per ridurre rischi, errori e perdite di visibilita dopo il lancio.`
+                    text: `Gestiamo redirect, QA, messa online e supporto iniziale per ridurre rischi, errori e perdite di visibilità dopo il lancio.`
                 }
             ],
             ctaTitle: `Hai un sito da aggiornare seriamente a ${city.name}?`,
@@ -637,7 +639,7 @@ function getServiceLocalSeoCopy(service, city) {
                 { label: 'Focus', value: 'Portali e workflow' }
             ],
             sectionTitle: `Web app a ${city.name} quando il gestionale standard non basta`,
-            sectionIntro: `Realizziamo applicazioni web su misura quando fogli condivisi, strumenti generici o flussi manuali non reggono piu. L obiettivo e costruire un ambiente operativo piu ordinato, con permessi, dati e automazioni modellati sul tuo processo reale.`,
+            sectionIntro: `Realizziamo applicazioni web su misura quando fogli condivisi, strumenti generici o flussi manuali non reggono più. L'obiettivo è costruire un ambiente operativo più ordinato, con permessi, dati e automazioni modellati sul tuo processo reale.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
@@ -648,27 +650,27 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Non adattiamo a forza un template: mappiamo ruoli, permessi, flussi approvativi e integrazioni in base al tuo modo di lavorare.`
                 },
                 {
-                    title: 'Scalabilita e manutenzione',
+                    title: 'Scalabilità e manutenzione',
                     text: `Costruiamo una base leggibile e documentata, pensata per crescere con moduli, API e nuove esigenze senza diventare fragile.`
                 }
             ],
-            processIntro: `La web app parte sempre da processi, ruoli e dati. Solo dopo definiamo interfacce, logica applicativa, priorita del primo rilascio e roadmap.`,
+            processIntro: `La web app parte sempre da processi, ruoli e dati. Solo dopo definiamo interfacce, logica applicativa, priorità del primo rilascio e roadmap.`,
             processSteps: [
                 {
                     title: '1. Discovery funzionale',
-                    text: `Analizziamo attori, casi d uso, dati necessari e punti di attrito operativi per definire il perimetro piu utile del progetto.`
+                    text: `Analizziamo attori, casi d'uso, dati necessari e punti di attrito operativi per definire il perimetro più utile del progetto.`
                 },
                 {
                     title: '2. UX, architettura e backlog',
-                    text: `Disegniamo schermate, flussi, integrazioni e priorita MVP con una proposta chiara su tempi, moduli e complessita tecnica.`
+                    text: `Disegniamo schermate, flussi, integrazioni e priorità MVP con una proposta chiara su tempi, moduli e complessità tecnica.`
                 },
                 {
                     title: '3. Sviluppo iterativo e rilascio',
-                    text: `Procediamo per milestone, QA e confronto continuo fino alla consegna dell applicazione pronta all uso e manutenibile.`
+                    text: `Procediamo per milestone, QA e confronto continuo fino alla consegna dell'applicazione pronta all'uso e manutenibile.`
                 }
             ],
             ctaTitle: `Vuoi capire se una web app custom ha senso per la tua azienda a ${city.name}?`,
-            ctaCopy: `Descrivici processo, utenti e strumenti attuali: ti aiutiamo a stimare perimetro, priorita e investimento.`,
+            ctaCopy: `Descrivici processo, utenti e strumenti attuali: ti aiutiamo a stimare perimetro, priorità e investimento.`,
             schemaDescription: `Web app custom a ${city.name} per portali, dashboard, aree riservate e gestionali con integrazioni API.`
         },
         'fotografia-aziendale': {
@@ -684,7 +686,7 @@ function getServiceLocalSeoCopy(service, city) {
                 { label: 'Focus', value: 'Sito + social + brand' }
             ],
             sectionTitle: `Fotografia aziendale a ${city.name} per non appoggiarsi a immagini deboli o anonime`,
-            sectionIntro: `Molti siti e profili aziendali perdono fiducia perche mostrano foto generiche, stock incoerenti o scatti improvvisati. Costruiamo shooting utili davvero: materiali che migliorano sito, social, brochure e presentazioni con una direzione visiva coerente.`,
+            sectionIntro: `Molti siti e profili aziendali perdono fiducia perché mostrano foto generiche, stock incoerenti o scatti improvvisati. Costruiamo shooting utili davvero: materiali che migliorano sito, social, brochure e presentazioni con una direzione visiva coerente.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
@@ -731,7 +733,7 @@ function getServiceLocalSeoCopy(service, city) {
                 { label: 'Focus', value: 'Messaggio + conversione' }
             ],
             sectionTitle: `Copywriting a ${city.name} per smettere di dire tutto e non dire nulla`,
-            sectionIntro: `I testi sono spesso il collo di bottiglia: prodotti complessi spiegati male, servizi indistinti, CTA deboli e tono di voce incoerente. Lavoriamo per rendere piu chiaro il valore dell offerta e guidare il visitatore verso la scelta giusta.`,
+            sectionIntro: `I testi sono spesso il collo di bottiglia: prodotti complessi spiegati male, servizi indistinti, CTA deboli e tono di voce incoerente. Lavoriamo per rendere più chiaro il valore dell'offerta e guidare il visitatore verso la scelta giusta.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
@@ -742,11 +744,11 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Prima definiamo pubblico, obiettivo e messaggio principale. Solo dopo scriviamo headline, sezioni e CTA in modo coerente.`
                 },
                 {
-                    title: 'SEO e leggibilita insieme',
+                    title: 'SEO e leggibilità insieme',
                     text: `Ottimizziamo struttura e parole chiave senza trasformare i testi in pagine rigide o artificiali da leggere.`
                 }
             ],
-            processIntro: `Il copy migliore nasce da un buon brief, da priorita chiare e da una struttura pensata per chi legge, non per riempire spazi.`,
+            processIntro: `Il copy migliore nasce da un buon brief, da priorità chiare e da una struttura pensata per chi legge, non per riempire spazi.`,
             processSteps: [
                 {
                     title: '1. Analisi di tono e posizionamento',
@@ -754,7 +756,7 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: '2. Architettura dei messaggi',
-                    text: `Definiamo priorita narrative, titoli, prove, CTA e flusso dei contenuti prima della stesura finale.`
+                    text: `Definiamo priorità narrative, titoli, prove, CTA e flusso dei contenuti prima della stesura finale.`
                 },
                 {
                     title: '3. Scrittura e rifinitura',
@@ -762,7 +764,7 @@ function getServiceLocalSeoCopy(service, city) {
                 }
             ],
             ctaTitle: `Hai pagine che non spiegano bene il tuo valore a ${city.name}?`,
-            ctaCopy: `Mandaci URL o bozza: ti aiutiamo a capire cosa riscrivere, con quale tono e con quale priorita.`,
+            ctaCopy: `Mandaci URL o bozza: ti aiutiamo a capire cosa riscrivere, con quale tono e con quale priorità.`,
             schemaDescription: `Copywriting a ${city.name} per siti web, landing page e campagne con attenzione a tono di voce, chiarezza e conversione.`
         },
         'google-ads': {
@@ -771,18 +773,18 @@ function getServiceLocalSeoCopy(service, city) {
             ogDescription: `Google Ads a ${city.name} con campagne Search, tracking e ottimizzazione lead. Da ${price}.`,
             heroTag: `Google Ads · ${city.name} · ${price}`,
             heroH1: `Google Ads a ${city.name} per intercettare ricerche con intento reale`,
-            heroCapsule: `<strong>WebNovis</strong> segue campagne Google Ads a ${city.name} per aziende, professionisti ed e-commerce che vogliono generare richieste o vendite da query gia attive. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroCapsule: `<strong>WebNovis</strong> segue campagne Google Ads a ${city.name} per aziende, professionisti ed e-commerce che vogliono generare richieste o vendite da query già attive. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Formato', value: 'Search + tracking' },
                 { label: 'Metodo', value: 'Ottimizzazione continua' }
             ],
             sectionTitle: `Google Ads a ${city.name} per trasformare domanda esistente in lead o ordini`,
-            sectionIntro: `Google Ads funziona bene quando struttura campagne, query, annunci e pagina di arrivo lavorano insieme. Gestiamo setup, misurazione e ottimizzazione per ridurre dispersione e concentrarci sulle ricerche che hanno piu probabilita di convertire.`,
+            sectionIntro: `Google Ads funziona bene quando struttura campagne, query, annunci e pagina di arrivo lavorano insieme. Gestiamo setup, misurazione e ottimizzazione per ridurre dispersione e concentrarci sulle ricerche che hanno più probabilità di convertire.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
-                    text: `Operiamo da Rho e possiamo coordinare rapidamente campagne locali o B2B per attivita e team commerciali di ${city.name}.`
+                    text: `Operiamo da Rho e possiamo coordinare rapidamente campagne locali o B2B per attività e team commerciali di ${city.name}.`
                 },
                 {
                     title: 'Tracking prima della spesa',
@@ -790,10 +792,10 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: 'Ottimizzazione sulle query che contano',
-                    text: `Lavoriamo su intenzione di ricerca, esclusioni, annunci e landing per concentrare budget sulle opportunita piu utili.`
+                    text: `Lavoriamo su intenzione di ricerca, esclusioni, annunci e landing per concentrare budget sulle opportunità più utili.`
                 }
             ],
-            processIntro: `Le campagne Google Ads partono dal modo in cui le persone cercano, non da una lista casuale di keyword o da creativita improvvisate.`,
+            processIntro: `Le campagne Google Ads partono dal modo in cui le persone cercano, non da una lista casuale di keyword o da creatività improvvisate.`,
             processSteps: [
                 {
                     title: '1. Audit, tracking e struttura',
@@ -805,27 +807,27 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: '3. Ottimizzazione continua',
-                    text: `Aggiorniamo keyword, esclusioni, annunci, offerte e landing per migliorare qualita dei lead e sostenibilita del budget.`
+                    text: `Aggiorniamo keyword, esclusioni, annunci, offerte e landing per migliorare qualità dei lead e sostenibilità del budget.`
                 }
             ],
-            ctaTitle: `Vuoi capire se Google Ads puo funzionare meglio a ${city.name}?`,
+            ctaTitle: `Vuoi capire se Google Ads può funzionare meglio a ${city.name}?`,
             ctaCopy: `Scrivici settore, obiettivo e budget indicativo: ti aiutiamo a capire se hai margine per migliorare setup e rendimento.`,
             schemaDescription: `Google Ads a ${city.name} per lead generation, servizi locali ed e-commerce con tracking e ottimizzazione continua.`
         },
         'consulenza-digitale': {
             title: `Consulenza Digitale a ${city.name}: audit e roadmap da ${price} | WebNovis`,
-            description: `Consulenza digitale a ${city.name} per audit della presenza online, priorita operative e roadmap di crescita. Da ${price}.`,
-            ogDescription: `Consulenza digitale a ${city.name} con audit e piano d azione operativo. Da ${price}.`,
+            description: `Consulenza digitale a ${city.name} per audit della presenza online, priorità operative e roadmap di crescita. Da ${price}.`,
+            ogDescription: `Consulenza digitale a ${city.name} con audit e piano d'azione operativo. Da ${price}.`,
             heroTag: `Consulenza Digitale · ${city.name} · ${price}`,
             heroH1: `Consulenza digitale a ${city.name} per capire cosa fare prima`,
-            heroCapsule: `<strong>WebNovis</strong> offre consulenza digitale a ${city.name} quando servono audit, priorita e una roadmap realistica tra sito, contenuti, acquisizione e strumenti. Investimento da <strong>${price}</strong>, sessioni e supporto diretto da Rho (${city.distanzaSede}).`,
+            heroCapsule: `<strong>WebNovis</strong> offre consulenza digitale a ${city.name} quando servono audit, priorità e una roadmap realistica tra sito, contenuti, acquisizione e strumenti. Investimento da <strong>${price}</strong>, sessioni e supporto diretto da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Formato', value: service.timeEstimate },
                 { label: 'Focus', value: 'Audit + roadmap' }
             ],
             sectionTitle: `Consulenza digitale a ${city.name} per uscire da decisioni confuse o scollegate`,
-            sectionIntro: `Se il problema non e solo eseguire ma capire priorita, canali e sequenza giusta, lavoriamo su audit e direzione. L obiettivo e arrivare a una vista piu chiara su cosa migliorare, in che ordine e con quali metriche.`,
+            sectionIntro: `Se il problema non è solo eseguire ma capire priorità, canali e sequenza giusta, lavoriamo su audit e direzione. L'obiettivo è arrivare a una vista più chiara su cosa migliorare, in che ordine e con quali metriche.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
@@ -837,46 +839,46 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: 'Output utile, non teoria',
-                    text: `La consulenza si traduce in priorita, check, opportunita e prossime mosse concrete, non in una lista astratta di idee.`
+                    text: `La consulenza si traduce in priorità, check, opportunità e prossime mosse concrete, non in una lista astratta di idee.`
                 }
             ],
             processIntro: `La consulenza digitale serve quando prima di investire devi capire bene dove stai perdendo valore e cosa conviene sistemare per primo.`,
             processSteps: [
                 {
                     title: '1. Audit del contesto digitale',
-                    text: `Raccogliamo dati, stack, canali attivi, criticita del sito e obiettivi commerciali per leggere il quadro reale.`
+                    text: `Raccogliamo dati, stack, canali attivi, criticità del sito e obiettivi commerciali per leggere il quadro reale.`
                 },
                 {
-                    title: '2. Priorita e scenari',
-                    text: `Mettiamo ordine tra urgenze, opportunita e costi di intervento per costruire una roadmap sostenibile e sensata.`
+                    title: '2. Priorità e scenari',
+                    text: `Mettiamo ordine tra urgenze, opportunità e costi di intervento per costruire una roadmap sostenibile e sensata.`
                 },
                 {
                     title: '3. Piano operativo o affiancamento',
-                    text: `Chiudiamo con linee guida, azioni consigliate e, se serve, un percorso di supporto sull esecuzione successiva.`
+                    text: `Chiudiamo con linee guida, azioni consigliate e, se serve, un percorso di supporto sull'esecuzione successiva.`
                 }
             ],
-            ctaTitle: `Ti serve piu chiarezza strategica sul digitale a ${city.name}?`,
-            ctaCopy: `Raccontaci dove sei bloccato: possiamo aiutarti a ordinare decisioni, budget e priorita con un audit mirato.`,
-            schemaDescription: `Consulenza digitale a ${city.name} con audit della presenza online, definizione priorita e roadmap operativa.`
+            ctaTitle: `Ti serve più chiarezza strategica sul digitale a ${city.name}?`,
+            ctaCopy: `Raccontaci dove sei bloccato: possiamo aiutarti a ordinare decisioni, budget e priorità con un audit mirato.`,
+            schemaDescription: `Consulenza digitale a ${city.name} con audit della presenza online, definizione priorità e roadmap operativa.`
         },
         'manutenzione-sito': {
             title: `Manutenzione Sito a ${city.name}: supporto tecnico continuativo da ${price} | WebNovis`,
             description: `Manutenzione sito a ${city.name} con backup, aggiornamenti, monitoraggio e interventi prioritari per siti aziendali ed e-commerce. Da ${price}.`,
             ogDescription: `Manutenzione sito a ${city.name} con backup, update e monitoraggio. Da ${price}.`,
             heroTag: `Manutenzione Sito · ${city.name} · ${price}`,
-            heroH1: `Manutenzione sito a ${city.name} per lavorare con piu tranquillita`,
+            heroH1: `Manutenzione sito a ${city.name} per lavorare con più tranquillità`,
             heroCapsule: `<strong>WebNovis</strong> segue la manutenzione siti web a ${city.name} con controlli tecnici, backup, aggiornamenti e interventi prioritari quando qualcosa si rompe o rallenta. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Formato', value: 'Continuativo' },
-                { label: 'Focus', value: 'Stabilita e supporto' }
+                { label: 'Focus', value: 'Stabilità e supporto' }
             ],
             sectionTitle: `Manutenzione siti a ${city.name} per evitare problemi silenziosi che diventano costosi`,
-            sectionIntro: `Aggiornamenti trascurati, errori nascosti, rallentamenti e backup mancanti spesso emergono solo quando c e gia un danno. La manutenzione serve a presidiare stabilita, sicurezza e continuita del sito con un referente unico e tempi chiari.`,
+            sectionIntro: `Aggiornamenti trascurati, errori nascosti, rallentamenti e backup mancanti spesso emergono solo quando c'è già un danno. La manutenzione serve a presidiare stabilità, sicurezza e continuità del sito con un referente unico e tempi chiari.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
-                    text: `Seguiamo il supporto da Rho con interventi rapidi e coordinamento semplice anche per attivita e PMI di ${city.name}.`
+                    text: `Seguiamo il supporto da Rho con interventi rapidi e coordinamento semplice anche per attività e PMI di ${city.name}.`
                 },
                 {
                     title: 'Controlli regolari',
@@ -884,14 +886,14 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: 'Supporto pratico',
-                    text: `Quando serve un intervento, non devi ricostruire il contesto ogni volta: abbiamo storico, accessi e priorita gia allineati.`
+                    text: `Quando serve un intervento, non devi ricostruire il contesto ogni volta: abbiamo storico, accessi e priorità già allineati.`
                 }
             ],
-            processIntro: `La manutenzione utile non e solo un aggiornamento sporadico: e un presidio tecnico leggero ma continuo su cio che tiene in piedi il sito.`,
+            processIntro: `La manutenzione utile non è solo un aggiornamento sporadico: è un presidio tecnico leggero ma continuo su ciò che tiene in piedi il sito.`,
             processSteps: [
                 {
                     title: '1. Presa in carico tecnica',
-                    text: `Raccogliamo accessi, stack, backup e stato generale del progetto per capire rischi e priorita operative.`
+                    text: `Raccogliamo accessi, stack, backup e stato generale del progetto per capire rischi e priorità operative.`
                 },
                 {
                     title: '2. Monitoraggio e interventi programmati',
@@ -899,11 +901,11 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: '3. Assistenza su problemi urgenti',
-                    text: `In caso di errori, rallentamenti o anomalie interveniamo con una lettura tecnica piu rapida grazie al presidio continuativo.`
+                    text: `In caso di errori, rallentamenti o anomalie interveniamo con una lettura tecnica più rapida grazie al presidio continuativo.`
                 }
             ],
             ctaTitle: `Hai un sito da tenere sotto controllo a ${city.name}?`,
-            ctaCopy: `Se vuoi evitare emergenze e perdite di tempo, possiamo aiutarti a impostare una manutenzione piu ordinata e affidabile.`,
+            ctaCopy: `Se vuoi evitare emergenze e perdite di tempo, possiamo aiutarti a impostare una manutenzione più ordinata e affidabile.`,
             schemaDescription: `Manutenzione sito a ${city.name} con backup, aggiornamenti, monitoraggio e supporto tecnico continuativo.`
         },
         'sviluppo-app-mobile': {
@@ -912,14 +914,14 @@ function getServiceLocalSeoCopy(service, city) {
             ogDescription: `Sviluppo app mobile a ${city.name} per iOS e Android con UX e logica prodotto. Da ${price}.`,
             heroTag: `App Mobile · ${city.name} · ${price}`,
             heroH1: `Sviluppo app mobile a ${city.name} per prodotti davvero usabili`,
-            heroCapsule: `<strong>WebNovis</strong> sviluppa app mobile a ${city.name} per progetti che richiedono una esperienza pensata per smartphone, flussi chiari e una base tecnica sostenibile. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, coordinamento diretto da Rho (${city.distanzaSede}).`,
+            heroCapsule: `<strong>WebNovis</strong> sviluppa app mobile a ${city.name} per progetti che richiedono un'esperienza pensata per smartphone, flussi chiari e una base tecnica sostenibile. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, coordinamento diretto da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'UX mobile + prodotto' }
             ],
             sectionTitle: `App mobile a ${city.name} per loyalty, booking e servizi digitali`,
-            sectionIntro: `Un app ha senso quando semplifica un flusso ricorrente e offre un vantaggio reale rispetto al sito mobile. Lavoriamo su concept, UX, logica prodotto e roadmap per costruire un esperienza utile e non un duplicato superfluo del web.`,
+            sectionIntro: `Un app ha senso quando semplifica un flusso ricorrente e offre un vantaggio reale rispetto al sito mobile. Lavoriamo su concept, UX, logica prodotto e roadmap per costruire un'esperienza utile e non un duplicato superfluo del web.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
@@ -927,22 +929,22 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: 'Prima il prodotto, poi la tecnologia',
-                    text: `Definiamo casi d uso, frequenza d utilizzo e priorita prima di parlare di feature, cosi il progetto resta sostenibile.`
+                    text: `Definiamo casi d'uso, frequenza d'utilizzo e priorità prima di parlare di feature, così il progetto resta sostenibile.`
                 },
                 {
                     title: 'Percorso chiaro verso il rilascio',
                     text: `Impostiamo un MVP concreto, testabile e pronto a crescere per fasi, evitando backlog infiniti e funzioni premature.`
                 }
             ],
-            processIntro: `Lo sviluppo mobile parte da frequenza d uso, bisogni reali e livello di complessita del prodotto, non dal desiderio generico di avere un app.`,
+            processIntro: `Lo sviluppo mobile parte da frequenza d'uso, bisogni reali e livello di complessità del prodotto, non dal desiderio generico di avere un app.`,
             processSteps: [
                 {
                     title: '1. Discovery e perimetro MVP',
-                    text: `Definiamo pubblico, scenario d uso, feature essenziali e metriche con cui giudicare il primo rilascio dell app.`
+                    text: `Definiamo pubblico, scenario d'uso, feature essenziali e metriche con cui giudicare il primo rilascio dell'app.`
                 },
                 {
                     title: '2. UX mobile e architettura',
-                    text: `Disegniamo flussi, schermate e logica dati in modo coerente con iOS, Android e con l esperienza che vuoi offrire.`
+                    text: `Disegniamo flussi, schermate e logica dati in modo coerente con iOS, Android e con l'esperienza che vuoi offrire.`
                 },
                 {
                     title: '3. Sviluppo, QA e rilascio',
@@ -966,7 +968,7 @@ function getServiceLocalSeoCopy(service, city) {
                 { label: 'Focus', value: 'Workflow e integrazioni' }
             ],
             sectionTitle: `Automazione business a ${city.name} per far scorrere meglio il lavoro operativo`,
-            sectionIntro: `Automatizziamo i punti in cui il processo si inceppa: passaggi manuali, doppie compilazioni, notifiche assenti, lead senza follow-up o dati che non circolano tra strumenti. L obiettivo e liberare tempo utile e ridurre errori ripetitivi.`,
+            sectionIntro: `Automatizziamo i punti in cui il processo si inceppa: passaggi manuali, doppie compilazioni, notifiche assenti, lead senza follow-up o dati che non circolano tra strumenti. L'obiettivo è liberare tempo utile e ridurre errori ripetitivi.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
@@ -978,10 +980,10 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: 'Risultato visibile sul lavoro quotidiano',
-                    text: `Le automazioni hanno senso se riducono tempi, errori e passaggi inutili gia dalla prima settimana di utilizzo.`
+                    text: `Le automazioni hanno senso se riducono tempi, errori e passaggi inutili già dalla prima settimana di utilizzo.`
                 }
             ],
-            processIntro: `L automazione funziona quando capiamo bene flusso, eccezioni e responsabilita. Non basta collegare due strumenti: serve progettare il percorso.`,
+            processIntro: `L'automazione funziona quando capiamo bene flusso, eccezioni e responsabilità. Non basta collegare due strumenti: serve progettare il percorso.`,
             processSteps: [
                 {
                     title: '1. Mappatura del processo',
@@ -993,7 +995,7 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: '3. Test, correzioni e handoff',
-                    text: `Verifichiamo casi reali, sistemiamo eccezioni e ti lasciamo un flusso piu robusto, leggibile e facile da usare.`
+                    text: `Verifichiamo casi reali, sistemiamo eccezioni e ti lasciamo un flusso più robusto, leggibile e facile da usare.`
                 }
             ],
             ctaTitle: `Hai processi manuali che ti fanno perdere tempo a ${city.name}?`,
@@ -1013,7 +1015,7 @@ function getServiceLocalSeoCopy(service, city) {
                 { label: 'Focus', value: 'Second opinion operativa' }
             ],
             sectionTitle: `Consulenze a ${city.name} quando non ti serve un progetto intero ma una risposta buona adesso`,
-            sectionIntro: `Ci sono momenti in cui non serve attivare subito un servizio completo: serve capire se un preventivo e sensato, se una pagina sta sbagliando direzione, se un rebrand ha senso o se una scelta SEO vale il budget. Qui lavoriamo come seconda opinione, molto concreta.`,
+            sectionIntro: `Ci sono momenti in cui non serve attivare subito un servizio completo: serve capire se un preventivo è sensato, se una pagina sta sbagliando direzione, se un rebrand ha senso o se una scelta SEO vale il budget. Qui lavoriamo come seconda opinione, molto concreta.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
@@ -1021,14 +1023,14 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: 'Confronto focalizzato',
-                    text: `La sessione e costruita su una domanda precisa, non su un audit generico: cosi il tempo produce una risposta piu utile.`
+                    text: `La sessione è costruita su una domanda precisa, non su un audit generico: così il tempo produce una risposta più utile.`
                 },
                 {
                     title: 'Indicazioni azionabili',
-                    text: `Chiudiamo con decisioni, priorita e cose da fare o da evitare, non con una conversazione vaga che lascia tutto aperto.`
+                    text: `Chiudiamo con decisioni, priorità e cose da fare o da evitare, non con una conversazione vaga che lascia tutto aperto.`
                 }
             ],
-            processIntro: `Le consulenze piu utili nascono da una domanda chiara e da un perimetro ben definito: problema, materiali da vedere e decisione da prendere.`,
+            processIntro: `Le consulenze più utili nascono da una domanda chiara e da un perimetro ben definito: problema, materiali da vedere e decisione da prendere.`,
             processSteps: [
                 {
                     title: '1. Raccolta del contesto',
@@ -1040,7 +1042,7 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: '3. Sintesi delle prossime mosse',
-                    text: `Ti lasciamo un riepilogo con priorita, rischi da evitare e passi successivi consigliati in base al tema affrontato.`
+                    text: `Ti lasciamo un riepilogo con priorità, rischi da evitare e passi successivi consigliati in base al tema affrontato.`
                 }
             ],
             ctaTitle: `Hai una scelta digitale da chiarire a ${city.name}?`,
@@ -1428,7 +1430,7 @@ function generateAgenziaPage(city) {
             ctaTitle: `Pronto a portare online la tua attività di ${city.name}?`,
             hasAiContent: !!aiBlock
         },
-        services: coreServices,
+        services: tableServices,
         nearCitiesData: nearCitiesData,
         relatedPages: relatedPages,
         blogLinks: blogLinks,
@@ -1660,18 +1662,77 @@ function generateServizioCittaPage(service, city) {
             label: `${svc.shortName} a ${city.name}`
         }));
 
-    // AI content for this city
+    // AI content for this city — vary by service cluster to avoid intra-municipal duplication
     const aiBlock = contentBlocks.get(city.slug);
-    const aiContent = aiBlock?.localMarketAnalysis
-        ? `<p>${aiBlock.localMarketAnalysis}</p>`
-        : null;
 
-    // Default FAQs for service×city
+    // Service cluster categorization for content variation
+    const webBuildSlugs = new Set(['sito-vetrina', 'ecommerce', 'landing-page', 'web-app', 'restyling-sito-web', 'realizzazione-siti-web']);
+    const marketingSlugs = new Set(['social-media', 'email-marketing', 'google-ads', 'seo-locale', 'copywriting']);
+    const strategySlugs = new Set(['consulenze', 'consulenza-digitale', 'automazione-business', 'manutenzione-sito']);
+
+    // Pick different content angle based on service cluster (eliminates intra-municipal duplication)
+    let aiContent = null;
+    if (aiBlock) {
+        if (webBuildSlugs.has(service.slug) && aiBlock.localMarketAnalysis) {
+            aiContent = `<p>${aiBlock.localMarketAnalysis}</p>`;
+        } else if (marketingSlugs.has(service.slug) && aiBlock.competitiveContext) {
+            aiContent = `<p>${aiBlock.competitiveContext}</p>`;
+        } else if (strategySlugs.has(service.slug) && aiBlock.competitiveContext && aiBlock.localMarketAnalysis) {
+            aiContent = `<p>${aiBlock.competitiveContext}</p>\n<p>${aiBlock.localMarketAnalysis.split('. ').slice(-2).join('. ')}</p>`;
+        } else if (aiBlock.localMarketAnalysis) {
+            aiContent = `<p>${aiBlock.localMarketAnalysis}</p>`;
+        }
+    }
+
+    // Competitive insight for the city (unique content, previously unused)
+    const competitiveInsight = aiBlock?.competitiveContext || null;
+
+    // Data points for data-driven unique content (previously unused)
+    const dataPoints = aiBlock?.uniqueDataPoints || null;
+
+    // ─── Service-specific FAQ pools (5-7 FAQs per cluster type) ──────────
+    const webDevFaqPool = [
+        { q: `Usate WordPress per ${service.name.toLowerCase()}?`, a: `No. Ogni progetto WebNovis è sviluppato con codice 100% custom (HTML5, CSS3, JavaScript). Questo garantisce performance superiori, sicurezza nativa e SEO ottimizzato senza dipendere da plugin o template preconfezionati.` },
+        { q: `Come garantite la velocità del sito a ${city.name}?`, a: `Ogni sito è sviluppato con codice leggero e ottimizzato per i Core Web Vitals: LCP < 2.5s, INP < 200ms, CLS < 0.1. Testiamo su connessioni 3G e 4G per garantire caricamenti rapidi anche da mobile nella zona di ${city.name}.` },
+        { q: `Il sito sarà ottimizzato per le ricerche locali a ${city.name}?`, a: `Sì. Integriamo SEO tecnica, dati strutturati Schema.org (LocalBusiness, Service), meta tag geo-specifici e contenuti ottimizzati per intercettare ricerche come "${service.shortName.toLowerCase()} ${city.name}" e varianti correlate.` },
+        { q: `Posso gestire il sito in autonomia dopo il lancio?`, a: `Sì. Forniamo formazione e, dove serve, un pannello di gestione contenuti semplice. Per chi preferisce affidarsi a noi, offriamo piani di manutenzione continuativa da €59/mese.` },
+        { q: `Cosa include il supporto post-lancio?`, a: `30 giorni di supporto gratuito inclusi. Successivamente, piani di manutenzione da €59/mese con aggiornamenti, backup automatici, monitoraggio uptime e interventi prioritari.` }
+    ];
+    const marketingFaqPool = [
+        { q: `Come misurate i risultati di ${service.name.toLowerCase()} a ${city.name}?`, a: `Definiamo KPI specifici prima di partire (lead, conversioni, traffico qualificato) e forniamo report periodici con dati reali. Ogni decisione operativa è guidata dai numeri, non da intuizioni.` },
+        { q: `Quanto tempo serve per vedere risultati con ${service.shortName.toLowerCase()}?`, a: `I primi segnali misurabili arrivano in 4-8 settimane per attività paid (Google Ads, social ads). Per attività organiche (SEO, content), i risultati consolidati richiedono 3-6 mesi di lavoro costante.` },
+        { q: `Lavorate solo con aziende grandi o anche con piccole attività di ${city.name}?`, a: `Lavoriamo con PMI, professionisti e attività locali di ${city.name}. Il nostro approccio è scalabile: partiamo da budget contenuti e cresciamo con i risultati. Investimento da €${service.priceFrom}${service.priceUnit || ''}.` },
+        { q: `Posso interrompere il servizio se non funziona?`, a: `Sì. Non vincoliamo con contratti annuali obbligatori. Lavoriamo mese per mese con report trasparenti, così puoi valutare i risultati e decidere in autonomia.` },
+        { q: `Come vi differenziate dalle altre agenzie per ${service.shortName.toLowerCase()}?`, a: `Tre differenze concrete: codice e strategie 100% custom (zero template), reportistica trasparente con KPI reali, e gestione diretta da Rho (${city.distanzaSede} da ${city.name}) senza intermediari.` }
+    ];
+    const strategyFaqPool = [
+        { q: `Come funziona il servizio di ${service.name.toLowerCase()} con WebNovis?`, a: `Partiamo da un brief iniziale per capire obiettivi, contesto competitivo e priorità. Poi definiamo un piano operativo con tempi (${service.timeEstimate}), investimento (da €${service.priceFrom}${service.priceUnit || ''}) e un unico referente dedicato.` },
+        { q: `La consulenza può essere fatta in videochiamata o serve un incontro di persona?`, a: `Entrambe le opzioni. Per le aziende di ${city.name} possiamo incontrarci in sede vostra o nella nostra sede a Rho (${city.distanzaSede}). Per chi preferisce, lavoriamo efficacemente anche in videochiamata.` },
+        { q: `Cosa ricevo concretamente alla fine del percorso?`, a: `Deliverable chiari e azionabili: documento con priorità, raccomandazioni operative, metriche di riferimento e prossimi passi. Non teoria astratta, ma indicazioni eseguibili dal tuo team o con il nostro supporto.` },
+        { q: `Posso poi affidarvi anche la realizzazione di quanto emerso dalla consulenza?`, a: `Sì. Se dalla consulenza emergono interventi che vuoi affidare a WebNovis (sito, SEO, automazioni), possiamo gestirli con continuità senza perdere il contesto già acquisito.` },
+        { q: `Vale la pena investire in ${service.shortName.toLowerCase()} per una piccola attività di ${city.name}?`, a: `Spesso è proprio la piccola attività locale a trarre il vantaggio maggiore: meno burocrazia interna, decisioni rapide, e un impatto visibile già dalle prime settimane. Investimento da €${service.priceFrom}${service.priceUnit || ''}.` }
+    ];
+
+    // Select the right FAQ pool based on service cluster
+    let faqPool;
+    if (webBuildSlugs.has(service.slug)) faqPool = webDevFaqPool;
+    else if (marketingSlugs.has(service.slug)) faqPool = marketingFaqPool;
+    else faqPool = strategyFaqPool;
+
+    // Build final FAQ list: 2 universal + 5 cluster-specific
     const faqs = [
         { q: `Quanto costa ${service.name.toLowerCase()} a ${city.name}?`, a: `${service.name} a ${city.name}: da <strong>€${service.priceFrom}${service.priceUnit || ''}</strong>. Tempi: ${service.timeEstimate}. Preventivo gratuito personalizzato entro 24 ore.` },
         { q: `WebNovis è vicina a ${city.name}?`, a: `La nostra sede è a Rho, Via S. Giorgio 2 — ${city.distanzaSede} in auto da ${city.name}. Incontriamo i clienti in azienda o in videochiamata.` },
-        { q: `Usate WordPress per ${service.name.toLowerCase()}?`, a: `No. Ogni progetto WebNovis è sviluppato con codice 100% custom. Performance superiori, sicurezza nativa, SEO ottimizzato — nessun template.` }
+        ...faqPool
     ];
+
+    // Related services: show 6 instead of 3 for better internal linking
+    const relatedServicePagesExpanded = geoServices
+        .slice(0, 6)
+        .map(svc => ({
+            url: `${svc.slug}-${city.slug}.html`,
+            label: `${svc.shortName} a ${city.name}`
+        }));
 
     const templateData = {
         city: city,
@@ -1682,10 +1743,12 @@ function generateServizioCittaPage(service, city) {
             return nc ? { name: nc.name } : { name: ncSlug };
         }),
         relatedCityPages: relatedCityPages,
-        relatedServicePages: relatedServicePages,
-        allCoreServices: coreServices,
+        relatedServicePages: relatedServicePagesExpanded,
+        allCoreServices: tableServices,
         faqs: faqs,
         aiContent: aiContent,
+        competitiveInsight: competitiveInsight,
+        dataPoints: dataPoints,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
         site: SITE
@@ -1802,6 +1865,16 @@ function generateServizioCittaPage(service, city) {
             }
         }
     ];
+    if (faqs.length > 0) {
+        schemas.push({
+            "@context": "https://schema.org", "@type": "FAQPage",
+            "mainEntity": faqs.map(f => ({
+                "@type": "Question",
+                "name": f.q,
+                "acceptedAnswer": { "@type": "Answer", "text": stripHtml(f.a) }
+            }))
+        });
+    }
     const schemasHtml = schemas.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n');
 
     return headBlock + '</head>' + navHtml + contentHtml + ' ' + footerHtml + '\n' + schemasHtml + '\n' + tailBlock;

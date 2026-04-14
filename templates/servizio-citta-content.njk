@@ -120,6 +120,43 @@
     </div>
   </section>
 
+  {# ═══ SECTION 3b — Local data & competitive insight (unique per city) ═══ #}
+  {% if dataPoints or competitiveInsight %}
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>{{ service.shortName }} a {{ city.name }}: il contesto competitivo locale</h2>
+      {% if dataPoints %}
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1.5rem">
+        {% if dataPoints.estimatedLocalBusinesses %}
+        <div style="min-width:160px;padding:.85rem 1rem;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+          <strong style="display:block;color:var(--white);font-size:1.1rem">{{ dataPoints.estimatedLocalBusinesses | localeNumber }}+</strong>
+          <span style="display:block;color:var(--gray-light);font-size:.82rem;opacity:.85;margin-top:.15rem">Attività a {{ city.name }}</span>
+        </div>
+        {% endif %}
+        {% if dataPoints.competitionLevel %}
+        <div style="min-width:160px;padding:.85rem 1rem;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+          <strong style="display:block;color:var(--white);font-size:1.1rem">{{ dataPoints.competitionLevel | capitalize }}</strong>
+          <span style="display:block;color:var(--gray-light);font-size:.82rem;opacity:.85;margin-top:.15rem">Competizione digitale</span>
+        </div>
+        {% endif %}
+        {% if dataPoints.digitalMaturityScore %}
+        <div style="min-width:160px;padding:.85rem 1rem;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+          <strong style="display:block;color:var(--white);font-size:1.1rem">{{ dataPoints.digitalMaturityScore | capitalize }}</strong>
+          <span style="display:block;color:var(--gray-light);font-size:.82rem;opacity:.85;margin-top:.15rem">Maturità digitale</span>
+        </div>
+        {% endif %}
+      </div>
+      {% if dataPoints.topSearchQueries and dataPoints.topSearchQueries | length > 0 %}
+      <p>Le ricerche più frequenti nella zona includono: {% for q in dataPoints.topSearchQueries %}<em>"{{ q }}"</em>{% if not loop.last %}, {% endif %}{% endfor %}. Posizionarsi su queste query significa intercettare domanda reale e convertirla in contatti.</p>
+      {% endif %}
+      {% endif %}
+      {% if competitiveInsight %}
+      <p>{{ competitiveInsight }}</p>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
   {# ═══ SECTION 4 — Comparison table (GEO: +115% AI citation visibility) ═══ #}
   <section class="service-detail" style="background:rgba(255,255,255,.01)">
     <div class="container">
@@ -136,7 +173,7 @@
           <tbody>
             {% for svc in allCoreServices %}
             <tr style="border-bottom:1px solid rgba(255,255,255,.05){% if svc.slug == service.slug %};background:rgba(91,106,174,.1){% endif %}">
-              <td style="padding:12px 16px;color:var(--primary-light);font-weight:{% if svc.slug == service.slug %}700{% else %}600{% endif %}">{{ svc.shortName }}{% if svc.slug == service.slug %} ←{% endif %}</td>
+              <td style="padding:12px 16px;color:var(--primary-light);font-weight:{% if svc.slug == service.slug %}700{% else %}600{% endif %}">{% if svc.slug == service.slug %}{{ svc.shortName }} ←{% else %}<a href="/{{ svc.slug }}-{{ city.slug }}.html" style="color:var(--primary-light);text-decoration:none">{{ svc.shortName }}</a>{% endif %}</td>
               <td style="padding:12px 16px;color:var(--gray-light)">€{{ svc.priceFrom }}{{ svc.priceUnit if svc.priceUnit }}</td>
               <td style="padding:12px 16px;color:var(--gray-light)">{{ svc.timeEstimate }}</td>
             </tr>
@@ -183,8 +220,8 @@
     <div class="container">
       <h2>Altri servizi WebNovis a {{ city.name }}</h2>
       <p>
-        {% for rp in relatedServicePages %}{% if loop.index <= 3 %}
-        <a href="{{ rp.url }}" style="color:var(--primary-light)">{{ rp.label }}</a>{% if loop.index < 3 and relatedServicePages | length > loop.index %},{% endif %}
+        {% for rp in relatedServicePages %}{% if loop.index <= 6 %}
+        <a href="{{ rp.url }}" style="color:var(--primary-light)">{{ rp.label }}</a>{% if loop.index < 6 and relatedServicePages | length > loop.index %},{% endif %}
         {% endif %}{% endfor %}
         — <a href="/agenzia-web-{{ city.slug }}.html" style="color:var(--primary-light)">Tutti i servizi a {{ city.name }}</a>
       </p>

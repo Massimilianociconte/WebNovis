@@ -65,7 +65,7 @@ npx vitest run               # Esegui test suite
 ## Deploy
 
 Il sito è deployato su **GitHub Pages** (frontend statico) e **Render** (server Express).
-Vedi `DEPLOY-GITHUB.md` per la procedura completa.
+Vedi `docs/deploy/DEPLOY-GITHUB.md` per la procedura completa.
 
 ## Regole Importanti
 

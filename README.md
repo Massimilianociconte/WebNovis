@@ -206,8 +206,12 @@ webnovis-site/
 ├── .gitignore               # File da ignorare
 ├── README.md                # Questo file
 └── docs/                    # Documentazione
-    ├── DEPLOY-GITHUB.md
-    ├── DEPLOY-VERCEL.md
+    ├── chatbot/
+    │   ├── AVVIA-CHATBOT.md
+    │   ├── README-CHAT.md
+    │   └── MODELLI-AI.md
+    ├── deploy/
+    │   └── DEPLOY-GITHUB.md
     └── ...
 ```
 
@@ -263,9 +267,9 @@ PORT=3000
 
 ## 📚 Documentazione
 
-- **[Deploy GitHub](DEPLOY-GITHUB.md)** - Guida deploy GitHub Pages
+- **[Deploy GitHub](docs/deploy/DEPLOY-GITHUB.md)** - Guida deploy GitHub Pages
 - **[Deploy Vercel](DEPLOY-VERCEL.md)** - Guida deploy Vercel
-- **[Setup Chatbot](AVVIA-CHATBOT.md)** - Configurazione chatbot
+- **[Setup Chatbot](docs/chatbot/AVVIA-CHATBOT.md)** - Configurazione chatbot
 - **[Comandi Rapidi](COMANDI-RAPIDI.md)** - Cheat sheet comandi
 
 ## 🤝 Contribuire

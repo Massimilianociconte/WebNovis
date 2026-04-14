@@ -72,9 +72,10 @@ webnovis/
 │   └── chat.js          # Frontend chat
 ├── index.html           # Pagina principale
 └── docs/
-    ├── README-CHAT.md   # Documentazione completa
-    ├── QUICK-START.md   # Guida rapida
-    └── MODELLI-AI.md    # Guida modelli
+    └── chatbot/
+        ├── README-CHAT.md   # Documentazione completa
+        ├── QUICK-START.md   # Guida rapida
+        └── MODELLI-AI.md    # Guida modelli
 ```
 
 ## 💰 Costi Stimati
