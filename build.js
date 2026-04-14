@@ -423,30 +423,37 @@ async function build() {
             minifyCSS: true,
             minifyJS: true,
             collapseBooleanAttributes: true,
-            sortAttributes: true,
             sortClassName: true,
             conservativeCollapse: true,
             removeOptionalTags: false,
             preserveLineBreaks: false
         };
-        // Only minify HTML files that are NOT in node_modules or .git
-        const htmlToMinify = htmlFiles.filter(f => !f.includes('node_modules') && !f.includes('.git') && !f.includes('newsletter-template'));
-        for (const htmlFile of htmlToMinify) {
+        // Only minify HTML files from src/html/ -> write minified to root output paths
+        // Geo-generated pages and other HTML files are NOT touched by this pipeline.
+        const srcHtmlBase = 'src/html';
+        const srcHtmlAbsBase = path.resolve(PROJECT_ROOT, srcHtmlBase);
+        const srcHtmlFiles = fs.existsSync(srcHtmlAbsBase)
+            ? listFilesRecursive(srcHtmlBase, config.discovery.skipDirs).filter(f => f.endsWith('.html'))
+            : [];
+        for (const srcFile of srcHtmlFiles) {
             try {
-                const absPath = path.resolve(PROJECT_ROOT, htmlFile);
-                const source = fs.readFileSync(absPath, 'utf8');
+                // e.g. src/html/index.html -> index.html
+                //      src/html/servizi/web-design.html -> servizi/web-design.html
+                const relOutputPath = srcFile.replace(/^src\/html\//, '');
+                const absInputPath = path.resolve(PROJECT_ROOT, srcFile);
+                const absOutputPath = path.resolve(PROJECT_ROOT, relOutputPath);
+                const source = fs.readFileSync(absInputPath, 'utf8');
                 const origSize = Buffer.byteLength(source, 'utf8');
-                const transformed = applySeoHtmlTransforms(source, htmlFile);
+                // applySeoHtmlTransforms uses the OUTPUT path (not src path) for URL-based logic
+                const transformed = applySeoHtmlTransforms(source, relOutputPath);
                 const minified = await htmlMinifier.minify(transformed, htmlMinifyOptions);
                 const minSize = Buffer.byteLength(minified, 'utf8');
-                if (minified !== source) {
-                    fs.writeFileSync(absPath, minified, 'utf8');
-                    htmlOrigTotal += origSize;
-                    htmlMinTotal += minSize;
-                    htmlSuccess++;
-                }
+                fs.writeFileSync(absOutputPath, minified, 'utf8');
+                htmlOrigTotal += origSize;
+                htmlMinTotal += minSize;
+                htmlSuccess++;
             } catch (err) {
-                log('WARN', `HTML minify skipped ${htmlFile}: ${err.message}`);
+                log('WARN', `HTML minify skipped ${srcFile}: ${err.message}`);
             }
         }
         if (htmlSuccess > 0) {

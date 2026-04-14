@@ -773,16 +773,21 @@ const orbsParallax = document.querySelectorAll('.gradient-orb');
 
 (function() {
     var mouseParallaxActive = false;
-    var heroSection = document.querySelector('.hero');
     var parallaxTicking = false;
-    var parallaxClientX = window.innerWidth * 0.5;
-    var parallaxClientY = window.innerHeight * 0.5;
-    if (heroSection) {
-        var parallaxVisObserver = new IntersectionObserver(function(entries) {
-            mouseParallaxActive = entries[0].isIntersecting;
-        }, { threshold: 0 });
-        parallaxVisObserver.observe(heroSection);
-    }
+    // Defer layout reads to rAF to avoid forced reflow after DOM mutations at script init
+    var parallaxClientX = 0;
+    var parallaxClientY = 0;
+    requestAnimationFrame(function() {
+        parallaxClientX = window.innerWidth * 0.5;
+        parallaxClientY = window.innerHeight * 0.5;
+        var heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            var parallaxVisObserver = new IntersectionObserver(function(entries) {
+                mouseParallaxActive = entries[0].isIntersecting;
+            }, { threshold: 0 });
+            parallaxVisObserver.observe(heroSection);
+        }
+    });
 
     function applyMouseParallax() {
         parallaxTicking = false;
@@ -829,19 +834,20 @@ revealSections.forEach(section => sectionObserver.observe(section));
 const socialFeedScroll = document.getElementById('socialFeedScroll');
 if (socialFeedScroll) {
 
-    // Detect if mobile
-    const isMobileDevice = window.innerWidth <= 768 || 'ontouchstart' in window;
-
-    // Wait for DOM to be fully loaded
+    // Wait for DOM to be fully loaded before any layout reads
     setTimeout(() => {
+        // Detect if mobile inside timeout to avoid forced reflow at script init
+        const isMobileDevice = window.innerWidth <= 768 || 'ontouchstart' in window;
+
         // Clone feed posts to create seamless loop (only on desktop)
         const posts = Array.from(socialFeedScroll.querySelectorAll('.feed-post'));
 
-        // Calculate original content height — batch reads to avoid layout thrashing
-        var heights = posts.map(function(p) { return p.offsetHeight; });
-        var margins = posts.map(function(p) { return parseInt(getComputedStyle(p).marginBottom) || 0; });
+        // Single-pass measurement: read height+margin together to minimise reflow triggers
         let originalHeight = 0;
-        for (var hi = 0; hi < posts.length; hi++) { originalHeight += heights[hi] + margins[hi]; }
+        const postMeasurements = posts.map(function(p) {
+            return p.offsetHeight + (parseInt(getComputedStyle(p).marginBottom) || 0);
+        });
+        for (var hi = 0; hi < postMeasurements.length; hi++) { originalHeight += postMeasurements[hi]; }
 
         // Only enable auto-scroll on desktop
         if (!isMobileDevice) {
