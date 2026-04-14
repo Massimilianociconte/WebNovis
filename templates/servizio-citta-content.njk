@@ -157,6 +157,63 @@
   </section>
   {% endif %}
 
+  {# ═══ SECTION 3c — Decision framework for competitive services ═══ #}
+  {% if seo.decisionFrameworkCards and seo.decisionFrameworkCards | length > 0 %}
+  <section class="service-detail">
+    <div class="container">
+      <h2>{{ seo.decisionFrameworkTitle }}</h2>
+      {% if seo.decisionFrameworkIntro %}
+      <p>{{ seo.decisionFrameworkIntro }}</p>
+      {% endif %}
+      <div class="service-grid">
+        {% for card in seo.decisionFrameworkCards %}
+        <div class="service-card-mini">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {# ═══ SECTION 3d — Deliverables and scope clarity ═══ #}
+  {% if seo.deliverablesCards and seo.deliverablesCards | length > 0 %}
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>{{ seo.deliverablesTitle }}</h2>
+      {% if seo.deliverablesIntro %}
+      <p>{{ seo.deliverablesIntro }}</p>
+      {% endif %}
+      <div class="service-grid">
+        {% for card in seo.deliverablesCards %}
+        <div class="service-card-mini">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {# ═══ SECTION 3e — Query coverage cues for local commercial intent ═══ #}
+  {% if seo.intentQueries and seo.intentQueries | length > 0 %}
+  <section class="service-detail">
+    <div class="container">
+      <h2>{{ seo.intentQueriesTitle }}</h2>
+      {% if seo.intentQueriesIntro %}
+      <p>{{ seo.intentQueriesIntro }}</p>
+      {% endif %}
+      <p>
+        {% for query in seo.intentQueries %}
+        <em>"{{ query }}"</em>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </p>
+    </div>
+  </section>
+  {% endif %}
+
   {# ═══ SECTION 4 — Comparison table (GEO: +115% AI citation visibility) ═══ #}
   <section class="service-detail" style="background:rgba(255,255,255,.01)">
     <div class="container">

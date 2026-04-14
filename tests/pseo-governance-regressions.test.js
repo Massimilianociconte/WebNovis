@@ -43,8 +43,14 @@ function main() {
 
   assert.equal(
     governance.getIndexationDirectivesForPath('/ecommerce-milano.html'),
-    'noindex, follow',
-    'ecommerce-milano.html should be de-amplified via noindex, follow'
+    'index, follow',
+    'ecommerce-milano.html should remain indexable as a strategic ecommerce geo page'
+  );
+
+  assert.equal(
+    governance.getIndexationDirectivesForPath('/seo-locale-rho.html'),
+    'index, follow',
+    'seo-locale-rho.html should be indexable as a strategic local SEO page'
   );
 
   assert.equal(
@@ -119,8 +125,8 @@ function main() {
     'sitemap.xml must exclude de-amplified page email-marketing-milano.html'
   );
   assert.ok(
-    !sitemap.includes('https://www.webnovis.com/ecommerce-milano.html'),
-    'sitemap.xml must exclude de-amplified page ecommerce-milano.html'
+    sitemap.includes('https://www.webnovis.com/ecommerce-milano.html'),
+    'sitemap.xml must include ecommerce-milano.html because it is now a strategic geo page'
   );
   assert.ok(
     !sitemap.includes('https://www.webnovis.com/google-ads-milano-nord.html'),
@@ -133,6 +139,10 @@ function main() {
   assert.ok(
     !sitemap.includes('https://www.webnovis.com/web-app-corsico.html'),
     'sitemap.xml must exclude de-amplified page web-app-corsico.html'
+  );
+  assert.ok(
+    sitemap.includes('https://www.webnovis.com/seo-locale-rho.html'),
+    'sitemap.xml must include seo-locale-rho.html because it is now a strategic geo page'
   );
   assert.ok(
     !sitemap.includes('https://www.webnovis.com/seo-locale-rozzano.html'),

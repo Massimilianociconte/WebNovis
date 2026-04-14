@@ -8,10 +8,25 @@ const EXPLICIT_DEAMPLIFIED_PATHS = [
   '/sviluppo-app-mobile-milano-nord.html',
   '/email-marketing-milano.html',
   '/email-marketing-milano-nord.html',
-  '/ecommerce-milano.html',
   '/google-ads-milano-nord.html',
   '/social-media-bresso.html'
 ];
+
+const STRATEGIC_SEO_CITY_SLUGS = [
+  'rho',
+  'sesto-san-giovanni',
+  'cinisello-balsamo',
+  'parabiago',
+  'arese',
+  'lainate',
+  'garbagnate',
+  'milano'
+];
+
+const STRATEGIC_INDEXABLE_GEO_PATHS = new Set([
+  ...STRATEGIC_SEO_CITY_SLUGS.map((citySlug) => `/seo-locale-${citySlug}.html`),
+  '/ecommerce-milano.html'
+]);
 
 const EXTENDED_GEO_SERVICE_SLUGS = (servicesData.services || [])
   .filter((service) => service && service.hasPage === false && service.slug)
@@ -23,7 +38,7 @@ const CITY_SLUGS = (citiesData.cities || [])
 
 const AUTO_DEAMPLIFIED_GEO_PATHS = EXTENDED_GEO_SERVICE_SLUGS.flatMap((serviceSlug) =>
   CITY_SLUGS.map((citySlug) => `/${serviceSlug}-${citySlug}.html`)
-);
+).filter((pathname) => !STRATEGIC_INDEXABLE_GEO_PATHS.has(pathname));
 
 const PHASE1_DEAMPLIFIED_PATHS = [...new Set([...EXPLICIT_DEAMPLIFIED_PATHS, ...AUTO_DEAMPLIFIED_GEO_PATHS])];
 const DEAMPLIFIED_SET = new Set(PHASE1_DEAMPLIFIED_PATHS);
@@ -62,6 +77,7 @@ function shouldIncludeInSitemapPath(pathname) {
 
 module.exports = {
   EXPLICIT_DEAMPLIFIED_PATHS,
+  STRATEGIC_INDEXABLE_GEO_PATHS,
   AUTO_DEAMPLIFIED_GEO_PATHS,
   PHASE1_DEAMPLIFIED_PATHS,
   normalizePathname,

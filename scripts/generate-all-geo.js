@@ -416,6 +416,15 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Realizziamo, testiamo e consegniamo con supporto iniziale incluso e un unico referente dedicato.`
                 }
             ],
+        decisionFrameworkTitle: '',
+        decisionFrameworkIntro: '',
+        decisionFrameworkCards: [],
+        deliverablesTitle: '',
+        deliverablesIntro: '',
+        deliverablesCards: [],
+        intentQueriesTitle: '',
+        intentQueriesIntro: '',
+        intentQueries: [],
         ctaTitle: `${service.shortName} per la tua attività a ${city.name}?`,
         ctaCopy: `Scrivici obiettivo, settore e tempistiche: ti rispondiamo con un preventivo gratuito entro 24 ore.`,
         primaryPageUrl: primaryUrl,
@@ -489,6 +498,84 @@ function getServiceLocalSeoCopy(service, city) {
             ],
             sectionTitle: `E-commerce a ${city.name} per trasformare catalogo e traffico in ordini`,
             sectionIntro: `Un negozio online deve essere facile da gestire, veloce da usare e solido lato SEO e checkout. Progettiamo e-commerce pensati per margini, conversione e crescita nel tempo.`,
+            whyCards: [
+                {
+                    title: `${city.distanzaSede} dalla tua sede`,
+                    text: `Coordiniamo il progetto da Rho con confronto diretto e rapido anche per negozi, brand e PMI di ${city.name} che devono partire senza dispersione.`
+                },
+                {
+                    title: 'Stack e-commerce senza lock-in inutile',
+                    text: `Valutiamo caso per caso Shopify, WooCommerce o sviluppo custom in base a catalogo, margini, complessità operativa e autonomia richiesta dopo il lancio.`
+                },
+                {
+                    title: 'SEO, UX e vendite nella stessa direzione',
+                    text: `Non costruiamo uno shop solo “bello”: lavoriamo su categorie, schede prodotto, checkout e misurazione per rendere più facile vendere e ottimizzare.`
+                }
+            ],
+            processIntro: `Un e-commerce regge nel tempo quando architettura, schede prodotto, pagamenti, logistica e misurazione vengono progettati insieme fin dall'inizio.`,
+            processSteps: [
+                {
+                    title: '1. Catalogo, stack e requisiti',
+                    text: `Analizziamo prodotti, varianti, modalità di vendita, pagamenti, spedizioni e strumenti già in uso per definire la soluzione più sensata.`
+                },
+                {
+                    title: '2. UX di acquisto e struttura SEO',
+                    text: `Costruiamo categorie, schede prodotto, filtri, contenuti e checkout in modo che il sito sia chiaro per utenti, motori di ricerca e team interno.`
+                },
+                {
+                    title: '3. Setup operativo e rilascio',
+                    text: `Configuriamo pagamenti, spedizioni, tracking, email essenziali e handoff operativo per arrivare online con una base già usabile e misurabile.`
+                }
+            ],
+            decisionFrameworkTitle: `Cosa deve avere un e-commerce a ${city.name} per vendere davvero`,
+            decisionFrameworkIntro: `Nelle SERP locali molti competitor presidiano la query “realizzazione e-commerce” con landing molto verticali. Per reggere davvero il confronto non basta pubblicare uno shop: servono fondamenta commerciali e operative chiare.`,
+            decisionFrameworkCards: [
+                {
+                    title: 'Catalogo, categorie e filtri',
+                    text: `La struttura deve aiutare persone e motori di ricerca a capire subito prodotti, collezioni e differenze, senza creare tassonomie confuse che disperdono traffico e conversione.`
+                },
+                {
+                    title: 'Schede prodotto che chiariscono e convincono',
+                    text: `Testi, immagini, varianti, policy e CTA devono ridurre dubbi prima del checkout, altrimenti il traffico arriva ma l'ordine non si chiude.`
+                },
+                {
+                    title: 'Checkout, pagamenti e logistica',
+                    text: `Uno shop funziona quando pagamenti, spedizioni, disponibilità e conferme ordine sono solidi quanto il design. Qui spesso si decide il vero tasso di conversione.`
+                },
+                {
+                    title: 'Tracking, automazioni e riacquisto',
+                    text: `Misurare funnel, ordini, carrelli abbandonati e performance per categoria permette di migliorare margini e processi, non solo il numero di visite.`
+                }
+            ],
+            deliverablesTitle: `Cosa include un progetto e-commerce WebNovis a ${city.name}`,
+            deliverablesIntro: `Il perimetro viene adattato al progetto, ma ci concentriamo sui blocchi che spostano davvero conversione, gestione e scalabilità.`,
+            deliverablesCards: [
+                {
+                    title: 'Architettura shop e tassonomia',
+                    text: `Mappatura categorie, menu, schede prodotto, filtri e gerarchia delle pagine per rendere il catalogo leggibile e sostenibile.`
+                },
+                {
+                    title: 'Checkout e integrazioni essenziali',
+                    text: `Setup di pagamenti, spedizioni, email transazionali, moduli e strumenti operativi necessari a non spezzare il flusso di vendita.`
+                },
+                {
+                    title: 'SEO tecnica e contenuti chiave',
+                    text: `Interveniamo su categorie, metadati, struttura URL, copy utile e performance percepita per evitare uno shop invisibile o dispersivo.`
+                },
+                {
+                    title: 'Formazione e handoff operativo',
+                    text: `Ti lasciamo una base che il team può gestire nel quotidiano: prodotti, ordini, promozioni e controlli ricorrenti senza dipendere sempre da noi.`
+                }
+            ],
+            intentQueriesTitle: `Ricerche e-commerce che presidiamo a ${city.name}`,
+            intentQueriesIntro: `Lavoriamo per intercettare query locali con intento commerciale reale, non solo keyword generiche senza probabilità di acquisto.`,
+            intentQueries: [
+                `realizzazione ecommerce ${city.name}`,
+                `e-commerce ${city.name}`,
+                `negozio online ${city.name}`,
+                `sito ecommerce ${city.name}`,
+                `creazione shop online ${city.name}`
+            ],
             ctaTitle: `Vuoi un e-commerce più credibile e più facile da far crescere a ${city.name}?`,
             ctaCopy: `Scrivici catalogo, obiettivi e complessità operativa: ti rispondiamo con un perimetro chiaro e un preventivo entro 24 ore.`,
             schemaDescription: `E-commerce custom a ${city.name} con catalogo, checkout, pagamenti e SEO tecnica per aziende che vogliono vendere online.`
@@ -557,6 +644,84 @@ function getServiceLocalSeoCopy(service, city) {
             ],
             sectionTitle: `SEO locale a ${city.name} per intercettare ricerche con intento di contatto`,
             sectionIntro: `Lavoriamo su Google Business Profile, struttura locale delle pagine e ottimizzazione on-page per aumentare la visibilità sulle ricerche che contano davvero per chi opera sul territorio.`,
+            whyCards: [
+                {
+                    title: `${city.distanzaSede} dalla tua sede`,
+                    text: `Seguiamo progetti locali da Rho e possiamo coordinare rapidamente priorità, materiali e verifiche anche con attività di ${city.name} che hanno poco tempo da perdere.`
+                },
+                {
+                    title: 'Maps, sito e recensioni letti insieme',
+                    text: `La SEO locale non si risolve con un solo intervento: lavoriamo su profilo Google, pagine locali, segnali di fiducia e struttura del sito come un unico sistema.`
+                },
+                {
+                    title: 'Misurazione su query e contatti',
+                    text: `Impostiamo il lavoro per leggere ricerche, chiamate, richieste e progressi sulle pagine locali, non solo posizioni astratte scollegate dal business.`
+                }
+            ],
+            processIntro: `La SEO locale funziona quando priorità tecniche, profilo Google Business Profile e contenuti locali vengono ordinati in una sequenza concreta e misurabile.`,
+            processSteps: [
+                {
+                    title: '1. Audit locale e baseline',
+                    text: `Analizziamo profilo Google, pagine locali, competitor, NAP, query e asset già esistenti per capire dove si sta perdendo visibilità.`
+                },
+                {
+                    title: '2. Interventi on-page e profilo GBP',
+                    text: `Lavoriamo su title, H1, contenuti, schema, linking interno, categorie, servizi e materiali del profilo per chiarire meglio rilevanza locale e offerta.`
+                },
+                {
+                    title: '3. Monitoraggio, review e ottimizzazione',
+                    text: `Controlliamo segnali, richieste, andamento delle query e punti deboli ancora aperti per consolidare nel tempo Maps e organico locale.`
+                }
+            ],
+            decisionFrameworkTitle: `Le leve che fanno muovere la SEO locale a ${city.name}`,
+            decisionFrameworkIntro: `I competitor che presidiano meglio le query locali non vincono sempre con il contenuto più lungo: spesso vincono perché rendono chiarissimi i segnali locali fondamentali e li collegano bene tra profilo, sito e reputazione.`,
+            decisionFrameworkCards: [
+                {
+                    title: 'Google Business Profile ordinato',
+                    text: `Categorie, servizi, immagini, descrizioni e aggiornamenti devono raccontare chiaramente cosa fai e dove operi, senza informazioni contraddittorie.`
+                },
+                {
+                    title: 'Pagine locali coerenti e indexabili',
+                    text: `Le landing locali devono avere intent chiaro, title/H1 coerenti, contenuti utili e linking interno sufficiente per non restare invisibili.`
+                },
+                {
+                    title: 'Recensioni e segnali di fiducia',
+                    text: `Le review non sostituiscono il sito, ma aiutano Maps e il click-through quando sono raccolte e presidiate con continuità.`
+                },
+                {
+                    title: 'NAP, citazioni e misurazione',
+                    text: `Coerenza di contatti, dati di sede, richieste e query presidiate serve per capire cosa sta migliorando davvero e cosa no.`
+                }
+            ],
+            deliverablesTitle: `Cosa include un lavoro SEO locale serio a ${city.name}`,
+            deliverablesIntro: `Il lavoro cambia in base al punto di partenza, ma le aree che muoviamo più spesso sono queste.`,
+            deliverablesCards: [
+                {
+                    title: 'Audit locale e priorità',
+                    text: `Snapshot iniziale di pagina, profilo Google, query, segnali locali e criticità tecniche per decidere la sequenza giusta degli interventi.`
+                },
+                {
+                    title: 'On-page, schema e pagine locali',
+                    text: `Ottimizziamo i segnali on-page che aiutano Google a leggere meglio servizio, città, area servita e rilevanza locale.`
+                },
+                {
+                    title: 'Profilo Google e review process',
+                    text: `Supportiamo organizzazione del profilo, materiali essenziali e un processo più ordinato per richiesta e gestione delle recensioni.`
+                },
+                {
+                    title: 'Report e lettura dei risultati',
+                    text: `Ti lasciamo dati leggibili su query locali, richieste e attività eseguite per capire se il lavoro sta davvero portando visibilità utile.`
+                }
+            ],
+            intentQueriesTitle: `Ricerche locali che presidiamo a ${city.name}`,
+            intentQueriesIntro: `L'obiettivo è comparire meglio dove l'intento è vicino al contatto o alla visita, non inseguire keyword lontane dal bisogno reale.`,
+            intentQueries: [
+                `seo locale ${city.name}`,
+                `agenzia seo ${city.name}`,
+                `google maps ${city.name}`,
+                `posizionamento locale ${city.name}`,
+                `google business profile ${city.name}`
+            ],
             ctaTitle: `Vuoi più richieste da Google Maps a ${city.name}?`,
             ctaCopy: `Possiamo partire con un audit locale e un piano operativo chiaro per query, pagine e profilo aziendale.`,
             schemaDescription: `SEO locale a ${city.name} con ottimizzazione Google Business Profile, pagine locali e attività on-page per ricerche ad alta intenzione.`
@@ -1623,7 +1788,6 @@ function generateRealizzazionePage(city) {
     page = page.replace('</main>', aiExtraHtml + geoLinksHtml + '</main>');
 
     const schemasHtml = generateSchemas(city, 'realizzazione')
-        .filter((schema) => schema['@type'] !== 'FAQPage')
         .map((schema) => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
         .join('\n');
     page = page.replace(/<\/footer>/i, `</footer>\n${schemasHtml}`);
@@ -2315,7 +2479,6 @@ function main() {
         console.log('\n─── Generating realizzazione-siti-web pages ───');
         for (const city of cities) {
             if (!city.generate.realizzazione) { skipped++; continue; }
-            if (city.slug === 'rho') { skipped++; continue; } // Rho is the hand-crafted base
             if (!matchesTargetCity(city)) { skipped++; continue; }
 
             const html = generateRealizzazionePage(city);
