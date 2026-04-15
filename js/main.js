@@ -1564,9 +1564,13 @@ if (rotatingWords.length > 0) {
         requestAnimationFrame(setStableWrapperWidth);
     };
 
-    scheduleWidthMeasure();
+    // Measure ONCE after fonts load — avoids fallback-font intermediate
+    // measurement that caused CLS (wrapper width changing W1→W2 → h1 reflow).
+    // CSS min-width:7.2ch holds the space until fonts are ready.
     if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(scheduleWidthMeasure).catch(() => {});
+        document.fonts.ready.then(scheduleWidthMeasure).catch(scheduleWidthMeasure);
+    } else {
+        scheduleWidthMeasure();
     }
 
     window.addEventListener('resize', () => {

@@ -64,6 +64,8 @@
 
 <link href="Img/sfondo.webp" rel="preload" media="(min-width: 769px)" as="image" fetchpriority="high" type="image/webp">
 
+<!-- Critical CSS: establishes hero dimensions before style.min.css loads → prevents CLS -->
+<style>body{margin:0;opacity:1}.hero{min-height:100vh;min-height:100svh;background:url(Img/sfondo.webp)50%/cover no-repeat;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:80px}@media(max-width:768px){.hero{background-image:url(Img/sfondo-mobile-hq.webp)}}</style>
 <link href="css/style.min.css?v=1.7" rel="stylesheet">
 
 <link href="css/revolution.min.css?v=1.5" rel="stylesheet" media="print" onload='this.media="all"'>
@@ -92,7 +94,7 @@
 
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload='this.media="all"'>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600;700&family=Syne:wght@600;700;800&display=optional" rel="stylesheet" media="print" onload='this.media="all"'>
 <noscript>
 
 <link href="css/revolution.min.css" rel="stylesheet">
