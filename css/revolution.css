@@ -625,8 +625,18 @@ body:hover .cursor-glow {
     }
     
     .hero-title {
-        font-size: clamp(1.6rem, 5vw, 2.5rem);
+        font-size: clamp(2.4rem, 9vw, 3.4rem);
     }
+    
+    /* Ensure Revolution Orbs do not break mobile layout or cause horizontal scroll */
+    .orb-1, .orb-2, .orb-3 {
+        transform: scale(0.6);
+        opacity: 0.3;
+    }
+    
+    .orb-1 { top: -10%; right: -20%; }
+    .orb-2 { bottom: -10%; left: -20%; }
+    .orb-3 { top: 40%; left: 50%; }
     
     .hero-subtitle {
         font-size: 1rem;
