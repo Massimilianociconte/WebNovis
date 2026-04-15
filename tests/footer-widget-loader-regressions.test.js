@@ -45,7 +45,7 @@ function main() {
     const hasReviewWidgets = /trustpilot-widget|data-designrush-widget/i.test(html);
     if (!hasReviewWidgets) continue;
 
-    if (!/footer-widgets-loader\.js/i.test(html)) {
+    if (!/footer-widgets-loader(?:\.min)?\.js/i.test(html)) {
       offenders.push(path.relative(ROOT, filePath));
     }
   }

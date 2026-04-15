@@ -128,14 +128,18 @@
     position: relative;
     vertical-align: middle;
     height: 1.4em;
-    width: 5.5em;
+    width: 9.75ch;
+    min-width: 9.75ch;
     line-height: 1.4;
     overflow: hidden;
     text-align: center;
     margin: 0 0.15em;
     padding: 0 24px;
     box-sizing: content-box;
-    transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
     /* Frosted glass with high opacity for maximum contrast */
     background: rgba(255, 255, 255, 0.75);
     border: 1px solid rgba(255, 255, 255, 0.9);

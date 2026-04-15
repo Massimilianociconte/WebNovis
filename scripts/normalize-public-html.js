@@ -21,8 +21,10 @@ const EXCLUDED_DIRS = new Set(['node_modules', '.git', 'docs', 'scripts', 'css',
 const BLOG_FOOTER_PATTERN = /<footer class="footer">\s*<div class="container">\s*<div class="footer-content">[\s\S]*?<\/footer>/;
 const DESIGNRUSH_SCRIPT_PATTERN = /<script\b[^>]*src="https:\/\/www\.designrush\.com\/topbest\/js\/widgets\/agency-reviews\.js"[^>]*><\/script>/gi;
 const DESIGNRUSH_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/designrush-loader\.js"[^>]*><\/script>/gi;
-const FOOTER_WIDGET_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader\.js"[^>]*><\/script>/i;
+const FOOTER_WIDGET_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader(?:\.min)?\.js"[^>]*><\/script>/i;
+const FOOTER_WIDGET_LOADER_GLOBAL_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader(?:\.min)?\.js"[^>]*><\/script>/gi;
 const NONCRITICAL_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/noncritical-loader(?:\.min)?\.js"[^>]*><\/script>/i;
+const WEB_VITALS_REPORTER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/web-vitals-reporter(?:\.min)?\.js"[^>]*><\/script>/gi;
 const MAIN_MIN_SCRIPT_PATTERN = /<script\b[^>]*src="([^"]*?)js\/main\.min\.js"[^>]*><\/script>/i;
 const NONCRITICAL_SCRIPT_PATTERNS = [
   /<script\b[^>]*src="([^"]*?)js\/chat(?:\.min)?\.js"[^>]*><\/script>\s*/gi,
@@ -80,17 +82,22 @@ function normalizeBlogFooter(html, relativePath) {
 }
 
 function normalizeDesignRushLoader(html, relativePath) {
-  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.js`;
+  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.min.js`;
   let updated = html.replace(DESIGNRUSH_SCRIPT_PATTERN, `<script defer src="${loaderPath}"></script>`);
   updated = updated.replace(DESIGNRUSH_LOADER_PATTERN, `<script defer src="${loaderPath}"></script>`);
   return updated;
+}
+
+function normalizeFooterWidgetLoaderRefs(html, relativePath) {
+  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.min.js`;
+  return html.replace(FOOTER_WIDGET_LOADER_GLOBAL_PATTERN, `<script defer src="${loaderPath}"></script>`);
 }
 
 function ensureFooterWidgetLoader(html, relativePath) {
   const hasWidgets = /trustpilot-widget|data-designrush-widget/i.test(html);
   if (!hasWidgets || FOOTER_WIDGET_LOADER_PATTERN.test(html)) return html;
 
-  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.js`;
+  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.min.js`;
   const loaderTag = `<script defer src="${loaderPath}"></script>`;
 
   if (/<script\b[^>]*src="([^"]*?)js\/main\.min\.js"[^>]*><\/script>/i.test(html)) {
@@ -116,6 +123,23 @@ function normalizeNonCriticalLoader(html, relativePath) {
   }
 
   return updated.replace(/<\/body>/i, `${loaderTag} </body>`);
+}
+
+function normalizeWebVitalsReporterRefs(html, relativePath) {
+  const reporterPath = `${getRootPrefix(relativePath)}js/web-vitals-reporter.min.js`;
+  return html.replace(WEB_VITALS_REPORTER_PATTERN, `<script defer src="${reporterPath}"></script>`);
+}
+
+function normalizeFooterLogoLoading(html) {
+  return html.replace(/<footer class="footer">[\s\S]*?<\/footer>/gi, (footerHtml) =>
+    footerHtml.replace(/<img\b([^>]*class="logo-image"[^>]*)>/i, (fullMatch, attributes) => {
+      let updatedAttributes = attributes;
+      if (!/\bloading=/i.test(updatedAttributes)) updatedAttributes += ' loading="lazy"';
+      if (!/\bfetchpriority=/i.test(updatedAttributes)) updatedAttributes += ' fetchpriority="low"';
+      if (!/\bdecoding=/i.test(updatedAttributes)) updatedAttributes += ' decoding="async"';
+      return `<img${updatedAttributes}>`;
+    })
+  );
 }
 
 function normalizeBlogIndexLinks(html) {
@@ -149,8 +173,11 @@ for (const filePath of walk(ROOT)) {
   updated = normalizePhoneCtaMarkup(updated);
   updated = normalizeImageLoadingInHtml(updated);
   updated = normalizeDesignRushLoader(updated, relativePath);
+  updated = normalizeFooterWidgetLoaderRefs(updated, relativePath);
   updated = ensureFooterWidgetLoader(updated, relativePath);
   updated = normalizeNonCriticalLoader(updated, relativePath);
+  updated = normalizeWebVitalsReporterRefs(updated, relativePath);
+  updated = normalizeFooterLogoLoading(updated);
   updated = normalizeBlogIndexLinks(updated);
   updated = normalizeLegacyLinks(updated);
   updated = applySeoHtmlTransforms(updated, relativePath);

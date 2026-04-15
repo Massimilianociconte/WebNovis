@@ -2,6 +2,7 @@
     'use strict';
 
     var currentScript = document.currentScript;
+    var isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
     var baseUrl = currentScript && currentScript.src
         ? new URL('.', currentScript.src).href
         : new URL('js/', window.location.href).href;
@@ -40,6 +41,14 @@
             hasRun = true;
             fn();
         };
+    }
+
+    function afterWindowLoad(callback) {
+        if (document.readyState === 'complete') {
+            callback();
+            return;
+        }
+        window.addEventListener('load', callback, { once: true });
     }
 
     function scheduleIdle(callback, timeout) {
@@ -81,15 +90,30 @@
     window.addEventListener('pointerdown', loadCursor, { passive: true, once: true });
     scheduleIdle(loadCursor, 4500);
 
-    var loadChat = runOnce(function () {
+    var ensureChatLoaded = function () {
         if (!document.getElementById('chatButton') && !document.querySelector('.weby-chat-container')) return;
-        loadScript('chat.min.js').catch(function () {});
+        return loadScript('chat.min.js').catch(function () {});
+    };
+    var loadChat = runOnce(function () {
+        ensureChatLoaded();
     });
-
-    window.addEventListener('pointerdown', loadChat, { passive: true, once: true });
-    window.addEventListener('keydown', loadChat, { once: true });
-    window.addEventListener('scroll', loadChat, { passive: true, once: true });
-    scheduleIdle(loadChat, 5500);
+    var chatIntentTarget = document.getElementById('chatButton') || document.querySelector('.weby-chat-container');
+    if (chatIntentTarget) {
+        chatIntentTarget.addEventListener('click', function handleChatIntent(event) {
+            if (window.__webnovisChatInitialized) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            ensureChatLoaded().then(function () {
+                requestAnimationFrame(function () {
+                    chatIntentTarget.click();
+                });
+            });
+        }, { capture: true });
+    }
+    afterWindowLoad(function () {
+        if (isMobileViewport) return;
+        scheduleIdle(loadChat, 9000);
+    });
 
     var textEffectsTarget = document.querySelector('.text-reveal-wrapper, .morphing-text-container');
     var loadTextEffects = runOnce(function () {
@@ -97,7 +121,9 @@
         loadScript('text-effects.min.js').catch(function () {});
     });
     whenElementNearViewport(textEffectsTarget, loadTextEffects, '260px 0px 260px 0px');
-    scheduleIdle(loadTextEffects, 3200);
+    if (!('IntersectionObserver' in window)) {
+        scheduleIdle(loadTextEffects, 3200);
+    }
 
     var globeTarget = document.getElementById('cobeGlobe');
     var loadGlobe = runOnce(function () {
@@ -105,5 +131,7 @@
         loadScript('globe.min.js', { module: true }).catch(function () {});
     });
     whenElementNearViewport(globeTarget, loadGlobe, '320px 0px 320px 0px');
-    scheduleIdle(loadGlobe, 4200);
+    if (!('IntersectionObserver' in window)) {
+        scheduleIdle(loadGlobe, 4200);
+    }
 })();

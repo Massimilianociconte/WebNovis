@@ -1,6 +1,7 @@
 (function initFooterWidgetsLoader() {
     var loadedDesignRush = false;
     var loadedTrustpilot = false;
+    var widgetsRequested = false;
     var designRushSrc = 'https://www.designrush.com/topbest/js/widgets/agency-reviews.js';
     var trustpilotSrc = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
 
@@ -44,7 +45,8 @@
     }
 
     function loadWidgets() {
-        if (!hasFooterWidgets()) return;
+        if (widgetsRequested || !hasFooterWidgets()) return;
+        widgetsRequested = true;
         loadDesignRush();
         loadTrustpilot();
     }
@@ -69,17 +71,17 @@
         return true;
     }
 
-    window.addEventListener('pointerdown', loadWidgets, { once: true, passive: true });
-    window.addEventListener('keydown', loadWidgets, { once: true });
-    window.addEventListener('scroll', loadWidgets, { once: true, passive: true });
-
     if (!setupIntersectionTrigger()) {
         if ('requestIdleCallback' in window) {
-            requestIdleCallback(function () {
-                setTimeout(loadWidgets, 2200);
-            }, { timeout: 4200 });
+            window.addEventListener('load', function () {
+                requestIdleCallback(function () {
+                    setTimeout(loadWidgets, 7000);
+                }, { timeout: 9000 });
+            }, { once: true });
         } else {
-            setTimeout(loadWidgets, 3500);
+            window.addEventListener('load', function () {
+                setTimeout(loadWidgets, 8000);
+            }, { once: true });
         }
     }
 })();
