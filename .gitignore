@@ -49,3 +49,4 @@ leads-log.jsonl
 *.temp
 ~*
 docs/history.json
+.claude/
