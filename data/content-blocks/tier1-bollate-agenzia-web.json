@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "city": "bollate",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-bollate.html. Fatti verificati online: Parco delle Groane reale e attivo, stazione Bollate Centro sul Passante S1. distanzaSede 10 min / 6 km (data/cities.json). Popolazione ~37k abitanti.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web a Bollate: sede a 10 minuti, per PMI, studi professionali e attività del Passante S1",
+  "body": [
+    "Bollate è tra i comuni più popolosi dell'hinterland nord di Milano e uno dei più vicini alla nostra sede di Rho: <strong>circa 10 minuti in auto, 6 km</strong>. La stazione di Bollate Centro sul Passante S1 collega Milano in 15-20 minuti, e il Parco delle Groane segna il confine ovest — questo mix urbano / naturale / ben collegato genera una domanda digitale specifica: attività di quartiere, studi professionali, PMI industriali della zona sud, commerciali sulla direttrice verso Garbagnate.",
+    "Lavorare con un'agenzia web vicina cambia le dinamiche di progetto: <strong>brief iniziale in presenza</strong> se serve (non una videocall di 30 minuti), <strong>tempi di risposta rapidi</strong> su correzioni e aggiornamenti, nessun passaggio di mano tra account, project manager e sviluppatore. È lo stesso team dall'inizio alla fine, con pricing pubblicato e perimetro del progetto scritto in proposta.",
+    "Per le PMI di Bollate che devono uscire dal template WordPress o dal sito \"fatto dal cugino 8 anni fa\", il percorso è chiaro: brief, proposta con perimetro e pricing (<strong>landing €500, sito vetrina €1.200, e-commerce custom €3.500</strong>), realizzazione con codice 100% custom + SEO tecnica, go-live con 30 giorni di supporto incluso. Per approfondire la parte di realizzazione puoi vedere <a href=\"/realizzazione-siti-web-bollate.html\" style=\"color:var(--primary-light)\">Realizzazione Siti Web Bollate</a>."
+  ],
+  "bullets": [
+    "<strong>10 minuti dalla nostra sede</strong> a Rho — la città confinante, stessa area operativa.",
+    "<strong>Focus PMI, studi, commercianti, attività di quartiere</strong>: non corporate, non mass-market.",
+    "<strong>Pricing pubblicato</strong>: landing €500, vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Codice 100% custom</strong>: niente WordPress, niente dipendenze da plugin fragili.",
+    "<strong>30 giorni di supporto incluso</strong> + manutenzione opzionale da €59/mese."
+  ],
+  "callout": {
+    "title": "Bollate Centro, Cascina del Sole, Ospiate: stesso comune, esigenze diverse",
+    "text": "Un'attività di Bollate Centro vive di traffico pedonale e ricerche \"vicino a me\"; un'attività sulla direttrice verso Garbagnate o Castellazzo ha un raggio di attrazione più ampio. In fase di brief ti aiutiamo a definire quale è il raggio di cattura realistico e quali query ha senso presidiare — senza promettere posizionamenti miracolosi su \"agenzia web Milano\"."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study clienti Bollate reali con settore e risultati pubblicabili.",
+    "EDITORIAL_TODO: eventuale sezione con aree specifiche (Bollate Centro, Ospiate, Cascina del Sole)."
+  ]
+}

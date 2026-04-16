@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "city": "milano-ovest",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-milano-ovest.html. Milano Ovest è un'area sintetica (non un comune): riferimenti a quartieri/landmark reali (San Siro, CityLife, QT8, De Angeli) senza cifre demografiche inventate. distanzaSede 21 min da data/cities.json.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web per Milano Ovest: lavoriamo con PMI e professionisti tra QT8, San Siro, CityLife e De Angeli",
+  "body": [
+    "\"Milano Ovest\" per noi significa un'area operativa molto precisa: il settore urbano che va da <strong>QT8</strong> e Fiera Citylife a <strong>San Siro</strong>, passando per De Angeli, Lampugnano, Gambara. È l'area di Milano che confina direttamente con la nostra sede di Rho (Via S. Giorgio 2), a circa 20 minuti in auto dalla cerchia o pochi minuti di M1 da Lampugnano. Per una PMI o un professionista che opera qui, questo significa <strong>un'agenzia con sede reale a 10-15 km</strong>, non un partner virtuale.",
+    "Il tessuto economico di Milano Ovest è molto diverso dal centro: meno corporate, più startup, studi creativi, servizi B2B, ristorazione di quartiere, attività retail vive. L'intento di ricerca tipico è \"agenzia web Milano Ovest\", \"sito web San Siro\", \"web agency CityLife\" — query dove competere vuol dire essere trovati prima di chi ha budget enormi. Per questo la nostra priorità non è \"Milano\" generico (dove Google ha già i suoi top player), ma il <strong>raggio operativo locale</strong> dove la rilevanza territoriale fa davvero la differenza.",
+    "Il percorso è identico a quello per le altre città: brief, proposta con perimetro scritto, codice 100% custom, pricing trasparente (<strong>landing da €500, sito vetrina da €1.200, e-commerce da €3.500</strong>), un solo referente, 30 giorni di supporto incluso. Per approfondire il cluster realizzazione puoi vedere <a href=\"/realizzazione-siti-web-milano-ovest.html\" style=\"color:var(--primary-light)\">Realizzazione Siti Web Milano Ovest</a>."
+  ],
+  "bullets": [
+    "<strong>Area operativa diretta</strong>: da QT8, San Siro, CityLife, De Angeli, Lampugnano fino a Rho — circa 20 minuti in auto dalla sede.",
+    "<strong>Focus PMI, studi, retail di quartiere</strong>: non pacchetti corporate, non agenzie a distanza.",
+    "<strong>Prezzi pubblicati</strong>: landing €500, sito vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Codice custom + SEO tecnica integrata</strong>: niente WordPress, niente Shopify di default.",
+    "<strong>Un unico referente</strong> per tutto il progetto, videocall o incontro in sede."
+  ],
+  "callout": {
+    "title": "\"Milano\" generico o \"Milano Ovest\"? La differenza conta",
+    "text": "Posizionarsi su \"agenzia web Milano\" significa competere con decine di agenzie storiche milanesi con budget SEO a sei cifre. Posizionarsi su \"agenzia web Milano Ovest\", \"web agency San Siro\" o \"sito web CityLife\" significa intercettare clienti che cercano davvero un partner nella loro zona — query meno competitive e con intent commerciale più alto."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study di clienti in zona Milano Ovest (Lampugnano, San Siro, CityLife) con consenso pubblico.",
+    "EDITORIAL_TODO: foto dall'area (stazione di Lampugnano, Torri CityLife) solo se di proprietà o con licenza verificata."
+  ]
+}

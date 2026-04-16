@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "city": "saronno",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-saronno.html. Fatti verificati online: Lazzaroni e gli Amaretti di Saronno (storia secolare, Saronno è 'capitale dell'amaretto'), nodo ferroviario FNM/RFI. distanzaSede 23 min / 11 km. Saronno è in provincia di Varese, non Milano.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web a Saronno: partner vicino per PMI e attività di una cittadina con identità forte",
+  "body": [
+    "Saronno è una cittadina con un'identità commerciale molto riconoscibile: gli <strong>Amaretti di Saronno</strong> sono un marchio storico noto a livello internazionale (dalla tradizione Lazzaroni del 1700), il centro ha una tradizione di commercio e artigianato solida, e la posizione — nodo ferroviario tra Milano, Como e Varese — genera un mix di clientela locale e pendolare. Per un'attività saronnese, un sito web deve bilanciare l'identità locale radicata con l'apertura a un bacino più ampio.",
+    "Dalla nostra sede di Rho a Saronno ci sono circa <strong>11 km / 23 minuti</strong> via A9 o SP233. È vicinanza sufficiente per un brief in presenza e per visite periodiche se il progetto lo richiede — importante per attività con showroom, retail o servizi fisici da far vedere. Per il quotidiano, videocall e un unico referente. Siamo nella stessa area operativa del Nord-Ovest milanese / basso varesotto.",
+    "Pricing trasparente come per tutto il network: <strong>landing da €500, sito vetrina da €1.200, e-commerce custom da €3.500</strong>. Perimetro scritto in proposta, preventivo entro 24 ore, codice 100% custom, 30 giorni di supporto post-lancio. Un unico referente dall'inizio alla fine del progetto."
+  ],
+  "bullets": [
+    "<strong>23 minuti da Rho</strong> — 11 km, raggiungibile in auto o in treno dal nodo FNM.",
+    "<strong>Focus PMI, commercio, artigianato, ristorazione</strong> — realtà con identità locale forte.",
+    "<strong>Prezzi pubblicati</strong>: landing €500, sito vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Brief in presenza</strong> possibile, consigliato per attività con retail o showroom.",
+    "<strong>Codice 100% custom + SEO tecnica</strong> integrata, niente WordPress."
+  ],
+  "callout": {
+    "title": "Un'identità locale radicata non è in conflitto con la visibilità nazionale",
+    "text": "Le attività saronnesi con identità forte (artigiani storici, pasticcerie tradizionali, ristoranti con decenni alle spalle) spesso pensano che un sito web \"moderno\" snaturi la loro identità. Al contrario: un sito ben fatto trasmette continuità e qualità — rende leggibile online quello che chi vive Saronno già sa del tuo marchio, aprendolo a chi arriva da fuori. Il brief è il momento in cui capiamo insieme come raccontarlo."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study attività saronnesi con heritage (artigiani, commercio storico)."
+  ]
+}

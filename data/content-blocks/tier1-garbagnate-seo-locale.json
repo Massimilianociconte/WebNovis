@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "city": "garbagnate",
+    "service": "seo-locale",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /seo-locale-garbagnate.html. Pricing €400/mese. Focus: comune medio dove SEO locale porta risultati veloci per bassa competizione.",
+    "source": "hand-crafted"
+  },
+  "headline": "SEO locale a Garbagnate Milanese: risultati concreti in un bacino dove la competizione digitale è bassa",
+  "body": [
+    "In una città come Garbagnate la SEO locale porta risultati relativamente veloci perché le attività concorrenti hanno spesso una presenza digitale debole: Google Business Profile incompleti, siti senza dati strutturati, nessun presidio delle query commerciali locali. <strong>Chiudere questi gap è l'opportunità più concreta</strong> per una PMI garbagnatese che vuole intercettare i clienti che oggi vanno su Google e finiscono spesso a Milano o a Rho.",
+    "Il piano parte da un audit di 7-10 giorni sulle query realmente cercate dal tuo settore (es. \"elettricista Garbagnate\", \"commercialista Garbagnate\", \"fisioterapista Garbagnate\"). Poi <strong>setup completo di Google Business Profile</strong>, <strong>dati strutturati Schema.org LocalBusiness</strong> sul sito, <strong>NAP coerente</strong> sulle directory (PagineGialle, Google Maps, directory di settore). Lavoriamo in parallelo sulle review autentiche e su content che copra le long-tail del tuo settore.",
+    "Pricing: <strong>€400/mese</strong>, continuativo, zero vincoli annuali. Report mensile con dati reali di Google Search Console e Google Business Profile. Trasparenza totale: se dopo 2 mesi i numeri non si stanno muovendo in modo coerente con il piano, ridefiniamo la strategia — non fingiamo risultati che non ci sono."
+  ],
+  "bullets": [
+    "<strong>Audit iniziale</strong> sulle query realmente cercate nel tuo settore a Garbagnate.",
+    "<strong>Google Business Profile</strong>: categoria, servizi, attributi, foto, post, Q&amp;A, risposte alle review.",
+    "<strong>Schema.org LocalBusiness</strong> on-page + NAP coerente su directory (PagineGialle, Google Maps, directory verticali).",
+    "<strong>Review strategy autentica</strong>: review solo da clienti reali, mai comprate né finte.",
+    "<strong>€400/mese</strong>, report GSC + Google Business ogni mese, zero vincoli annuali."
+  ],
+  "callout": {
+    "title": "Perché a Garbagnate la SEO locale funziona più velocemente che a Milano",
+    "text": "A Milano per posizionarsi su \"elettricista Milano\" competi con centinaia di attività che fanno SEO da anni, con budget importanti. A Garbagnate competi con un mercato molto più limitato, dove spesso nessuno ha davvero presidiato Google Business o i dati strutturati. La stessa attività SEO ti porta più in alto, più in fretta — il bacino è più piccolo ma la quota di mercato catturabile è molto più alta."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study con dati GSC di cliente Garbagnate (prima/dopo posizionamento)."
+  ]
+}

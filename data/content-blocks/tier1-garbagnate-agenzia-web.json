@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "city": "garbagnate",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-garbagnate.html. Fatti verificati: Ospedale Guido Salvini (ASST Rhodense) a Garbagnate Milanese, stazione S2 Passante, adiacenza Parco delle Groane. distanzaSede 12 min / 8 km.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web a Garbagnate Milanese: partner vicino per PMI, artigiani e studi legati all'ASST Rhodense",
+  "body": [
+    "Garbagnate Milanese è a <strong>8 km / 12 minuti</strong> dalla nostra sede di Rho: stessa area operativa, stessa ASST (la ASST Rhodense che include anche l'Ospedale Guido Salvini di Garbagnate). Molte delle PMI, degli artigiani e degli studi professionali che operano qui servono anche Rho, Lainate e Bollate — e viceversa. Lavorare con un'agenzia web della stessa zona significa parlare la stessa lingua sul territorio.",
+    "Il tessuto produttivo locale è fatto di <strong>PMI meccaniche, elettriche, artigianato specializzato, studi professionali e servizi collegati al polo sanitario</strong>. Sono realtà che spesso vivono di reputazione e passaparola, e che per crescere online hanno bisogno di un sito che sia il naturale prolungamento digitale del loro modo di lavorare: serio, credibile, trovabile su Google. Non ha senso per loro un sito corporate con effetti spettacolari: serve <strong>chiarezza e sostanza</strong>.",
+    "Pricing come per tutti gli altri comuni del network: <strong>landing da €500</strong> (5-7 giorni), <strong>sito vetrina da €1.200</strong> (2-3 settimane), <strong>e-commerce custom da €3.500</strong> (4-8 settimane). Preventivo scritto entro 24 ore, perimetro fissato in proposta, un unico referente, codice 100% custom, 30 giorni di supporto post-lancio. Per il posizionamento locale puoi vedere <a href=\"/seo-locale-garbagnate.html\" style=\"color:var(--primary-light)\">SEO Locale Garbagnate</a>."
+  ],
+  "bullets": [
+    "<strong>12 minuti da Rho</strong> — stessa ASST, stesso territorio operativo.",
+    "<strong>Focus PMI meccaniche/elettriche, artigiani specializzati, studi professionali, servizi sanitari</strong>.",
+    "<strong>Prezzi pubblicati</strong>: landing €500, sito vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Brief in presenza possibile</strong>: 12 minuti in auto, si può organizzare in pausa pranzo.",
+    "<strong>Codice 100% custom</strong>: siti veloci, sicuri, senza dipendenze da plugin obsoleti."
+  ],
+  "callout": {
+    "title": "Passaparola + sito ben fatto = il mix per una PMI garbagnatese",
+    "text": "La maggior parte dei contatti per attività artigianali o studi professionali a Garbagnate arriva per passaparola — ma chi riceve la referenza oggi quasi sempre googla prima di chiamare. Se il sito è fatto male o non si trova, il passaparola si perde per strada. Un sito vetrina fatto bene protegge l'investimento di reputazione accumulato negli anni, non lo sostituisce."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study PMI garbagnatese (artigiano, studio) con risultati pubblicabili."
+  ]
+}

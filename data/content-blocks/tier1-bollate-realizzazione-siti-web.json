@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "city": "bollate",
+    "service": "realizzazione-siti-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /realizzazione-siti-web-bollate.html. Focus pricing trasparente, confronto vs siti fatti male con WordPress. distanzaSede 10 min / 6 km.",
+    "source": "hand-crafted"
+  },
+  "headline": "Realizzazione siti web a Bollate: prezzi trasparenti e codice custom, senza sorprese",
+  "body": [
+    "La storia più frequente che sentiamo da chi ci contatta a Bollate è sempre la stessa: \"Ho un sito WordPress fatto qualche anno fa, è lento, non lo trovano su Google, quando devo aggiornare qualcosa chiamo uno e mi chiede 200 euro, è pieno di plugin che scadono\". <strong>Non siamo nati per rifare lo stesso problema</strong>: lavoriamo con codice 100% custom (HTML5, CSS3, JavaScript), senza CMS pesanti, senza plugin di terze parti — e con una promessa semplice: <strong>il prezzo è quello scritto in proposta, il perimetro è quello</strong>.",
+    "Le tre fasce sono trasparenti e coprono la maggior parte delle esigenze di una PMI di Bollate: <strong>landing page da €500</strong> (5-7 giorni) per campagne ads e lead specifici, <strong>sito vetrina da €1.200</strong> (2-3 settimane) per studi e PMI con servizi multipli, <strong>e-commerce custom da €3.500</strong> (4-8 settimane) per chi vende e non vuole pagare le commissioni di Shopify. Prezzi IVA esclusa, preventivo scritto entro 24 ore.",
+    "La sede in <strong>Via S. Giorgio 2 a Rho</strong> è a 10 minuti d'auto — stessa area operativa. Questo per un cliente di Bollate significa due cose: <strong>tempi di risposta rapidi</strong> (non dobbiamo decifrare screenshot, possiamo allinearci rapidamente), e <strong>possibilità di incontro in presenza</strong> quando serve davvero, senza prendere l'intera mattinata. Un unico referente dal brief al go-live, 30 giorni di supporto inclusi."
+  ],
+  "bullets": [
+    "<strong>Perimetro scritto nella proposta</strong>: niente \"poi vediamo\" che diventa costo aggiuntivo.",
+    "<strong>Pricing pubblicato</strong>: landing €500, sito vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Tempi realistici</strong>: 5-7 giorni (landing), 2-3 settimane (vetrina), 4-8 settimane (e-commerce).",
+    "<strong>Codice 100% custom</strong> + Core Web Vitals ottimizzati (LCP&lt;2.5s, INP&lt;200ms, CLS&lt;0.1).",
+    "<strong>SEO tecnica + Schema.org LocalBusiness</strong> integrati di default, senza costi aggiuntivi.",
+    "<strong>30 giorni supporto post go-live</strong> + manutenzione opzionale €59/mese."
+  ],
+  "callout": {
+    "title": "Migrazione da WordPress: come funziona concretamente",
+    "text": "Se hai un sito WordPress da sostituire, prima di cambiare facciamo un audit: contenuti da conservare, URL da redirectare 301 per non perdere posizionamenti SEO, grafica da rifare o da adattare. Poi si costruisce il nuovo sito in parallelo, si fa il cutover con redirect mappati, e si monitora il traffico per 30 giorni. Nessun sito resta orfano, nessuno spostamento manda il traffico a 404."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study \"prima/dopo\" migrazione WordPress→custom con dati reali (LCP, traffico, conversioni).",
+    "EDITORIAL_TODO: screenshot Lighthouse di siti Bollate real-world se pubblicabili."
+  ]
+}

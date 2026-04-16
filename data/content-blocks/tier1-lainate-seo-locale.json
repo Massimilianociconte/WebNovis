@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "city": "lainate",
+    "service": "seo-locale",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /seo-locale-lainate.html. Taglio: SEO locale per un comune piccolo dove Google Business + on-page possono fare la maggior parte del lavoro. Pricing €400/mese. Fatti verificati: uscita A8 Lainate, proximità Rho/Arese/Garbagnate.",
+    "source": "hand-crafted"
+  },
+  "headline": "SEO locale a Lainate: una strategia che fa davvero la differenza in un comune sotto i 30.000 abitanti",
+  "body": [
+    "In un comune come Lainate la SEO locale può produrre risultati più veloci che a Milano città, perché la competizione è bassa e il bacino è concentrato. La maggior parte delle attività lainatesi oggi ha una presenza digitale debole: Google Business Profile compilato a metà, sito con NAP incoerente rispetto alle directory, zero dati strutturati, nessun presidio sulle query di intent commerciale locale. <strong>Basta chiudere questi gap e i risultati arrivano</strong>.",
+    "Il piano tipico parte da un audit: dove sei oggi su query come \"commercialista Lainate\", \"dentista Lainate\", \"ristorante Barbaiana\" (o quello che è il tuo settore). Poi <strong>ricostruiamo Google Business Profile</strong> come si deve (categoria giusta, servizi, attributi, foto, post, risposte alle domande), <strong>sistemiamo il sito</strong> con dati strutturati LocalBusiness e meta geo-specifici, e <strong>pulisci la presenza territoriale</strong> (NAP coerente su PagineGialle, TripAdvisor se applicabile, directory di settore).",
+    "Pricing: <strong>€400/mese</strong>, continuativo, niente vincoli annuali. Report mensile con dati reali da Google Search Console e Google Business: posizioni, click, chiamate, richieste di indicazioni. Se dopo 2 mesi i numeri non stanno crescendo in modo coerente con il piano, lo dichiariamo per primi — non fingiamo di vedere miglioramenti che non ci sono."
+  ],
+  "bullets": [
+    "<strong>Google Business Profile riscritto da zero</strong>: categoria, servizi, attributi, Q&amp;A, foto, post regolari.",
+    "<strong>Dati strutturati Schema.org LocalBusiness</strong> on-page con NAP coerente su tutte le directory.",
+    "<strong>Content territoriale mirato</strong>: pagine ottimizzate per query specifiche di Lainate e comuni vicini (Arese, Rho, Garbagnate).",
+    "<strong>Review strategy autentica</strong>: chiediamo review solo a clienti reali, mai finte, mai comprate.",
+    "<strong>€400/mese</strong> con report mensile trasparente (GSC + Google Business) e zero vincoli annuali."
+  ],
+  "callout": {
+    "title": "In quanto tempo vedrò risultati a Lainate?",
+    "text": "Le query locali meno competitive (es. \"servizio + Lainate\" di nicchia) possono dare primi movimenti in 4-8 settimane. Per query più competitive (es. settori diffusi come ristorazione o studi generalisti) servono tipicamente 3-6 mesi di lavoro costante. Non è uno sprint: è un lavoro paziente che una volta consolidato difende la posizione per anni."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: screenshot GSC di clienti Lainate con dati pubblicabili.",
+    "EDITORIAL_TODO: case study \"prima/dopo\" con metriche reali di posizionamento locale."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "city": "parabiago",
+    "service": "seo-locale",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /seo-locale-parabiago.html. Pricing €400/mese. Focus sul distretto calzaturiero (~35 aziende nel comune) + PMI generiche.",
+    "source": "hand-crafted"
+  },
+  "headline": "SEO locale a Parabiago: dal distretto calzaturiero alle PMI commerciali, una strategia per ogni segmento",
+  "body": [
+    "A Parabiago coesistono due realtà SEO molto diverse. La prima è il <strong>distretto calzaturiero</strong>: aziende B2B che vendono a buyer nazionali ed esteri, dove la SEO è spesso internazionale (\"italian leather shoes manufacturer\", \"wholesale women's shoes made in Italy\") e non solo locale. La seconda è il <strong>tessuto PMI e commerciale locale</strong>: studi professionali, artigiani, ristorazione, commercio al dettaglio — per loro la SEO locale classica (Google Business, query geo-specifiche, dati strutturati) è quella che porta clienti.",
+    "Per un calzaturiero la strategia giusta è spesso <strong>SEO tecnica + content B2B in lingua</strong> (cataloghi ben strutturati, schede prodotto ottimizzate, link da pubblicazioni di settore), mentre la SEO locale \"da negozio\" conta molto meno. Per un'attività di servizi a Parabiago vale la logica standard: Google Business ottimizzato, NAP coerente, review autentiche, content territoriale sulle query \"settore + Parabiago\".",
+    "Il nostro piano parte da un <strong>audit di 7-10 giorni</strong> per capire il tuo profilo: query reali, competitor, gap. Poi impostiamo la strategia: locale classica (€400/mese) o più articolata B2B multi-lingua (quotabile in base a volume content e mercati). Report mensile con dati GSC e, per i progetti B2B, tracciamento delle query internazionali specifiche."
+  ],
+  "bullets": [
+    "<strong>Due strategie distinte</strong>: SEO locale classica vs SEO B2B internazionale per calzaturieri.",
+    "<strong>Audit iniziale</strong> per capire quale approccio ha senso nel tuo caso.",
+    "<strong>Google Business Profile + dati strutturati</strong> per l'approccio locale.",
+    "<strong>Content B2B + link da pubblicazioni di settore</strong> per l'approccio calzaturiero internazionale.",
+    "<strong>€400/mese (locale) o quotabile su perimetro</strong> per progetti B2B internazionali."
+  ],
+  "callout": {
+    "title": "Calzaturiero: vendi in Italia o esporti?",
+    "text": "Se la maggior parte del fatturato viene da buyer italiani, la SEO classica italiana basta. Se esporti in Germania, Francia, UK o USA, ha senso costruire versioni multilingua con hreflang corretti e content SEO in inglese/tedesco/francese. In fase di audit valutiamo il ritorno atteso per lingua/mercato prima di partire."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study calzaturiero Parabiago (con consenso) — risultati su query B2B reali."
+  ]
+}

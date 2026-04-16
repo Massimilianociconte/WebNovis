@@ -26,7 +26,20 @@
 const fs = require('fs');
 const path = require('path');
 const nunjucks = require('nunjucks');
-const { getIndexationDirectivesForPath } = require('../config/pseo-governance');
+const {
+    getIndexationDirectivesForPath,
+    isTier1Path,
+    isTier2Path,
+    isDeAmplifiedPath
+} = require('../config/pseo-governance');
+
+// Classifica una pagina generata in base al suo path pubblico.
+// Restituisce 1 / 2 / 0 (de-amplificata). Usato dai template per differenziazione.
+function resolvePageTier(pathname) {
+    if (isTier1Path(pathname)) return 1;
+    if (isTier2Path(pathname)) return 2;
+    return 0;
+}
 
 // ─── Configuration ────────────────────────────────────────────────────────────
 const ROOT = path.join(__dirname, '..');
@@ -116,7 +129,19 @@ const servicesData = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'service
 const cities = citiesData.cities;
 const services = servicesData.services;
 const coreServices = services.filter(s => s.tier === 'core');
-const tableServices = services.filter(s => s.tier === 'core' || s.generateGeoPages !== false);
+
+// Centralized predicate: does this service participate in geo generation?
+// - `skipGeoGeneration: true` (new) explicitly opts out (used for deprecated clusters like consulenza-digitale)
+// - `generateGeoPages: false` (legacy) is still honored
+// All other services are eligible.
+function shouldGenerateGeoForService(service) {
+    if (!service) return false;
+    if (service.skipGeoGeneration === true) return false;
+    if (service.generateGeoPages === false) return false;
+    return true;
+}
+
+const tableServices = services.filter(s => s.tier === 'core' || shouldGenerateGeoForService(s));
 const sede = citiesData._meta.sede;
 const serviceCoverageCitySlugs = new Set(
     cities.filter((city) => city.generate?.agenzia).map((city) => city.slug)
@@ -858,8 +883,7 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Partiamo da Rho ma possiamo coordinare rapidamente sopralluoghi, scaletta e produzione per aziende, showroom e studi di ${city.name}.`
                 },
                 {
-                    title: 'Scatti pensati per gli usi reali',
-                    text: `Ogni sessione viene progettata in base ai punti di contatto in cui userai le immagini: homepage, team page, social, campagne o cataloghi.`
+                    title: 'Scatti pensati per gli usi reali',                    text: `Ogni sessione viene progettata in base ai punti di contatto in cui userai le immagini: homepage, team page, social, campagne o cataloghi.`
                 },
                 {
                     title: 'Brand consistency',
@@ -1542,6 +1566,23 @@ function generateAgenziaPage(city) {
 
     const blogLinks = getRelevantBlogLinks(city);
 
+    // Tier classification for the agenzia-web-<city> page
+    const pagePathAgenzia = `/agenzia-web-${city.slug}.html`;
+    const agenziaTier = resolvePageTier(pagePathAgenzia);
+    const agenziaIsIndexable = agenziaTier > 0;
+
+    // Load Tier 1 editorial override when available (hand-crafted per-city content).
+    // File naming: data/content-blocks/tier1-<city>-agenzia-web.json
+    let agenziaTier1Content = null;
+    if (agenziaTier === 1) {
+        const tier1Path = path.join(ROOT, 'data', 'content-blocks', `tier1-${city.slug}-agenzia-web.json`);
+        if (fs.existsSync(tier1Path)) {
+            try {
+                agenziaTier1Content = JSON.parse(fs.readFileSync(tier1Path, 'utf8'));
+            } catch (e) { /* malformed tier1 override, fall back to standard content */ }
+        }
+    }
+
     // Build template data for agenzia
     const ctx = city.localContext || {};
     const aiBlock = contentBlocks.get(city.slug); // AI-generated content (if available)
@@ -1599,6 +1640,9 @@ function generateAgenziaPage(city) {
         nearCitiesData: nearCitiesData,
         relatedPages: relatedPages,
         blogLinks: blogLinks,
+        tier: agenziaTier,
+        isIndexable: agenziaIsIndexable,
+        tier1Content: agenziaTier1Content,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
         site: SITE
@@ -1785,7 +1829,22 @@ function generateRealizzazionePage(city) {
 
     // Inject geo internal links + AI FAQ before </main>
     const geoLinksHtml = buildGeoLinksSection(city, 'realizzazione');
-    page = page.replace('</main>', aiExtraHtml + geoLinksHtml + '</main>');
+
+    // Tier 1 editorial block (hand-crafted) — only when page is in Tier 1 allowlist
+    // and the corresponding JSON override exists.
+    const realizzazioneTier = resolvePageTier(`/realizzazione-siti-web-${city.slug}.html`);
+    let tier1Html = '';
+    if (realizzazioneTier === 1) {
+        const tier1Path = path.join(ROOT, 'data', 'content-blocks', `tier1-${city.slug}-realizzazione-siti-web.json`);
+        if (fs.existsSync(tier1Path)) {
+            try {
+                const tier1 = JSON.parse(fs.readFileSync(tier1Path, 'utf8'));
+                tier1Html = buildTier1SectionHtml(tier1);
+            } catch (e) { /* fall back to standard content */ }
+        }
+    }
+
+    page = page.replace('</main>', tier1Html + aiExtraHtml + geoLinksHtml + '</main>');
 
     const schemasHtml = generateSchemas(city, 'realizzazione')
         .map((schema) => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
@@ -1793,6 +1852,41 @@ function generateRealizzazionePage(city) {
     page = page.replace(/<\/footer>/i, `</footer>\n${schemasHtml}`);
 
     return page;
+}
+
+// Shared helper: render a Tier 1 editorial JSON block as an HTML <section>.
+// Used by generateRealizzazionePage (regex-based template) to avoid divergence
+// with the Nunjucks-rendered layout of the agenzia and servizio×città pages.
+function buildTier1SectionHtml(block) {
+    if (!block) return '';
+    let html = '\n<section class="service-detail tier1-editorial" data-tier="1" style="background:rgba(255,255,255,.01)"><div class="container">';
+    if (block.headline) {
+        html += `<h2>${block.headline}</h2>`;
+    }
+    if (Array.isArray(block.body)) {
+        for (const paragraph of block.body) {
+            html += `<p>${paragraph}</p>`;
+        }
+    }
+    if (Array.isArray(block.bullets) && block.bullets.length > 0) {
+        html += '<ul style="margin:1rem 0 1.5rem 1.25rem;padding:0;color:var(--gray-light);line-height:1.7">';
+        for (const item of block.bullets) {
+            html += `<li style="margin-bottom:.5rem">${item}</li>`;
+        }
+        html += '</ul>';
+    }
+    if (block.callout) {
+        html += '<aside style="margin-top:1.5rem;padding:1.1rem 1.25rem;border-radius:14px;border:1px solid rgba(91,106,174,.35);background:rgba(91,106,174,.08)">';
+        if (block.callout.title) {
+            html += `<strong style="display:block;color:var(--white);margin-bottom:.35rem">${block.callout.title}</strong>`;
+        }
+        if (block.callout.text) {
+            html += `<p style="margin:0;color:var(--gray-light);font-size:.95rem">${block.callout.text}</p>`;
+        }
+        html += '</aside>';
+    }
+    html += '</div></section>\n';
+    return html;
 }
 
 // ─── Servizio×Città Page Generator (Nunjucks-based, third page type) ──────────
@@ -1818,7 +1912,7 @@ function generateServizioCittaPage(service, city) {
         }));
 
     // Other services in the same city (only link to services that have geo pages)
-    const geoServices = services.filter(s => s.generateGeoPages !== false && s.slug !== service.slug);
+    const geoServices = services.filter(s => shouldGenerateGeoForService(s) && s.slug !== service.slug);
     const relatedServicePages = geoServices
         .slice(0, 3)
         .map(svc => ({
@@ -1898,6 +1992,26 @@ function generateServizioCittaPage(service, city) {
             label: `${svc.shortName} a ${city.name}`
         }));
 
+    // Tier classification — drives structural differentiation in the template.
+    // tier === 1: Tier 1 indexable pages (unique content emphasized, full feature set)
+    // tier === 2: Tier 2 indexable pages (standard template, full internal linking)
+    // tier === 0: de-amplified pages (noindex,follow) — slim structure to reduce doorway footprint
+    const pagePath = `/${slug}.html`;
+    const tier = resolvePageTier(pagePath);
+    const isIndexable = tier > 0;
+
+    // Load per-city Tier 1 content overrides when present (hand-crafted editorial).
+    // See data/content-blocks/tier1-<city>-<service>.json for structure.
+    let tier1Content = null;
+    if (tier === 1) {
+        const tier1Path = path.join(ROOT, 'data', 'content-blocks', `tier1-${city.slug}-${service.slug}.json`);
+        if (fs.existsSync(tier1Path)) {
+            try {
+                tier1Content = JSON.parse(fs.readFileSync(tier1Path, 'utf8'));
+            } catch (e) { /* malformed tier1 override, fall back to standard content */ }
+        }
+    }
+
     const templateData = {
         city: city,
         service: service,
@@ -1913,6 +2027,9 @@ function generateServizioCittaPage(service, city) {
         aiContent: aiContent,
         competitiveInsight: competitiveInsight,
         dataPoints: dataPoints,
+        tier: tier,
+        isIndexable: isIndexable,
+        tier1Content: tier1Content,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
         site: SITE
@@ -2237,7 +2354,7 @@ function generateHubPages() {
     results.push({ dir: 'realizzazione-siti-web', html: realizzazioneHtml });
 
     // ── 3. Zone Servite Hub (trasversale) ──
-    const geoEligibleServices = services.filter(s => s.generateGeoPages !== false);
+    const geoEligibleServices = services.filter(shouldGenerateGeoForService);
     const serviceCoverageCities = agenziaCities;
     const coverageScopes = buildCoverageScopes(agenziaCities, realizzazioneCities, serviceCoverageCities);
     const featuredCities = withCityUiMeta(agenziaCities.filter((city) => city.slug !== 'rho'));
@@ -2507,7 +2624,7 @@ function main() {
 
     // Generate servizio×città pages (third page type — the combinatorial matrix)
     if (GEN_TYPE === 'all' || GEN_TYPE === 'servizio') {
-        const geoEligibleServices = services.filter(s => s.generateGeoPages !== false && matchesTargetService(s));
+        const geoEligibleServices = services.filter(s => shouldGenerateGeoForService(s) && matchesTargetService(s));
         const eligibleCities = cities.filter(c => c.generate?.agenzia && matchesTargetCity(c));
         console.log(`\n─── Generating servizio×città pages (${geoEligibleServices.length} services × ${eligibleCities.length} cities) ───`);
 

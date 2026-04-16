@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "city": "legnano",
+    "service": "realizzazione-siti-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /realizzazione-siti-web-legnano.html. Taglio: siti che durano 3-5 anni, non 12 mesi. Pricing trasparente. Fatti verificati: distretto industriale Legnano storico, ~61k abitanti, 27 min da Rho.",
+    "source": "hand-crafted"
+  },
+  "headline": "Realizzazione siti web a Legnano: costruiti per durare 3-5 anni, non per essere rifatti nel 2027",
+  "body": [
+    "La domanda giusta da farsi prima di commissionare un sito non è \"quanto costa\" ma <strong>quanto dura</strong>. Un sito WordPress a 600 euro fatto in una settimana spesso va rifatto in 18-24 mesi: plugin obsoleti, template non più aggiornato, performance deteriorate, debito tecnico ingestibile. Il conto totale, su 3 anni, finisce per essere più alto di un progetto custom fatto bene la prima volta. Noi lavoriamo sulla seconda strada.",
+    "Il pricing per una PMI di Legnano è trasparente: <strong>landing da €500</strong> (5-7 giorni) per campagne Google Ads o lead specifici, <strong>sito vetrina da €1.200</strong> (2-3 settimane) per studi, PMI con servizi multipli, professionisti, <strong>e-commerce custom da €3.500</strong> (4-8 settimane) per retail che vende online — fasce base, si può scalare sulle esigenze. Preventivo scritto entro 24 ore, perimetro fissato in proposta.",
+    "La sede operativa è a <strong>Rho, Via S. Giorgio 2</strong>, a 12 km da Legnano. La combinazione è pragmatica: brief e milestone importanti in presenza, iterazioni quotidiane in videocall con un unico referente. Codice 100% custom, Core Web Vitals ottimizzati, SEO tecnica e dati strutturati LocalBusiness integrati di default. 30 giorni di supporto post go-live, manutenzione opzionale da €59/mese per chi vuole dormire sereno."
+  ],
+  "bullets": [
+    "<strong>Costo totale di proprietà basso</strong>: un sito custom fatto bene costa meno di un WordPress rifatto due volte.",
+    "<strong>Pricing scritto e pubblicato</strong>: landing €500, vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Tempistiche reali</strong>: 5-7 giorni (landing), 2-3 settimane (vetrina), 4-8 settimane (e-commerce).",
+    "<strong>Zero plugin, zero template</strong>: niente da aggiornare manualmente ogni 3 mesi per non andare offline.",
+    "<strong>30 giorni di supporto post-lancio</strong> inclusi + manutenzione opzionale €59/mese.",
+    "<strong>Migrazione da sito esistente</strong> con redirect 301 mappati per non perdere traffico organico."
+  ],
+  "callout": {
+    "title": "\"Ma WordPress è più facile da modificare\" — lo è davvero?",
+    "text": "Dipende da chi lo dice. Un cliente che sa usare WordPress modifica i testi, sì. Ma la maggior parte dei nostri clienti ci chiede di modificare i testi per loro — e il nostro canone è €59/mese include interventi regolari. La flessibilità di WordPress su un sito small business è quasi sempre sovradimensionata e si paga in debito tecnico. Se davvero ti serve un CMS, ne discutiamo in fase di brief e valutiamo l'opzione più adatta."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study cliente Legnano con costo totale su 3 anni (custom vs stima WordPress).",
+    "EDITORIAL_TODO: screenshot Lighthouse di progetti Legnano reali se pubblicabili."
+  ]
+}

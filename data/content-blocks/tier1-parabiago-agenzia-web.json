@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "city": "parabiago",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-parabiago.html. Fatti verificati online: distretto calzaturiero di Parabiago (~35 aziende calzaturiere nel comune, ~63 con l'indotto), 'Città della Calzatura' è denominazione ufficiale. distanzaSede 17 min / 8 km.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web a Parabiago: partner per il distretto calzaturiero, l'artigianato e le PMI dell'Alto Milanese",
+  "body": [
+    "Parabiago è la <strong>\"Città della Calzatura\"</strong>: il distretto ospita circa 35 aziende calzaturiere nel comune e, considerando l'indotto (accessoristi, suolifici, terzisti), si arriva a circa 63 realtà. È un ecosistema manifatturiero molto specifico, con esigenze digitali altrettanto specifiche: <strong>catalogo prodotto curato</strong>, <strong>contenuto fotografico di qualità</strong>, <strong>SEO internazionale</strong> (perché molte di queste aziende esportano) e spesso integrazioni con gestionali esistenti.",
+    "Dalla nostra sede di Rho a Parabiago sono circa <strong>8 km / 17 minuti</strong>. Non è la stessa distanza minima che abbiamo con Lainate o Bollate, ma è sufficientemente vicina per incontri in presenza quando il progetto lo richiede — soprattutto per un cliente calzaturiero che vuole far vedere il prodotto fisico, il campionario, lo showroom. Per un B2B che serve buyer esteri questo conta.",
+    "Pricing come per il resto del network: <strong>landing da €500, sito vetrina da €1.200, e-commerce custom da €3.500</strong>. Per un'azienda calzaturiera B2B spesso il sito giusto è un vetrina premium + area riservata clienti/rivenditori (quotabile su perimetro), mentre per chi vende direttamente al consumatore finale l'e-commerce custom dà più margine rispetto alle commissioni di Shopify. Ne discutiamo in brief."
+  ],
+  "bullets": [
+    "<strong>Distretto calzaturiero specifico</strong>: conosciamo le esigenze di aziende B2B con catalogo e clienti esteri.",
+    "<strong>17 minuti dalla sede di Rho</strong> — visita showroom possibile senza drammi di tempo.",
+    "<strong>Prezzi pubblicati</strong>: landing €500, sito vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Supporto contenuti fotografici</strong>: shooting prodotto rientra come modulo aggiuntivo se serve.",
+    "<strong>Integrazione con gestionali</strong>: quotabile in fase di brief (CRM, ERP, gestione ordini)."
+  ],
+  "callout": {
+    "title": "B2B calzaturiero: sito vetrina premium o e-commerce diretto?",
+    "text": "Per un calzaturiero che vende ai buyer (B2B), spesso il sito giusto è un vetrina molto curato + area riservata clienti con catalogo, listini, ordini. Per chi vende anche al consumatore finale, l'e-commerce custom evita le commissioni percentuali delle piattaforme e dà controllo totale su prezzi, margini e promozioni stagionali. Non esiste una risposta universale: dipende dalla quota B2B vs B2C nel tuo fatturato."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study aziende calzaturiere parabiaghesi (anonimi o con consenso).",
+    "EDITORIAL_TODO: moduli standard per catalogo B2B con area riservata rivenditori."
+  ]
+}

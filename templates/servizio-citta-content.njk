@@ -1,9 +1,22 @@
-{# 
+{#
   WebNovis — Nunjucks template for service×city pSEO pages
   URL pattern: /{service.slug}-{city.slug}.html
   Example: /seo-locale-lainate.html, /ecommerce-arese.html
-  
-  Variables: city, service, nearCitiesData, relatedServicePages, relatedCityPages, today, site
+
+  Variables:
+    - city, service, seo, faqs, aiContent, competitiveInsight, dataPoints
+    - relatedCityPages, relatedServicePages, nearCitiesData, allCoreServices
+    - tier: 1 = Tier 1 indexable (unique editorial), 2 = Tier 2 indexable, 0 = de-amplified
+    - isIndexable: boolean (tier > 0)
+    - tier1Content: optional hand-crafted block from data/content-blocks/tier1-<city>-<service>.json
+
+  Structural differentiation:
+    - tier 0 (de-amplified): the "Tutti i servizi" comparison table and "comuni vicini"
+      block are omitted to reduce doorway-footprint. The page remains usable as a
+      landing but does not act as a link-hub.
+    - tier 1: extra editorial section from tier1Content (when present) is rendered
+      before the comparison table. This is the slot reserved for hand-crafted
+      unique-by-city copy.
 #}
 <main>
   <div class="container breadcrumb">
@@ -120,6 +133,39 @@
     </div>
   </section>
 
+  {# ═══ SECTION 3a — Tier 1 editorial block (hand-crafted per city×service) ═══ #}
+  {# Solo per pagine Tier 1 con override editoriale disponibile in        #}
+  {# data/content-blocks/tier1-<city>-<service>.json. Placeholder sicuro:  #}
+  {# se il JSON non esiste o è vuoto, il blocco semplicemente non viene    #}
+  {# renderizzato. NON inventa dati: solo ciò che è scritto nel JSON.      #}
+  {% if tier == 1 and tier1Content %}
+  <section class="service-detail tier1-editorial" data-tier="1">
+    <div class="container">
+      {% if tier1Content.headline %}
+      <h2>{{ tier1Content.headline }}</h2>
+      {% endif %}
+      {% if tier1Content.body %}
+      {% for paragraph in tier1Content.body %}
+      <p>{{ paragraph | safe }}</p>
+      {% endfor %}
+      {% endif %}
+      {% if tier1Content.bullets and tier1Content.bullets | length > 0 %}
+      <ul style="margin:1rem 0 1.5rem 1.25rem;padding:0;color:var(--gray-light);line-height:1.7">
+        {% for item in tier1Content.bullets %}
+        <li style="margin-bottom:.5rem">{{ item | safe }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if tier1Content.callout %}
+      <aside style="margin-top:1.5rem;padding:1.1rem 1.25rem;border-radius:14px;border:1px solid rgba(91,106,174,.35);background:rgba(91,106,174,.08)">
+        {% if tier1Content.callout.title %}<strong style="display:block;color:var(--white);margin-bottom:.35rem">{{ tier1Content.callout.title }}</strong>{% endif %}
+        {% if tier1Content.callout.text %}<p style="margin:0;color:var(--gray-light);font-size:.95rem">{{ tier1Content.callout.text | safe }}</p>{% endif %}
+      </aside>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
   {# ═══ SECTION 3b — Local data & competitive insight (unique per city) ═══ #}
   {% if dataPoints or competitiveInsight %}
   <section class="service-detail" style="background:rgba(255,255,255,.01)">
@@ -215,6 +261,10 @@
   {% endif %}
 
   {# ═══ SECTION 4 — Comparison table (GEO: +115% AI citation visibility) ═══ #}
+  {# Su pagine de-amplificate (tier 0) la tabella è un link-farm che alimenta   #}
+  {# il pattern doorway. La mostriamo solo sulle pagine indicizzabili (tier>=1) #}
+  {# dove ha effettivo valore informativo per utenti e per ranking.             #}
+  {% if tier >= 1 %}
   <section class="service-detail" style="background:rgba(255,255,255,.01)">
     <div class="container">
       <h2>Tutti i servizi WebNovis per {{ city.name }}</h2>
@@ -241,6 +291,7 @@
       <p style="font-size:.85rem;color:var(--gray-light);opacity:.7">Prezzi IVA esclusa. Preventivo gratuito personalizzato entro 24 ore. Ultimo aggiornamento: {{ todayFormatted }}.</p>
     </div>
   </section>
+  {% endif %}
 
   {# ═══ SECTION 5 — FAQ (GEO: question-based headings) ═══ #}
   {% if faqs | length > 0 %}
@@ -258,7 +309,9 @@
   {% endif %}
 
   {# ═══ SECTION 6 — Related pages: same service in nearby cities ═══ #}
-  {% if relatedCityPages | length > 0 %}
+  {# Questo blocco è il secondo pattern doorway principale: stesso servizio    #}
+  {# × 3 città vicine elencate in linea. Mostrato solo su pagine indicizzabili.#}
+  {% if tier >= 1 and relatedCityPages | length > 0 %}
   <section class="service-detail" style="background:rgba(255,255,255,.01)">
     <div class="container">
       <h2>{{ service.shortName }} nei comuni vicini a {{ city.name }}</h2>
@@ -272,15 +325,18 @@
   {% endif %}
 
   {# ═══ SECTION 7 — Related pages: other services in same city ═══ #}
+  {# Sulle pagine de-amplificate mostriamo max 3 link (vs 6 sulle indicizzabili) #}
+  {# per mantenere utilità UX senza alimentare il pattern link-farm.            #}
   {% if relatedServicePages | length > 0 %}
+  {% set maxRelated = 6 if tier >= 1 else 3 %}
   <section class="service-detail">
     <div class="container">
       <h2>Altri servizi WebNovis a {{ city.name }}</h2>
       <p>
-        {% for rp in relatedServicePages %}{% if loop.index <= 6 %}
-        <a href="{{ rp.url }}" style="color:var(--primary-light)">{{ rp.label }}</a>{% if loop.index < 6 and relatedServicePages | length > loop.index %},{% endif %}
+        {% for rp in relatedServicePages %}{% if loop.index <= maxRelated %}
+        <a href="{{ rp.url }}" style="color:var(--primary-light)">{{ rp.label }}</a>{% if loop.index < maxRelated and relatedServicePages | length > loop.index %},{% endif %}
         {% endif %}{% endfor %}
-        — <a href="/agenzia-web-{{ city.slug }}.html" style="color:var(--primary-light)">Tutti i servizi a {{ city.name }}</a>
+        {% if tier >= 1 %}— <a href="/agenzia-web-{{ city.slug }}.html" style="color:var(--primary-light)">Tutti i servizi a {{ city.name }}</a>{% endif %}
       </p>
     </div>
   </section>

@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "city": "monza",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-monza.html. Fatti verificati online: Autodromo Nazionale di Monza (dal 1922, GP F1), Parco di Monza (uno dei più grandi parchi cintati d'Europa), Villa Reale. distanzaSede 42 min / 19 km (la più lontana tra le Tier 1).",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web a Monza: partner concreto per PMI del capoluogo di provincia della Brianza",
+  "body": [
+    "Monza è il capoluogo della Brianza, un polo di <strong>manifattura, finanza, servizi e turismo</strong> legato all'Autodromo, alla Villa Reale e al Parco. Il tessuto produttivo è diversificato, spesso di dimensioni medie (più strutturato della media hinterland ovest), con un mix di aziende storiche e realtà nuove. Le esigenze digitali sono di conseguenza più evolute: <strong>più integrazioni richieste</strong> (CRM, gestionali, prenotazioni), più attenzione al design raffinato, più aspettative sulla performance.",
+    "Dalla nostra sede di <strong>Rho (Via S. Giorgio 2)</strong> a Monza ci sono circa <strong>19 km / 42 minuti</strong> — è la città più lontana tra quelle che seguiamo con attenzione Tier 1. Questo significa che <strong>le visite in presenza sono possibili ma meno frequenti</strong>: tipicamente brief iniziale e consegna in presenza, il resto in videocall. Per il cliente che preferisce lavorare in sede, la combinazione funziona. Per chi vuole incontri settimanali frequenti, la nostra vicinanza a Rho non è un match ottimale.",
+    "Pricing trasparente: <strong>landing da €500, sito vetrina da €1.200, e-commerce custom da €3.500</strong>. Per progetti Monza più articolati (integrazioni CRM/ERP, aree riservate, portali clienti) quotabili su perimetro. Codice 100% custom, SEO tecnica integrata, 30 giorni di supporto post-lancio. Un solo referente dall'inizio alla fine."
+  ],
+  "bullets": [
+    "<strong>19 km / 42 minuti</strong> dalla nostra sede di Rho — visite in presenza possibili, non settimanali.",
+    "<strong>Focus PMI manifatturiere, studi professionali, attività commerciali strutturate</strong>.",
+    "<strong>Pricing pubblicato</strong>: landing €500, vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Progetti più articolati</strong> (integrazioni CRM/ERP, area clienti) quotabili su perimetro.",
+    "<strong>Codice 100% custom</strong>: performance e sicurezza non dipendono da plugin di terze parti."
+  ],
+  "callout": {
+    "title": "Siamo la scelta giusta per un'azienda monzese?",
+    "text": "Se cerchi un partner con sede fisica a Monza che ti vede ogni settimana, probabilmente non siamo il match migliore. Se invece cerchi un partner serio nell'area milanese ovest, con pricing trasparente e buon rapporto qualità/prezzo, e sei ok con una modalità di lavoro mista (brief in presenza + iterazioni in videocall), allora sì — ci incontriamo, ne parliamo e ti diciamo se abbiamo senso per il tuo progetto."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study clienti monzesi con progetto strutturato (CRM, area clienti, e-commerce B2B).",
+    "EDITORIAL_TODO: valutare partnership con consulenti o studi monzesi per progetti che richiedono presenza locale frequente."
+  ]
+}

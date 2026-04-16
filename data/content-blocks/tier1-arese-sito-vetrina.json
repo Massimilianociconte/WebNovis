@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "city": "arese",
+    "service": "sito-vetrina",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /sito-vetrina-arese.html. Taglio: sito vetrina per attività che non vende online ma ha bisogno di essere trovata e sembrare credibile. Pricing €1.200 (data/services.json). Fatti verificati: Il Centro Arese, Museo Alfa Romeo.",
+    "source": "hand-crafted"
+  },
+  "headline": "Sito vetrina ad Arese: credibilità online per attività che non vendono tutto in e-commerce",
+  "body": [
+    "Non ogni attività ha bisogno di un e-commerce. Uno studio professionale, un ristorante, un negozio di quartiere ad Arese spesso ha bisogno di una cosa diversa e più semplice: un <strong>sito vetrina ben fatto</strong> che spieghi chi sei, cosa offri, dove ti trova il cliente, come contattarti. Fatto bene, un sito vetrina fa il 70% del lavoro di conversione che un sito complesso non riuscirebbe a fare senza essere sovradimensionato.",
+    "A partire da <strong>€1.200</strong>, tempi di realizzazione <strong>2-3 settimane</strong>. Cosa include di default: design su misura (non template), copy scritto a partire dal tuo brief, 5-7 pagine (home, chi siamo, servizi dettagliati, contatti, pagine legali), modulo di contatto, <strong>dati strutturati LocalBusiness</strong>, integrazione Google Maps con sede e orari, <strong>mobile-first</strong>. Tutto con codice 100% custom: niente WordPress, niente plugin di terze parti.",
+    "Per un'attività aresina il sito vetrina è il biglietto da visita digitale che accompagna le ricerche locali (\"ristorante Arese\", \"studio dentistico Arese\", \"parrucchiere Arese\") e le referenze passaparola che oggi si chiudono sempre con un \"fammi vedere il sito\". Se il tuo sito è lento, grafico o impostato male, quella ricerca diventa una perdita silenziosa di opportunità. Per approfondire la parte SEO puoi vedere <a href=\"/seo-locale-arese.html\" style=\"color:var(--primary-light)\">SEO Locale Arese</a>."
+  ],
+  "bullets": [
+    "<strong>€1.200 da preventivo scritto</strong> — IVA esclusa, perimetro fissato in proposta.",
+    "<strong>Realizzazione in 2-3 settimane</strong>: brief, design, sviluppo, QA, consegna.",
+    "<strong>Design su misura</strong>, non template preconfezionato; copy scritto a partire dal tuo brief.",
+    "<strong>Mobile-first + Core Web Vitals ottimizzati</strong>: oltre il 70% delle ricerche locali oggi sono da smartphone.",
+    "<strong>Schema.org LocalBusiness + Google Maps integrato</strong>: pronti per SEO locale dal go-live.",
+    "<strong>30 giorni di supporto post-lancio</strong> inclusi."
+  ],
+  "callout": {
+    "title": "Come capire se ti serve un sito vetrina o una landing page",
+    "text": "La landing page (€500) è per un singolo obiettivo: una campagna, un evento, un'offerta specifica. Il sito vetrina (€1.200) è per un'attività strutturata con più servizi, orari, team, storia. Se hai solo un servizio e un messaggio forte, spesso la landing basta. Se racconti più aree, più specializzazioni, è il sito vetrina la scelta giusta. In fase di brief ti diciamo chiaramente quale opzione conviene — anche se è quella meno cara."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study sito vetrina di un'attività aresina con risultati pubblicabili.",
+    "EDITORIAL_TODO: preview di una landing page vs sito vetrina con lo stesso cliente per confronto visivo."
+  ]
+}

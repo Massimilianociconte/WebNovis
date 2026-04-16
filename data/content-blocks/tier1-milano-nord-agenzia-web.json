@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "city": "milano-nord",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-milano-nord.html. Milano Nord è un'area sintetica: riferimenti a quartieri reali (Bicocca, Niguarda, Affori, Comasina) senza cifre demografiche inventate. distanzaSede 25 min da data/cities.json.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web per Milano Nord: Bicocca, Niguarda, Affori e l'area del Passante nord",
+  "body": [
+    "\"Milano Nord\" per noi è l'area urbana che tiene insieme <strong>Bicocca</strong> (campus universitario e polo tech/servizi), <strong>Niguarda</strong> (ospedale e indotto sanitario), <strong>Affori</strong>, Dergano, Comasina — fino al confine con Bresso e Cormano. È l'area di Milano più ricca di ricerca, sanità e giovane terziario. Dalla nostra sede di Rho (Via S. Giorgio 2) ci sono circa 25 minuti in auto, ma più importante: c'è un asse infrastrutturale (tangenziale nord + M5 Bicocca + M3 Affori) che rende possibili incontri in presenza senza drammi.",
+    "Chi opera qui di solito cerca un partner che sappia bilanciare <strong>estetica curata</strong> (perché il pubblico Bicocca / CityLife è esigente sul visuale) e <strong>sostanza tecnica</strong> (perché startup, studi professionali e realtà sanitarie non possono permettersi siti lenti o fragili). Il nostro approccio combina le due cose: design su misura, copy preciso, e sotto il cofano codice 100% custom, Core Web Vitals ottimizzati, dati strutturati ben fatti.",
+    "Lavoriamo prevalentemente con <strong>PMI, studi professionali, startup early-stage</strong> e piccole realtà che vogliono uscire dal template \"tutti uguali\" di WordPress. Pricing pubblicato: <strong>landing da €500, sito vetrina da €1.200, e-commerce custom da €3.500</strong>. 30 giorni di supporto incluso post-lancio. Un unico referente dall'inizio alla fine."
+  ],
+  "bullets": [
+    "<strong>Area di riferimento</strong>: Bicocca, Niguarda, Affori, Comasina, Dergano — fino al confine Bresso / Cormano.",
+    "<strong>Sede a Rho</strong> (Via S. Giorgio 2), circa 25 minuti in auto o accessibile via M1→M3/M5.",
+    "<strong>Clienti tipici</strong>: PMI, studi professionali, startup early-stage, piccole realtà sanitarie.",
+    "<strong>Codice 100% custom + Core Web Vitals</strong>: niente template su cui costruire cose fragili.",
+    "<strong>Pricing trasparente</strong>: landing €500, vetrina €1.200, e-commerce €3.500."
+  ],
+  "callout": {
+    "title": "Quando NON siamo la scelta giusta",
+    "text": "Non siamo fit se cerchi una web agency \"generalista\" che gestisce 50 siti in parallelo con lo stesso template, o se hai bisogno di un MVP quick-and-dirty da rifare tra 6 mesi. Lavoriamo meglio con chi vuole investire una volta, bene, e tenersi il sito per 3-5 anni."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study di clienti Bicocca / Niguarda / Affori (con consenso).",
+    "EDITORIAL_TODO: sezione \"come raggiungerci da Milano Nord\" con indicazioni reali (M1→M3 o tangenziale)."
+  ]
+}

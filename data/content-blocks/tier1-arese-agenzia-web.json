@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "city": "arese",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-arese.html. Contenuto strutturato ma sobrio, basato su fatti verificabili dal repo (sede Rho a 10 min, prezzi in data/services.json, settori già presenti in data/cities.json). Placeholder EDITORIAL_TODO marcano i punti che richiedono input umano (case study reali, referenze specifiche) e NON devono essere inventati dal generator.",
+    "source": "hand-crafted"
+  },
+  "headline": "Perché le aziende di Arese scelgono una web agency con sede a 10 minuti",
+  "body": [
+    "Per una PMI di Arese la scelta tra un'agenzia di Milano centro e un partner con sede a Rho non è solo geografica: cambia la rapidità del confronto, il livello di personalizzazione e, a parità di qualità, anche il rapporto tra investimento e risultato finale. <strong>WebNovis lavora da Via S. Giorgio 2 a Rho, a circa 10 minuti in auto da Arese via SS33 o via Pogliano</strong>: confronti in presenza quando serve, il resto in videochiamata, senza la friction di spostamenti lunghi verso Milano centro.",
+    "L'area di Arese ha una struttura economica particolare: il polo commerciale di <em>Il Centro</em>, il Museo Storico Alfa Romeo, una rete di PMI nel retail e nella ristorazione, più un ecosistema di attività di servizio legate al flusso di visitatori. <strong>Ogni settore ha domande online diverse</strong> e richiede un approccio editoriale e di posizionamento diverso: non esiste un sito vetrina standard che vada bene per un ristorante di Via dei Giardini e per un atelier di Viale Resegone.",
+    "Per questo, su Arese, non proponiamo template. <strong>Il percorso tipico</strong> è: analisi della tua offerta e del contesto competitivo locale, definizione di un piano di posizionamento (organico + locale), realizzazione sito/landing con codice 100% custom, SEO tecnica integrata e misurazione dei risultati con un singolo referente. Questo è ciò che trovi anche nelle landing <a href=\"/seo-locale-arese.html\" style=\"color:var(--primary-light)\">SEO Locale Arese</a> e <a href=\"/sito-vetrina-arese.html\" style=\"color:var(--primary-light)\">Sito Vetrina Arese</a> per approfondimenti specifici."
+  ],
+  "bullets": [
+    "<strong>Sede fisica a 10 minuti</strong>: Via S. Giorgio 2, Rho (MI) — incontri in presenza rapidi quando utile, senza spostamenti verso Milano.",
+    "<strong>Nessun pacchetto preconfezionato</strong>: ogni progetto su Arese parte da brief, obiettivi e contesto competitivo reale.",
+    "<strong>Prezzi trasparenti pubblicati</strong>: landing da €500, sito vetrina da €1.200, e-commerce custom da €3.500 — preventivo scritto entro 24 ore dalla richiesta.",
+    "<strong>Un solo referente</strong>: niente passaggi di mano tra account, project manager e sviluppatori — si parla direttamente con chi fa il lavoro.",
+    "<strong>SEO tecnica + locale integrate fin da subito</strong>: Core Web Vitals, dati strutturati LocalBusiness, Google Business Profile, ottimizzazione per query \"a Arese\" e comuni limitrofi."
+  ],
+  "callout": {
+    "title": "Quando ha senso contattarci — e quando no",
+    "text": "Se stai cercando una risposta rapida a un preventivo ricevuto, una second opinion su un sito esistente o il punto di partenza per un nuovo progetto ad Arese, possiamo esserti utili. Se invece hai bisogno solo di un restyling grafico minimo su WordPress o di un sito \"a 200 euro\" entro la settimana, probabilmente WebNovis non è il partner giusto: meglio dirlo subito."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: inserire 1-2 case study reali di clienti in zona Arese/Rho/Bollate — solo quando disponibili con consenso scritto.",
+    "EDITORIAL_TODO: aggiungere testimonianze firmate (con nome, ruolo, azienda) se raccolte, altrimenti NON inserire testimonial finti.",
+    "EDITORIAL_TODO: dati di traffico/posizionamento locali verificabili (es: aumento % su query \"agenzia web arese\") — solo se documentati in Search Console."
+  ]
+}

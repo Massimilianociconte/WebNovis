@@ -1,6 +1,16 @@
-{# 
+{#
   WebNovis — Nunjucks template for "agenzia-web" geo page content sections
-  Variables: city, services, nearCitiesData, relatedPages, today, site
+  Variables:
+    - city, services, nearCitiesData, relatedPages, blogLinks, today, site
+    - tier: 1 = Tier 1 indexable (unique editorial), 2 = Tier 2, 0 = de-amplified
+    - isIndexable: boolean (tier > 0)
+    - tier1Content: optional hand-crafted block from data/content-blocks/tier1-<city>-agenzia-web.json
+
+  Structural differentiation:
+    - tier === 1: extra editorial section (tier1Content) rendered between local
+      context (Section 1) and services grid (Section 2).
+    - tier === 0: standard template still applies but the page is emitted with
+      `noindex, follow` upstream (see config/pseo-governance.js).
 #}
 <main>
   <div class="container breadcrumb">
@@ -46,6 +56,40 @@
       <!-- CUSTOM:geo-positioning:END -->
     </div>
   </section>
+
+  {# ═══ SECTION 1b — Tier 1 editorial block (hand-crafted per city) ═══ #}
+  {# Si attiva solo per Tier 1 con override disponibile in              #}
+  {# data/content-blocks/tier1-<city>-agenzia-web.json. NON inventa dati: #}
+  {# se il JSON manca o è vuoto, la sezione semplicemente non viene       #}
+  {# renderizzata. È la slot dove finisce solo contenuto editoriale       #}
+  {# veritiero e verificato a mano.                                       #}
+  {% if tier == 1 and tier1Content %}
+  <section class="service-detail tier1-editorial" data-tier="1" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      {% if tier1Content.headline %}
+      <h2>{{ tier1Content.headline }}</h2>
+      {% endif %}
+      {% if tier1Content.body %}
+      {% for paragraph in tier1Content.body %}
+      <p>{{ paragraph | safe }}</p>
+      {% endfor %}
+      {% endif %}
+      {% if tier1Content.bullets and tier1Content.bullets | length > 0 %}
+      <ul style="margin:1rem 0 1.5rem 1.25rem;padding:0;color:var(--gray-light);line-height:1.7">
+        {% for item in tier1Content.bullets %}
+        <li style="margin-bottom:.5rem">{{ item | safe }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if tier1Content.callout %}
+      <aside style="margin-top:1.5rem;padding:1.1rem 1.25rem;border-radius:14px;border:1px solid rgba(91,106,174,.35);background:rgba(91,106,174,.08)">
+        {% if tier1Content.callout.title %}<strong style="display:block;color:var(--white);margin-bottom:.35rem">{{ tier1Content.callout.title }}</strong>{% endif %}
+        {% if tier1Content.callout.text %}<p style="margin:0;color:var(--gray-light);font-size:.95rem">{{ tier1Content.callout.text | safe }}</p>{% endif %}
+      </aside>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
 
   {# ═══ SECTION 2 — Services grid with pricing (statistics density: prices per service) ═══ #}
   <section class="service-detail" style="background:rgba(255,255,255,.01)">

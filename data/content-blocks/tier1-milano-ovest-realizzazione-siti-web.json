@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "city": "milano-ovest",
+    "service": "realizzazione-siti-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /realizzazione-siti-web-milano-ovest.html. Milano Ovest è un'area sintetica: riferimenti a quartieri reali. Focus: pricing trasparente + differenziazione vs Milano centro.",
+    "source": "hand-crafted"
+  },
+  "headline": "Realizzazione siti web per Milano Ovest: codice custom e prezzi trasparenti per PMI, studi e retail di quartiere",
+  "body": [
+    "Un sito web ben fatto per un'attività di Milano Ovest non deve essere un progetto corporate. Un ristorante a De Angeli, uno studio professionale vicino a Lampugnano, un negozio tra Gambara e QT8 hanno bisogno di un sito che li renda trovabili su Google, comunichino l'offerta in modo chiaro e convertano in richieste o prenotazioni — senza pagare una cifra sproporzionata. <strong>Pricing pubblicato e perimetro scritto</strong> sono il punto di partenza: landing da €500, sito vetrina da €1.200, e-commerce custom da €3.500.",
+    "La nostra sede è in <strong>Via S. Giorgio 2 a Rho</strong>, in linea d'aria a pochi chilometri da San Siro e CityLife. Questo, per un cliente di Milano Ovest, significa due cose operative: <strong>tempi di risposta rapidi</strong> su modifiche e bug, e <strong>possibilità di incontri in presenza</strong> quando serve — senza prendersi mezza giornata per uno spostamento in centro. Per il resto, videocall e un unico referente.",
+    "Ogni sito parte da un brief scritto, non da un \"template a preferenza\". Definiamo obiettivo, audience, offerta, competitor locali, KPI. Poi progettiamo struttura e copy, realizziamo con codice <strong>100% custom</strong> (HTML5, CSS3, JavaScript), integriamo SEO tecnica e dati strutturati Schema.org, ottimizziamo i Core Web Vitals. 30 giorni di supporto dopo il go-live inclusi, manutenzione continuativa opzionale da €59/mese."
+  ],
+  "bullets": [
+    "<strong>Perimetro del progetto scritto prima di iniziare</strong>: niente \"vediamo strada facendo\" che fa lievitare il costo.",
+    "<strong>Pricing trasparente</strong>: landing €500, sito vetrina €1.200, e-commerce €3.500 (IVA esclusa).",
+    "<strong>Core Web Vitals ottimizzati</strong>: LCP &lt; 2.5s, INP &lt; 200ms, CLS &lt; 0.1 misurati in produzione.",
+    "<strong>SEO tecnica + dati strutturati LocalBusiness</strong> integrati di default, non come \"modulo extra\".",
+    "<strong>Consegna in 5-7 giorni (landing), 2-3 settimane (vetrina), 4-8 settimane (e-commerce)</strong> — tempi realistici.",
+    "<strong>30 giorni di supporto post-lancio</strong> inclusi; manutenzione da €59/mese opzionale."
+  ],
+  "callout": {
+    "title": "Agenzia in centro Milano o agenzia a Rho/Milano Ovest?",
+    "text": "Un'agenzia in centro ha tariffe che riflettono i costi operativi milanesi (affitti, struttura, overhead). Noi lavoriamo da Rho: stessa qualità tecnica, stessi standard, pricing meno caricato. Per una PMI di quartiere spesso è la scelta che fa la differenza tra un sito fatto bene e un sito fatto in fretta per stare nel budget."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: 2-3 case study concreti di siti realizzati in zona (retail, ristorazione, studi) con consenso.",
+    "EDITORIAL_TODO: screenshot PageSpeed / web.dev di progetti Milano Ovest reali."
+  ]
+}

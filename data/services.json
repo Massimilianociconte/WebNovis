@@ -223,7 +223,7 @@
       "name": "Consulenza Digitale",
       "shortName": "Consulenza",
       "schemaType": "Service",
-      "url": "/servizi/consulenza-digitale.html",
+      "url": "/servizi/consulenze.html",
       "hasPage": false,
       "tier": "extended",
       "priceFrom": 150,
@@ -232,7 +232,11 @@
       "description": "Audit digitale, strategia online e roadmap di crescita per PMI.",
       "shortDesc": "Analisi della presenza digitale e piano d'azione personalizzato.",
       "targetKeyword": "consulenza digitale PMI",
-      "idealFor": "PMI senza strategia digitale, startup"
+      "idealFor": "PMI senza strategia digitale, startup",
+      "generateGeoPages": false,
+      "skipGeoGeneration": true,
+      "canonicalServiceSlug": "consulenze",
+      "deprecationNote": "Cluster deprecato in favore di /consulenze-*.html per eliminare cannibalizzazione. Le pagine esistenti vanno rimosse o redirette 301 verso /consulenze-{city}.html."
     },
     {
       "slug": "manutenzione-sito",

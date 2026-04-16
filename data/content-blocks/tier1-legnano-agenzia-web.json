@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "city": "legnano",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-legnano.html. Fatti verificati online: Palio di Legnano (rievocazione storica a maggio, 8 contrade, battaglia di Legnano 1176), distretto industriale storico del Nord-Ovest milanese. distanzaSede 27 min / 12 km.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web a Legnano: partner concreto per PMI, commercio e artigianato dell'Alto Milanese",
+  "body": [
+    "Legnano è una città con un'identità molto forte — <strong>Palio di Legnano</strong>, battaglia del 1176, distretto industriale storico, 8 contrade che scandiscono il calendario cittadino — e con un tessuto produttivo altrettanto marcato: <strong>manifatturiero, meccanico, tessile storico, commercio</strong> e una ristorazione viva in centro. Per un'agenzia web, capire il contesto conta: le aziende legnanesi hanno spesso una storia di 30-50 anni, un nome che vale, e il rischio di raccontarlo male su un sito \"fatto in economia\" è un danno reputazionale reale.",
+    "Dalla nostra sede di <strong>Via S. Giorgio 2 a Rho</strong> a Legnano sono circa <strong>12 km / 27 minuti</strong> via SS33 o A8. È vicinanza sufficiente per incontri in presenza quando serve — soprattutto in fase di brief e di consegna — senza richiedere un investimento di tempo sproporzionato. E abbiamo il background dell'hinterland milanese, quindi non partiamo da zero nel capire il mercato legnanese e come si differenzia da Milano città.",
+    "Il processo è identico a quello che applichiamo a Rho e alle altre città del network: brief, proposta scritta con perimetro e pricing (<strong>landing €500, sito vetrina €1.200, e-commerce custom €3.500</strong>), realizzazione con codice 100% custom, SEO tecnica integrata, 30 giorni di supporto post go-live. Per approfondire il cluster realizzazione vedi <a href=\"/realizzazione-siti-web-legnano.html\" style=\"color:var(--primary-light)\">Realizzazione Siti Web Legnano</a>."
+  ],
+  "bullets": [
+    "<strong>27 minuti dalla nostra sede di Rho</strong> — 12 km via SS33 o uscita A8 Legnano.",
+    "<strong>Focus PMI manifatturiere storiche, artigianato, commercio, ristorazione in centro</strong>.",
+    "<strong>Prezzi pubblicati</strong>: landing €500, vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Brief iniziale in presenza</strong> possibile — consigliato per aziende con storia forte da raccontare.",
+    "<strong>Codice 100% custom + SEO tecnica</strong>: il sito dura 3-5 anni, non 12 mesi."
+  ],
+  "callout": {
+    "title": "Un'azienda storica con 30-50 anni alle spalle ha esigenze specifiche",
+    "text": "Raccontare un'azienda con una storia lunga su un sito generico fatto in 3 giorni è un errore strategico. Il sito di una PMI legnanese con heritage industriale deve comunicare continuità, qualità, radicamento — senza risultare \"vecchio\". Questo richiede un brief serio (un'ora di conversazione, non un form compilato), copy curato, scelte grafiche motivate. È il tipo di progetto dove vale la pena fermarsi a pensare prima di costruire."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study aziende Legnano con heritage (tessile, meccanico) con consenso.",
+    "EDITORIAL_TODO: valutare partnership con contrade / fondazione Palio se rilevante per il posizionamento."
+  ]
+}

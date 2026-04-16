@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "city": "rho",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-rho.html. Rho è la sede operativa: il taglio è 'agenzia locale, non virtuale'. Fatti verificati: Fiera Milano (Rho-Pero), Santuario della Beata Vergine Addolorata, stazioni S5/S6/M1 Rho Fiera, CAP 20017.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web a Rho: perché la sede fisica a Via S. Giorgio 2 fa differenza",
+  "body": [
+    "WebNovis ha sede a Rho, in <strong>Via S. Giorgio 2, 20017</strong>, a cinque minuti a piedi dalla stazione RFI e a pochi minuti in auto da Fiera Milano e dall'ingresso est della tangenziale ovest. Per un'azienda di Rho questo significa tre cose molto concrete: <strong>confronti di persona quando servono</strong>, tempi di risposta rapidi, e un partner che lavora sul territorio tutti i giorni — non una web agency a distanza.",
+    "Rho ha un tessuto produttivo particolare: PMI manifatturiere storiche, terziario cresciuto attorno al polo fieristico, operatori hotellerie e logistica, studi professionali. Ogni settore ha un profilo di cliente diverso: chi cerca visibilità sulle fiere, chi deve generare contatti B2B, chi vive di traffico locale. <strong>Non proponiamo template standard</strong>: ogni progetto su Rho parte da un'analisi seria della tua offerta, del contesto competitivo e degli obiettivi concreti di vendita o lead.",
+    "Il percorso tipico con una PMI di Rho è lineare: brief iniziale (anche in sede), proposta scritta con perimetro e prezzo, realizzazione con codice 100% custom, SEO tecnica integrata, consegna con 30 giorni di supporto incluso. Pricing pubblicato — <strong>landing da €500, sito vetrina da €1.200, e-commerce custom da €3.500</strong> — e un unico referente per tutto il progetto. Per approfondire cluster specifici puoi vedere <a href=\"/seo-locale-rho.html\" style=\"color:var(--primary-light)\">SEO Locale Rho</a> e <a href=\"/realizzazione-siti-web-rho.html\" style=\"color:var(--primary-light)\">Realizzazione Siti Web Rho</a>."
+  ],
+  "bullets": [
+    "<strong>Sede in Via S. Giorgio 2, 20017 Rho (MI)</strong> — stessa città dei tuoi clienti, non un indirizzo di rappresentanza.",
+    "<strong>Vicinanza operativa a Fiera Milano e area ex-Expo</strong>: conosciamo il calendario fieristico e i picchi di traffico web.",
+    "<strong>Prezzi trasparenti pubblicati</strong>: landing da €500, sito vetrina da €1.200, e-commerce custom da €3.500.",
+    "<strong>Un solo referente</strong>: niente passaggi tra account, PM e sviluppatori — lavori con chi costruisce il sito.",
+    "<strong>Codice 100% custom, zero WordPress</strong>: performance, sicurezza e SEO tecnica non dipendono da plugin di terze parti."
+  ],
+  "callout": {
+    "title": "Quando ha senso contattarci, e quando no",
+    "text": "Se sei una PMI di Rho che deve rifare un sito vecchio, impostare SEO locale in modo serio o valutare un e-commerce custom, possiamo esserti utili. Se cerchi un sito \"a 200 euro entro la settimana\" o un restyling WordPress minimo, probabilmente non siamo il partner giusto: meglio dirlo subito, senza far perdere tempo a nessuno."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: inserire case study reali di clienti con sede a Rho (solo con consenso scritto).",
+    "EDITORIAL_TODO: eventuale sezione 'siamo qui' con foto ufficio/sede se disponibile."
+  ]
+}

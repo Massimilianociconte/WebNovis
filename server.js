@@ -322,6 +322,19 @@ app.use((req, res, next) => {
     next();
 });
 
+// 2.3.1 Deprecated cluster redirects — `consulenza-digitale-*` duplicates `consulenze-*`
+// and is fully deprecated (see data/services.json + config/pseo-governance.js).
+// This parametric middleware covers all cities without hardcoding individual slugs.
+// Runs BEFORE the static file handler so residual HTML files are not served.
+app.use((req, res, next) => {
+    const match = req.path.match(/^\/consulenza-digitale-([a-z0-9-]+)\.html$/);
+    if (match) {
+        const query = getRedirectQuerySuffix(req);
+        return res.redirect(301, `/consulenze-${match[1]}.html${query}`);
+    }
+    next();
+});
+
 // 2.4 Legacy build-artifact redirects — collapse stale /dist/ URLs to canonical public paths
 const legacyPathRedirects = new Map([
     ['/accessibilita-rho.html', '/servizi/accessibilita.html'],

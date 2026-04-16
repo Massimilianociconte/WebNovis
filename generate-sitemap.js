@@ -22,9 +22,14 @@ const EXCLUDE_PATTERNS = [
     /^templates\//,
     /^node_modules\//,
     /^\./,
+    /^src\//,       // source HTML dir (src/html/*) — not published artefacts
+    /^config\//,    // node-side config files, should never leak into sitemap
+    /^tests\//,     // test fixtures
+    /^scripts\//,   // build scripts
     /^blog\/auto-writer/,
     /^blog\/build-articles/,
     /agenzie-web-rho\.html$/,
+    /^consulenza-digitale-[a-z0-9-]+\.html$/, // deprecated cluster (redirected 301 → /consulenze-*)
     /^portfolio\/(Aether-Digital|Ember-Oak|Lumina-Creative|Muse-Editorial|PopBlock-Studio|Structure-Arch)\.html$/i,
     /404\.html$/,
     /grazie\.html$/,

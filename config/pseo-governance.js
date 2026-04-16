@@ -1,6 +1,25 @@
+/**
+ * pSEO governance — allowlist-based indexation control.
+ *
+ * Strategy (post-audit 2026-04):
+ *   - ~920 GEO pages are generated but only TIER 1 + TIER 2 paths are indexable.
+ *     Everything else is `noindex, follow` and excluded from sitemap.
+ *   - Rationale: reduce doorway footprint and concentrate authority on ~40
+ *     geographically/commercially strategic pages (see audit Fase 2).
+ *   - Non-GEO pages (/, /servizi/*, /portfolio/*, /blog/*, /chi-siamo.html, ...)
+ *     are NEVER de-amplified by this module.
+ *   - `REMOVED_PATHS` are paths we intend to physically remove (404/301).
+ *     They are excluded from sitemap and always return `noindex, follow`
+ *     as a defensive fallback while residual files linger.
+ */
+
 const servicesData = require('../data/services.json');
 const citiesData = require('../data/cities.json');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Legacy explicit list kept so historical regression tests keep passing.
+// Anything here is explicitly de-amplified regardless of tier membership.
+// ─────────────────────────────────────────────────────────────────────────────
 const EXPLICIT_DEAMPLIFIED_PATHS = [
   '/google-ads-milano.html',
   '/sviluppo-app-mobile-milano.html',
@@ -12,6 +31,85 @@ const EXPLICIT_DEAMPLIFIED_PATHS = [
   '/social-media-bresso.html'
 ];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// TIER 1 — 24 pagine GEO con contenuto unique-by-hand.
+// Questi URL ricevono il contenuto locale arricchito dai content-blocks.
+// Obiettivo SEO: rank top-3 su "[servizio] [città]" entro 6 mesi.
+// ─────────────────────────────────────────────────────────────────────────────
+const TIER1_INDEXABLE_GEO_PATHS = new Set([
+  '/agenzia-web-rho.html',
+  '/realizzazione-siti-web-rho.html',
+  '/seo-locale-rho.html',
+  '/agenzia-web-arese.html',
+  '/seo-locale-arese.html',
+  '/sito-vetrina-arese.html',
+  '/agenzia-web-lainate.html',
+  '/seo-locale-lainate.html',
+  '/agenzia-web-bollate.html',
+  '/realizzazione-siti-web-bollate.html',
+  '/agenzia-web-garbagnate.html',
+  '/seo-locale-garbagnate.html',
+  '/agenzia-web-parabiago.html',
+  '/seo-locale-parabiago.html',
+  '/agenzia-web-legnano.html',
+  '/realizzazione-siti-web-legnano.html',
+  '/agenzia-web-milano-ovest.html',
+  '/realizzazione-siti-web-milano-ovest.html',
+  '/agenzia-web-milano-nord.html',
+  '/agenzia-web-saronno.html',
+  '/agenzia-web-monza.html',
+  '/agenzia-web-cinisello-balsamo.html',
+  '/seo-locale-cinisello-balsamo.html',
+  '/agenzia-web-sesto-san-giovanni.html'
+]);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TIER 2 — pagine indicizzabili come supporto commerciale.
+// Nessun boost contenutistico, template standard, usate per long-tail e
+// cross-linking; alcune sono richieste dai regression test pre-audit.
+// ─────────────────────────────────────────────────────────────────────────────
+const TIER2_INDEXABLE_GEO_PATHS = new Set([
+  // Ecommerce cluster (Milano già era "strategic", estendo al raggio diretto)
+  '/ecommerce-milano.html',
+  '/ecommerce-rho.html',
+  '/ecommerce-arese.html',
+  '/ecommerce-monza.html',
+  '/ecommerce-legnano.html',
+  '/ecommerce-bollate.html',
+  '/ecommerce-lainate.html',
+  // Landing page cluster
+  '/landing-page-rho.html',
+  '/landing-page-arese.html',
+  '/landing-page-milano-ovest.html',
+  '/landing-page-bollate.html', // richiesto da regression test storico (core geo)
+  // Sito vetrina cluster
+  '/sito-vetrina-rho.html',
+  '/sito-vetrina-lainate.html',
+  '/sito-vetrina-bollate.html',
+  '/sito-vetrina-legnano.html',
+  // Realizzazione cluster: Arese (integra i 3 Tier 1 di Arese con long-tail transazionale)
+  '/realizzazione-siti-web-arese.html',
+  // SEO locale cluster (Milano + strategic remaining)
+  '/seo-locale-milano.html',
+  '/seo-locale-sesto-san-giovanni.html',
+  // Agenzia-web cluster: Milano downgraded da primary a supporter + comuni confinanti sede
+  '/agenzia-web-milano.html',
+  '/agenzia-web-pero.html',
+  '/agenzia-web-cornaredo.html',
+  '/agenzia-web-novate-milanese.html'
+]);
+
+// Unione delle allowlist: path GEO ammessi all'indicizzazione.
+const ALL_INDEXABLE_GEO_PATHS = new Set([
+  ...TIER1_INDEXABLE_GEO_PATHS,
+  ...TIER2_INDEXABLE_GEO_PATHS
+]);
+
+// Retro-compat: alcuni script leggono `STRATEGIC_INDEXABLE_GEO_PATHS`.
+const STRATEGIC_INDEXABLE_GEO_PATHS = ALL_INDEXABLE_GEO_PATHS;
+
+// Set di city slug per cui storicamente esiste un'enfasi SEO particolare.
+// Conservato per compatibilità con tool esistenti (report, monitor).
 const STRATEGIC_SEO_CITY_SLUGS = [
   'rho',
   'sesto-san-giovanni',
@@ -23,24 +121,63 @@ const STRATEGIC_SEO_CITY_SLUGS = [
   'milano'
 ];
 
-const STRATEGIC_INDEXABLE_GEO_PATHS = new Set([
-  ...STRATEGIC_SEO_CITY_SLUGS.map((citySlug) => `/seo-locale-${citySlug}.html`),
-  '/ecommerce-milano.html'
-]);
+// ─────────────────────────────────────────────────────────────────────────────
+// REMOVED_PATHS — path destinati alla rimozione fisica (301/404).
+// Il cluster `consulenza-digitale-*` duplica `consulenze-*` (diff ~6 righe su
+// ~1000 parole): viene deprecato del tutto. Fino alla rimozione fisica dei
+// file restano deamplificati e fuori sitemap.
+// ─────────────────────────────────────────────────────────────────────────────
+const REMOVED_PATHS = new Set(
+  (citiesData.cities || [])
+    .map((city) => city && city.slug)
+    .filter(Boolean)
+    .map((slug) => `/consulenza-digitale-${slug}.html`)
+);
 
-const EXTENDED_GEO_SERVICE_SLUGS = (servicesData.services || [])
-  .filter((service) => service && service.hasPage === false && service.slug)
-  .map((service) => service.slug);
+// ─────────────────────────────────────────────────────────────────────────────
+// Rilevamento "è un path GEO generato?" — euristica su slug di servizio.
+// `agenzia-web` e `realizzazione-siti-web` non sono veri service slug in
+// data/services.json, ma sono cluster pSEO a tutti gli effetti (vedi
+// scripts/generate-all-geo.js: generateAgenziaPage / generateRealizzazionePage).
+// ─────────────────────────────────────────────────────────────────────────────
+const SERVICE_SLUGS = (servicesData.services || [])
+  .map((service) => service && service.slug)
+  .filter(Boolean);
 
+const GEO_CLUSTER_SLUGS = [
+  ...SERVICE_SLUGS,
+  'agenzia-web',
+  'realizzazione-siti-web'
+];
+
+// Pattern esplicito per evitare falsi positivi su path come `/servizi/sviluppo-web.html`.
+const GEO_PATH_PATTERNS = GEO_CLUSTER_SLUGS.map(
+  (slug) => new RegExp(`^/${slug}-[a-z0-9-]+\\.html$`)
+);
+
+function isGeoPath(pathname) {
+  return GEO_PATH_PATTERNS.some((re) => re.test(pathname));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Calcolo set de-amplificato: ogni path GEO non in allowlist + expliciti +
+// path rimossi.
+// ─────────────────────────────────────────────────────────────────────────────
 const CITY_SLUGS = (citiesData.cities || [])
   .map((city) => city && city.slug)
   .filter(Boolean);
 
-const AUTO_DEAMPLIFIED_GEO_PATHS = EXTENDED_GEO_SERVICE_SLUGS.flatMap((serviceSlug) =>
+const AUTO_DEAMPLIFIED_GEO_PATHS = GEO_CLUSTER_SLUGS.flatMap((serviceSlug) =>
   CITY_SLUGS.map((citySlug) => `/${serviceSlug}-${citySlug}.html`)
-).filter((pathname) => !STRATEGIC_INDEXABLE_GEO_PATHS.has(pathname));
+).filter((pathname) => !ALL_INDEXABLE_GEO_PATHS.has(pathname));
 
-const PHASE1_DEAMPLIFIED_PATHS = [...new Set([...EXPLICIT_DEAMPLIFIED_PATHS, ...AUTO_DEAMPLIFIED_GEO_PATHS])];
+const PHASE1_DEAMPLIFIED_PATHS = [
+  ...new Set([
+    ...EXPLICIT_DEAMPLIFIED_PATHS,
+    ...AUTO_DEAMPLIFIED_GEO_PATHS,
+    ...REMOVED_PATHS
+  ])
+];
 const DEAMPLIFIED_SET = new Set(PHASE1_DEAMPLIFIED_PATHS);
 
 function normalizePathname(pathname = '/') {
@@ -64,7 +201,24 @@ function normalizePathname(pathname = '/') {
 }
 
 function isDeAmplifiedPath(pathname) {
-  return DEAMPLIFIED_SET.has(normalizePathname(pathname));
+  const normalized = normalizePathname(pathname);
+  if (DEAMPLIFIED_SET.has(normalized)) return true;
+  if (REMOVED_PATHS.has(normalized)) return true;
+  // Fallback: ogni path GEO non in allowlist è de-amplificato.
+  if (isGeoPath(normalized) && !ALL_INDEXABLE_GEO_PATHS.has(normalized)) return true;
+  return false;
+}
+
+function isRemovedPath(pathname) {
+  return REMOVED_PATHS.has(normalizePathname(pathname));
+}
+
+function isTier1Path(pathname) {
+  return TIER1_INDEXABLE_GEO_PATHS.has(normalizePathname(pathname));
+}
+
+function isTier2Path(pathname) {
+  return TIER2_INDEXABLE_GEO_PATHS.has(normalizePathname(pathname));
 }
 
 function getIndexationDirectivesForPath(pathname) {
@@ -72,16 +226,27 @@ function getIndexationDirectivesForPath(pathname) {
 }
 
 function shouldIncludeInSitemapPath(pathname) {
-  return !isDeAmplifiedPath(pathname);
+  const normalized = normalizePathname(pathname);
+  if (REMOVED_PATHS.has(normalized)) return false;
+  return !isDeAmplifiedPath(normalized);
 }
 
 module.exports = {
   EXPLICIT_DEAMPLIFIED_PATHS,
   STRATEGIC_INDEXABLE_GEO_PATHS,
+  STRATEGIC_SEO_CITY_SLUGS,
+  TIER1_INDEXABLE_GEO_PATHS,
+  TIER2_INDEXABLE_GEO_PATHS,
+  ALL_INDEXABLE_GEO_PATHS,
   AUTO_DEAMPLIFIED_GEO_PATHS,
   PHASE1_DEAMPLIFIED_PATHS,
+  REMOVED_PATHS,
   normalizePathname,
   isDeAmplifiedPath,
+  isRemovedPath,
+  isTier1Path,
+  isTier2Path,
+  isGeoPath,
   getIndexationDirectivesForPath,
   shouldIncludeInSitemapPath
 };

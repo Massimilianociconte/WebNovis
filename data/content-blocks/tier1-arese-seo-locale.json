@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "city": "arese",
+    "service": "seo-locale",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /seo-locale-arese.html. Fatti verificati online: Il Centro Arese (120.000 m², una delle gallerie commerciali più grandi d'Italia/Europa), Museo Storico Alfa Romeo 'La macchina del tempo'. Pricing €400/mese.",
+    "source": "hand-crafted"
+  },
+  "headline": "SEO locale ad Arese: posizionare la tua attività tra il bacino di Il Centro e il tessuto PMI locale",
+  "body": [
+    "Arese ha una dinamica SEO locale molto particolare: da un lato un bacino di flusso enorme generato da <strong>Il Centro</strong> (una delle gallerie commerciali più grandi d'Italia, circa 120.000 m²) e dal <strong>Museo Storico Alfa Romeo</strong>, dall'altro un tessuto residenziale e PMI che vive con logiche classiche da piccola città. Le strategie SEO sono diverse a seconda che tu viva di traffico di passaggio o di clientela locale fidelizzata.",
+    "Per un'attività nel raggio di influenza di Il Centro (ristoranti, servizi, retail collegato) la leva principale è <strong>Google Business Profile ottimizzato al massimo</strong> con foto, post, risposte rapide, e content orientato a query come \"ristorante vicino Il Centro Arese\", \"parrucchiere Arese centro commerciale\", \"parcheggio Arese\". Per PMI e studi professionali aresini la strategia è diversa: <strong>posizionamento su query commerciali specifiche</strong> (\"elettricista Arese\", \"commercialista Arese\") e dati strutturati impeccabili sul sito.",
+    "Il piano parte da un audit di 7-10 giorni: dove sei oggi, dove sono i competitor, cosa manca. Poi setup Google Business, dati strutturati on-page, content mirato, review strategy autentica. Pricing <strong>€400/mese</strong> continuativo. Report mensile con GSC e Google Business. Nessun vincolo annuale: se dopo 2-3 mesi i numeri non crescono come atteso, lo diciamo noi per primi."
+  ],
+  "bullets": [
+    "<strong>Due strategie diverse</strong> a seconda del tuo bacino: flusso da Il Centro vs clientela locale fidelizzata.",
+    "<strong>Google Business Profile completo</strong>: categoria, servizi, attributi, Q&amp;A, foto, post regolari.",
+    "<strong>Schema.org LocalBusiness + NAP coerente</strong> su directory rilevanti (PagineGialle, Google Maps, TripAdvisor se applicabile).",
+    "<strong>Report mensile GSC + Google Business</strong>: posizioni, click, chiamate, richieste indicazioni — dati reali.",
+    "<strong>€400/mese</strong>, continuativo, cancellabile senza vincoli annuali."
+  ],
+  "callout": {
+    "title": "Il Centro porta traffico, ma competere in ottica e-commerce è diverso",
+    "text": "Attenzione: il traffico fisico del centro commerciale non si traduce automaticamente in ricerche online sulla tua attività. Le due dinamiche vanno affrontate in parallelo: SEO locale per chi cerca servizi \"a Arese\" + eventuali campagne Google Ads geo-targetizzate per chi frequenta Il Centro e cerca servizi vicini. Ne parliamo nel brief."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study con dati Search Console reali di attività aresine (con consenso)."
+  ]
+}

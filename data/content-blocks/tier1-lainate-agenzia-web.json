@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "city": "lainate",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-lainate.html. Fatti verificati online: Villa Litta Lainate con Ninfeo (ninfeo barocco con giochi d'acqua, ~50k visitatori/anno in alta stagione), uscita Lainate A8 Milano-Laghi, CAP 20045. distanzaSede: 8 min / 6 km.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web a Lainate: a 8 minuti dalla nostra sede, per PMI e attività del Nord-Ovest milanese",
+  "body": [
+    "Lainate è uno dei comuni più vicini alla nostra sede di Rho: <strong>6 km, circa 8 minuti in auto</strong> via SP233 o direttamente dall'uscita A8 Lainate. Per un'attività lainatese questo significa che incontri di persona, sopralluoghi o allineamenti rapidi sono possibili anche quando servono — non un optional teorico. Ed è la stessa area operativa: conosciamo il traffico verso Arese e Rho, sappiamo come si muovono le persone tra Lainate centro, Barbaiana e Grancia.",
+    "Il tessuto produttivo di Lainate è diversificato: <strong>PMI manifatturiere</strong>, logistica e attività terziarie servite bene dall'uscita autostradale, più un centro vivo con commercio al dettaglio, ristorazione, studi professionali. Un sito web serio per queste realtà deve fare due cose: essere trovabile su Google per query tipo \"servizio + Lainate\" (dove la competizione è molto inferiore a \"servizio + Milano\"), e comunicare in modo credibile l'offerta senza sembrare un template riciclato.",
+    "Per approfondire la parte SEO puoi vedere <a href=\"/seo-locale-lainate.html\" style=\"color:var(--primary-light)\">SEO Locale Lainate</a>. Il pricing per la realizzazione è trasparente: <strong>landing da €500</strong>, <strong>sito vetrina da €1.200</strong>, <strong>e-commerce custom da €3.500</strong>. Un solo referente, perimetro scritto prima di partire, 30 giorni di supporto incluso dopo il lancio."
+  ],
+  "bullets": [
+    "<strong>8 minuti dalla nostra sede</strong> a Rho (Via S. Giorgio 2) — 6 km via SP233 o uscita A8 Lainate.",
+    "<strong>Focus PMI manifatturiere, logistica, studi professionali e commercio locale</strong>.",
+    "<strong>Prezzi pubblicati</strong>: landing €500, vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>SEO tecnica integrata</strong> e dati strutturati LocalBusiness con NAP coerente sulle directory territoriali.",
+    "<strong>Un unico referente</strong> dall'inizio alla fine del progetto."
+  ],
+  "callout": {
+    "title": "Un'attività vicino a Villa Litta, nella zona industriale o verso Barbaiana?",
+    "text": "Villa Litta e il Ninfeo portano flusso turistico stagionale: ristoranti e retail nei dintorni possono costruire una strategia digitale molto diversa dal manifatturiero della zona industriale. In fase di brief ti diciamo chiaramente quali query ha senso presidiare nella tua zona — senza vendere parole chiave generiche."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study clienti Lainate reali con consenso, specificando settore (manifatturiero vs retail).",
+    "EDITORIAL_TODO: mappa / tempi di percorrenza tra zona industriale Lainate e sede Rho."
+  ]
+}

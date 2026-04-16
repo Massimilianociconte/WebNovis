@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "city": "cinisello-balsamo",
+    "service": "seo-locale",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /seo-locale-cinisello-balsamo.html. Pricing €400/mese. Focus: bacino medio-grande con competizione digitale ancora bassa, opportunità temporale.",
+    "source": "hand-crafted"
+  },
+  "headline": "SEO locale a Cinisello Balsamo: un bacino grande con competizione digitale ancora bassa",
+  "body": [
+    "Cinisello Balsamo ha un bacino abbastanza grande da generare volumi di ricerca interessanti su query come \"elettricista Cinisello\", \"dentista Cinisello\", \"palestra Cinisello\". Al tempo stesso, la presenza digitale media delle attività locali è ancora debole: <strong>Google Business Profile spesso incompleti</strong>, siti senza dati strutturati, zero presidio delle query lunghe commerciali. Questa combinazione crea un'opportunità temporale: chi investe adesso ha margini di miglioramento rapidi.",
+    "Il piano parte da un <strong>audit di 7-10 giorni</strong> sulle query realmente cercate per il tuo settore. Poi: <strong>ricostruzione di Google Business Profile</strong> (categoria corretta, servizi, attributi, Q&amp;A, foto e post regolari, risposte alle review), <strong>dati strutturati Schema.org LocalBusiness</strong> sul sito, <strong>NAP coerente</strong> su directory verticali, <strong>review strategy autentica</strong> (mai comprate, mai finte). In parallelo, content locale mirato su query lunghe.",
+    "Pricing <strong>€400/mese</strong>, continuativo, nessun vincolo annuale. Report mensile con dati reali di Google Search Console e Google Business. Se a 2-3 mesi i numeri non stanno crescendo in modo coerente con il piano, lo diciamo per primi e ridefiniamo la strategia."
+  ],
+  "bullets": [
+    "<strong>Audit iniziale</strong> su query realmente cercate dal tuo settore a Cinisello.",
+    "<strong>Google Business Profile</strong> riscritto completamente, con aggiornamenti regolari.",
+    "<strong>Schema.org LocalBusiness + NAP coerente</strong> su directory rilevanti.",
+    "<strong>Review strategy autentica</strong>: review solo da clienti reali, mai comprate.",
+    "<strong>€400/mese</strong> + report mensile GSC + Google Business, zero vincoli annuali."
+  ],
+  "callout": {
+    "title": "Bacino grande + competizione bassa = finestra temporale",
+    "text": "Il pattern è noto: quando un mercato locale è ancora poco presidiato digitalmente, chi arriva prima con un sito fatto bene e SEO locale costante prende posizione e difende i ranking per anni. Quando il mercato si satura (altri competitor investono), entrare dopo diventa molto più costoso. A Cinisello questa finestra è ancora aperta, ma non all'infinito."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study GSC reali di clienti cinisellesi."
+  ]
+}

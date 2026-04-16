@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "city": "cinisello-balsamo",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-cinisello-balsamo.html. Fatti verificati: Centro Culturale Il Pertini, area industriale e commerciale nord Milano, ~76k abitanti. distanzaSede 30 min / 14 km.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web a Cinisello Balsamo: partner per PMI, servizi e commercio del nord Milano",
+  "body": [
+    "Cinisello Balsamo è uno dei comuni più popolosi dell'hinterland milanese nord, con un <strong>tessuto produttivo diversificato</strong> — industria, commercio, servizi, realtà tech — e una vita culturale attiva (il Centro Culturale Il Pertini è uno dei punti di riferimento della zona). È un mercato maturo in termini di dimensioni ma ancora poco presidiato digitalmente dalla maggior parte delle attività locali.",
+    "Dalla nostra sede di Rho a Cinisello Balsamo ci sono circa <strong>14 km / 30 minuti</strong>, sul bordo orientale della nostra area operativa primaria. Per il quotidiano lavoriamo in videocall con un unico referente; per il brief iniziale e la consegna possiamo venire in presenza. Per attività con showroom, retail o servizi fisici da far vedere, l'incontro di persona resta la scelta più efficace.",
+    "Il pricing è quello pubblicato: <strong>landing da €500, sito vetrina da €1.200, e-commerce custom da €3.500</strong>. Per il cluster SEO locale vedi <a href=\"/seo-locale-cinisello-balsamo.html\" style=\"color:var(--primary-light)\">SEO Locale Cinisello Balsamo</a>. Codice 100% custom, SEO tecnica integrata, 30 giorni di supporto post-lancio. Preventivo scritto entro 24 ore con perimetro chiaro."
+  ],
+  "bullets": [
+    "<strong>30 minuti da Rho</strong> — visite in presenza possibili su brief e milestone.",
+    "<strong>Focus PMI, servizi, commercio, attività culturali e sociali</strong>.",
+    "<strong>Prezzi pubblicati</strong>: landing €500, sito vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Codice 100% custom + SEO tecnica</strong> integrata, niente WordPress.",
+    "<strong>Un unico referente</strong> dal brief al go-live."
+  ],
+  "callout": {
+    "title": "Competizione digitale a Cinisello: ancora poco presidiata, per chi sa cogliere il momento",
+    "text": "Molte attività cinisellesi hanno ancora siti datati o Google Business Profile incompleti. Chi investe ora in un sito fatto bene + SEO locale consistente può salire nelle query commerciali locali con investimenti ragionevoli. Il vantaggio competitivo è temporaneo: più aziende capiscono l'opportunità, più cresce la competizione e salgono i costi."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study attività cinisellesi (retail, servizi) con risultati pubblicabili."
+  ]
+}

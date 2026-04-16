@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "city": "sesto-san-giovanni",
+    "service": "agenzia-web",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /agenzia-web-sesto-san-giovanni.html. Fatti verificati online: ex area Falck in riqualificazione (1,5 milioni m², progetto Unionezero, più grande rigenerazione urbana d'Europa), M1 Sesto FS / Sesto Marelli. distanzaSede 33 min / 15 km.",
+    "source": "hand-crafted"
+  },
+  "headline": "Agenzia web a Sesto San Giovanni: partner per PMI in una città in forte trasformazione",
+  "body": [
+    "Sesto San Giovanni è una delle città metropolitane in più forte trasformazione d'Italia. Il progetto di <strong>riqualificazione dell'ex area Falck</strong> (circa 1,5 milioni di metri quadri — una delle più grandi rigenerazioni urbane d'Europa, progetto Unionezero) sta cambiando il tessuto cittadino con nuovi insediamenti residenziali, uffici, servizi. In parallelo convive una città industriale storica con PMI, artigianato, commercio e una fascia tech emergente attorno al Parco Scientifico.",
+    "Dalla nostra sede di Rho a Sesto San Giovanni ci sono circa <strong>15 km / 33 minuti</strong>. È sul bordo dell'area operativa primaria: le visite in presenza sono possibili per brief e milestone chiave, mentre il quotidiano funziona meglio in videocall con un unico referente. Per un'attività sestese che valuta un partner, conviene pesare il trade-off tra vicinanza (agenzie in loco) e approccio (un'agenzia con pricing trasparente, codice custom e processo chiaro).",
+    "Pricing pubblicato: <strong>landing da €500, sito vetrina da €1.200, e-commerce custom da €3.500</strong>. Codice 100% custom, SEO tecnica integrata, 30 giorni di supporto post-lancio, un unico referente. Per progetti con integrazioni più complesse (CRM, area clienti, portali) quotabili su perimetro in fase di brief."
+  ],
+  "bullets": [
+    "<strong>33 minuti da Rho</strong> — visite in presenza possibili, ma meno frequenti di città più vicine.",
+    "<strong>Focus PMI industriali storiche, startup tech, retail e servizi in trasformazione</strong>.",
+    "<strong>Prezzi pubblicati</strong>: landing €500, sito vetrina €1.200, e-commerce custom €3.500.",
+    "<strong>Codice 100% custom</strong>: performance e SEO tecnica di default.",
+    "<strong>Un unico referente</strong> dal brief al go-live + 30 giorni di supporto."
+  ],
+  "callout": {
+    "title": "Città in trasformazione = opportunità digitali diverse",
+    "text": "Le attività che si insediano nei nuovi quartieri ex-Falck hanno esigenze di posizionamento geo molto specifiche: stanno partendo da zero e devono farsi trovare da un bacino che si sta formando ora. Le realtà storiche della Sesto industriale hanno invece esigenze di riposizionamento: aggiornare un sito vecchio e spesso ri-intercettare i clienti che negli ultimi anni si sono spostati altrove per trovare fornitori digitalmente visibili."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study PMI Sesto (industriale storica vs startup tech)."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "city": "rho",
+    "service": "seo-locale",
+    "tier": 1,
+    "version": 1,
+    "lastUpdated": "2026-04-17",
+    "notes": "Tier 1 editorial override for /seo-locale-rho.html. Taglio: SEO locale concreta (Google Business Profile, query geo-specifiche, dati strutturati). Pricing €400/mese da data/services.json. Fatti verificati: sede Rho + area ex-Expo + Fiera Milano.",
+    "source": "hand-crafted"
+  },
+  "headline": "SEO locale a Rho: posizionare la tua attività dove la cercano davvero",
+  "body": [
+    "La SEO locale a Rho non è \"comprare pacchetti di parole chiave\". È un lavoro paziente su <strong>Google Business Profile</strong>, on-page tecnica, contenuto territoriale vero e autorità costruita nel tempo. Il nostro approccio parte da un audit concreto: dove sei oggi sulle query che contano (esempio: \"elettricista Rho\", \"dentista Rho\", \"studio commercialista Rho\"), dove sono i tuoi competitor, che gap c'è tra il tuo sito e il top-3.",
+    "Il primo mese tipico è operativo, non teorico: <strong>setup / recovery Google Business Profile</strong> (categoria, servizi, attributi, foto, post, Q&amp;A), <strong>ottimizzazione on-page</strong> del sito con dati strutturati LocalBusiness, NAP coerente, meta geo-specifici, copy orientato all'intent commerciale locale. Dal secondo mese si lavora su review, link da realtà territoriali (associazioni, directory verticali, partnership), e content di supporto per coprire le long-tail della tua zona.",
+    "Per una PMI di Rho il bacino è specifico: chi cerca servizi \"a Rho\" è al 90% cliente pronto, non \"chi studia\". Non servono trucchi, serve un'implementazione fatta bene con un investimento costante e ragionevole. Il pricing parte da <strong>€400/mese</strong> con KPI misurabili in Search Console e Google Business — niente \"crescita del 300%\" promessa, solo ciò che si può documentare."
+  ],
+  "bullets": [
+    "<strong>Setup Google Business Profile completo</strong> (categoria, servizi, attributi, Q&amp;A, foto) + strategia review verificabili.",
+    "<strong>Dati strutturati Schema.org LocalBusiness</strong> inseriti on-page con NAP coerente su tutte le directory rilevanti.",
+    "<strong>Audit delle query locali reali</strong>: non inventiamo keyword, partiamo da ciò che cercano davvero i clienti di Rho su Google.",
+    "<strong>Report mensile chiaro</strong>: posizioni, click, chiamate dal profilo, richieste di indicazioni — dati GSC + Google Business reali.",
+    "<strong>Investimento da €400/mese</strong> — continuativo, cancellabile senza vincoli annuali."
+  ],
+  "callout": {
+    "title": "In quanto tempo si vedono i risultati?",
+    "text": "Le parti fattibili subito (Google Business, dati strutturati, on-page) possono generare primi effetti in 4-8 settimane sulle query meno competitive. Per consolidarsi nella top-3 di query commerciali forti in genere servono 3-6 mesi di lavoro costante, più eventuali review raccolte in modo autentico. Se qualcuno ti promette la prima pagina in 30 giorni su una query competitiva, sta solo vendendo una promessa che non può mantenere."
+  },
+  "editorialTodos": [
+    "EDITORIAL_TODO: case study real-world con dati GSC pubblicabili (prima/dopo su query geo).",
+    "EDITORIAL_TODO: screenshot Google Business Profile di clienti Rho (con consenso)."
+  ]
+}
