@@ -39,6 +39,10 @@ function main() {
     'search-index.json must include a representative geo commercial page'
   );
   assert.ok(
+    searchIndex.some(entry => entry.url === '/seo-locale-rozzano.html'),
+    'search-index.json must include data-validated geo pages reopened after the GSC/Bing audit'
+  );
+  assert.ok(
     searchAiIndex.some(entry => entry.url === '/zone-servite/'),
     'search-ai-index.json must include the local hub page'
   );

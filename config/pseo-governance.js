@@ -2,10 +2,12 @@
  * pSEO governance — allowlist-based indexation control.
  *
  * Strategy (post-audit 2026-04):
- *   - ~920 GEO pages are generated but only TIER 1 + TIER 2 paths are indexable.
+ *   - ~920 GEO pages are generated but only TIER 1 + TIER 2 + data-validated
+ *     paths are indexable.
  *     Everything else is `noindex, follow` and excluded from sitemap.
- *   - Rationale: reduce doorway footprint and concentrate authority on ~40
- *     geographically/commercially strategic pages (see audit Fase 2).
+ *   - Rationale: reduce doorway footprint and concentrate authority on ~60
+ *     geographically/commercially strategic pages plus a small set of pages
+ *     that earned Search Console/Bing signals after the first de-amplification.
  *   - Non-GEO pages (/, /servizi/*, /portfolio/*, /blog/*, /chi-siamo.html, ...)
  *     are NEVER de-amplified by this module.
  *   - `REMOVED_PATHS` are paths we intend to physically remove (404/301).
@@ -99,10 +101,30 @@ const TIER2_INDEXABLE_GEO_PATHS = new Set([
   '/agenzia-web-novate-milanese.html'
 ]);
 
+// ─────────────────────────────────────────────────────────────────────────────
+// TIER 3 — pagine riaperte perché validate dai dati reali.
+// Criterio: impression/posizione/citazioni AI già osservate nei report GSC/Bing
+// di aprile 2026, più contenuto locale sufficiente da sostenere l'indicizzazione.
+// Questo set va ampliato solo con evidenza, non come ritorno alla pSEO massiva.
+// ─────────────────────────────────────────────────────────────────────────────
+const DATA_VALIDATED_INDEXABLE_GEO_PATHS = new Set([
+  '/seo-locale-cormano.html',
+  '/seo-locale-rozzano.html',
+  '/seo-locale-bresso.html',
+  '/realizzazione-siti-web-garbagnate.html',
+  '/realizzazione-siti-web-limbiate.html',
+  '/google-ads-monza.html',
+  '/landing-page-milano.html',
+  '/ecommerce-senago.html',
+  '/email-marketing-monza.html',
+  '/graphic-design-milano.html'
+]);
+
 // Unione delle allowlist: path GEO ammessi all'indicizzazione.
 const ALL_INDEXABLE_GEO_PATHS = new Set([
   ...TIER1_INDEXABLE_GEO_PATHS,
-  ...TIER2_INDEXABLE_GEO_PATHS
+  ...TIER2_INDEXABLE_GEO_PATHS,
+  ...DATA_VALIDATED_INDEXABLE_GEO_PATHS
 ]);
 
 // Retro-compat: alcuni script leggono `STRATEGIC_INDEXABLE_GEO_PATHS`.
@@ -237,6 +259,7 @@ module.exports = {
   STRATEGIC_SEO_CITY_SLUGS,
   TIER1_INDEXABLE_GEO_PATHS,
   TIER2_INDEXABLE_GEO_PATHS,
+  DATA_VALIDATED_INDEXABLE_GEO_PATHS,
   ALL_INDEXABLE_GEO_PATHS,
   AUTO_DEAMPLIFIED_GEO_PATHS,
   PHASE1_DEAMPLIFIED_PATHS,

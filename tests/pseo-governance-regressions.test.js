@@ -73,8 +73,26 @@ function main() {
 
   assert.equal(
     governance.getIndexationDirectivesForPath('/seo-locale-rozzano.html'),
-    'noindex, follow',
-    'seo-locale-rozzano.html should be de-amplified because extended geo-service pages dilute index quality'
+    'index, follow',
+    'seo-locale-rozzano.html should be indexable because it is in the data-validated opportunity set'
+  );
+
+  assert.equal(
+    governance.getIndexationDirectivesForPath('/seo-locale-cormano.html'),
+    'index, follow',
+    'seo-locale-cormano.html should be indexable because it earned strong local SEO signals'
+  );
+
+  assert.equal(
+    governance.getIndexationDirectivesForPath('/realizzazione-siti-web-limbiate.html'),
+    'index, follow',
+    'realizzazione-siti-web-limbiate.html should be indexable because it earned data-validated demand'
+  );
+
+  assert.equal(
+    governance.getIndexationDirectivesForPath('/google-ads-monza.html'),
+    'index, follow',
+    'google-ads-monza.html should be indexable because it earned data-validated demand'
   );
 
   assert.equal(
@@ -145,8 +163,20 @@ function main() {
     'sitemap.xml must include seo-locale-rho.html because it is now a strategic geo page'
   );
   assert.ok(
-    !sitemap.includes('https://www.webnovis.com/seo-locale-rozzano.html'),
-    'sitemap.xml must exclude de-amplified page seo-locale-rozzano.html'
+    sitemap.includes('https://www.webnovis.com/seo-locale-rozzano.html'),
+    'sitemap.xml must include seo-locale-rozzano.html because it is data-validated'
+  );
+  assert.ok(
+    sitemap.includes('https://www.webnovis.com/seo-locale-cormano.html'),
+    'sitemap.xml must include seo-locale-cormano.html because it is data-validated'
+  );
+  assert.ok(
+    sitemap.includes('https://www.webnovis.com/realizzazione-siti-web-limbiate.html'),
+    'sitemap.xml must include realizzazione-siti-web-limbiate.html because it is data-validated'
+  );
+  assert.ok(
+    sitemap.includes('https://www.webnovis.com/google-ads-monza.html'),
+    'sitemap.xml must include google-ads-monza.html because it is data-validated'
   );
   assert.ok(
     !sitemap.includes('https://www.webnovis.com/automazione-business-monza.html'),

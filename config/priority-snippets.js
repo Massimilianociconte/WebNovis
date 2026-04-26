@@ -115,6 +115,22 @@ module.exports = {
     title: 'Realizzazione siti web a Bresso: da €1.200 e SEO | WebNovis',
     description: 'Realizzazione siti web a Bresso per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e preventivo in 24 ore.'
   },
+  'agenzia-web-rho.html': {
+    title: 'Agenzia web a Rho: siti, SEO e branding | WebNovis',
+    description: 'Agenzia web a Rho per siti custom, e-commerce, branding e SEO locale. Sede in Via S. Giorgio 2, metodo diretto e preventivo rapido per PMI e professionisti.'
+  },
+  'realizzazione-siti-web-rho.html': {
+    title: 'Realizzazione siti web a Rho: da €1.200 e SEO | WebNovis',
+    description: 'Realizzazione siti web a Rho per PMI e professionisti: siti custom, landing ed e-commerce con SEO tecnica, performance e gestione diretta dalla sede WebNovis.'
+  },
+  'seo-locale-rho.html': {
+    title: 'SEO locale a Rho: Google Maps e lead locali | WebNovis',
+    description: 'SEO locale a Rho per Google Maps, ricerche geolocalizzate e richieste qualificate. Audit, profilo Google Business, pagine locali e reporting.'
+  },
+  'realizzazione-siti-web-limbiate.html': {
+    title: 'Siti web a Limbiate: da €1.200 e SEO | WebNovis',
+    description: 'Realizzazione siti web a Limbiate per PMI e professionisti: siti custom, landing ed e-commerce con SEO integrata, performance e preventivo in 24 ore.'
+  },
   'landing-page-milano.html': {
     title: 'Landing page a Milano: da €500 per lead generation | WebNovis',
     description: 'Landing page a Milano per Google Ads, Meta Ads ed eventi: copy, design e tracking orientati ai lead. Da €500, con struttura pensata per campagne che devono convertire.'
@@ -150,6 +166,10 @@ module.exports = {
   'seo-locale-cormano.html': {
     title: 'SEO locale a Cormano: Google Maps e lead locali | WebNovis',
     description: 'SEO locale a Cormano per attività e professionisti che vogliono più visibilità su Google Maps, chiamate e richieste qualificate.'
+  },
+  'seo-locale-rozzano.html': {
+    title: 'SEO locale a Rozzano: Google Maps e contatti | WebNovis',
+    description: 'SEO locale a Rozzano per attività e professionisti: Google Business Profile, pagine locali, segnali di fiducia e richieste qualificate da Maps.'
   },
   'seo-locale-buccinasco.html': {
     title: 'SEO locale a Buccinasco: Google Maps e lead locali | WebNovis',

@@ -1,8 +1,9 @@
 const prioritySnippets = require('./priority-snippets');
 const { getClusterStrategicLinks } = require('./blog-cluster-links');
-const { getIndexationDirectivesForPath } = require('./pseo-governance');
+const { getIndexationDirectivesForPath, isGeoPath } = require('./pseo-governance');
 
 const BASE_URL = 'https://www.webnovis.com';
+const INDEX_ROBOTS = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 const NOINDEX_ROBOTS = 'noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 const HOMEPAGE_HERO_OLD = '<h1 class="hero-title"> <span class="glitch gradient-text" data-text="Agenzia Digitale">Agenzia Digitale</span> che <span class="highlight-gold">Accende</span><br> la tua <span class="sr-only">visibilità, crescita, identità e presenza online</span><span class="hero-rotating-wrapper" aria-hidden="true"> <span class="hero-rotating-word active">visibilità</span> <span class="hero-rotating-word">crescita</span> <span class="hero-rotating-word">identità</span> <span class="hero-rotating-word">presenza</span> </span> </h1> <p class="hero-subtitle"> La tua agenzia digitale a Milano per sviluppo web,<br> grafica e crescita della tua visibilità online </p> <div class="hero-cta"> <a href="contatti.html" title="Contattaci per iniziare il tuo progetto" class="btn btn-primary"> <span>Scopri Come</span> <svg viewBox="0 0 20 20" fill="none" height="20" width="20"> <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/> </svg> </a> <a href="#servizi" title="Scopri i nostri servizi" class="btn btn-secondary">I Nostri Servizi</a> </div>';
 const HOMEPAGE_CORE_LINKS_PATTERN = /<(?:p|nav) class="hero-core-links"[^>]*>[\s\S]*?<\/(?:p|nav)>/i;
@@ -17,7 +18,11 @@ const LOCAL_PAGES_ALREADY_OPTIMIZED = new Set([
   'sito-vetrina-bollate.html',
   'graphic-design-bareggio.html',
   'realizzazione-siti-web-garbagnate.html',
+  'realizzazione-siti-web-limbiate.html',
   'realizzazione-siti-web-bresso.html',
+  'agenzia-web-rho.html',
+  'realizzazione-siti-web-rho.html',
+  'seo-locale-rho.html',
   'landing-page-milano.html',
   'ecommerce-milano.html',
   'sviluppo-app-mobile-milano.html',
@@ -26,6 +31,7 @@ const LOCAL_PAGES_ALREADY_OPTIMIZED = new Set([
   'ecommerce-senago.html',
   'seo-locale-bresso.html',
   'seo-locale-cormano.html',
+  'seo-locale-rozzano.html',
   'seo-locale-buccinasco.html',
   'seo-locale-lainate.html',
   'seo-locale-nerviano.html',
@@ -99,6 +105,256 @@ const LOCAL_PAGE_CONTENT_UPGRADES = {
     h1: 'Email marketing a Cinisello Balsamo per trasformare contatti in clienti più spesso',
     answer: '<strong>WebNovis</strong> imposta email marketing a Cinisello Balsamo con newsletter, automazioni e flussi CRM pensati per aumentare riacquisti, richieste e qualità della relazione con i clienti già acquisiti.',
     lead: 'Per attività e PMI di <strong>Cinisello Balsamo</strong>, l’email marketing diventa davvero utile quando è collegato a preventivi, form, e-commerce o customer journey già esistenti, non quando viene trattato come un canale isolato.'
+  }
+};
+
+const LOCAL_AUTHORITY_PROOF_BLOCKS = {
+  'agenzia-web-rho.html': {
+    title: 'Perché WebNovis può competere sulle ricerche locali di Rho',
+    lead: 'A Rho lavoriamo con una presenza locale verificabile, contatti diretti e un ecosistema di servizi collegati: sito, SEO, branding, contenuti e campagne devono rafforzarsi a vicenda.',
+    cards: [
+      {
+        title: 'Sede e NAP coerenti',
+        text: 'Via S. Giorgio 2, Rho (MI), telefono e canali di contatto sono ripetuti in modo coerente tra sito, footer, contatti e dati strutturati.'
+      },
+      {
+        title: 'Intento ampio, non generico',
+        text: 'La pagina presidia agenzia web, siti, branding, SEO e crescita digitale a Rho senza disperdere il focus su decine di servizi secondari.'
+      },
+      {
+        title: 'Percorsi interni forti',
+        text: 'Colleghiamo la pagina ai servizi core, alle pagine locali principali e agli hub territoriali per consolidare il significato geografico.'
+      }
+    ],
+    closer: 'In pratica, chi cerca un partner digitale a Rho trova un riferimento completo: non solo sviluppo, ma strategia, identità e crescita misurabile.'
+  },
+  'realizzazione-siti-web-rho.html': {
+    title: 'Come trasformiamo un sito locale in uno strumento commerciale',
+    lead: 'Per competere con fornitori locali e agenzie milanesi non basta un bel layout: servono prezzo chiaro, metodo, performance, sede riconoscibile e una proposta capace di generare contatti.',
+    cards: [
+      {
+        title: 'Offerta leggibile subito',
+        text: 'Landing da 500 euro, siti vetrina da 1.200 euro ed e-commerce da 3.500 euro chiariscono il range prima del contatto.'
+      },
+      {
+        title: 'Differenza tecnica',
+        text: 'Il focus sul codice custom, sulla SEO tecnica e sulle performance distingue WebNovis dalle soluzioni basate solo su template o plugin.'
+      },
+      {
+        title: 'Contesto locale reale',
+        text: 'Rho, Fiera Milano e hinterland sono citati come contesto commerciale concreto, non come semplice sostituzione automatica di città.'
+      }
+    ],
+    closer: 'Il risultato è un sito più utile per chi deve scegliere: capisce cosa viene realizzato, quanto può investire e perché WebNovis è una scelta concreta sul territorio.'
+  },
+  'seo-locale-rho.html': {
+    title: 'Il cluster SEO locale parte da Rho e si espande con criterio',
+    lead: 'La SEO locale efficace parte da un centro chiaro: Google Business Profile, pagine territoriali, recensioni, tracking e query devono raccontare la stessa attività nello stesso territorio.',
+    cards: [
+      {
+        title: 'GBP e sito insieme',
+        text: 'La pagina spiega che Maps, profilo Google, contenuti locali e segnali on-page devono raccontare la stessa area servita.'
+      },
+      {
+        title: 'Misurazione concreta',
+        text: 'Non promettiamo posizioni automatiche: misuriamo query, impression, CTR, chiamate e richieste generate dalla visibilità locale.'
+      },
+      {
+        title: 'Hinterland coerente',
+        text: 'Rho resta il centro geografico e rafforza le pagine limitrofe senza tornare alla generazione massiva di pagine quasi duplicate.'
+      }
+    ],
+    closer: 'Questo approccio consente di crescere senza perdere qualità: poche pagine locali forti, contenuti utili e misurazione continua.'
+  },
+  'realizzazione-siti-web-garbagnate.html': {
+    title: 'Perché Garbagnate è una zona interessante per progetti web locali',
+    lead: 'Garbagnate Milanese ha un tessuto di PMI, servizi e attività locali che può beneficiare di siti più chiari, veloci e orientati alle richieste. Qui il sito deve aiutare a farsi trovare e a farsi scegliere.',
+    cards: [
+      {
+        title: 'Vicino alla sede',
+        text: 'La distanza da Rho rende credibile la copertura locale e facilita incontri, raccolta materiali e gestione rapida del progetto.'
+      },
+      {
+        title: 'Servizio ad alta intenzione',
+        text: '“Realizzazione siti web” intercetta una domanda transazionale più forte rispetto a servizi laterali o informativi.'
+      },
+      {
+        title: 'Contenuto orientato al contatto',
+        text: 'Prezzi, tempi, metodo e CTA sono espliciti, così la pagina può lavorare sia per ranking sia per conversione.'
+      }
+    ],
+    closer: 'Per questo lavoriamo su contenuti, struttura, CTA e segnali locali: ogni elemento deve rendere più semplice passare dalla ricerca al contatto.'
+  },
+  'realizzazione-siti-web-limbiate.html': {
+    title: 'Limbiate: siti web per attività che vogliono sembrare più solide online',
+    lead: 'A Limbiate molte attività hanno già presenza fisica, reputazione e clientela locale: il salto digitale arriva quando il sito rende tutto questo più visibile, ordinato e misurabile.',
+    cards: [
+      {
+        title: 'Domanda locale non satura',
+        text: 'Il contenuto racconta un mercato con PMI, commercio e servizi che possono beneficiare di siti più veloci, chiari e misurabili.'
+      },
+      {
+        title: 'Proposta completa',
+        text: 'Sito vetrina, landing ed e-commerce sono collegati a prezzi e deliverable, evitando una pagina vaga da “web agency generica”.'
+      },
+      {
+        title: 'Prossimità operativa',
+        text: 'La gestione da Rho e il raggio dell’hinterland rendono credibile la copertura senza fingere una sede fisica a Limbiate.'
+      }
+    ],
+    closer: 'Il prossimo salto qualitativo, per ogni progetto locale, è collegare il sito a prove concrete: portfolio, recensioni, contenuti utili e percorsi di contatto più semplici.'
+  },
+  'seo-locale-cormano.html': {
+    title: 'Cormano: SEO locale per essere scelti nelle ricerche vicine',
+    lead: 'A Cormano la competizione locale si gioca spesso su Google Maps, recensioni, chiarezza dei servizi e fiducia immediata. Il sito deve sostenere questi segnali, non vivere separato dal profilo Google.',
+    cards: [
+      {
+        title: 'Intento Maps molto chiaro',
+        text: 'La pagina parla di Google Maps, profilo Google Business, recensioni e richieste locali con una promessa coerente col servizio.'
+      },
+      {
+        title: 'Schema e contenuto allineati',
+        text: 'Canonical, dati strutturati, H1 e answer capsule indicano lo stesso servizio nella stessa città, riducendo ambiguità semantica.'
+      },
+      {
+        title: 'Misurazione continua',
+        text: 'Query, chiamate, richieste e visibilità sulle pagine locali aiutano a capire quali interventi stanno portando valore reale.'
+      }
+    ],
+    closer: 'Il vantaggio arriva quando ogni segnale racconta la stessa cosa: chi sei, dove lavori, cosa offri e perché contattarti ora.'
+  },
+  'seo-locale-bresso.html': {
+    title: 'Bresso: SEO locale per attività che vogliono più contatti in zona',
+    lead: 'A Bresso la visibilità locale passa da segnali molto concreti: profilo Google curato, pagine chiare, recensioni, servizi descritti bene e un sito capace di trasformare ricerche vicine in richieste.',
+    cards: [
+      {
+        title: 'Profilo Google più leggibile',
+        text: 'Categorie, servizi, descrizioni, immagini e aggiornamenti aiutano chi cerca a capire subito se l’attività è adatta alla sua esigenza.'
+      },
+      {
+        title: 'Pagine locali più utili',
+        text: 'La pagina non deve ripetere solo la città: deve spiegare cosa viene fatto, per chi, con quali priorità e con quali segnali di fiducia.'
+      },
+      {
+        title: 'Recensioni e contatti',
+        text: 'Il lavoro locale funziona meglio quando recensioni, telefono, form e percorsi di richiesta sono coerenti e facili da usare.'
+      }
+    ],
+    closer: 'Così la SEO locale smette di essere solo “posizionamento” e diventa un sistema per aumentare fiducia, richieste e qualità dei contatti.'
+  },
+  'seo-locale-rozzano.html': {
+    title: 'Rozzano: presidiare Maps con contenuti utili e segnali chiari',
+    lead: 'A Rozzano la SEO locale deve parlare a chi cerca un professionista, un negozio, uno studio o un servizio vicino. Serve una presenza chiara su Maps, sito e segnali di fiducia.',
+    cards: [
+      {
+        title: 'Settori e punti di domanda',
+        text: 'Il contenuto collega sanitario, commercio, servizi e logistica al bisogno reale di comparire in ricerche locali ad alta intenzione.'
+      },
+      {
+        title: 'Metodo leggibile',
+        text: 'Audit locale, interventi on-page, profilo Google e review process spiegano cosa viene fatto prima, durante e dopo il lavoro.'
+      },
+      {
+        title: 'Niente promesse assolute',
+        text: 'La pagina lavora su visibilità e richieste misurabili, evitando claim non dimostrabili come “primi garantiti” o ranking automatici.'
+      }
+    ],
+    closer: 'Il risultato atteso è una presenza locale più comprensibile: più facile da trovare, più facile da valutare, più facile da contattare.'
+  },
+  'google-ads-monza.html': {
+    title: 'Google Ads a Monza: separare traffico, tracking e pagina di atterraggio',
+    lead: 'Per competere a Monza con Google Ads non basta attivare campagne: traffico, landing page, tracking e qualità del contatto devono essere progettati come un unico percorso.',
+    cards: [
+      {
+        title: 'Intento commerciale forte',
+        text: 'Chi cerca Google Ads a Monza spesso vuole lead, chiamate o vendite: la pagina mette il focus su campagne search e tracciamento.'
+      },
+      {
+        title: 'Landing coerenti',
+        text: 'Il messaggio collega advertising e pagine di destinazione, punto chiave per non sprecare budget su traffico non convertito.'
+      },
+      {
+        title: 'Ottimizzazione continua',
+        text: 'Budget, query, conversioni e qualità del contatto vengono letti insieme per decidere dove scalare e dove tagliare.'
+      }
+    ],
+    closer: 'Per Monza la priorità non è solo comparire: è far capire perché una campagna locale gestita bene costa meno di una campagna confusa.'
+  },
+  'landing-page-milano.html': {
+    title: 'Landing page a Milano: qualità della pagina prima del budget media',
+    lead: 'Milano è competitiva: la pagina deve intercettare chi investe in campagne e vuole una landing che converta, non una pagina generica con un modulo in fondo.',
+    cards: [
+      {
+        title: 'Copy e offerta',
+        text: 'Headline, prova, FAQ e CTA vengono progettate in funzione dell’intento dell’annuncio e del livello di consapevolezza dell’utente.'
+      },
+      {
+        title: 'Tracking pulito',
+        text: 'La pagina sottolinea la misurazione di form, click, chiamate e micro-conversioni prima di aumentare il budget.'
+      },
+      {
+        title: 'Velocità e mobile',
+        text: 'A Milano molte campagne partono da mobile: caricamento, leggibilità e gerarchia della CTA sono fattori di conversione.'
+      }
+    ],
+    closer: 'Questa pagina rafforza il ponte tra SEO e paid: più è chiara, più aiuta anche gli annunci Google e Meta.'
+  },
+  'ecommerce-senago.html': {
+    title: 'E-commerce a Senago: vendere online con una struttura più solida',
+    lead: 'Per un negozio o brand locale di Senago, l’e-commerce deve unire catalogo, checkout, SEO, UX e gestione operativa. La piattaforma giusta dipende da margini, prodotti e obiettivi reali.',
+    cards: [
+      {
+        title: 'Piattaforma scelta sul ROI',
+        text: 'Shopify, WooCommerce o custom vengono valutati in base a catalogo, margini, integrazioni e crescita prevista.'
+      },
+      {
+        title: 'SEO e UX insieme',
+        text: 'Categorie, schede prodotto, checkout e performance non sono dettagli tecnici: incidono su traffico organico e conversioni.'
+      },
+      {
+        title: 'Percorso locale credibile',
+        text: 'La pagina parla a negozi e brand dell’area nord, con gestione da Rho e una proposta adatta a PMI.'
+      }
+    ],
+    closer: 'Un progetto e-commerce funziona quando ogni scelta tecnica sostiene una scelta commerciale: meno attrito, più fiducia, più possibilità di vendita.'
+  },
+  'email-marketing-monza.html': {
+    title: 'Email marketing a Monza: trasformare lead e clienti in ricavi ricorrenti',
+    lead: 'Per PMI e professionisti di Monza, l’email marketing diventa utile quando collega sito, form, preventivi, clienti e riacquisti in flussi chiari e misurabili.',
+    cards: [
+      {
+        title: 'Automazioni pratiche',
+        text: 'Newsletter, recupero preventivi, follow-up, riacquisto e segmentazione spiegano casi d’uso concreti per PMI e servizi.'
+      },
+      {
+        title: 'Collegamento con sito e CRM',
+        text: 'L’email marketing funziona quando è collegato a form, e-commerce, liste pulite e consenso, non come invio sporadico.'
+      },
+      {
+        title: 'Misurazione sostenibile',
+        text: 'Open rate, click, richieste e riacquisti vengono letti per migliorare messaggi e flussi nel tempo.'
+      }
+    ],
+    closer: 'L’obiettivo non è inviare più email, ma recuperare opportunità che il sito, le campagne e il passaparola hanno già generato.'
+  },
+  'graphic-design-milano.html': {
+    title: 'Graphic design a Milano: posizionamento visivo, non solo “logo bello”',
+    lead: 'Milano è il mercato più competitivo: per questo la pagina deve raccontare brand identity, materiali e coerenza visuale come leve di fiducia e conversione.',
+    cards: [
+      {
+        title: 'Sistema di marca',
+        text: 'Logo, palette, tipografia e regole d’uso vengono pensati come un kit riutilizzabile su sito, social, presentazioni e materiali commerciali.'
+      },
+      {
+        title: 'Output concreti',
+        text: 'La pagina chiarisce cosa può essere consegnato: brand identity, coordinato, visual digitali, template e materiali promozionali.'
+      },
+      {
+        title: 'Coerenza con SEO e web',
+        text: 'Il design non resta isolato: deve migliorare qualità percepita, leggibilità e fiducia nelle pagine che generano richieste.'
+      }
+    ],
+    closer: 'Così il design diventa un asset commerciale: rende il brand più riconoscibile, più coerente e più facile da scegliere in un mercato affollato.'
   }
 };
 
@@ -245,8 +501,17 @@ function alignPrioritySnippet(html, relativePath) {
 
 function alignRobotsDirectives(html, relativePath) {
   const publicPath = toPublicUrlPath(relativePath);
-  if (getIndexationDirectivesForPath(publicPath) !== 'noindex, follow') return html;
-  return replaceMetaTagContent(html, 'name', 'robots', NOINDEX_ROBOTS);
+  const directives = getIndexationDirectivesForPath(publicPath);
+
+  if (directives === 'noindex, follow') {
+    return replaceMetaTagContent(html, 'name', 'robots', NOINDEX_ROBOTS);
+  }
+
+  if (isGeoPath(publicPath)) {
+    return replaceMetaTagContent(html, 'name', 'robots', INDEX_ROBOTS);
+  }
+
+  return html;
 }
 
 function alignHomepageBrandExperience(html, relativePath) {
@@ -585,6 +850,46 @@ function alignPriorityContentTransforms(html, relativePath) {
     return updated;
   }
 
+  if (normalizedPath === 'agenzia-web-rho.html') {
+    let updated = replaceSectionTag(html, 'Agenzia web a Rho · siti, SEO, branding e crescita locale');
+    updated = replaceFirstH1(updated, 'Agenzia web a Rho per siti custom, SEO locale e identità digitale');
+    updated = replaceAnswerCapsule(
+      updated,
+      '<strong>WebNovis</strong> è un’agenzia web a Rho con sede in Via S. Giorgio 2: realizziamo siti custom, e-commerce, branding e SEO locale per PMI e professionisti che vogliono più visibilità, fiducia e richieste misurabili.'
+    );
+    return updated;
+  }
+
+  if (normalizedPath === 'realizzazione-siti-web-rho.html') {
+    let updated = replaceSectionTag(html, 'Realizzazione siti web a Rho · sede locale · SEO integrata');
+    updated = replaceFirstH1(updated, 'Realizzazione siti web a Rho per aziende che vogliono più richieste');
+    updated = replaceAnswerCapsule(
+      updated,
+      '<strong>WebNovis</strong> realizza siti web a Rho con codice custom, SEO tecnica integrata e struttura orientata ai contatti. Landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con gestione diretta dalla nostra sede.'
+    );
+    return updated;
+  }
+
+  if (normalizedPath === 'seo-locale-rho.html') {
+    let updated = replaceSectionTag(html, 'SEO locale a Rho · Google Maps · richieste qualificate');
+    updated = replaceFirstH1(updated, 'SEO locale a Rho per comparire meglio su Google Maps e nelle ricerche in zona');
+    updated = replaceAnswerCapsule(
+      updated,
+      '<strong>WebNovis</strong> lavora sulla SEO locale a Rho con Google Business Profile, pagine locali, segnali on-page, recensioni e report su query e richieste. L’obiettivo è aumentare visibilità utile, non solo impression.'
+    );
+    return updated;
+  }
+
+  if (normalizedPath === 'realizzazione-siti-web-limbiate.html') {
+    let updated = replaceSectionTag(html, 'Siti web a Limbiate · da €1.200 · SEO integrata');
+    updated = replaceFirstH1(updated, 'Realizzazione siti web a Limbiate per PMI e professionisti');
+    updated = replaceAnswerCapsule(
+      updated,
+      '<strong>WebNovis</strong> realizza siti web a Limbiate con design su misura, performance, SEO tecnica integrata e codice custom. Landing da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con gestione diretta da Rho.'
+    );
+    return updated;
+  }
+
   if (normalizedPath === 'sito-vetrina-bollate.html') {
     let updated = replaceSectionTag(html, 'Sito vetrina a Bollate · preventivo in 24 ore');
     updated = replaceFirstH1(updated, 'Sito vetrina a Bollate per aziende che vogliono più contatti');
@@ -681,6 +986,16 @@ function alignPriorityContentTransforms(html, relativePath) {
     updated = replaceAnswerCapsule(
       updated,
       '<strong>WebNovis</strong> lavora sulla SEO locale a Cormano per migliorare Google Maps, presidiare le ricerche ad alta intenzione e generare più chiamate e contatti qualificati per attività e professionisti.'
+    );
+    return updated;
+  }
+
+  if (normalizedPath === 'seo-locale-rozzano.html') {
+    let updated = replaceSectionTag(html, 'SEO locale a Rozzano · Google Maps · contatti qualificati');
+    updated = replaceFirstH1(updated, 'SEO locale a Rozzano per Google Maps, ricerche locali e richieste');
+    updated = replaceAnswerCapsule(
+      updated,
+      '<strong>WebNovis</strong> aiuta attività e professionisti di Rozzano a migliorare Google Maps, pagine locali e segnali di fiducia per aumentare chiamate, visite e richieste qualificate dalle ricerche in zona.'
     );
     return updated;
   }
@@ -840,6 +1155,36 @@ function alignPortfolioExperience(html, relativePath) {
   return updated;
 }
 
+function buildLocalAuthorityProofHtml(block) {
+  const cardsHtml = block.cards
+    .map((card) => `<div class="service-card-mini"> <h3>${card.title}</h3> <p>${card.text}</p> </div>`)
+    .join(' ');
+
+  return `<section class="service-detail" data-webnovis-local-proof="true" style="background:rgba(255,255,255,.01)"> <div class="container"> <h2>${block.title}</h2> <p>${block.lead}</p> <div class="service-grid">${cardsHtml}</div> <p>${block.closer}</p> </div> </section>`;
+}
+
+function alignLocalAuthorityProof(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  const block = LOCAL_AUTHORITY_PROOF_BLOCKS[normalizedPath];
+  if (!block) return html;
+
+  const proofHtml = buildLocalAuthorityProofHtml(block);
+  const existingProofPattern = /<section class="service-detail" data-webnovis-local-proof="true"[\s\S]*?<\/section>/i;
+  if (existingProofPattern.test(html)) {
+    return html.replace(existingProofPattern, proofHtml);
+  }
+
+  if (/<section class="cta-inline"/i.test(html)) {
+    return html.replace(/<section class="cta-inline"/i, `${proofHtml} <section class="cta-inline"`);
+  }
+
+  return html.replace(/<\/main>/i, `${proofHtml} </main>`);
+}
+
+function normalizeLocalMetricPlaceholders(html) {
+  return html.replace(/<strong([^>]*)>NaN\+<\/strong>/g, '<strong$1>Mercato locale</strong>');
+}
+
 function alignLocalPageOpportunityTransforms(html, relativePath) {
   const normalizedPath = normalizeRelativePath(relativePath);
   if (LOCAL_PAGES_ALREADY_OPTIMIZED.has(normalizedPath)) return html;
@@ -860,11 +1205,13 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = alignPrioritySnippet(updated, relativePath);
   updated = alignPriorityContentTransforms(updated, relativePath);
   updated = alignLocalPageOpportunityTransforms(updated, relativePath);
+  updated = alignLocalAuthorityProof(updated, relativePath);
   updated = alignContactPageInfoCards(updated, relativePath);
   updated = alignLegalNavbar(updated, relativePath);
   updated = alignPortfolioExperience(updated, relativePath);
   updated = alignClusterStrategicLinks(updated, relativePath);
   updated = ensureSelfHreflang(updated, relativePath);
+  updated = normalizeLocalMetricPlaceholders(updated);
   updated = alignRobotsDirectives(updated, relativePath);
   updated = alignHomepageBrandExperience(updated, relativePath);
   return updated;
@@ -880,6 +1227,8 @@ module.exports = {
   alignPrioritySnippet,
   alignPriorityContentTransforms,
   alignLocalPageOpportunityTransforms,
+  alignLocalAuthorityProof,
+  normalizeLocalMetricPlaceholders,
   alignContactPageInfoCards,
   alignLegalNavbar,
   alignPortfolioExperience,
