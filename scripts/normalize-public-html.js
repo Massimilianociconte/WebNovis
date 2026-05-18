@@ -17,7 +17,7 @@ const ONLY_PATHS = new Set(
       .filter(Boolean)
   )
 );
-const EXCLUDED_DIRS = new Set(['node_modules', '.git', 'docs', 'scripts', 'css', 'js', 'Img', 'fonts', 'data', 'config', 'tests']);
+const EXCLUDED_DIRS = new Set(['node_modules', '.git', '.claude', 'docs', 'scripts', 'css', 'js', 'Img', 'fonts', 'data', 'config', 'tests']);
 const BLOG_FOOTER_PATTERN = /<footer class="footer">\s*<div class="container">\s*<div class="footer-content">[\s\S]*?<\/footer>/;
 const DESIGNRUSH_SCRIPT_PATTERN = /<script\b[^>]*src="https:\/\/www\.designrush\.com\/topbest\/js\/widgets\/agency-reviews\.js"[^>]*><\/script>/gi;
 const DESIGNRUSH_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/designrush-loader\.js"[^>]*><\/script>/gi;

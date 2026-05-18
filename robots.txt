@@ -28,6 +28,10 @@ Disallow: /*?s=
 Disallow: /server-log.txt
 Disallow: /*.log$
 Disallow: /docs/
+Disallow: /reports/
+Disallow: /templates/*.njk$
+Disallow: /dist/*.map$
+Disallow: /search-ai-index.json
 
 # File ottimizzati per AI (ChatGPT, Claude, Perplexity, Gemini, ecc.)
 User-agent: GPTBot

@@ -57,28 +57,38 @@ jobs:
       - name: Generate geo pages
         run: node scripts/generate-all-geo.js
 
-      # Step 3: Rebuild search index and sitemap
+      # Step 3: Run the same SEO normalization pipeline used by the quality gate
+      - name: Normalize public HTML
+        run: node scripts/normalize-public-html.js
+
+      - name: Update footer
+        run: node scripts/update-footer.js
+
+      - name: Build assets and source HTML
+        run: node build.js
+
+      # Step 4: Rebuild search index and sitemap
       - name: Rebuild search index
         run: node build-search-index.js
 
       - name: Rebuild sitemap
         run: node generate-sitemap.js
 
-      # Step 4: Validate pages (non-blocking — logs warnings but doesn't fail)
+      # Step 5: Validate pages (non-blocking — logs warnings but doesn't fail)
       - name: Validate page quality
         run: node scripts/validate-pages.js || true
 
-      # Step 5: Run SEO monitoring report
+      # Step 6: Run SEO monitoring report
       - name: SEO monitoring report
         run: node scripts/monitor-seo.js
 
-      # Step 6: Submit new/changed URLs to IndexNow
+      # Step 7: Submit new/changed URLs to IndexNow
       - name: Submit to IndexNow
         run: node indexnow-submit.js --all
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
 
-      # Step 7: Commit and push all changes
+      # Step 8: Commit and push all changes
       - name: Commit and push
         uses: stefanzweifel/git-auto-commit-action@v5
         with:

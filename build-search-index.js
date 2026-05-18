@@ -16,7 +16,12 @@ const PROJECT_ROOT = getPublishDir();
 const OUTPUT_FILE = path.join(PROJECT_ROOT, 'search-index.json');
 const AI_OUTPUT_FILE = path.join(PROJECT_ROOT, 'search-ai-index.json');
 
-const ROOT_HTML_EXCLUDES = new Set(['404.html']);
+const ROOT_HTML_EXCLUDES = new Set([
+  '404.html',
+  'grazie.html',
+  'newsletter-template.html',
+  'agenzie-web-rho.html'
+]);
 const PUBLIC_SUBDIRS = [
   'blog',
   'servizi',
@@ -188,6 +193,10 @@ function extractFromHTML(html, url) {
   };
 }
 
+function hasMetaRobotsNoindex(html) {
+  return /<meta\b(?=[^>]*\bname=["']robots["'])(?=[^>]*\bcontent=["'][^"']*noindex)[^>]*>/i.test(String(html || ''));
+}
+
 function walkHtmlFiles(dirPath, baseDir = PROJECT_ROOT) {
   if (!fs.existsSync(dirPath)) return [];
 
@@ -261,7 +270,7 @@ function buildEntry(relativePath) {
   const html = fs.readFileSync(filePath, 'utf8');
   const url = toUrl(relativePath);
   const extracted = extractFromHTML(html, url);
-  const indexable = getIndexationDirectivesForPath(url) !== 'noindex, follow';
+  const indexable = !hasMetaRobotsNoindex(html) && getIndexationDirectivesForPath(url) !== 'noindex, follow';
   const title = extracted.title || path.basename(relativePath, '.html').replace(/[-_]+/g, ' ');
 
   return {

@@ -5,6 +5,16 @@ const { getIndexationDirectivesForPath, isGeoPath } = require('./pseo-governance
 const BASE_URL = 'https://www.webnovis.com';
 const INDEX_ROBOTS = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 const NOINDEX_ROBOTS = 'noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+const NON_PUBLIC_ARTIFACT_ROBOTS = 'noindex, nofollow, max-image-preview:none, max-snippet:0, max-video-preview:0';
+const CANVA_RESIZE_TOOL_URL = 'https://www.canva.com/it_it/strumenti/ridimensionare-foto/';
+const CANVA_LOGO_URL = 'https://static.canva.com/static/images/canva_logo.svg';
+const CANVA_PARTNER_CREDIT_HTML = `<aside data-webnovis-canva-credit="true" aria-label="Strumento citato" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:2rem 0;padding:1rem 1.15rem;border:1px solid rgba(0,196,204,.28);border-radius:14px;background:linear-gradient(135deg,rgba(0,196,204,.1),rgba(125,42,231,.08));box-shadow:0 12px 32px rgba(0,0,0,.16)"> <p style="margin:0;max-width:560px;font-size:.95rem;line-height:1.6;color:var(--gray-light)">Realizzato con lo strumento per <strong>ridimensionare foto</strong> di <a href="${CANVA_RESIZE_TOOL_URL}" target="_blank" rel="sponsored noopener noreferrer" aria-label="Canva - strumento per ridimensionare foto">Canva</a>, utile per adattare rapidamente gli asset visuali ai diversi formati web e social senza perdere coerenza.</p> <img src="${CANVA_LOGO_URL}" alt="Canva" width="80" height="30" loading="eager" decoding="async" fetchpriority="low" style="display:block;width:80px;height:auto;flex:0 0 auto"> </aside>`;
+const NON_PUBLIC_ARTIFACT_PATTERNS = [
+  /^src\//,
+  /^templates\//,
+  /^reports\//,
+  /^newsletter-template\.html$/i
+];
 const HOMEPAGE_HERO_OLD = '<h1 class="hero-title"> <span class="glitch gradient-text" data-text="Agenzia Digitale">Agenzia Digitale</span> che <span class="highlight-gold">Accende</span><br> la tua <span class="sr-only">visibilità, crescita, identità e presenza online</span><span class="hero-rotating-wrapper" aria-hidden="true"> <span class="hero-rotating-word active">visibilità</span> <span class="hero-rotating-word">crescita</span> <span class="hero-rotating-word">identità</span> <span class="hero-rotating-word">presenza</span> </span> </h1> <p class="hero-subtitle"> La tua agenzia digitale a Milano per sviluppo web,<br> grafica e crescita della tua visibilità online </p> <div class="hero-cta"> <a href="contatti.html" title="Contattaci per iniziare il tuo progetto" class="btn btn-primary"> <span>Scopri Come</span> <svg viewBox="0 0 20 20" fill="none" height="20" width="20"> <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/> </svg> </a> <a href="#servizi" title="Scopri i nostri servizi" class="btn btn-secondary">I Nostri Servizi</a> </div>';
 const HOMEPAGE_CORE_LINKS_PATTERN = /<(?:p|nav) class="hero-core-links"[^>]*>[\s\S]*?<\/(?:p|nav)>/i;
 const HOMEPAGE_CORE_LINKS_HTML = '<nav class="hero-core-links" aria-label="Percorsi principali" style="display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1rem"> <a href="/servizi/sviluppo-web.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Sviluppo Web</a> <a href="/servizi/graphic-design.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Graphic Design</a> <a href="/servizi/social-media.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Social Media</a> </nav>';
@@ -388,6 +398,11 @@ function toAbsolutePublicUrl(relativePath = '') {
   return publicPath === '/' ? `${BASE_URL}/` : `${BASE_URL}${publicPath}`;
 }
 
+function isNonPublicArtifactPath(relativePath = '') {
+  const normalized = normalizeRelativePath(relativePath);
+  return NON_PUBLIC_ARTIFACT_PATTERNS.some((pattern) => pattern.test(normalized));
+}
+
 function replaceTagContent(html, pattern, content) {
   return html.replace(pattern, (...args) => {
     const captures = args.slice(1, -2);
@@ -414,6 +429,32 @@ function replaceMetaTagContent(html, attrName, attrValue, content) {
   );
 
   return updated;
+}
+
+function getTagAttribute(tag, attrName) {
+  const pattern = new RegExp(`\\b${escapeRegex(attrName)}=(["'])(.*?)\\1`, 'i');
+  const match = String(tag || '').match(pattern);
+  return match ? match[2] : '';
+}
+
+function upsertRobotsMeta(html, content) {
+  const robotsTagPattern = /\s*<meta\b(?=[^>]*\bname=["']robots["'])[^>]*>/gi;
+  const existingTags = [...String(html || '').matchAll(robotsTagPattern)].map((match) => match[0]);
+  if (existingTags.length === 1 && getTagAttribute(existingTags[0], 'content') === content) {
+    return html;
+  }
+
+  let found = false;
+  const robotsTag = ` <meta name="robots" content="${escapeHtmlAttr(content)}">`;
+  const normalized = html.replace(robotsTagPattern, () => {
+    if (found) return '';
+    found = true;
+    return robotsTag;
+  });
+
+  if (found) return normalized;
+
+  return html.replace(/<\/head>/i, `${robotsTag} </head>`);
 }
 
 function buildStrategicLinksHtml(strategicLinks) {
@@ -473,6 +514,10 @@ function replaceArticleUpgrade(html, { title, description, href, label }) {
 }
 
 function ensureSelfHreflang(html, relativePath) {
+  if (isNonPublicArtifactPath(relativePath)) {
+    return html.replace(/\s*<link\b[^>]*\bhreflang=["']it-IT["'][^>]*>/gi, '');
+  }
+
   const href = toAbsolutePublicUrl(relativePath);
   const hreflangTag = `<link rel="alternate" hreflang="it-IT" href="${href}">`;
   const withoutExisting = html.replace(/\s*<link\b[^>]*\bhreflang=["']it-IT["'][^>]*>/gi, '');
@@ -500,15 +545,19 @@ function alignPrioritySnippet(html, relativePath) {
 }
 
 function alignRobotsDirectives(html, relativePath) {
+  if (isNonPublicArtifactPath(relativePath)) {
+    return upsertRobotsMeta(html, NON_PUBLIC_ARTIFACT_ROBOTS);
+  }
+
   const publicPath = toPublicUrlPath(relativePath);
   const directives = getIndexationDirectivesForPath(publicPath);
 
   if (directives === 'noindex, follow') {
-    return replaceMetaTagContent(html, 'name', 'robots', NOINDEX_ROBOTS);
+    return upsertRobotsMeta(html, NOINDEX_ROBOTS);
   }
 
   if (isGeoPath(publicPath)) {
-    return replaceMetaTagContent(html, 'name', 'robots', INDEX_ROBOTS);
+    return upsertRobotsMeta(html, INDEX_ROBOTS);
   }
 
   return html;
@@ -1093,6 +1142,34 @@ function alignClusterStrategicLinks(html, relativePath) {
   return updated.replace(/<\/article>/i, `${strategicLinksHtml} </article>`);
 }
 
+function alignCanvaPartnerCredit(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  if (normalizedPath !== 'blog/ottimizzazione-immagini-web.html') return html;
+
+  let updated = html.replace(/\s*<aside\b[^>]*data-webnovis-canva-credit=["']true["'][\s\S]*?<\/aside>/gi, '');
+
+  updated = updated.replace(
+    /<\/ol>\s*<p>Non lasciare che immagini pesanti rallentino il successo del tuo business online\./i,
+    `</ol> ${CANVA_PARTNER_CREDIT_HTML} <p>Non lasciare che immagini pesanti rallentino il successo del tuo business online.`
+  );
+
+  updated = updated.replace(
+    /<meta content="[^"]*" property="article:modified_time">/i,
+    '<meta content="2026-05-18" property="article:modified_time">'
+  );
+  updated = updated.replace(
+    /<span class="article-updated">Aggiornato:\s*<time datetime="[^"]*">[^<]*<\/time><\/span>/i,
+    '<span class="article-updated">Aggiornato: <time datetime="2026-05-18">18 Maggio 2026</time></span>'
+  );
+  updated = updated.replace(
+    /<p><strong>Ultimo aggiornamento:<\/strong>\s*[^<]+<\/p>/i,
+    '<p><strong>Ultimo aggiornamento:</strong> 18 Maggio 2026</p>'
+  );
+  updated = updated.replace(/"dateModified":"[^"]*"/i, '"dateModified":"2026-05-18"');
+
+  return updated;
+}
+
 function alignContactPageInfoCards(html, relativePath) {
   const normalizedPath = normalizeRelativePath(relativePath);
   if (normalizedPath !== 'contatti.html') return html;
@@ -1210,6 +1287,7 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = alignLegalNavbar(updated, relativePath);
   updated = alignPortfolioExperience(updated, relativePath);
   updated = alignClusterStrategicLinks(updated, relativePath);
+  updated = alignCanvaPartnerCredit(updated, relativePath);
   updated = ensureSelfHreflang(updated, relativePath);
   updated = normalizeLocalMetricPlaceholders(updated);
   updated = alignRobotsDirectives(updated, relativePath);
@@ -1223,6 +1301,7 @@ module.exports = {
   normalizeRelativePath,
   toPublicUrlPath,
   toAbsolutePublicUrl,
+  isNonPublicArtifactPath,
   ensureSelfHreflang,
   alignPrioritySnippet,
   alignPriorityContentTransforms,
@@ -1233,6 +1312,7 @@ module.exports = {
   alignLegalNavbar,
   alignPortfolioExperience,
   alignClusterStrategicLinks,
+  alignCanvaPartnerCredit,
   alignRobotsDirectives,
   alignHomepageBrandExperience,
   applySeoHtmlTransforms
