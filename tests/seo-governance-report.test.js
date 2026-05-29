@@ -18,7 +18,6 @@ function main() {
 
   const mergePaths = report.buckets.merge_or_consolidate.map((entry) => entry.pathname);
   const reviewPaths = report.buckets.review_for_deamplify.map((entry) => entry.pathname);
-  const deamplifiedPaths = report.buckets.deamplified_existing.map((entry) => entry.pathname);
   const keepPaths = report.buckets.keep_push.map((entry) => entry.pathname);
 
   assert.ok(
@@ -34,8 +33,8 @@ function main() {
     'cookie-policy.html should be reviewed for de-amplification'
   );
   assert.ok(
-    deamplifiedPaths.includes('/email-marketing-milano.html'),
-    'phase-1 de-amplified pages should remain tracked in the governance report'
+    keepPaths.includes('/email-marketing-milano.html'),
+    'email-marketing-milano.html should be promoted after May 2026 GSC demand was validated'
   );
   assert.ok(
     keepPaths.includes('/servizi/sviluppo-web.html'),

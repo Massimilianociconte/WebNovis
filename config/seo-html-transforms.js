@@ -1,6 +1,6 @@
 const prioritySnippets = require('./priority-snippets');
 const { getClusterStrategicLinks } = require('./blog-cluster-links');
-const { getIndexationDirectivesForPath, isGeoPath } = require('./pseo-governance');
+const { getIndexationDirectivesForPath } = require('./pseo-governance');
 
 const BASE_URL = 'https://www.webnovis.com';
 const INDEX_ROBOTS = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
@@ -15,6 +15,7 @@ const NON_PUBLIC_ARTIFACT_PATTERNS = [
   /^reports\//,
   /^newsletter-template\.html$/i
 ];
+const NON_INDEXABLE_STATIC_PATHS = new Set(['/404.html', '/grazie.html']);
 const HOMEPAGE_HERO_OLD = '<h1 class="hero-title"> <span class="glitch gradient-text" data-text="Agenzia Digitale">Agenzia Digitale</span> che <span class="highlight-gold">Accende</span><br> la tua <span class="sr-only">visibilità, crescita, identità e presenza online</span><span class="hero-rotating-wrapper" aria-hidden="true"> <span class="hero-rotating-word active">visibilità</span> <span class="hero-rotating-word">crescita</span> <span class="hero-rotating-word">identità</span> <span class="hero-rotating-word">presenza</span> </span> </h1> <p class="hero-subtitle"> La tua agenzia digitale a Milano per sviluppo web,<br> grafica e crescita della tua visibilità online </p> <div class="hero-cta"> <a href="contatti.html" title="Contattaci per iniziare il tuo progetto" class="btn btn-primary"> <span>Scopri Come</span> <svg viewBox="0 0 20 20" fill="none" height="20" width="20"> <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/> </svg> </a> <a href="#servizi" title="Scopri i nostri servizi" class="btn btn-secondary">I Nostri Servizi</a> </div>';
 const HOMEPAGE_CORE_LINKS_PATTERN = /<(?:p|nav) class="hero-core-links"[^>]*>[\s\S]*?<\/(?:p|nav)>/i;
 const HOMEPAGE_CORE_LINKS_HTML = '<nav class="hero-core-links" aria-label="Percorsi principali" style="display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1rem"> <a href="/servizi/sviluppo-web.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Sviluppo Web</a> <a href="/servizi/graphic-design.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Graphic Design</a> <a href="/servizi/social-media.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Social Media</a> </nav>';
@@ -24,6 +25,101 @@ const HOMEPAGE_MOBILE_PRELOAD_NEW = '<link href="Img/sfondo-mobile-hq.webp" rel=
 const HOMEPAGE_FONT_PRELOAD_PATTERN = /\s*<link href="https:\/\/fonts\.googleapis\.com\/css2\?family=Inter:wght@400;600;700&family=Space\+Grotesk:wght@600;700&family=Syne:wght@600;700;800&display=swap" rel="preload" as="style">\s*/i;
 const STRATEGIC_LINKS_STYLE_BLOCK = '<style data-webnovis-cluster-links>.article-strategic-links{padding:2.4rem 0;border-top:1px solid rgba(255,255,255,.06)}.article-strategic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.35rem}.article-strategic-card{display:block;padding:1.3rem;border-radius:14px;border:1px solid rgba(96,165,250,.18);background:linear-gradient(180deg,rgba(255,255,255,.04) 0%,rgba(91,106,174,.08) 100%);text-decoration:none!important;transition:transform .2s ease,border-color .2s ease,background .2s ease}.article-strategic-card:hover{transform:translateY(-2px);border-color:rgba(96,165,250,.35);background:linear-gradient(180deg,rgba(255,255,255,.05) 0%,rgba(91,106,174,.13) 100%)}.article-strategic-label{display:inline-flex;margin-bottom:.7rem;padding:.3rem .65rem;border-radius:999px;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.18);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary-light)}.article-strategic-card h3{margin:0 0 .5rem;font-size:1rem;color:var(--white)}.article-strategic-card p{margin:0;font-size:.9rem;line-height:1.6;color:var(--text-muted)}</style>';
 const LEGAL_PAGES = new Set(['privacy-policy.html', 'cookie-policy.html', 'termini-condizioni.html']);
+const MONEY_PAGE_INTERNAL_LINK_BLOCKS = {
+  'blog/partita-iva-ecommerce.html': {
+    title: 'Stai aprendo un e-commerce e vuoi evitare costi sbagliati?',
+    text: 'Dopo la parte fiscale, il passaggio decisivo è scegliere una struttura tecnica sostenibile: catalogo, checkout, SEO e automazioni devono nascere insieme.',
+    links: [
+      { href: '../servizi/ecommerce.html', label: 'Sviluppo e-commerce custom' },
+      { href: '/ecommerce-milano.html', label: 'E-commerce a Milano' },
+      { href: '/ecommerce-senago.html', label: 'E-commerce a Senago' }
+    ]
+  },
+  'blog/quanto-costa-un-ecommerce.html': {
+    title: 'Vuoi stimare il budget e-commerce sul tuo caso reale?',
+    text: 'Possiamo aiutarti a capire se conviene Shopify, WooCommerce o una soluzione custom, con un preventivo legato a margini, catalogo e obiettivi.',
+    links: [
+      { href: '../servizi/ecommerce.html', label: 'E-commerce custom da €3.500' },
+      { href: '/ecommerce-milano.html', label: 'E-commerce a Milano' },
+      { href: '/ecommerce-bresso.html', label: 'E-commerce a Bresso' }
+    ]
+  },
+  'blog/pagamenti-online-ecommerce.html': {
+    title: 'Checkout e pagamenti vanno progettati insieme al sito',
+    text: 'Gateway, commissioni e UX del checkout incidono su conversioni e fiducia: per questo li trattiamo come parte del progetto e-commerce, non come dettaglio finale.',
+    links: [
+      { href: '../servizi/ecommerce.html', label: 'Progetto e-commerce completo' },
+      { href: '/ecommerce-milano.html', label: 'E-commerce a Milano' }
+    ]
+  },
+  'blog/quanto-costa-gestione-social-media.html': {
+    title: 'Vuoi trasformare il budget social in richieste misurabili?',
+    text: 'Per PMI e professionisti colleghiamo contenuti, creatività e campagne Meta a obiettivi concreti: visibilità utile, lead e continuità editoriale.',
+    links: [
+      { href: '../servizi/social-media.html', label: 'Social media marketing' },
+      { href: '/social-media-milano.html', label: 'Social media a Milano' },
+      { href: '/social-media-sesto-san-giovanni.html', label: 'Social media a Sesto San Giovanni' }
+    ]
+  },
+  'blog/quanto-costa-campagna-facebook-ads.html': {
+    title: 'Prima di aumentare il budget, metti in ordine creatività e landing',
+    text: 'Campagne Meta e Google Ads funzionano meglio quando annuncio, promessa, pagina e tracking raccontano lo stesso percorso.',
+    links: [
+      { href: '../servizi/social-media.html', label: 'Gestione campagne Meta' },
+      { href: '/landing-page-milano.html', label: 'Landing page a Milano' },
+      { href: '/google-ads-monza.html', label: 'Google Ads a Monza' }
+    ]
+  },
+  'blog/quanto-costa-un-logo.html': {
+    title: 'Il logo deve diventare un sistema visivo, non restare un file isolato',
+    text: 'Per rendere il brand più credibile servono logo, palette, tipografia, materiali e coerenza tra sito, social e presentazioni.',
+    links: [
+      { href: '../servizi/graphic-design.html', label: 'Logo e brand identity' },
+      { href: '/graphic-design-milano.html', label: 'Graphic design a Milano' }
+    ]
+  },
+  'blog/quanto-costa-brand-identity.html': {
+    title: 'Vuoi trasformare la brand identity in un vantaggio commerciale?',
+    text: 'Costruiamo identità visive utilizzabili su sito, social, sales deck e materiali corporate, con un sistema coerente e riutilizzabile.',
+    links: [
+      { href: '../servizi/graphic-design.html', label: 'Brand identity WebNovis' },
+      { href: '/graphic-design-milano.html', label: 'Graphic design a Milano' }
+    ]
+  },
+  'blog/ttfb-server-response-time.html': {
+    title: 'TTFB alto? La performance va corretta dentro il progetto web',
+    text: 'Hosting, caching, asset e codice incidono su velocità, crawling e conversione: interveniamo sulle pagine che devono portare contatti.',
+    links: [
+      { href: '../servizi/sviluppo-web.html', label: 'Sviluppo web e performance' },
+      { href: '/realizzazione-siti-web-rho.html', label: 'Siti web a Rho' },
+      { href: '/realizzazione-siti-web-cormano.html', label: 'Siti web a Cormano' }
+    ]
+  },
+  'blog/cdn-cos-e-quando-serve.html': {
+    title: 'Una CDN serve davvero solo se il sito è progettato bene',
+    text: 'Prima di aggiungere strumenti, conviene sistemare architettura, immagini, caching e percorso di conversione delle pagine più importanti.',
+    links: [
+      { href: '../servizi/sviluppo-web.html', label: 'Siti web veloci e SEO' },
+      { href: '/realizzazione-siti-web-rho.html', label: 'Realizzazione siti web a Rho' }
+    ]
+  },
+  'blog/instagram-insights-guida.html': {
+    title: 'Dai dati Instagram al piano editoriale: serve un metodo',
+    text: 'Reach, salvataggi e click diventano utili quando guidano format, budget e contenuti collegati a una pagina o a una richiesta concreta.',
+    links: [
+      { href: '../servizi/social-media.html', label: 'Strategia social media' },
+      { href: '/social-media-milano.html', label: 'Social media a Milano' }
+    ]
+  },
+  'blog/instagram-carousel-guida.html': {
+    title: 'Carousel e contenuti social devono portare a un’azione',
+    text: 'Progettiamo format e rubriche per aumentare fiducia, salvataggi e passaggi verso sito, landing o richiesta di preventivo.',
+    links: [
+      { href: '../servizi/social-media.html', label: 'Piano social e contenuti' },
+      { href: '/social-media-parabiago.html', label: 'Social media a Parabiago' }
+    ]
+  }
+};
 const LOCAL_PAGES_ALREADY_OPTIMIZED = new Set([
   'sito-vetrina-bollate.html',
   'graphic-design-bareggio.html',
@@ -56,6 +152,54 @@ const PORTFOLIO_SOCIAL_SECTION_PATTERN = /<section class="portfolio-section" sty
 const PORTFOLIO_GRAPHIC_SECTION_REPLACEMENT = `<section class="portfolio-section portfolio-capability-section" id="portfolio-grafico"> <div class="container"> <div class="portfolio-capability-shell"> <div class="portfolio-capability-header"> <span class="portfolio-capability-kicker">Graphic Design</span> <h2>Identità visive, sistemi grafici e materiali che danno spessore al brand</h2> <p class="portfolio-section-lead">Nel portfolio grafico inseriamo ciò che realizziamo davvero per i clienti: logo, brand system, coordinato, packaging leggero e supporti digitali. Quando un progetto completo non è pubblico o è coperto da NDA, mostriamo comunque il tipo di output e il livello di profondità del lavoro.</p> </div> <div class="portfolio-capability-grid"> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Logo & brand mark</span> <h3>Identità visive memorabili</h3> <p>Marchi originali, versioni responsive, palette, tipografia e regole d’uso pensate per rendere il brand riconoscibile sia sul web sia nei materiali stampati.</p> <ul class="portfolio-capability-list"> <li>Logo principale e versioni secondarie</li> <li>Palette, tipografia e tono visivo</li> <li>Linee guida d’uso essenziali</li> </ul> </article> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Brand system</span> <h3>Coordinato coerente e riutilizzabile</h3> <p>Sistemi visivi che non si fermano al logo: pattern, iconografia, layout ricorrenti e materiali coerenti per sito, presentazioni, social e supporti offline.</p> <ul class="portfolio-capability-list"> <li>Biglietti da visita e supporti corporate</li> <li>Presentazioni, brochure e mini kit stampa</li> <li>Template digitali coordinati</li> </ul> </article> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Packaging & visual</span> <h3>Elementi grafici pensati per vendere meglio</h3> <p>Visual per campagne, packaging leggero, etichette, menu e materiali promozionali progettati per aumentare qualità percepita e chiarezza del messaggio.</p> <ul class="portfolio-capability-list"> <li>Packaging essenziale e label design</li> <li>Menu, leaflet e materiali promozionali</li> <li>Creative per campagne e annunci</li> </ul> </article> </div> <p class="portfolio-capability-note">Alcuni lavori grafici vengono mostrati integralmente solo in call o su richiesta, perché spesso nascono dentro progetti più ampi di branding, sito o advertising.</p> <div class="portfolio-capability-cta"> <a href="contatti.html?servizio=graphic-design" class="pf-btn pf-btn-primary">Richiedi un progetto grafico <svg viewBox="0 0 24 24" fill="none" height="14" width="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a> </div> </div> </div> </section>`;
 const PORTFOLIO_SOCIAL_SECTION_REPLACEMENT = `<section class="portfolio-section portfolio-capability-section portfolio-capability-section--muted" id="portfolio-social"> <div class="container"> <div class="portfolio-capability-shell"> <div class="portfolio-capability-header"> <span class="portfolio-capability-kicker">Social & content</span> <h2>Creative social, campagne e contenuti pensati per essere usati davvero</h2> <p class="portfolio-section-lead">La parte social del portfolio non viene mostrata come una galleria finta di feed inventati: presentiamo invece i sistemi creativi che sviluppiamo per Instagram, Facebook e LinkedIn, spesso integrati con advertising, branding e pagine landing.</p> </div> <div class="portfolio-capability-grid"> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Template social</span> <h3>Post, stories e carousel coerenti</h3> <p>Template riutilizzabili per rubriche, post educativi, highlights e stories con una gerarchia visiva chiara e coerente con il brand.</p> <ul class="portfolio-capability-list"> <li>Template per feed e stories</li> <li>Copertine carousel e highlights</li> <li>Sistemi grafici per piani editoriali</li> </ul> </article> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Advertising creative</span> <h3>Visual per Meta Ads e campagne locali</h3> <p>Creatività per campagne conversion e lead generation con varianti A/B, CTA leggibili e visual pensati per funzionare anche in formati piccoli e rapidi.</p> <ul class="portfolio-capability-list"> <li>Visual statici per campagne Meta</li> <li>Varianti per test creativi</li> <li>Coerenza tra annuncio e landing</li> </ul> </article> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Art direction</span> <h3>Impostazione visuale del profilo</h3> <p>Direzione creativa per profili aziendali che devono sembrare più professionali: ritmo del feed, palette, copertine e tono visivo coordinato.</p> <ul class="portfolio-capability-list"> <li>Setup visuale del feed</li> <li>Moodboard e linee guida rapide</li> <li>Supporto grafico per contenuti ricorrenti</li> </ul> </article> </div> <p class="portfolio-capability-note">Molti lavori social cambiano nel tempo o vengono prodotti in continuità: per questo mostriamo soprattutto struttura, approccio e qualità del sistema creativo, non una vetrina artificiale di post casuali.</p> <div class="portfolio-capability-cta"> <a href="contatti.html?servizio=social-media" class="pf-btn pf-btn-primary">Parliamo dei tuoi contenuti social <svg viewBox="0 0 24 24" fill="none" height="14" width="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a> </div> </div> </div> </section>`;
 const LOCAL_PAGE_CONTENT_UPGRADES = {
+  'email-marketing-milano.html': {
+    sectionTag: 'Email marketing a Milano · newsletter, automazioni e lead nurturing',
+    h1: 'Email marketing a Milano per newsletter e automazioni che generano ricavi',
+    answer: '<strong>WebNovis</strong> imposta email marketing a Milano per PMI, e-commerce e servizi B2B: newsletter, automazioni, recupero preventivi e flussi CRM da <strong>€250/mese</strong>, con strategia, copy e setup operativo.',
+    lead: 'A <strong>Milano</strong> molte aziende investono in advertising e contenuti ma perdono lead dopo il primo contatto. L’email marketing serve a recuperare opportunità già generate, nutrire prospect e aumentare riacquisti con flussi misurabili.'
+  },
+  'realizzazione-siti-web-cormano.html': {
+    sectionTag: 'Realizzazione siti web a Cormano · da €1.200 · SEO integrata',
+    h1: 'Realizzazione siti web a Cormano per PMI, studi e attività locali',
+    answer: '<strong>WebNovis</strong> realizza siti web a Cormano con codice custom, SEO tecnica e struttura orientata alle richieste. Landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con gestione diretta da Rho.',
+    lead: 'A <strong>Cormano</strong> la concorrenza digitale è concreta: per essere scelti servono una proposta chiara, performance, segnali locali e una pagina capace di trasformare la visita in contatto.'
+  },
+  'realizzazione-siti-web-parabiago.html': {
+    sectionTag: 'Realizzazione siti web a Parabiago · da €1.200 · preventivo in 24 ore',
+    h1: 'Realizzazione siti web a Parabiago per PMI, artigiani e professionisti',
+    answer: '<strong>WebNovis</strong> crea siti web a Parabiago per attività che vogliono sembrare più solide e ricevere più richieste. Siti vetrina da <strong>€1.200</strong>, landing da <strong>€500</strong> ed e-commerce da <strong>€3.500</strong>, con SEO integrata.',
+    lead: 'Per le attività di <strong>Parabiago</strong>, un sito efficace deve raccontare competenza locale, servizi, prove di fiducia e percorso di contatto in modo più chiaro rispetto ai competitor generici.'
+  },
+  'realizzazione-siti-web-senago.html': {
+    sectionTag: 'Realizzazione siti web a Senago · da €1.200 · SEO integrata',
+    h1: 'Realizzazione siti web a Senago per aziende che vogliono più contatti',
+    answer: '<strong>WebNovis</strong> realizza siti web a Senago con design custom, SEO tecnica e struttura orientata alla lead generation. Landing da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong>, e-commerce da <strong>€3.500</strong>.',
+    lead: 'A <strong>Senago</strong> molte ricerche hanno intento locale diretto: chi cerca un sito vuole capire subito prezzi, tempi, metodo e affidabilità del fornitore.'
+  },
+  'realizzazione-siti-web-solaro.html': {
+    sectionTag: 'Realizzazione siti web a Solaro · da €1.200 · preventivo rapido',
+    h1: 'Realizzazione siti web a Solaro per PMI e professionisti locali',
+    answer: '<strong>WebNovis</strong> sviluppa siti web a Solaro con codice custom, performance, SEO tecnica e gestione diretta da Rho. Landing da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong>, e-commerce da <strong>€3.500</strong>.',
+    lead: 'Per aziende e professionisti di <strong>Solaro</strong>, il sito deve chiarire offerta, fiducia e prossimità operativa: non basta una presenza online generica.'
+  },
+  'realizzazione-siti-web-buccinasco.html': {
+    sectionTag: 'Realizzazione siti web a Buccinasco · da €1.200 · SEO integrata',
+    h1: 'Realizzazione siti web a Buccinasco per attività che vogliono più richieste',
+    answer: '<strong>WebNovis</strong> realizza siti web a Buccinasco con design su misura, SEO tecnica e percorsi di conversione chiari. Siti vetrina da <strong>€1.200</strong>, landing da <strong>€500</strong>, e-commerce da <strong>€3.500</strong>.',
+    lead: 'A <strong>Buccinasco</strong> il sito deve lavorare su fiducia e chiarezza: servizi, prova, prezzi indicativi e contatto devono essere leggibili già dai primi secondi.'
+  },
+  'social-media-sesto-san-giovanni.html': {
+    sectionTag: 'Social media a Sesto San Giovanni · contenuti, Meta Ads e lead',
+    h1: 'Social media a Sesto San Giovanni per PMI e professionisti',
+    answer: '<strong>WebNovis</strong> gestisce social media a Sesto San Giovanni con contenuti grafici, piano editoriale e campagne Meta Ads orientate a visibilità utile e richieste misurabili. Pacchetti da <strong>€300/mese</strong>.',
+    lead: 'A <strong>Sesto San Giovanni</strong> i social funzionano quando contenuti, advertising e pagina di destinazione sono collegati: l’obiettivo è generare fiducia e richieste, non solo pubblicare.'
+  },
+  'ecommerce-bresso.html': {
+    sectionTag: 'E-commerce a Bresso · da €3.500 · vendite online',
+    h1: 'E-commerce a Bresso per negozi e brand che vogliono vendere online',
+    answer: '<strong>WebNovis</strong> realizza e-commerce a Bresso con Shopify, WooCommerce o codice custom, SEO integrata, checkout curato e UX orientata alle vendite. Progetti da <strong>€3.500</strong>.',
+    lead: 'Per negozi e brand di <strong>Bresso</strong>, vendere online richiede più di un catalogo: servono struttura, pagamenti, SEO, fiducia e gestione operativa sostenibile.'
+  },
   'ecommerce-legnano.html': {
     sectionTag: 'E-commerce a Legnano · Shopify, WooCommerce o custom',
     h1: 'E-commerce a Legnano per negozi, retail e brand che vogliono vendere meglio',
@@ -552,15 +696,15 @@ function alignRobotsDirectives(html, relativePath) {
   const publicPath = toPublicUrlPath(relativePath);
   const directives = getIndexationDirectivesForPath(publicPath);
 
+  if (NON_INDEXABLE_STATIC_PATHS.has(publicPath)) {
+    return upsertRobotsMeta(html, NON_PUBLIC_ARTIFACT_ROBOTS);
+  }
+
   if (directives === 'noindex, follow') {
     return upsertRobotsMeta(html, NOINDEX_ROBOTS);
   }
 
-  if (isGeoPath(publicPath)) {
-    return upsertRobotsMeta(html, INDEX_ROBOTS);
-  }
-
-  return html;
+  return upsertRobotsMeta(html, INDEX_ROBOTS);
 }
 
 function alignHomepageBrandExperience(html, relativePath) {
@@ -1142,6 +1286,29 @@ function alignClusterStrategicLinks(html, relativePath) {
   return updated.replace(/<\/article>/i, `${strategicLinksHtml} </article>`);
 }
 
+function buildMoneyPageInternalLinkBlockHtml(block) {
+  const linksHtml = block.links
+    .map((link) => `<a href="${link.href}" style="display:inline-flex;align-items:center;padding:.45rem .75rem;border-radius:999px;border:1px solid rgba(96,165,250,.22);background:rgba(96,165,250,.08);color:var(--primary-light);font-size:.86rem;font-weight:700;text-decoration:none">${link.label}</a>`)
+    .join(' ');
+
+  return `<aside data-webnovis-money-links="true" aria-label="Percorsi commerciali correlati" style="margin:1.7rem 0 2.2rem;padding:1.15rem 1.25rem;border-radius:14px;border:1px solid rgba(96,165,250,.2);background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(91,106,174,.06))"> <strong style="display:block;color:var(--white);font-size:1rem;margin-bottom:.45rem">${block.title}</strong> <p style="margin:0 0 .85rem;color:var(--gray-light);font-size:.95rem;line-height:1.65">${block.text}</p> <div style="display:flex;flex-wrap:wrap;gap:.55rem">${linksHtml}</div> </aside>`;
+}
+
+function alignMoneyPageInternalLinks(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  const block = MONEY_PAGE_INTERNAL_LINK_BLOCKS[normalizedPath];
+  if (!block) return html;
+
+  const blockHtml = buildMoneyPageInternalLinkBlockHtml(block);
+  let updated = html.replace(/\s*<aside\b[^>]*data-webnovis-money-links=["']true["'][\s\S]*?<\/aside>/gi, '');
+
+  if (/<div class="article-summary">[\s\S]*?<\/div>/i.test(updated)) {
+    return updated.replace(/(<div class="article-summary">[\s\S]*?<\/div>)/i, `$1 ${blockHtml}`);
+  }
+
+  return updated.replace(/(<div class="article-content">)/i, `$1 ${blockHtml}`);
+}
+
 function alignCanvaPartnerCredit(html, relativePath) {
   const normalizedPath = normalizeRelativePath(relativePath);
   if (normalizedPath !== 'blog/ottimizzazione-immagini-web.html') return html;
@@ -1286,6 +1453,7 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = alignContactPageInfoCards(updated, relativePath);
   updated = alignLegalNavbar(updated, relativePath);
   updated = alignPortfolioExperience(updated, relativePath);
+  updated = alignMoneyPageInternalLinks(updated, relativePath);
   updated = alignClusterStrategicLinks(updated, relativePath);
   updated = alignCanvaPartnerCredit(updated, relativePath);
   updated = ensureSelfHreflang(updated, relativePath);
@@ -1311,6 +1479,7 @@ module.exports = {
   alignContactPageInfoCards,
   alignLegalNavbar,
   alignPortfolioExperience,
+  alignMoneyPageInternalLinks,
   alignClusterStrategicLinks,
   alignCanvaPartnerCredit,
   alignRobotsDirectives,

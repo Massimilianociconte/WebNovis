@@ -16,6 +16,7 @@ const citiesData = require(path.join(ROOT, 'data', 'cities.json'));
 const {
   normalizePathname,
   isDeAmplifiedPath,
+  DATA_VALIDATED_INDEXABLE_GEO_PATHS,
   PHASE1_DEAMPLIFIED_PATHS
 } = require(path.join(ROOT, 'config', 'pseo-governance.js'));
 const {
@@ -755,6 +756,7 @@ function buildReasonCodes(context) {
 
   if (CORE_ALWAYS_KEEP.has(pathname)) reasons.push('core_path');
   if (historical && historical.priority) reasons.push(`priority_${historical.priority}`);
+  if (DATA_VALIDATED_INDEXABLE_GEO_PATHS.has(pathname)) reasons.push('data_validated_search_demand');
   if (clusterInfo) reasons.push(clusterInfo.isPillar ? 'cluster_pillar' : 'cluster_support');
   if (hierarchyMatch && hierarchyMatch.roiStars >= 3) reasons.push('high_roi_theme');
   if (pageType === 'geo_service' && geo && geo.service && geo.service.tier === 'core') reasons.push('core_geo_service');
@@ -799,6 +801,10 @@ function assignBucket(context) {
     gscMetrics.ctr < 1
   ) {
     return 'improve_ctr';
+  }
+
+  if (DATA_VALIDATED_INDEXABLE_GEO_PATHS.has(pathname)) {
+    return 'keep_push';
   }
 
   if (pageType === 'geo_service' && geo && geo.service && geo.service.tier !== 'core') {

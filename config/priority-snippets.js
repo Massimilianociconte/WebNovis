@@ -1,7 +1,7 @@
 module.exports = {
   'blog/partita-iva-ecommerce.html': {
-    title: 'Partita IVA e-commerce 2026: quando serve, costi | WebNovis',
-    description: 'Quando serve la partita IVA per e-commerce, quanto costa aprirla, quale regime scegliere e quali adempimenti prevedere per vendere online in regola nel 2026.'
+    title: 'Partita IVA e-commerce 2026: costi, regime e obblighi | WebNovis',
+    description: 'Guida pratica 2026: quando serve la partita IVA per vendere online, costi reali, regime fiscale, adempimenti e checklist prima di aprire un e-commerce.'
   },
   'blog/quanto-costa-una-landing-page.html': {
     title: 'Quanto Costa una Landing Page nel 2026? Prezzi e ROI | WebNovis',
@@ -20,16 +20,16 @@ module.exports = {
     description: 'Guida sintetica ai dati obbligatori da esporre su un sito web in Italia: partita IVA, contatti, privacy, cookie e riferimenti societari.'
   },
   'blog/quanto-costa-gestione-social-media.html': {
-    title: 'Gestione social media 2026: prezzi reali per PMI | WebNovis',
-    description: 'Prezzi reali per PMI: freelance, agenzia, contenuti, advertising, report e range mensili. Guida 2026 per capire cosa include un preventivo social.'
+    title: 'Gestione social media 2026: prezzi, pacchetti e cosa include | WebNovis',
+    description: 'Prezzi reali per PMI: pacchetti mensili, contenuti, advertising, report e fee agenzia. Tabella 2026 per valutare un preventivo social.'
   },
   'blog/quanto-costa-campagna-facebook-ads.html': {
     title: 'Costo Facebook Ads 2026: budget, CPC e gestione | WebNovis',
     description: 'Budget minimo, costo per lead, CPM/CPC, fee agenzia e range realistici per PMI. Guida 2026 con esempi per campagne Meta orientate ai contatti.'
   },
   'blog/quanto-costa-un-ecommerce.html': {
-    title: 'Quanto costa un e-commerce 2026? Prezzi reali | WebNovis',
-    description: 'Quanto costa davvero aprire un e-commerce nel 2026: Shopify, WooCommerce o custom, costi nascosti, tempi, commissioni e range di budget per PMI.'
+    title: 'Costo e-commerce 2026: tabella prezzi e costi nascosti | WebNovis',
+    description: 'Quanto costa aprire un e-commerce nel 2026: tabella prezzi, Shopify vs custom, commissioni, costi nascosti, tempi e budget realistico per PMI.'
   },
   'blog/instagram-algoritmo-2026.html': {
     title: 'Algoritmo Instagram 2026: cosa premia davvero | WebNovis',
@@ -44,8 +44,8 @@ module.exports = {
     description: 'Confronto 2026 tra piattaforme e-commerce per PMI italiane: costi reali, commissioni, SEO, flessibilità e quando conviene Shopify, WooCommerce, PrestaShop o custom.'
   },
   'blog/pagamenti-online-ecommerce.html': {
-    title: 'Stripe, PayPal o Scalapay? Pagamenti e-commerce 2026 | WebNovis',
-    description: 'Guida 2026 ai pagamenti online per e-commerce: Stripe, PayPal, Scalapay, costi, commissioni, checkout e criteri pratici per scegliere il gateway giusto.'
+    title: 'Pagamenti e-commerce 2026: Stripe, PayPal, Scalapay e commissioni | WebNovis',
+    description: 'Confronto 2026 sui pagamenti online per e-commerce: Stripe, PayPal, Scalapay, commissioni, checkout e criteri per scegliere il gateway giusto.'
   },
   'blog/gdpr-sito-web-guida.html': {
     title: 'GDPR sito web 2026: obblighi, cookie banner e sanzioni | WebNovis',
@@ -66,6 +66,14 @@ module.exports = {
   'blog/instagram-carousel-guida.html': {
     title: 'Carousel Instagram 2026: come farli scorrere e salvare | WebNovis',
     description: 'Guida pratica ai carousel Instagram: struttura slide, hook, CTA, errori e format che aumentano tempo di lettura, salvataggi e distribuzione organica nel 2026.'
+  },
+  'blog/ttfb-server-response-time.html': {
+    title: 'TTFB 2026: cos’è, valori ideali e come ridurlo | WebNovis',
+    description: 'Guida pratica al Time To First Byte: valori ideali, cause di TTFB alto, CDN, hosting, caching e interventi per migliorare performance e SEO.'
+  },
+  'blog/cdn-cos-e-quando-serve.html': {
+    title: 'CDN per sito web: quando serve, benefici SEO e costi | WebNovis',
+    description: 'Cos’è una CDN, quando conviene usarla, benefici su velocità, TTFB, sicurezza e SEO. Guida per aziende che vogliono un sito più veloce.'
   },
   'blog/instagram-reels-strategia.html': {
     title: 'Instagram Reels 2026: strategia per reach e lead | WebNovis',
@@ -190,6 +198,34 @@ module.exports = {
   'realizzazione-siti-web-arese.html': {
     title: 'Realizzazione siti web ad Arese: da €1.200 e SEO | WebNovis',
     description: 'Realizzazione siti web ad Arese per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e preventivo in 24 ore.'
+  },
+  'realizzazione-siti-web-cormano.html': {
+    title: 'Realizzazione siti web a Cormano: da €1.200 e SEO | WebNovis',
+    description: 'Realizzazione siti web a Cormano per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e preventivo in 24 ore.'
+  },
+  'realizzazione-siti-web-parabiago.html': {
+    title: 'Realizzazione siti web a Parabiago: da €1.200 e SEO | WebNovis',
+    description: 'Realizzazione siti web a Parabiago per PMI, artigiani e professionisti: siti custom, SEO tecnica, performance e preventivo gratuito entro 24 ore.'
+  },
+  'realizzazione-siti-web-senago.html': {
+    title: 'Realizzazione siti web a Senago: da €1.200 e SEO | WebNovis',
+    description: 'Realizzazione siti web a Senago per PMI e attività locali: landing, siti vetrina ed e-commerce custom con SEO integrata e gestione diretta da Rho.'
+  },
+  'realizzazione-siti-web-solaro.html': {
+    title: 'Realizzazione siti web a Solaro: da €1.200 e SEO | WebNovis',
+    description: 'Realizzazione siti web a Solaro per PMI e professionisti: codice custom, SEO tecnica integrata, siti veloci e preventivo gratuito entro 24 ore.'
+  },
+  'email-marketing-milano.html': {
+    title: 'Email marketing a Milano: newsletter e automazioni da €250/mese | WebNovis',
+    description: 'Email marketing a Milano per newsletter, automazioni, lead nurturing e recupero clienti. Strategia, copy e setup operativo da €250/mese.'
+  },
+  'social-media-sesto-san-giovanni.html': {
+    title: 'Social media a Sesto San Giovanni: contenuti e Meta Ads | WebNovis',
+    description: 'Social media marketing a Sesto San Giovanni per PMI e professionisti: contenuti, creatività e campagne Meta Ads orientate a lead e richieste.'
+  },
+  'ecommerce-bresso.html': {
+    title: 'E-commerce a Bresso: shop online da €3.500 e SEO | WebNovis',
+    description: 'E-commerce a Bresso per negozi e brand locali: Shopify, WooCommerce o custom con SEO integrata, UX orientata alle vendite e preventivo rapido.'
   },
   'ecommerce-legnano.html': {
     title: 'E-commerce a Legnano: Shopify, WooCommerce o custom | WebNovis',

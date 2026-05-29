@@ -37,9 +37,24 @@ function main() {
 
   assert.equal(
     governance.getIndexationDirectivesForPath('/email-marketing-milano.html'),
-    'noindex, follow',
-    'email-marketing-milano.html should be de-amplified via noindex, follow'
+    'index, follow',
+    'email-marketing-milano.html should be re-opened because May 2026 GSC data shows commercial demand'
   );
+
+  [
+    '/realizzazione-siti-web-cormano.html',
+    '/realizzazione-siti-web-parabiago.html',
+    '/realizzazione-siti-web-senago.html',
+    '/realizzazione-siti-web-solaro.html',
+    '/social-media-sesto-san-giovanni.html',
+    '/ecommerce-bresso.html'
+  ].forEach((pathname) => {
+    assert.equal(
+      governance.getIndexationDirectivesForPath(pathname),
+      'index, follow',
+      `${pathname} should be indexable because May 2026 GSC data validated demand`
+    );
+  });
 
   assert.equal(
     governance.getIndexationDirectivesForPath('/ecommerce-milano.html'),
@@ -139,9 +154,22 @@ function main() {
     'sitemap.xml must exclude de-amplified page sviluppo-app-mobile-milano-nord.html'
   );
   assert.ok(
-    !sitemap.includes('https://www.webnovis.com/email-marketing-milano.html'),
-    'sitemap.xml must exclude de-amplified page email-marketing-milano.html'
+    sitemap.includes('https://www.webnovis.com/email-marketing-milano.html'),
+    'sitemap.xml must include email-marketing-milano.html because it is data-validated'
   );
+  [
+    'realizzazione-siti-web-cormano.html',
+    'realizzazione-siti-web-parabiago.html',
+    'realizzazione-siti-web-senago.html',
+    'realizzazione-siti-web-solaro.html',
+    'social-media-sesto-san-giovanni.html',
+    'ecommerce-bresso.html'
+  ].forEach((slug) => {
+    assert.ok(
+      sitemap.includes(`https://www.webnovis.com/${slug}`),
+      `sitemap.xml must include ${slug} because it is data-validated`
+    );
+  });
   assert.ok(
     sitemap.includes('https://www.webnovis.com/ecommerce-milano.html'),
     'sitemap.xml must include ecommerce-milano.html because it is now a strategic geo page'
