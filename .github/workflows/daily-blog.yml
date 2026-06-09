@@ -1,15 +1,21 @@
 name: Daily Blog Writer
 
+# ⚠️ AUTOMAZIONE SOSPESA (2026-06-09): la pubblicazione automatica giornaliera
+# di 10 articoli/giorno espone al rischio "scaled content abuse" (policy Google
+# marzo 2024). Il cron è disabilitato: la generazione resta disponibile SOLO
+# manualmente via workflow_dispatch, con default ridotto a 2 articoli da
+# revisionare prima della pubblicazione.
+# Per riattivare il cron: decommentare il blocco "schedule" qui sotto.
 on:
-  schedule:
-    # Every day at 6:00 AM UTC (7:00 AM CET / 8:00 AM CEST)
-    - cron: '0 6 * * *'
+  # schedule:
+  #   # Every day at 6:00 AM UTC (7:00 AM CET / 8:00 AM CEST)
+  #   - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
       count:
-        description: 'Number of articles to generate'
+        description: 'Number of articles to generate (max consigliato: 2-3/settimana, con revisione umana)'
         required: false
-        default: '10'
+        default: '2'
 
 permissions:
   contents: write
@@ -34,7 +40,7 @@ jobs:
         run: npm ci --omit=dev
 
       - name: Run auto-writer
-        run: node blog/auto-writer.js --count ${{ github.event.inputs.count || '10' }}
+        run: node blog/auto-writer.js --count ${{ github.event.inputs.count || '2' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}

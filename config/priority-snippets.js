@@ -1,7 +1,8 @@
 module.exports = {
   'blog/partita-iva-ecommerce.html': {
-    title: 'Partita IVA e-commerce 2026: costi, regime e obblighi | WebNovis',
-    description: 'Guida pratica 2026: quando serve la partita IVA per vendere online, costi reali, regime fiscale, adempimenti e checklist prima di aprire un e-commerce.'
+    // GSC: 2.321 impr a pos 6.0 con 3 clic (CTR 0,13%) → title in forma di domanda
+    title: 'Partita IVA per e-commerce: quando serve e costi 2026 | WebNovis',
+    description: 'Quando serve la partita IVA per vendere online, quanto costa aprirla, regime forfettario, adempimenti e checklist completa prima di lanciare l\'e-commerce.'
   },
   'blog/quanto-costa-una-landing-page.html': {
     title: 'Quanto Costa una Landing Page nel 2026? Prezzi e ROI | WebNovis',
@@ -20,16 +21,24 @@ module.exports = {
     description: 'Guida sintetica ai dati obbligatori da esporre su un sito web in Italia: partita IVA, contatti, privacy, cookie e riferimenti societari.'
   },
   'blog/quanto-costa-gestione-social-media.html': {
-    title: 'Gestione social media 2026: prezzi, pacchetti e cosa include | WebNovis',
-    description: 'Prezzi reali per PMI: pacchetti mensili, contenuti, advertising, report e fee agenzia. Tabella 2026 per valutare un preventivo social.'
+    // GSC: 1.366 impr a pos 5.5 con 0 clic → title riallineato alla query "quanto costa"
+    title: 'Quanto costa la gestione dei social media? Prezzi 2026 | WebNovis',
+    description: 'Quanto costa farsi gestire i social nel 2026: pacchetti mensili da €300, cosa include, fee agenzia e tabella prezzi reale per valutare un preventivo.'
   },
   'blog/quanto-costa-campagna-facebook-ads.html': {
-    title: 'Costo Facebook Ads 2026: budget, CPC e gestione | WebNovis',
-    description: 'Budget minimo, costo per lead, CPM/CPC, fee agenzia e range realistici per PMI. Guida 2026 con esempi per campagne Meta orientate ai contatti.'
+    // GSC: 751 impr a pos 4.8 con 1 clic → title in forma di domanda
+    title: 'Quanto costa una campagna Facebook Ads? Budget 2026 | WebNovis',
+    description: 'Quanto costa una campagna Facebook e Instagram Ads: budget minimo, CPC e CPM reali, costo per lead e fee di gestione. Esempi pratici 2026 per PMI.'
   },
   'blog/quanto-costa-un-ecommerce.html': {
-    title: 'Costo e-commerce 2026: tabella prezzi e costi nascosti | WebNovis',
+    // GSC: 460 impr a pos 4.8 con 0 clic → title riallineato alla query "quanto costa"
+    title: 'Quanto costa un e-commerce? Tabella prezzi 2026 | WebNovis',
     description: 'Quanto costa aprire un e-commerce nel 2026: tabella prezzi, Shopify vs custom, commissioni, costi nascosti, tempi e budget realistico per PMI.'
+  },
+  'blog/quanto-costa-un-logo.html': {
+    // GSC: 1.094 impr a pos 11.2 → title accorciato (81→65 caratteri) e in forma di domanda
+    title: 'Quanto costa un logo professionale? Prezzi reali 2026 | WebNovis',
+    description: 'Prezzi reali per la creazione di un logo: dal freelance all\'agenzia, dal logo base alla brand identity completa. Fasce di costo e come scegliere.'
   },
   'blog/instagram-algoritmo-2026.html': {
     title: 'Algoritmo Instagram 2026: cosa premia davvero | WebNovis',
@@ -124,8 +133,9 @@ module.exports = {
     description: 'Realizzazione siti web a Bresso per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e preventivo in 24 ore.'
   },
   'agenzia-web-rho.html': {
-    title: 'Agenzia web a Rho: siti, SEO e branding | WebNovis',
-    description: 'Agenzia web a Rho per siti custom, e-commerce, branding e SEO locale. Sede in Via S. Giorgio 2, metodo diretto e preventivo rapido per PMI e professionisti.'
+    // GSC: "web agency rho" = 324 impr a pos 13.3 con 0 clic → il title ora include la query esatta
+    title: 'Web Agency Rho: siti web custom, SEO e branding | WebNovis',
+    description: 'WebNovis è la web agency di Rho (Via S. Giorgio 2): agenzia web per siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Preventivo in 24 ore.'
   },
   'realizzazione-siti-web-rho.html': {
     title: 'Realizzazione siti web a Rho: da €1.200 e SEO | WebNovis',

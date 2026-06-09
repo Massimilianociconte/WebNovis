@@ -6341,9 +6341,32 @@ function buildFaqHTML(faq = [], articleTag = '') {
                 </section>`;
 }
 
+// Cover social per categoria: og:image/twitter:image con immagine di categoria
+// invece del logo bianco (card illeggibile su sfondi chiari). Mappa allineata
+// a TAG_TO_CATEGORY/CATEGORY_COVER di auto-writer.js.
+const SOCIAL_TAG_TO_CATEGORY = {
+  'Web Development': 'web', 'E-Commerce': 'web', 'Performance': 'web',
+  'Tecnologia': 'web', 'Best Practice': 'web',
+  'SEO': 'seo', 'SEO Tecnica': 'seo', 'Analytics': 'seo',
+  'Branding': 'design', 'Design': 'design', 'Personal Brand': 'design',
+  'Social Media': 'social', 'Instagram': 'social', 'Advertising': 'social',
+  'Content Marketing': 'marketing', 'Strategia': 'marketing', 'Conversioni': 'marketing'
+};
+const SOCIAL_CATEGORY_COVER = {
+  web: 'blog-cat-web', seo: 'blog-cat-seo', marketing: 'blog-cat-marketing',
+  social: 'blog-cat-social', design: 'blog-cat-web', ai: 'blog-cat-ai',
+  'case-study': 'blog-cat-case-study'
+};
+function resolveSocialCover(a) {
+  const category = SOCIAL_TAG_TO_CATEGORY[a.tag] || 'marketing';
+  const base = SOCIAL_CATEGORY_COVER[category] || 'blog-cat-web';
+  return `${SITE_URL}/Img/${base}.png`;
+}
+
 function buildArticleHTML(a, contentHTML, options = {}) {
   const utmSlug = a.slug;
   const canonical = `${SITE_URL}/blog/${a.slug}.html`;
+  const socialCover = resolveSocialCover(a);
   const publishedDateIso = a.isoDate;
   const modifiedDateIso = a.updatedIsoDate || GLOBAL_CONTENT_REFRESH_DATE_ISO;
   const modifiedDateHuman = a.updatedDate || GLOBAL_CONTENT_REFRESH_DATE_HUMAN;
@@ -6460,7 +6483,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <meta property="og:url" content="${canonical}">
     <meta property="og:title" content="${a.title}">
     <meta property="og:description" content="${a.description}">
-    <meta property="og:image" content="${SITE_URL}/Img/webnovis-logo-bianco.png">
+    <meta property="og:image" content="${socialCover}">
     <meta property="og:site_name" content="WebNovis">
     <meta property="og:locale" content="it_IT">
     <meta property="article:published_time" content="${publishedDateIso}">
@@ -6470,7 +6493,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <meta name="twitter:site" content="@webnovis">
     <meta property="twitter:title" content="${a.title}">
     <meta property="twitter:description" content="${a.description}">
-    <meta property="twitter:image" content="${SITE_URL}/Img/webnovis-logo-bianco.png">
+    <meta property="twitter:image" content="${socialCover}">
     <link rel="stylesheet" href="../css/style.min.css?v=1.4">
     <link rel="stylesheet" href="../css/revolution.min.css?v=1.4" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="../css/search.min.css?v=2.0" media="print" onload="this.media='all'">

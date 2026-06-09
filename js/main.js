@@ -946,9 +946,15 @@ techItems.forEach(item => {
 
 // Brevo Newsletter Helper — centralizzato per widget e form contatto
 // Deduplicazione automatica lato server (Brevo updateEnabled: true)
+// FIX: su hosting statico (GitHub Pages) /api/* non esiste — usa il backend Render
+// (stesso pattern di chat.js / search.js)
+const NEWSLETTER_API_ENDPOINT = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:3000/api/newsletter'
+    : 'https://webnovis-chat.onrender.com/api/newsletter';
+
 async function subscribeToNewsletter(email, name, source) {
     try {
-        const response = await fetch('/api/newsletter', {
+        const response = await fetch(NEWSLETTER_API_ENDPOINT, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

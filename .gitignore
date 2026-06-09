@@ -44,9 +44,25 @@ newsletter-log.jsonl
 leads-log.json
 leads-log.jsonl
 
+# Cloudflare Wrangler (stato locale)
+.wrangler/
+
 # Temporary files
 *.tmp
 *.temp
 ~*
 docs/history.json
 .claude/
+
+# Output di analisi/debug locali (NON committare: il repo pubblico = sito pubblico)
+tmp_*.txt
+*_results.txt
+*_output.txt
+missing_*.txt
+analysis.txt
+blog_analysis.txt
+diag.txt
+files_changed.txt
+contatti-*.txt
+wrapper-css.txt
+custom-options-css.txt

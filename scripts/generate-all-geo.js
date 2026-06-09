@@ -2330,8 +2330,8 @@ function generateHubPages() {
         },
         {
             "@context": "https://schema.org", "@type": "CollectionPage",
-            "name": "Realizzazione Siti Web nei Comuni della Provincia di Milano",
-            "description": `Landing siti web già pubblicate in ${realizzazioneCities.length} comuni di una rete WebNovis che serve ${agenziaCities.length} territori tra Milano, Rho e hinterland.`,
+            "name": "Realizzazione Siti Web a Milano e in Lombardia",
+            "description": `Realizzazione siti web a Milano e in Lombardia: landing già pubblicate in ${realizzazioneCities.length} comuni di una rete WebNovis che serve ${agenziaCities.length} territori tra Milano, Rho e hinterland.`,
             "url": SITE + "/realizzazione-siti-web/",
             "inLanguage": "it",
             "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
@@ -2345,9 +2345,11 @@ function generateHubPages() {
     ];
     const realizzazioneHtml = buildHubPage(
         'realizzazione-siti-web',
-        'Realizzazione Siti Web nei Comuni di Milano — WebNovis | Siti Custom',
-        `Landing siti web già pubblicate in ${realizzazioneCities.length} comuni, dentro una rete WebNovis che serve ${agenziaCities.length} territori tra Milano, Rho e hinterland. Codice custom e SEO integrata.`,
-        'realizzazione siti web Milano, siti web hinterland milanese, creazione siti web comuni Milano, WebNovis',
+        // GSC: query "realizzazione/creazione siti web lombardia" (370+ impr a pos 76-84)
+        // → l'hub ora copre esplicitamente Milano e Lombardia
+        'Realizzazione Siti Web a Milano e in Lombardia — WebNovis',
+        `Realizzazione siti web a Milano e in Lombardia: landing già pubblicate in ${realizzazioneCities.length} comuni, dentro una rete WebNovis che serve ${agenziaCities.length} territori tra Milano, Rho e hinterland. Codice custom e SEO integrata.`,
+        'realizzazione siti web Milano, realizzazione siti web Lombardia, creazione siti web Lombardia, siti web hinterland milanese, WebNovis',
         realizzazioneContent,
         realizzazioneSchemas
     );

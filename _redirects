@@ -1,0 +1,36 @@
+# Cloudflare Workers static assets — regole _redirects.
+# GitHub Pages NON legge questo file: diventa attivo solo su Cloudflare.
+# Docs: https://developers.cloudflare.com/workers/static-assets/redirects/
+# NB: html_handling è "none" (vedi wrangler.jsonc) → gli URL .html restano canonici.
+#     Le regole qui sotto gestiscono indici di directory e redirect legacy.
+
+# --- Rewrite (200): indici di directory (necessari con html_handling: none) ---
+/ /index.html 200
+/servizi/ /servizi/index.html 200
+/blog/ /blog/index.html 200
+/agenzia-web/ /agenzia-web/index.html 200
+/realizzazione-siti-web/ /realizzazione-siti-web/index.html 200
+/zone-servite/ /zone-servite/index.html 200
+
+# --- 301: normalizzazioni ---
+/index.html / 301
+/servizi /servizi/ 301
+/blog /blog/ 301
+/agenzia-web /agenzia-web/ 301
+/realizzazione-siti-web /realizzazione-siti-web/ 301
+/zone-servite /zone-servite/ 301
+
+# --- 301 legacy espliciti (da server.js legacyPathRedirects) ---
+/agenzie-web-rho.html /agenzia-web-rho.html 301
+/accessibilita-rho.html /servizi/accessibilita.html 301
+/social-media-rho.html /servizi/social-media.html 301
+/chiedere-recensioni-clienti /blog/chiedere-recensioni-clienti.html 301
+
+# --- 301 legacy dinamici (con splat: tenere dopo le regole statiche) ---
+/consulenza-digitale-* /consulenze-:splat 301
+/public/* /:splat 301
+/dist/* /:splat 301
+
+# NB: il redirect apex → www (webnovis.com → www.webnovis.com) NON si può definire
+# qui su Workers (domain-level redirects non supportati): va configurato come
+# "Single Redirect" a livello di zona Cloudflare. Vedi guida in docs/deploy/.

@@ -2,6 +2,8 @@
 
 > Web Novis è un'agenzia web italiana con sede a Rho (Milano) specializzata in sviluppo siti web custom, graphic design, brand identity e social media marketing (contenuti grafici, ricerche di marketing, analisi competitor e advertising). Offriamo soluzioni digitali integrate per PMI, startup e professionisti in tutta Italia.
 
+Versione completa (contenuto integrale delle pagine principali in testo semplice): https://www.webnovis.com/llms-full.txt
+
 ## Servizi
 
 - [Sviluppo Siti Web](https://www.webnovis.com/servizi/sviluppo-web.html): Siti web professionali, responsive, ottimizzati SEO. Landing page, siti vetrina, web app.

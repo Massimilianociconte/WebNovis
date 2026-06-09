@@ -1,0 +1,20 @@
+{
+  // Configurazione Cloudflare Workers (static assets) per www.webnovis.com
+  // Deploy: il flusso "Workers Builds" collegato a GitHub esegue `npx wrangler deploy`
+  // e legge questo file. Comando di generazione: VUOTO (sito già pronto in root).
+  //
+  // ⚠️ IMPORTANTE — html_handling: "none"
+  // Il default di Cloudflare ("auto-trailing-slash") farebbe un redirect 307 di OGNI
+  // URL .html verso la versione senza estensione (es. /agenzia-web-rho.html → /agenzia-web-rho).
+  // Sarebbe una migrazione di URL dell'intero sito: tutte le pagine sono indicizzate
+  // su Google come .html e i canonical puntano agli .html. Con "none" gli URL restano
+  // IDENTICI a GitHub Pages. Gli indici di directory (/, /blog/, /servizi/, ...) sono
+  // gestiti con rewrite 200 nel file _redirects.
+  "name": "webnovis",
+  "compatibility_date": "2026-06-09",
+  "assets": {
+    "directory": ".",
+    "html_handling": "none",
+    "not_found_handling": "404-page"
+  }
+}

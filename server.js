@@ -444,7 +444,7 @@ app.use((req, res, next) => {
 
 // Serve only safe public files (not server code, configs, .env, etc.)
 // Core static pages (manually maintained)
-const corePublicFiles = ['index.html', 'portfolio.html', 'privacy-policy.html', 'cookie-policy.html', 'termini-condizioni.html', 'chi-siamo.html', 'contatti.html', 'preventivo.html', 'come-lavoriamo.html', 'grazie.html', '404.html', 'robots.txt', 'sitemap.xml', 'manifest.json', 'favicon.ico', 'ai.txt', 'llms.txt', 'webnovis-ai-data.json', 'search-index.json', 'CNAME', '8531a1fa-b8b0-4136-8741-b5895865d3c4.txt'];
+const corePublicFiles = ['index.html', 'portfolio.html', 'privacy-policy.html', 'cookie-policy.html', 'termini-condizioni.html', 'chi-siamo.html', 'contatti.html', 'preventivo.html', 'come-lavoriamo.html', 'grazie.html', '404.html', 'robots.txt', 'sitemap.xml', 'manifest.json', 'favicon.ico', 'ai.txt', 'llms.txt', 'llms-full.txt', 'webnovis-ai-data.json', 'search-index.json', 'CNAME', '8531a1fa-b8b0-4136-8741-b5895865d3c4.txt'];
 // Auto-discover all pSEO pages (geo + service×city) — scales without manual updates
 // Must match generate-all-geo.js filter: all services where generateGeoPages !== false
 const pseoPatterns = ['agenzia-web-', 'agenzie-web-', 'realizzazione-siti-web-'];
@@ -503,7 +503,7 @@ app.use('/zone-servite', express.static(path.join(__dirname, 'zone-servite'), ht
 app.use('/servizi', express.static(path.join(__dirname, 'servizi'), htmlCacheOptions));
 app.use('/portfolio', express.static(path.join(__dirname, 'portfolio'), htmlCacheOptions));
 // AI-discoverable files: open CORS so any AI crawler/tool can fetch them regardless of Origin
-const aiOpenFiles = new Set(['robots.txt', 'sitemap.xml', 'ai.txt', 'llms.txt', 'webnovis-ai-data.json']);
+const aiOpenFiles = new Set(['robots.txt', 'sitemap.xml', 'ai.txt', 'llms.txt', 'llms-full.txt', 'webnovis-ai-data.json']);
 
 publicFiles.forEach(file => {
     app.get('/' + file, (req, res) => {
@@ -914,6 +914,8 @@ app.post('/api/lead', leadLimiter, async (req, res) => {
         // Sanitize inputs
         const cleanEmail = email.toLowerCase().trim();
         const cleanUrl = (url || '').trim().slice(0, 500);
+        // SECURITY: only http(s) URLs may become clickable links in the notification email
+        const isLinkableUrl = /^https?:\/\/[^\s<>"']+$/i.test(cleanUrl);
         const leadType = type === 'analisi-sito' ? 'analisi-sito' : 'nuovo-progetto';
 
         console.log(`🎯 New lead: ${leadType} | ${cleanEmail}${cleanUrl ? ' | ' + cleanUrl : ''}`);
@@ -980,7 +982,7 @@ app.post('/api/lead', leadLimiter, async (req, res) => {
                         <table style="width:100%;border-collapse:collapse;margin:16px 0;">
                             <tr><td style="padding:8px 12px;color:#888;border-bottom:1px solid #222;">Tipo</td><td style="padding:8px 12px;color:#fff;border-bottom:1px solid #222;font-weight:600;">${leadType === 'analisi-sito' ? '🔍 Analisi Sito Esistente' : '🚀 Nuovo Progetto'}</td></tr>
                             <tr><td style="padding:8px 12px;color:#888;border-bottom:1px solid #222;">Email</td><td style="padding:8px 12px;border-bottom:1px solid #222;"><a href="mailto:${escapeHtml(cleanEmail)}" style="color:#38b6ff;">${escapeHtml(cleanEmail)}</a></td></tr>
-                            ${cleanUrl ? `<tr><td style="padding:8px 12px;color:#888;border-bottom:1px solid #222;">Sito Web</td><td style="padding:8px 12px;border-bottom:1px solid #222;"><a href="${escapeHtml(cleanUrl)}" style="color:#38b6ff;" target="_blank">${escapeHtml(cleanUrl)}</a></td></tr>` : ''}
+                            ${cleanUrl ? `<tr><td style="padding:8px 12px;color:#888;border-bottom:1px solid #222;">Sito Web</td><td style="padding:8px 12px;border-bottom:1px solid #222;">${isLinkableUrl ? `<a href="${escapeHtml(cleanUrl)}" style="color:#38b6ff;" target="_blank">${escapeHtml(cleanUrl)}</a>` : escapeHtml(cleanUrl)}</td></tr>` : ''}
                             <tr><td style="padding:8px 12px;color:#888;">Data</td><td style="padding:8px 12px;color:#ccc;">${new Date().toLocaleString('it-IT', { timeZone: 'Europe/Rome' })}</td></tr>
                         </table>
                         <p style="color:#666;font-size:13px;margin-top:24px;">Lead catturato dalla pagina 404 di webnovis.com — Rispondi entro 24h.</p>
@@ -1133,8 +1135,10 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
             return res.status(400).json({ error: 'Messaggio non valido.' });
         }
 
-        // Sanitize inputs
-        const cleanMessage = escapeHtml(message.trim()).slice(0, 500);
+        // Sanitize inputs — strip HTML tags instead of entity-escaping:
+        // entity-escaping ("l'azienda" → "l&#39;azienda") inquinava il prompt inviato a Gemini.
+        // L'escaping per il rendering è già fatto lato client (chat.js formatBotMessage/escapeHtml).
+        const cleanMessage = message.replace(/<[^>]*>/g, '').trim().slice(0, 500);
 
         // Server-side prompt injection guard (defense-in-depth, saves tokens on obvious attacks)
         if (INJECTION_PATTERNS.test(cleanMessage)) {
@@ -1257,7 +1261,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
         if (aiConfig.useFallbackOnError) {
             const fallback = getLocalResponse(req.body.message);
             const { sessionId, session } = getOrCreateSession(req.body.sessionId);
-            appendChatSessionTurn(session, escapeHtml(String(req.body.message || '').trim()).slice(0, 500), fallback);
+            appendChatSessionTurn(session, String(req.body.message || '').replace(/<[^>]*>/g, '').trim().slice(0, 500), fallback);
             console.log('📤 Fallback response sent (Gemini unavailable)');
             return res.json({ response: fallback, sessionId });
         }
@@ -1371,12 +1375,12 @@ app.get('/api/newsletter/preview', requireAdminAuth, async (req, res) => {
             .meta strong{color:#7B8CC9}</style></head><body>
             <div class="meta">
                 <strong>PREVIEW MODE</strong> — Questa email non è stata inviata<br>
-                Topic: ${topic}<br>
-                Destinatario test: ${name}<br>
+                Topic: ${escapeHtml(topic)}<br>
+                Destinatario test: ${escapeHtml(name)}<br>
                 Edizione: ${newsletterEngine.getEditionLabel()}
             </div>
             <div style="background:#111118;padding:32px;border-radius:16px;border:1px solid rgba(91,106,174,0.15)">
-                <p style="color:#b0b0b0">Ciao <strong style="color:#fff">${name}</strong>,</p>
+                <p style="color:#b0b0b0">Ciao <strong style="color:#fff">${escapeHtml(name)}</strong>,</p>
                 ${content}
             </div>
             </body></html>

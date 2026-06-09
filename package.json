@@ -12,6 +12,7 @@
     "build:search-index": "node build-search-index.js",
     "build:search-index:dist": "node build-search-index.js --out-dir=dist",
     "build:sitemap": "node generate-sitemap.js",
+    "build:llms-full": "node scripts/generate-llms-full.js",
     "build:sitemap:dist": "node generate-sitemap.js --out-dir=dist",
     "build:geo": "node scripts/generate-all-geo.js",
     "build:geo:dist": "node scripts/generate-all-geo.js --out-dir=dist",

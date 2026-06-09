@@ -1,0 +1,22 @@
+# File da NON caricare come asset statici su Cloudflare Workers.
+# Sintassi tipo .gitignore. Vale solo per l'upload degli asset (wrangler deploy).
+
+# Segreti — fondamentale per eventuali deploy lanciati in locale
+.env
+.env.*
+
+# Dipendenze e stato locale
+node_modules/
+.git/
+.github/
+.wrangler/
+.claude/
+.kiro/
+.vscode/
+
+# Contenuti non destinati al sito pubblico
+docs/
+reports/
+tests/
+test-SEO/
+.DS_Store
