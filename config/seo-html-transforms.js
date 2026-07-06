@@ -72,18 +72,63 @@ const MONEY_PAGE_INTERNAL_LINK_BLOCKS = {
   },
   'blog/quanto-costa-un-logo.html': {
     title: 'Il logo deve diventare un sistema visivo, non restare un file isolato',
-    text: 'Per rendere il brand più credibile servono logo, palette, tipografia, materiali e coerenza tra sito, social e presentazioni.',
+    text: 'Per rendere il brand più credibile servono logo, palette, tipografia, materiali e coerenza tra sito, social e presentazioni. Logo da €250, brand identity completa da €500.',
     links: [
-      { href: '../servizi/graphic-design.html', label: 'Logo e brand identity' },
+      { href: '../servizi/brand-identity.html', label: 'Logo e brand identity: costi e pacchetti' },
       { href: '/graphic-design-milano.html', label: 'Graphic design a Milano' }
     ]
   },
   'blog/quanto-costa-brand-identity.html': {
     title: 'Vuoi trasformare la brand identity in un vantaggio commerciale?',
-    text: 'Costruiamo identità visive utilizzabili su sito, social, sales deck e materiali corporate, con un sistema coerente e riutilizzabile.',
+    text: 'Costruiamo identità visive utilizzabili su sito, social, sales deck e materiali corporate, con un sistema coerente e riutilizzabile. Pacchetti da €500 con prezzi e tempi chiari.',
     links: [
-      { href: '../servizi/graphic-design.html', label: 'Brand identity WebNovis' },
+      { href: '../servizi/brand-identity.html', label: 'Costi e pacchetti brand identity' },
+      { href: '../servizi/graphic-design.html', label: 'Graphic design WebNovis' },
       { href: '/graphic-design-milano.html', label: 'Graphic design a Milano' }
+    ]
+  },
+  'blog/canva-vs-designer-professionista.html': {
+    title: 'Quando il template non basta, serve un sistema di marca',
+    text: 'Canva e template sono utili per produrre velocemente, ma logo, brand identity e visual commerciali devono restare coerenti tra sito, social e materiali di vendita.',
+    links: [
+      { href: '../servizi/brand-identity.html', label: 'Logo e brand identity: costi e pacchetti' },
+      { href: '/graphic-design-milano.html', label: 'Graphic design a Milano' },
+      { href: '../portfolio.html#portfolio-grafico', label: 'Portfolio grafico' }
+    ]
+  },
+  'blog/scegliere-hosting-sito-web.html': {
+    title: 'Hosting, codice e performance vanno decisi insieme',
+    text: 'La scelta dell’hosting incide su TTFB, sicurezza e conversioni, ma funziona davvero solo dentro un progetto web costruito con architettura e asset leggeri.',
+    links: [
+      { href: '../servizi/sviluppo-web.html', label: 'Sviluppo web custom' },
+      { href: '/realizzazione-siti-web-rho.html', label: 'Siti web a Rho' },
+      { href: '/realizzazione-siti-web-arese.html', label: 'Siti web ad Arese' }
+    ]
+  },
+  'blog/copywriting-ads-tecniche.html': {
+    title: 'Il copy degli annunci deve continuare nella landing',
+    text: 'Promessa, prova e CTA devono essere coerenti tra Google Ads, Meta Ads e pagina di destinazione: altrimenti aumentano click inutili e costo per lead.',
+    links: [
+      { href: '/landing-page-milano.html', label: 'Landing page per campagne' },
+      { href: '/google-ads-monza.html', label: 'Google Ads a Monza' },
+      { href: '../servizi/social-media.html', label: 'Campagne e contenuti social' }
+    ]
+  },
+  'blog/strumenti-test-accessibilita.html': {
+    title: 'Hai trovato problemi di accessibilita? Trasformali in un piano',
+    text: 'I tool automatici aiutano a scoprire errori, ma per adeguare davvero un sito servono priorita, correzioni WCAG e verifica manuale sui flussi importanti.',
+    links: [
+      { href: '../servizi/accessibilita.html', label: 'Audit accessibilita web' },
+      { href: '/accessibilita-cinisello-balsamo.html', label: 'Accessibilita a Cinisello Balsamo' }
+    ]
+  },
+  'blog/digital-transformation-pmi.html': {
+    title: 'Per una PMI la trasformazione digitale parte dalle priorita',
+    text: 'Sito, automazioni, CRM e advertising funzionano quando sono collegati a processi reali: prima si ordina il percorso, poi si investe sugli strumenti.',
+    links: [
+      { href: '../servizi/sviluppo-web.html', label: 'Sviluppo web e automazioni' },
+      { href: '/agenzia-web-rho.html', label: 'Agenzia web a Rho' },
+      { href: '../contatti.html?servizio=consulenza-digitale', label: 'Consulenza digitale' }
     ]
   },
   'blog/ttfb-server-response-time.html': {
@@ -205,6 +250,54 @@ const LOCAL_PAGE_CONTENT_UPGRADES = {
     h1: 'E-commerce a Legnano per negozi, retail e brand che vogliono vendere meglio',
     answer: '<strong>WebNovis</strong> realizza e-commerce a Legnano per negozi, brand e attività locali che vogliono vendere online con una struttura più solida: Shopify, WooCommerce o custom, SEO integrata, UX orientata alle conversioni e preventivo rapido.',
     lead: '<strong>Legnano</strong> ha un tessuto commerciale e artigianale molto competitivo: per un e-commerce locale non basta “andare online”, serve scegliere la piattaforma giusta, lavorare su checkout, SEO e fiducia percepita fin dal primo accesso.'
+  },
+  'ecommerce-monza.html': {
+    sectionTag: 'E-commerce a Monza · da €3.500 · SEO e checkout',
+    h1: 'E-commerce a Monza per negozi, retail e brand locali',
+    answer: '<strong>WebNovis</strong> realizza e-commerce a Monza con Shopify, WooCommerce o sviluppo custom, SEO integrata, catalogo ordinato e checkout orientato alle vendite. Progetti da <strong>€3.500</strong>, con preventivo rapido e strategia prima della piattaforma.',
+    lead: 'A <strong>Monza</strong> la concorrenza e-commerce richiede piu di uno shop online: categorie chiare, schede prodotto credibili, performance, pagamenti affidabili e un percorso di acquisto senza attriti.'
+  },
+  'ecommerce-garbagnate.html': {
+    sectionTag: 'E-commerce a Garbagnate Milanese · vendite online e SEO',
+    h1: 'E-commerce a Garbagnate per attivita locali che vogliono vendere online',
+    answer: '<strong>WebNovis</strong> sviluppa e-commerce a Garbagnate Milanese per negozi, brand e PMI: piattaforma adatta al catalogo, SEO tecnica, UX mobile, pagamenti e gestione ordini. Preventivo rapido e progetto da <strong>€3.500</strong>.',
+    lead: 'Per un negozio o brand di <strong>Garbagnate Milanese</strong>, l’e-commerce deve essere sostenibile da gestire e abbastanza solido da competere anche fuori dal territorio.'
+  },
+  'realizzazione-siti-web-legnano.html': {
+    sectionTag: 'Realizzazione siti web a Legnano · da €1.200 · SEO integrata',
+    h1: 'Realizzazione siti web a Legnano per PMI, artigiani e professionisti',
+    answer: '<strong>WebNovis</strong> realizza siti web a Legnano con codice custom, SEO tecnica e percorsi di contatto chiari. Landing da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con preventivo gratuito entro 24 ore.',
+    lead: 'A <strong>Legnano</strong> il sito deve aiutare a distinguersi in un mercato locale molto attivo: offerta, prova, prezzi indicativi e CTA devono essere leggibili subito.'
+  },
+  'realizzazione-siti-web-bollate.html': {
+    sectionTag: 'Realizzazione siti web a Bollate · siti vetrina e SEO',
+    h1: 'Realizzazione siti web a Bollate per attivita locali e PMI',
+    answer: '<strong>WebNovis</strong> crea siti web a Bollate per aziende, studi e attivita locali che vogliono piu richieste da Google. Siti vetrina da <strong>€1.200</strong>, landing da <strong>€500</strong> ed e-commerce da <strong>€3.500</strong>.',
+    lead: 'Le ricerche su <strong>Bollate</strong> mostrano intento pratico: chi cerca siti vetrina o sviluppo web vuole capire subito costi, tempi, metodo e affidabilita del fornitore.'
+  },
+  'agenzia-web-sesto-san-giovanni.html': {
+    sectionTag: 'Agenzia web a Sesto San Giovanni · siti, SEO e campagne',
+    h1: 'Agenzia web a Sesto San Giovanni per PMI e professionisti',
+    answer: '<strong>WebNovis</strong> supporta imprese e professionisti di Sesto San Giovanni con siti custom, branding, social media e campagne locali. La sede è a Rho, con gestione diretta, preventivo entro 24 ore e percorsi digitali misurabili.',
+    lead: 'A <strong>Sesto San Giovanni</strong> la ricerca “agenzia web” è vicina alla prima pagina: per trasformare impression in contatti servono chiarezza sui servizi, prove di fiducia e collegamenti forti verso siti web, SEO e advertising.'
+  },
+  'ecommerce-arese.html': {
+    sectionTag: 'E-commerce ad Arese · da €3.500 · SEO e checkout',
+    h1: 'Realizzazione e-commerce ad Arese per negozi e brand locali',
+    answer: '<strong>WebNovis</strong> realizza e-commerce ad Arese con Shopify, WooCommerce o sviluppo custom: catalogo ordinato, pagamenti affidabili, SEO integrata e checkout orientato alle vendite. Progetti da <strong>€3.500</strong>, preventivo gratuito entro 24 ore dalla sede di Rho (10 minuti).',
+    lead: 'Ad <strong>Arese</strong>, tra grande retail e attività locali, vendere online significa competere con catene strutturate: servono schede prodotto credibili, velocità reale e un percorso di acquisto senza attriti.'
+  },
+  'ecommerce-rho.html': {
+    sectionTag: 'E-commerce a Rho · da €3.500 · gestione diretta',
+    h1: 'Realizzazione e-commerce a Rho per negozi, brand e PMI',
+    answer: '<strong>WebNovis</strong> sviluppa e-commerce a Rho — dove ha sede — con piattaforma adatta al catalogo (Shopify, WooCommerce o custom), SEO tecnica, UX mobile e gestione ordini semplice. Progetti da <strong>€3.500</strong>, preventivo gratuito entro 24 ore e incontri di persona in zona.',
+    lead: 'A <strong>Rho</strong> lavoriamo fianco a fianco con negozi e PMI: per un e-commerce locale contano la piattaforma giusta, costi chiari e un partner raggiungibile, non solo “andare online”.'
+  },
+  'seo-locale-limbiate.html': {
+    sectionTag: 'SEO locale a Limbiate · da €400/mese · Maps e ricerche locali',
+    h1: 'Consulenza SEO locale a Limbiate per farti trovare su Google',
+    answer: '<strong>WebNovis</strong> offre consulenza SEO locale a Limbiate: ottimizzazione Google Business Profile, pagine locali, recensioni e on-page per comparire su Maps e nelle ricerche “vicino a me”. Percorsi da <strong>€400/mese</strong> con report chiari e preventivo entro 24 ore.',
+    lead: 'A <strong>Limbiate</strong> la maggior parte delle ricerche commerciali è locale: chi cerca un servizio guarda mappa, recensioni e vicinanza prima di decidere chi contattare.'
   },
   'landing-page-monza.html': {
     sectionTag: 'Landing page a Monza · da €500 · lead generation locale',
@@ -471,6 +564,139 @@ const LOCAL_AUTHORITY_PROOF_BLOCKS = {
       }
     ],
     closer: 'Un progetto e-commerce funziona quando ogni scelta tecnica sostiene una scelta commerciale: meno attrito, più fiducia, più possibilità di vendita.'
+  },
+  'ecommerce-monza.html': {
+    title: 'Monza: e-commerce locale con struttura commerciale chiara',
+    lead: 'La pagina e-commerce Monza deve intercettare chi vuole vendere online ma non ha ancora deciso piattaforma, budget e percorso tecnico. Per questo mette al centro catalogo, checkout, SEO e gestione operativa.',
+    cards: [
+      {
+        title: 'Intento transazionale',
+        text: 'Le query su e-commerce a Monza indicano una domanda vicina al preventivo: la pagina deve rispondere subito su costi, piattaforma e tempi.'
+      },
+      {
+        title: 'Scelta della piattaforma',
+        text: 'Shopify, WooCommerce o custom vengono presentati come decisione strategica, non come preferenza tecnica astratta.'
+      },
+      {
+        title: 'Ponte con campagne e SEO',
+        text: 'Un e-commerce locale deve collegare traffico organico, eventuali Ads, schede prodotto e checkout per non disperdere il budget.'
+      }
+    ],
+    closer: 'Il messaggio da rafforzare è semplice: non basta aprire uno shop, serve un sistema di vendita misurabile.'
+  },
+  'ecommerce-garbagnate.html': {
+    title: 'Garbagnate: e-commerce sostenibile per negozi e PMI',
+    lead: 'Per Garbagnate Milanese la priorità è rendere credibile una pagina e-commerce che non promette una sede locale inventata, ma una copertura operativa vicina e un progetto gestibile.',
+    cards: [
+      {
+        title: 'Copertura territoriale credibile',
+        text: 'La gestione da Rho e la prossimità con Garbagnate rendono realistici briefing, raccolta materiali e assistenza senza forzare segnali geografici.'
+      },
+      {
+        title: 'Catalogo e checkout',
+        text: 'La pagina deve parlare di prodotti, pagamenti, ordini e gestione quotidiana: sono i temi decisivi per un negozio che vuole vendere online.'
+      },
+      {
+        title: 'SEO per prodotti e categorie',
+        text: 'Il traffico organico arriva se categorie e schede prodotto vengono progettate prima della pubblicazione, non dopo.'
+      }
+    ],
+    closer: 'Questo rende la pagina più utile sia per chi cerca un preventivo sia per chi deve capire se l’e-commerce è davvero sostenibile.'
+  },
+  'realizzazione-siti-web-legnano.html': {
+    title: 'Legnano: sito web locale con offerta e prezzi leggibili',
+    lead: 'La pagina di Legnano deve trasformare impression in click facendo capire subito che WebNovis lavora su siti custom, prezzi indicativi e gestione diretta del progetto.',
+    cards: [
+      {
+        title: 'Domanda locale ampia',
+        text: 'Legnano unisce PMI, professionisti, artigiani e commercio: la pagina deve parlare a più casi senza diventare generica.'
+      },
+      {
+        title: 'Prezzi e deliverable',
+        text: 'Landing, sito vetrina ed e-commerce con range di prezzo aiutano l’utente a orientarsi prima di chiedere un preventivo.'
+      },
+      {
+        title: 'Collegamento e-commerce',
+        text: 'Le query e-commerce su Legnano sono già presenti: i link interni devono collegare sito vetrina, sviluppo e vendita online.'
+      }
+    ],
+    closer: 'Il valore sta nel rendere la scelta semplice: cosa viene realizzato, quanto può costare e perché WebNovis è adatta al territorio.'
+  },
+  'realizzazione-siti-web-bollate.html': {
+    title: 'Bollate: presidiare siti vetrina e sviluppo web locale',
+    lead: 'Bollate mostra domanda per siti vetrina e presenza digitale locale. La pagina deve rispondere a chi vuole un sito chiaro, veloce e orientato ai contatti.',
+    cards: [
+      {
+        title: 'Intento molto pratico',
+        text: 'Chi cerca siti vetrina o realizzazione siti web vuole capire subito prezzo, tempi, affidabilità e cosa riceverà.'
+      },
+      {
+        title: 'Prossimità da Rho',
+        text: 'La vicinanza rende credibile la gestione diretta e consente di raccontare l’area senza fingere una sede fisica a Bollate.'
+      },
+      {
+        title: 'CTA più dirette',
+        text: 'Preventivo, call e pagine servizio devono essere facili da raggiungere perché il traffico locale tende a valutare più fornitori.'
+      }
+    ],
+    closer: 'La pagina deve diventare una risposta locale concreta, non solo una variante del servizio generico.'
+  },
+  'agenzia-web-sesto-san-giovanni.html': {
+    title: 'Sesto San Giovanni: agenzia web con servizi collegati',
+    lead: 'La pagina deve presidiare un intento più ampio di “realizzazione siti”: chi cerca un’agenzia web può voler sito, branding, social, SEO o campagne locali.',
+    cards: [
+      {
+        title: 'Cluster di servizi',
+        text: 'Sito web, graphic design, social media e advertising vengono collegati per rispondere a un intento più consulenziale.'
+      },
+      {
+        title: 'Vicino alla prima pagina',
+        text: 'Le query rilevate sono già in posizioni interessanti: migliorare title, intro e link interni può incidere sul CTR.'
+      },
+      {
+        title: 'Prova e metodo',
+        text: 'Per superare le alternative locali servono metodo, prezzi indicativi, esempi e percorsi di contatto chiari.'
+      }
+    ],
+    closer: 'Il prossimo obiettivo è far percepire WebNovis come partner digitale completo, non solo come fornitore di una singola pagina web.'
+  },
+  'ecommerce-arese.html': {
+    title: 'Arese: e-commerce locale che regge il confronto con il retail organizzato',
+    lead: 'Le ricerche “realizzazione ecommerce Arese” sono già vicine alle prime posizioni: la pagina deve rispondere subito su piattaforma, costi e tempi per trasformare questa visibilità in richieste di preventivo.',
+    cards: [
+      {
+        title: 'Intento transazionale',
+        text: 'Chi cerca e-commerce ad Arese è vicino alla decisione di acquisto: prezzi di partenza, tempi e metodo devono essere leggibili sopra la piega.'
+      },
+      {
+        title: 'Piattaforma come scelta commerciale',
+        text: 'Shopify, WooCommerce o custom vengono presentati in funzione di catalogo, margini e gestione quotidiana, non come preferenza tecnica.'
+      },
+      {
+        title: 'Vicinanza operativa',
+        text: 'La sede WebNovis è a Rho, a 10 minuti: incontri di persona, assistenza diretta e conoscenza reale del mercato locale.'
+      }
+    ],
+    closer: 'Un e-commerce locale ad Arese funziona quando piattaforma, catalogo e checkout sostengono una strategia di vendita misurabile.'
+  },
+  'ecommerce-rho.html': {
+    title: 'Rho: e-commerce seguiti direttamente dalla sede WebNovis',
+    lead: 'Per Rho la pagina deve valorizzare l’unico elemento che nessun competitor può copiare: WebNovis ha sede in città e segue i progetti e-commerce di persona, dal preventivo alla gestione ordini.',
+    cards: [
+      {
+        title: 'Gestione diretta',
+        text: 'Briefing, revisioni e formazione avvengono anche di persona: un vantaggio concreto per negozi e PMI che vogliono un referente raggiungibile.'
+      },
+      {
+        title: 'Percorso chiaro',
+        text: 'Piattaforma, catalogo, pagamenti, spedizioni e SEO vengono decisi in un percorso ordinato con costi trasparenti da €3.500.'
+      },
+      {
+        title: 'Ponte con SEO e campagne',
+        text: 'L’e-commerce viene collegato a SEO locale, Google Ads e social per non dipendere da un solo canale di vendita.'
+      }
+    ],
+    closer: 'Il messaggio per Rho è diretto: un partner e-commerce in città, con metodo e numeri verificabili.'
   },
   'email-marketing-monza.html': {
     title: 'Email marketing a Monza: trasformare lead e clienti in ricavi ricorrenti',

@@ -151,6 +151,27 @@ const serviceCoverageCitySlugs = new Set(
 const cityMap = new Map();
 cities.forEach(c => cityMap.set(c.slug, c));
 
+const PROVINCE_DISPLAY_NAMES = {
+    MI: 'Milano',
+    MB: 'Monza e Brianza',
+    VA: 'Varese'
+};
+
+const GEO_SEARCH_MODIFIERS = {
+    MI: 'Milano',
+    MB: 'Monza Brianza',
+    VA: 'Varese'
+};
+
+function getProvinceDisplay(city) {
+    const province = city.province || 'MI';
+    return `${PROVINCE_DISPLAY_NAMES[province] || province} (${province})`;
+}
+
+function getGeoSearchModifier(city) {
+    return GEO_SEARCH_MODIFIERS[city.province || 'MI'] || city.province || 'Lombardia';
+}
+
 // Load AI-generated content blocks (from generate-ai-content.js)
 const CONTENT_BLOCKS_DIR = path.join(ROOT, 'data', 'content-blocks');
 const contentBlocks = new Map();
@@ -1256,6 +1277,7 @@ function getRealizzazioneSeoCopy(city) {
 }
 
 function getAgenziaSeoCopy(city) {
+    const searchModifier = getGeoSearchModifier(city);
     const sectorPhrase = formatSectorList((city.localContext?.settoriChiave || []).slice(0, 2));
     const firstHighlight = city.localContext?.highlights?.[0]
         ? truncateText(
@@ -1275,16 +1297,16 @@ function getAgenziaSeoCopy(city) {
             description: `WebNovis è l'agenzia web con sede a Rho: siti custom per PMI tra Fiera Milano, servizi B2B e hinterland. Preventivo gratuito entro 24 ore.`,
             ogTitle: `Agenzia Web a ${city.name} — WebNovis | Siti Web Custom e Digital Marketing`,
             ogDescription: `WebNovis è l'agenzia web con sede a Rho per PMI, professionisti e attività dell'hinterland. Siti custom, grafica e social con gestione diretta.`,
-            keywords: `agenzia web ${city.name}, web agency ${city.name} Milano, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}`
+            keywords: `agenzia web ${city.name}, web agency ${city.name} ${searchModifier}, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}`
         };
     }
 
     return {
-        title: `Agenzia Web a ${city.name} (Milano) — WebNovis | Siti Web Custom, Grafica e Social`,
+        title: `Agenzia Web a ${city.name} (${city.province || 'MI'}) — WebNovis | Siti Web Custom, Grafica e Social`,
         description: `Agenzia web per ${city.name}: siti custom per ${differentiator}. Sede a Rho, ${city.distanzaSede}. Preventivo gratuito entro 24 ore.`,
         ogTitle: `Agenzia Web a ${city.name} — WebNovis | Siti Web Custom e Digital Marketing`,
         ogDescription: `WebNovis è l'agenzia web per ${city.name}: siti custom, grafica e social per realtà locali legate a ${differentiator}. Sede a Rho, ${city.distanzaSede}.`,
-        keywords: `agenzia web ${city.name}, web agency ${city.name} Milano, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}`
+        keywords: `agenzia web ${city.name}, web agency ${city.name} ${searchModifier}, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}`
     };
 }
 
@@ -1601,6 +1623,7 @@ function generateAgenziaPage(city) {
     const templateData = {
         city: {
             ...city,
+            provinceDisplay: getProvinceDisplay(city),
             breadcrumbLabel: `Agenzia Web ${city.name}`,
             h1: city.isSede
                 ? `Agenzia Web a ${city.name}: Siti Custom, Grafica e Social per l'Hinterland Milanese`
@@ -1734,7 +1757,7 @@ function generateRealizzazionePage(city) {
     page = page.replace(/<span class="section-tag">[\s\S]*?<\/span>/, `<span class="section-tag">${realizzazioneSeo.heroTag}</span>`);
     page = page.replace(/<h1>[\s\S]*?<\/h1>/, `<h1>${realizzazioneSeo.heroH1}</h1>`);
     page = page.replace(/<p class="answer-capsule">[\s\S]*?<\/p>/, `<p class="answer-capsule">${realizzazioneSeo.heroCapsule}</p>`);
-    page = page.replace(/Rho, Milano \(MI\) 20017/, `${city.name}, Milano (MI) ${city.cap}`);
+    page = page.replace(/Rho, Milano \(MI\) 20017/, `${city.name}, ${getProvinceDisplay(city)} ${city.cap}`);
 
     // Schema LocalBusiness
     page = page.replace(/"WebNovis — Web Agency Rho"/g, `"WebNovis — Web Agency ${city.name}"`);
@@ -1744,7 +1767,7 @@ function generateRealizzazionePage(city) {
     page = page.replace(/"latitude": "45\.5299"/g, `"latitude": "${city.lat}"`);
     page = page.replace(/"longitude": "9\.0393"/g, `"longitude": "${city.lng}"`);
     page = page.replace(/Via\+S\.\+Giorgio\+2%2C\+20017\+Rho\+MI/g,
-        `Via+S.+Giorgio+2%2C+${city.cap}+${city.name.replace(/ /g, '+')}+MI`);
+        `Via+S.+Giorgio+2%2C+${city.cap}+${city.name.replace(/ /g, '+')}+${city.province || 'MI'}`);
     page = page.replace(/"Servizi Realizzazione Siti Web Rho"/, `"Servizi Realizzazione Siti Web ${city.name}"`);
     page = page.replace(/Sito Web Vetrina a Rho/g, `Sito Web Vetrina a ${city.name}`);
     page = page.replace(/E-Commerce a Rho/g, `E-Commerce a ${city.name}`);

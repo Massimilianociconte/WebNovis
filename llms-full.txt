@@ -2,7 +2,7 @@
 # Contenuto completo in testo semplice delle pagine principali di www.webnovis.com,
 # pensato per LLM e motori di ricerca generativi (ChatGPT, Claude, Perplexity, Gemini).
 # Indice sintetico: https://www.webnovis.com/llms.txt — Dati strutturati: https://www.webnovis.com/webnovis-ai-data.json
-# Generato automaticamente da scripts/generate-llms-full.js — 2026-06-09
+# Generato automaticamente da scripts/generate-llms-full.js — 2026-07-06
 
 # Web Novis — Agenzia Digitale a Milano e Rho
 
@@ -241,7 +241,7 @@ WebNovis nasce dalla convinzione che ogni azienda meriti una presenza digitale a
 Abbiamo trasformato la pagina istituzionale in una risorsa più chiara anche per motori di ricerca e superfici AI: definizioni brevi, intenti espliciti e percorsi interni più utili verso i servizi e le pagine commerciali.
 
 ### Cos'è WebNovis?
-WebNovis è un'agenzia digitale tra Rho e Milano che realizza siti web custom, brand identity e strategie di crescita per PMI, professionisti e attività locali.
+WebNovis è un'agenzia digitale con sede a Rho , tra Rho e Milano, che realizza siti web custom, brand identity e strategie di crescita per PMI, professionisti e attività locali.
 Esplora i servizi →
 
 ### Per chi lavoriamo?
@@ -325,7 +325,7 @@ In quanto tempo rispondete a una richiesta? Per le richieste commerciali rispond
 
 ## Vuoi Lavorare con Noi?
 Raccontaci il tuo progetto. Ti rispondiamo entro 24 ore con una proposta personalizzata.
-Contattaci Ora
+[…contenuto completo sulla pagina…]
 
 ----------------------------------------
 URL: https://www.webnovis.com/come-lavoriamo.html
@@ -764,7 +764,7 @@ Accetto i Termini e Condizioni e l' Informativa sulla Privacy * Desidero iscrive
 Invia Richiesta
 
 ## Agenzia Web a Milano e Rho: Parliamo del Tuo Progetto Digitale
-Web Novis è un'agenzia web con sede a Rho, nell'area metropolitana di Milano. Ci occupiamo di sviluppo siti web, e-commerce, grafica professionale, SEO e gestione dei social media per attività locali, PMI e professionisti in tutta la Lombardia.
+Web Novis è un' agenzia web con sede a Rho , nell'area metropolitana di Milano. Ci occupiamo di sviluppo siti web, e-commerce, grafica professionale, SEO e gestione dei social media per attività locali, PMI e professionisti in tutta la Lombardia.
 Compilando il modulo di contatto in questa pagina riceverai entro 24 ore una proposta personalizzata e un preventivo trasparente, senza alcun impegno. Puoi anche contattarci direttamente via email, telefono o WhatsApp per una consulenza gratuita.
 Lavoriamo con clienti a Milano, Rho, Lainate, Arese, Garbagnate Milanese, Bollate, Pregnana Milanese e in tutta la provincia di Milano. Ogni progetto parte dall'ascolto delle tue esigenze per costruire una soluzione digitale su misura, performante e orientata ai risultati.
 Che tu abbia bisogno di un sito web professionale, di un restyling grafico, di una strategia SEO locale o di una presenza efficace sui social media, il nostro team è pronto ad affiancarti in ogni fase del percorso. Contattaci oggi stesso per iniziare.
@@ -846,6 +846,99 @@ Qual è la differenza tra WCAG 2.1 e WCAG 2.2? Le WCAG 2.2 (ottobre 2023) aggiun
 Posso verificare da solo se il mio sito è accessibile? Primo controllo con WAVE, Lighthouse o axe DevTools. Ma gli strumenti automatici catturano solo il 30-40% dei problemi — serve verifica manuale professionale.
 L'accessibilità migliora la SEO? Sì. Google premia struttura semantica, alt text, heading gerarchici, performance e mobile-friendliness — tutti migliorano con l'accessibilità. Studio Deque Systems 2024: +12% traffico organico medio.
 WebNovis sviluppa siti accessibili nativamente? Sì.
+[…contenuto completo sulla pagina…]
+
+----------------------------------------
+URL: https://www.webnovis.com/servizi/brand-identity.html
+TITOLO: Brand Identity: costi, pacchetti e cosa include | WebNovis
+DESCRIZIONE: Quanto costa una brand identity? Pacchetti da €500 con logo, palette, tipografia e linee guida. Prezzi chiari, tempi reali e preventivo in 24 ore.
+
+Home / Servizi / Brand Identity
+Ultimo aggiornamento: 6 luglio 2026
+Brand Identity · pacchetti da €500 · preventivo in 24 ore
+
+# Brand Identity: costi, pacchetti e cosa include davvero
+Una brand identity completa parte da €500 e include logo, palette colori, tipografia, elementi grafici e linee guida d'uso. Un logo singolo parte da €250, il coordinato aziendale da €150. Il prezzo finale dipende da complessità, numero di applicazioni e materiali richiesti: qui trovi pacchetti, tempi e criteri di costo, senza sorprese in fase di preventivo.
+Richiedi Preventivo Gratuito
+
+## Quanto costa una brand identity?
+Prezzi orientativi di partenza per progetti una tantum. Ogni preventivo viene definito dopo un briefing gratuito, in base a settore, concorrenza e applicazioni necessarie.
+Logo Design
+da €250 una tantum
+
+- Ricerca e analisi competitor
+- 2-3 proposte creative
+- 3 round di revisioni inclusi
+- Varianti colore e monocromatica
+- File sorgente nei formati supportati e concordati (es. SVG, AI, PDF, PNG — i formati indicati sono esemplificativi e non tutti inclusi in ogni progetto)
+- Guidelines d'uso base
+- Consegna in 2-3 settimane
+Richiedi Preventivo
+Più richiesto Brand Identity Completa
+da €500 una tantum
+
+- Tutto incluso nel Logo Design
+- Palette colori (Pantone, CMYK, RGB, HEX)
+- Sistema tipografico completo
+- Pattern, iconografia e elementi grafici
+- Linee guida d'uso professionali
+- Coordinato aziendale base (biglietti, carta intestata)
+- Consegna in 4-6 settimane
+Richiedi Preventivo
+Coordinato Aziendale Esteso
+da €150 una tantum
+
+- Biglietti da visita premium
+- Carta intestata e buste
+- Firma email HTML branded
+- Template presentazioni (PowerPoint/Keynote) — layout grafici personalizzabili, non presentazioni complete con contenuti redazionali
+- Template social media (post + stories)
+- File pronti per stampa e digitale
+- Consegna in 2-3 settimane
+Richiedi Preventivo
+
+I prezzi indicati sono puramente orientativi e rappresentano il costo di partenza per le casistiche più semplici. Il preventivo definitivo verrà stabilito insieme al cliente a seguito di una call o un incontro conoscitivo, in base alle esigenze specifiche del progetto.
+
+## Da cosa dipende il costo di una brand identity
+Due preventivi per lo stesso "logo + immagine coordinata" possono variare molto. Questi sono i fattori che spostano davvero il prezzo:
+
+- Punto di partenza: creare un'identità da zero costa meno di un rebranding, dove servono analisi dell'esistente, continuità e migrazione dei materiali.
+- Numero di applicazioni: solo digitale, oppure anche stampa, packaging, insegne, divise, mezzi? Ogni supporto aggiunge declinazioni e file dedicati.
+- Profondità delle linee guida: un one-pager con regole base ha un costo diverso da un brand book completo con casi d'uso, griglie e tone of voice visivo.
+- Concorrenza del settore: mercati affollati richiedono più ricerca e più iterazioni per ottenere un'identità davvero distintiva e registrabile.
+- Urgenza: tempi di consegna compressi implicano priorità dedicata e influiscono sul preventivo.
+Nel nostro approfondimento sui costi della brand identity trovi range di mercato aggiornati e il confronto tra freelance, agenzie e piattaforme low-cost.
+
+## Cosa include un pacchetto di branding completo
+
+### Logo e marchio
+Logo principale, versioni secondarie e responsive, variante monocromatica e negativo. Ogni proposta nasce da ricerca su settore, competitor e pubblico — non da template riadattati.
+
+### Palette e tipografia
+Colori con codici Pantone, CMYK, RGB e HEX per stampa e digitale, più un sistema tipografico completo con gerarchie chiare per titoli, testi e interfacce.
+
+### Elementi grafici
+Pattern, iconografia e stile fotografico coerenti, riutilizzabili su sito, social, presentazioni e materiali di vendita senza perdere riconoscibilità.
+
+### Linee guida d'uso
+Un brand book con regole di utilizzo, spaziature, usi corretti e vietati: il tuo team e i tuoi fornitori potranno applicare l'identità in autonomia, sempre nello stesso modo.
+
+### Coordinato aziendale
+Biglietti da visita, carta intestata, firma email e template base per presentazioni e social: i primi touchpoint dove l'identità deve funzionare da subito.
+
+### File sorgente e diritti
+Consegniamo i file sorgente nei formati concordati e trasferiamo a te tutti i diritti d'uso al completamento del progetto: nessun vincolo, nessun canone nascosto.
+
+## Logo o brand identity: cosa ti serve davvero?
+Il logo è un singolo elemento: risolve il problema di "avere un marchio". La brand identity è il sistema che rende coerente tutto ciò che l'azienda comunica: sito, social, preventivi, packaging, insegne.
+Se hai appena aperto e ti serve solo partire, un logo professionale può bastare. Se hai già clienti, materiali e canali attivi — o stai per investire in sito e advertising — conviene la brand identity completa: ogni euro speso in comunicazione rende di più quando l'immagine è coerente su tutti i punti di contatto.
+
+### Il nostro processo in 4 fasi
+1. Discovery: briefing su settore, competitor e pubblico. 2. Concept: moodboard e 2-3 direzioni creative con motivazione strategica. 3. Design: sviluppo iterativo con revisioni incluse. 4. Consegna: file professionali e brand book con tutte le regole d'uso.
+Vuoi vedere come lavoriamo su grafica e visual? Guarda i servizi di graphic design e il portfolio grafico .
+
+## Domande frequenti su costi e pacchetti brand identity
+Quanto costa una brand identity completa? Da WebNovis un pacchetto brand identity completo parte da €500 e include logo, palette colori, tipografia, elementi grafici, linee guida d'uso e coordinato base. Progetti con molte applicazioni (packaging, insegne, materiali estesi) o rebranding complessi hanno costi superiori, definiti in preventivo dopo un briefing gratuito.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -1090,7 +1183,7 @@ In un mercato sempre più affollato, il branding non è un lusso — è una nece
 Un investimento nel design professionale non è un costo — è un moltiplicatore di valore per ogni altro investimento marketing che farai.
 
 ## Quanto Costa il Graphic Design Professionale?
-Prezzi trasparenti per progetti di design una tantum. Ogni preventivo viene personalizzato sulle tue esigenze specifiche dopo un briefing iniziale gratuito.
+Prezzi trasparenti per progetti di design una tantum. Ogni preventivo viene personalizzato sulle tue esigenze specifiche dopo un briefing iniziale gratuito. Se ti interessano solo logo e immagine coordinata, trovi tutti i dettagli nella pagina dedicata a costi e pacchetti brand identity .
 Logo Design
 da €250 una tantum
 
@@ -1121,10 +1214,6 @@ da €150 una tantum
 - Firma email HTML branded
 - Template presentazioni (PowerPoint/Keynote) — layout grafici personalizzabili, non presentazioni complete con contenuti redazionali
 - Template social media (post + stories)
-- File pronti per stampa e digitale
-- Consegna in 2-3 settimane
-Richiedi Preventivo
-
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -1159,6 +1248,16 @@ Creiamo identità visive che comunicano i valori del tuo brand a colpo d'occhio.
 - Packaging e materiali promozionali stampa
 - UI/UX design per siti web e app
 Scopri i servizi design
+Brand Identity
+Costi, Pacchetti & Sistema di Marca
+Quanto costa una brand identity? Pacchetti trasparenti da €500 con logo, palette, tipografia e linee guida d'uso: un sistema di marca coerente su sito, social e materiali di vendita, con preventivo in 24 ore.
+
+- Logo design da €250 con proposte multiple
+- Brand identity completa da €500
+- Palette, tipografia e brand book
+- Coordinato aziendale e template social
+- Rebranding per aziende avviate
+Scopri costi e pacchetti
 Social Media
 Contenuti Grafici, Ricerche & Advertising
 Non gestiamo i tuoi profili, ma ti forniamo tutto ciò che serve per comunicare bene: ricerche di mercato con report, contenuti grafici professionali e campagne advertising su Meta, LinkedIn e TikTok.
@@ -1567,8 +1666,8 @@ Pubblicazione del sito con configurazione DNS, SSL, redirect e sitemap. Dopo il 
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-arese.html
-TITOLO: Agenzia Web a Arese (Milano) — WebNovis | Siti Web Custom, Grafica e Social
-DESCRIZIONE: Agenzia web per Arese: siti custom per retail e ristorazione. Sede a Rho, 10 min. Preventivo gratuito entro 24 ore.
+TITOLO: Agenzia web ad Arese: siti custom, SEO e grafica | WebNovis
+DESCRIZIONE: Web agency ad Arese: siti custom, e-commerce, branding e SEO locale per PMI e negozi. Sede a Rho a 10 minuti, preventivo in 24 ore.
 
 Home
 /
@@ -1584,7 +1683,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Arese. Sede
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -1669,12 +1768,13 @@ Applicazioni web custom con dashboard, aree riservate e integrazioni API. Da €
 Shooting fotografico professionale per siti web, social media ed e-commerce. Da €350 .
 
 ### Copywriting
+
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-bollate.html
-TITOLO: Agenzia Web a Bollate (Milano) — WebNovis | Siti Web Custom, Grafica e Social
-DESCRIZIONE: Agenzia web per Bollate: siti custom per industria e logistica. Sede a Rho, 10 min. Preventivo gratuito entro 24 ore.
+TITOLO: Agenzia web a Bollate: siti custom, SEO e social | WebNovis
+DESCRIZIONE: Web agency per Bollate: siti web custom, siti vetrina, e-commerce e campagne locali per PMI e attività. Sede a Rho a 10 minuti, preventivo in 24 ore.
 
 Home
 /
@@ -1690,7 +1790,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Bollate. Se
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -1792,7 +1892,7 @@ Campagne Google Ads (Search, Display, Shopping) per generare lead e vendite. Da 
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-cinisello-balsamo.html
-TITOLO: Agenzia Web a Cinisello Balsamo (Milano) — WebNovis | Siti Web Custom, Grafica e Social
+TITOLO: Agenzia Web a Cinisello Balsamo (MI) — WebNovis | Siti Web Custom, Grafica e Social
 DESCRIZIONE: Agenzia web per Cinisello Balsamo: siti custom per industria e commercio. Sede a Rho, 30 min. Preventivo gratuito entro 24 ore.
 
 Home
@@ -1809,7 +1909,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Cinisello B
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -1927,7 +2027,7 @@ Sessioni di consulenza su siti web, grafica, SEO/GEO, brand identity e ricerca d
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-garbagnate.html
-TITOLO: Agenzia Web a Garbagnate Milanese (Milano) — WebNovis | Siti Web Custom, Grafica e Social
+TITOLO: Agenzia Web a Garbagnate Milanese (MI) — WebNovis | Siti Web Custom, Grafica e Social
 DESCRIZIONE: Agenzia web per Garbagnate Milanese: siti custom per meccanico e elettrico. Sede a Rho, 12 min. Preventivo gratuito entro 24 ore.
 
 Home
@@ -1944,7 +2044,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Garbagnate 
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -2048,7 +2148,7 @@ Aggiornamenti, backup, monitoraggio performance e interventi prioritari. Da €5
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-lainate.html
-TITOLO: Agenzia Web a Lainate (Milano) — WebNovis | Siti Web Custom, Grafica e Social
+TITOLO: Agenzia Web a Lainate (MI) — WebNovis | Siti Web Custom, Grafica e Social
 DESCRIZIONE: Agenzia web per Lainate: siti custom per manifatturiero e logistico. Sede a Rho, 8 min. Preventivo gratuito entro 24 ore.
 
 Home
@@ -2065,7 +2165,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Lainate. Se
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -2176,7 +2276,7 @@ Workflow automatizzati con Zapier, Make e integrazioni API custom.
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-legnano.html
-TITOLO: Agenzia Web a Legnano (Milano) — WebNovis | Siti Web Custom, Grafica e Social
+TITOLO: Agenzia Web a Legnano (MI) — WebNovis | Siti Web Custom, Grafica e Social
 DESCRIZIONE: Agenzia web per Legnano: siti custom per industria e tessile. Sede a Rho, 27 min. Preventivo gratuito entro 24 ore.
 
 Home
@@ -2193,7 +2293,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Legnano. Se
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -2303,7 +2403,7 @@ App native e cross-platform (React Native) per iOS e Android. Da €8000 .
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-milano-nord.html
-TITOLO: Agenzia Web a Milano Nord (Milano) — WebNovis | Siti Web Custom, Grafica e Social
+TITOLO: Agenzia Web a Milano Nord (MI) — WebNovis | Siti Web Custom, Grafica e Social
 DESCRIZIONE: Agenzia web per Milano Nord: siti custom per università e sanitario. Sede a Rho, 25 min. Preventivo gratuito entro 24 ore.
 
 Home
@@ -2320,7 +2420,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Milano Nord
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -2434,7 +2534,7 @@ Workflow automatizzati con Zapier, Make e integrazioni API custom. Da €1000 .
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-milano-ovest.html
-TITOLO: Agenzia Web a Milano Ovest (Milano) — WebNovis | Siti Web Custom, Grafica e Social
+TITOLO: Agenzia Web a Milano Ovest (MI) — WebNovis | Siti Web Custom, Grafica e Social
 DESCRIZIONE: Agenzia web per Milano Ovest: siti custom per moda e design. Sede a Rho, 21 min. Preventivo gratuito entro 24 ore.
 
 Home
@@ -2451,7 +2551,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Milano Oves
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -2563,7 +2663,7 @@ Workflow automatizzati con Zapier, Make e integrazioni API custom. Da €1000 .
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-monza.html
-TITOLO: Agenzia Web a Monza (Milano) — WebNovis | Siti Web Custom, Grafica e Social
+TITOLO: Agenzia Web a Monza (MB) — WebNovis | Siti Web Custom, Grafica e Social
 DESCRIZIONE: Agenzia web per Monza: siti custom per manifatturiero e finanziario. Sede a Rho, 42 min. Preventivo gratuito entro 24 ore.
 
 Home
@@ -2572,7 +2672,7 @@ Agenzia Web
 /
 Agenzia Web Monza
 
-Monza — Milano (MI) 20900
+Monza — Monza e Brianza (MB) 20900
 
 # Agenzia Web a Monza: Siti Professionali per Imprese e Professionisti
 
@@ -2580,7 +2680,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Monza. Sede
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -2690,7 +2790,7 @@ App native e cross-platform (React Native) per iOS e Android. Da €8000 .
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-parabiago.html
-TITOLO: Agenzia Web a Parabiago (Milano) — WebNovis | Siti Web Custom, Grafica e Social
+TITOLO: Agenzia Web a Parabiago (MI) — WebNovis | Siti Web Custom, Grafica e Social
 DESCRIZIONE: Agenzia web per Parabiago: siti custom per calzaturiero e manifatturiero. Sede a Rho, 17 min. Preventivo gratuito entro 24 ore.
 
 Home
@@ -2707,7 +2807,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Parabiago. 
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -2809,8 +2909,8 @@ Campagne Google Ads (Search, Display, Shopping) per generare lead e vendite. Da 
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-rho.html
-TITOLO: Agenzia web a Rho: siti, SEO e branding | WebNovis
-DESCRIZIONE: Agenzia web a Rho per siti custom, e-commerce, branding e SEO locale. Sede in Via S. Giorgio 2, metodo diretto e preventivo rapido per PMI e professionisti.
+TITOLO: Web Agency Rho: siti web custom, SEO e branding | WebNovis
+DESCRIZIONE: WebNovis è la web agency di Rho (Via S. Giorgio 2): agenzia web per siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Preventivo in 24 ore.
 
 Home / Agenzia Web Rho
 Agenzia web a Rho · siti, SEO, branding e crescita locale
@@ -2872,7 +2972,7 @@ Rho è anche il nodo naturale per un'agenzia che vuole lavorare bene sul quadran
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-saronno.html
-TITOLO: Agenzia Web a Saronno (Milano) — WebNovis | Siti Web Custom, Grafica e Social
+TITOLO: Agenzia Web a Saronno (VA) — WebNovis | Siti Web Custom, Grafica e Social
 DESCRIZIONE: Agenzia web per Saronno: siti custom per dolciario e meccanico. Sede a Rho, 23 min. Preventivo gratuito entro 24 ore.
 
 Home
@@ -2881,7 +2981,7 @@ Agenzia Web
 /
 Agenzia Web Saronno
 
-Saronno — Milano (MI) 21047
+Saronno — Varese (VA) 21047
 
 # Agenzia Web a Saronno: Siti Professionali per Imprese e Professionisti
 
@@ -2889,7 +2989,7 @@ WebNovis è l'agenzia web di riferimento per PMI e professionisti di Saronno. Se
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -2999,8 +3099,8 @@ App native e cross-platform (React Native) per iOS e Android. Da €8000 .
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-sesto-san-giovanni.html
-TITOLO: Agenzia Web a Sesto San Giovanni (Milano) — WebNovis | Siti Web Custom, Grafica e Social
-DESCRIZIONE: Agenzia web per Sesto San Giovanni: siti custom per tech e industria. Sede a Rho, 33 min. Preventivo gratuito entro 24 ore.
+TITOLO: Agenzia web a Sesto San Giovanni: siti, SEO e Ads | WebNovis
+DESCRIZIONE: Agenzia web per Sesto San Giovanni: siti custom, branding, social e campagne locali per PMI e professionisti. Gestione diretta da Rho.
 
 Home
 /
@@ -3008,15 +3108,15 @@ Agenzia Web
 /
 Agenzia Web Sesto San Giovanni
 
-Sesto San Giovanni — Milano (MI) 20099
+Agenzia web a Sesto San Giovanni · siti, SEO e campagne
 
-# Agenzia Web a Sesto San Giovanni: Siti Professionali per Imprese e Professionisti
+# Agenzia web a Sesto San Giovanni per PMI e professionisti
 
-WebNovis è l'agenzia web di riferimento per PMI e professionisti di Sesto San Giovanni. Sede a Rho (33 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Preventivo gratuito entro 24 ore.
+WebNovis supporta imprese e professionisti di Sesto San Giovanni con siti custom, branding, social media e campagne locali. La sede è a Rho, con gestione diretta, preventivo entro 24 ore e percorsi digitali misurabili.
 
 Richiedi Preventivo Gratuito
 
-24 maggio 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI ·
 Google Maps
 
@@ -3038,7 +3138,7 @@ Il fondatore segue ogni progetto. Nessun call center, nessun account manager. Co
 
 ## Agenzia web a Sesto San Giovanni: partner per PMI in una città in forte trasformazione
 
-Sesto San Giovanni è una delle città metropolitane in più forte trasformazione d'Italia. Il progetto di riqualificazione dell'ex area Falck (circa 1,5 milioni di metri quadri — una delle più grandi rigenerazioni urbane d'Europa, progetto Unionezero) sta cambiando il tessuto cittadino con nuovi insediamenti residenziali, uffici, servizi. In parallelo convive una città industriale storica con PMI, artigianato, commercio e una fascia tech emergente attorno al Parco Scientifico.
+A Sesto San Giovanni la ricerca “agenzia web” è vicina alla prima pagina: per trasformare impression in contatti servono chiarezza sui servizi, prove di fiducia e collegamenti forti verso siti web, SEO e advertising.
 
 Dalla nostra sede di Rho a Sesto San Giovanni ci sono circa 15 km / 33 minuti . È sul bordo dell'area operativa primaria: le visite in presenza sono possibili per brief e milestone chiave, mentre il quotidiano funziona meglio in videocall con un unico referente. Per un'attività sestese che valuta un partner, conviene pesare il trade-off tra vicinanza (agenzie in loco) e approccio (un'agenzia con pricing trasparente, codice custom e processo chiaro).
 
@@ -3118,18 +3218,30 @@ Aggiornamenti, backup, monitoraggio performance e interventi prioritari. Da €5
 
 ### App Mobile
 
+App native e cross-platform (React Native) per iOS e Android. Da €8000 .
+
+### Automazione
+
+Workflow automatizzati con Zapier, Make e integrazioni API custom. Da €1000 .
+
+### Consulenze
+
+Sessioni di consulenza su siti web, grafica, SEO/GEO, brand identity e ricerca di mercato. Da €80 .
+
+## Dove opera WebNovis nel territorio?
+
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
 URL: https://www.webnovis.com/realizzazione-siti-web-bollate.html
-TITOLO: Siti Web a Bollate: da €1.200, SEO integrata | WebNovis
-DESCRIZIONE: Realizzazione siti web a Bollate per PMI e professionisti: landing da €500, siti vetrina da €1.200, e-commerce da €3.500. Preventivo gratuito entro 24 ore.
+TITOLO: Realizzazione siti web a Bollate: da €1.200 e SEO | WebNovis
+DESCRIZIONE: Realizzazione siti web a Bollate per PMI, studi e attivita locali: siti custom, landing ed e-commerce con SEO tecnica e preventivo in 24 ore.
 
 Home / Servizi / realizzazione siti web a Bollate
-Siti Web Bollate · preventivo in 24 ore
+Realizzazione siti web a Bollate · siti vetrina e SEO
 
-# Realizzazione Siti Web a Bollate per PMI e professionisti
-Cerchi una web agency a Bollate per creare un sito che trasmetta valore e porti richieste concrete? WebNovis realizza landing page da €500 , siti vetrina da €1.200 ed e-commerce da €3.500 , con codice 100% custom , SEO tecnica integrata e gestione diretta da Rho (10 min).
+# Realizzazione siti web a Bollate per attivita locali e PMI
+WebNovis crea siti web a Bollate per aziende, studi e attivita locali che vogliono piu richieste da Google. Siti vetrina da €1.200 , landing da €500 ed e-commerce da €3.500 .
 Richiedi Preventivo Gratuito 23 febbraio 2026 · Bollate, Milano (MI) 20021 · Tempo di lettura: 8 min
 
 ## Perché la tua azienda a Bollate ha bisogno di un sito web professionale
@@ -3140,7 +3252,7 @@ Il panorama digitale a Bollate presenta un contesto competitivo ancora moderato 
 La differenza tra un sito che "c'è" e un sito che lavora per te 24/7 sta nella qualità dell'agenzia che lo realizza: strategia, codice, design e SEO devono essere eccellenti, non "sufficienti".
 
 ## I nostri servizi di creazione siti web a Bollate
-Un unico partner per tutta la tua strategia digitale — dalla prima idea alla crescita continua.
+Le ricerche su Bollate mostrano intento pratico: chi cerca siti vetrina o sviluppo web vuole capire subito costi, tempi, metodo e affidabilita del fornitore.
 
 ### Siti Web Professionali su Misura
 Design personalizzato, codice proprietario, performance Lighthouse 95+. Ogni sito è un progetto unico, costruito sulle reali esigenze della tua azienda a Bollate. Da €1.200 . Scopri →
@@ -3190,14 +3302,14 @@ Wireframe e mockup ad alta fedeltà.
 
 ----------------------------------------
 URL: https://www.webnovis.com/realizzazione-siti-web-legnano.html
-TITOLO: Siti Web a Legnano: da €1.200, SEO integrata | WebNovis
-DESCRIZIONE: Realizzazione siti web a Legnano per PMI e professionisti: landing da €500, siti vetrina da €1.200, e-commerce da €3.500. Preventivo gratuito entro 24 ore.
+TITOLO: Realizzazione siti web a Legnano: da €1.200 e SEO | WebNovis
+DESCRIZIONE: Siti web a Legnano per PMI, artigiani e professionisti: codice custom, SEO integrata, performance e preventivo gratuito entro 24 ore.
 
 Home / Servizi / realizzazione siti web a Legnano
-Siti Web Legnano · preventivo in 24 ore
+Realizzazione siti web a Legnano · da €1.200 · SEO integrata
 
-# Realizzazione Siti Web a Legnano per PMI e professionisti
-Cerchi una web agency a Legnano per creare un sito che trasmetta valore e porti richieste concrete? WebNovis realizza landing page da €500 , siti vetrina da €1.200 ed e-commerce da €3.500 , con codice 100% custom , SEO tecnica integrata e gestione diretta da Rho (27 min).
+# Realizzazione siti web a Legnano per PMI, artigiani e professionisti
+WebNovis realizza siti web a Legnano con codice custom, SEO tecnica e percorsi di contatto chiari. Landing da €500 , siti vetrina da €1.200 ed e-commerce da €3.500 , con preventivo gratuito entro 24 ore.
 Richiedi Preventivo Gratuito 23 febbraio 2026 · Legnano, Milano (MI) 20025 · Tempo di lettura: 8 min
 
 ## Perché la tua azienda a Legnano ha bisogno di un sito web professionale
@@ -3208,7 +3320,7 @@ Il contesto competitivo digitale a Legnano vede la presenza di alcune piccole re
 La differenza tra un sito che "c'è" e un sito che lavora per te 24/7 sta nella qualità dell'agenzia che lo realizza: strategia, codice, design e SEO devono essere eccellenti, non "sufficienti".
 
 ## I nostri servizi di creazione siti web a Legnano
-Un unico partner per tutta la tua strategia digitale — dalla prima idea alla crescita continua.
+A Legnano il sito deve aiutare a distinguersi in un mercato locale molto attivo: offerta, prova, prezzi indicativi e CTA devono essere leggibili subito.
 
 ### Siti Web Professionali su Misura
 Design personalizzato, codice proprietario, performance Lighthouse 95+. Ogni sito è un progetto unico, costruito sulle reali esigenze della tua azienda a Legnano. Da €1.200 . Scopri →
@@ -3473,7 +3585,7 @@ Metodo
 
 Richiedi Preventivo Gratuito
 
-17 aprile 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Arese per intercettare ricerche con intento di contatto
@@ -3578,7 +3690,7 @@ Metodo
 
 Richiedi Preventivo Gratuito
 
-17 aprile 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Cinisello Balsamo per intercettare ricerche con intento di contatto
@@ -3687,7 +3799,7 @@ Metodo
 
 Richiedi Preventivo Gratuito
 
-17 aprile 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Garbagnate Milanese per intercettare ricerche con intento di contatto
@@ -3794,7 +3906,7 @@ Metodo
 
 Richiedi Preventivo Gratuito
 
-17 aprile 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Lainate per intercettare ricerche con intento di contatto
@@ -3901,7 +4013,7 @@ Metodo
 
 Richiedi Preventivo Gratuito
 
-17 aprile 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Parabiago per intercettare ricerche con intento di contatto
@@ -4006,7 +4118,7 @@ Metodo
 
 Richiedi Preventivo Gratuito
 
-17 aprile 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Rho per intercettare ricerche con intento di contatto
@@ -4119,7 +4231,7 @@ Focus
 
 Richiedi Preventivo Gratuito
 
-17 aprile 2026
+6 luglio 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## Siti vetrina a Arese per presentare bene l'offerta e farsi scegliere

@@ -24,7 +24,7 @@
   {# ═══ HERO — Answer capsule pattern (GEO: first 60 words = direct answer) ═══ #}
   <section class="service-page-hero">
     <div class="container">
-      <span class="section-tag">{{ city.name }} — Milano (MI) {{ city.cap }}</span>
+      <span class="section-tag">{{ city.name }} — {{ city.provinceDisplay or city.province }} {{ city.cap }}</span>
       <h1>{{ city.h1 }}</h1>
       <p class="answer-capsule">{{ city.heroCapsule | safe }}</p>
       <a href="contatti.html" class="btn btn-large btn-primary">

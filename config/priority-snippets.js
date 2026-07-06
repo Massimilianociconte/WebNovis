@@ -273,8 +273,76 @@ module.exports = {
     title: 'Graphic design a Legnano: logo, visual e brand identity | WebNovis',
     description: 'Graphic design a Legnano per logo, brand identity, materiali coordinati e visual digitali con approccio strategico e preventivo rapido.'
   },
+  'blog/canva-vs-designer-professionista.html': {
+    title: 'Canva o graphic designer? Quando serve un professionista | WebNovis',
+    description: 'Canva, template o graphic designer: differenze, costi, limiti e quando conviene affidarsi a un professionista per logo, brand identity e visual aziendali.'
+  },
+  'blog/scegliere-hosting-sito-web.html': {
+    title: 'Come scegliere hosting per sito web: velocita, SEO e costi | WebNovis',
+    description: 'Hosting per sito aziendale: cosa valutare tra TTFB, uptime, sicurezza, assistenza, CDN e costi prima di pubblicare o rifare un sito web.'
+  },
+  'blog/copywriting-ads-tecniche.html': {
+    title: 'Copywriting per Ads: tecniche, esempi e landing coerenti | WebNovis',
+    description: 'Tecniche di copywriting per annunci Google e Meta: promessa, pubblico, CTA, prove e coerenza con la landing page per non sprecare budget.'
+  },
+  'blog/strumenti-test-accessibilita.html': {
+    title: 'Test accessibilita sito web: strumenti e controlli WCAG | WebNovis',
+    description: 'Strumenti per testare accessibilita e WCAG: cosa controllare, limiti dei tool automatici e quando serve un audit manuale per siti aziendali.'
+  },
+  'blog/digital-transformation-pmi.html': {
+    title: 'Digital transformation PMI: priorita, costi ed errori | WebNovis',
+    description: 'Guida pratica alla digital transformation per PMI: sito, CRM, automazioni, dati e priorita operative per investire senza disperdere budget.'
+  },
+  'ecommerce-monza.html': {
+    title: 'E-commerce a Monza: shop online da €3.500 e SEO | WebNovis',
+    description: 'E-commerce a Monza per negozi, retail e brand locali: Shopify, WooCommerce o custom, SEO integrata, checkout curato e preventivo rapido.'
+  },
+  'ecommerce-garbagnate.html': {
+    title: 'E-commerce a Garbagnate: vendite online e SEO | WebNovis',
+    description: 'E-commerce a Garbagnate Milanese per negozi e PMI: piattaforma, catalogo, pagamenti, SEO e UX orientata alle vendite. Preventivo rapido.'
+  },
+  'realizzazione-siti-web-bollate.html': {
+    title: 'Realizzazione siti web a Bollate: da €1.200 e SEO | WebNovis',
+    description: 'Realizzazione siti web a Bollate per PMI, studi e attivita locali: siti custom, landing ed e-commerce con SEO tecnica e preventivo in 24 ore.'
+  },
+  'realizzazione-siti-web-legnano.html': {
+    title: 'Realizzazione siti web a Legnano: da €1.200 e SEO | WebNovis',
+    description: 'Siti web a Legnano per PMI, artigiani e professionisti: codice custom, SEO integrata, performance e preventivo gratuito entro 24 ore.'
+  },
+  'agenzia-web-sesto-san-giovanni.html': {
+    title: 'Agenzia web a Sesto San Giovanni: siti, SEO e Ads | WebNovis',
+    description: 'Agenzia web per Sesto San Giovanni: siti custom, branding, social e campagne locali per PMI e professionisti. Gestione diretta da Rho.'
+  },
   'email-marketing-cinisello-balsamo.html': {
     title: 'Email marketing a Cinisello Balsamo: automazioni e CRM | WebNovis',
     description: 'Email marketing a Cinisello Balsamo con newsletter, automazioni e flussi CRM per aumentare riacquisti, richieste e relazione con i clienti.'
+  },
+  'ecommerce-arese.html': {
+    title: 'E-commerce ad Arese: shop online da €3.500 e SEO | WebNovis',
+    description: 'Realizzazione e-commerce ad Arese per negozi e brand locali: Shopify, WooCommerce o custom, SEO integrata, checkout curato e preventivo in 24 ore.'
+  },
+  'ecommerce-rho.html': {
+    title: 'Realizzazione e-commerce a Rho: da €3.500 e SEO | WebNovis',
+    description: 'E-commerce a Rho per negozi, brand e PMI: piattaforma su misura, catalogo, pagamenti e SEO tecnica. Gestione diretta dalla sede WebNovis di Rho.'
+  },
+  'seo-locale-limbiate.html': {
+    title: 'Consulenza SEO a Limbiate: locale e Google Maps | WebNovis',
+    description: 'Consulenza SEO locale a Limbiate: Google Business Profile, pagine locali e ottimizzazione on-page per Maps e ricerche vicine. Da €400/mese.'
+  },
+  'agenzia-web-castellanza.html': {
+    title: 'Siti web a Castellanza (VA): agenzia web custom | WebNovis',
+    description: 'Siti web a Castellanza per PMI e professionisti: siti custom da €1.200, e-commerce e SEO locale. Preventivo gratuito entro 24 ore.'
+  },
+  'agenzia-web-arese.html': {
+    title: 'Agenzia web ad Arese: siti custom, SEO e grafica | WebNovis',
+    description: 'Web agency ad Arese: siti custom, e-commerce, branding e SEO locale per PMI e negozi. Sede a Rho a 10 minuti, preventivo in 24 ore.'
+  },
+  'agenzia-web-bollate.html': {
+    title: 'Agenzia web a Bollate: siti custom, SEO e social | WebNovis',
+    description: 'Web agency per Bollate: siti web custom, siti vetrina, e-commerce e campagne locali per PMI e attività. Sede a Rho a 10 minuti, preventivo in 24 ore.'
+  },
+  'servizi/brand-identity.html': {
+    title: 'Brand Identity: costi, pacchetti e cosa include | WebNovis',
+    description: 'Quanto costa una brand identity? Pacchetti da €500 con logo, palette, tipografia e linee guida. Prezzi chiari, tempi reali e preventivo in 24 ore.'
   }
 };
