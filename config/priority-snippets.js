@@ -1,8 +1,8 @@
 module.exports = {
   'blog/partita-iva-ecommerce.html': {
-    // GSC: 2.321 impr a pos 6.0 con 3 clic (CTR 0,13%) → title in forma di domanda
+    // GSC: 631 impr a pos 5.9 con 0 clic → description con numeri concreti per differenziarsi dai siti fiscali
     title: 'Partita IVA per e-commerce: quando serve e costi 2026 | WebNovis',
-    description: 'Quando serve la partita IVA per vendere online, quanto costa aprirla, regime forfettario, adempimenti e checklist completa prima di lanciare l\'e-commerce.'
+    description: 'Quando serve la partita IVA per vendere online: forfettario al 5% i primi 5 anni, INPS ~€4.200, apertura gratuita. Costi reali e checklist prima di partire.'
   },
   'blog/quanto-costa-una-landing-page.html': {
     title: 'Quanto Costa una Landing Page nel 2026? Prezzi e ROI | WebNovis',
@@ -278,8 +278,8 @@ module.exports = {
     description: 'Canva, template o graphic designer: differenze, costi, limiti e quando conviene affidarsi a un professionista per logo, brand identity e visual aziendali.'
   },
   'blog/scegliere-hosting-sito-web.html': {
-    title: 'Come scegliere hosting per sito web: velocita, SEO e costi | WebNovis',
-    description: 'Hosting per sito aziendale: cosa valutare tra TTFB, uptime, sicurezza, assistenza, CDN e costi prima di pubblicare o rifare un sito web.'
+    title: 'Hosting aziendale: come sceglierlo senza errori | WebNovis',
+    description: 'Hosting per siti web aziendali: TTFB, uptime, sicurezza, assistenza e costi. Confronto condiviso vs VPS, caso reale e checklist prima di pubblicare.'
   },
   'blog/copywriting-ads-tecniche.html': {
     title: 'Copywriting per Ads: tecniche, esempi e landing coerenti | WebNovis',
@@ -290,8 +290,8 @@ module.exports = {
     description: 'Strumenti per testare accessibilita e WCAG: cosa controllare, limiti dei tool automatici e quando serve un audit manuale per siti aziendali.'
   },
   'blog/digital-transformation-pmi.html': {
-    title: 'Digital transformation PMI: priorita, costi ed errori | WebNovis',
-    description: 'Guida pratica alla digital transformation per PMI: sito, CRM, automazioni, dati e priorita operative per investire senza disperdere budget.'
+    title: 'Trasformazione digitale PMI: roadmap, costi ed errori | WebNovis',
+    description: 'Roadmap di trasformazione digitale per PMI: da dove iniziare tra sito, CRM, automazioni e dati, con priorita operative ed errori da evitare.'
   },
   'ecommerce-monza.html': {
     title: 'E-commerce a Monza: shop online da €3.500 e SEO | WebNovis',
@@ -344,5 +344,17 @@ module.exports = {
   'servizi/brand-identity.html': {
     title: 'Brand Identity: costi, pacchetti e cosa include | WebNovis',
     description: 'Quanto costa una brand identity? Pacchetti da €500 con logo, palette, tipografia e linee guida. Prezzi chiari, tempi reali e preventivo in 24 ore.'
+  },
+  'blog/chiedere-recensioni-clienti.html': {
+    title: 'Come chiedere recensioni ai clienti: metodo e template | WebNovis',
+    description: 'Quando e come chiedere recensioni Google: momento giusto, messaggi pronti da copiare, link diretto e QR code, e come mostrarle sul sito per convertire.'
+  },
+  'blog/personal-brand-consulente.html': {
+    title: 'Personal branding per consulenti: guida e consulenza | WebNovis',
+    description: 'Come costruire un personal brand da consulente: nicchia, posizionamento, canali e immagine coerente. E quando conviene una consulenza di personal branding.'
+  },
+  'blog/seo-blog-aziendale.html': {
+    title: 'SEO per blog aziendali: metodo, keyword e checklist | WebNovis',
+    description: 'SEO per blog aziendali: come scegliere le keyword, strutturare gli articoli e collegare i servizi per trasformare il blog in richieste, non solo traffico.'
   }
 };

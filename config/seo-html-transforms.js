@@ -131,6 +131,23 @@ const MONEY_PAGE_INTERNAL_LINK_BLOCKS = {
       { href: '../contatti.html?servizio=consulenza-digitale', label: 'Consulenza digitale' }
     ]
   },
+  'blog/personal-brand-consulente.html': {
+    title: 'Vuoi accelerare il tuo personal brand?',
+    text: 'Posizionamento, identità visiva e sito personale coerenti valgono più di mille post: WebNovis affianca consulenti e professionisti con consulenze mirate e brand identity su misura.',
+    links: [
+      { href: '../servizi/consulenze.html', label: 'Consulenza personal branding' },
+      { href: '../servizi/brand-identity.html', label: 'Brand identity personale' },
+      { href: '../portfolio.html', label: 'Portfolio WebNovis' }
+    ]
+  },
+  'blog/chiedere-recensioni-clienti.html': {
+    title: 'Le recensioni rendono di più dentro un sistema locale',
+    text: 'Recensioni, Google Business Profile e pagine locali lavorano insieme: portano fiducia e contatti solo se sito e presenza local sono curati e collegati.',
+    links: [
+      { href: '/seo-locale-rho.html', label: 'SEO locale e recensioni' },
+      { href: '../servizi/sviluppo-web.html', label: 'Sito web che valorizza le recensioni' }
+    ]
+  },
   'blog/ttfb-server-response-time.html': {
     title: 'TTFB alto? La performance va corretta dentro il progetto web',
     text: 'Hosting, caching, asset e codice incidono su velocità, crawling e conversione: interveniamo sulle pagine che devono portare contatti.',
