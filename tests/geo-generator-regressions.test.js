@@ -1,6 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { removeUnsupportedReviewMarkup } = require('../scripts/seo-aggregate-rating.js');
 
 const ROOT = process.cwd();
 
@@ -20,6 +21,9 @@ function main() {
 
   const generator = readText('scripts/generate-all-geo.js');
   const agenziaTemplate = readText('templates/agenzia-web-content.njk');
+  const agenziaBase = readText('templates/base-pages/agenzia-web-source.html');
+  const realizzazioneBase = readText('templates/base-pages/realizzazione-siti-web-source.html');
+  const ratingCleanup = readText('scripts/seo-aggregate-rating.js');
   assert.ok(
     !generator.includes("getBasePage('agenzia-web-rho.html')"),
     'Geo generator must not read agenzia-web-rho.html as its source template'
@@ -47,6 +51,63 @@ function main() {
   assert.ok(
     agenziaTemplate.includes('CUSTOM:geo-proof:START'),
     'Agenzia template should expose preserved custom content markers for manual rewrites'
+  );
+  assert.ok(
+    agenziaTemplate.includes('{% for faq in faqs %}') && !agenziaTemplate.includes('{% for faq in city.faqs %}'),
+    'Agenzia visible FAQs must consume the same resolved FAQ array used by JSON-LD'
+  );
+  assert.ok(
+    generator.includes('generateSchemas(city, \'agenzia\', resolvedFaqs)') &&
+      generator.includes('generateSchemas(city, \'realizzazione\', resolvedFaqs)'),
+    'Agency and realization schema generation must receive the page-resolved FAQ array'
+  );
+  assert.ok(
+    generator.includes('services.filter((service) => service.hasPage === true)'),
+    'OfferCatalog schema entries must be restricted to services with real dedicated pages'
+  );
+
+  for (const [file, source] of [
+    ['templates/base-pages/agenzia-web-source.html', agenziaBase],
+    ['templates/base-pages/realizzazione-siti-web-source.html', realizzazioneBase]
+  ]) {
+    assert.ok(!source.includes('AggregateRating'), `${file} must not seed self-serving AggregateRating markup`);
+    assert.ok(!source.includes('SpeakableSpecification'), `${file} must not seed commercial-page speakable markup`);
+    assert.ok(
+      !source.includes('"@type":["LocalBusiness","ProfessionalService"]'),
+      `${file} must not seed a page-specific LocalBusiness branch`
+    );
+  }
+
+  assert.ok(
+    agenziaBase.includes('"provider": { "@id": "https://www.webnovis.com/#localbusiness" }'),
+    'Agenzia base Service schema must reference the canonical singleton WebNovis entity'
+  );
+
+  assert.ok(
+    ratingCleanup.includes('delete schema.aggregateRating') && ratingCleanup.includes('delete schema.review'),
+    'Legacy aggregate-rating utility must idempotently remove unsupported rating and review properties'
+  );
+  assert.ok(
+    !ratingCleanup.includes('obj.aggregateRating ='),
+    'Legacy aggregate-rating utility must never re-inject self-serving AggregateRating markup'
+  );
+
+  const ratingFixture = [
+    '<script type="application/ld+json">',
+    '{"@context":"https://schema.org","@type":"Organization",',
+    '"aggregateRating":{"@type":"AggregateRating","ratingValue":"5"},',
+    '"review":{"@type":"Review","reviewBody":"Unsupported"}}',
+    '</script>',
+    '<a class="review-badge" href="https://example.com/reviews">Recensioni visibili</a>'
+  ].join('');
+  const firstCleanup = removeUnsupportedReviewMarkup(ratingFixture);
+  const secondCleanup = removeUnsupportedReviewMarkup(firstCleanup.html);
+  assert.equal(firstCleanup.removed, 2, 'Rating cleanup must remove both unsupported schema properties');
+  assert.equal(secondCleanup.removed, 0, 'Rating cleanup must be idempotent on already-clean markup');
+  assert.equal(secondCleanup.html, firstCleanup.html, 'A second rating cleanup pass must not change HTML');
+  assert.ok(
+    firstCleanup.html.includes('review-badge') && firstCleanup.html.includes('Recensioni visibili'),
+    'Rating cleanup must preserve legitimate visible review content'
   );
 }
 

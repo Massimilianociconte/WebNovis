@@ -15,6 +15,28 @@ function extractTitle(html, file) {
   return match[1];
 }
 
+function parseJsonLd(html, file) {
+  return [...html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)<\/script>/gi)].map((match) => {
+    try {
+      return JSON.parse(match[1]);
+    } catch (error) {
+      assert.fail(`${file} contains invalid JSON-LD: ${error.message}`);
+    }
+  });
+}
+
+function visibleFaqQuestions(html) {
+  return [...html.matchAll(/<summary>([\s\S]*?)<\/summary>/gi)].map((match) =>
+    match[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+  );
+}
+
+function schemaFaqQuestions(schemas, file) {
+  const faqPage = schemas.find((schema) => schema['@type'] === 'FAQPage');
+  assert.ok(faqPage, `${file} must expose FAQPage JSON-LD`);
+  return faqPage.mainEntity.map((entity) => entity.name);
+}
+
 function main() {
   const sitemap = readText('sitemap.xml');
   assert.ok(
@@ -172,6 +194,29 @@ function main() {
     !serviceCityHtml.includes('"name": "Agenzia Web a Rho (Milano) — WebNovis"'),
     'automazione-business-milano.html still inherits the stale Rho WebPage schema from the geo base template'
   );
+
+  for (const file of [
+    'agenzia-web-rho.html',
+    'agenzia-web-arese.html',
+    'realizzazione-siti-web-arese.html',
+    'ecommerce-milano.html'
+  ]) {
+    const html = readText(file);
+    const schemas = parseJsonLd(html, file);
+    assert.deepEqual(
+      schemaFaqQuestions(schemas, file),
+      visibleFaqQuestions(html),
+      `${file} FAQPage questions must exactly match the visible FAQ questions`
+    );
+    assert.ok(
+      !JSON.stringify(schemas).includes('SpeakableSpecification'),
+      `${file} must not use commercial-page speakable markup`
+    );
+    assert.ok(
+      !JSON.stringify(schemas).includes('AggregateRating') && !JSON.stringify(schemas).includes('"@type":"Review"'),
+      `${file} must not publish self-serving rating or review schema`
+    );
+  }
 
   const communityArticle = readText('blog/community-management-guida.html');
   assert.ok(

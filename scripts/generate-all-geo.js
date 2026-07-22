@@ -26,6 +26,7 @@
 const fs = require('fs');
 const path = require('path');
 const nunjucks = require('nunjucks');
+const { removeSchemaReviewProperties } = require('./seo-aggregate-rating');
 const {
     getIndexationDirectivesForPath,
     isTier1Path,
@@ -45,6 +46,7 @@ function resolvePageTier(pathname) {
 const ROOT = path.join(__dirname, '..');
 const BASE_PAGE_DIR = path.join(ROOT, 'templates', 'base-pages');
 const SITE = 'https://www.webnovis.com';
+const SINGLETON_LOCAL_BUSINESS_ID = SITE + '/#localbusiness';
 const SEDE_LAT = '45.5299';
 const SEDE_LNG = '9.0393';
 const FIRST_DEPLOY_DATE = '2026-02-27';
@@ -129,6 +131,7 @@ const servicesData = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'service
 const cities = citiesData.cities;
 const services = servicesData.services;
 const coreServices = services.filter(s => s.tier === 'core');
+const offerCatalogServices = services.filter((service) => service.hasPage === true);
 
 // Centralized predicate: does this service participate in geo generation?
 // - `skipGeoGeneration: true` (new) explicitly opts out (used for deprecated clusters like consulenza-digitale)
@@ -248,6 +251,29 @@ function getRelevantBlogLinks(city, limit = 3) {
 
 function stripHtml(html) {
     return (html || '').replace(/<[^>]+>/g, ' ').replace(/&[a-z]+;/gi, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function resolvePageFaqs(city, pageType, aiBlock) {
+    const aiFaqs = pageType === 'agenzia'
+        ? aiBlock?.faqsAgenzia
+        : aiBlock?.faqsRealizzazione;
+    const minimumAiFaqs = pageType === 'agenzia' ? 3 : 1;
+
+    if (Array.isArray(aiFaqs) && aiFaqs.length >= minimumAiFaqs) {
+        return aiFaqs;
+    }
+
+    return (city.faqs && city.faqs[pageType]) || [];
+}
+
+function renderFaqSection(title, faqs) {
+    if (!Array.isArray(faqs) || faqs.length === 0) return '';
+
+    const details = faqs.map((faq) =>
+        `<details class="faq-item"><summary>${faq.q}</summary><p>${faq.a}</p></details>`
+    ).join('');
+
+    return `<section class="service-detail"><div class="container"><h2>${title}</h2>${details}</div></section>`;
 }
 
 const CUSTOM_BLOCK_REGEX = /<!-- CUSTOM:([a-z0-9-]+):START -->([\s\S]*?)<!-- CUSTOM:\1:END -->/gi;
@@ -1312,7 +1338,7 @@ function getAgenziaSeoCopy(city) {
 
 // ─── Schema Generation ───────────────────────────────────────────────────────
 
-function generateSchemas(city, pageType) {
+function generateSchemas(city, pageType, resolvedFaqs) {
     const slug = pageType === 'agenzia'
         ? `agenzia-web-${city.slug}.html`
         : `realizzazione-siti-web-${city.slug}.html`;
@@ -1327,12 +1353,6 @@ function generateSchemas(city, pageType) {
     const webPageDescription = isAgenziaPage
         ? `WebNovis è l'agenzia web per ${city.name} e hinterland milanese. Siti 100% custom, graphic design, social media. Sede a Rho, ${city.distanzaSede} da ${city.name}.`
         : `Realizzazione siti web a ${city.name} per PMI e professionisti: landing page, siti vetrina ed e-commerce custom con SEO tecnica integrata e gestione diretta da Rho (${city.distanzaSede}).`;
-    const localBusinessName = isAgenziaPage
-        ? `WebNovis — Agenzia Web ${city.name}`
-        : `WebNovis — Realizzazione Siti Web ${city.name}`;
-    const localBusinessDescription = isAgenziaPage
-        ? `Agenzia web per ${city.name} e hinterland milanese specializzata in siti web 100% custom, graphic design e social media marketing. Sede a Rho (MI), ${city.distanzaSede} da ${city.name}.`
-        : `Realizzazione siti web a ${city.name} per PMI e professionisti con codice 100% custom, SEO tecnica integrata e design orientato ai contatti. Sede a Rho (MI), ${city.distanzaSede} da ${city.name}.`;
     const offerCatalogName = isAgenziaPage
         ? `Servizi Web a ${city.name}`
         : `Servizi di Realizzazione Siti Web a ${city.name}`;
@@ -1359,8 +1379,6 @@ function generateSchemas(city, pageType) {
         { "@type": "AdministrativeArea", "name": "Città Metropolitana di Milano" }
     ];
 
-    const faqs = (city.faqs && city.faqs[pageType]) || [];
-
     const schemas = [
         // BreadcrumbList (3 levels: Home → Hub → City)
         {
@@ -1371,7 +1389,7 @@ function generateSchemas(city, pageType) {
                 { "@type": "ListItem", "position": 3, "name": breadcrumbLabel, "item": canonical }
             ]
         },
-        // WebPage with SpeakableSpecification
+        // Commercial landing WebPage
         {
             "@context": "https://schema.org", "@type": "WebPage",
             "@id": canonical,
@@ -1380,60 +1398,9 @@ function generateSchemas(city, pageType) {
             "url": canonical,
             "inLanguage": "it",
             "isPartOf": { "@id": SITE + "/#website" },
-            "about": { "@id": SITE + "/#organization" },
+            "about": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
             "datePublished": FIRST_DEPLOY_DATE,
-            "dateModified": TODAY,
-            "speakable": {
-                "@type": "SpeakableSpecification",
-                "cssSelector": [".answer-capsule", "h1"]
-            }
-        },
-        // LocalBusiness
-        {
-            "@context": "https://schema.org",
-            "@type": ["LocalBusiness", "ProfessionalService"],
-            "@id": canonical + "#localbusiness-" + city.slug,
-            "name": localBusinessName,
-            "alternateName": "Web Novis " + city.name,
-            "url": canonical,
-            "parentOrganization": { "@id": SITE + "/#organization" },
-            "description": localBusinessDescription,
-            "telephone": "+393802647367",
-            "email": "hello@webnovis.com",
-            "priceRange": "€€",
-            "currenciesAccepted": "EUR",
-            "address": {
-                "@type": "PostalAddress", "@id": SITE + "/#address",
-                "streetAddress": "Via S. Giorgio, 2",
-                "addressLocality": "Rho", "addressRegion": "MI",
-                "postalCode": "20017", "addressCountry": "IT"
-            },
-            "geo": { "@type": "GeoCoordinates", "latitude": SEDE_LAT, "longitude": SEDE_LNG },
-            "hasMap": "https://maps.google.com/?q=Via+S.+Giorgio+2%2C+20017+Rho+MI",
-            "areaServed": areaServedObjects,
-            "serviceArea": {
-                "@type": "GeoCircle",
-                "geoMidpoint": { "@type": "GeoCoordinates", "latitude": SEDE_LAT, "longitude": SEDE_LNG },
-                "geoRadius": "20000"
-            },
-            "openingHoursSpecification": [{
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                "opens": "00:00", "closes": "23:59"
-            }],
-            "sameAs": [SITE + "/#organization"],
-            "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": offerCatalogName,
-                "itemListElement": services.map(svc => ({
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": svc.shortName + " a " + city.name,
-                        "url": SITE + svc.url
-                    }
-                }))
-            }
+            "dateModified": TODAY
         },
         // Service
         {
@@ -1442,8 +1409,20 @@ function generateSchemas(city, pageType) {
             "serviceType": "Web Development",
             "name": serviceName,
             "description": serviceDescription,
-            "provider": { "@id": SITE + "/#organization" },
+            "provider": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
             "areaServed": areaServedObjects.slice(0, 7),
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": offerCatalogName,
+                "itemListElement": offerCatalogServices.map((service) => ({
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": service.shortName + " a " + city.name,
+                        "url": SITE + service.url
+                    }
+                }))
+            },
             "offers": [
                 { "@type": "Offer", "name": "Landing Page", "price": "500", "priceCurrency": "EUR" },
                 { "@type": "Offer", "name": "Sito Vetrina", "price": "1200", "priceCurrency": "EUR" },
@@ -1457,7 +1436,7 @@ function generateSchemas(city, pageType) {
             "serviceType": service.name,
             "name": `${service.shortName} a ${city.name}`,
             "description": `${service.shortDesc} Per aziende e professionisti di ${city.name}, con gestione diretta da Rho (${city.distanzaSede}).`,
-            "provider": { "@id": canonical + "#localbusiness-" + city.slug },
+            "provider": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
             "areaServed": primaryAreaServed,
             "url": SITE + service.url,
             "offers": {
@@ -1470,10 +1449,10 @@ function generateSchemas(city, pageType) {
     ];
 
     // FAQPage schema (only if FAQs exist)
-    if (faqs.length > 0) {
+    if (resolvedFaqs.length > 0) {
         schemas.push({
             "@context": "https://schema.org", "@type": "FAQPage",
-            "mainEntity": faqs.map(f => ({
+            "mainEntity": resolvedFaqs.map(f => ({
                 "@type": "Question",
                 "name": f.q,
                 "acceptedAnswer": { "@type": "Answer", "text": stripHtml(f.a) }
@@ -1488,6 +1467,33 @@ function stripJsonLdFromHead(headHtml) {
     return headHtml
         .replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '')
         .replace(/\n{3,}/g, '\n\n');
+}
+
+function normalizeHandCraftedAgenziaPage(html) {
+    return html.replace(
+        /<script type="application\/ld\+json">\s*([\s\S]*?)<\/script>/gi,
+        (fullMatch, json) => {
+            try {
+                const schema = JSON.parse(json);
+                const types = Array.isArray(schema['@type']) ? schema['@type'] : [schema['@type']];
+
+                if (types.includes('LocalBusiness') || types.includes('Review')) return '';
+
+                removeSchemaReviewProperties(schema);
+                if (schema['@type'] === 'WebPage') {
+                    delete schema.speakable;
+                    schema.about = { '@id': SINGLETON_LOCAL_BUSINESS_ID };
+                }
+                if (schema['@type'] === 'Service') {
+                    schema.provider = { '@id': SINGLETON_LOCAL_BUSINESS_ID };
+                }
+
+                return `<script type="application/ld+json">${JSON.stringify(schema)}</script>`;
+            } catch {
+                return fullMatch;
+            }
+        }
+    );
 }
 
 function replaceMetaTagContent(html, attrName, attrValue, content) {
@@ -1613,9 +1619,7 @@ function generateAgenziaPage(city) {
     const section3Text = aiBlock?.localMarketAnalysis
         ? `<p>${aiBlock.localMarketAnalysis}</p>` + (aiBlock.competitiveContext ? `<p>${aiBlock.competitiveContext}</p>` : '')
         : buildLocalContextHtml(city);
-    const agenziaFaqs = (aiBlock?.faqsAgenzia && aiBlock.faqsAgenzia.length >= 3)
-        ? aiBlock.faqsAgenzia
-        : (city.faqs && city.faqs.agenzia) || [];
+    const resolvedFaqs = resolvePageFaqs(city, 'agenzia', aiBlock);
     const section1Intro = aiBlock?.competitiveContext
         ? (ctx.tessutoEconomico || '') + ' ' + aiBlock.competitiveContext
         : ctx.tessutoEconomico || `${city.name} è un comune dell'hinterland milanese con un tessuto imprenditoriale attivo.`;
@@ -1655,11 +1659,11 @@ function generateAgenziaPage(city) {
             ],
             section3Title: `${city.name} e il contesto imprenditoriale: perché investire nel digitale`,
             section3Text: section3Text,
-            faqs: agenziaFaqs,
             ctaTitle: `Pronto a portare online la tua attività di ${city.name}?`,
             hasAiContent: !!aiBlock
         },
         services: tableServices,
+        faqs: resolvedFaqs,
         nearCitiesData: nearCitiesData,
         relatedPages: relatedPages,
         blogLinks: blogLinks,
@@ -1705,7 +1709,7 @@ function generateAgenziaPage(city) {
     const tailBlock = searchCssIdx >= 0 ? afterFooter.substring(searchCssIdx) : afterFooter;
 
     // Generate JSON-LD schemas
-    const schemas = generateSchemas(city, 'agenzia');
+    const schemas = generateSchemas(city, 'agenzia', resolvedFaqs);
     const schemasHtml = schemas.map(s =>
         `<script type="application/ld+json">${JSON.stringify(s)}</script>`
     ).join('\n');
@@ -1728,6 +1732,8 @@ function generateRealizzazionePage(city) {
 
     const canonical = `${SITE}/realizzazione-siti-web-${city.slug}.html`;
     const realizzazioneSeo = getRealizzazioneSeoCopy(city);
+    const aiBlock = contentBlocks.get(city.slug);
+    const resolvedFaqs = resolvePageFaqs(city, 'realizzazione', aiBlock);
     const headEnd = page.indexOf('</head>');
 
     if (headEnd > 0) {
@@ -1809,8 +1815,6 @@ function generateRealizzazionePage(city) {
 
     // Market intro — inject unique local context (AI-enriched when available)
     const ctx = city.localContext || {};
-    const aiBlock = contentBlocks.get(city.slug);
-
     const marketIntro = aiBlock?.localMarketAnalysis
         ? `${aiBlock.localMarketAnalysis}</p>\n                <p>${aiBlock.competitiveContext || ctx.opportunitaDigitale || ''}`
         : `${ctx.tessutoEconomico || ''}</p>\n                <p>${ctx.opportunitaDigitale || ''}`;
@@ -1839,16 +1843,11 @@ function generateRealizzazionePage(city) {
         );
     }
 
-    // Inject AI-generated FAQ section for realizzazione (unique per city)
-    let aiExtraHtml = '';
-    if (aiBlock?.faqsRealizzazione && aiBlock.faqsRealizzazione.length > 0) {
-        aiExtraHtml += `\n<section class="service-detail" style="background:rgba(255,255,255,.01)"><div class="container">`;
-        aiExtraHtml += `<h2>Domande specifiche sulla realizzazione siti web a ${city.name}</h2>`;
-        for (const faq of aiBlock.faqsRealizzazione) {
-            aiExtraHtml += `<details class="faq-item"><summary>${faq.q}</summary><p>${faq.a}</p></details>`;
-        }
-        aiExtraHtml += `</div></section>\n`;
-    }
+    // Visible FAQs and FAQPage JSON-LD consume the same resolved array.
+    page = page.replace(
+        /<section class="service-detail">\s*<div class="container">\s*<h2>Domande Frequenti — Realizzazione Siti Web a [^<]+<\/h2>[\s\S]*?<\/div>\s*<\/section>/i,
+        renderFaqSection(`Domande Frequenti — Realizzazione Siti Web a ${city.name}`, resolvedFaqs)
+    );
 
     // Inject geo internal links + AI FAQ before </main>
     const geoLinksHtml = buildGeoLinksSection(city, 'realizzazione');
@@ -1867,9 +1866,9 @@ function generateRealizzazionePage(city) {
         }
     }
 
-    page = page.replace('</main>', tier1Html + aiExtraHtml + geoLinksHtml + '</main>');
+    page = page.replace('</main>', tier1Html + geoLinksHtml + '</main>');
 
-    const schemasHtml = generateSchemas(city, 'realizzazione')
+    const schemasHtml = generateSchemas(city, 'realizzazione', resolvedFaqs)
         .map((schema) => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
         .join('\n');
     page = page.replace(/<\/footer>/i, `</footer>\n${schemasHtml}`);
@@ -1921,8 +1920,6 @@ function generateServizioCittaPage(service, city) {
     const slug = `${service.slug}-${city.slug}`;
     const canonical = `${SITE}/${slug}.html`;
     const seo = getServiceLocalSeoCopy(service, city);
-    const servicePrimaryUrl = `${SITE}${getServicePrimaryUrl(service)}`;
-
     // Nearest cities that also have this service×city page
     const nearest = getNearestCities(city, cities, 5);
     const relatedCityPages = nearest
@@ -2102,55 +2099,9 @@ function generateServizioCittaPage(service, city) {
             "url": canonical,
             "inLanguage": "it",
             "isPartOf": { "@id": SITE + "/#website" },
-            "about": { "@id": canonical + "#localbusiness" },
+            "about": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
             "datePublished": FIRST_DEPLOY_DATE,
             "dateModified": TODAY
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": ["LocalBusiness", "ProfessionalService"],
-            "@id": canonical + "#localbusiness",
-            "name": `WebNovis — ${service.shortName} a ${city.name}`,
-            "url": canonical,
-            "parentOrganization": { "@id": SITE + "/#organization" },
-            "description": seo.schemaDescription,
-            "telephone": "+393802647367",
-            "email": "hello@webnovis.com",
-            "priceRange": "€€",
-            "currenciesAccepted": "EUR",
-            "address": {
-                "@type": "PostalAddress",
-                "@id": SITE + "/#address",
-                "streetAddress": "Via S. Giorgio, 2",
-                "addressLocality": "Rho",
-                "addressRegion": "MI",
-                "postalCode": "20017",
-                "addressCountry": "IT"
-            },
-            "geo": { "@type": "GeoCoordinates", "latitude": SEDE_LAT, "longitude": SEDE_LNG },
-            "areaServed": [
-                { "@type": "City", "name": city.name, "sameAs": city.wikipedia },
-                ...nearest.slice(0, 3).map((nearCity) => ({
-                    "@type": "City",
-                    "name": nearCity.name,
-                    "sameAs": nearCity.wikipedia
-                }))
-            ],
-            "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": `${service.shortName} per ${city.name}`,
-                "itemListElement": [{
-                    "@type": "Offer",
-                    "url": canonical,
-                    "price": String(service.priceFrom),
-                    "priceCurrency": "EUR",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": `${service.shortName} a ${city.name}`,
-                        "url": servicePrimaryUrl
-                    }
-                }]
-            }
         },
         {
             "@context": "https://schema.org", "@type": "Service",
@@ -2158,9 +2109,23 @@ function generateServizioCittaPage(service, city) {
             "serviceType": service.name,
             "name": `${service.shortName} a ${city.name}`,
             "description": seo.schemaDescription,
-            "provider": { "@id": canonical + "#localbusiness" },
+            "provider": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
             "areaServed": { "@type": "City", "name": city.name, "sameAs": city.wikipedia },
             "url": canonical,
+            ...(service.hasPage ? {
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": `${service.shortName} per ${city.name}`,
+                    "itemListElement": [{
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": `${service.shortName} a ${city.name}`,
+                            "url": SITE + service.url
+                        }
+                    }]
+                }
+            } : {}),
             "offers": {
                 "@type": "Offer",
                 "url": canonical,
@@ -2589,10 +2554,13 @@ function main() {
         console.log('─── Generating agenzia-web pages ───');
         for (const city of cities) {
             if (!city.generate.agenzia) { skipped++; continue; }
-            if (city.slug === 'rho') { skipped++; continue; } // Rho is the hand-crafted base
             if (!matchesTargetCity(city)) { skipped++; continue; }
 
-            const html = generateAgenziaPage(city);
+            const html = city.slug === 'rho'
+                ? normalizeHandCraftedAgenziaPage(
+                    fs.readFileSync(path.join(ROOT, 'agenzia-web-rho.html'), 'utf8')
+                )
+                : generateAgenziaPage(city);
             if (!html) { console.error(`  ❌ Failed: agenzia-web-${city.slug}.html`); continue; }
 
             const filename = `agenzia-web-${city.slug}.html`;

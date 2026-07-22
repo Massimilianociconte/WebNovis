@@ -250,14 +250,12 @@
   <section class="service-detail">
     <div class="container">
       <h2>Domande Frequenti — {{ city.breadcrumbLabel }}</h2>
-      <!-- CUSTOM:geo-faqs:START -->
-      {% for faq in city.faqs %}
+      {% for faq in faqs %}
       <details class="faq-item">
         <summary>{{ faq.q }}</summary>
         <p>{{ faq.a | safe }}</p>
       </details>
       {% endfor %}
-      <!-- CUSTOM:geo-faqs:END -->
     </div>
   </section>
 

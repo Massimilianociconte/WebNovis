@@ -8,6 +8,25 @@ function readText(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 }
 
+function parseJsonLd(relativePath) {
+  const html = readText(relativePath);
+  return [...html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)<\/script>/gi)].map((match) =>
+    JSON.parse(match[1])
+  );
+}
+
+function collectSchemaUrls(value, urls = []) {
+  if (Array.isArray(value)) {
+    value.forEach((item) => collectSchemaUrls(item, urls));
+  } else if (value && typeof value === 'object') {
+    for (const [key, child] of Object.entries(value)) {
+      if (key === 'url' && typeof child === 'string') urls.push(child);
+      collectSchemaUrls(child, urls);
+    }
+  }
+  return urls;
+}
+
 function main() {
   const governance = require(path.join(ROOT, 'config', 'pseo-governance.js'));
 
@@ -228,6 +247,41 @@ function main() {
     homepage.includes('hreflang="it-IT"'),
     'index.html must expose a self-referential hreflang="it-IT" tag'
   );
+
+  const services = JSON.parse(readText('data/services.json')).services;
+  const realServiceUrls = new Set(
+    services.filter((service) => service.hasPage === true).map((service) => `https://www.webnovis.com${service.url}`)
+  );
+
+  for (const file of [
+    'agenzia-web-rho.html',
+    'agenzia-web-arese.html',
+    'realizzazione-siti-web-arese.html',
+    'ecommerce-milano.html'
+  ]) {
+    const schemas = parseJsonLd(file);
+    assert.ok(
+      !schemas.some((schema) => {
+        const types = Array.isArray(schema['@type']) ? schema['@type'] : [schema['@type']];
+        return types.includes('LocalBusiness');
+      }),
+      `${file} must reference the singleton WebNovis entity instead of declaring a page-specific LocalBusiness`
+    );
+
+    const serviceSchemas = schemas.filter((schema) => schema['@type'] === 'Service');
+    assert.ok(serviceSchemas.length > 0, `${file} must expose at least one Service schema`);
+    for (const schema of serviceSchemas) {
+      assert.equal(
+        schema.provider?.['@id'],
+        'https://www.webnovis.com/#localbusiness',
+        `${file} Service.provider must reference the canonical singleton WebNovis entity`
+      );
+    }
+
+    for (const url of collectSchemaUrls(schemas).filter((url) => url.startsWith('https://www.webnovis.com/servizi/'))) {
+      assert.ok(realServiceUrls.has(url), `${file} schema must not advertise nonexistent service URL ${url}`);
+    }
+  }
 }
 
 try {
