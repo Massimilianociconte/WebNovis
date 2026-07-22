@@ -6833,12 +6833,13 @@
     "id": "/portfolio.html",
     "url": "/portfolio.html",
     "type": "page",
-    "title": "Portfolio",
-    "description": "Esplora il portfolio di WebNovis. Scopri i nostri progetti di web design, sviluppo siti, branding e social media management.",
-    "keywords": "portfolio, esplora, scopri, nostri, progetti, design, sviluppo, siti, branding, social, media, management, digitali, mikuna, total, security, arconti, mimmo, fratelli, quickseo, dreamsense, aether, digital, lumina, creative, muse, editorial, popblock",
+    "title": "Portfolio Siti Web e Progetti Digitali",
+    "description": "Esplora siti web, e-commerce e progetti digitali realizzati da WebNovis per attività locali, PMI e brand. Scopri approccio, UX, SEO e risultati verificabili.",
+    "keywords": "portfolio, siti, progetti, digitali, esplora, ecommerce, realizzati, attivita, locali, pmi, brand, scopri, approccio, seo, risultati, verificabili, design, nostri, comeleapi, mikuna, total, security, arconti, mimmo, fratelli, quickseo, dreamsense, aether",
     "headings": [
       "Portfolio Web Design & Progetti Digitali",
       "I Nostri Progetti",
+      "comeleapi",
       "Mikuna",
       "FB Total Security",
       "Arconti 31",
@@ -6847,10 +6848,9 @@
       "DreamSense",
       "Aether Digital",
       "Lumina Creative",
-      "Muse Editorial",
-      "PopBlock Studio"
+      "Muse Editorial"
     ],
-    "content": "Una collezione curata di esperienze digitali, branding e design innovativo. Dove la creatività incontra la tecnologia. Ristorante peruviano a Varese. Menu interattivo, SEO locale e storytelling culinario autentico.",
+    "content": "Una collezione curata di esperienze digitali, branding e design innovativo. Dove la creatività incontra la tecnologia. Progetto benessere a Bresso: sito mobile-first, SEO locale, identità editoriale e contatto WhatsApp.",
     "indexable": true
   },
   {
@@ -6899,6 +6899,30 @@
       "Cosa abbiamo imparato"
     ],
     "content": "Un locale storico di Gallarate, nato nel 2009 in uno spazio che esiste dal 1958. Due fratelli, hamburger gourmet, birre ricercate e un'atmosfera che non si spiega — si vive. Serviva un sito che catturasse esattamente quella sensazione. Arconti 31 non è il",
+    "indexable": true
+  },
+  {
+    "id": "/portfolio/case-study/comeleapi.html",
+    "url": "/portfolio/case-study/comeleapi.html",
+    "type": "portfolio",
+    "title": "comeleapi: Sito Web Benessere a Bresso",
+    "description": "Case study comeleapi: sito mobile-first per massaggi e benessere a domicilio tra Bresso e Cusano Milanino, con UX, SEO locale e contatto WhatsApp.",
+    "keywords": "comeleapi, sito, benessere, bresso, case, study, mobile, first, massaggi, domicilio, cusano, milanino, seo, locale, contatto, whatsapp, caldo, diretto, progetto, sintesi, sfida, informazioni, immediate, senza, sovraccarico, percorso, pensato, contesto",
+    "headings": [
+      "comeleapi: un sito caldo, diretto e mobile-first per il benessere a domicilio",
+      "Il progetto in sintesi",
+      "La sfida",
+      "Informazioni immediate, senza sovraccarico",
+      "Un percorso pensato per il contesto reale",
+      "La soluzione WebNovis",
+      "1. Direzione visiva coerente con il brand",
+      "2. Esperienza mobile-first e accessibile",
+      "3. SEO locale e GEO basati su fatti verificabili",
+      "4. Fiducia, privacy e sicurezza",
+      "Output verificabili del progetto",
+      "Hai un'attività locale da rendere riconoscibile online?"
+    ],
+    "content": "Un'esperienza digitale che unisce massaggi, oli essenziali e identità personale in un percorso semplice: capire il servizio, conoscere Sara e avviare una conversazione riservata su WhatsApp. comeleapi è il progetto di benessere curato da Sara Bordenga. Il",
     "indexable": true
   },
   {
