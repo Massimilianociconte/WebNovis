@@ -27,6 +27,7 @@ const fs = require('fs');
 const path = require('path');
 const nunjucks = require('nunjucks');
 const { removeSchemaReviewProperties } = require('./seo-aggregate-rating');
+const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
 const {
     getIndexationDirectivesForPath,
     isTier1Path,
@@ -50,11 +51,33 @@ const SINGLETON_LOCAL_BUSINESS_ID = SITE + '/#localbusiness';
 const SEDE_LAT = '45.5299';
 const SEDE_LNG = '9.0393';
 const FIRST_DEPLOY_DATE = '2026-02-27';
-const TODAY = new Date().toISOString().split('T')[0];
 const CITY_AVATAR_PUBLIC_DIR = '/Img/cities';
-const TODAY_FORMATTED = new Date().toLocaleDateString('it-IT', {
-    day: 'numeric', month: 'long', year: 'numeric'
-});
+
+function resolveRomeCalendarDate(now = new Date()) {
+    const dateParts = Object.fromEntries(
+        new Intl.DateTimeFormat('en', {
+            timeZone: 'Europe/Rome',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        })
+            .formatToParts(now)
+            .filter(part => part.type !== 'literal')
+            .map(part => [part.type, part.value])
+    );
+
+    return {
+        iso: `${dateParts.year}-${dateParts.month}-${dateParts.day}`,
+        formatted: new Intl.DateTimeFormat('it-IT', {
+            timeZone: 'Europe/Rome',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        }).format(now)
+    };
+}
+
+const { iso: TODAY, formatted: TODAY_FORMATTED } = resolveRomeCalendarDate();
 
 // Cache for base HTML pages (read once, reuse for all cities)
 const _basePageCache = {};
@@ -94,11 +117,16 @@ function resolvePublishPath(...segments) {
     return path.join(PUBLISH_DIR, ...segments);
 }
 
+function finalizePublishedHtml(relativePath, html) {
+    const targetPath = resolvePublishPath(relativePath);
+    const preserved = preserveCustomBlocks(targetPath, html).replace(/^\uFEFF/, '');
+    return applySeoHtmlTransforms(preserved, String(relativePath).replace(/\\/g, '/'));
+}
+
 function writePublishedFile(relativePath, html) {
     const targetPath = resolvePublishPath(relativePath);
     fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-    const clean = preserveCustomBlocks(targetPath, html).replace(/^\uFEFF/, '');
-    fs.writeFileSync(targetPath, clean, 'utf8');
+    fs.writeFileSync(targetPath, html, 'utf8');
 }
 
 function getCityAvatarPublicPath(city) {
@@ -266,14 +294,62 @@ function resolvePageFaqs(city, pageType, aiBlock) {
     return (city.faqs && city.faqs[pageType]) || [];
 }
 
+function extractVisibleFaqs(html) {
+    const faqs = [];
+    const itemPattern = /<details\b[^>]*class=["'][^"']*\bfaq-item\b[^"']*["'][^>]*>([\s\S]*?)<\/details>/gi;
+
+    for (const match of html.matchAll(itemPattern)) {
+        const question = match[1].match(/<summary\b[^>]*>([\s\S]*?)<\/summary>/i)?.[1];
+        const answer = match[1].match(/<p\b[^>]*>([\s\S]*?)<\/p>/i)?.[1];
+        if (question == null || answer == null) continue;
+        faqs.push({ q: stripHtml(question), a: answer.trim() });
+    }
+
+    return faqs;
+}
+
+function resolveHandCraftedFaqs(html, fallbackFaqs = []) {
+    const visibleFaqs = extractVisibleFaqs(html);
+    return visibleFaqs.length > 0 ? visibleFaqs : fallbackFaqs;
+}
+
+function renderFaqItems(faqs) {
+    return faqs.map((faq) =>
+        `<details class="faq-item"><summary>${faq.q}</summary><p>${faq.a}</p></details>`
+    ).join('');
+}
+
 function renderFaqSection(title, faqs) {
     if (!Array.isArray(faqs) || faqs.length === 0) return '';
 
-    const details = faqs.map((faq) =>
-        `<details class="faq-item"><summary>${faq.q}</summary><p>${faq.a}</p></details>`
-    ).join('');
+    return `<section class="service-detail"><div class="container"><h2>${title}</h2>${renderFaqItems(faqs)}</div></section>`;
+}
 
-    return `<section class="service-detail"><div class="container"><h2>${title}</h2>${details}</div></section>`;
+function rebuildVisibleFaqItems(html, resolvedFaqs) {
+    const itemPattern = /<details\b[^>]*class=["'][^"']*\bfaq-item\b[^"']*["'][^>]*>[\s\S]*?<\/details>/gi;
+    const matches = [...html.matchAll(itemPattern)];
+    if (matches.length === 0 || resolvedFaqs.length === 0) return html;
+
+    const first = matches[0];
+    const last = matches[matches.length - 1];
+    const start = first.index;
+    const end = last.index + last[0].length;
+    return html.slice(0, start) + renderFaqItems(resolvedFaqs) + html.slice(end);
+}
+
+function buildFaqPageSchema(resolvedFaqs) {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: resolvedFaqs.map((faq) => ({
+            '@type': 'Question',
+            name: stripHtml(faq.q),
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: stripHtml(faq.a)
+            }
+        }))
+    };
 }
 
 const CUSTOM_BLOCK_REGEX = /<!-- CUSTOM:([a-z0-9-]+):START -->([\s\S]*?)<!-- CUSTOM:\1:END -->/gi;
@@ -1469,8 +1545,16 @@ function stripJsonLdFromHead(headHtml) {
         .replace(/\n{3,}/g, '\n\n');
 }
 
-function normalizeHandCraftedAgenziaPage(html) {
+function normalizeHandCraftedTailWhitespace(html) {
     return html.replace(
+        /(<script defer src="[^"]*js\/noncritical-loader\.min\.js"><\/script>)\s*(?=<script type="speculationrules">)/i,
+        '$1'
+    );
+}
+
+function normalizeHandCraftedAgenziaPage(html, resolvedFaqs) {
+    let faqSchemaWritten = false;
+    let normalized = html.replace(
         /<script type="application\/ld\+json">\s*([\s\S]*?)<\/script>/gi,
         (fullMatch, json) => {
             try {
@@ -1478,6 +1562,12 @@ function normalizeHandCraftedAgenziaPage(html) {
                 const types = Array.isArray(schema['@type']) ? schema['@type'] : [schema['@type']];
 
                 if (types.includes('LocalBusiness') || types.includes('Review')) return '';
+
+                if (schema['@type'] === 'FAQPage' || types.includes('FAQPage')) {
+                    if (faqSchemaWritten || resolvedFaqs.length === 0) return '';
+                    faqSchemaWritten = true;
+                    return `<script type="application/ld+json">${JSON.stringify(buildFaqPageSchema(resolvedFaqs))}</script>`;
+                }
 
                 removeSchemaReviewProperties(schema);
                 if (schema['@type'] === 'WebPage') {
@@ -1494,6 +1584,13 @@ function normalizeHandCraftedAgenziaPage(html) {
             }
         }
     );
+
+    if (resolvedFaqs.length > 0 && !faqSchemaWritten) {
+        const faqSchema = `<script type="application/ld+json">${JSON.stringify(buildFaqPageSchema(resolvedFaqs))}</script>`;
+        normalized = normalized.replace(/<\/head>/i, `${faqSchema}</head>`);
+    }
+
+    return normalizeHandCraftedTailWhitespace(rebuildVisibleFaqItems(normalized, resolvedFaqs));
 }
 
 function replaceMetaTagContent(html, attrName, attrValue, content) {
@@ -1763,6 +1860,10 @@ function generateRealizzazionePage(city) {
     page = page.replace(/<span class="section-tag">[\s\S]*?<\/span>/, `<span class="section-tag">${realizzazioneSeo.heroTag}</span>`);
     page = page.replace(/<h1>[\s\S]*?<\/h1>/, `<h1>${realizzazioneSeo.heroH1}</h1>`);
     page = page.replace(/<p class="answer-capsule">[\s\S]*?<\/p>/, `<p class="answer-capsule">${realizzazioneSeo.heroCapsule}</p>`);
+    page = page.replace(
+        /<time\b[^>]*datetime=["']\d{4}-\d{2}-\d{2}["'][^>]*>[\s\S]*?<\/time>/i,
+        `<time datetime="${TODAY}">${TODAY_FORMATTED}</time>`
+    );
     page = page.replace(/Rho, Milano \(MI\) 20017/, `${city.name}, ${getProvinceDisplay(city)} ${city.cap}`);
 
     // Schema LocalBusiness
@@ -2556,14 +2657,19 @@ function main() {
             if (!city.generate.agenzia) { skipped++; continue; }
             if (!matchesTargetCity(city)) { skipped++; continue; }
 
-            const html = city.slug === 'rho'
-                ? normalizeHandCraftedAgenziaPage(
-                    fs.readFileSync(path.join(ROOT, 'agenzia-web-rho.html'), 'utf8')
-                )
-                : generateAgenziaPage(city);
+            const filename = `agenzia-web-${city.slug}.html`;
+            let html;
+            if (city.slug === 'rho') {
+                const rhoSource = fs.readFileSync(path.join(ROOT, 'agenzia-web-rho.html'), 'utf8');
+                const fallbackFaqs = resolvePageFaqs(city, 'agenzia', contentBlocks.get(city.slug));
+                const resolvedFaqs = resolveHandCraftedFaqs(rhoSource, fallbackFaqs);
+                html = normalizeHandCraftedAgenziaPage(rhoSource, resolvedFaqs);
+            } else {
+                html = generateAgenziaPage(city);
+            }
             if (!html) { console.error(`  ❌ Failed: agenzia-web-${city.slug}.html`); continue; }
 
-            const filename = `agenzia-web-${city.slug}.html`;
+            html = finalizePublishedHtml(filename, html);
             const validation = validatePage(html, filename);
             results.validations.push(validation);
 
@@ -2591,10 +2697,11 @@ function main() {
             if (!city.generate.realizzazione) { skipped++; continue; }
             if (!matchesTargetCity(city)) { skipped++; continue; }
 
-            const html = generateRealizzazionePage(city);
+            let html = generateRealizzazionePage(city);
             if (!html) { console.error(`  ❌ Failed: realizzazione-siti-web-${city.slug}.html`); continue; }
 
             const filename = `realizzazione-siti-web-${city.slug}.html`;
+            html = finalizePublishedHtml(filename, html);
             const validation = validatePage(html, filename);
             results.validations.push(validation);
 
@@ -2623,10 +2730,11 @@ function main() {
 
         for (const service of geoEligibleServices) {
             for (const city of eligibleCities) {
-                const html = generateServizioCittaPage(service, city);
+                let html = generateServizioCittaPage(service, city);
                 if (!html) continue;
 
                 const filename = `${service.slug}-${city.slug}.html`;
+                html = finalizePublishedHtml(filename, html);
                 const validation = validatePage(html, filename);
                 results.validations.push(validation);
 
@@ -2651,10 +2759,12 @@ function main() {
         console.log('\n─── Generating hub pages ───');
         const hubResults = generateHubPages();
         for (const hub of hubResults) {
+            const relativePath = path.join(hub.dir, 'index.html');
+            const html = finalizePublishedHtml(relativePath, hub.html);
             if (!DRY_RUN && !VALIDATE_ONLY) {
-                writePublishedFile(path.join(hub.dir, 'index.html'), hub.html);
+                writePublishedFile(relativePath, html);
             }
-            const sizeKb = Math.round(Buffer.byteLength(hub.html) / 1024);
+            const sizeKb = Math.round(Buffer.byteLength(html) / 1024);
             console.log(`  ✅ ${hub.dir}/index.html (${sizeKb}KB)`);
             generated++;
         }

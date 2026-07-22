@@ -27,6 +27,39 @@ function collectSchemaUrls(value, urls = []) {
   return urls;
 }
 
+function formatItalianCalendarDate(isoDate) {
+  const [year, month, day] = isoDate.split('-').map(Number);
+  return new Intl.DateTimeFormat('it-IT', {
+    timeZone: 'Europe/Rome',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(new Date(Date.UTC(year, month - 1, day, 12)));
+}
+
+function assertPublishedCalendarDate(relativePath) {
+  const html = readText(relativePath);
+  const updateTimes = [...html.matchAll(/<time\b[^>]*datetime=["'](\d{4}-\d{2}-\d{2})["'][^>]*>([\s\S]*?)<\/time>/gi)];
+  assert.ok(updateTimes.length > 0, `${relativePath} must expose a full calendar update date`);
+
+  const webPage = parseJsonLd(relativePath).find((schema) => schema['@type'] === 'WebPage');
+  assert.ok(webPage, `${relativePath} must expose WebPage JSON-LD`);
+
+  for (const [, isoDate, visibleText] of updateTimes) {
+    const normalizedVisibleText = visibleText.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    assert.equal(
+      normalizedVisibleText,
+      formatItalianCalendarDate(isoDate),
+      `${relativePath} visible update date must represent the same Europe/Rome calendar day as datetime`
+    );
+    assert.equal(
+      webPage.dateModified,
+      isoDate,
+      `${relativePath} WebPage.dateModified must match its visible update datetime`
+    );
+  }
+}
+
 function main() {
   const governance = require(path.join(ROOT, 'config', 'pseo-governance.js'));
 
@@ -247,6 +280,10 @@ function main() {
     homepage.includes('hreflang="it-IT"'),
     'index.html must expose a self-referential hreflang="it-IT" tag'
   );
+
+  for (const file of ['agenzia-web-arese.html', 'realizzazione-siti-web-arese.html', 'ecommerce-milano.html']) {
+    assertPublishedCalendarDate(file);
+  }
 
   const services = JSON.parse(readText('data/services.json')).services;
   const realServiceUrls = new Set(

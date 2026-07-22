@@ -37,6 +37,12 @@ function main() {
     'Geo generator should support an explicit publish directory configuration'
   );
   assert.ok(
+    generator.includes('resolveRomeCalendarDate') &&
+      generator.includes('const { iso: TODAY, formatted: TODAY_FORMATTED } = resolveRomeCalendarDate()') &&
+      !generator.includes("new Date().toISOString().split('T')[0]"),
+    'Geo generator must derive schema and visible dates from one Europe/Rome calendar value'
+  );
+  assert.ok(
     generator.includes("page = page.replace(/studio del mercato di Rho/g, `studio del mercato di ${city.name}`);"),
     'Realizzazione generator must replace the Rho market placeholder with the current city'
   );
@@ -60,6 +66,22 @@ function main() {
     generator.includes('generateSchemas(city, \'agenzia\', resolvedFaqs)') &&
       generator.includes('generateSchemas(city, \'realizzazione\', resolvedFaqs)'),
     'Agency and realization schema generation must receive the page-resolved FAQ array'
+  );
+  assert.match(
+    generator,
+    /function normalizeHandCraftedAgenziaPage\(html,\s*resolvedFaqs\)/,
+    'The handcrafted Rho normalizer must receive the one resolved FAQ array explicitly'
+  );
+  assert.ok(
+    generator.includes('const resolvedFaqs = resolveHandCraftedFaqs(rhoSource') &&
+      generator.includes('normalizeHandCraftedAgenziaPage(rhoSource, resolvedFaqs)'),
+    'Rho generation must resolve visible FAQs once and pass that array to the normalizer'
+  );
+  assert.ok(
+    generator.includes("schema['@type'] === 'FAQPage'") &&
+      generator.includes('buildFaqPageSchema(resolvedFaqs)') &&
+      generator.includes('rebuildVisibleFaqItems(normalized, resolvedFaqs)'),
+    'Rho normalization must rebuild both visible FAQ items and FAQPage JSON-LD from the same array'
   );
   assert.ok(
     generator.includes('services.filter((service) => service.hasPage === true)'),

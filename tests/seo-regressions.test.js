@@ -2,6 +2,8 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { getBlogFooterHtml } = require(path.join(process.cwd(), 'config', 'site-footer.js'));
+const prioritySnippets = require(path.join(process.cwd(), 'config', 'priority-snippets.js'));
+const { applySeoHtmlTransforms } = require(path.join(process.cwd(), 'config', 'seo-html-transforms.js'));
 
 const ROOT = process.cwd();
 
@@ -15,6 +17,14 @@ function extractTitle(html, file) {
   return match[1];
 }
 
+function extractMetaDescription(html, file) {
+  const tag = html.match(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*>/i)?.[0];
+  assert.ok(tag, `${file} must expose a meta description`);
+  const content = tag.match(/\bcontent=["']([^"']*)["']/i)?.[1];
+  assert.notEqual(content, undefined, `${file} meta description must expose content`);
+  return content;
+}
+
 function parseJsonLd(html, file) {
   return [...html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)<\/script>/gi)].map((match) => {
     try {
@@ -25,16 +35,47 @@ function parseJsonLd(html, file) {
   });
 }
 
-function visibleFaqQuestions(html) {
-  return [...html.matchAll(/<summary>([\s\S]*?)<\/summary>/gi)].map((match) =>
-    match[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
-  );
+function decodeHtmlEntities(value) {
+  const named = {
+    amp: '&',
+    apos: "'",
+    gt: '>',
+    lt: '<',
+    nbsp: ' ',
+    quot: '"'
+  };
+
+  return String(value)
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number.parseInt(code, 10)))
+    .replace(/&([a-z]+);/gi, (entity, name) => named[name.toLowerCase()] ?? entity);
 }
 
-function schemaFaqQuestions(schemas, file) {
+function normalizeFaqText(value) {
+  return decodeHtmlEntities(String(value).replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+}
+
+function visibleFaqEntries(html) {
+  return [...html.matchAll(/<details\b[^>]*class=["'][^"']*\bfaq-item\b[^"']*["'][^>]*>([\s\S]*?)<\/details>/gi)]
+    .map((match) => {
+      const question = match[1].match(/<summary\b[^>]*>([\s\S]*?)<\/summary>/i)?.[1];
+      const answer = match[1].match(/<p\b[^>]*>([\s\S]*?)<\/p>/i)?.[1];
+      assert.notEqual(question, undefined, 'Every visible FAQ item must expose a summary');
+      assert.notEqual(answer, undefined, 'Every visible FAQ item must expose an answer paragraph');
+      return {
+        question: normalizeFaqText(question),
+        answer: normalizeFaqText(answer)
+      };
+    });
+}
+
+function schemaFaqEntries(schemas, file) {
   const faqPage = schemas.find((schema) => schema['@type'] === 'FAQPage');
   assert.ok(faqPage, `${file} must expose FAQPage JSON-LD`);
-  return faqPage.mainEntity.map((entity) => entity.name);
+  return faqPage.mainEntity.map((entity) => ({
+    question: normalizeFaqText(entity.name),
+    answer: normalizeFaqText(entity.acceptedAnswer?.text)
+  }));
 }
 
 function main() {
@@ -195,6 +236,23 @@ function main() {
     'automazione-business-milano.html still inherits the stale Rho WebPage schema from the geo base template'
   );
 
+  for (const file of ['realizzazione-siti-web-arese.html', 'ecommerce-arese.html']) {
+    const html = readText(file);
+    const snippet = prioritySnippets[file];
+    assert.ok(snippet, `${file} must have a canonical priority snippet`);
+    assert.equal(extractTitle(html, file), snippet.title, `${file} must retain its final priority title after build:geo`);
+    assert.equal(
+      extractMetaDescription(html, file),
+      snippet.description,
+      `${file} must retain its final priority description after build:geo`
+    );
+    assert.equal(
+      applySeoHtmlTransforms(html, file),
+      html,
+      `${file} must already contain the canonical visible and head transforms after build:geo`
+    );
+  }
+
   for (const file of [
     'agenzia-web-rho.html',
     'agenzia-web-arese.html',
@@ -203,10 +261,12 @@ function main() {
   ]) {
     const html = readText(file);
     const schemas = parseJsonLd(html, file);
+    const visibleFaqs = visibleFaqEntries(html);
+    assert.ok(visibleFaqs.length > 0, `${file} must expose visible FAQ items`);
     assert.deepEqual(
-      schemaFaqQuestions(schemas, file),
-      visibleFaqQuestions(html),
-      `${file} FAQPage questions must exactly match the visible FAQ questions`
+      schemaFaqEntries(schemas, file),
+      visibleFaqs,
+      `${file} FAQPage questions and normalized answers must exactly match the visible FAQs`
     );
     assert.ok(
       !JSON.stringify(schemas).includes('SpeakableSpecification'),
@@ -217,6 +277,16 @@ function main() {
       `${file} must not publish self-serving rating or review schema`
     );
   }
+
+  const rhoTailWhitespace = readText('agenzia-web-rho.html').match(
+    /<script defer src="js\/noncritical-loader\.min\.js"><\/script>(\s*)<script type="speculationrules">/i
+  );
+  assert.ok(rhoTailWhitespace, 'agenzia-web-rho.html must retain the canonical noncritical/speculation script tail');
+  assert.equal(
+    rhoTailWhitespace[1],
+    ' ',
+    'Repeated handcrafted Rho regeneration must not accumulate whitespace across the canonical pipeline'
+  );
 
   const communityArticle = readText('blog/community-management-guida.html');
   assert.ok(
