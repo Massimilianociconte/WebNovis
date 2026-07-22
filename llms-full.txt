@@ -4,9 +4,9 @@
 # Indice sintetico: https://www.webnovis.com/llms.txt — Dati strutturati: https://www.webnovis.com/webnovis-ai-data.json
 # Generato automaticamente da scripts/generate-llms-full.js — 2026-07-22
 
-# Web Novis — Agenzia Digitale a Milano e Rho
+# WebNovis — Agenzia Digitale a Milano e Rho
 
-> Web Novis è un'agenzia web italiana con sede a Rho (Milano) specializzata in sviluppo siti web custom, graphic design, brand identity e social media marketing (contenuti grafici, ricerche di marketing, analisi competitor e advertising). Offriamo soluzioni digitali integrate per PMI, startup e professionisti in tutta Italia.
+> WebNovis è un'agenzia web italiana con sede a Rho (Milano) specializzata in sviluppo siti web custom, graphic design, brand identity e social media marketing (contenuti grafici, ricerche di marketing, analisi competitor e advertising). Offriamo soluzioni digitali integrate per PMI, startup e professionisti in tutta Italia.
 
 ----------------------------------------
 URL: https://www.webnovis.com/

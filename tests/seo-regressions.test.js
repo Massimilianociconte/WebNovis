@@ -22,6 +22,50 @@ function main() {
     'sitemap.xml must not list the noindex/non-canonical agenzie-web-rho.html URL'
   );
 
+  // Defense-in-depth: no sitemap URL whose published HTML head says noindex
+  const noindexInSitemap = [];
+  for (const match of sitemap.matchAll(/<loc>https:\/\/www\.webnovis\.com([^<]*)<\/loc>/g)) {
+    let file = match[1] === '/' || match[1] === '' ? 'index.html' : match[1].replace(/^\//, '');
+    if (file.endsWith('/')) file += 'index.html';
+    if (!fs.existsSync(path.join(ROOT, file))) continue;
+    const head = fs.readFileSync(path.join(ROOT, file), 'utf8').slice(0, 8000);
+    const robots =
+      (head.match(/name=["']robots["'][^>]*content=["']([^"']+)/i) ||
+        head.match(/content=["']([^"']+)["'][^>]*name=["']robots["']/i) ||
+        [])[1] || '';
+    if (/noindex/i.test(robots)) noindexInSitemap.push(match[1] || '/');
+  }
+  assert.equal(
+    noindexInSitemap.length,
+    0,
+    `sitemap must not include noindex URLs: ${noindexInSitemap.slice(0, 10).join(', ')}`
+  );
+
+  const agenzie = readText('agenzie-web-rho.html');
+  assert.match(
+    agenzie,
+    /noindex/i,
+    'agenzie-web-rho.html must expose noindex while the 301 is not yet live on GitHub Pages'
+  );
+  assert.ok(
+    agenzie.includes('https://www.webnovis.com/agenzia-web-rho.html'),
+    'agenzie-web-rho.html must canonical to the correct singular URL'
+  );
+
+  const llms = readText('llms.txt');
+  assert.ok(
+    !llms.includes('agenzia-web-nerviano.html'),
+    'llms.txt must not promote noindex local pages (nerviano)'
+  );
+  assert.ok(
+    !llms.includes('48+ URL'),
+    'llms.txt must not keep the outdated "48+ URL" sitemap claim'
+  );
+  assert.ok(
+    llms.includes('agenzia-web-rho.html'),
+    'llms.txt must keep the primary Rho hub'
+  );
+
   const brokenGeoSamples = [
     ['accessibilita-arese.html', 'accessibilita-rho.html'],
     ['social-media-cornaredo.html', 'social-media-rho.html'],

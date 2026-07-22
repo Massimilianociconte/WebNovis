@@ -123,6 +123,18 @@ function main() {
   );
 
   assert.equal(
+    governance.getIndexationDirectivesForPath('/agenzie-web-rho.html'),
+    'noindex, follow',
+    'agenzie-web-rho.html (legacy typo) must stay noindex and out of the ranking set'
+  );
+
+  assert.equal(
+    governance.shouldIncludeInSitemapPath('/agenzie-web-rho.html'),
+    false,
+    'agenzie-web-rho.html must never enter the sitemap'
+  );
+
+  assert.equal(
     governance.getIndexationDirectivesForPath('/landing-page-bollate.html'),
     'index, follow',
     'landing-page-bollate.html must remain indexable as a core geo page'

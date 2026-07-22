@@ -31,6 +31,10 @@
 /public/* /:splat 301
 /dist/* /:splat 301
 
-# NB: il redirect apex → www (webnovis.com → www.webnovis.com) NON si può definire
-# qui su Workers (domain-level redirects non supportati): va configurato come
-# "Single Redirect" a livello di zona Cloudflare. Vedi guida in docs/deploy/.
+# NB: finché l'origine è GitHub Pages, QUESTO FILE NON È LETTO.
+# I 301 devono essere duplicati come Cloudflare "Single Redirects" a livello
+# di zona (vedi docs/deploy/CLOUDFLARE-ZONE-REDIRECTS.md). Diventano nativi
+# solo dopo il deploy su Workers Assets / Pages (wrangler deploy).
+#
+# NB: il redirect apex → www (webnovis.com → www.webnovis.com) NON si può
+# definire qui su Workers: va come Single Redirect di zona.
