@@ -29,7 +29,9 @@ const EXPLICIT_DEAMPLIFIED_PATHS = [
   '/sviluppo-app-mobile-milano-nord.html',
   '/email-marketing-milano-nord.html',
   '/google-ads-milano-nord.html',
-  '/social-media-bresso.html'
+  '/social-media-bresso.html',
+  // Legacy typo / soft-redirect URL: must never rank next to /agenzia-web-rho.html
+  '/agenzie-web-rho.html'
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

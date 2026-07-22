@@ -100,6 +100,21 @@ function xmlEscape(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/** Read only the <head> robots directive — ignore body copy that mentions "noindex". */
+function headHasNoindex(absPath) {
+    try {
+        const html = fs.readFileSync(absPath, 'utf8');
+        const headEnd = html.search(/<\/head>/i);
+        const head = headEnd >= 0 ? html.slice(0, headEnd) : html.slice(0, 8000);
+        const robotsMatch =
+            head.match(/name=["']robots["'][^>]*content=["']([^"']+)["']/i) ||
+            head.match(/content=["']([^"']+)["'][^>]*name=["']robots["']/i);
+        return robotsMatch ? /noindex/i.test(robotsMatch[1]) : false;
+    } catch (_) {
+        return false;
+    }
+}
+
 const files = collectHtmlFiles(ROOT);
 const entries = files.map(({ relPath, absPath }) => {
     const mtime = fs.statSync(absPath).mtime;
@@ -107,8 +122,9 @@ const entries = files.map(({ relPath, absPath }) => {
     const loc = urlPath === '/' ? BASE_URL + '/' : BASE_URL + urlPath;
     const lastmod = getGitDate(absPath) || formatDate(mtime);
     const images = PAGE_IMAGES[urlPath] || [];
-    return { urlPath, loc, lastmod, images };
+    return { urlPath, loc, lastmod, images, absPath };
 }).filter((entry) => shouldIncludeInSitemapPath(entry.urlPath))
+    .filter((entry) => !headHasNoindex(entry.absPath))
     .sort((a, b) => a.loc.localeCompare(b.loc));
 
 // Build XML

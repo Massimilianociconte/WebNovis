@@ -45,7 +45,8 @@
 <meta content="WebNovis è l'agenzia web tra Milano e Rho per siti custom, e-commerce, branding e SEO locale. Preventivo gratuito entro 24 ore." itemprop="description">
 <meta content="https://www.webnovis.com/Img/webnovis-logo-bianco.png" itemprop="image">
 
-<link href="Img/webnovis-logo-bianco.webp" rel="preload" as="image" fetchpriority="high" type="image/webp" imagesizes="150px" imagesrcset="Img/webnovis-logo-bianco-150.webp 150w, Img/webnovis-logo-bianco.webp 300w">
+<!-- Logo: low priority so it does not compete with hero LCP image -->
+<link href="Img/webnovis-logo-bianco.webp" rel="preload" as="image" fetchpriority="low" type="image/webp" imagesizes="150px" imagesrcset="Img/webnovis-logo-bianco-150.webp 150w, Img/webnovis-logo-bianco.webp 300w">
 
 <link href="css/revolution.min.css?v=1.5" rel="preload" as="style" fetchpriority="low">
 
@@ -57,13 +58,14 @@
 
 <link href="css/search.min.css?v=2.1" rel="preload" as="style" fetchpriority="low">
 
+<!-- Hero LCP resource: only one high-priority preload, media-split -->
 <link href="Img/sfondo-mobile-hq.webp" rel="preload" media="(max-width: 768px)" as="image" fetchpriority="high" type="image/webp">
 
 <link href="Img/sfondo.webp" rel="preload" media="(min-width: 769px)" as="image" fetchpriority="high" type="image/webp">
 
-<!-- Critical CSS: establishes hero dimensions before style.min.css loads → prevents CLS -->
-<style>body{margin:0;opacity:1}.hero{min-height:100vh;min-height:100svh;background:url(Img/sfondo.webp)50%/cover no-repeat;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:80px}@media(max-width:768px){.hero{background-image:url(Img/sfondo-mobile-hq.webp)}}</style>
-<link href="css/style.min.css?v=1.7" rel="stylesheet">
+<!-- Critical CSS: LCP-safe (opaque text, solid bg, no opacity:0 animations) -->
+<style>body{margin:0;opacity:1;background:#0a0a0a;color:#faf8f3}.hero{min-height:100vh;min-height:100svh;background:#0a0a0a;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:80px}.hero-lcp-picture,.hero-lcp-img{position:absolute;inset:0;width:100%;height:100%;margin:0;pointer-events:none;z-index:0}.hero-lcp-img{object-fit:cover;object-position:center;display:block}.hero-title,.hero-content,.hero-subtitle{opacity:1;color:#faf8f3}</style>
+<link href="css/style.min.css?v=1.8" rel="stylesheet">
 
 <link href="css/revolution.min.css?v=1.5" rel="stylesheet" media="print" onload='this.media="all"'>
 
@@ -115,7 +117,7 @@
 <header role="banner">
 <nav class="nav" id="nav">
 <div class="container nav-container"> <a href="/" title="Web Novis — Homepage" class="logo">
-<picture> <source srcset="Img/webnovis-logo-bianco-150.webp 150w, Img/webnovis-logo-bianco.webp 300w" type="image/webp" sizes="150px"><img alt="Web Novis Logo" height="40" src="Img/webnovis-logo-bianco-300.png" width="150" class="logo-image" fetchpriority="high"> </picture>
+<picture> <source srcset="Img/webnovis-logo-bianco-150.webp 150w, Img/webnovis-logo-bianco.webp 300w" type="image/webp" sizes="150px"><img alt="Web Novis Logo" height="40" src="Img/webnovis-logo-bianco-300.png" width="150" class="logo-image" fetchpriority="low" decoding="async"> </picture>
 </a>
 <div class="search-wrapper" id="searchWrapper">
 <div class="search-bar" id="searchBar"> <svg viewBox="0 0 24 24" fill="none" height="16" width="16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="search-icon"> <circle cx="11" cy="11" r="8"/>
@@ -161,6 +163,11 @@
 
 <main id="main-content">
 <section class="hero">
+<!-- Real LCP image (not CSS background): avoids mobile Lighthouse NO_LCP -->
+<picture class="hero-lcp-picture">
+<source media="(max-width: 768px)" srcset="Img/sfondo-mobile-hq.webp" type="image/webp" width="1440" height="960">
+<img class="hero-lcp-img" src="Img/sfondo.webp" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+</picture>
 <div class="hero-bg">
 <div class="gradient-orb orb-1"></div>
 

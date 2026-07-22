@@ -617,13 +617,41 @@ body {
     position: relative;
     overflow: hidden;
     padding-top: 80px;
-    background: url('../Img/sfondo.webp') center center / cover no-repeat;
+    /* Solid fallback while LCP <img> loads; avoid sole CSS background as LCP (fragile in lab) */
+    background-color: #0a0a0a;
+    background-image: url('../Img/sfondo.webp');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Real LCP element: discoverable in HTML, fetchpriority=high, never opacity:0 */
+.hero-lcp-picture {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    margin: 0;
+    pointer-events: none;
+}
+
+.hero-lcp-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    /* When <img> is present it becomes the LCP candidate instead of late CSS bg */
+}
+
+.hero:has(.hero-lcp-img) {
+    background-image: none;
 }
 
 .hero-bg {
     position: absolute;
     inset: 0;
     overflow: hidden;
+    z-index: 1;
 }
 
 /* TEMP: hidden to preview hero background image */
@@ -696,6 +724,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* Never start at opacity:0 — causes Lighthouse mobile NO_LCP */
+    opacity: 1;
+    transform: none;
+    filter: none;
 }
 
 .hero-badge {
@@ -710,7 +742,7 @@ body {
     margin-top: 3rem;
     margin-bottom: 2rem;
     backdrop-filter: blur(10px);
-    animation: fadeInUp 0.8s ease;
+    /* No opacity:0 entrance — LCP/FCP must paint immediately (mobile Lighthouse NO_LCP) */
 }
 
 .badge-dot {
@@ -742,7 +774,9 @@ body {
     line-height: 1.2;
     letter-spacing: -0.01em;
     margin-bottom: 1.5rem;
-    animation: fadeInUp 0.8s ease 0.2s backwards;
+    /* LCP candidate: must be opaque on first paint (no fadeInUp/backwards) */
+    opacity: 1;
+    color: var(--white, #faf8f3);
 }
 
 .gradient-text {
@@ -778,7 +812,7 @@ body {
     max-width: 600px;
     line-height: 1.7;
     text-align: center;
-    animation: fadeInUp 0.8s ease 0.4s backwards;
+    opacity: 1;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     position: relative;
     z-index: 2;
@@ -789,7 +823,7 @@ body {
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-    animation: fadeInUp 0.8s ease 0.6s backwards;
+    opacity: 1;
 }
 
 @keyframes fadeInUp {
@@ -2988,7 +3022,7 @@ section {
         padding: 5rem 0;
     }
 
-    /* Mantieni le animazioni hero su mobile */
+    /* Mobile hero: LCP <img> preferred; CSS bg only as fallback without img */
     .hero {
         padding: 100px 0 2rem;
         min-height: 100vh;
@@ -2999,8 +3033,11 @@ section {
         background-repeat: no-repeat;
     }
 
-    /* Upgrade progressivo: desktop full-res solo dopo idle su retina/high-DPR */
-    .is-mobile.hero-fx-ready .hero {
+    .hero:has(.hero-lcp-img) {
+        background-image: none;
+    }
+
+    .is-mobile.hero-fx-ready .hero:not(:has(.hero-lcp-img)) {
         background-image: url('../Img/sfondo-mobile-hq.webp');
     }
 
@@ -6285,7 +6322,11 @@ img {
     }
 
     .hero-content {
-        animation: heroStaggerIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        /* Disabled heroStaggerIn (opacity 0 + blur): root cause of mobile NO_LCP */
+        animation: none;
+        opacity: 1;
+        transform: none;
+        filter: none;
     }
 
     /* ── Mobile Hero: Enhanced frosted badge ── */
@@ -6303,11 +6344,13 @@ img {
         backdrop-filter: blur(20px) saturate(120%);
         -webkit-backdrop-filter: blur(20px) saturate(120%);
         color: rgba(255, 255, 255, 0.95);
-        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        opacity: 1;
+        animation: none;
     }
 
     .hero-fx-ready .hero-badge {
-        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), heroBadgeShimmer 4s ease-in-out 1.2s infinite;
+        /* Decorative shimmer only after first paint — no opacity:0 keyframes */
+        animation: heroBadgeShimmer 4s ease-in-out 1.2s infinite;
     }
 
     .badge-dot {

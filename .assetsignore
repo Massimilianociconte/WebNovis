@@ -13,10 +13,51 @@ node_modules/
 .claude/
 .kiro/
 .vscode/
+.DS_Store
+pnpm-lock.yaml
+package-lock.json
 
-# Contenuti non destinati al sito pubblico
-docs/
-reports/
+# Backend / tooling — non devono essere scaricabili dal dominio pubblico
+server.js
+package.json
+*.config.js
+*.config.cjs
+*.config.mjs
+.eslintrc.json
+.prettierrc.json
+.prettierignore
+.assetsignore
+.nojekyll
+knip.json
+vitest.config.*
+wrangler.jsonc
+build.js
+build-search-index.js
+generate-sitemap.js
+indexnow-submit.js
+chat-config.json
+
+# Sorgenti, pipeline e dati di build
+config/
+scripts/
+src/
+templates/
+data/
 tests/
 test-SEO/
-.DS_Store
+docs/
+reports/
+.claude/
+node_modules/
+
+# Artefatti di sviluppo / backup
+dist/
+*.map
+*.log
+analysis.txt
+*_analysis.txt
+check_results.txt
+copy_results.txt
+contatti-*.txt
+tmp_*
+_extract_*
