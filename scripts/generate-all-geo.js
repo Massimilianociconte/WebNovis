@@ -117,10 +117,41 @@ function resolvePublishPath(...segments) {
     return path.join(PUBLISH_DIR, ...segments);
 }
 
+function getGeneratedRootPrefix(relativePath) {
+    const depth = String(relativePath).replace(/\\/g, '/').split('/').length - 1;
+    return depth <= 0 ? '' : `${Array(depth).fill('..').join('/')}/`;
+}
+
+function normalizeGeneratedRuntimeScripts(html, relativePath) {
+    const prefix = getGeneratedRootPrefix(relativePath);
+    const runtimePath = (filename) => `${prefix}js/${filename}`;
+    let updated = html
+        .replace(
+            /<script\b[^>]*src="[^"]*?js\/web-vitals-reporter(?:\.min)?\.js"[^>]*><\/script>/gi,
+            `<script defer src="${runtimePath('web-vitals-reporter.min.js')}"></script>`
+        )
+        .replace(
+            /<script\b[^>]*src="[^"]*?js\/footer-widgets-loader(?:\.min)?\.js"[^>]*><\/script>/gi,
+            `<script defer src="${runtimePath('footer-widgets-loader.min.js')}"></script>`
+        );
+
+    const nonCriticalPattern = /<script\b[^>]*src="[^"]*?js\/noncritical-loader(?:\.min)?\.js"[^>]*><\/script>/i;
+    const mainPattern = /<script\b[^>]*src="[^"]*?js\/main\.min\.js"[^>]*><\/script>/i;
+    const nonCriticalTag = `<script defer src="${runtimePath('noncritical-loader.min.js')}"></script>`;
+    updated = updated.replace(nonCriticalPattern, '');
+    if (mainPattern.test(updated)) {
+        updated = updated.replace(mainPattern, (match) => `${match} ${nonCriticalTag}`);
+    } else {
+        updated = updated.replace(/<\/body>/i, `${nonCriticalTag} </body>`);
+    }
+    return updated;
+}
+
 function finalizePublishedHtml(relativePath, html) {
     const targetPath = resolvePublishPath(relativePath);
     const preserved = preserveCustomBlocks(targetPath, html).replace(/^\uFEFF/, '');
-    return applySeoHtmlTransforms(preserved, String(relativePath).replace(/\\/g, '/'));
+    const normalizedPath = String(relativePath).replace(/\\/g, '/');
+    return normalizeGeneratedRuntimeScripts(applySeoHtmlTransforms(preserved, normalizedPath), normalizedPath);
 }
 
 function writePublishedFile(relativePath, html) {
@@ -2334,6 +2365,7 @@ function generateHubPages() {
         fullHtml = fullHtml
             .replace(/href="css\//g, 'href="/css/')
             .replace(/src="js\//g, 'src="/js/')
+            .replace(/src="(?:\.\.\/)+js\//g, 'src="/js/')
             .replace(/src="Img\//g, 'src="/Img/')
             .replace(/srcset="Img\//g, 'srcset="/Img/')
             .replace(/, Img\//g, ', /Img/')
@@ -2379,6 +2411,7 @@ function generateHubPages() {
             "description": `WebNovis è l'agenzia web con sede a Rho che opera in ${agenziaCities.length} comuni dell'hinterland milanese.`,
             "url": SITE + "/agenzia-web/",
             "inLanguage": "it",
+            "dateModified": TODAY,
             "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
             "numberOfItems": agenziaCities.length,
             "hasPart": agenziaCities.map(c => ({
@@ -2423,6 +2456,7 @@ function generateHubPages() {
             "description": `Realizzazione siti web a Milano e in Lombardia: landing già pubblicate in ${realizzazioneCities.length} comuni di una rete WebNovis che serve ${agenziaCities.length} territori tra Milano, Rho e hinterland.`,
             "url": SITE + "/realizzazione-siti-web/",
             "inLanguage": "it",
+            "dateModified": TODAY,
             "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
             "numberOfItems": realizzazioneCities.length,
             "hasPart": realizzazioneCities.map(c => ({

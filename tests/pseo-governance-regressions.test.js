@@ -42,8 +42,10 @@ function assertPublishedCalendarDate(relativePath) {
   const updateTimes = [...html.matchAll(/<time\b[^>]*datetime=["'](\d{4}-\d{2}-\d{2})["'][^>]*>([\s\S]*?)<\/time>/gi)];
   assert.ok(updateTimes.length > 0, `${relativePath} must expose a full calendar update date`);
 
-  const webPage = parseJsonLd(relativePath).find((schema) => schema['@type'] === 'WebPage');
-  assert.ok(webPage, `${relativePath} must expose WebPage JSON-LD`);
+  const pageSchema = parseJsonLd(relativePath).find((schema) =>
+    ['WebPage', 'CollectionPage'].includes(schema['@type'])
+  );
+  assert.ok(pageSchema, `${relativePath} must expose WebPage or CollectionPage JSON-LD`);
 
   for (const [, isoDate, visibleText] of updateTimes) {
     const normalizedVisibleText = visibleText.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -53,9 +55,26 @@ function assertPublishedCalendarDate(relativePath) {
       `${relativePath} visible update date must represent the same Europe/Rome calendar day as datetime`
     );
     assert.equal(
-      webPage.dateModified,
+      pageSchema.dateModified,
       isoDate,
-      `${relativePath} WebPage.dateModified must match its visible update datetime`
+      `${relativePath} page schema dateModified must match its visible update datetime`
+    );
+  }
+}
+
+function assertHubScriptPaths(relativePath) {
+  const html = readText(relativePath);
+  const depth = relativePath.replace(/\\/g, '/').split('/').length - 1;
+  const expectedPrefix = depth === 0 ? '' : `${Array(depth).fill('..').join('/')}/`;
+  for (const filename of [
+    'web-vitals-reporter.min.js',
+    'footer-widgets-loader.min.js',
+    'noncritical-loader.min.js'
+  ]) {
+    assert.match(
+      html,
+      new RegExp(`\\bsrc=["']${expectedPrefix.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}js/${filename.replace(/\./g, '\\.')}["']`, 'i'),
+      `${relativePath} must use its depth-correct runtime path for ${filename} after build:geo`
     );
   }
 }
@@ -281,8 +300,18 @@ function main() {
     'index.html must expose a self-referential hreflang="it-IT" tag'
   );
 
-  for (const file of ['agenzia-web-arese.html', 'realizzazione-siti-web-arese.html', 'ecommerce-milano.html']) {
+  for (const file of [
+    'agenzia-web-arese.html',
+    'realizzazione-siti-web-arese.html',
+    'ecommerce-milano.html',
+    'agenzia-web/index.html',
+    'realizzazione-siti-web/index.html'
+  ]) {
     assertPublishedCalendarDate(file);
+  }
+
+  for (const file of ['agenzia-web/index.html', 'realizzazione-siti-web/index.html', 'zone-servite/index.html']) {
+    assertHubScriptPaths(file);
   }
 
   const services = JSON.parse(readText('data/services.json')).services;
