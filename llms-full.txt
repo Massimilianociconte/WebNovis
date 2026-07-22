@@ -2,7 +2,7 @@
 # Contenuto completo in testo semplice delle pagine principali di www.webnovis.com,
 # pensato per LLM e motori di ricerca generativi (ChatGPT, Claude, Perplexity, Gemini).
 # Indice sintetico: https://www.webnovis.com/llms.txt — Dati strutturati: https://www.webnovis.com/webnovis-ai-data.json
-# Generato automaticamente da scripts/generate-llms-full.js — 2026-07-06
+# Generato automaticamente da scripts/generate-llms-full.js — 2026-07-22
 
 # Web Novis — Agenzia Digitale a Milano e Rho
 
@@ -426,8 +426,8 @@ Web Novis — Agenzia Web a Rho (MI) · Area metropolitana Milano · Hinterland 
 
 ----------------------------------------
 URL: https://www.webnovis.com/portfolio.html
-TITOLO: Portfolio — WebNovis | I Nostri Progetti
-DESCRIZIONE: Esplora il portfolio di WebNovis. Scopri i nostri progetti di web design, sviluppo siti, branding e social media management.
+TITOLO: Portfolio Siti Web e Progetti Digitali | WebNovis
+DESCRIZIONE: Esplora siti web, e-commerce e progetti digitali realizzati da WebNovis per attività locali, PMI e brand. Scopri approccio, UX, SEO e risultati verificabili.
 
 Vai al contenuto Ctrl K
 
@@ -438,12 +438,18 @@ Vai al contenuto Ctrl K
 - Contatti
 - Inizia Ora
 
-Selected Works 2024-25
+Selected Works 2024—26
 
 # Portfolio Web Design & Progetti Digitali
 Una collezione curata di esperienze digitali, branding e design innovativo. Dove la creatività incontra la tecnologia.
 
 Tutti Ristorazione Business Creativo Tech & SaaS
+Progetto Benessere locale
+
+### comeleapi
+Progetto benessere a Bresso: sito mobile-first, SEO locale, identità editoriale e contatto WhatsApp.
+Visita Sito Case Study
+
 Progetto Ristorazione
 
 ### Mikuna
@@ -588,7 +594,7 @@ Parliamo dei tuoi contenuti social
 
 ## Portfolio Web Design e Progetti Digitali — WebNovis Milano
 Questo portfolio raccoglie una selezione dei progetti realizzati da WebNovis, agenzia web con sede a Rho (Milano). Ogni lavoro rappresenta un percorso unico di progettazione: dall&apos;analisi delle esigenze del cliente alla consegna di un prodotto digitale completo e funzionale.
-I nostri progetti spaziano dallo sviluppo di siti web per ristoranti e attività locali alla creazione di piattaforme e-commerce, web app SaaS e concept di design avanzato. Per ogni progetto curiamo architettura dell&apos;informazione, design responsive, ottimizzazione SEO e performance di caricamento.
+I nostri progetti spaziano dallo sviluppo di siti web per ristoranti e attività locali alla creazione di piattaforme e-commerce, web app SaaS e concept di design avanzato.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
