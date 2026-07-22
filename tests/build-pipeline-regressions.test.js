@@ -25,8 +25,26 @@ function main() {
 
   assert.equal(
     scripts['build:site:dist'],
-    'npm run build:geo:dist && npm run normalize:public-html:dist && npm run update:footer:dist && npm run build:dist && npm run build:search-index:dist && npm run build:sitemap:dist && npm run validate:pages:dist',
+    'npm run build:geo:dist && npm run normalize:public-html:dist && npm run update:footer:dist && npm run build:dist && npm run build:search-index:dist && npm run build:sitemap:dist && npm run build:llms && npm run build:llms-full && npm run validate:pages:dist',
     'package.json must expose a canonical dist-first site build command'
+  );
+
+  assert.equal(
+    scripts['build:llms'],
+    'node scripts/generate-llms-index.js',
+    'package.json must expose build:llms for GEO index generation'
+  );
+
+  assert.equal(
+    scripts['build:llms-full'],
+    'node scripts/generate-llms-full.js',
+    'package.json must expose build:llms-full for full LLM corpus generation'
+  );
+
+  assert.match(
+    scripts['test:regressions'] || '',
+    /tests\/lcp-hero-regressions\.test\.js/,
+    'test:regressions must include LCP hero safety checks'
   );
 
   assert.equal(
