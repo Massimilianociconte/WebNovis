@@ -1,0 +1,450 @@
+{
+  "schemaVersion": 1,
+  "editorialVersion": "2026-07-23-v1",
+  "editorialDate": "2026-07-23",
+  "totalRecords": 80,
+  "files": [
+    {
+      "cluster": "agency",
+      "file": "agency.json",
+      "recordCount": 20,
+      "sourceArtifact": "WebNovis-Publishable-Copy-Agency-20-2026-07-23.json",
+      "sourceSha256": "a83adf3d849f381aa82fb2ab178471226e5b493b9530dca4f2659ee22aa307fc",
+      "contentSha256": "2319c4c87823eb2b3503fe8bed256b300f97d1b281a01a9340afa51ea79e4f05"
+    },
+    {
+      "cluster": "realizzazione",
+      "file": "realizzazione.json",
+      "recordCount": 17,
+      "sourceArtifact": "WebNovis-Publishable-Copy-Realizzazione-17-2026-07-23.json",
+      "sourceSha256": "f658bd48c2e4c0408796a60286110c4278b2a6ccafcdb317160c1bf4791e943a",
+      "contentSha256": "79945e6cad8ac27949d4874e37120e0e2564447345da1fa77fa392e6e02fc77a"
+    },
+    {
+      "cluster": "ecommerce",
+      "file": "ecommerce.json",
+      "recordCount": 13,
+      "sourceArtifact": "WebNovis-Publishable-Copy-Ecommerce-13-2026-07-23.json",
+      "sourceSha256": "cb49feb42cad40cf0ae4938b491ffccedd932bedd354850a175ef704fdd70a5a",
+      "contentSha256": "d9474ecf668bbe0637206c9082cfa5fbf32f13d6e1863bf8ce7599b6773469f0"
+    },
+    {
+      "cluster": "seo-locale",
+      "file": "seo-locale.json",
+      "recordCount": 12,
+      "sourceArtifact": "WebNovis-Publishable-Copy-SEO-Locale-12-2026-07-23.json",
+      "sourceSha256": "7068ec5aae4a6b1e9befe7331490b1ea9a38065a4f738da9a754e92467e3b797",
+      "contentSha256": "fb626215ca669fe39f9dd54c94b7955d3ca6103aed5046c13d2abe1161d47206"
+    },
+    {
+      "cluster": "other-services",
+      "file": "other-services.json",
+      "recordCount": 18,
+      "sourceArtifact": "WebNovis-Publishable-Copy-Other-Services-18-2026-07-23.json",
+      "sourceSha256": "d0b43890ae18a5aa78976ff0a525034da658e350ca2b8a90ceca3b2c844efe0e",
+      "contentSha256": "0f24382d44f81d38cddf96555e92f761aa1c65299ab12de9005e6639faf15e03"
+    }
+  ],
+  "recordIndex": [
+    {
+      "record_id": "GEO-001",
+      "path": "/agenzia-web-rho.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-002",
+      "path": "/realizzazione-siti-web-rho.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-003",
+      "path": "/seo-locale-rho.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-004",
+      "path": "/agenzia-web-arese.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-005",
+      "path": "/seo-locale-arese.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-006",
+      "path": "/sito-vetrina-arese.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-007",
+      "path": "/agenzia-web-lainate.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-008",
+      "path": "/seo-locale-lainate.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-009",
+      "path": "/agenzia-web-bollate.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-010",
+      "path": "/realizzazione-siti-web-bollate.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-011",
+      "path": "/agenzia-web-garbagnate.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-012",
+      "path": "/seo-locale-garbagnate.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-013",
+      "path": "/agenzia-web-parabiago.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-014",
+      "path": "/seo-locale-parabiago.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-015",
+      "path": "/agenzia-web-legnano.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-016",
+      "path": "/realizzazione-siti-web-legnano.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-017",
+      "path": "/agenzia-web-milano-ovest.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-018",
+      "path": "/realizzazione-siti-web-milano-ovest.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-019",
+      "path": "/agenzia-web-milano-nord.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-020",
+      "path": "/agenzia-web-saronno.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-021",
+      "path": "/agenzia-web-monza.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-022",
+      "path": "/agenzia-web-cinisello-balsamo.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-023",
+      "path": "/seo-locale-cinisello-balsamo.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-024",
+      "path": "/agenzia-web-sesto-san-giovanni.html",
+      "tier": "Tier 1"
+    },
+    {
+      "record_id": "GEO-025",
+      "path": "/ecommerce-milano.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-026",
+      "path": "/ecommerce-rho.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-027",
+      "path": "/ecommerce-arese.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-028",
+      "path": "/ecommerce-monza.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-029",
+      "path": "/ecommerce-legnano.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-030",
+      "path": "/ecommerce-bollate.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-031",
+      "path": "/ecommerce-lainate.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-032",
+      "path": "/landing-page-rho.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-033",
+      "path": "/landing-page-arese.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-034",
+      "path": "/landing-page-milano-ovest.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-035",
+      "path": "/landing-page-bollate.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-036",
+      "path": "/sito-vetrina-rho.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-037",
+      "path": "/sito-vetrina-lainate.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-038",
+      "path": "/sito-vetrina-bollate.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-039",
+      "path": "/sito-vetrina-legnano.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-040",
+      "path": "/realizzazione-siti-web-arese.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-041",
+      "path": "/seo-locale-milano.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-042",
+      "path": "/seo-locale-sesto-san-giovanni.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-043",
+      "path": "/agenzia-web-milano.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-044",
+      "path": "/agenzia-web-pero.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-045",
+      "path": "/agenzia-web-cornaredo.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-046",
+      "path": "/agenzia-web-novate-milanese.html",
+      "tier": "Tier 2"
+    },
+    {
+      "record_id": "GEO-047",
+      "path": "/seo-locale-cormano.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-048",
+      "path": "/seo-locale-rozzano.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-049",
+      "path": "/seo-locale-bresso.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-050",
+      "path": "/seo-locale-senago.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-051",
+      "path": "/realizzazione-siti-web-garbagnate.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-052",
+      "path": "/realizzazione-siti-web-limbiate.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-053",
+      "path": "/realizzazione-siti-web-cormano.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-054",
+      "path": "/realizzazione-siti-web-parabiago.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-055",
+      "path": "/realizzazione-siti-web-senago.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-056",
+      "path": "/realizzazione-siti-web-castellanza.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-057",
+      "path": "/realizzazione-siti-web-solaro.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-058",
+      "path": "/realizzazione-siti-web-buccinasco.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-059",
+      "path": "/realizzazione-siti-web-arluno.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-060",
+      "path": "/realizzazione-siti-web-origgio.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-061",
+      "path": "/realizzazione-siti-web-caronno-pertusella.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-062",
+      "path": "/realizzazione-siti-web-magenta.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-063",
+      "path": "/google-ads-monza.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-064",
+      "path": "/landing-page-milano.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-065",
+      "path": "/ecommerce-senago.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-066",
+      "path": "/ecommerce-bresso.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-067",
+      "path": "/ecommerce-garbagnate.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-068",
+      "path": "/ecommerce-cinisello-balsamo.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-069",
+      "path": "/ecommerce-limbiate.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-070",
+      "path": "/ecommerce-cormano.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-071",
+      "path": "/email-marketing-milano.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-072",
+      "path": "/email-marketing-monza.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-073",
+      "path": "/graphic-design-milano.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-074",
+      "path": "/social-media-milano.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-075",
+      "path": "/social-media-parabiago.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-076",
+      "path": "/social-media-sesto-san-giovanni.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-077",
+      "path": "/social-media-legnano.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-078",
+      "path": "/agenzia-web-baranzate.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-079",
+      "path": "/agenzia-web-castellanza.html",
+      "tier": "Data-validated"
+    },
+    {
+      "record_id": "GEO-080",
+      "path": "/agenzia-web-settimo-milanese.html",
+      "tier": "Data-validated"
+    }
+  ]
+}
