@@ -1,4 +1,5 @@
 const assert = require('node:assert/strict');
+const childProcess = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -40,6 +41,32 @@ function main() {
     nonCriticalLoaderSource,
     /chat\.min\.js|cursor\.min\.js|text-effects\.min\.js|globe\.min\.js/i,
     'js/noncritical-loader.js must own deferred loading for the heaviest decorative scripts'
+  );
+
+  const mainJs = fs.readFileSync(path.join(ROOT, 'js', 'main.js'), 'utf8');
+  assert.match(
+    mainJs,
+    /a\[data-analytics-source\]/,
+    'the analytics runtime must consume internal CTA attribution data without query-string variants'
+  );
+  assert.match(mainJs, /analyticsCampaign/, 'the analytics runtime must preserve campaign-level attribution');
+  const mainMinJs = fs.readFileSync(path.join(ROOT, 'js', 'main.min.js'), 'utf8');
+  assert.match(
+    mainMinJs,
+    /data-analytics-source/,
+    'the deployed minified runtime must consume internal CTA attribution data'
+  );
+  assert.match(mainMinJs, /analyticsCampaign/, 'the deployed minified runtime must preserve campaign attribution');
+
+  const normalizationDryRun = childProcess.execFileSync(
+    process.execPath,
+    ['scripts/normalize-public-html.js', '--dry-run', '--only=blog/ab-testing-sito-web.html,index.html'],
+    { cwd: ROOT, encoding: 'utf8' }
+  );
+  assert.match(
+    normalizationDryRun,
+    /Normalized 0 HTML files/,
+    'the public HTML normalization pipeline must be idempotent for generated blog and homepage output'
   );
 
   const offenders = [];

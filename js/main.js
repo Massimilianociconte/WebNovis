@@ -1515,6 +1515,25 @@ const trackEvent = (category, action, label) => {
     }
 };
 
+// Preserve campaign attribution for internal CTAs without creating crawlable
+// URL variants. The HTML normalization pipeline moves legacy UTM parameters to
+// these data attributes, which remain available to GA4 after consent.
+document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[data-analytics-source]');
+    if (!link) return;
+
+    const {
+        analyticsSource,
+        analyticsMedium,
+        analyticsCampaign,
+        analyticsContent
+    } = link.dataset;
+    const label = [analyticsSource, analyticsMedium, analyticsCampaign, analyticsContent]
+        .filter(Boolean)
+        .join(' | ');
+    trackEvent('Internal CTA', 'Click', label);
+});
+
 // Meta Pixel Event Tracking (consent-gated)
 const trackMetaEvent = (eventName, params) => {
     if (hasAnalyticsConsent() && typeof window.fbq === 'function') {

@@ -1,4 +1,6 @@
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const {
   articles,
@@ -28,6 +30,20 @@ function main() {
   assert.ok(
     html.includes('fetchpriority="low"') && html.includes('loading="lazy"'),
     'Footer badges should use low-priority lazy loading'
+  );
+
+  const caseStudyDir = path.join(process.cwd(), 'portfolio', 'case-study');
+  const brokenResponsiveLogoCandidates = [];
+  for (const filename of fs.readdirSync(caseStudyDir).filter((entry) => entry.endsWith('.html'))) {
+    const caseStudyHtml = fs.readFileSync(path.join(caseStudyDir, filename), 'utf8');
+    if (/srcset="[^"]*\.\.\/\.\.\/Img\/webnovis-logo-bianco-150\.webp 150w, Img\/webnovis-logo-bianco\.webp 300w/i.test(caseStudyHtml)) {
+      brokenResponsiveLogoCandidates.push(filename);
+    }
+  }
+  assert.deepEqual(
+    brokenResponsiveLogoCandidates,
+    [],
+    `Case-study responsive logo candidates must resolve from their nested directory: ${brokenResponsiveLogoCandidates.join(', ')}`
   );
 }
 

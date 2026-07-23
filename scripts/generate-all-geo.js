@@ -30,6 +30,7 @@ const { removeSchemaReviewProperties } = require('./seo-aggregate-rating');
 const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
 const {
     getIndexationDirectivesForPath,
+    getIndexableGeoPaths,
     isTier1Path,
     isTier2Path,
     isDeAmplifiedPath
@@ -2320,6 +2321,9 @@ function generateHubPages() {
     }
 
     const results = [];
+    const indexableGeoPaths = new Set(getIndexableGeoPaths());
+    const isApprovedHubTarget = (serviceSlug, citySlug) =>
+        indexableGeoPaths.has(`/${serviceSlug}-${citySlug}.html`);
 
     // ── Shared page assembly helpers ──
     function buildHubPage(hubSlug, title, description, keywords, contentHtml, schemaObjects) {
@@ -2386,12 +2390,13 @@ function generateHubPages() {
     }
 
     // ── 1. Agenzia Web Hub ──
-    const agenziaCities = cities.filter(c => c.generate.agenzia);
+    const networkCities = cities.filter(c => c.generate.agenzia);
+    const agenziaCities = networkCities.filter(c => isApprovedHubTarget('agenzia-web', c.slug));
     const agenziaCitiesUi = withCityUiMeta(agenziaCities);
     const agenziaData = {
         cities: agenziaCitiesUi,
         coreServices: coreServices,
-        networkCoverageCount: agenziaCities.length,
+        networkCoverageCount: networkCities.length,
         totalCities: agenziaCities.length,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
@@ -2408,7 +2413,7 @@ function generateHubPages() {
         {
             "@context": "https://schema.org", "@type": "CollectionPage",
             "name": "Agenzia Web nei Comuni della Provincia di Milano",
-            "description": `WebNovis è l'agenzia web con sede a Rho che opera in ${agenziaCities.length} comuni dell'hinterland milanese.`,
+            "description": `Pagine locali indicizzabili WebNovis per ${agenziaCities.length} comuni, nella rete di ${networkCities.length} territori serviti dall'agenzia con sede a Rho.`,
             "url": SITE + "/agenzia-web/",
             "inLanguage": "it",
             "dateModified": TODAY,
@@ -2424,7 +2429,7 @@ function generateHubPages() {
     const agenziaHtml = buildHubPage(
         'agenzia-web',
         'Agenzia Web nei Comuni di Milano — WebNovis | Web Agency Hinterland',
-        `Agenzia web per ${agenziaCities.length} comuni dell'hinterland milanese. Siti 100% custom, grafica e social. Sede a Rho. Preventivo gratuito.`,
+        `${agenziaCities.length} pagine locali indicizzabili nella rete di ${networkCities.length} territori serviti da WebNovis. Siti custom, grafica e social. Sede a Rho.`,
         'agenzia web Milano, web agency hinterland milanese, agenzia web comuni Milano, WebNovis',
         agenziaContent,
         agenziaSchemas
@@ -2432,11 +2437,13 @@ function generateHubPages() {
     results.push({ dir: 'agenzia-web', html: agenziaHtml });
 
     // ── 2. Realizzazione Siti Web Hub ──
-    const realizzazioneCities = cities.filter(c => c.generate.realizzazione);
+    const realizzazioneCities = cities.filter(c =>
+        c.generate.realizzazione && isApprovedHubTarget('realizzazione-siti-web', c.slug)
+    );
     const realizzazioneCitiesUi = withCityUiMeta(realizzazioneCities);
     const realizzazioneData = {
         cities: realizzazioneCitiesUi,
-        networkCoverageCount: agenziaCities.length,
+        networkCoverageCount: networkCities.length,
         totalCities: realizzazioneCities.length,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
@@ -2453,7 +2460,7 @@ function generateHubPages() {
         {
             "@context": "https://schema.org", "@type": "CollectionPage",
             "name": "Realizzazione Siti Web a Milano e in Lombardia",
-            "description": `Realizzazione siti web a Milano e in Lombardia: landing già pubblicate in ${realizzazioneCities.length} comuni di una rete WebNovis che serve ${agenziaCities.length} territori tra Milano, Rho e hinterland.`,
+            "description": `Realizzazione siti web a Milano e in Lombardia: ${realizzazioneCities.length} landing locali indicizzabili nella rete WebNovis di ${networkCities.length} territori serviti.`,
             "url": SITE + "/realizzazione-siti-web/",
             "inLanguage": "it",
             "dateModified": TODAY,
@@ -2471,7 +2478,7 @@ function generateHubPages() {
         // GSC: query "realizzazione/creazione siti web lombardia" (370+ impr a pos 76-84)
         // → l'hub ora copre esplicitamente Milano e Lombardia
         'Realizzazione Siti Web a Milano e in Lombardia — WebNovis',
-        `Realizzazione siti web a Milano e in Lombardia: landing già pubblicate in ${realizzazioneCities.length} comuni, dentro una rete WebNovis che serve ${agenziaCities.length} territori tra Milano, Rho e hinterland. Codice custom e SEO integrata.`,
+        `Realizzazione siti web a Milano e in Lombardia: ${realizzazioneCities.length} landing locali indicizzabili nella rete WebNovis di ${networkCities.length} territori serviti. Codice custom e SEO integrata.`,
         'realizzazione siti web Milano, realizzazione siti web Lombardia, creazione siti web Lombardia, siti web hinterland milanese, WebNovis',
         realizzazioneContent,
         realizzazioneSchemas
@@ -2479,21 +2486,24 @@ function generateHubPages() {
     results.push({ dir: 'realizzazione-siti-web', html: realizzazioneHtml });
 
     // ── 3. Zone Servite Hub (trasversale) ──
-    const geoEligibleServices = services.filter(shouldGenerateGeoForService);
-    const serviceCoverageCities = agenziaCities;
-    const coverageScopes = buildCoverageScopes(agenziaCities, realizzazioneCities, serviceCoverageCities);
-    const featuredCities = withCityUiMeta(agenziaCities.filter((city) => city.slug !== 'rho'));
     const serviceCities = {};
     const serviceCityCounts = {};
-    for (const svc of geoEligibleServices) {
-        serviceCities[svc.slug] = withCityUiMeta(serviceCoverageCities);
-        serviceCityCounts[svc.slug] = serviceCoverageCities.length;
-    }
+    const geoEligibleServices = services.filter(shouldGenerateGeoForService).filter((service) => {
+        const approvedCities = networkCities.filter((city) => isApprovedHubTarget(service.slug, city.slug));
+        serviceCities[service.slug] = withCityUiMeta(approvedCities);
+        serviceCityCounts[service.slug] = approvedCities.length;
+        return approvedCities.length > 0;
+    });
+    const serviceCoverageCities = [...new Map(
+        Object.values(serviceCities).flat().map((city) => [city.slug, city])
+    ).values()];
+    const coverageScopes = buildCoverageScopes(agenziaCities, realizzazioneCities, serviceCoverageCities);
+    const featuredCities = withCityUiMeta(agenziaCities.filter((city) => city.slug !== 'rho'));
 
     const zoneData = {
         agenziaCities: withCityUiMeta(agenziaCities),
         agenziaCount: agenziaCities.length,
-        networkCoverageCount: agenziaCities.length,
+        networkCoverageCount: networkCities.length,
         realizzazioneCities: withCityUiMeta(realizzazioneCities),
         realizzazioneCount: realizzazioneCities.length,
         geoServices: geoEligibleServices,
@@ -2508,7 +2518,7 @@ function generateHubPages() {
     const zoneContent = njkEnv.render('hub-zone-servite.njk', zoneData);
 
     // Total items across all categories
-    const totalItems = agenziaCities.length + realizzazioneCities.length + (geoEligibleServices.length * serviceCoverageCities.length);
+    const totalItems = agenziaCities.length + realizzazioneCities.length + Object.values(serviceCityCounts).reduce((sum, count) => sum + count, 0);
     const zoneSchemas = [
         {
             "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -2533,7 +2543,7 @@ function generateHubPages() {
     const zoneHtml = buildHubPage(
         'zone-servite',
         'Zone Servite da WebNovis — Tutti i Servizi Web per Comune | Hinterland Milano',
-        `Tutti i servizi WebNovis per comune: agenzia web, realizzazione siti, SEO locale e più in ${agenziaCities.length}+ comuni dell'hinterland milanese.`,
+        `Pagine locali indicizzabili WebNovis per agenzia web, realizzazione siti, SEO locale e altri servizi nella rete di ${networkCities.length} territori serviti.`,
         'zone servite WebNovis, servizi web comuni Milano, agenzia web hinterland, web agency zone Milano',
         zoneContent,
         zoneSchemas
@@ -2634,27 +2644,31 @@ function validatePage(html, filename) {
 
 function generateLinkGraph() {
     const graph = { generated: TODAY, pages: [] };
+    const indexableGeoPaths = new Set(getIndexableGeoPaths());
+    const approvedCitiesFor = (serviceSlug) => cities.filter((city) =>
+        indexableGeoPaths.has(`/${serviceSlug}-${city.slug}.html`)
+    );
+    const agencyCities = approvedCitiesFor('agenzia-web');
+    const websiteCities = approvedCitiesFor('realizzazione-siti-web');
 
     for (const city of cities) {
-        const nearest = getNearestCities(city, cities, 5);
-
-        if (city.generate.agenzia) {
+        const agencyPath = `/agenzia-web-${city.slug}.html`;
+        if (indexableGeoPaths.has(agencyPath)) {
             graph.pages.push({
-                url: `/agenzia-web-${city.slug}.html`,
+                url: agencyPath,
                 type: 'agenzia',
                 city: city.name,
-                linksTo: nearest
-                    .filter(nc => nc.generate.agenzia)
+                linksTo: getNearestCities(city, agencyCities, 5)
                     .map(nc => `/agenzia-web-${nc.slug}.html`)
             });
         }
-        if (city.generate.realizzazione) {
+        const websitePath = `/realizzazione-siti-web-${city.slug}.html`;
+        if (indexableGeoPaths.has(websitePath)) {
             graph.pages.push({
-                url: `/realizzazione-siti-web-${city.slug}.html`,
+                url: websitePath,
                 type: 'realizzazione',
                 city: city.name,
-                linksTo: nearest
-                    .filter(nc => nc.generate.realizzazione)
+                linksTo: getNearestCities(city, websiteCities, 5)
                     .map(nc => `/realizzazione-siti-web-${nc.slug}.html`)
             });
         }

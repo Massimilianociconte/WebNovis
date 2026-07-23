@@ -17,7 +17,7 @@ const NON_PUBLIC_ARTIFACT_PATTERNS = [
 ];
 const NON_INDEXABLE_STATIC_PATHS = new Set(['/404.html', '/grazie.html']);
 const HOMEPAGE_HERO_OLD = '<h1 class="hero-title"> <span class="glitch gradient-text" data-text="Agenzia Digitale">Agenzia Digitale</span> che <span class="highlight-gold">Accende</span><br> la tua <span class="sr-only">visibilità, crescita, identità e presenza online</span><span class="hero-rotating-wrapper" aria-hidden="true"> <span class="hero-rotating-word active">visibilità</span> <span class="hero-rotating-word">crescita</span> <span class="hero-rotating-word">identità</span> <span class="hero-rotating-word">presenza</span> </span> </h1> <p class="hero-subtitle"> La tua agenzia digitale a Milano per sviluppo web,<br> grafica e crescita della tua visibilità online </p> <div class="hero-cta"> <a href="contatti.html" title="Contattaci per iniziare il tuo progetto" class="btn btn-primary"> <span>Scopri Come</span> <svg viewBox="0 0 20 20" fill="none" height="20" width="20"> <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/> </svg> </a> <a href="#servizi" title="Scopri i nostri servizi" class="btn btn-secondary">I Nostri Servizi</a> </div>';
-const HOMEPAGE_CORE_LINKS_PATTERN = /<(?:p|nav) class="hero-core-links"[^>]*>[\s\S]*?<\/(?:p|nav)>/i;
+const HOMEPAGE_CORE_LINKS_PATTERN = /\s*<(?:p|nav) class="hero-core-links"[^>]*>[\s\S]*?<\/(?:p|nav)>\s*/i;
 const HOMEPAGE_CORE_LINKS_HTML = '<nav class="hero-core-links" aria-label="Percorsi principali" style="display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1rem"> <a href="/servizi/sviluppo-web.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Sviluppo Web</a> <a href="/servizi/graphic-design.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Graphic Design</a> <a href="/servizi/social-media.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Social Media</a> </nav>';
 const HOMEPAGE_HERO_NEW = `<h1 class="hero-title"> <span class="glitch gradient-text" data-text="WebNovis">WebNovis</span><br> agenzia web a Rho e Milano che <span class="highlight-gold">accende</span><br> la tua <span class="sr-only">visibilità, crescita, identità e presenza online</span><span class="hero-rotating-wrapper" aria-hidden="true"> <span class="hero-rotating-word active">visibilità</span> <span class="hero-rotating-word">crescita</span> <span class="hero-rotating-word">identità</span> <span class="hero-rotating-word">presenza</span> </span> </h1> <p class="hero-subtitle"> Siti web custom, e-commerce, branding e SEO locale<br> per PMI e professionisti tra Rho, Milano e hinterland </p> <div class="hero-cta"> <a href="contatti.html" title="Contattaci per iniziare il tuo progetto" class="btn btn-primary"> <span>Scopri Come</span> <svg viewBox="0 0 20 20" fill="none" height="20" width="20"> <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/> </svg> </a> <a href="#servizi" title="Scopri i nostri servizi" class="btn btn-secondary">I Nostri Servizi</a> </div> ${HOMEPAGE_CORE_LINKS_HTML}`;
 const HOMEPAGE_MOBILE_PRELOAD_OLD = '<link href="Img/sfondo-mobile.webp" rel="preload" media="(max-width: 768px)" as="image" fetchpriority="high" type="image/webp">';
@@ -182,6 +182,76 @@ const MONEY_PAGE_INTERNAL_LINK_BLOCKS = {
     ]
   }
 };
+const EDITORIAL_CONTEXT_LINKS = {
+  'blog/marketing-digitale-attivita-locali.html': {
+    href: '/blog/caffe-sempione-caso-studio-locale.html',
+    title: 'Caso locale: Caffè Sempione',
+    text: 'Un approfondimento sul posizionamento digitale di una torrefazione locale e sulle scelte che rendono riconoscibile un’attività del territorio.'
+  },
+  'blog/intelligenza-artificiale-pmi.html': {
+    href: '/blog/ia-cartelle-cliniche-previsione-malattie.html',
+    title: 'IA e dati clinici: un caso d’uso da conoscere',
+    text: 'Come i modelli possono leggere dati sanitari eterogenei, con opportunità e limiti da valutare prima di trasferire l’approccio in azienda.'
+  },
+  'blog/web-design-trends-2026.html': {
+    href: '/blog/importanza-del-design-siti-web.html',
+    title: 'Perché UX e UI incidono sul risultato del sito',
+    text: 'Una guida complementare sul ruolo del design nella chiarezza, nella fiducia e nel percorso di conversione.'
+  },
+  'blog/obblighi-legge-accessibilita-siti.html': {
+    href: '/blog/sanzioni-sito-non-accessibile-2026.html',
+    title: 'Sanzioni e rischi di un sito non accessibile',
+    text: 'Il quadro operativo da leggere insieme agli obblighi, con fonti e verifiche da aggiornare in base al caso concreto.'
+  },
+  'blog/ottimizzazione-tasso-conversione.html': {
+    href: '/blog/sito-web-che-non-converte.html',
+    title: 'Diagnosi: perché un sito non converte',
+    text: 'Quindici cause frequenti da usare come checklist prima di pianificare test, interventi UX e modifiche alle CTA.'
+  },
+  'blog/portare-attivita-online.html': {
+    href: '/portfolio/case-study/comeleapi.html',
+    title: 'Case study: presenza digitale locale per comeleapi',
+    text: 'Un esempio concreto di sito mobile-first, identità editoriale, SEO locale e contatto diretto per un servizio sul territorio.'
+  }
+};
+const HOMEPAGE_GEO_CARD_REPLACEMENTS = [
+  {
+    from: 'realizzazione-siti-web-pero.html',
+    to: 'realizzazione-siti-web-bollate.html',
+    fromCity: 'Pero',
+    toCity: 'Bollate',
+    title: 'Realizzazione Siti Web a Bollate',
+    area: 'Milano Nord-Ovest',
+    text: 'Siti web su misura per imprese e professionisti di Bollate e dell’area nord-ovest.'
+  },
+  {
+    from: 'realizzazione-siti-web-lainate.html',
+    to: 'realizzazione-siti-web-legnano.html',
+    fromCity: 'Lainate',
+    toCity: 'Legnano',
+    title: 'Realizzazione Siti Web a Legnano',
+    area: 'Alto Milanese',
+    text: 'Siti web custom per aziende, attività locali e professionisti di Legnano.'
+  },
+  {
+    from: 'realizzazione-siti-web-cornaredo.html',
+    to: 'realizzazione-siti-web-garbagnate.html',
+    fromCity: 'Cornaredo',
+    toCity: 'Garbagnate Milanese',
+    title: 'Realizzazione Siti Web a Garbagnate Milanese',
+    area: 'Milano Nord-Ovest',
+    text: 'Realizzazione siti web per PMI e professionisti di Garbagnate Milanese.'
+  },
+  {
+    from: 'realizzazione-siti-web-settimo-milanese.html',
+    to: 'realizzazione-siti-web-milano-ovest.html',
+    fromCity: 'Settimo Milanese',
+    toCity: 'Milano Ovest',
+    title: 'Realizzazione Siti Web a Milano Ovest',
+    area: 'Area metropolitana',
+    text: 'Siti web professionali per aziende e attività dell’area di Milano Ovest.'
+  }
+];
 const LOCAL_PAGES_ALREADY_OPTIMIZED = new Set([
   'sito-vetrina-bollate.html',
   'graphic-design-bareggio.html',
@@ -1552,6 +1622,99 @@ function alignMoneyPageInternalLinks(html, relativePath) {
   return updated.replace(/(<div class="article-content">)/i, `$1 ${blockHtml}`);
 }
 
+function alignEditorialContextLinks(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  const link = EDITORIAL_CONTEXT_LINKS[normalizedPath];
+  if (!link) return html;
+
+  const blockHtml = `<aside data-webnovis-editorial-links="true" aria-label="Approfondimento editoriale correlato" style="margin:1.7rem 0 2.2rem;padding:1.15rem 1.25rem;border-radius:14px;border:1px solid rgba(96,165,250,.2);background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(91,106,174,.06))"> <strong style="display:block;color:var(--white);font-size:1rem;margin-bottom:.45rem">${link.title}</strong> <p style="margin:0 0 .85rem;color:var(--gray-light);font-size:.95rem;line-height:1.65">${link.text}</p> <a href="${link.href}" style="color:var(--primary-light);font-size:.9rem;font-weight:700">Leggi l’approfondimento →</a> </aside>`;
+  let updated = html.replace(/\s*<aside\b[^>]*data-webnovis-editorial-links=["']true["'][\s\S]*?<\/aside>/gi, '');
+
+  if (/<div class="article-summary">[\s\S]*?<\/div>/i.test(updated)) {
+    return updated.replace(/(<div class="article-summary">[\s\S]*?<\/div>)/i, `$1 ${blockHtml}`);
+  }
+
+  return updated.replace(/(<div class="article-content">)/i, `$1 ${blockHtml}`);
+}
+
+function alignHomepageGeoPromotions(html, relativePath) {
+  if (normalizeRelativePath(relativePath) !== 'index.html') return html;
+
+  let updated = html;
+  for (const replacement of HOMEPAGE_GEO_CARD_REPLACEMENTS) {
+    const cardPattern = new RegExp(
+      `<a\\b(?=[^>]*href="${escapeRegex(replacement.from)}")(?=[^>]*class="[^"]*\\bzone-card\\b)[^>]*>[\\s\\S]*?<\\/a>`,
+      'i'
+    );
+    updated = updated.replace(cardPattern, (card) => card
+      .replace(`href="${replacement.from}"`, `href="${replacement.to}"`)
+      .replace(/title="[^"]*"/, `title="${replacement.title}"`)
+      .replace(new RegExp(`>\\s*${escapeRegex(replacement.fromCity)}<\\/div>`), `> ${replacement.toCity}</div>`)
+      .replace(/(<div style="font-size:\.75rem;[^>]*>)[\s\S]*?(<\/div>)/, `$1${replacement.area}$2`)
+      .replace(/(<p style="font-size:\.85rem;[^>]*>)[\s\S]*?(<\/p>)/, `$1${replacement.text}$2`));
+  }
+  return updated;
+}
+
+function normalizeInternalAttributionLinks(html) {
+  const attributionMap = new Map([
+    ['utm_source', 'data-analytics-source'],
+    ['utm_medium', 'data-analytics-medium'],
+    ['utm_campaign', 'data-analytics-campaign'],
+    ['utm_content', 'data-analytics-content']
+  ]);
+
+  return String(html || '').replace(/<a\b[^>]*>/gi, (tag) => {
+    const hrefMatch = tag.match(/\bhref=(["'])(.*?)\1/i);
+    if (!hrefMatch) return tag;
+
+    const rawHref = hrefMatch[2].replace(/&amp;/g, '&');
+    if (!rawHref.includes('?') || /^(?:#|mailto:|tel:|javascript:)/i.test(rawHref)) return tag;
+
+    let resolved;
+    try {
+      resolved = new URL(rawHref, BASE_URL);
+    } catch (_) {
+      return tag;
+    }
+    if (!/^https?:$/.test(resolved.protocol) || !['webnovis.com', 'www.webnovis.com'].includes(resolved.hostname)) return tag;
+
+    const hashIndex = rawHref.indexOf('#');
+    const hash = hashIndex >= 0 ? rawHref.slice(hashIndex) : '';
+    const withoutHash = hashIndex >= 0 ? rawHref.slice(0, hashIndex) : rawHref;
+    const queryIndex = withoutHash.indexOf('?');
+    if (queryIndex < 0) return tag;
+
+    const baseHref = withoutHash.slice(0, queryIndex);
+    const remainingParts = [];
+    const attribution = [];
+    for (const part of withoutHash.slice(queryIndex + 1).split('&').filter(Boolean)) {
+      const [rawKey, ...rawValueParts] = part.split('=');
+      const key = decodeURIComponent(rawKey.replace(/\+/g, ' ')).toLowerCase();
+      const dataAttribute = attributionMap.get(key);
+      if (!dataAttribute) {
+        remainingParts.push(part);
+        continue;
+      }
+      const rawValue = rawValueParts.join('=');
+      const value = decodeURIComponent(rawValue.replace(/\+/g, ' '));
+      attribution.push([dataAttribute, value]);
+    }
+    if (attribution.length === 0) return tag;
+
+    const cleanHref = `${baseHref}${remainingParts.length ? `?${remainingParts.join('&')}` : ''}${hash}`;
+    let updated = tag.replace(hrefMatch[0], `href=${hrefMatch[1]}${escapeHtmlAttr(cleanHref)}${hrefMatch[1]}`);
+    for (const [attribute, value] of attribution) {
+      const attributePattern = new RegExp(`\\s${attribute}=["'][^"']*["']`, 'i');
+      const serialized = ` ${attribute}="${escapeHtmlAttr(value)}"`;
+      updated = attributePattern.test(updated)
+        ? updated.replace(attributePattern, serialized)
+        : updated.replace(/>$/, `${serialized}>`);
+    }
+    return updated;
+  });
+}
+
 function alignCanvaPartnerCredit(html, relativePath) {
   const normalizedPath = normalizeRelativePath(relativePath);
   if (normalizedPath !== 'blog/ottimizzazione-immagini-web.html') return html;
@@ -1696,13 +1859,16 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = alignContactPageInfoCards(updated, relativePath);
   updated = alignLegalNavbar(updated, relativePath);
   updated = alignPortfolioExperience(updated, relativePath);
+  updated = alignHomepageGeoPromotions(updated, relativePath);
   updated = alignMoneyPageInternalLinks(updated, relativePath);
+  updated = alignEditorialContextLinks(updated, relativePath);
   updated = alignClusterStrategicLinks(updated, relativePath);
   updated = alignCanvaPartnerCredit(updated, relativePath);
   updated = ensureSelfHreflang(updated, relativePath);
   updated = normalizeLocalMetricPlaceholders(updated);
   updated = alignRobotsDirectives(updated, relativePath);
   updated = alignHomepageBrandExperience(updated, relativePath);
+  updated = normalizeInternalAttributionLinks(updated);
   return updated;
 }
 
@@ -1722,10 +1888,13 @@ module.exports = {
   alignContactPageInfoCards,
   alignLegalNavbar,
   alignPortfolioExperience,
+  alignHomepageGeoPromotions,
   alignMoneyPageInternalLinks,
+  alignEditorialContextLinks,
   alignClusterStrategicLinks,
   alignCanvaPartnerCredit,
   alignRobotsDirectives,
   alignHomepageBrandExperience,
+  normalizeInternalAttributionLinks,
   applySeoHtmlTransforms
 };

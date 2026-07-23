@@ -17,7 +17,7 @@
     <div class="container">
       <span class="section-tag">{{ networkCoverageCount }} comuni serviti da WebNovis</span>
       <h1>Zone Servite da WebNovis — Servizi Web nell'Hinterland Milanese</h1>
-      <p class="answer-capsule"><strong>WebNovis</strong> opera da Rho servendo PMI e professionisti in tutta la Città Metropolitana di Milano. Questa pagina raccoglie la copertura reale del sito in modo più leggibile: presenza complessiva del brand, landing siti già pubblicate e matrice completa dei servizi locali attivi su tutta la rete WebNovis.</p>
+      <p class="answer-capsule"><strong>WebNovis</strong> opera da Rho al servizio di PMI e professionisti nell'hinterland milanese. Questa pagina distingue la copertura operativa complessiva dalle sole landing locali approvate per l'indicizzazione, evitando di promuovere URL deamplificate.</p>
       <div class="hub-intro-grid">
         {% for scope in coverageScopes %}
         <article class="hub-scope-card">
@@ -67,7 +67,7 @@
   <section class="service-detail" id="agenzia-web">
     <div class="container">
       <h2><a href="/agenzia-web/" style="color:var(--white);text-decoration:none">Agenzia Web</a> — tutti i comuni serviti</h2>
-      <p>Servizi completi di web agency: sviluppo siti, grafica, social media e consulenza digitale.</p>
+      <p>Servizi completi di web agency: qui sono elencate soltanto le pagine locali ammesse all'indicizzazione.</p>
       <div class="hub-city-grid hub-city-grid--compact">
         {% for city in agenziaCities %}
         <a href="/agenzia-web-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="Agenzia Web {{ city.name }}">
@@ -90,7 +90,7 @@
   <section class="service-detail" id="realizzazione-siti-web" style="background:rgba(255,255,255,.01)">
     <div class="container">
       <h2><a href="/realizzazione-siti-web/" style="color:var(--white);text-decoration:none">Realizzazione Siti Web</a> — landing già pubblicate</h2>
-      <p>Siti web professionali con codice 100% custom, SEO locale integrata e design su misura. Qui mostriamo solo i comuni in cui la landing “realizzazione siti web” è già attiva come hub dedicato.</p>
+      <p>Siti web professionali con codice custom, SEO locale integrata e design su misura. Qui mostriamo solo le landing locali ammesse all'indicizzazione.</p>
       <div class="hub-city-grid hub-city-grid--compact">
         {% for city in realizzazioneCities %}
         <a href="/realizzazione-siti-web-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="Siti Web {{ city.name }}">
@@ -129,7 +129,7 @@
         </a>
         {% endfor %}
       </div>
-      <p class="service-scope-note">Questa matrice segue la stessa copertura territoriale della rete WebNovis: ogni comune mostrato qui ha una landing servizio dedicata e navigabile.</p>
+      <p class="service-scope-note">Ogni comune mostrato qui ha una landing servizio dedicata e approvata per l'indicizzazione.</p>
     </div>
   </section>
   {% endfor %}

@@ -16,7 +16,7 @@
     <div class="container">
       <span class="section-tag">{{ networkCoverageCount }} comuni serviti da WebNovis</span>
       <h1>Realizzazione Siti Web a Milano e in Lombardia</h1>
-      <p class="answer-capsule"><strong>WebNovis</strong> realizza siti web professionali per aziende a Milano, in provincia e in tutta la Lombardia. Su questa pagina trovi le landing “realizzazione siti web” già pubblicate e navigabili per i comuni attivi, con codice 100% custom, SEO integrata e design su misura. Lavoriamo in presenza nell'hinterland milanese e da remoto in tutta la regione.</p>
+      <p class="answer-capsule"><strong>WebNovis</strong> realizza siti web professionali per aziende a Milano, in provincia e in Lombardia. Questo hub raccoglie le {{ totalCities }} landing locali approvate per l'indicizzazione, con codice custom, SEO integrata e design su misura, nella rete di {{ networkCoverageCount }} territori serviti.</p>
       <a href="/contatti.html" class="btn btn-large btn-primary">
         <span>Richiedi Preventivo Gratuito</span>
         <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
@@ -54,8 +54,8 @@
           <p>Buone posizioni medie ma CTR nullo: serve una pagina chiara su prezzi, tempi e prova locale. <a href="/realizzazione-siti-web-senago.html">Vai alla pagina</a></p>
         </div>
         <div class="service-card-mini">
-          <h3>Saronno</h3>
-          <p>Copertura extra-MI da mantenere precisa su provincia e area servita, senza segnali locali ambigui. <a href="/realizzazione-siti-web-saronno.html">Vai alla pagina</a></p>
+          <h3>Caronno Pertusella</h3>
+          <p>Copertura extra-MI da mantenere precisa su provincia e area servita, senza segnali locali ambigui. <a href="/realizzazione-siti-web-caronno-pertusella.html">Vai alla pagina</a></p>
         </div>
       </div>
     </div>
@@ -63,8 +63,8 @@
 
   <section class="service-detail">
     <div class="container">
-      <h2>Tutte le Landing Core Attive</h2>
-      <p>Questa pagina raccoglie solo i comuni in cui la landing “realizzazione siti web” è già presente e navigabile come hub dedicato. In questo modo manteniamo copertura reale, coerente e verificabile.</p>
+      <h2>Landing locali approvate</h2>
+      <p>Questa pagina raccoglie solo le landing “realizzazione siti web” ammesse all'indicizzazione dalla governance SEO. In questo modo la navigazione sostiene pagine utili e non amplifica URL deindicizzate.</p>
       <div class="hub-city-grid">
         {% for city in cities %}
         <a href="/realizzazione-siti-web-{{ city.slug }}.html" class="hub-city-card" title="Realizzazione Siti Web a {{ city.name }}">

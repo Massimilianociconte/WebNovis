@@ -16,7 +16,7 @@
     <div class="container">
       <span class="section-tag">{{ networkCoverageCount }} comuni serviti da WebNovis</span>
       <h1>Agenzia Web nei Comuni della Provincia di Milano</h1>
-      <p class="answer-capsule"><strong>WebNovis</strong> è l'agenzia web con sede a Rho che opera in {{ totalCities }} comuni dell'hinterland milanese. Siti web 100% custom, graphic design e social media marketing per PMI e professionisti. Nessun WordPress, nessun template. Trova la pagina del tuo comune e richiedi un preventivo gratuito.</p>
+      <p class="answer-capsule"><strong>WebNovis</strong> è l'agenzia web con sede a Rho che serve {{ networkCoverageCount }} territori dell'hinterland milanese. Questo hub promuove le {{ totalCities }} pagine locali approvate per l'indicizzazione, dedicate a siti custom, graphic design e social media per PMI e professionisti.</p>
       <a href="/contatti.html" class="btn btn-large btn-primary">
         <span>Richiedi Preventivo Gratuito</span>
         <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
@@ -63,8 +63,8 @@
 
   <section class="service-detail">
     <div class="container">
-      <h2>Tutti i Comuni Serviti</h2>
-      <p>Clicca sul tuo comune per scoprire i servizi WebNovis nella tua zona. Ogni pagina include prezzi, servizi disponibili e informazioni sul contesto imprenditoriale locale.</p>
+      <h2>Pagine locali attive per comune</h2>
+      <p>Qui trovi soltanto le pagine territoriali approvate dalla governance SEO e ammesse all'indicizzazione. Per gli altri comuni resta disponibile il contatto diretto dalla sede di Rho.</p>
       <div class="hub-city-grid">
         {% for city in cities %}
         <a href="/agenzia-web-{{ city.slug }}.html" class="hub-city-card" title="Agenzia Web a {{ city.name }}">

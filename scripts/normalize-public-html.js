@@ -23,7 +23,7 @@ const DESIGNRUSH_SCRIPT_PATTERN = /<script\b[^>]*src="https:\/\/www\.designrush\
 const DESIGNRUSH_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/designrush-loader\.js"[^>]*><\/script>/gi;
 const FOOTER_WIDGET_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader(?:\.min)?\.js"[^>]*><\/script>/i;
 const FOOTER_WIDGET_LOADER_GLOBAL_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader(?:\.min)?\.js"[^>]*><\/script>/gi;
-const NONCRITICAL_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/noncritical-loader(?:\.min)?\.js"[^>]*><\/script>/i;
+const NONCRITICAL_LOADER_PATTERN = /\s*<script\b[^>]*src="([^"]*?)js\/noncritical-loader(?:\.min)?\.js"[^>]*><\/script>\s*/i;
 const WEB_VITALS_REPORTER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/web-vitals-reporter(?:\.min)?\.js"[^>]*><\/script>/gi;
 const MAIN_MIN_SCRIPT_PATTERN = /<script\b[^>]*src="([^"]*?)js\/main\.min\.js"[^>]*><\/script>/i;
 const NONCRITICAL_SCRIPT_PATTERNS = [
@@ -33,6 +33,11 @@ const NONCRITICAL_SCRIPT_PATTERNS = [
   /<script\b[^>]*src="([^"]*?)js\/globe(?:\.min)?\.js"[^>]*><\/script>\s*/gi
 ];
 const LEGACY_LINK_REPLACEMENTS = new Map([
+  ['href="https://www.webnovis.com/ecommerce-b2b-guida"', 'href="/blog/ecommerce-b2b-guida.html"'],
+  ['href="parametri-url-search-console.html"', 'href="canonical-tag-guida.html"'],
+  ['href="url-indicizzate-strane.html"', 'href="indicizzazione-google-problemi.html"'],
+  ['href="gsc-coverage-anomalie.html"', 'href="google-search-console-avanzato.html"'],
+  ['href="pulizia-indice-google.html"', 'href="crawl-budget-ottimizzazione.html"'],
   ['href="/personal-branding-online"', 'href="personal-branding-online.html"'],
   ['href="/sito-personale-freelancer"', 'href="sito-personale-freelancer.html"'],
   ['href="/ecommerce-che-vende"', 'href="ecommerce-che-vende.html"'],
@@ -119,7 +124,7 @@ function normalizeNonCriticalLoader(html, relativePath) {
   updated = updated.replace(NONCRITICAL_LOADER_PATTERN, '');
 
   if (MAIN_MIN_SCRIPT_PATTERN.test(updated)) {
-    return updated.replace(MAIN_MIN_SCRIPT_PATTERN, (match) => `${match} ${loaderTag}`);
+    return updated.replace(MAIN_MIN_SCRIPT_PATTERN, (match) => `${match} ${loaderTag} `);
   }
 
   return updated.replace(/<\/body>/i, `${loaderTag} </body>`);

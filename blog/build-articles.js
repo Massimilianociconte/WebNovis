@@ -6174,6 +6174,19 @@ function resolveSourceSet(serviceLink) {
   return SOURCE_SETS_BY_SERVICE[serviceLink] || SOURCE_SETS_BY_SERVICE[DEFAULT_SERVICE_LINK];
 }
 
+function buildInternalAttributionAttributes({ source, medium, campaign, content }) {
+  const attributes = [
+    ['data-analytics-source', source],
+    ['data-analytics-medium', medium],
+    ['data-analytics-campaign', campaign],
+    ['data-analytics-content', content]
+  ];
+  return attributes
+    .filter(([, value]) => value)
+    .map(([name, value]) => `${name}="${String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;')}"`)
+    .join(' ');
+}
+
 function buildInlineCtaHTML(ctaData, serviceLink, utmSlug) {
   if (!ctaData) {
     return '';
@@ -6183,7 +6196,7 @@ function buildInlineCtaHTML(ctaData, serviceLink, utmSlug) {
                 <section class="article-inline-cta" aria-label="Servizio correlato">
                     <h3>${ctaData.title}</h3>
                     <p>${ctaData.text}</p>
-                    <a href="${serviceLink}?utm_source=blog&utm_medium=inline_cta&utm_campaign=${utmSlug}" class="article-inline-link">${ctaData.linkLabel} →</a>
+                    <a href="${serviceLink}" ${buildInternalAttributionAttributes({ source: 'blog', medium: 'inline_cta', campaign: utmSlug })} class="article-inline-link">${ctaData.linkLabel} →</a>
                 </section>`;
 }
 
@@ -6196,7 +6209,7 @@ function buildContentUpgradeHTML(upgradeData, utmSlug) {
                 <section class="article-upgrade" aria-label="Risorsa bonus">
                     <h3>${upgradeData.title}</h3>
                     <p>${upgradeData.description}</p>
-                    <a href="../contatti.html?utm_source=blog&utm_medium=content_upgrade&utm_campaign=${utmSlug}&utm_content=${upgradeData.slug}" class="btn btn-secondary">${upgradeData.cta}</a>
+                    <a href="../contatti.html" ${buildInternalAttributionAttributes({ source: 'blog', medium: 'content_upgrade', campaign: utmSlug, content: upgradeData.slug })} class="btn btn-secondary">${upgradeData.cta}</a>
                 </section>`;
 }
 
@@ -6599,7 +6612,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
                     <h3>Hai Bisogno di Aiuto con il Tuo Progetto?</h3>
                     <p>Raccontaci la tua idea. Ti rispondiamo entro 24 ore con una consulenza gratuita e personalizzata.</p>
                     <p><a href="${serviceLink}" style="font-size:.95rem;">Scopri il servizio correlato →</a></p>
-                    <a href="../contatti.html?utm_source=blog&utm_medium=article&utm_campaign=${utmSlug}" class="btn btn-primary btn-large"><span>Contattaci Ora</span></a>
+                    <a href="../contatti.html" ${buildInternalAttributionAttributes({ source: 'blog', medium: 'article', campaign: utmSlug })} class="btn btn-primary btn-large"><span>Contattaci Ora</span></a>
                 </div>`}
             </div>
         </article>

@@ -268,6 +268,14 @@ function isTier2Path(pathname) {
   return TIER2_INDEXABLE_GEO_PATHS.has(normalizePathname(pathname));
 }
 
+function getIndexableGeoPaths() {
+  return [...ALL_INDEXABLE_GEO_PATHS].sort();
+}
+
+function isIndexableGeoPath(pathname) {
+  return ALL_INDEXABLE_GEO_PATHS.has(normalizePathname(pathname));
+}
+
 function getIndexationDirectivesForPath(pathname) {
   return isDeAmplifiedPath(pathname) ? 'noindex, follow' : 'index, follow';
 }
@@ -294,6 +302,8 @@ module.exports = {
   isRemovedPath,
   isTier1Path,
   isTier2Path,
+  getIndexableGeoPaths,
+  isIndexableGeoPath,
   isGeoPath,
   getIndexationDirectivesForPath,
   shouldIncludeInSitemapPath

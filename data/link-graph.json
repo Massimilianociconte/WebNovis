@@ -6,11 +6,11 @@
       "type": "agenzia",
       "city": "Rho",
       "linksTo": [
-        "/agenzia-web-pregnana-milanese.html",
-        "/agenzia-web-vanzago.html",
         "/agenzia-web-cornaredo.html",
-        "/agenzia-web-pogliano-milanese.html",
-        "/agenzia-web-arese.html"
+        "/agenzia-web-arese.html",
+        "/agenzia-web-pero.html",
+        "/agenzia-web-lainate.html",
+        "/agenzia-web-baranzate.html"
       ]
     },
     {
@@ -18,11 +18,11 @@
       "type": "realizzazione",
       "city": "Rho",
       "linksTo": [
-        "/realizzazione-siti-web-pregnana-milanese.html",
-        "/realizzazione-siti-web-vanzago.html",
-        "/realizzazione-siti-web-cornaredo.html",
-        "/realizzazione-siti-web-pogliano-milanese.html",
-        "/realizzazione-siti-web-arese.html"
+        "/realizzazione-siti-web-arese.html",
+        "/realizzazione-siti-web-garbagnate.html",
+        "/realizzazione-siti-web-bollate.html",
+        "/realizzazione-siti-web-caronno-pertusella.html",
+        "/realizzazione-siti-web-origgio.html"
       ]
     },
     {
@@ -30,23 +30,11 @@
       "type": "agenzia",
       "city": "Lainate",
       "linksTo": [
-        "/agenzia-web-origgio.html",
-        "/agenzia-web-caronno-pertusella.html",
         "/agenzia-web-garbagnate.html",
-        "/agenzia-web-nerviano.html",
-        "/agenzia-web-pogliano-milanese.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-lainate.html",
-      "type": "realizzazione",
-      "city": "Lainate",
-      "linksTo": [
-        "/realizzazione-siti-web-origgio.html",
-        "/realizzazione-siti-web-caronno-pertusella.html",
-        "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-nerviano.html",
-        "/realizzazione-siti-web-pogliano-milanese.html"
+        "/agenzia-web-arese.html",
+        "/agenzia-web-rho.html",
+        "/agenzia-web-saronno.html",
+        "/agenzia-web-parabiago.html"
       ]
     },
     {
@@ -58,7 +46,7 @@
         "/agenzia-web-bollate.html",
         "/agenzia-web-rho.html",
         "/agenzia-web-baranzate.html",
-        "/agenzia-web-cesate.html"
+        "/agenzia-web-pero.html"
       ]
     },
     {
@@ -69,8 +57,8 @@
         "/realizzazione-siti-web-garbagnate.html",
         "/realizzazione-siti-web-bollate.html",
         "/realizzazione-siti-web-rho.html",
-        "/realizzazione-siti-web-baranzate.html",
-        "/realizzazione-siti-web-cesate.html"
+        "/realizzazione-siti-web-senago.html",
+        "/realizzazione-siti-web-caronno-pertusella.html"
       ]
     },
     {
@@ -78,11 +66,11 @@
       "type": "agenzia",
       "city": "Garbagnate Milanese",
       "linksTo": [
-        "/agenzia-web-cesate.html",
         "/agenzia-web-arese.html",
-        "/agenzia-web-caronno-pertusella.html",
-        "/agenzia-web-senago.html",
-        "/agenzia-web-limbiate.html"
+        "/agenzia-web-lainate.html",
+        "/agenzia-web-bollate.html",
+        "/agenzia-web-rho.html",
+        "/agenzia-web-baranzate.html"
       ]
     },
     {
@@ -90,11 +78,11 @@
       "type": "realizzazione",
       "city": "Garbagnate Milanese",
       "linksTo": [
-        "/realizzazione-siti-web-cesate.html",
         "/realizzazione-siti-web-arese.html",
         "/realizzazione-siti-web-caronno-pertusella.html",
         "/realizzazione-siti-web-senago.html",
-        "/realizzazione-siti-web-limbiate.html"
+        "/realizzazione-siti-web-limbiate.html",
+        "/realizzazione-siti-web-solaro.html"
       ]
     },
     {
@@ -110,39 +98,15 @@
       ]
     },
     {
-      "url": "/realizzazione-siti-web-pero.html",
-      "type": "realizzazione",
-      "city": "Pero",
-      "linksTo": [
-        "/realizzazione-siti-web-baranzate.html",
-        "/realizzazione-siti-web-cornaredo.html",
-        "/realizzazione-siti-web-settimo-milanese.html",
-        "/realizzazione-siti-web-rho.html",
-        "/realizzazione-siti-web-novate-milanese.html"
-      ]
-    },
-    {
       "url": "/agenzia-web-cornaredo.html",
       "type": "agenzia",
       "city": "Cornaredo",
       "linksTo": [
         "/agenzia-web-settimo-milanese.html",
-        "/agenzia-web-pregnana-milanese.html",
         "/agenzia-web-rho.html",
-        "/agenzia-web-bareggio.html",
-        "/agenzia-web-pero.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-cornaredo.html",
-      "type": "realizzazione",
-      "city": "Cornaredo",
-      "linksTo": [
-        "/realizzazione-siti-web-settimo-milanese.html",
-        "/realizzazione-siti-web-pregnana-milanese.html",
-        "/realizzazione-siti-web-rho.html",
-        "/realizzazione-siti-web-bareggio.html",
-        "/realizzazione-siti-web-pero.html"
+        "/agenzia-web-pero.html",
+        "/agenzia-web-baranzate.html",
+        "/agenzia-web-arese.html"
       ]
     },
     {
@@ -151,22 +115,10 @@
       "city": "Settimo Milanese",
       "linksTo": [
         "/agenzia-web-cornaredo.html",
-        "/agenzia-web-cusago.html",
-        "/agenzia-web-bareggio.html",
         "/agenzia-web-pero.html",
-        "/agenzia-web-cesano-boscone.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-settimo-milanese.html",
-      "type": "realizzazione",
-      "city": "Settimo Milanese",
-      "linksTo": [
-        "/realizzazione-siti-web-cornaredo.html",
-        "/realizzazione-siti-web-cusago.html",
-        "/realizzazione-siti-web-bareggio.html",
-        "/realizzazione-siti-web-pero.html",
-        "/realizzazione-siti-web-cesano-boscone.html"
+        "/agenzia-web-milano-ovest.html",
+        "/agenzia-web-rho.html",
+        "/agenzia-web-baranzate.html"
       ]
     },
     {
@@ -176,9 +128,9 @@
       "linksTo": [
         "/agenzia-web-milano-ovest.html",
         "/agenzia-web-milano-nord.html",
-        "/agenzia-web-corsico.html",
-        "/agenzia-web-assago.html",
-        "/agenzia-web-buccinasco.html"
+        "/agenzia-web-sesto-san-giovanni.html",
+        "/agenzia-web-novate-milanese.html",
+        "/agenzia-web-baranzate.html"
       ]
     },
     {
@@ -188,9 +140,9 @@
       "linksTo": [
         "/agenzia-web-novate-milanese.html",
         "/agenzia-web-baranzate.html",
-        "/agenzia-web-senago.html",
         "/agenzia-web-arese.html",
-        "/agenzia-web-cormano.html"
+        "/agenzia-web-garbagnate.html",
+        "/agenzia-web-pero.html"
       ]
     },
     {
@@ -198,83 +150,11 @@
       "type": "realizzazione",
       "city": "Bollate",
       "linksTo": [
-        "/realizzazione-siti-web-novate-milanese.html",
-        "/realizzazione-siti-web-baranzate.html",
         "/realizzazione-siti-web-senago.html",
         "/realizzazione-siti-web-arese.html",
-        "/realizzazione-siti-web-cormano.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-nerviano.html",
-      "type": "agenzia",
-      "city": "Nerviano",
-      "linksTo": [
-        "/agenzia-web-parabiago.html",
-        "/agenzia-web-pogliano-milanese.html",
-        "/agenzia-web-vanzago.html",
-        "/agenzia-web-lainate.html",
-        "/agenzia-web-pregnana-milanese.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-nerviano.html",
-      "type": "realizzazione",
-      "city": "Nerviano",
-      "linksTo": [
-        "/realizzazione-siti-web-parabiago.html",
-        "/realizzazione-siti-web-pogliano-milanese.html",
-        "/realizzazione-siti-web-vanzago.html",
-        "/realizzazione-siti-web-lainate.html",
-        "/realizzazione-siti-web-pregnana-milanese.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-pregnana-milanese.html",
-      "type": "agenzia",
-      "city": "Pregnana Milanese",
-      "linksTo": [
-        "/agenzia-web-vanzago.html",
-        "/agenzia-web-pogliano-milanese.html",
-        "/agenzia-web-rho.html",
-        "/agenzia-web-cornaredo.html",
-        "/agenzia-web-nerviano.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-pregnana-milanese.html",
-      "type": "realizzazione",
-      "city": "Pregnana Milanese",
-      "linksTo": [
-        "/realizzazione-siti-web-vanzago.html",
-        "/realizzazione-siti-web-pogliano-milanese.html",
-        "/realizzazione-siti-web-rho.html",
-        "/realizzazione-siti-web-cornaredo.html",
-        "/realizzazione-siti-web-nerviano.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-vanzago.html",
-      "type": "agenzia",
-      "city": "Vanzago",
-      "linksTo": [
-        "/agenzia-web-pregnana-milanese.html",
-        "/agenzia-web-pogliano-milanese.html",
-        "/agenzia-web-nerviano.html",
-        "/agenzia-web-rho.html",
-        "/agenzia-web-arluno.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-vanzago.html",
-      "type": "realizzazione",
-      "city": "Vanzago",
-      "linksTo": [
-        "/realizzazione-siti-web-pregnana-milanese.html",
-        "/realizzazione-siti-web-pogliano-milanese.html",
-        "/realizzazione-siti-web-nerviano.html",
-        "/realizzazione-siti-web-rho.html",
-        "/realizzazione-siti-web-arluno.html"
+        "/realizzazione-siti-web-cormano.html",
+        "/realizzazione-siti-web-garbagnate.html",
+        "/realizzazione-siti-web-limbiate.html"
       ]
     },
     {
@@ -286,79 +166,7 @@
         "/agenzia-web-pero.html",
         "/agenzia-web-bollate.html",
         "/agenzia-web-arese.html",
-        "/agenzia-web-cormano.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-baranzate.html",
-      "type": "realizzazione",
-      "city": "Baranzate",
-      "linksTo": [
-        "/realizzazione-siti-web-novate-milanese.html",
-        "/realizzazione-siti-web-pero.html",
-        "/realizzazione-siti-web-bollate.html",
-        "/realizzazione-siti-web-arese.html",
-        "/realizzazione-siti-web-cormano.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-pogliano-milanese.html",
-      "type": "agenzia",
-      "city": "Pogliano Milanese",
-      "linksTo": [
-        "/agenzia-web-vanzago.html",
-        "/agenzia-web-pregnana-milanese.html",
-        "/agenzia-web-nerviano.html",
-        "/agenzia-web-rho.html",
-        "/agenzia-web-parabiago.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-pogliano-milanese.html",
-      "type": "realizzazione",
-      "city": "Pogliano Milanese",
-      "linksTo": [
-        "/realizzazione-siti-web-vanzago.html",
-        "/realizzazione-siti-web-pregnana-milanese.html",
-        "/realizzazione-siti-web-nerviano.html",
-        "/realizzazione-siti-web-rho.html",
-        "/realizzazione-siti-web-parabiago.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-cesate.html",
-      "type": "agenzia",
-      "city": "Cesate",
-      "linksTo": [
-        "/agenzia-web-garbagnate.html",
-        "/agenzia-web-solaro.html",
-        "/agenzia-web-caronno-pertusella.html",
-        "/agenzia-web-limbiate.html",
-        "/agenzia-web-senago.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-cesate.html",
-      "type": "realizzazione",
-      "city": "Cesate",
-      "linksTo": [
-        "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-solaro.html",
-        "/realizzazione-siti-web-caronno-pertusella.html",
-        "/realizzazione-siti-web-limbiate.html",
-        "/realizzazione-siti-web-senago.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-senago.html",
-      "type": "agenzia",
-      "city": "Senago",
-      "linksTo": [
-        "/agenzia-web-limbiate.html",
-        "/agenzia-web-paderno-dugnano.html",
-        "/agenzia-web-bollate.html",
-        "/agenzia-web-garbagnate.html",
-        "/agenzia-web-cesate.html"
+        "/agenzia-web-milano-ovest.html"
       ]
     },
     {
@@ -367,10 +175,10 @@
       "city": "Senago",
       "linksTo": [
         "/realizzazione-siti-web-limbiate.html",
-        "/realizzazione-siti-web-paderno-dugnano.html",
         "/realizzazione-siti-web-bollate.html",
         "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-cesate.html"
+        "/realizzazione-siti-web-cormano.html",
+        "/realizzazione-siti-web-arese.html"
       ]
     },
     {
@@ -380,57 +188,9 @@
       "linksTo": [
         "/agenzia-web-bollate.html",
         "/agenzia-web-baranzate.html",
-        "/agenzia-web-cormano.html",
-        "/agenzia-web-bresso.html",
-        "/agenzia-web-milano-nord.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-novate-milanese.html",
-      "type": "realizzazione",
-      "city": "Novate Milanese",
-      "linksTo": [
-        "/realizzazione-siti-web-bollate.html",
-        "/realizzazione-siti-web-baranzate.html",
-        "/realizzazione-siti-web-cormano.html",
-        "/realizzazione-siti-web-bresso.html",
-        "/realizzazione-siti-web-milano-nord.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-paderno-dugnano.html",
-      "type": "agenzia",
-      "city": "Paderno Dugnano",
-      "linksTo": [
-        "/agenzia-web-cormano.html",
-        "/agenzia-web-senago.html",
-        "/agenzia-web-bresso.html",
-        "/agenzia-web-cinisello-balsamo.html",
-        "/agenzia-web-limbiate.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-paderno-dugnano.html",
-      "type": "realizzazione",
-      "city": "Paderno Dugnano",
-      "linksTo": [
-        "/realizzazione-siti-web-cormano.html",
-        "/realizzazione-siti-web-senago.html",
-        "/realizzazione-siti-web-bresso.html",
-        "/realizzazione-siti-web-cinisello-balsamo.html",
-        "/realizzazione-siti-web-limbiate.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-arluno.html",
-      "type": "agenzia",
-      "city": "Arluno",
-      "linksTo": [
-        "/agenzia-web-vanzago.html",
-        "/agenzia-web-pogliano-milanese.html",
-        "/agenzia-web-pregnana-milanese.html",
-        "/agenzia-web-bareggio.html",
-        "/agenzia-web-nerviano.html"
+        "/agenzia-web-milano-nord.html",
+        "/agenzia-web-pero.html",
+        "/agenzia-web-arese.html"
       ]
     },
     {
@@ -438,11 +198,11 @@
       "type": "realizzazione",
       "city": "Arluno",
       "linksTo": [
-        "/realizzazione-siti-web-vanzago.html",
-        "/realizzazione-siti-web-pogliano-milanese.html",
-        "/realizzazione-siti-web-pregnana-milanese.html",
-        "/realizzazione-siti-web-bareggio.html",
-        "/realizzazione-siti-web-nerviano.html"
+        "/realizzazione-siti-web-parabiago.html",
+        "/realizzazione-siti-web-magenta.html",
+        "/realizzazione-siti-web-rho.html",
+        "/realizzazione-siti-web-legnano.html",
+        "/realizzazione-siti-web-arese.html"
       ]
     },
     {
@@ -450,11 +210,11 @@
       "type": "agenzia",
       "city": "Parabiago",
       "linksTo": [
-        "/agenzia-web-nerviano.html",
-        "/agenzia-web-cerro-maggiore.html",
-        "/agenzia-web-pogliano-milanese.html",
         "/agenzia-web-legnano.html",
-        "/agenzia-web-vanzago.html"
+        "/agenzia-web-lainate.html",
+        "/agenzia-web-castellanza.html",
+        "/agenzia-web-rho.html",
+        "/agenzia-web-cornaredo.html"
       ]
     },
     {
@@ -462,118 +222,11 @@
       "type": "realizzazione",
       "city": "Parabiago",
       "linksTo": [
-        "/realizzazione-siti-web-nerviano.html",
-        "/realizzazione-siti-web-cerro-maggiore.html",
-        "/realizzazione-siti-web-pogliano-milanese.html",
         "/realizzazione-siti-web-legnano.html",
-        "/realizzazione-siti-web-vanzago.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-bareggio.html",
-      "type": "agenzia",
-      "city": "Bareggio",
-      "linksTo": [
-        "/agenzia-web-cusago.html",
-        "/agenzia-web-cornaredo.html",
-        "/agenzia-web-settimo-milanese.html",
-        "/agenzia-web-pregnana-milanese.html",
-        "/agenzia-web-arluno.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-bareggio.html",
-      "type": "realizzazione",
-      "city": "Bareggio",
-      "linksTo": [
-        "/realizzazione-siti-web-cusago.html",
-        "/realizzazione-siti-web-cornaredo.html",
-        "/realizzazione-siti-web-settimo-milanese.html",
-        "/realizzazione-siti-web-pregnana-milanese.html",
-        "/realizzazione-siti-web-arluno.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-cusago.html",
-      "type": "agenzia",
-      "city": "Cusago",
-      "linksTo": [
-        "/agenzia-web-settimo-milanese.html",
-        "/agenzia-web-bareggio.html",
-        "/agenzia-web-trezzano-sul-naviglio.html",
-        "/agenzia-web-cesano-boscone.html",
-        "/agenzia-web-cornaredo.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-cusago.html",
-      "type": "realizzazione",
-      "city": "Cusago",
-      "linksTo": [
-        "/realizzazione-siti-web-settimo-milanese.html",
-        "/realizzazione-siti-web-bareggio.html",
-        "/realizzazione-siti-web-trezzano-sul-naviglio.html",
-        "/realizzazione-siti-web-cesano-boscone.html",
-        "/realizzazione-siti-web-cornaredo.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-trezzano-sul-naviglio.html",
-      "type": "agenzia",
-      "city": "Trezzano sul Naviglio",
-      "linksTo": [
-        "/agenzia-web-cesano-boscone.html",
-        "/agenzia-web-buccinasco.html",
-        "/agenzia-web-cusago.html",
-        "/agenzia-web-corsico.html",
-        "/agenzia-web-settimo-milanese.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-trezzano-sul-naviglio.html",
-      "type": "realizzazione",
-      "city": "Trezzano sul Naviglio",
-      "linksTo": [
-        "/realizzazione-siti-web-cesano-boscone.html",
-        "/realizzazione-siti-web-buccinasco.html",
-        "/realizzazione-siti-web-cusago.html",
-        "/realizzazione-siti-web-corsico.html",
-        "/realizzazione-siti-web-settimo-milanese.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-cesano-boscone.html",
-      "type": "agenzia",
-      "city": "Cesano Boscone",
-      "linksTo": [
-        "/agenzia-web-corsico.html",
-        "/agenzia-web-buccinasco.html",
-        "/agenzia-web-trezzano-sul-naviglio.html",
-        "/agenzia-web-assago.html",
-        "/agenzia-web-cusago.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-cesano-boscone.html",
-      "type": "realizzazione",
-      "city": "Cesano Boscone",
-      "linksTo": [
-        "/realizzazione-siti-web-corsico.html",
-        "/realizzazione-siti-web-buccinasco.html",
-        "/realizzazione-siti-web-trezzano-sul-naviglio.html",
-        "/realizzazione-siti-web-cusago.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-buccinasco.html",
-      "type": "agenzia",
-      "city": "Buccinasco",
-      "linksTo": [
-        "/agenzia-web-corsico.html",
-        "/agenzia-web-cesano-boscone.html",
-        "/agenzia-web-assago.html",
-        "/agenzia-web-trezzano-sul-naviglio.html",
-        "/agenzia-web-rozzano.html"
+        "/realizzazione-siti-web-arluno.html",
+        "/realizzazione-siti-web-origgio.html",
+        "/realizzazione-siti-web-castellanza.html",
+        "/realizzazione-siti-web-rho.html"
       ]
     },
     {
@@ -581,21 +234,11 @@
       "type": "realizzazione",
       "city": "Buccinasco",
       "linksTo": [
-        "/realizzazione-siti-web-corsico.html",
-        "/realizzazione-siti-web-cesano-boscone.html",
-        "/realizzazione-siti-web-trezzano-sul-naviglio.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-cormano.html",
-      "type": "agenzia",
-      "city": "Cormano",
-      "linksTo": [
-        "/agenzia-web-bresso.html",
-        "/agenzia-web-paderno-dugnano.html",
-        "/agenzia-web-novate-milanese.html",
-        "/agenzia-web-bollate.html",
-        "/agenzia-web-cinisello-balsamo.html"
+        "/realizzazione-siti-web-milano-ovest.html",
+        "/realizzazione-siti-web-rho.html",
+        "/realizzazione-siti-web-bollate.html",
+        "/realizzazione-siti-web-arese.html",
+        "/realizzazione-siti-web-cormano.html"
       ]
     },
     {
@@ -603,35 +246,11 @@
       "type": "realizzazione",
       "city": "Cormano",
       "linksTo": [
-        "/realizzazione-siti-web-bresso.html",
-        "/realizzazione-siti-web-paderno-dugnano.html",
-        "/realizzazione-siti-web-novate-milanese.html",
         "/realizzazione-siti-web-bollate.html",
-        "/realizzazione-siti-web-cinisello-balsamo.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-bresso.html",
-      "type": "agenzia",
-      "city": "Bresso",
-      "linksTo": [
-        "/agenzia-web-cormano.html",
-        "/agenzia-web-cinisello-balsamo.html",
-        "/agenzia-web-paderno-dugnano.html",
-        "/agenzia-web-milano-nord.html",
-        "/agenzia-web-novate-milanese.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-bresso.html",
-      "type": "realizzazione",
-      "city": "Bresso",
-      "linksTo": [
-        "/realizzazione-siti-web-cormano.html",
-        "/realizzazione-siti-web-cinisello-balsamo.html",
-        "/realizzazione-siti-web-paderno-dugnano.html",
-        "/realizzazione-siti-web-milano-nord.html",
-        "/realizzazione-siti-web-novate-milanese.html"
+        "/realizzazione-siti-web-senago.html",
+        "/realizzazione-siti-web-limbiate.html",
+        "/realizzazione-siti-web-arese.html",
+        "/realizzazione-siti-web-garbagnate.html"
       ]
     },
     {
@@ -639,23 +258,11 @@
       "type": "agenzia",
       "city": "Cinisello Balsamo",
       "linksTo": [
-        "/agenzia-web-bresso.html",
         "/agenzia-web-sesto-san-giovanni.html",
-        "/agenzia-web-cormano.html",
-        "/agenzia-web-paderno-dugnano.html",
-        "/agenzia-web-milano-nord.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-cinisello-balsamo.html",
-      "type": "realizzazione",
-      "city": "Cinisello Balsamo",
-      "linksTo": [
-        "/realizzazione-siti-web-bresso.html",
-        "/realizzazione-siti-web-sesto-san-giovanni.html",
-        "/realizzazione-siti-web-cormano.html",
-        "/realizzazione-siti-web-paderno-dugnano.html",
-        "/realizzazione-siti-web-milano-nord.html"
+        "/agenzia-web-milano-nord.html",
+        "/agenzia-web-monza.html",
+        "/agenzia-web-novate-milanese.html",
+        "/agenzia-web-bollate.html"
       ]
     },
     {
@@ -664,33 +271,10 @@
       "city": "Sesto San Giovanni",
       "linksTo": [
         "/agenzia-web-cinisello-balsamo.html",
-        "/agenzia-web-bresso.html",
-        "/agenzia-web-cologno-monzese.html",
         "/agenzia-web-milano-nord.html",
-        "/agenzia-web-cormano.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-sesto-san-giovanni.html",
-      "type": "realizzazione",
-      "city": "Sesto San Giovanni",
-      "linksTo": [
-        "/realizzazione-siti-web-cinisello-balsamo.html",
-        "/realizzazione-siti-web-bresso.html",
-        "/realizzazione-siti-web-milano-nord.html",
-        "/realizzazione-siti-web-cormano.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-magenta.html",
-      "type": "agenzia",
-      "city": "Magenta",
-      "linksTo": [
-        "/agenzia-web-arluno.html",
-        "/agenzia-web-bareggio.html",
-        "/agenzia-web-vanzago.html",
-        "/agenzia-web-cusago.html",
-        "/agenzia-web-pregnana-milanese.html"
+        "/agenzia-web-monza.html",
+        "/agenzia-web-novate-milanese.html",
+        "/agenzia-web-milano.html"
       ]
     },
     {
@@ -699,10 +283,10 @@
       "city": "Magenta",
       "linksTo": [
         "/realizzazione-siti-web-arluno.html",
-        "/realizzazione-siti-web-bareggio.html",
-        "/realizzazione-siti-web-vanzago.html",
-        "/realizzazione-siti-web-cusago.html",
-        "/realizzazione-siti-web-pregnana-milanese.html"
+        "/realizzazione-siti-web-parabiago.html",
+        "/realizzazione-siti-web-rho.html",
+        "/realizzazione-siti-web-legnano.html",
+        "/realizzazione-siti-web-castellanza.html"
       ]
     },
     {
@@ -711,10 +295,10 @@
       "city": "Legnano",
       "linksTo": [
         "/agenzia-web-castellanza.html",
-        "/agenzia-web-cerro-maggiore.html",
-        "/agenzia-web-rescaldina.html",
         "/agenzia-web-parabiago.html",
-        "/agenzia-web-nerviano.html"
+        "/agenzia-web-lainate.html",
+        "/agenzia-web-saronno.html",
+        "/agenzia-web-rho.html"
       ]
     },
     {
@@ -723,10 +307,10 @@
       "city": "Legnano",
       "linksTo": [
         "/realizzazione-siti-web-castellanza.html",
-        "/realizzazione-siti-web-cerro-maggiore.html",
-        "/realizzazione-siti-web-rescaldina.html",
         "/realizzazione-siti-web-parabiago.html",
-        "/realizzazione-siti-web-nerviano.html"
+        "/realizzazione-siti-web-origgio.html",
+        "/realizzazione-siti-web-arluno.html",
+        "/realizzazione-siti-web-caronno-pertusella.html"
       ]
     },
     {
@@ -735,10 +319,10 @@
       "city": "Castellanza",
       "linksTo": [
         "/agenzia-web-legnano.html",
-        "/agenzia-web-rescaldina.html",
-        "/agenzia-web-cerro-maggiore.html",
         "/agenzia-web-parabiago.html",
-        "/agenzia-web-nerviano.html"
+        "/agenzia-web-lainate.html",
+        "/agenzia-web-saronno.html",
+        "/agenzia-web-rho.html"
       ]
     },
     {
@@ -747,10 +331,10 @@
       "city": "Castellanza",
       "linksTo": [
         "/realizzazione-siti-web-legnano.html",
-        "/realizzazione-siti-web-rescaldina.html",
-        "/realizzazione-siti-web-cerro-maggiore.html",
         "/realizzazione-siti-web-parabiago.html",
-        "/realizzazione-siti-web-nerviano.html"
+        "/realizzazione-siti-web-origgio.html",
+        "/realizzazione-siti-web-caronno-pertusella.html",
+        "/realizzazione-siti-web-arluno.html"
       ]
     },
     {
@@ -758,23 +342,11 @@
       "type": "agenzia",
       "city": "Saronno",
       "linksTo": [
-        "/agenzia-web-origgio.html",
-        "/agenzia-web-caronno-pertusella.html",
-        "/agenzia-web-solaro.html",
-        "/agenzia-web-cesate.html",
-        "/agenzia-web-lainate.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-saronno.html",
-      "type": "realizzazione",
-      "city": "Saronno",
-      "linksTo": [
-        "/realizzazione-siti-web-origgio.html",
-        "/realizzazione-siti-web-caronno-pertusella.html",
-        "/realizzazione-siti-web-solaro.html",
-        "/realizzazione-siti-web-cesate.html",
-        "/realizzazione-siti-web-lainate.html"
+        "/agenzia-web-lainate.html",
+        "/agenzia-web-garbagnate.html",
+        "/agenzia-web-arese.html",
+        "/agenzia-web-parabiago.html",
+        "/agenzia-web-legnano.html"
       ]
     },
     {
@@ -785,8 +357,8 @@
         "/agenzia-web-milano.html",
         "/agenzia-web-pero.html",
         "/agenzia-web-milano-nord.html",
-        "/agenzia-web-corsico.html",
-        "/agenzia-web-baranzate.html"
+        "/agenzia-web-baranzate.html",
+        "/agenzia-web-novate-milanese.html"
       ]
     },
     {
@@ -794,10 +366,11 @@
       "type": "realizzazione",
       "city": "Milano Ovest",
       "linksTo": [
-        "/realizzazione-siti-web-pero.html",
-        "/realizzazione-siti-web-milano-nord.html",
-        "/realizzazione-siti-web-corsico.html",
-        "/realizzazione-siti-web-baranzate.html"
+        "/realizzazione-siti-web-buccinasco.html",
+        "/realizzazione-siti-web-bollate.html",
+        "/realizzazione-siti-web-cormano.html",
+        "/realizzazione-siti-web-arese.html",
+        "/realizzazione-siti-web-rho.html"
       ]
     },
     {
@@ -805,35 +378,11 @@
       "type": "agenzia",
       "city": "Milano Nord",
       "linksTo": [
-        "/agenzia-web-bresso.html",
         "/agenzia-web-novate-milanese.html",
-        "/agenzia-web-cormano.html",
         "/agenzia-web-sesto-san-giovanni.html",
-        "/agenzia-web-milano-ovest.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-milano-nord.html",
-      "type": "realizzazione",
-      "city": "Milano Nord",
-      "linksTo": [
-        "/realizzazione-siti-web-bresso.html",
-        "/realizzazione-siti-web-novate-milanese.html",
-        "/realizzazione-siti-web-cormano.html",
-        "/realizzazione-siti-web-sesto-san-giovanni.html",
-        "/realizzazione-siti-web-milano-ovest.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-solaro.html",
-      "type": "agenzia",
-      "city": "Solaro",
-      "linksTo": [
-        "/agenzia-web-cesate.html",
-        "/agenzia-web-caronno-pertusella.html",
-        "/agenzia-web-saronno.html",
-        "/agenzia-web-limbiate.html",
-        "/agenzia-web-garbagnate.html"
+        "/agenzia-web-milano-ovest.html",
+        "/agenzia-web-milano.html",
+        "/agenzia-web-baranzate.html"
       ]
     },
     {
@@ -841,71 +390,11 @@
       "type": "realizzazione",
       "city": "Solaro",
       "linksTo": [
-        "/realizzazione-siti-web-cesate.html",
         "/realizzazione-siti-web-caronno-pertusella.html",
-        "/realizzazione-siti-web-saronno.html",
         "/realizzazione-siti-web-limbiate.html",
-        "/realizzazione-siti-web-garbagnate.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-cerro-maggiore.html",
-      "type": "agenzia",
-      "city": "Cerro Maggiore",
-      "linksTo": [
-        "/agenzia-web-legnano.html",
-        "/agenzia-web-rescaldina.html",
-        "/agenzia-web-parabiago.html",
-        "/agenzia-web-nerviano.html",
-        "/agenzia-web-castellanza.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-cerro-maggiore.html",
-      "type": "realizzazione",
-      "city": "Cerro Maggiore",
-      "linksTo": [
-        "/realizzazione-siti-web-legnano.html",
-        "/realizzazione-siti-web-rescaldina.html",
-        "/realizzazione-siti-web-parabiago.html",
-        "/realizzazione-siti-web-nerviano.html",
-        "/realizzazione-siti-web-castellanza.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-rescaldina.html",
-      "type": "agenzia",
-      "city": "Rescaldina",
-      "linksTo": [
-        "/agenzia-web-cerro-maggiore.html",
-        "/agenzia-web-legnano.html",
-        "/agenzia-web-castellanza.html",
-        "/agenzia-web-origgio.html",
-        "/agenzia-web-saronno.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-rescaldina.html",
-      "type": "realizzazione",
-      "city": "Rescaldina",
-      "linksTo": [
-        "/realizzazione-siti-web-cerro-maggiore.html",
-        "/realizzazione-siti-web-legnano.html",
-        "/realizzazione-siti-web-castellanza.html",
+        "/realizzazione-siti-web-garbagnate.html",
         "/realizzazione-siti-web-origgio.html",
-        "/realizzazione-siti-web-saronno.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-origgio.html",
-      "type": "agenzia",
-      "city": "Origgio",
-      "linksTo": [
-        "/agenzia-web-caronno-pertusella.html",
-        "/agenzia-web-lainate.html",
-        "/agenzia-web-saronno.html",
-        "/agenzia-web-cesate.html",
-        "/agenzia-web-garbagnate.html"
+        "/realizzazione-siti-web-senago.html"
       ]
     },
     {
@@ -914,22 +403,10 @@
       "city": "Origgio",
       "linksTo": [
         "/realizzazione-siti-web-caronno-pertusella.html",
-        "/realizzazione-siti-web-lainate.html",
-        "/realizzazione-siti-web-saronno.html",
-        "/realizzazione-siti-web-cesate.html",
-        "/realizzazione-siti-web-garbagnate.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-caronno-pertusella.html",
-      "type": "agenzia",
-      "city": "Caronno Pertusella",
-      "linksTo": [
-        "/agenzia-web-origgio.html",
-        "/agenzia-web-cesate.html",
-        "/agenzia-web-garbagnate.html",
-        "/agenzia-web-lainate.html",
-        "/agenzia-web-solaro.html"
+        "/realizzazione-siti-web-garbagnate.html",
+        "/realizzazione-siti-web-solaro.html",
+        "/realizzazione-siti-web-arese.html",
+        "/realizzazione-siti-web-parabiago.html"
       ]
     },
     {
@@ -938,22 +415,10 @@
       "city": "Caronno Pertusella",
       "linksTo": [
         "/realizzazione-siti-web-origgio.html",
-        "/realizzazione-siti-web-cesate.html",
         "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-lainate.html",
-        "/realizzazione-siti-web-solaro.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-limbiate.html",
-      "type": "agenzia",
-      "city": "Limbiate",
-      "linksTo": [
-        "/agenzia-web-senago.html",
-        "/agenzia-web-cesate.html",
-        "/agenzia-web-paderno-dugnano.html",
-        "/agenzia-web-garbagnate.html",
-        "/agenzia-web-solaro.html"
+        "/realizzazione-siti-web-solaro.html",
+        "/realizzazione-siti-web-arese.html",
+        "/realizzazione-siti-web-limbiate.html"
       ]
     },
     {
@@ -962,57 +427,10 @@
       "city": "Limbiate",
       "linksTo": [
         "/realizzazione-siti-web-senago.html",
-        "/realizzazione-siti-web-cesate.html",
-        "/realizzazione-siti-web-paderno-dugnano.html",
         "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-solaro.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-corsico.html",
-      "type": "agenzia",
-      "city": "Corsico",
-      "linksTo": [
-        "/agenzia-web-cesano-boscone.html",
-        "/agenzia-web-buccinasco.html",
-        "/agenzia-web-assago.html",
-        "/agenzia-web-trezzano-sul-naviglio.html",
-        "/agenzia-web-milano-ovest.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-corsico.html",
-      "type": "realizzazione",
-      "city": "Corsico",
-      "linksTo": [
-        "/realizzazione-siti-web-cesano-boscone.html",
-        "/realizzazione-siti-web-buccinasco.html",
-        "/realizzazione-siti-web-trezzano-sul-naviglio.html",
-        "/realizzazione-siti-web-milano-ovest.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-assago.html",
-      "type": "agenzia",
-      "city": "Assago",
-      "linksTo": [
-        "/agenzia-web-rozzano.html",
-        "/agenzia-web-buccinasco.html",
-        "/agenzia-web-corsico.html",
-        "/agenzia-web-cesano-boscone.html",
-        "/agenzia-web-trezzano-sul-naviglio.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-rozzano.html",
-      "type": "agenzia",
-      "city": "Rozzano",
-      "linksTo": [
-        "/agenzia-web-assago.html",
-        "/agenzia-web-buccinasco.html",
-        "/agenzia-web-corsico.html",
-        "/agenzia-web-cesano-boscone.html",
-        "/agenzia-web-trezzano-sul-naviglio.html"
+        "/realizzazione-siti-web-solaro.html",
+        "/realizzazione-siti-web-bollate.html",
+        "/realizzazione-siti-web-cormano.html"
       ]
     },
     {
@@ -1021,22 +439,10 @@
       "city": "Monza",
       "linksTo": [
         "/agenzia-web-cinisello-balsamo.html",
-        "/agenzia-web-cologno-monzese.html",
         "/agenzia-web-sesto-san-giovanni.html",
-        "/agenzia-web-bresso.html",
-        "/agenzia-web-paderno-dugnano.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-cologno-monzese.html",
-      "type": "agenzia",
-      "city": "Cologno Monzese",
-      "linksTo": [
-        "/agenzia-web-sesto-san-giovanni.html",
-        "/agenzia-web-monza.html",
-        "/agenzia-web-cinisello-balsamo.html",
-        "/agenzia-web-bresso.html",
-        "/agenzia-web-milano-nord.html"
+        "/agenzia-web-milano-nord.html",
+        "/agenzia-web-novate-milanese.html",
+        "/agenzia-web-bollate.html"
       ]
     }
   ]

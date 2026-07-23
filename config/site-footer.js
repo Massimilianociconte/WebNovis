@@ -96,6 +96,10 @@ function getBlogFooterHtml(prefix = '..') {
 
 function normalizeFooterAssetMarkup(html) {
   return html
+    .replace(
+      /srcset="((?:\.\.\/)+)Img\/webnovis-logo-bianco-150\.webp 150w,\s*(?:(?:\.\.\/)+)?Img\/webnovis-logo-bianco\.webp 300w"/gi,
+      (_, prefix) => `srcset="${prefix}Img/webnovis-logo-bianco-150.webp 150w, ${prefix}Img/webnovis-logo-bianco.webp 300w"`
+    )
     .replace(/<img\b[^>]*alt="DesignRush"[^>]*src="([^"]*designrush-badge\.png)"[^>]*>/gi, (_, src) => {
       return buildImageTag({ alt: 'DesignRush', src, width: 80, height: 90, style: 'display:block' });
     })
