@@ -3,7 +3,7 @@
 # Formato sperimentale: non garantisce crawling, indicizzazione, ranking o citazioni.
 # Le pagine HTML canoniche restano la fonte da consultare e verificare.
 # Indice sintetico: https://www.webnovis.com/llms.txt — Dati strutturati: https://www.webnovis.com/webnovis-ai-data.json
-# Generato automaticamente da scripts/generate-llms-full.js — 2026-07-23
+# Generato automaticamente da scripts/generate-llms-full.js
 
 # WebNovis — Agenzia Digitale a Milano e Rho
 
@@ -12,7 +12,7 @@
 ----------------------------------------
 URL: https://www.webnovis.com/
 TITOLO: Agenzia Web Rho e Milano Ovest — WebNovis | Siti Custom, E-commerce, SEO Locale
-DESCRIZIONE: WebNovis è l'agenzia web con sede a Rho (Milano Ovest): siti custom, e-commerce, branding e SEO locale per PMI e professionisti dell'hinterland milanese. Preventivo gratuito entro 24 ore.
+DESCRIZIONE: WebNovis è l'agenzia web con sede a Rho (Milano Ovest): siti custom, e-commerce, branding e SEO locale per PMI e professionisti dell'hinterland milanese. Richiesta di preventivo senza impegno.
 
 Porta alla luce la tua attività
 
@@ -183,7 +183,7 @@ Come Lavoriamo
 
 ## Come Trasformiamo
 la Tua Idea in Realtà
-Dal primo incontro alla messa online: trasparenza totale, tempi certi e codice 100% custom. Scopri come trasformiamo ogni brief in un progetto concreto e misurabile.
+Dal brief alla messa online: perimetro, responsabilità e stime temporali vengono definiti nella proposta. Scopri come trasformiamo ogni brief in un progetto concreto e misurabile.
 
 - 01 Brief & Analisi
 - 02 Wireframe
@@ -322,62 +322,62 @@ Cos'è WebNovis? WebNovis è un'agenzia web tra Milano e Rho specializzata in si
 Che tipo di progetti seguite? Seguiamo siti vetrina, e-commerce, landing page, identità visive, SEO locale, supporto ai contenuti e percorsi di presenza digitale più strutturati.
 Lavorate solo tra Milano e Rho? No. Il nostro presidio principale è tra Rho, Milano e hinterland, ma collaboriamo anche da remoto con clienti in altre aree d'Italia quando il progetto è compatibile.
 Come parte un nuovo progetto con voi? Partiamo da obiettivi, contesto competitivo e priorità reali del business. Poi proponiamo una soluzione concreta con tempi, investimento e step di lavoro chiari.
-In quanto tempo rispondete a una richiesta? Per le richieste commerciali rispondiamo in genere entro 24 ore con un primo riscontro e, quando possibile, con una proposta orientativa già utile per decidere il passo successivo.
+In quanto tempo rispondete a una richiesta? Per le richieste commerciali valutiamo obiettivi, perimetro e materiali disponibili. Tempi e modalità del primo riscontro vengono comunicati attraverso i canali indicati.
 
 ## Vuoi Lavorare con Noi?
-Raccontaci il tuo progetto. Ti rispondiamo entro 24 ore con una proposta personalizzata.
+Raccontaci il tuo progetto: valuteremo le informazioni per preparare una proposta personalizzata.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
 URL: https://www.webnovis.com/come-lavoriamo.html
 TITOLO: Come Lavoriamo — Web Novis | Sviluppo Web Milano e Rho
-DESCRIZIONE: Scopri il nostro processo in 5 fasi: dal brief iniziale al lancio del tuo sito web. Web Novis — agenzia web a Milano (Rho). Trasparenza, qualità e tempi certi.
+DESCRIZIONE: Scopri il processo Web Novis in 5 fasi, dal brief iniziale al lancio: attività, responsabilità e tempistiche indicative definite nella proposta.
 
 Il Nostro Metodo
 
 # Dal Brief al Lancio,
 5 Fasi per il Tuo Successo
-Ogni progetto Web Novis segue un processo collaudato che garantisce trasparenza, qualità e rispetto dei tempi. Nessuna sorpresa, solo risultati concreti — dalla nostra sede a Rho (Milano) per clienti in tutta Italia.
+Ogni progetto Web Novis segue un processo strutturato che rende visibili attività, responsabilità e avanzamento. Perimetro e tempistiche indicative vengono confermati nella proposta in base alla complessità del lavoro.
 Trasparenza Totale
-Tempi Certi
+Tempi Concordati
 Codice 100% Custom
 Comunicazione Diretta
 
 ## Le 5 Fasi del Nostro Processo
 1
-1–2 giorni
+Stima indicativa: 1–2 giorni, da confermare
 
 ### Brief & Analisi
 Ascoltiamo le tue esigenze, analizziamo il mercato di riferimento, i competitor e definiamo insieme obiettivi chiari e misurabili. Ogni progetto inizia con una comprensione profonda del tuo business.
 Call conoscitiva Analisi competitor Documento requisiti Proposta economica
 
 2
-3–5 giorni
+Stima indicativa: 3–5 giorni, da confermare
 
 ### Wireframe & Architettura
 Progettiamo la struttura del sito: alberatura delle pagine, flussi utente, posizionamento dei contenuti. Tutto viene validato con te prima di passare al design visivo.
 Sitemap Wireframe interattivi User flow Revisione condivisa
 
 3
-5–7 giorni
+Stima indicativa: 5–7 giorni, da confermare
 
 ### Design & Branding
 Creiamo il design visivo completo: palette colori, tipografia, componenti UI, animazioni. Ogni pixel è curato per riflettere l'identità del tuo brand e massimizzare le conversioni.
 Mockup desktop + mobile Design system Prototipo navigabile 2 revisioni incluse
 
 4
-7–14 giorni
+Stima indicativa: 7–14 giorni, da confermare
 
 ### Sviluppo & Ottimizzazione
-Scriviamo codice custom (zero WordPress, zero template) ottimizzato per performance, SEO e accessibilità. Ogni sito supera i 90/100 su Google PageSpeed Insights.
+Scriviamo codice custom (zero WordPress, zero template) e verifichiamo performance, SEO e accessibilità con test adeguati al progetto, inclusi i controlli PageSpeed Insights quando pertinenti.
 HTML/CSS/JS custom SEO tecnica Schema.org JSON-LD Core Web Vitals Test cross-browser
 
 5
-1–2 giorni
+Stima indicativa: 1–2 giorni, da confermare
 
 ### Lancio & Supporto
 Pubblichiamo il sito, configuriamo analytics (GA4, Clarity, Meta Pixel), inviamo la sitemap a Google e ti forniamo un report completo. Il supporto continua anche dopo il lancio.
-Deploy produzione Analytics setup Sitemap + IndexNow Report finale 30 giorni supporto
+Deploy produzione Analytics setup Sitemap + IndexNow Report finale Supporto definito in proposta
 
 ## Cosa Fai Tu, Cosa Facciamo Noi
 
@@ -406,7 +406,7 @@ Richiedi Preventivo Gratuito
 ## Domande sul Nostro Processo
 
 ### Quanto tempo ci vuole per realizzare un sito web?
-Dipende dalla complessità: una landing page richiede 1–2 settimane, un sito vetrina 3–4 settimane, un e-commerce 4–6 settimane. Tempi precisi vengono definiti nel preventivo.
+Stime indicative: una landing page può richiedere 1–2 settimane, un sito vetrina 3–4 settimane, un e-commerce 4–6 settimane. La proposta conferma tempistiche, dipendenze e revisioni previste.
 
 ### Quante revisioni sono incluse?
 Ogni fase include 2 revisioni. Revisioni aggiuntive sono possibili a un costo orario concordato. Il nostro obiettivo è centrare la tua visione fin dalla prima proposta.
@@ -418,7 +418,7 @@ No. Ogni progetto Web Novis è sviluppato con codice custom (HTML, CSS, JavaScri
 Comunicazione diretta via email, WhatsApp e videochiamate. Nessun ticket system impersonale. Hai sempre un referente dedicato che conosce il tuo progetto.
 
 ### Cosa succede dopo il lancio?
-Offriamo 30 giorni di supporto gratuito post-lancio per correzioni e ottimizzazioni. Successivamente, proponiamo piani di manutenzione mensile opzionali.
+Durata e perimetro dell'eventuale supporto post-lancio vengono definiti nella proposta. Sono inoltre disponibili piani di manutenzione mensile opzionali.
 
 ### Lavorate anche da remoto?
 Sì. La nostra sede è a Rho (MI), ma lavoriamo da remoto con clienti in tutta Italia e in Europa. Call, videochiamate e supporto continuo indipendentemente dalla distanza.
@@ -594,16 +594,16 @@ I nostri progetti spaziano dallo sviluppo di siti web per ristoranti e attività
 
 ----------------------------------------
 URL: https://www.webnovis.com/preventivo.html
-TITOLO: Preventivo Gratuito Sito Web — Web Novis | Risposta 24h
-DESCRIZIONE: Preventivo gratuito per sito web, e-commerce, grafica o social media. Web Novis — agenzia web Milano e Rho. Risposta 24h.
+TITOLO: Preventivo Gratuito Sito Web — Web Novis | Milano e Rho
+DESCRIZIONE: Richiedi un preventivo gratuito per sito web, e-commerce, grafica o social media a Web Novis, agenzia web a Milano e Rho.
 
 Preventivo Gratuito
 
 # Raccontaci il Tuo Progetto,
-Ti Rispondiamo in 24 Ore
+Ricevi una Proposta su Misura
 Compila il form con i dettagli del tuo progetto e ricevi un preventivo personalizzato e trasparente. Nessun costo nascosto, nessun impegno — solo una proposta chiara su misura per te.
 100% Gratuito
-Risposta in 24h
+Tempi Comunicati
 Zero Impegno
 Milano & Rho
 
@@ -673,10 +673,10 @@ Compili il form — ci racconti il tuo progetto e i tuoi obiettivi
 Analizziamo — studiamo le tue esigenze e prepariamo una proposta
 
 3
-Preventivo in 24h — ricevi un documento dettagliato con costi e tempistiche
+Proposta su misura — ricevi un documento con perimetro, costi e tempistiche indicative
 
 4
-Call gratuita — fissiamo una videochiamata per approfondire insieme
+Approfondimento eventuale — se necessario concordiamo il canale più adatto
 
 ### Preferisci Contattarci Direttamente?
 hello@webnovis.com
@@ -690,7 +690,7 @@ Via S. Giorgio 2, Rho (MI)
 Sì, il preventivo è completamente gratuito e senza impegno. Analizziamo le tue esigenze e ti forniamo una proposta dettagliata con costi trasparenti.
 
 ### In quanto tempo ricevo il preventivo?
-Rispondiamo entro 24 ore lavorative con un preventivo personalizzato. Per progetti complessi, potremmo proporti una call gratuita per approfondire.
+La tempistica dipende dalla completezza delle informazioni e dalla complessità del progetto. Dopo una prima verifica ti comunichiamo tempi e modalità del riscontro.
 
 ### Quali informazioni servono per un preventivo preciso?
 Più dettagli ci fornisci, meglio è: obiettivi del progetto, funzionalità desiderate, riferimenti di siti che ti piacciono, budget indicativo e tempistiche.
@@ -715,7 +715,7 @@ Home / Contatti
 Contatti
 
 # Parliamo del Tuo Progetto
-Raccontaci la tua idea. Ti rispondiamo entro 24 ore con una proposta personalizzata, trasparente e senza impegno.
+Raccontaci la tua idea attraverso i canali indicati. Tempi e modalità del confronto vengono definiti al contatto in base alla richiesta.
 
 ### Email
 
@@ -730,10 +730,10 @@ Chiama WebNovis Scrivici su WhatsApp →
 Via S. Giorgio, 2
 20017 Rho (MI), Italia
 
-### Orari
+### Contatti
 
-Aperto 24 ore su 24
-7 giorni su 7
+Usa i canali indicati.
+Tempi e modalità vengono definiti al contatto.
 
 ## Richiedi un Preventivo Gratuito
 Questo campo è obbligatorio
@@ -766,7 +766,7 @@ Invia Richiesta
 
 ## Agenzia Web a Milano e Rho: Parliamo del Tuo Progetto Digitale
 Web Novis è un' agenzia web con sede a Rho , nell'area metropolitana di Milano. Ci occupiamo di sviluppo siti web, e-commerce, grafica professionale, SEO e gestione dei social media per attività locali, PMI e professionisti in tutta la Lombardia.
-Compilando il modulo di contatto in questa pagina riceverai entro 24 ore una proposta personalizzata e un preventivo trasparente, senza alcun impegno. Puoi anche contattarci direttamente via email, telefono o WhatsApp per una consulenza gratuita.
+Compila il modulo oppure usa email, telefono o WhatsApp per descrivere il progetto. Tempi e modalità del riscontro dipendono dalla richiesta e vengono definiti al contatto.
 Lavoriamo con clienti a Milano, Rho, Lainate, Arese, Garbagnate Milanese, Bollate, Pregnana Milanese e in tutta la provincia di Milano. Ogni progetto parte dall'ascolto delle tue esigenze per costruire una soluzione digitale su misura, performante e orientata ai risultati.
 Che tu abbia bisogno di un sito web professionale, di un restyling grafico, di una strategia SEO locale o di una presenza efficace sui social media, il nostro team è pronto ad affiancarti in ogni fase del percorso. Contattaci oggi stesso per iniziare.
 
@@ -802,7 +802,7 @@ Scansione automatica mensile + verifica manuale trimestrale. Report di conformit
 Prezzi trasparenti, nessun costo nascosto.
 
 ### Audit Iniziale
-da €350 Report completo WCAG 2.1 AA con checklist interventi prioritari. Consegna 5-7 giorni.
+da €350 Report completo WCAG 2.1 AA con checklist degli interventi prioritari. Stima indicativa: 5-7 giorni, da confermare nella proposta.
 
 ### Adeguamento
 Da €990 Correzione completa di tutte le violazioni. Il prezzo varia in base a numero di pagine e complessità, con fascia indicativa fino a €2.500+.
@@ -840,7 +840,7 @@ Struttura semantica, alt text, heading gerarchici e performance sono fattori che
 Cos'è l'European Accessibility Act (EAA)? L'EAA è una direttiva europea (2019/882) recepita in Italia con il D.Lgs. 82/2022, che obbliga i fornitori di prodotti e servizi digitali a garantire l'accessibilità secondo lo standard WCAG 2.1 livello AA. È in vigore dal 28 giugno 2025.
 Il mio sito è obbligato a essere accessibile? Se vendi prodotti o servizi online (e-commerce, SaaS, servizi digitali), sì. Le micro-imprese con meno di 10 dipendenti e fatturato inferiore a €2 milioni hanno esoneri parziali, ma l'accessibilità resta una best practice SEO e UX.
 Quali sono le sanzioni per un sito non accessibile? In Italia, AgID può comminare sanzioni da €5.000 a €40.000 per violazione accertata. Nei casi più gravi può ordinare la rimozione del servizio digitale.
-Quanto tempo serve per rendere accessibile un sito esistente? Sito vetrina 5-10 pagine: 1-2 settimane. E-commerce con centinaia di prodotti: 4-8 settimane. Audit iniziale consegnato in 5-7 giorni.
+Quanto tempo serve per rendere accessibile un sito esistente? Stime indicative: sito vetrina di 5-10 pagine, 1-2 settimane; e-commerce con centinaia di prodotti, 4-8 settimane; audit iniziale, 5-7 giorni. La proposta conferma tempi e perimetro.
 L'accessibilità penalizza il design del sito? No. Accessibilità significa design che funziona per tutti: contrasto leggibile, navigazione chiara, interazioni prevedibili. Apple e Gov.uk sono tra i siti più accessibili e belli al mondo.
 Cosa sono le WCAG 2.1 AA? Le Web Content Accessibility Guidelines sono lo standard internazionale W3C per l'accessibilità web. Il livello AA è il riferimento normativo dell'EAA con 50 criteri nei 4 principi: Percepibile, Utilizzabile, Comprensibile e Robusto.
 Qual è la differenza tra WCAG 2.1 e WCAG 2.2? Le WCAG 2.2 (ottobre 2023) aggiungono 9 nuovi criteri per disabilità cognitive e mobile. L'EAA richiede 2.1 AA come baseline, ma Web Novis adotta già le 2.2 per future-proofing.
@@ -852,11 +852,11 @@ WebNovis sviluppa siti accessibili nativamente? Sì.
 ----------------------------------------
 URL: https://www.webnovis.com/servizi/brand-identity.html
 TITOLO: Brand Identity: costi, pacchetti e cosa include | WebNovis
-DESCRIZIONE: Quanto costa una brand identity? Pacchetti da €500 con logo, palette, tipografia e linee guida. Prezzi chiari, tempi reali e preventivo in 24 ore.
+DESCRIZIONE: Quanto costa una brand identity? Pacchetti indicativi da €500 con logo, palette, tipografia e linee guida. Prezzo e tempi vengono confermati nella proposta.
 
 Home / Servizi / Brand Identity
 Ultimo aggiornamento: 6 luglio 2026
-Brand Identity · pacchetti da €500 · preventivo in 24 ore
+Brand Identity · pacchetti da €500 · proposta personalizzata
 
 # Brand Identity: costi, pacchetti e cosa include davvero
 Una brand identity completa parte da €500 e include logo, palette colori, tipografia, elementi grafici e linee guida d'uso. Un logo singolo parte da €250, il coordinato aziendale da €150. Il prezzo finale dipende da complessità, numero di applicazioni e materiali richiesti: qui trovi pacchetti, tempi e criteri di costo, senza sorprese in fase di preventivo.
@@ -873,7 +873,7 @@ da €250 una tantum
 - Varianti colore e monocromatica
 - File sorgente nei formati supportati e concordati (es. SVG, AI, PDF, PNG — i formati indicati sono esemplificativi e non tutti inclusi in ogni progetto)
 - Guidelines d'uso base
-- Consegna in 2-3 settimane
+- Stima indicativa: 2-3 settimane, da confermare nella proposta
 Richiedi Preventivo
 Più richiesto Brand Identity Completa
 da €500 una tantum
@@ -884,7 +884,7 @@ da €500 una tantum
 - Pattern, iconografia e elementi grafici
 - Linee guida d'uso professionali
 - Coordinato aziendale base (biglietti, carta intestata)
-- Consegna in 4-6 settimane
+- Stima indicativa: 4-6 settimane, da confermare nella proposta
 Richiedi Preventivo
 Coordinato Aziendale Esteso
 da €150 una tantum
@@ -895,7 +895,7 @@ da €150 una tantum
 - Template presentazioni (PowerPoint/Keynote) — layout grafici personalizzabili, non presentazioni complete con contenuti redazionali
 - Template social media (post + stories)
 - File pronti per stampa e digitale
-- Consegna in 2-3 settimane
+- Stima indicativa: 2-3 settimane, da confermare nella proposta
 Richiedi Preventivo
 
 I prezzi indicati sono puramente orientativi e rappresentano il costo di partenza per le casistiche più semplici. Il preventivo definitivo verrà stabilito insieme al cliente a seguito di una call o un incontro conoscitivo, in base alle esigenze specifiche del progetto.
@@ -1024,7 +1024,7 @@ Prenota Sessione
 Tre passaggi semplici per trasformare i tuoi dubbi in un piano d'azione concreto.
 
 ### 1. Richiesta
-Ci racconti il tuo progetto o la tua esigenza tramite il form di contatto, email o WhatsApp. Ti rispondiamo entro 24 ore per fissare la sessione.
+Ci racconti il tuo progetto o la tua esigenza tramite il form di contatto, email o WhatsApp. Ti ricontattiamo attraverso i canali indicati per concordare tempi e modalità.
 
 ### 2. Sessione
 Ci incontriamo in videochiamata (o in presenza a Rho) per analizzare insieme la tua situazione. Ogni sessione è personalizzata e focalizzata sui tuoi obiettivi concreti.
@@ -1039,7 +1039,7 @@ I prezzi indicati sono puramente orientativi e rappresentano il costo di partenz
 Cos'è una consulenza con WebNovis? È una sessione personalizzata in cui analizziamo insieme un aspetto specifico del tuo business digitale — sito web, brand, SEO, ricerca di mercato o accessibilità. L'obiettivo è darti chiarezza e una direzione concreta prima di investire.
 Quanto dura una sessione di consulenza? La maggior parte delle sessioni dura 60-90 minuti. Le consulenze di ricerca di mercato prevedono tempi diversi a seconda della complessità del report. Ogni sessione è focalizzata e orientata ai risultati.
 La consulenza si può detrarre dal preventivo finale? Sì. Se dopo la consulenza decidi di procedere con un progetto completo (sito web, brand identity, ecc.), il costo della consulenza verrà detratto dal preventivo finale come anticipo.
-Come prenoto una consulenza? Puoi contattarci tramite il form sulla pagina contatti, via email a hello@webnovis.com o via WhatsApp al Chiama WebNovis . Ti risponderemo entro 24 ore per fissare data e orario.
+Come prenoto una consulenza? Puoi contattarci tramite il form sulla pagina contatti, via email a hello@webnovis.com o via WhatsApp al Chiama WebNovis . Ti ricontatteremo attraverso i canali indicati per concordare tempi e modalità.
 Le consulenze si svolgono online o in presenza? Entrambe le opzioni. Le sessioni in videochiamata sono disponibili per clienti in tutta Italia. Se preferisci un incontro di persona, ci trovi presso la nostra sede a Rho (MI), Via S. Giorgio 2.
 
 ## Hai un Dubbio sul Tuo Progetto Digitale?
@@ -1055,7 +1055,7 @@ Home / Sviluppo Web / E-Commerce
 E-Commerce
 
 # E-Commerce Personalizzato che Vende Davvero
-Web Novis sviluppa e-commerce 100% custom per aziende e PMI italiane, senza piattaforme come Shopify o WooCommerce. Ogni negozio online viene costruito su codice proprietario per massimizzare velocità, conversioni e sicurezza, con catalogo prodotti, pagamenti integrati e pannello di gestione intuitivo. Preventivo gratuito entro 24 ore.
+Web Novis sviluppa e-commerce 100% custom per aziende e PMI italiane, senza piattaforme come Shopify o WooCommerce. Ogni negozio online viene costruito su codice proprietario per ottimizzare velocità, conversioni e sicurezza, con catalogo prodotti, pagamenti integrati e pannello di gestione intuitivo. Preventivo gratuito basato sul progetto.
 Costruiamo negozi online su misura con codice 100% custom. Catalogo illimitato, pagamenti sicuri, dashboard completa — nessun Shopify, nessun WooCommerce. Solo la piattaforma che il tuo business merita.
 Se il tuo progetto ha un forte focus territoriale sul quadrante nord della città metropolitana, visita anche la nostra pagina dedicata a e-commerce custom e sviluppo web a Milano Nord .
 Richiedi Preventivo Gratuito
@@ -1110,17 +1110,16 @@ Oltre al pacchetto base, possiamo integrare funzionalità avanzate in base alle 
 
 ## Come sviluppiamo il tuo e-commerce personalizzato?
 
-### 1. Analisi di Business e Strategia (2-3 giorni)
+### 1. Analisi di Business e Strategia (stima indicativa: 2-3 giorni, da confermare)
 Analizziamo il tuo catalogo, il mercato target, i competitor e le esigenze logistiche. Definiamo l'architettura del negozio, le funzionalità necessarie, le integrazioni con sistemi esistenti e la strategia di lancio.
 
-### 2. UX Design e Prototipazione (5-7 giorni)
+### 2. UX Design e Prototipazione (stima indicativa: 5-7 giorni, da confermare)
 Progettiamo il percorso d'acquisto completo: dalla scoperta del prodotto al checkout. Wireframe per homepage, pagina categoria, scheda prodotto, carrello e checkout. Ogni passaggio è ottimizzato per ridurre l'attrito e massimizzare le conversioni.
 
-### 3. Design Visivo (5-7 giorni)
+### 3. Design Visivo (stima indicativa: 5-7 giorni, da confermare)
 Trasformiamo i wireframe in un design ad alta fedeltà coerente con la tua brand identity. Durante questa fase rimaniamo in contatto costante per raccogliere feedback e affinare ogni dettaglio prima dello sviluppo.
 
-### 4. Sviluppo Frontend e Backend (14-28 giorni)
-Sviluppiamo il codice custom per il negozio e la dashboard amministrativa. Integriamo gateway di pagamento, gestione magazzino, sistema di spedizioni e tutte le funzionalità concordate.
+### 4. Sviluppo Frontend e Backend (stima indicativa: 14-28 giorni, da confermare)
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -1194,7 +1193,7 @@ da €250 una tantum
 - Varianti colore e monocromatica
 - File sorgente nei formati supportati e concordati (es. SVG, AI, PDF, PNG — i formati indicati sono esemplificativi e non tutti inclusi in ogni progetto)
 - Guidelines d'uso base
-- Consegna in 2-3 settimane
+- Stima indicativa: 2-3 settimane, da confermare nella proposta
 Richiedi Preventivo
 Più richiesto Brand Identity Completa
 da €500 una tantum
@@ -1205,7 +1204,7 @@ da €500 una tantum
 - Pattern, iconografia e elementi grafici
 - Linee guida d'uso professionali
 - Coordinato aziendale base (biglietti, carta intestata)
-- Consegna in 4-6 settimane
+- Stima indicativa: 4-6 settimane, da confermare nella proposta
 Richiedi Preventivo
 Coordinato Aziendale Esteso
 da €150 una tantum
@@ -1213,8 +1212,6 @@ da €150 una tantum
 - Biglietti da visita premium
 - Carta intestata e buste
 - Firma email HTML branded
-- Template presentazioni (PowerPoint/Keynote) — layout grafici personalizzabili, non presentazioni complete con contenuti redazionali
-- Template social media (post + stories)
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -1251,7 +1248,7 @@ Creiamo identità visive che comunicano i valori del tuo brand a colpo d'occhio.
 Scopri i servizi design
 Brand Identity
 Costi, Pacchetti & Sistema di Marca
-Quanto costa una brand identity? Pacchetti trasparenti da €500 con logo, palette, tipografia e linee guida d'uso: un sistema di marca coerente su sito, social e materiali di vendita, con preventivo in 24 ore.
+Quanto costa una brand identity? Pacchetti trasparenti da €500 con logo, palette, tipografia e linee guida d'uso: un sistema di marca coerente su sito, social e materiali di vendita, con proposta personalizzata.
 
 - Logo design da €250 con proposte multiple
 - Brand identity completa da €500
@@ -1297,8 +1294,8 @@ Progetti completati per PMI italiane
 100%
 Codice custom — zero template
 
-24h
-Risposta garantita ai preventivi
+Su misura
+Proposta basata sul progetto
 
 4.9/5
 Valutazione media clienti
@@ -1309,7 +1306,7 @@ Ogni progetto parte da un briefing approfondito : analizziamo il tuo settore, i 
 Siamo una web agency con sede a Rho (MI) , operativa in tutta Italia. Lavoriamo con PMI, professionisti, startup e aziende consolidate che vogliono una presenza digitale all'altezza delle loro ambizioni.
 
 ## Non Sai da Dove Iniziare?
-Raccontaci il tuo progetto. Ti aiutiamo a capire quale servizio fa per te e ti forniamo un preventivo gratuito entro 24 ore.
+Raccontaci il tuo progetto. Ti aiutiamo a capire quale servizio fa per te e prepariamo un preventivo gratuito in base alle informazioni disponibili.
 Parliamone Insieme
 
 ----------------------------------------
@@ -1373,13 +1370,13 @@ Una landing page lenta è una landing page che perde soldi. Ottimizziamo immagin
 ### 1. Briefing e Strategia (1 giorno)
 Definiamo insieme l'obiettivo della landing page, il pubblico target, la proposta di valore e la call-to-action principale. Analizziamo i competitor e identifichiamo gli elementi differenzianti del tuo business.
 
-### 2. Wireframe e Copywriting (2-3 giorni)
+### 2. Wireframe e Copywriting (stima indicativa: 2-3 giorni, da confermare)
 Creiamo la struttura della pagina con un wireframe che definisce la gerarchia dei contenuti. Se necessario, sviluppiamo il copy persuasivo ottimizzato SEO per ogni sezione.
 
-### 3. Design e Sviluppo (4-5 giorni)
+### 3. Design e Sviluppo (stima indicativa: 4-5 giorni, da confermare)
 Trasformiamo il wireframe in un design ad alta fedeltà e poi in codice custom. Durante lo sviluppo rimaniamo in contatto costante per raccogliere feedback e implementare miglioramenti.
 
-### 4. Test, Revisione e Lancio (1-2 giorni)
+### 4. Test, Revisione e Lancio (stima indicativa: 1-2 giorni, da confermare)
 Test completi su responsività, velocità, funzionalità form, SEO tecnica e compatibilità browser. Correggiamo ogni dettaglio e pubblichiamo la pagina con configurazione DNS e SSL.
 
 Landing Page
@@ -1389,20 +1386,18 @@ da €500 una tantum
 - Design responsive personalizzato
 - SEO base (meta tag, Open Graph, sitemap)
 - Form di contatto funzionale
-- Consegna in 1-2 settimane
+- Stima indicativa: 1-2 settimane, da confermare nella proposta
 Richiedi Preventivo
 I prezzi indicati sono puramente orientativi e rappresentano il costo di partenza per le casistiche più semplici. Il preventivo definitivo verrà stabilito insieme al cliente a seguito di una call o un incontro conoscitivo, in base alle esigenze specifiche del progetto.
 
 ## Domande Frequenti sulle Landing Page
 
 ### Quanto tempo serve per creare una landing page?
-Il processo completo — dal briefing al lancio — richiede 1-2 settimane. Per progetti urgenti possiamo accelerare i tempi concordando insieme le priorità.
+Come stima indicativa, il processo completo — dal briefing al lancio — può richiedere 1-2 settimane. La proposta conferma tempi, priorità e dipendenze del progetto.
 
 ### Posso usare la landing page per campagne Google Ads?
 Assolutamente sì. Le nostre landing page sono progettate specificamente per massimizzare il Quality Score di Google Ads: velocità elevata, contenuto rilevante, esperienza utente ottimale e call-to-action chiare. Questo si traduce in costi per clic più bassi e conversioni più alte.
 
-### La landing page è ottimizzata per mobile?
-Ogni landing page è sviluppata con approccio mobile-first.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -1466,28 +1461,24 @@ Un sito WordPress richiede manutenzione costante: aggiornamenti core, plugin, te
 
 ## Il Processo di Creazione del Tuo Sito Vetrina
 
-### 1. Briefing e Analisi Strategica (1-2 giorni)
+### 1. Briefing e Analisi Strategica (stima indicativa: 1-2 giorni, da confermare)
 Raccogliamo informazioni sul tuo business, analizziamo il mercato e i competitor, definiamo gli obiettivi e la struttura del sito. Al termine ricevi una proposta dettagliata con architettura delle pagine, timeline e preventivo trasparente.
 
-### 2. Architettura e Wireframe (3-4 giorni)
+### 2. Architettura e Wireframe (stima indicativa: 3-4 giorni, da confermare)
 Progettiamo la struttura informativa del sito: gerarchia delle pagine, percorsi utente, posizionamento CTA e organizzazione dei contenuti. Ogni wireframe viene condiviso per il tuo feedback prima di passare al design.
 
-### 3. Design e Prototipazione (5-7 giorni)
+### 3. Design e Prototipazione (stima indicativa: 5-7 giorni, da confermare)
 Trasformiamo i wireframe in design ad alta fedeltà. Colori, tipografia, immagini e micro-interazioni prendono vita. Durante questa fase rimaniamo in contatto costante per raccogliere feedback e implementare miglioramenti.
 
-### 4. Sviluppo e Integrazione (7-14 giorni)
+### 4. Sviluppo e Integrazione (stima indicativa: 7-14 giorni, da confermare)
 Il design diventa codice custom. Sviluppiamo con approccio mobile-first, configuriamo il blog e implementiamo tutte le funzionalità. Se hai scelto l'add-on CMS, lo integriamo in questa fase. Hai accesso a un ambiente di staging per seguire i progressi.
 
-### 5. Test, Revisione e Lancio (2-3 giorni)
+### 5. Test, Revisione e Lancio (stima indicativa: 2-3 giorni, da confermare)
 Test approfonditi su responsività, velocità, SEO tecnica, accessibilità e compatibilità cross-browser. Configuriamo DNS, SSL e sitemap, poi pubblichiamo il sito.
 
 Più richiesto Sito Vetrina
 da €1.200 una tantum
 
-- 5-10 pagine personalizzate
-- Design premium su misura
-- SEO tecnica completa (Schema.org, sitemap XML, robots.txt, meta tag)
-- Blog integrato
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -1606,7 +1597,7 @@ Sviluppo Web
 
 # Sviluppo Siti Web Professionali su Misura
 Realizziamo siti web che non sono solo belli da vedere, ma che convertono visitatori in clienti. Ogni progetto parte dalle tue esigenze e diventa una piattaforma digitale performante, sicura e ottimizzata per i motori di ricerca.
-Web Novis è un'agenzia web di Rho (Milano) specializzata in sviluppo siti web 100% custom, senza WordPress né template. Ogni sito viene costruito da zero in HTML, CSS e JavaScript per garantire performance Core Web Vitals ottimali, sicurezza massima e SEO tecnica completa. Preventivo gratuito entro 24 ore.
+Web Novis è un'agenzia web di Rho (Milano) specializzata in sviluppo siti web 100% custom, senza WordPress né template. Ogni sito viene costruito da zero in HTML, CSS e JavaScript con attenzione a Core Web Vitals, sicurezza e SEO tecnica. Il preventivo gratuito viene preparato in base al progetto.
 Richiedi Preventivo Gratuito
 
 ## Cosa Realizziamo per Te
@@ -1649,26 +1640,26 @@ Non utilizziamo WordPress, Shopify né template preconfezionati. Tutto il codice
 ## Come avviene lo sviluppo con Web Novis?
 Ogni progetto segue un processo strutturato in 5 fasi che garantisce qualità, trasparenza e rispetto delle tempistiche.
 
-### 1. Briefing & Analisi (1-2 giorni)
+### 1. Briefing & Analisi (stima indicativa: 1-2 giorni, da confermare)
 Partiamo da te. Raccogliamo informazioni sulla tua attività, i tuoi obiettivi, il tuo pubblico target e i competitor. Definiamo insieme le funzionalità necessarie, il budget e le tempistiche. Al termine del briefing avrai una proposta dettagliata con preventivo trasparente.
 
-### 2. Wireframe & Design (5-7 giorni)
+### 2. Wireframe & Design (stima indicativa: 5-7 giorni, da confermare)
 Creiamo wireframe delle pagine principali per definire la struttura e l'architettura dell'informazione. Una volta approvati, passiamo al design visivo ad alta fedeltà. Durante le fasi di sviluppo rimaniamo in contatto costante con te: ogni mockup e prototipo diventa un'occasione per raccogliere feedback e implementare miglioramenti prima del lancio.
 
-### 3. Sviluppo (7-21 giorni)
+### 3. Sviluppo (stima indicativa: 7-21 giorni, da confermare)
 Trasformiamo il design in codice. Sviluppiamo con approccio mobile-first, testiamo su diversi browser e dispositivi, integriamo i contenuti e configuriamo le funzionalità. Hai accesso a un ambiente di staging per vedere i progressi in tempo reale.
 
-### 4. Test & Revisione (2-3 giorni)
+### 4. Test & Revisione (stima indicativa: 2-3 giorni, da confermare)
 Test approfonditi su: responsività, velocità, SEO tecnica, accessibilità, funzionalità form/e-commerce, cross-browser compatibility. Correggiamo ogni dettaglio finché non sei soddisfatto al 100%.
 
 ### 5. Lancio & Supporto
-Pubblicazione del sito con configurazione DNS, SSL, redirect e sitemap. Dopo il lancio offriamo 30 giorni di supporto gratuito per aggiustamenti e correzioni.
+Pubblicazione del sito con configurazione DNS, SSL, redirect e sitemap. Durata e perimetro dell'eventuale supporto post-lancio vengono definiti nella proposta.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-arese.html
 TITOLO: Agenzia web ad Arese: siti custom, SEO e grafica | WebNovis
-DESCRIZIONE: Web agency ad Arese: siti custom, e-commerce, branding e SEO locale per PMI e negozi. Sede a Rho a 10 minuti, preventivo in 24 ore.
+DESCRIZIONE: Web agency ad Arese: siti custom, e-commerce, branding e SEO locale per PMI e negozi. Sede a Rho e proposta personalizzata.
 
 Home
 /
@@ -1889,7 +1880,7 @@ Design visivo con mockup desktop e mobile. Identità visiva coerente con il posi
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-bollate.html
 TITOLO: Agenzia web a Bollate: siti custom, SEO e social | WebNovis
-DESCRIZIONE: Web agency per Bollate: siti web custom, siti vetrina, e-commerce e campagne locali per PMI e attività. Sede a Rho a 10 minuti, preventivo in 24 ore.
+DESCRIZIONE: Web agency per Bollate: siti web custom, siti vetrina, e-commerce e campagne locali per PMI e attività. Sede a Rho e proposta personalizzata.
 
 Home
 /
@@ -3923,7 +3914,7 @@ Deploy, configurazione analytics concordata, test cross-browser e cross-device.
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-rho.html
 TITOLO: Web Agency Rho: siti web custom, SEO e branding | WebNovis
-DESCRIZIONE: WebNovis è la web agency di Rho (Via S. Giorgio 2): agenzia web per siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Preventivo in 24 ore.
+DESCRIZIONE: WebNovis è la web agency di Rho (Via S. Giorgio 2): siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Richiesta di preventivo senza impegno.
 
 Home / Agenzia Web Rho
 Agenzia web a Rho · siti, SEO, branding e crescita locale
@@ -3958,7 +3949,7 @@ Zero Shopify, zero commissioni. Catalogo illimitato. Da €3.500 . Scopri →
 Alta conversione per campagne Google Ads / Meta Ads nella zona Fiera Milano Rho. Da €500 . Scopri →
 
 ### Graphic Design e Branding
-Logo, brand identity e coordinato per imprese rhodensi. Da €400 . Scopri →
+Logo, brand identity e coordinato per imprese rhodensi. Da €250 . Scopri →
 
 ### Social Media Marketing
 Contenuti, analisi competitor locali, campagne Meta/LinkedIn. Da €300/mese . Scopri →
@@ -3984,10 +3975,9 @@ Per una PMI di Rho un sito custom con casi studio, schede servizio e asset SEO l
 Heading chiari, contenuti geo-specifici, schema markup e copy orientato al problema aiutano la pagina a essere più competitiva nelle SERP classiche e nelle risposte AI.
 
 ## Come avviene lo sviluppo con WebNovis?
-Cinque fasi strutturate per trasformare le esigenze della tua azienda rhodense in un sito che converte.
+Cinque fasi strutturate per trasformare le esigenze della tua azienda rhodense in un sito che converte. Le durate sono stime indicative e vengono confermate nella proposta.
 
-### 1. Briefing e Analisi (1-2 giorni)
-Call gratuita di 30 minuti.
+### 1. Briefing e Analisi
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -4234,7 +4224,7 @@ Agenzia web a Sesto San Giovanni · siti, SEO e campagne
 
 # Agenzia web a Sesto San Giovanni per PMI e professionisti
 
-WebNovis supporta imprese e professionisti di Sesto San Giovanni con siti custom, branding, social media e campagne locali. La sede è a Rho, con gestione diretta, preventivo entro 24 ore e percorsi digitali misurabili.
+WebNovis supporta imprese e professionisti di Sesto San Giovanni con siti custom, branding, social media e campagne locali. La sede è a Rho, con gestione diretta e una proposta personalizzata sul perimetro del progetto.
 
 Richiedi Preventivo Gratuito
 
@@ -4444,7 +4434,7 @@ Codice custom (HTML5, CSS3, JavaScript), SEO tecnica e dati strutturati pertinen
 ----------------------------------------
 URL: https://www.webnovis.com/realizzazione-siti-web-bollate.html
 TITOLO: Realizzazione siti web a Bollate: da €1.200 e SEO | WebNovis
-DESCRIZIONE: Realizzazione siti web a Bollate per PMI, studi e attivita locali: siti custom, landing ed e-commerce con SEO tecnica e preventivo in 24 ore.
+DESCRIZIONE: Realizzazione siti web a Bollate per PMI, studi e attivita locali: siti custom, landing ed e-commerce con SEO tecnica e proposta personalizzata.
 
 Home / Servizi / realizzazione siti web a Bollate
 Realizzazione siti web a Bollate · siti vetrina e SEO
@@ -4464,7 +4454,7 @@ La differenza tra un sito che "c'è" e un sito che lavora per te 24/7 sta nella 
 Le ricerche su Bollate mostrano intento pratico: chi cerca siti vetrina o sviluppo web vuole capire subito costi, tempi, metodo e affidabilita del fornitore.
 
 ### Siti Web Professionali su Misura
-Design personalizzato, codice proprietario, performance Lighthouse 95+. Ogni sito è un progetto unico, costruito sulle reali esigenze della tua azienda a Bollate. Da €1.200 . Scopri →
+Design personalizzato, codice proprietario e performance misurate sul singolo progetto. Ogni sito è un progetto unico, costruito sulle reali esigenze della tua azienda a Bollate. Da €1.200 . Scopri →
 
 ### E-Commerce per Attività Locali
 Zero commissioni sulle vendite, catalogo illimitato, pagamenti sicuri (Stripe, PayPal). Il tuo negozio online, senza vincoli. Da €3.500 . Scopri →
@@ -4476,7 +4466,7 @@ Pagine progettate per campagne Google Ads e Meta Ads. Massimo impatto, minimo te
 Posizionamento su Google per le ricerche geolocalizzate: "servizio + Rho", "attività + hinterland milanese". Visibilità dove conta davvero. Scopri →
 
 ### Graphic Design e Brand Identity
-Logo, coordinato aziendale, materiali di comunicazione. Un'identità visiva coerente che ti distingue nel territorio. Da €400 . Scopri →
+Logo, coordinato aziendale, materiali di comunicazione. Un'identità visiva coerente che ti distingue nel territorio. Da €250 . Scopri →
 
 ### Social Media Marketing
 Contenuti mirati per il pubblico dell'hinterland milanese. Campagne Meta e LinkedIn con targeting locale. Da €300/mese . Scopri →
@@ -4485,10 +4475,10 @@ Contenuti mirati per il pubblico dell'hinterland milanese. Campagne Meta e Linke
 Non siamo una web agency generica. Ecco cosa ci distingue dalle alternative — e perché le aziende dell'hinterland milanese ci scelgono.
 
 ### ✦ Codice 100% Custom — Zero WordPress
-Ogni sito WebNovis è costruito con codice proprietario: HTML5, CSS3, JavaScript . Performance superiori (Lighthouse 95-100), nessuna vulnerabilità da plugin, SEO tecnica integrata nativamente. Il codice è tuo, per sempre.
+Ogni sito WebNovis è costruito con codice proprietario: HTML5, CSS3, JavaScript . Architettura custom, dipendenze controllate, verifiche tecniche sul singolo progetto e SEO integrata nativamente. Il codice è tuo, per sempre.
 
 ### ✦ Agenzia Locale — Sede a Rho
-Via S. Giorgio 2, 20017 Rho (MI). Incontri di persona o in videochiamata. Risposta garantita entro 2 ore lavorative . Il fondatore segue ogni progetto personalmente — nessun intermediario, nessun account manager rotante.
+Via S. Giorgio 2, 20017 Rho (MI). Canali di confronto, referenti e tempi di risposta vengono definiti nella proposta in base al progetto.
 
 ### ✦ Strategia Prima del Design
 Non apriamo Figma prima di aver capito i tuoi obiettivi. Analisi del mercato, studio dei competitor locali, definizione dei KPI. Solo dopo progettiamo. Il sito è lo strumento — la strategia è il piano di gioco .
@@ -4511,7 +4501,7 @@ Wireframe e mockup ad alta fedeltà. Architettura dell'informazione, gerarchia v
 3
 
 ### Sviluppo e Test
-Codice custom HTML5/CSS3/JS, ottimizzazione delle performance, test cross-browser e cross-device. Ogni pagina viene verificata su Lighthouse per garantire punteggi 95+.
+Codice custom HTML5/CSS3/JS, ottimizzazione delle performance, test cross-browser e cross-device. Ogni pagina viene verificata con test di performance; obiettivi e risultati dipendono da contenuti, integrazioni, hosting e dispositivo.
 
 4
 
@@ -4521,7 +4511,7 @@ Configurazione hosting, certificato SSL, implementazione Schema.org, invio sitem
 5
 
 ### Monitoraggio e Crescita
-30 giorni di supporto gratuito inclusi. Report mensili su traffico, posizionamento e conversioni. Iterazioni continue per migliorare i risultati nel tempo.
+Il perimetro dell'assistenza post-lancio viene definito nella proposta. Report mensili su traffico, posizionamento e conversioni. Iterazioni continue per migliorare i risultati nel tempo.
 
 ## Quanto costa realizzare un sito web a Bollate
 Trasparenza sui costi è un segno di professionalità. Ecco le nostre fasce di prezzo per i progetti più richiesti.
@@ -4541,19 +4531,18 @@ Da €3.500
 Il prezzo finale dipende dalla complessità del progetto: numero di pagine, funzionalità integrate, quantità di contenuti e livello di ottimizzazione SEO richiesto. Il preventivo è sempre gratuito, dettagliato e senza impegno.
 
 ## Realizziamo siti web per aziende di Bollate e dell'hinterland milanese
-La nostra sede è a Rho , ma serviamo aziende e professionisti di tutto il territorio circostante.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
 URL: https://www.webnovis.com/realizzazione-siti-web-legnano.html
 TITOLO: Realizzazione siti web a Legnano: da €1.200 e SEO | WebNovis
-DESCRIZIONE: Siti web a Legnano per PMI, artigiani e professionisti: codice custom, SEO integrata, performance e preventivo gratuito entro 24 ore.
+DESCRIZIONE: Siti web a Legnano per PMI, artigiani e professionisti: codice custom, SEO integrata, performance e richiesta di preventivo senza impegno.
 
 Home / Servizi / realizzazione siti web a Legnano
 Realizzazione siti web a Legnano · da €1.200 · SEO integrata
 
 # Realizzazione siti web a Legnano per PMI, artigiani e professionisti
-WebNovis realizza siti web a Legnano con codice custom, SEO tecnica e percorsi di contatto chiari. Landing da €500 , siti vetrina da €1.200 ed e-commerce da €3.500 , con preventivo gratuito entro 24 ore.
+WebNovis realizza siti web a Legnano con codice custom, SEO tecnica e percorsi di contatto chiari. Landing da €500 , siti vetrina da €1.200 ed e-commerce da €3.500 ; la proposta conferma perimetro, prezzo e tempistiche.
 Richiedi Preventivo Gratuito 23 luglio 2026 · Legnano, Milano (MI) 20025 · Tempo di lettura: 8 min
 
 ## Perché la tua azienda a Legnano ha bisogno di un sito web professionale
@@ -4567,7 +4556,7 @@ La differenza tra un sito che "c'è" e un sito che lavora per te 24/7 sta nella 
 A Legnano il sito deve aiutare a distinguersi in un mercato locale molto attivo: offerta, prova, prezzi indicativi e CTA devono essere leggibili subito.
 
 ### Siti Web Professionali su Misura
-Design personalizzato, codice proprietario, performance Lighthouse 95+. Ogni sito è un progetto unico, costruito sulle reali esigenze della tua azienda a Legnano. Da €1.200 . Scopri →
+Design personalizzato, codice proprietario e performance misurate sul singolo progetto. Ogni sito è un progetto unico, costruito sulle reali esigenze della tua azienda a Legnano. Da €1.200 . Scopri →
 
 ### E-Commerce per Attività Locali
 Zero commissioni sulle vendite, catalogo illimitato, pagamenti sicuri (Stripe, PayPal). Il tuo negozio online, senza vincoli. Da €3.500 . Scopri →
@@ -4579,7 +4568,7 @@ Pagine progettate per campagne Google Ads e Meta Ads. Massimo impatto, minimo te
 Posizionamento su Google per le ricerche geolocalizzate: "servizio + Rho", "attività + hinterland milanese". Visibilità dove conta davvero. Scopri →
 
 ### Graphic Design e Brand Identity
-Logo, coordinato aziendale, materiali di comunicazione. Un'identità visiva coerente che ti distingue nel territorio. Da €400 . Scopri →
+Logo, coordinato aziendale, materiali di comunicazione. Un'identità visiva coerente che ti distingue nel territorio. Da €250 . Scopri →
 
 ### Social Media Marketing
 Contenuti mirati per il pubblico dell'hinterland milanese. Campagne Meta e LinkedIn con targeting locale. Da €300/mese . Scopri →
@@ -4588,10 +4577,10 @@ Contenuti mirati per il pubblico dell'hinterland milanese. Campagne Meta e Linke
 Non siamo una web agency generica. Ecco cosa ci distingue dalle alternative — e perché le aziende dell'hinterland milanese ci scelgono.
 
 ### ✦ Codice 100% Custom — Zero WordPress
-Ogni sito WebNovis è costruito con codice proprietario: HTML5, CSS3, JavaScript . Performance superiori (Lighthouse 95-100), nessuna vulnerabilità da plugin, SEO tecnica integrata nativamente. Il codice è tuo, per sempre.
+Ogni sito WebNovis è costruito con codice proprietario: HTML5, CSS3, JavaScript . Architettura custom, dipendenze controllate, verifiche tecniche sul singolo progetto e SEO integrata nativamente. Il codice è tuo, per sempre.
 
 ### ✦ Agenzia Locale — Sede a Rho
-Via S. Giorgio 2, 20017 Rho (MI). Incontri di persona o in videochiamata. Risposta garantita entro 2 ore lavorative . Il fondatore segue ogni progetto personalmente — nessun intermediario, nessun account manager rotante.
+Via S. Giorgio 2, 20017 Rho (MI). Canali di confronto, referenti e tempi di risposta vengono definiti nella proposta in base al progetto.
 
 ### ✦ Strategia Prima del Design
 Non apriamo Figma prima di aver capito i tuoi obiettivi. Analisi del mercato, studio dei competitor locali, definizione dei KPI. Solo dopo progettiamo. Il sito è lo strumento — la strategia è il piano di gioco .
@@ -4614,7 +4603,7 @@ Wireframe e mockup ad alta fedeltà. Architettura dell'informazione, gerarchia v
 3
 
 ### Sviluppo e Test
-Codice custom HTML5/CSS3/JS, ottimizzazione delle performance, test cross-browser e cross-device. Ogni pagina viene verificata su Lighthouse per garantire punteggi 95+.
+Codice custom HTML5/CSS3/JS, ottimizzazione delle performance, test cross-browser e cross-device. Ogni pagina viene verificata con test di performance; obiettivi e risultati dipendono da contenuti, integrazioni, hosting e dispositivo.
 
 4
 
@@ -4624,7 +4613,7 @@ Configurazione hosting, certificato SSL, implementazione Schema.org, invio sitem
 5
 
 ### Monitoraggio e Crescita
-30 giorni di supporto gratuito inclusi. Report mensili su traffico, posizionamento e conversioni. Iterazioni continue per migliorare i risultati nel tempo.
+Il perimetro dell'assistenza post-lancio viene definito nella proposta. Report mensili su traffico, posizionamento e conversioni. Iterazioni continue per migliorare i risultati nel tempo.
 
 ## Quanto costa realizzare un sito web a Legnano
 Trasparenza sui costi è un segno di professionalità. Ecco le nostre fasce di prezzo per i progetti più richiesti.
@@ -4644,19 +4633,19 @@ Da €3.500
 Il prezzo finale dipende dalla complessità del progetto: numero di pagine, funzionalità integrate, quantità di contenuti e livello di ottimizzazione SEO richiesto. Il preventivo è sempre gratuito, dettagliato e senza impegno.
 
 ## Realizziamo siti web per aziende di Legnano e dell'hinterland milanese
-La nostra sede è a Rho , ma serviamo aziende e professionisti di tutto il territorio circostante. La prossimità geografica ci permette di offrire incontri di persona rapidi , conoscenza diretta del mercato locale e supporto immediato.
+La nostra sede è a Rho , ma serviamo aziende e professionisti di tutto il territorio circostante.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
 URL: https://www.webnovis.com/realizzazione-siti-web-milano-ovest.html
-TITOLO: Siti Web a Milano Ovest: da €1.200, SEO integrata | WebNovis
-DESCRIZIONE: Realizzazione siti web a Milano Ovest per PMI e professionisti: landing da €500, siti vetrina da €1.200, e-commerce da €3.500. Preventivo gratuito entro 24 ore.
+TITOLO: Siti Web a Milano Ovest: da €1200, SEO integrata | WebNovis
+DESCRIZIONE: Realizzazione siti web a Milano Ovest per PMI e professionisti: landing da €500, siti vetrina da €1200, e-commerce da €3500. Richiedi un preventivo gratuito.
 
 Home / Servizi / realizzazione siti web a Milano Ovest
-Siti Web Milano Ovest · preventivo in 24 ore
+Siti Web Milano Ovest · preventivo personalizzato
 
 # Realizzazione Siti Web a Milano Ovest per PMI e professionisti
-Cerchi una web agency a Milano Ovest per creare un sito che trasmetta valore e porti richieste concrete? WebNovis realizza landing page da €500 , siti vetrina da €1.200 ed e-commerce da €3.500 , con codice 100% custom , SEO tecnica integrata e gestione diretta da Rho (21 min).
+Cerchi una web agency a Milano Ovest per creare un sito che trasmetta valore e porti richieste concrete? WebNovis realizza landing page da €500 , siti vetrina da €1200 ed e-commerce da €3500 , con codice 100% custom , SEO tecnica integrata e gestione diretta da Rho (21 min).
 Richiedi Preventivo Gratuito 23 luglio 2026 · Milano Ovest, Milano (MI) 20151 · Tempo di lettura: 8 min
 
 ## Perché la tua azienda a Milano Ovest ha bisogno di un sito web professionale
@@ -4670,7 +4659,7 @@ La differenza tra un sito che "c'è" e un sito che lavora per te 24/7 sta nella 
 Un unico partner per tutta la tua strategia digitale — dalla prima idea alla crescita continua.
 
 ### Siti Web Professionali su Misura
-Design personalizzato, codice proprietario, performance Lighthouse 95+. Ogni sito è un progetto unico, costruito sulle reali esigenze della tua azienda a Milano Ovest. Da €1.200 . Scopri →
+Design personalizzato, codice proprietario e performance misurate sul singolo progetto. Ogni sito è un progetto unico, costruito sulle reali esigenze della tua azienda a Milano Ovest. Da €1.200 . Scopri →
 
 ### E-Commerce per Attività Locali
 Zero commissioni sulle vendite, catalogo illimitato, pagamenti sicuri (Stripe, PayPal). Il tuo negozio online, senza vincoli. Da €3.500 . Scopri →
@@ -4682,7 +4671,7 @@ Pagine progettate per campagne Google Ads e Meta Ads. Massimo impatto, minimo te
 Posizionamento su Google per le ricerche geolocalizzate: "servizio + Rho", "attività + hinterland milanese". Visibilità dove conta davvero. Scopri →
 
 ### Graphic Design e Brand Identity
-Logo, coordinato aziendale, materiali di comunicazione. Un'identità visiva coerente che ti distingue nel territorio. Da €400 . Scopri →
+Logo, coordinato aziendale, materiali di comunicazione. Un'identità visiva coerente che ti distingue nel territorio. Da €250 . Scopri →
 
 ### Social Media Marketing
 Contenuti mirati per il pubblico dell'hinterland milanese. Campagne Meta e LinkedIn con targeting locale. Da €300/mese . Scopri →
@@ -4691,10 +4680,10 @@ Contenuti mirati per il pubblico dell'hinterland milanese. Campagne Meta e Linke
 Non siamo una web agency generica. Ecco cosa ci distingue dalle alternative — e perché le aziende dell'hinterland milanese ci scelgono.
 
 ### ✦ Codice 100% Custom — Zero WordPress
-Ogni sito WebNovis è costruito con codice proprietario: HTML5, CSS3, JavaScript . Performance superiori (Lighthouse 95-100), nessuna vulnerabilità da plugin, SEO tecnica integrata nativamente. Il codice è tuo, per sempre.
+Ogni sito WebNovis è costruito con codice proprietario: HTML5, CSS3, JavaScript . Architettura custom, dipendenze controllate, verifiche tecniche sul singolo progetto e SEO integrata nativamente. Il codice è tuo, per sempre.
 
 ### ✦ Agenzia Locale — Sede a Rho
-Via S. Giorgio 2, 20017 Rho (MI). Incontri di persona o in videochiamata. Risposta garantita entro 2 ore lavorative . Il fondatore segue ogni progetto personalmente — nessun intermediario, nessun account manager rotante.
+Via S. Giorgio 2, 20017 Rho (MI). Canali di confronto, referenti e tempi di risposta vengono definiti nella proposta in base al progetto.
 
 ### ✦ Strategia Prima del Design
 Non apriamo Figma prima di aver capito i tuoi obiettivi. Analisi del mercato, studio dei competitor locali, definizione dei KPI. Solo dopo progettiamo. Il sito è lo strumento — la strategia è il piano di gioco .
@@ -4717,7 +4706,7 @@ Wireframe e mockup ad alta fedeltà. Architettura dell'informazione, gerarchia v
 3
 
 ### Sviluppo e Test
-Codice custom HTML5/CSS3/JS, ottimizzazione delle performance, test cross-browser e cross-device. Ogni pagina viene verificata su Lighthouse per garantire punteggi 95+.
+Codice custom HTML5/CSS3/JS, ottimizzazione delle performance, test cross-browser e cross-device. Ogni pagina viene verificata con test di performance; obiettivi e risultati dipendono da contenuti, integrazioni, hosting e dispositivo.
 
 4
 
@@ -4727,7 +4716,7 @@ Configurazione hosting, certificato SSL, implementazione Schema.org, invio sitem
 5
 
 ### Monitoraggio e Crescita
-30 giorni di supporto gratuito inclusi. Report mensili su traffico, posizionamento e conversioni. Iterazioni continue per migliorare i risultati nel tempo.
+Il perimetro dell'assistenza post-lancio viene definito nella proposta. Report mensili su traffico, posizionamento e conversioni. Iterazioni continue per migliorare i risultati nel tempo.
 
 ## Quanto costa realizzare un sito web a Milano Ovest
 Trasparenza sui costi è un segno di professionalità. Ecco le nostre fasce di prezzo per i progetti più richiesti.
@@ -4773,7 +4762,7 @@ La differenza tra un sito che "c'è" e un sito che lavora per te 24/7 sta nella 
 Un unico partner per tutta la tua strategia digitale — dalla prima idea alla crescita continua.
 
 ### Siti Web Professionali su Misura
-Design personalizzato, codice proprietario, performance Lighthouse 95+. Ogni sito è un progetto unico, costruito sulle reali esigenze della tua azienda a Rho. Da €1.200 . Scopri →
+Design personalizzato, codice proprietario e performance misurate sul singolo progetto. Ogni sito è un progetto unico, costruito sulle reali esigenze della tua azienda a Rho. Da €1.200 . Scopri →
 
 ### E-Commerce per Attività Locali
 Zero commissioni sulle vendite, catalogo illimitato, pagamenti sicuri (Stripe, PayPal). Il tuo negozio online, senza vincoli. Da €3.500 . Scopri →
@@ -4785,7 +4774,7 @@ Pagine progettate per campagne Google Ads e Meta Ads. Massimo impatto, minimo te
 Posizionamento su Google per le ricerche geolocalizzate: "servizio + Rho", "attività + hinterland milanese". Visibilità dove conta davvero. Scopri →
 
 ### Graphic Design e Brand Identity
-Logo, coordinato aziendale, materiali di comunicazione. Un'identità visiva coerente che ti distingue nel territorio. Da €400 . Scopri →
+Logo, coordinato aziendale, materiali di comunicazione. Un'identità visiva coerente che ti distingue nel territorio. Da €250 . Scopri →
 
 ### Social Media Marketing
 Contenuti mirati per il pubblico dell'hinterland milanese. Campagne Meta e LinkedIn con targeting locale. Da €300/mese . Scopri →
@@ -4794,10 +4783,10 @@ Contenuti mirati per il pubblico dell'hinterland milanese. Campagne Meta e Linke
 Non siamo una web agency generica. Ecco cosa ci distingue dalle alternative — e perché le aziende dell'hinterland milanese ci scelgono.
 
 ### ✦ Codice 100% Custom — Zero WordPress
-Ogni sito WebNovis è costruito con codice proprietario: HTML5, CSS3, JavaScript . Performance superiori (Lighthouse 95-100), nessuna vulnerabilità da plugin, SEO tecnica integrata nativamente. Il codice è tuo, per sempre.
+Ogni sito WebNovis è costruito con codice proprietario: HTML5, CSS3, JavaScript . Architettura custom, dipendenze controllate, verifiche tecniche sul singolo progetto e SEO integrata nativamente. Il codice è tuo, per sempre.
 
 ### ✦ Agenzia Locale — Sede a Rho
-Via S. Giorgio 2, 20017 Rho (MI). Incontri di persona o in videochiamata. Risposta garantita entro 2 ore lavorative . Il fondatore segue ogni progetto personalmente — nessun intermediario, nessun account manager rotante.
+Via S. Giorgio 2, 20017 Rho (MI). Canali di confronto, referenti e tempi di risposta vengono definiti nella proposta in base al progetto.
 
 ### ✦ Strategia Prima del Design
 Non apriamo Figma prima di aver capito i tuoi obiettivi. Analisi del mercato, studio dei competitor locali, definizione dei KPI. Solo dopo progettiamo. Il sito è lo strumento — la strategia è il piano di gioco .
@@ -4820,7 +4809,7 @@ Wireframe e mockup ad alta fedeltà. Architettura dell'informazione, gerarchia v
 3
 
 ### Sviluppo e Test
-Codice custom HTML5/CSS3/JS, ottimizzazione delle performance, test cross-browser e cross-device. Ogni pagina viene verificata su Lighthouse per garantire punteggi 95+.
+Codice custom HTML5/CSS3/JS, ottimizzazione delle performance, test cross-browser e cross-device. Ogni pagina viene verificata con test di performance; obiettivi e risultati dipendono da contenuti, integrazioni, hosting e dispositivo.
 
 4
 
@@ -4830,7 +4819,7 @@ Configurazione hosting, certificato SSL, implementazione Schema.org, invio sitem
 5
 
 ### Monitoraggio e Crescita
-30 giorni di supporto gratuito inclusi. Report mensili su traffico, posizionamento e conversioni. Iterazioni continue per migliorare i risultati nel tempo.
+Il perimetro dell'assistenza post-lancio viene definito nella proposta. Report mensili su traffico, posizionamento e conversioni. Iterazioni continue per migliorare i risultati nel tempo.
 
 ## Quanto costa realizzare un sito web a Rho
 Trasparenza sui costi è un segno di professionalità. Ecco le nostre fasce di prezzo per i progetti più richiesti.
@@ -4894,11 +4883,11 @@ A Arese (20.000 abitanti) i settori che beneficiano maggiormente di seo locale e
 
 ### Prezzo
 
-Da €400/mese — preventivo personalizzato gratuito entro 24 ore per la tua attività a Arese.
+Da €400/mese . La cifra è indicativa: perimetro, prezzo e tempistiche vengono confermati nella proposta personalizzata.
 
 ### Tempi
 
-3-6 mesi per risultati — dal brief iniziale alla consegna, con un unico interlocutore dedicato.
+Stima indicativa: 3-6 mesi per risultati . La proposta conferma calendario, dipendenze e revisioni previste.
 
 ### Ideale per
 
@@ -4942,7 +4931,7 @@ Arese è conosciuta per Il Centro, uno dei centri commerciali più grandi d'Euro
 
 Con 20.000 abitanti e un'area commerciale che attira visitatori da tutta la Lombardia, Arese offre un mercato ricco per attività locali e e-commerce. Le ricerche locali come "negozio online Arese", "web designer Arese" e "sito web per attività Arese" hanno competizione quasi inesistente — un'opportunità concreta per chi investe ora.
 
-Le attività di Arese che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Con prezzi a partire da €400/mese e tempi di 3-6 mesi per risultati , WebNovis offre un percorso concreto verso la crescita digitale.
+Le attività di Arese che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Prezzo e durata partono da stime indicative — €400/mese e 3-6 mesi per risultati — da confermare nella proposta in base al perimetro.
 
 Punti di riferimento del territorio: Il Centro — uno dei centri commerciali più grandi d'Europa , Museo Storico Alfa Romeo — La macchina del tempo , Hub commerciale e retail .
 
@@ -4983,8 +4972,6 @@ Ottimizziamo i segnali on-page che aiutano Google a leggere meglio servizio, cit
 Supportiamo organizzazione del profilo, materiali essenziali e un processo più ordinato per richiesta e gestione delle recensioni.
 
 ### Report e lettura dei risultati
-
-Ti lasciamo dati leggibili su query locali, richieste e attività eseguite per capire se il lavoro sta davvero portando visibilità utile.
 
 […contenuto completo sulla pagina…]
 
@@ -5029,11 +5016,11 @@ A Cinisello Balsamo (76.000 abitanti) i settori che beneficiano maggiormente di 
 
 ### Prezzo
 
-Da €400/mese — preventivo personalizzato gratuito entro 24 ore per la tua attività a Cinisello Balsamo.
+Da €400/mese . La cifra è indicativa: perimetro, prezzo e tempistiche vengono confermati nella proposta personalizzata.
 
 ### Tempi
 
-3-6 mesi per risultati — dal brief iniziale alla consegna, con un unico interlocutore dedicato.
+Stima indicativa: 3-6 mesi per risultati . La proposta conferma calendario, dipendenze e revisioni previste.
 
 ### Ideale per
 
@@ -5077,7 +5064,7 @@ Cinisello Balsamo è un comune di 76.000 abitanti nell'hinterland milanese. Cent
 
 Le attività di Cinisello Balsamo operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona.
 
-Le attività di Cinisello Balsamo che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Con prezzi a partire da €400/mese e tempi di 3-6 mesi per risultati , WebNovis offre un percorso concreto verso la crescita digitale.
+Le attività di Cinisello Balsamo che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Prezzo e durata partono da stime indicative — €400/mese e 3-6 mesi per risultati — da confermare nella proposta in base al perimetro.
 
 Punti di riferimento del territorio: Centro culturale Il Pertini , Hub commerciale nord Milano .
 
@@ -5168,11 +5155,11 @@ A Garbagnate Milanese (28.000 abitanti) i settori che beneficiano maggiormente d
 
 ### Prezzo
 
-Da €400/mese — preventivo personalizzato gratuito entro 24 ore per la tua attività a Garbagnate Milanese.
+Da €400/mese . La cifra è indicativa: perimetro, prezzo e tempistiche vengono confermati nella proposta personalizzata.
 
 ### Tempi
 
-3-6 mesi per risultati — dal brief iniziale alla consegna, con un unico interlocutore dedicato.
+Stima indicativa: 3-6 mesi per risultati . La proposta conferma calendario, dipendenze e revisioni previste.
 
 ### Ideale per
 
@@ -5216,7 +5203,7 @@ Comune industriale e residenziale nel cuore dell'hinterland Nord di Milano. La l
 
 Le ricerche "web agency Garbagnate", "sito web artigiano Garbagnate" e "e-commerce Garbagnate Milanese" hanno volume in crescita e competizione quasi nulla — chi investe ora cattura il mercato locale.
 
-Le attività di Garbagnate Milanese che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Con prezzi a partire da €400/mese e tempi di 3-6 mesi per risultati , WebNovis offre un percorso concreto verso la crescita digitale.
+Le attività di Garbagnate Milanese che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Prezzo e durata partono da stime indicative — €400/mese e 3-6 mesi per risultati — da confermare nella proposta in base al perimetro.
 
 Punti di riferimento del territorio: Linea ferroviaria S2 Passante Milano , Ospedale Salvini — polo sanitario , Zona industriale sud con PMI meccaniche .
 
@@ -5301,11 +5288,11 @@ A Lainate (26.000 abitanti) i settori che beneficiano maggiormente di seo locale
 
 ### Prezzo
 
-Da €400/mese — preventivo personalizzato gratuito entro 24 ore per la tua attività a Lainate.
+Da €400/mese . La cifra è indicativa: perimetro, prezzo e tempistiche vengono confermati nella proposta personalizzata.
 
 ### Tempi
 
-3-6 mesi per risultati — dal brief iniziale alla consegna, con un unico interlocutore dedicato.
+Stima indicativa: 3-6 mesi per risultati . La proposta conferma calendario, dipendenze e revisioni previste.
 
 ### Ideale per
 
@@ -5349,7 +5336,7 @@ Centro industriale e commerciale vivace nel Nord-Ovest milanese. L'autostrada A8
 
 Il mercato digitale di Lainate presenta opportunità significative: molte attività locali non hanno ancora un sito web moderno o utilizzano soluzioni obsolete. Investire in un sito professionale con SEO locale permette di emergere nelle ricerche della zona e di attrarre clienti da Lainate, Arese, Rho e i comuni della direttrice autostradale.
 
-Le attività di Lainate che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Con prezzi a partire da €400/mese e tempi di 3-6 mesi per risultati , WebNovis offre un percorso concreto verso la crescita digitale.
+Le attività di Lainate che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Prezzo e durata partono da stime indicative — €400/mese e 3-6 mesi per risultati — da confermare nella proposta in base al perimetro.
 
 Punti di riferimento del territorio: Villa Litta con il celebre Ninfeo barocco , Autostrada A8 Milano–Laghi , Zona industriale attiva .
 
@@ -5438,11 +5425,11 @@ A Parabiago (28.000 abitanti) i settori che beneficiano maggiormente di seo loca
 
 ### Prezzo
 
-Da €400/mese — preventivo personalizzato gratuito entro 24 ore per la tua attività a Parabiago.
+Da €400/mese . La cifra è indicativa: perimetro, prezzo e tempistiche vengono confermati nella proposta personalizzata.
 
 ### Tempi
 
-3-6 mesi per risultati — dal brief iniziale alla consegna, con un unico interlocutore dedicato.
+Stima indicativa: 3-6 mesi per risultati . La proposta conferma calendario, dipendenze e revisioni previste.
 
 ### Ideale per
 
@@ -5486,7 +5473,7 @@ Parabiago è un comune di 28.000 abitanti nell'hinterland milanese, a pochi minu
 
 Le attività di Parabiago operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona.
 
-Le attività di Parabiago che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Con prezzi a partire da €400/mese e tempi di 3-6 mesi per risultati , WebNovis offre un percorso concreto verso la crescita digitale.
+Le attività di Parabiago che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Prezzo e durata partono da stime indicative — €400/mese e 3-6 mesi per risultati — da confermare nella proposta in base al perimetro.
 
 Punti di riferimento del territorio: Distretto calzaturiero storico , Villa Corvini .
 
@@ -5577,11 +5564,11 @@ A Rho (51.000 abitanti) i settori che beneficiano maggiormente di seo locale e p
 
 ### Prezzo
 
-Da €400/mese — preventivo personalizzato gratuito entro 24 ore per la tua attività a Rho.
+Da €400/mese . La cifra è indicativa: perimetro, prezzo e tempistiche vengono confermati nella proposta personalizzata.
 
 ### Tempi
 
-3-6 mesi per risultati — dal brief iniziale alla consegna, con un unico interlocutore dedicato.
+Stima indicativa: 3-6 mesi per risultati . La proposta conferma calendario, dipendenze e revisioni previste.
 
 ### Ideale per
 
@@ -5625,7 +5612,7 @@ Hub fieristico internazionale con forte tessuto PMI manifatturiero, terziario e 
 
 Rho è il punto di accesso al polo fieristico più grande d'Europa. Le attività locali che investono in un sito professionale intercettano sia il traffico locale che quello fieristico internazionale — un doppio bacino di clientela che pochi competitor stanno presidiando.
 
-Le attività di Rho che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Con prezzi a partire da €400/mese e tempi di 3-6 mesi per risultati , WebNovis offre un percorso concreto verso la crescita digitale.
+Le attività di Rho che investono in seo locale e posizionamento possono intercettare la domanda locale e distinguersi dai competitor. Prezzo e durata partono da stime indicative — €400/mese e 3-6 mesi per risultati — da confermare nella proposta in base al perimetro.
 
 Punti di riferimento del territorio: Polo fieristico Fiera Milano , Santuario della Beata Vergine Addolorata , Stazione ferroviaria RFI e linee S5/S6 .
 
@@ -5671,14 +5658,12 @@ Ti lasciamo dati leggibili su query locali, richieste e attività eseguite per c
 
 ## Ricerche locali che presidiamo a Rho
 
-L'obiettivo è comparire meglio dove l'intento è vicino al contatto o alla visita, non inseguire keyword lontane dal bisogno reale.
-
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
 URL: https://www.webnovis.com/sito-vetrina-arese.html
 TITOLO: Sito Vetrina a Arese: sito professionale da €1200 | WebNovis
-DESCRIZIONE: Sito vetrina a Arese con design custom, SEO integrata e struttura orientata ai contatti. Da €1200. Preventivo gratuito entro 24 ore.
+DESCRIZIONE: Sito vetrina a Arese con design custom, SEO integrata e struttura orientata ai contatti. Da €1200. Richiedi un preventivo gratuito.
 
 Home
 /
@@ -5716,11 +5701,11 @@ A Arese (20.000 abitanti) i settori che beneficiano maggiormente di sito web vet
 
 ### Prezzo
 
-Da €1200 — preventivo personalizzato gratuito entro 24 ore per la tua attività a Arese.
+Da €1200 . La cifra è indicativa: perimetro, prezzo e tempistiche vengono confermati nella proposta personalizzata.
 
 ### Tempi
 
-2-3 settimane — dal brief iniziale alla consegna, con un unico interlocutore dedicato.
+Stima indicativa: 2-3 settimane . La proposta conferma calendario, dipendenze e revisioni previste.
 
 ### Ideale per
 
@@ -5764,7 +5749,7 @@ Arese è conosciuta per Il Centro, uno dei centri commerciali più grandi d'Euro
 
 Con 20.000 abitanti e un'area commerciale che attira visitatori da tutta la Lombardia, Arese offre un mercato ricco per attività locali e e-commerce. Le ricerche locali come "negozio online Arese", "web designer Arese" e "sito web per attività Arese" hanno competizione quasi inesistente — un'opportunità concreta per chi investe ora.
 
-Le attività di Arese che investono in sito web vetrina possono intercettare la domanda locale e distinguersi dai competitor. Con prezzi a partire da €1200 e tempi di 2-3 settimane , WebNovis offre un percorso concreto verso la crescita digitale.
+Le attività di Arese che investono in sito web vetrina possono intercettare la domanda locale e distinguersi dai competitor. Prezzo e durata partono da stime indicative — €1200 e 2-3 settimane — da confermare nella proposta in base al perimetro.
 
 Punti di riferimento del territorio: Il Centro — uno dei centri commerciali più grandi d'Europa , Museo Storico Alfa Romeo — La macchina del tempo , Hub commerciale e retail .
 
@@ -5842,7 +5827,7 @@ Consulenze
 €80
 1-2 ore
 
-Prezzi IVA esclusa. Preventivo gratuito personalizzato entro 24 ore. Ultimo aggiornamento: 23 luglio 2026.
+Prezzi indicativi, IVA esclusa. La proposta personalizzata conferma perimetro, prezzo e tempistiche. Ultimo aggiornamento: 23 luglio 2026.
 
 ## Domande Frequenti — Sito Vetrina a Arese
 
@@ -5864,5 +5849,4 @@ Sì. Integriamo SEO tecnica, dati strutturati Schema.org (LocalBusiness, Service
 Posso gestire il sito in autonomia dopo il lancio?
 Sì. Forniamo formazione e, dove serve, un pannello di gestione contenuti semplice. Per chi preferisce affidarsi a noi, offriamo piani di manutenzione continuativa da €59/mese.
 
-Cosa include il supporto post-lancio?
 […contenuto completo sulla pagina…]

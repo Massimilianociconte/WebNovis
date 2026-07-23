@@ -19,6 +19,7 @@
 const fs = require('fs');
 const path = require('path');
 const { TIER1_INDEXABLE_GEO_PATHS } = require('../config/pseo-governance');
+const { findUnsupportedPublishedClaims } = require('../config/content-claim-governance');
 
 const ROOT = path.join(__dirname, '..');
 const SITE_URL = 'https://www.webnovis.com';
@@ -36,6 +37,7 @@ const CORE_PAGES = [
 function listServicePages() {
   return fs.readdirSync(path.join(ROOT, 'servizi'))
     .filter((f) => f.endsWith('.html'))
+    .sort()
     .map((f) => path.posix.join('servizi', f));
 }
 
@@ -112,18 +114,27 @@ function extractText(html) {
   return s;
 }
 
+function assertClaimSafe(value, sourceLabel) {
+  const findings = findUnsupportedPublishedClaims(value);
+  if (findings.length === 0) return;
+
+  const details = findings
+    .map((finding) => `${finding.id}: ${finding.excerpt.replace(/\s+/g, ' ').slice(0, 180)}`)
+    .join(' | ');
+  throw new Error(`⛔ Unsupported published claim in ${sourceLabel} — ${details}`);
+}
+
 function buildSection(relPath) {
   const fsPath = path.join(ROOT, relPath);
   if (!fs.existsSync(fsPath)) {
-    console.warn(`⚠️  pagina mancante, salto: ${relPath}`);
-    return '';
+    throw new Error(`⛔ Missing configured llms-full source page: ${relPath}`);
   }
   const html = fs.readFileSync(fsPath, 'utf8');
   const url = relPath === 'index.html' ? `${SITE_URL}/` : `${SITE_URL}/${relPath}`;
   const title = extractTitle(html);
   const description = extractDescription(html);
   const text = extractText(html);
-  return [
+  const section = [
     '----------------------------------------',
     `URL: ${url}`,
     title ? `TITOLO: ${title}` : '',
@@ -132,14 +143,23 @@ function buildSection(relPath) {
     text,
     ''
   ].filter((l) => l !== null).join('\n');
+  assertClaimSafe(section, relPath);
+  return section;
 }
 
 function main() {
   const llmsIndex = fs.readFileSync(path.join(ROOT, 'llms.txt'), 'utf8');
   const headerAbstract = llmsIndex.split('\n').slice(0, 4).join('\n').trim();
+  assertClaimSafe(headerAbstract, 'llms.txt header');
 
   const pages = [...CORE_PAGES, ...listServicePages(), ...tier1Pages()];
-  const sections = pages.map(buildSection).filter(Boolean);
+  if (new Set(pages).size !== pages.length) {
+    throw new Error('⛔ Duplicate configured source page in llms-full export');
+  }
+  const sections = pages.map(buildSection);
+  if (sections.length !== pages.length) {
+    throw new Error(`⛔ llms-full section mismatch: expected ${pages.length}, built ${sections.length}`);
+  }
 
   const out = [
     '# WebNovis — llms-full.txt',
@@ -147,15 +167,16 @@ function main() {
     '# Formato sperimentale: non garantisce crawling, indicizzazione, ranking o citazioni.',
     '# Le pagine HTML canoniche restano la fonte da consultare e verificare.',
     `# Indice sintetico: ${SITE_URL}/llms.txt — Dati strutturati: ${SITE_URL}/webnovis-ai-data.json`,
-    `# Generato automaticamente da scripts/generate-llms-full.js — ${new Date().toISOString().slice(0, 10)}`,
+    '# Generato automaticamente da scripts/generate-llms-full.js',
     '',
     headerAbstract,
     '',
     ...sections
   ].join('\n');
 
+  assertClaimSafe(out, 'llms-full.txt final export');
   fs.writeFileSync(path.join(ROOT, 'llms-full.txt'), out, 'utf8');
-  console.log(`✅ llms-full.txt generato: ${pages.length} pagine, ${(out.length / 1024).toFixed(0)} KB`);
+  console.log(`✅ llms-full.txt generato: ${sections.length} pagine, ${(out.length / 1024).toFixed(0)} KB`);
 }
 
 main();

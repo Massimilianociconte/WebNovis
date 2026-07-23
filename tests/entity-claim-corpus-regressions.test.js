@@ -206,6 +206,21 @@ function main() {
   }
 
   const publicHtml = listPublicHtml();
+  const publicEditorialExports = [
+    'llms.txt',
+    'llms-full.txt',
+    'ai.txt',
+    'webnovis-ai-data.json'
+  ];
+  const unexpectedEditorialExportClaims = publicEditorialExports.flatMap((relativePath) =>
+    findUnsupportedPublishedClaims(read(relativePath)).map((finding) => ({ relativePath, ...finding }))
+  );
+  assert.deepEqual(
+    unexpectedEditorialExportClaims,
+    [],
+    `public AI/LLM exports must pass the same published-claim denylist: ${JSON.stringify(unexpectedEditorialExportClaims)}`
+  );
+
   const rawCommercial24HourPattern = /(?:preventiv\w*|rispost\w*|propost\w*|rispond\w*|analisi\s+personalizzata|report\s+dettagliato|(?:ri)?contatt\w*)[^.!?]{0,180}(?:entro|in)\s+24\s*(?:h|ore)\b/gi;
   const editorial24HourAllowlist = new Map();
   const rawCommercialScanTargets = [...new Set([
@@ -218,7 +233,8 @@ function main() {
     'js/chat.min.js',
     'server.js',
     'search-index.json',
-    'search-ai-index.json'
+    'search-ai-index.json',
+    ...publicEditorialExports
   ])].sort();
   const unexpectedRaw24HourClaims = [];
   const observedEditorial24HourClaims = [];
