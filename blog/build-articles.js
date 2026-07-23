@@ -6409,15 +6409,14 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     ]
   };
 
-  const personSchema = {
+  const authorOrganizationSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Person',
+    '@type': 'Organization',
     '@id': AUTHOR_PROFILE.id,
     name: AUTHOR_PROFILE.name,
     url: AUTHOR_PROFILE.url,
     image: AUTHOR_PROFILE.image,
-    jobTitle: 'Digital Strategy Team',
-    memberOf: { '@id': `${SITE_URL}/#organization` },
+    parentOrganization: { '@id': `${SITE_URL}/#organization` },
     sameAs: AUTHOR_PROFILE.sameAs,
     knowsAbout: AUTHOR_PROFILE.knowsAbout
   };
@@ -6626,7 +6625,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <script src="../js/search.min.js?v=2.2" defer></script>
     <script src="../js/footer-widgets-loader.js" defer></script>
     <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
-    <script type="application/ld+json">${JSON.stringify(personSchema)}</script>
+    <script type="application/ld+json">${JSON.stringify(authorOrganizationSchema)}</script>
     <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
 </body>
 </html>`;

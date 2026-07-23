@@ -6,8 +6,6 @@
       "type": "agenzia",
       "city": "Arese",
       "linksTo": [
-        "/seo-locale-arese.html",
-        "/sito-vetrina-arese.html",
         "/agenzia-web-garbagnate.html",
         "/agenzia-web-bollate.html",
         "/agenzia-web-rho.html"
@@ -28,7 +26,6 @@
       "type": "agenzia",
       "city": "Bollate",
       "linksTo": [
-        "/realizzazione-siti-web-bollate.html",
         "/agenzia-web-novate-milanese.html",
         "/agenzia-web-baranzate.html",
         "/agenzia-web-arese.html"
@@ -49,7 +46,6 @@
       "type": "agenzia",
       "city": "Cinisello Balsamo",
       "linksTo": [
-        "/seo-locale-cinisello-balsamo.html",
         "/agenzia-web-sesto-san-giovanni.html",
         "/agenzia-web-milano-nord.html",
         "/agenzia-web-monza.html"
@@ -70,7 +66,6 @@
       "type": "agenzia",
       "city": "Garbagnate Milanese",
       "linksTo": [
-        "/seo-locale-garbagnate.html",
         "/agenzia-web-arese.html",
         "/agenzia-web-lainate.html",
         "/agenzia-web-bollate.html"
@@ -81,7 +76,6 @@
       "type": "agenzia",
       "city": "Lainate",
       "linksTo": [
-        "/seo-locale-lainate.html",
         "/agenzia-web-garbagnate.html",
         "/agenzia-web-arese.html",
         "/agenzia-web-rho.html"
@@ -92,7 +86,6 @@
       "type": "agenzia",
       "city": "Legnano",
       "linksTo": [
-        "/realizzazione-siti-web-legnano.html",
         "/agenzia-web-castellanza.html",
         "/agenzia-web-parabiago.html",
         "/agenzia-web-lainate.html"
@@ -113,7 +106,6 @@
       "type": "agenzia",
       "city": "Milano Ovest",
       "linksTo": [
-        "/realizzazione-siti-web-milano-ovest.html",
         "/agenzia-web-milano.html",
         "/agenzia-web-pero.html",
         "/agenzia-web-milano-nord.html"
@@ -173,10 +165,7 @@
       "url": "/agenzia-web-rho.html",
       "type": "agenzia",
       "city": "Rho",
-      "linksTo": [
-        "/seo-locale-rho.html",
-        "/realizzazione-siti-web-rho.html"
-      ]
+      "linksTo": []
     },
     {
       "url": "/agenzia-web-saronno.html",
@@ -794,9 +783,9 @@
       "city": "Arese",
       "service": "sito-vetrina",
       "linksTo": [
-        "/seo-locale-arese.html",
         "/ecommerce-arese.html",
         "/landing-page-arese.html",
+        "/seo-locale-arese.html",
         "/sito-vetrina-bollate.html",
         "/sito-vetrina-lainate.html",
         "/sito-vetrina-legnano.html",

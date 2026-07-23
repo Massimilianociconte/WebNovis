@@ -28,6 +28,14 @@ const path = require('path');
 const nunjucks = require('nunjucks');
 const { removeSchemaReviewProperties } = require('./seo-aggregate-rating');
 const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
+const { normalizeEntityJsonLd } = require('../config/entity-facts');
+const { normalizeReviewActionMarkup } = require('../config/site-footer');
+const {
+    loadApprovedContentBlocks,
+    preserveGovernedCustomBlocks,
+    readApprovedContentBlock,
+    stripUnapprovedTier1EditorialBlocks
+} = require('../config/content-claim-governance');
 const {
     getIndexationDirectivesForPath,
     getIndexableGeoPaths,
@@ -155,7 +163,8 @@ function finalizePublishedHtml(relativePath, html) {
     const preserved = preserveCustomBlocks(targetPath, html).replace(/^\uFEFF/, '');
     const normalizedPath = String(relativePath).replace(/\\/g, '/');
     const transformed = applySeoHtmlTransforms(preserved, normalizedPath);
-    const crawlSafe = removeDeamplifiedGeoAnchors(transformed, normalizedPath);
+    const entitySafe = normalizeEntityJsonLd(normalizeReviewActionMarkup(transformed));
+    const crawlSafe = removeDeamplifiedGeoAnchors(entitySafe, normalizedPath);
     return normalizeGeneratedRuntimeScripts(crawlSafe, normalizedPath);
 }
 
@@ -224,6 +233,31 @@ const cities = citiesData.cities;
 const services = servicesData.services;
 const coreServices = services.filter(s => s.tier === 'core');
 const offerCatalogServices = services.filter((service) => service.hasPage === true);
+const serviceBySlug = new Map(services.map((service) => [service.slug, service]));
+
+function buildCatalogOffer(slug) {
+    const service = serviceBySlug.get(slug);
+    if (!service) throw new Error(`Missing canonical service price source for ${slug}`);
+    return {
+        "@type": "Offer",
+        "name": service.name,
+        "price": String(service.priceFrom),
+        "priceCurrency": service.priceCurrency
+    };
+}
+
+function formatServicePrice(service) {
+    if (!service || !Number.isFinite(Number(service.priceFrom))) {
+        throw new Error(`Missing canonical service price source for ${service?.slug || 'unknown service'}`);
+    }
+    return `€${Number(service.priceFrom).toLocaleString('it-IT')}${service.priceUnit || ''}`;
+}
+
+function formatCatalogPrice(slug) {
+    const service = serviceBySlug.get(slug);
+    if (!service) throw new Error(`Missing canonical service price source for ${slug}`);
+    return formatServicePrice(service);
+}
 
 // Centralized predicate: does this service participate in geo generation?
 // - `skipGeoGeneration: true` (new) explicitly opts out (used for deprecated clusters like consulenza-digitale)
@@ -236,7 +270,9 @@ function shouldGenerateGeoForService(service) {
     return true;
 }
 
-const tableServices = services.filter(s => s.tier === 'core' || shouldGenerateGeoForService(s));
+const tableServices = services
+    .filter(s => s.tier === 'core' || shouldGenerateGeoForService(s))
+    .map((service) => ({ ...service, priceDisplay: formatServicePrice(service) }));
 const sede = citiesData._meta.sede;
 const serviceCoverageCitySlugs = new Set(
     cities.filter((city) => city.generate?.agenzia).map((city) => city.slug)
@@ -269,17 +305,11 @@ function getGeoSearchModifier(city) {
 
 // Load AI-generated content blocks (from generate-ai-content.js)
 const CONTENT_BLOCKS_DIR = path.join(ROOT, 'data', 'content-blocks');
-const contentBlocks = new Map();
-if (fs.existsSync(CONTENT_BLOCKS_DIR)) {
-    for (const file of fs.readdirSync(CONTENT_BLOCKS_DIR).filter(f => f.endsWith('.json'))) {
-        try {
-            const slug = file.replace('.json', '');
-            contentBlocks.set(slug, JSON.parse(fs.readFileSync(path.join(CONTENT_BLOCKS_DIR, file), 'utf8')));
-        } catch (e) { /* skip malformed content blocks */ }
-    }
-}
+const contentBlocks = loadApprovedContentBlocks(CONTENT_BLOCKS_DIR, { includeTier1: false });
 if (contentBlocks.size > 0) {
-    console.log(`  AI content blocks loaded: ${contentBlocks.size} cities`);
+    console.log(`  Approved content blocks loaded: ${contentBlocks.size} cities`);
+} else if (fs.existsSync(CONTENT_BLOCKS_DIR)) {
+    console.log('  Approved content blocks loaded: 0 (draft/unverified blocks suppressed)');
 }
 
 // Load blog search index for cross-linking (optional)
@@ -416,27 +446,9 @@ function buildFaqPageSchema(resolvedFaqs) {
     };
 }
 
-const CUSTOM_BLOCK_REGEX = /<!-- CUSTOM:([a-z0-9-]+):START -->([\s\S]*?)<!-- CUSTOM:\1:END -->/gi;
-
-function extractCustomBlocks(html = '') {
-    const blocks = new Map();
-    for (const match of html.matchAll(CUSTOM_BLOCK_REGEX)) {
-        blocks.set(match[1].toLowerCase(), match[2]);
-    }
-    return blocks;
-}
-
 function preserveCustomBlocks(targetPath, nextHtml) {
     if (!nextHtml || !fs.existsSync(targetPath)) return nextHtml;
-
-    const existingBlocks = extractCustomBlocks(fs.readFileSync(targetPath, 'utf8'));
-    if (existingBlocks.size === 0) return nextHtml;
-
-    return nextHtml.replace(CUSTOM_BLOCK_REGEX, (fullMatch, blockName) => {
-        const preservedContent = existingBlocks.get(String(blockName).toLowerCase());
-        if (preservedContent == null) return fullMatch;
-        return `<!-- CUSTOM:${blockName}:START -->${preservedContent}<!-- CUSTOM:${blockName}:END -->`;
-    });
+    return preserveGovernedCustomBlocks(fs.readFileSync(targetPath, 'utf8'), nextHtml);
 }
 
 function countWords(text) {
@@ -553,11 +565,11 @@ function getServiceLocalSeoCopy(service, city) {
 
     const fallback = {
         title: `${service.shortName} a ${city.name}: da ${price} | WebNovis`,
-        description: `${service.shortDesc} A ${city.name}, da ${price}. Gestione diretta da Rho (${city.distanzaSede}) e preventivo gratuito entro 24 ore.`,
+        description: `${service.shortDesc} A ${city.name}, da ${price}. Gestione diretta da Rho (${city.distanzaSede}) e richiesta di preventivo gratuita.`,
         ogDescription: `${service.shortDesc} A ${city.name}, da ${price}.`,
         heroTag: `${service.shortName} per ${city.name} · ${price}`,
         heroH1: `${service.shortName} a ${city.name} per aziende e professionisti`,
-        heroCapsule: `<strong>WebNovis</strong> offre ${service.shortName.toLowerCase()} a ${city.name} con un approccio su misura, tempi chiari e gestione diretta da Rho (${city.distanzaSede}). Investimento da <strong>${price}</strong> e preventivo gratuito entro 24 ore.`,
+        heroCapsule: `<strong>WebNovis</strong> offre ${service.shortName.toLowerCase()} a ${city.name} con un approccio su misura, tempi chiari e gestione diretta da Rho (${city.distanzaSede}). Investimento da <strong>${price}</strong> e richiesta di preventivo gratuita.`,
         heroHighlights: [
             { label: 'Investimento', value: `Da ${price}` },
             { label: 'Tempi', value: service.timeEstimate },
@@ -607,7 +619,7 @@ function getServiceLocalSeoCopy(service, city) {
                 },
                 {
                     title: '2. Piano operativo',
-                    text: `Definiamo attività, tempistiche, KPI e budget con un preventivo chiaro entro 24 ore.`
+                    text: `Definiamo attività, tempistiche, KPI e budget in una proposta chiara prima dell'avvio.`
                 },
                 {
                     title: '3. Monitoraggio e ottimizzazione',
@@ -638,7 +650,7 @@ function getServiceLocalSeoCopy(service, city) {
         intentQueriesIntro: '',
         intentQueries: [],
         ctaTitle: `${service.shortName} per la tua attività a ${city.name}?`,
-        ctaCopy: `Scrivici obiettivo, settore e tempistiche: ti rispondiamo con un preventivo gratuito entro 24 ore.`,
+        ctaCopy: `Scrivici obiettivo, settore e tempistiche: riceverai un primo riscontro con i passaggi utili per definire il preventivo.`,
         primaryPageUrl: primaryUrl,
         primaryPageLabel: primaryLabel,
         schemaDescription: `${service.shortDesc} Per aziende e professionisti di ${city.name}, con gestione diretta da Rho (${city.distanzaSede}).`
@@ -647,7 +659,7 @@ function getServiceLocalSeoCopy(service, city) {
     const overrides = {
         'landing-page': {
             title: `Landing Page a ${city.name}: lead generation da ${price} | WebNovis`,
-            description: `Landing page a ${city.name} per Google Ads, Meta Ads ed eventi: copy, design e tracking orientati ai lead. Da ${price}. Preventivo in 24 ore.`,
+            description: `Landing page a ${city.name} per Google Ads, Meta Ads ed eventi: copy, design e tracking orientati ai lead. Da ${price}. Richiedi una valutazione.`,
             ogDescription: `Landing page a ${city.name} pensate per aumentare richieste e conversioni. Da ${price}.`,
             heroTag: `Landing Page · ${city.name} · ${price}`,
             heroH1: `Landing Page a ${city.name} per campagne che portano contatti`,
@@ -675,12 +687,12 @@ function getServiceLocalSeoCopy(service, city) {
             ],
             processIntro: `Partiamo da offerta, pubblico e canale di traffico. Poi costruiamo una landing che renda la conversione più semplice e misurabile.`,
             ctaTitle: `Vuoi una landing page che trasformi clic in contatti a ${city.name}?`,
-            ctaCopy: `Mandaci obiettivo, canale e offerta: ti rispondiamo con struttura consigliata e preventivo entro 24 ore.`,
+            ctaCopy: `Mandaci obiettivo, canale e offerta: riceverai un primo riscontro per definire struttura e preventivo.`,
             schemaDescription: `Landing page a ${city.name} per campagne Google Ads, Meta Ads ed eventi, con copy, design e tracking orientati ai lead.`
         },
         'sito-vetrina': {
             title: `Sito Vetrina a ${city.name}: sito professionale da ${price} | WebNovis`,
-            description: `Sito vetrina a ${city.name} con design custom, SEO integrata e struttura orientata ai contatti. Da ${price}. Preventivo gratuito entro 24 ore.`,
+            description: `Sito vetrina a ${city.name} con design custom, SEO integrata e struttura orientata ai contatti. Da ${price}. Richiedi un preventivo gratuito.`,
             ogDescription: `Sito vetrina a ${city.name} con design custom e SEO integrata. Da ${price}.`,
             heroTag: `Sito Vetrina · ${city.name} · ${price}`,
             heroH1: `Sito Vetrina a ${city.name} per aziende che vogliono più richieste`,
@@ -693,7 +705,7 @@ function getServiceLocalSeoCopy(service, city) {
             sectionTitle: `Siti vetrina a ${city.name} per presentare bene l'offerta e farsi scegliere`,
             sectionIntro: `Un sito vetrina funziona quando rende chiari posizionamento, servizi e differenze rispetto ai competitor. Strutturiamo pagine, contenuti e CTA per aiutare le aziende di ${city.name} a generare richieste più qualificate.`,
             ctaTitle: `Vuoi un sito vetrina che faccia percepire meglio il tuo valore a ${city.name}?`,
-            ctaCopy: `Possiamo aiutarti con struttura, copy e UX orientati ai contatti: preventivo gratuito entro 24 ore.`,
+            ctaCopy: `Possiamo aiutarti con struttura, copy e UX orientati ai contatti: richiedi un preventivo gratuito.`,
             schemaDescription: `Sito vetrina a ${city.name} con design personalizzato, SEO integrata e architettura orientata ai contatti.`
         },
         ecommerce: {
@@ -789,7 +801,7 @@ function getServiceLocalSeoCopy(service, city) {
                 `creazione shop online ${city.name}`
             ],
             ctaTitle: `Vuoi un e-commerce più credibile e più facile da far crescere a ${city.name}?`,
-            ctaCopy: `Scrivici catalogo, obiettivi e complessità operativa: ti rispondiamo con un perimetro chiaro e un preventivo entro 24 ore.`,
+            ctaCopy: `Scrivici catalogo, obiettivi e complessità operativa: riceverai un primo riscontro per definire perimetro e preventivo.`,
             schemaDescription: `E-commerce custom a ${city.name} con catalogo, checkout, pagamenti e SEO tecnica per aziende che vogliono vendere online.`
         },
         'social-media': {
@@ -812,7 +824,7 @@ function getServiceLocalSeoCopy(service, city) {
         },
         accessibilita: {
             title: `Accessibilità Web a ${city.name}: audit EAA da ${price} | WebNovis`,
-            description: `Accessibilità web a ${city.name}: audit WCAG, adeguamento EAA e supporto operativo per siti aziendali. Da ${price}. Preventivo in 24 ore.`,
+            description: `Accessibilità web a ${city.name}: audit WCAG, adeguamento EAA e supporto operativo per siti aziendali. Da ${price}. Richiedi una valutazione.`,
             ogDescription: `Audit accessibilità e adeguamento EAA/WCAG a ${city.name}. Da ${price}.`,
             heroTag: `Accessibilità Web · ${city.name} · ${price}`,
             heroH1: `Accessibilità Web a ${city.name}: audit WCAG e adeguamento EAA`,
@@ -1431,14 +1443,17 @@ function getServiceLocalSeoCopy(service, city) {
 }
 
 function getRealizzazioneSeoCopy(city) {
+    const landingPrice = formatCatalogPrice('landing-page');
+    const websitePrice = formatCatalogPrice('sito-vetrina');
+    const ecommercePrice = formatCatalogPrice('ecommerce');
     return {
-        title: `Siti Web a ${city.name}: da €1.200, SEO integrata | WebNovis`,
-        description: `Realizzazione siti web a ${city.name} per PMI e professionisti: landing da €500, siti vetrina da €1.200, e-commerce da €3.500. Preventivo gratuito entro 24 ore.`,
-        ogTitle: `Realizzazione Siti Web a ${city.name}: preventivo in 24 ore | WebNovis`,
+        title: `Siti Web a ${city.name}: da ${websitePrice}, SEO integrata | WebNovis`,
+        description: `Realizzazione siti web a ${city.name} per PMI e professionisti: landing da ${landingPrice}, siti vetrina da ${websitePrice}, e-commerce da ${ecommercePrice}. Richiedi un preventivo gratuito.`,
+        ogTitle: `Realizzazione Siti Web a ${city.name}: richiedi un preventivo | WebNovis`,
         ogDescription: `Siti web custom a ${city.name} con SEO tecnica integrata, design orientato ai contatti e gestione diretta da Rho (${city.distanzaSede}).`,
-        heroTag: `Siti Web ${city.name} · preventivo in 24 ore`,
+        heroTag: `Siti Web ${city.name} · preventivo personalizzato`,
         heroH1: `Realizzazione Siti Web a ${city.name} per PMI e professionisti`,
-        heroCapsule: `Cerchi una <strong>web agency a ${city.name}</strong> per creare un sito che trasmetta valore e porti richieste concrete? WebNovis realizza landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con <strong>codice 100% custom</strong>, SEO tecnica integrata e gestione diretta da Rho (${city.distanzaSede}).`
+        heroCapsule: `Cerchi una <strong>web agency a ${city.name}</strong> per creare un sito che trasmetta valore e porti richieste concrete? WebNovis realizza landing page da <strong>${landingPrice}</strong>, siti vetrina da <strong>${websitePrice}</strong> ed e-commerce da <strong>${ecommercePrice}</strong>, con <strong>codice 100% custom</strong>, SEO tecnica integrata e gestione diretta da Rho (${city.distanzaSede}).`
     };
 }
 
@@ -1460,7 +1475,7 @@ function getAgenziaSeoCopy(city) {
     if (city.isSede) {
         return {
             title: `Agenzia Web a ${city.name} (Milano) — WebNovis | Siti Web Custom, Grafica e Social`,
-            description: `WebNovis è l'agenzia web con sede a Rho: siti custom per PMI tra Fiera Milano, servizi B2B e hinterland. Preventivo gratuito entro 24 ore.`,
+            description: `WebNovis è l'agenzia web con sede a Rho: siti custom per PMI tra Fiera Milano, servizi B2B e hinterland. Richiedi un preventivo gratuito.`,
             ogTitle: `Agenzia Web a ${city.name} — WebNovis | Siti Web Custom e Digital Marketing`,
             ogDescription: `WebNovis è l'agenzia web con sede a Rho per PMI, professionisti e attività dell'hinterland. Siti custom, grafica e social con gestione diretta.`,
             keywords: `agenzia web ${city.name}, web agency ${city.name} ${searchModifier}, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}`
@@ -1469,7 +1484,7 @@ function getAgenziaSeoCopy(city) {
 
     return {
         title: `Agenzia Web a ${city.name} (${city.province || 'MI'}) — WebNovis | Siti Web Custom, Grafica e Social`,
-        description: `Agenzia web per ${city.name}: siti custom per ${differentiator}. Sede a Rho, ${city.distanzaSede}. Preventivo gratuito entro 24 ore.`,
+        description: `Agenzia web per ${city.name}: siti custom per ${differentiator}. Sede a Rho, ${city.distanzaSede}. Richiedi un preventivo gratuito.`,
         ogTitle: `Agenzia Web a ${city.name} — WebNovis | Siti Web Custom e Digital Marketing`,
         ogDescription: `WebNovis è l'agenzia web per ${city.name}: siti custom, grafica e social per realtà locali legate a ${differentiator}. Sede a Rho, ${city.distanzaSede}.`,
         keywords: `agenzia web ${city.name}, web agency ${city.name} ${searchModifier}, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}`
@@ -1563,11 +1578,7 @@ function generateSchemas(city, pageType, resolvedFaqs) {
                     }
                 }))
             },
-            "offers": [
-                { "@type": "Offer", "name": "Landing Page", "price": "500", "priceCurrency": "EUR" },
-                { "@type": "Offer", "name": "Sito Vetrina", "price": "1200", "priceCurrency": "EUR" },
-                { "@type": "Offer", "name": "E-Commerce Custom", "price": "3500", "priceCurrency": "EUR" }
-            ]
+            "offers": ['landing-page', 'sito-vetrina', 'ecommerce'].map(buildCatalogOffer)
         },
         ...coreServices.map((service) => ({
             "@context": "https://schema.org",
@@ -1618,7 +1629,12 @@ function normalizeHandCraftedTailWhitespace(html) {
 
 function normalizeHandCraftedAgenziaPage(html, resolvedFaqs) {
     let faqSchemaWritten = false;
-    let normalized = html.replace(
+    // Older generator runs could leave a Tier 1 override embedded in this
+    // hand-crafted page. Carry it forward only when its source JSON passes the
+    // same provenance gate used by all generated GEO pages.
+    const tier1Path = path.join(ROOT, 'data', 'content-blocks', 'tier1-rho-agenzia-web.json');
+    const approvedBlockKeys = readApprovedContentBlock(tier1Path) ? ['rho-agenzia-web'] : [];
+    let normalized = stripUnapprovedTier1EditorialBlocks(html, { approvedBlockKeys }).replace(
         /<script type="application\/ld\+json">\s*([\s\S]*?)<\/script>/gi,
         (fullMatch, json) => {
             try {
@@ -1769,9 +1785,7 @@ function generateAgenziaPage(city) {
     if (agenziaTier === 1) {
         const tier1Path = path.join(ROOT, 'data', 'content-blocks', `tier1-${city.slug}-agenzia-web.json`);
         if (fs.existsSync(tier1Path)) {
-            try {
-                agenziaTier1Content = JSON.parse(fs.readFileSync(tier1Path, 'utf8'));
-            } catch (e) { /* malformed tier1 override, fall back to standard content */ }
+            agenziaTier1Content = readApprovedContentBlock(tier1Path);
         }
     }
 
@@ -1797,8 +1811,8 @@ function generateAgenziaPage(city) {
                 ? `Agenzia Web a ${city.name}: Siti Custom, Grafica e Social per l'Hinterland Milanese`
                 : `Agenzia Web a ${city.name}: Siti Professionali per Imprese e Professionisti`,
             heroCapsule: city.isSede
-                ? `<strong>WebNovis</strong> è l'agenzia web con sede a Rho per PMI e professionisti dell'hinterland milanese. Codice 100% custom — zero WordPress, zero template. Preventivo gratuito entro 24 ore.`
-                : `<strong>WebNovis</strong> è l'agenzia web di riferimento per PMI e professionisti di ${city.name}. Sede a Rho (${city.distanzaSede} in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Preventivo gratuito entro 24 ore.`,
+                ? `<strong>WebNovis</strong> è l'agenzia web con sede a Rho per PMI e professionisti dell'hinterland milanese. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.`
+                : `<strong>WebNovis</strong> è l'agenzia web di riferimento per PMI e professionisti di ${city.name}. Sede a Rho (${city.distanzaSede} in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.`,
             section1Title: ctx.highlights
                 ? `Perché un'agenzia web vicina è un vantaggio per le imprese di ${city.name}?`
                 : `Perché scegliere un'agenzia web locale a ${city.name}?`,
@@ -1817,8 +1831,8 @@ function generateAgenziaPage(city) {
                         : `Conosciamo il tessuto imprenditoriale di ${city.name} e i bisogni digitali delle PMI locali.`
                 },
                 {
-                    h3: 'Risposta in 2 ore lavorative',
-                    p: 'Il fondatore segue ogni progetto. Nessun call center, nessun account manager. Comunicazione diretta e tempi di risposta garantiti.'
+                    h3: 'Comunicazione e responsabilità chiare',
+                    p: 'Referenti, canali di confronto e tempi di risposta vengono definiti nella proposta, in base al perimetro e alle priorità del progetto.'
                 }
             ],
             section3Title: `${city.name} e il contesto imprenditoriale: perché investire nel digitale`,
@@ -2027,10 +2041,8 @@ function generateRealizzazionePage(city) {
     if (realizzazioneTier === 1) {
         const tier1Path = path.join(ROOT, 'data', 'content-blocks', `tier1-${city.slug}-realizzazione-siti-web.json`);
         if (fs.existsSync(tier1Path)) {
-            try {
-                const tier1 = JSON.parse(fs.readFileSync(tier1Path, 'utf8'));
-                tier1Html = buildTier1SectionHtml(tier1);
-            } catch (e) { /* fall back to standard content */ }
+            const tier1 = readApprovedContentBlock(tier1Path);
+            if (tier1) tier1Html = buildTier1SectionHtml(tier1);
         }
     }
 
@@ -2142,25 +2154,25 @@ function generateServizioCittaPage(service, city) {
 
     // ─── Service-specific FAQ pools (5-7 FAQs per cluster type) ──────────
     const webDevFaqPool = [
-        { q: `Usate WordPress per ${service.name.toLowerCase()}?`, a: `No. Ogni progetto WebNovis è sviluppato con codice 100% custom (HTML5, CSS3, JavaScript). Questo garantisce performance superiori, sicurezza nativa e SEO ottimizzato senza dipendere da plugin o template preconfezionati.` },
-        { q: `Come garantite la velocità del sito a ${city.name}?`, a: `Ogni sito è sviluppato con codice leggero e ottimizzato per i Core Web Vitals: LCP < 2.5s, INP < 200ms, CLS < 0.1. Testiamo su connessioni 3G e 4G per garantire caricamenti rapidi anche da mobile nella zona di ${city.name}.` },
+        { q: `Usate WordPress per ${service.name.toLowerCase()}?`, a: `No. WebNovis propone sviluppo custom con HTML, CSS e JavaScript, senza dipendere da temi o plugin WordPress. Architettura, requisiti di sicurezza e verifiche SEO vengono definiti per il singolo progetto.` },
+        { q: `Come affrontate la velocità del sito a ${city.name}?`, a: `Progettiamo pagine leggere e verifichiamo i Core Web Vitals su layout e dispositivi rappresentativi. Obiettivi, misure e interventi dipendono dai contenuti e dalle integrazioni concordate: non pubblichiamo un punteggio universale garantito.` },
         { q: `Il sito sarà ottimizzato per le ricerche locali a ${city.name}?`, a: `Sì. Integriamo SEO tecnica, dati strutturati Schema.org (LocalBusiness, Service), meta tag geo-specifici e contenuti ottimizzati per intercettare ricerche come "${service.shortName.toLowerCase()} ${city.name}" e varianti correlate.` },
         { q: `Posso gestire il sito in autonomia dopo il lancio?`, a: `Sì. Forniamo formazione e, dove serve, un pannello di gestione contenuti semplice. Per chi preferisce affidarsi a noi, offriamo piani di manutenzione continuativa da €59/mese.` },
-        { q: `Cosa include il supporto post-lancio?`, a: `30 giorni di supporto gratuito inclusi. Successivamente, piani di manutenzione da €59/mese con aggiornamenti, backup automatici, monitoraggio uptime e interventi prioritari.` }
+        { q: `Cosa include il supporto post-lancio?`, a: `Perimetro, durata e canali del supporto vengono indicati nella proposta. Se serve continuità operativa, il catalogo prevede anche un servizio di manutenzione da €${serviceBySlug.get('manutenzione-sito').priceFrom}/mese, da confermare nel preventivo.` }
     ];
     const marketingFaqPool = [
         { q: `Come misurate i risultati di ${service.name.toLowerCase()} a ${city.name}?`, a: `Definiamo KPI specifici prima di partire (lead, conversioni, traffico qualificato) e forniamo report periodici con dati reali. Ogni decisione operativa è guidata dai numeri, non da intuizioni.` },
-        { q: `Quanto tempo serve per vedere risultati con ${service.shortName.toLowerCase()}?`, a: `I primi segnali misurabili arrivano in 4-8 settimane per attività paid (Google Ads, social ads). Per attività organiche (SEO, content), i risultati consolidati richiedono 3-6 mesi di lavoro costante.` },
+        { q: `Quanto tempo serve per valutare ${service.shortName.toLowerCase()}?`, a: `La finestra di valutazione dipende da canale, storico, budget, domanda e qualità del tracciamento. Prima di partire definiamo baseline e KPI; tempi e risultati non vengono garantiti in anticipo.` },
         { q: `Lavorate solo con aziende grandi o anche con piccole attività di ${city.name}?`, a: `Lavoriamo con PMI, professionisti e attività locali di ${city.name}. Il nostro approccio è scalabile: partiamo da budget contenuti e cresciamo con i risultati. Investimento da €${service.priceFrom}${service.priceUnit || ''}.` },
-        { q: `Posso interrompere il servizio se non funziona?`, a: `Sì. Non vincoliamo con contratti annuali obbligatori. Lavoriamo mese per mese con report trasparenti, così puoi valutare i risultati e decidere in autonomia.` },
-        { q: `Come vi differenziate dalle altre agenzie per ${service.shortName.toLowerCase()}?`, a: `Tre differenze concrete: codice e strategie 100% custom (zero template), reportistica trasparente con KPI reali, e gestione diretta da Rho (${city.distanzaSede} da ${city.name}) senza intermediari.` }
+        { q: `Come vengono definiti durata e recesso del servizio?`, a: `Durata, rinnovi ed eventuale recesso dipendono dalla proposta accettata. Chiedi che questi elementi, insieme a deliverable e report, siano indicati per iscritto prima dell'avvio.` },
+        { q: `Come posso confrontare WebNovis con altre agenzie per ${service.shortName.toLowerCase()}?`, a: `Confronta perimetro, deliverable, responsabilità, accesso ai dati e metodo di misurazione. WebNovis lavora da Rho e chiarisce questi elementi nella proposta, senza promettere risultati non misurabili in anticipo.` }
     ];
     const strategyFaqPool = [
         { q: `Come funziona il servizio di ${service.name.toLowerCase()} con WebNovis?`, a: `Partiamo da un brief iniziale per capire obiettivi, contesto competitivo e priorità. Poi definiamo un piano operativo con tempi (${service.timeEstimate}), investimento (da €${service.priceFrom}${service.priceUnit || ''}) e un unico referente dedicato.` },
         { q: `La consulenza può essere fatta in videochiamata o serve un incontro di persona?`, a: `Entrambe le opzioni. Per le aziende di ${city.name} possiamo incontrarci in sede vostra o nella nostra sede a Rho (${city.distanzaSede}). Per chi preferisce, lavoriamo efficacemente anche in videochiamata.` },
         { q: `Cosa ricevo concretamente alla fine del percorso?`, a: `Deliverable chiari e azionabili: documento con priorità, raccomandazioni operative, metriche di riferimento e prossimi passi. Non teoria astratta, ma indicazioni eseguibili dal tuo team o con il nostro supporto.` },
         { q: `Posso poi affidarvi anche la realizzazione di quanto emerso dalla consulenza?`, a: `Sì. Se dalla consulenza emergono interventi che vuoi affidare a WebNovis (sito, SEO, automazioni), possiamo gestirli con continuità senza perdere il contesto già acquisito.` },
-        { q: `Vale la pena investire in ${service.shortName.toLowerCase()} per una piccola attività di ${city.name}?`, a: `Spesso è proprio la piccola attività locale a trarre il vantaggio maggiore: meno burocrazia interna, decisioni rapide, e un impatto visibile già dalle prime settimane. Investimento da €${service.priceFrom}${service.priceUnit || ''}.` }
+        { q: `Vale la pena investire in ${service.shortName.toLowerCase()} per una piccola attività di ${city.name}?`, a: `Dipende da obiettivo, margini, capacità operativa e alternative disponibili. Il prezzo di catalogo parte da €${service.priceFrom}${service.priceUnit || ''}, ma utilità e perimetro vanno valutati sul caso concreto prima di procedere.` }
     ];
 
     // Select the right FAQ pool based on service cluster
@@ -2171,7 +2183,7 @@ function generateServizioCittaPage(service, city) {
 
     // Build final FAQ list: 2 universal + 5 cluster-specific
     const faqs = [
-        { q: `Quanto costa ${service.name.toLowerCase()} a ${city.name}?`, a: `${service.name} a ${city.name}: da <strong>€${service.priceFrom}${service.priceUnit || ''}</strong>. Tempi: ${service.timeEstimate}. Preventivo gratuito personalizzato entro 24 ore.` },
+        { q: `Quanto costa ${service.name.toLowerCase()} a ${city.name}?`, a: `${service.name} a ${city.name}: prezzo di catalogo da <strong>€${service.priceFrom}${service.priceUnit || ''}</strong>. La stima ${service.timeEstimate.toLowerCase()} è indicativa; il preventivo conferma perimetro, prezzo e tempi del caso specifico.` },
         { q: `WebNovis è vicina a ${city.name}?`, a: `La nostra sede è a Rho, Via S. Giorgio 2 — ${city.distanzaSede} in auto da ${city.name}. Incontriamo i clienti in azienda o in videochiamata.` },
         ...faqPool
     ];
@@ -2194,9 +2206,7 @@ function generateServizioCittaPage(service, city) {
     if (tier === 1) {
         const tier1Path = path.join(ROOT, 'data', 'content-blocks', `tier1-${city.slug}-${service.slug}.json`);
         if (fs.existsSync(tier1Path)) {
-            try {
-                tier1Content = JSON.parse(fs.readFileSync(tier1Path, 'utf8'));
-            } catch (e) { /* malformed tier1 override, fall back to standard content */ }
+            tier1Content = readApprovedContentBlock(tier1Path);
         }
     }
 

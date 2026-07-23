@@ -13,6 +13,7 @@
     "build:search-index:dist": "node build-search-index.js --out-dir=dist",
     "build:sitemap": "node generate-sitemap.js",
     "build:llms": "node scripts/generate-llms-index.js",
+    "build:ai-exports": "node scripts/generate-ai-exports.js",
     "build:llms-full": "node scripts/generate-llms-full.js",
     "audit:geo": "node scripts/audit-indexable-geo.js",
     "build:sitemap:dist": "node generate-sitemap.js --out-dir=dist",

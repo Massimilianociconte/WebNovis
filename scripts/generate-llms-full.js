@@ -2,10 +2,9 @@
 /**
  * generate-llms-full.js — Genera llms-full.txt da single source.
  *
- * llms.txt è l'indice sintetico per gli LLM; llms-full.txt (standard emergente,
- * preferito da Perplexity e altri motori generativi) contiene il CONTENUTO
- * COMPLETO delle pagine chiave in testo semplice, così un LLM può citare il
- * sito senza dover fare crawling delle singole pagine HTML.
+ * llms.txt è l'indice sintetico; llms-full.txt è un export editoriale
+ * sperimentale delle pagine chiave in testo semplice. Non è uno standard
+ * ufficiale dei motori e non implica benefici di crawling, ranking o citazione.
  *
  * Fonti (nessuna duplicazione manuale dei fatti):
  *   - llms.txt           → header/abstract del brand
@@ -144,8 +143,9 @@ function main() {
 
   const out = [
     '# WebNovis — llms-full.txt',
-    '# Contenuto completo in testo semplice delle pagine principali di www.webnovis.com,',
-    '# pensato per LLM e motori di ricerca generativi (ChatGPT, Claude, Perplexity, Gemini).',
+    '# Export editoriale in testo semplice delle pagine principali di www.webnovis.com.',
+    '# Formato sperimentale: non garantisce crawling, indicizzazione, ranking o citazioni.',
+    '# Le pagine HTML canoniche restano la fonte da consultare e verificare.',
     `# Indice sintetico: ${SITE_URL}/llms.txt — Dati strutturati: ${SITE_URL}/webnovis-ai-data.json`,
     `# Generato automaticamente da scripts/generate-llms-full.js — ${new Date().toISOString().slice(0, 10)}`,
     '',

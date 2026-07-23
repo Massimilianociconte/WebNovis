@@ -16,10 +16,17 @@ const {
   ALL_INDEXABLE_GEO_PATHS,
   TIER1_INDEXABLE_GEO_PATHS
 } = require('../config/pseo-governance');
+const { ENTITY_FACTS } = require('../config/entity-facts');
+const servicesCatalog = require('../data/services.json');
 
 const ROOT = path.join(__dirname, '..');
-const SITE = 'https://www.webnovis.com';
+const SITE = ENTITY_FACTS.siteUrl;
 const OUT = path.join(ROOT, 'llms.txt');
+const serviceBySlug = new Map(servicesCatalog.services.map((service) => [service.slug, service]));
+
+function formatPrice(service) {
+  return `€${Number(service.priceFrom).toLocaleString('it-IT')}${service.priceUnit || ''}`;
+}
 
 function readTitle(filePath) {
   try {
@@ -63,6 +70,14 @@ function build() {
   const sitemapCount = countSitemapUrls();
   const agenzia = listIndexableAgenzia();
   const tier1Count = TIER1_INDEXABLE_GEO_PATHS.size;
+  const exportedServices = servicesCatalog.services.filter((service) => service.hasPage === true);
+  const serviceLines = exportedServices.map((service) =>
+    `- [${service.name}](${SITE}${service.url}): ${service.shortDesc} Prezzo iniziale indicativo da ${formatPrice(service)}; il preventivo conferma il caso specifico.`
+  );
+  const priceLines = ['landing-page', 'sito-vetrina', 'ecommerce', 'graphic-design', 'social-media', 'accessibilita', 'consulenze']
+    .map((slug) => serviceBySlug.get(slug))
+    .filter(Boolean)
+    .map((service) => `- ${service.name}: da ${formatPrice(service)}`);
 
   const localLines = agenzia.map((p) => {
     const file = p.replace(/^\//, '');
@@ -70,8 +85,8 @@ function build() {
     const city = cityLabelFromSlug(slug);
     const isRho = slug === 'rho';
     const desc = isRho
-      ? 'Sede principale a Rho (MI). Siti web custom, grafica e social per l\'hinterland milanese.'
-      : `Servizi web per imprese e professionisti di ${city}. Hub locale indexable.`;
+      ? 'Sede dichiarata a Rho (MI). Siti web custom, grafica e social per l\'hinterland milanese.'
+      : `Servizi web per imprese e professionisti di ${city}; ${city} è un'area servita, non una sede WebNovis.`;
     return `- [Agenzia Web ${city}](${SITE}${p}): ${desc}`;
   });
 
@@ -79,23 +94,19 @@ function build() {
 
 > WebNovis è un'agenzia web italiana con sede a Rho (Milano) specializzata in sviluppo siti web custom, graphic design, brand identity e social media marketing (contenuti grafici, ricerche di marketing, analisi competitor e advertising). Offriamo soluzioni digitali integrate per PMI, startup e professionisti in tutta Italia.
 
+> Questo è un export editoriale volontario: non è uno standard dei motori di ricerca e non garantisce indicizzazione, ranking o citazioni nei sistemi generativi.
+
 Versione completa (contenuto integrale delle pagine principali in testo semplice): ${SITE}/llms-full.txt
 
 ## Servizi
 
-- [Sviluppo Siti Web](${SITE}/servizi/sviluppo-web.html): Siti web professionali, responsive, ottimizzati SEO. Landing page, siti vetrina, web app.
-- [E-commerce](${SITE}/servizi/ecommerce.html): Negozi online personalizzati, scalabili e sicuri per PMI italiane.
-- [Landing Page](${SITE}/servizi/landing-page.html): Pagine ad alta conversione per campagne marketing e lead generation.
-- [Sito Vetrina](${SITE}/servizi/sito-vetrina.html): Siti multi-pagina professionali per presentare la tua attività online.
-- [Graphic Design e Branding](${SITE}/servizi/graphic-design.html): Logo design, brand identity, coordinato aziendale, materiali pubblicitari.
-- [Brand Identity: Costi e Pacchetti](${SITE}/servizi/brand-identity.html): Quanto costa una brand identity: logo da €250, brand identity completa da €500, coordinato da €150. Pacchetti, tempi e FAQ.
-- [Social Media Marketing](${SITE}/servizi/social-media.html): Ricerche di marketing, analisi competitor, creazione contenuti grafici e gestione campagne advertising su Instagram, Facebook (Meta) e LinkedIn.
-- [Accessibilità Web e Compliance EAA](${SITE}/servizi/accessibilita.html): Audit accessibilità WCAG 2.1 AA, adeguamento all'European Accessibility Act e monitoraggio continuo. Audit da €350, adeguamento da €990, monitoraggio €69/mese.
-- [Consulenze Strategiche](${SITE}/servizi/consulenze.html): Sessioni di consulenza su siti web, grafica, SEO/GEO, brand identity e ricerca di mercato. Da €80.
+${serviceLines.join('\n')}
 
-## Sedi Locali (solo URL indexable)
+- [Brand Identity: guida a costi e pacchetti](${SITE}/servizi/brand-identity.html): dettagli da verificare nella pagina canonica e nel preventivo.
 
-Le pagine sotto sono le uniche landing GEO "agenzia-web" ammesse all'indicizzazione (governance pSEO). Non citare altre combinazioni servizio×città come pagine primarie.
+## Landing territoriali (solo URL indicizzabili secondo governance)
+
+Le pagine sotto sono le landing "agenzia-web" ammesse all'indicizzazione dalla governance pSEO. Soltanto Rho è indicata come sede; le altre città sono aree servite. La governance non garantisce l'indicizzazione effettiva da parte dei motori.
 
 ${localLines.join('\n')}
 
@@ -104,7 +115,7 @@ Hub di navigazione:
 - [Realizzazione Siti Web Milano e Lombardia](${SITE}/realizzazione-siti-web/): hub regionale
 - [Zone Servite](${SITE}/zone-servite/): mappa copertura territoriale
 
-Tier 1 (contenuto arricchito, priorità ranking locale): ${tier1Count} URL — elenco completo in ${SITE}/llms-full.txt.
+Tier 1 (priorità editoriale interna): ${tier1Count} URL — elenco completo in ${SITE}/llms-full.txt.
 
 ## Portfolio
 
@@ -124,8 +135,8 @@ Tier 1 (contenuto arricchito, priorità ranking locale): ${tier1Count} URL — e
 ## Azienda
 
 - [Chi Siamo](${SITE}/chi-siamo.html): La storia, la missione, i valori e il team di WebNovis.
-- [Come Lavoriamo](${SITE}/come-lavoriamo.html): Il nostro processo in 5 fasi: brief, wireframe, design, sviluppo e lancio. Trasparenza e tempi certi.
-- [Preventivo Gratuito](${SITE}/preventivo.html): Richiedi un preventivo gratuito per sito web, e-commerce, grafica o social media. Risposta in 24 ore.
+- [Come Lavoriamo](${SITE}/come-lavoriamo.html): Processo in 5 fasi: brief, wireframe, design, sviluppo e lancio; tempi e responsabilità vengono definiti nella proposta.
+- [Preventivo Gratuito](${SITE}/preventivo.html): Richiedi una valutazione per sito web, e-commerce, grafica o social media.
 - [Contatti](${SITE}/contatti.html): Email, telefono, WhatsApp, form di contatto e mappa per raggiungere WebNovis.
 
 ## Blog
@@ -141,36 +152,29 @@ Tier 1 (contenuto arricchito, priorità ranking locale): ${tier1Count} URL — e
 
 ## Informazioni di Contatto
 
-- **Email**: hello@webnovis.com
-- **Telefono**: +39 380 264 7367
+- **Email**: ${ENTITY_FACTS.email}
+- **Telefono**: ${ENTITY_FACTS.phoneDisplay}
 - **WhatsApp**: https://wa.me/393802647367
-- **Sede**: Via S. Giorgio, 2 — 20017 Rho (MI), Italia
-- **Orari**: Lun–Ven 9:00–18:00 (CET); risposte anche fuori orario via form/email
+- **Sede dichiarata**: ${ENTITY_FACTS.address.streetAddress} — ${ENTITY_FACTS.address.postalCode} ${ENTITY_FACTS.address.addressLocality} (${ENTITY_FACTS.address.addressRegion}), Italia
 - **Sito**: ${SITE}
 - **Instagram**: https://www.instagram.com/web.novis
 - **Facebook**: https://www.facebook.com/share/1C7hNnkqEU/
-- **Clutch.co**: https://clutch.co/profile/web-novis
 - **Trustpilot**: https://it.trustpilot.com/review/webnovis.com
-- **Google Business Profile**: Web Novis — Web designer, Rho (MI)
-- **Wikidata**: https://www.wikidata.org/wiki/Q138340285
-- **Crunchbase**: https://www.crunchbase.com/organization/web-novis
+- **Google Business Profile**: esistenza confermata dal proprietario; rating, conteggio, categoria e orari non verificati
+- **Azione recensione Google**: ${ENTITY_FACTS.reviewActionUrl}
 - **DesignRush**: https://www.designrush.com/agency/profile/web-novis
+- **GoodFirms**: https://www.goodfirms.co/company/web-novis
 
 ## Prezzi Indicativi
 
-- Landing Page: da €500
-- Sito Vetrina: da €1.200
-- E-commerce: da €3.500
-- Social Media Marketing (contenuti grafici): da €300/mese
-- Advertising Gestito (Meta Ads): da €500/mese
-- Graphic Design / Logo: da €250
-- Brand Identity Completa: da €500
-- Consulenze: da €80
+${priceLines.join('\n')}
+
+I prezzi sono valori iniziali presenti in data/services.json, non preventivi né promesse di risultato.
 
 ## Dati Strutturati
 
-- [ai.txt](${SITE}/ai.txt): Contenuto AI-readable completo con informazioni aziendali, servizi, FAQ e keyword.
-- [Dati JSON AI](${SITE}/webnovis-ai-data.json): Dati strutturati in formato JSON per crawler AI.
+- [ai.txt](${SITE}/ai.txt): export editoriale sintetico; nessun beneficio di ranking o citazione è dichiarato.
+- [Dati JSON AI](${SITE}/webnovis-ai-data.json): gli stessi fatti e prezzi di catalogo in JSON, con campi non verificati esplicitamente esclusi.
 - [Sitemap XML](${SITE}/sitemap.xml): Mappa del sito con ${sitemapCount || 'N'} URL indicizzabili (allineata a meta robots index).
 `;
 

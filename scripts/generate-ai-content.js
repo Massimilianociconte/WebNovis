@@ -24,6 +24,7 @@ require('dotenv').config({ path: require('path').resolve(__dirname, '..', '.env'
 const fs = require('fs');
 const path = require('path');
 const aiConfig = require('../ai-config');
+const { findUnsupportedGeneratedClaims } = require('../config/content-claim-governance');
 
 // ─── Configuration ────────────────────────────────────────────────────────────
 const ROOT = path.join(__dirname, '..');
@@ -99,26 +100,24 @@ function buildPrompt(city) {
     return `Sei un copywriter SEO esperto per WebNovis, agenzia web con sede a Rho (MI).
 Genera contenuto UNICO e SPECIFICO per la città di ${city.name} (${city.cap}, ${city.province}).
 
-DATI CITTÀ:
-- Popolazione: ${city.population ? city.population.toLocaleString('it-IT') : 'N/D'}
-- Distanza da sede Rho: ${city.distanzaSede}
+CONTESTO CITTÀ DISPONIBILE NEL REPOSITORY (da trattare come spunto, non come fonte pubblicabile):
 - Comuni vicini: ${nearNames}
 - Settori chiave: ${(ctx.settoriChiave || []).join(', ') || 'N/D'}
 - Punti di riferimento: ${(ctx.highlights || []).join(', ') || 'N/D'}
 
-SERVIZI WEBNOVIS (con prezzi):
-${coreServices.map(s => `- ${s.name}: da €${s.priceFrom}${s.priceUnit || ''} (${s.timeEstimate})`).join('\n')}
+SERVIZI WEBNOVIS:
+${coreServices.map(s => `- ${s.name}${s.hasPage ? `: https://www.webnovis.com${s.url}` : ''}`).join('\n')}
 
 ISTRUZIONI:
 Genera un JSON con questa struttura ESATTA:
 
 {
-  "localMarketAnalysis": "Paragrafo di 150-200 parole che descrive il mercato digitale specifico di ${city.name}. DEVE includere: almeno 2 dati statistici concreti (popolazione, densità imprese, settori trainanti), riferimenti a zone specifiche o punti di riferimento locali, e un'analisi dell'opportunità digitale unica per questo comune. NON ripetere informazioni generiche applicabili a qualsiasi città.",
+  "localMarketAnalysis": "Paragrafo di 150-200 parole utile per imprese di ${city.name}. Usa solo fatti locali supportati da una URL istituzionale inclusa in sources; se una fonte non è disponibile, ometti il fatto invece di stimarlo.",
 
-  "competitiveContext": "Paragrafo di 100-150 parole sul contesto competitivo digitale di ${city.name}: quante web agency ci sono nella zona, perché WebNovis da Rho (${city.distanzaSede}) è un'alternativa concreta, e quale vantaggio specifico hanno le PMI locali che investono ora nel digitale.",
+  "competitiveContext": "Paragrafo di 100-150 parole che aiuta a valutare criteri, processo e deliverable di un partner digitale. Non dichiarare numero di concorrenti, superiorità, distanze o risultati attesi senza una fonte verificabile.",
 
   "faqsAgenzia": [
-    {"q": "Domanda specifica su agenzia web a ${city.name}?", "a": "Risposta con dati concreti e specifici per ${city.name}. Includi almeno 1 prezzo o dato numerico."},
+    {"q": "Domanda specifica su agenzia web a ${city.name}?", "a": "Risposta concreta e prudente, senza risultati, tempi o metriche promesse."},
     {"q": "Domanda su costi/tempi a ${city.name}?", "a": "Risposta specifica."},
     {"q": "Domanda su settore locale di ${city.name}?", "a": "Risposta che cita settori economici specifici del comune."},
     {"q": "Domanda su vantaggi agenzia locale vs milanese?", "a": "Risposta con confronto concreto."},
@@ -126,26 +125,24 @@ Genera un JSON con questa struttura ESATTA:
   ],
 
   "faqsRealizzazione": [
-    {"q": "Quanto costa realizzare un sito web a ${city.name}?", "a": "Risposta con prezzi specifici e confronto locale."},
+    {"q": "Quanto costa realizzare un sito web a ${city.name}?", "a": "Spiega i fattori di costo e rinvia al preventivo; non inserire importi non presenti nelle fonti fornite."},
     {"q": "Domanda su SEO locale per ${city.name}?", "a": "Risposta con keyword locali specifiche."},
     {"q": "Domanda su e-commerce per attività di ${city.name}?", "a": "Risposta con riferimento a settori locali."},
-    {"q": "Domanda su tempi e processo?", "a": "Risposta con timeline specifica."},
+    {"q": "Domanda su tempi e processo?", "a": "Descrivi le fasi senza promettere una timeline fissa."},
     {"q": "Domanda su supporto post-lancio?", "a": "Risposta con dettagli manutenzione."}
   ],
 
-  "uniqueDataPoints": {
-    "estimatedLocalBusinesses": "Numero stimato di attività nel comune (basato sulla popolazione)",
-    "digitalMaturityScore": "basso|medio|alto — stima del livello di maturità digitale delle PMI locali",
-    "topSearchQueries": ["query 1 specifica per ${city.name}", "query 2", "query 3"],
-    "competitionLevel": "basso|medio|alto — livello di competizione SEO locale per web agency"
-  }
+  "sources": [
+    {"url": "https://URL-istituzionale-reale", "supports": ["breve descrizione del fatto supportato"]}
+  ]
 }
 
 REGOLE CRITICHE:
 - Ogni FAQ deve essere GENUINAMENTE DIVERSA dalle FAQ di altre città
 - NON usare frasi generiche come "il tessuto imprenditoriale" senza specificare COSA
-- Includi NOMI di zone, strade, punti di riferimento REALI di ${city.name}
-- Le risposte alle FAQ devono contenere almeno 1 dato numerico ciascuna
+- Includi nomi locali solo quando una fonte istituzionale in sources li supporta
+- Non inventare fonti, clienti, sedi, recensioni, volumi, statistiche, prezzi, tempi, ranking o risultati
+- Non usare percentuali, promesse, garanzie, stime di ROI o confronti di superiorità
 - Il tono è professionale ma diretto — no marketing fluff
 - Rispondi SOLO con JSON valido, nessun testo fuori dal JSON`;
 }
@@ -275,13 +272,25 @@ async function generateForCity(city) {
             throw new Error('Invalid response structure — missing required fields');
         }
 
+        const unsupportedClaims = findUnsupportedGeneratedClaims(content);
+        if (unsupportedClaims.length > 0) {
+            throw new Error(`Draft rejected by claim governance: ${unsupportedClaims.map(finding => `${finding.id}@${finding.path}`).join(', ')}`);
+        }
+
         // Add metadata
         const enrichedContent = {
             _meta: {
                 city: city.slug,
                 generatedAt: new Date().toISOString(),
                 model: MODEL,
-                version: 1
+                version: 2,
+                publicationStatus: 'draft',
+                source: Array.isArray(content.sources)
+                    ? content.sources.map(entry => entry?.url).filter(url => typeof url === 'string')
+                    : [],
+                verifiedAt: null,
+                approvedBy: null,
+                publicationNote: 'Draft non pubblicabile: le fonti devono essere verificate e il contenuto approvato editorialmente.'
             },
             ...content
         };

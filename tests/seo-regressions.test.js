@@ -4,6 +4,7 @@ const path = require('node:path');
 const { getBlogFooterHtml } = require(path.join(process.cwd(), 'config', 'site-footer.js'));
 const prioritySnippets = require(path.join(process.cwd(), 'config', 'priority-snippets.js'));
 const { applySeoHtmlTransforms } = require(path.join(process.cwd(), 'config', 'seo-html-transforms.js'));
+const servicesCatalog = require(path.join(process.cwd(), 'data', 'services.json'));
 
 const ROOT = process.cwd();
 
@@ -128,6 +129,51 @@ function main() {
     llms.includes('agenzia-web-rho.html'),
     'llms.txt must keep the primary Rho hub'
   );
+  assert.match(
+    llms,
+    /export editoriale[^\n]+non (?:garantisce|produce)[^\n]+ranking/i,
+    'llms.txt must disclose that the voluntary editorial export does not guarantee ranking'
+  );
+
+  const forbiddenEntityUrls = [
+    'https://www.wikidata.org/wiki/Q138340285',
+    'https://www.linkedin.com/company/webnovis',
+    'https://www.cylex-italia.it/rho/web-novis-16332263.html',
+    'https://www.cylex-italia.it/rho/web-novis-16332431.html'
+  ];
+  for (const file of ['index.html', 'src/html/index.html', 'chi-siamo.html', 'src/html/chi-siamo.html', 'llms.txt', 'ai.txt', 'webnovis-ai-data.json']) {
+    const content = readText(file);
+    for (const forbiddenUrl of forbiddenEntityUrls) {
+      assert.ok(!content.includes(forbiddenUrl), `${file} must not publish obsolete entity URL ${forbiddenUrl}`);
+    }
+  }
+
+  const homepageSchemas = parseJsonLd(readText('index.html'), 'index.html');
+  const homepageOrganization = homepageSchemas.find((schema) => schema['@id'] === 'https://www.webnovis.com/#organization');
+  assert.ok(homepageOrganization, 'index.html must expose the canonical WebNovis Organization');
+  assert.equal(homepageOrganization.name, 'WebNovis', 'the canonical Organization name must use the stable WebNovis spelling');
+  assert.ok(
+    !JSON.stringify(homepageSchemas).includes('openingHours'),
+    'index.html must not publish unverified structured business hours'
+  );
+
+  const aiData = JSON.parse(readText('webnovis-ai-data.json'));
+  assert.equal(aiData.metadata?.document_type, 'editorial_export', 'webnovis-ai-data.json must identify itself as an editorial export');
+  assert.match(
+    aiData.metadata?.ranking_notice || '',
+    /non (?:garantisce|produce)[^\n]+ranking/i,
+    'webnovis-ai-data.json must not imply that the file creates ranking benefits'
+  );
+  assert.equal(aiData.company?.openingHours, undefined, 'webnovis-ai-data.json must omit unverified opening hours');
+  assert.equal(aiData.company?.category, undefined, 'webnovis-ai-data.json must omit the unverified GBP category');
+
+  const serviceBySlug = new Map(servicesCatalog.services.map((service) => [service.slug, service]));
+  for (const exportedService of aiData.services || []) {
+    const sourceService = serviceBySlug.get(exportedService.slug);
+    assert.ok(sourceService, `AI export service ${exportedService.slug} must come from data/services.json`);
+    assert.equal(exportedService.priceFrom, sourceService.priceFrom, `AI export price for ${exportedService.slug} must match data/services.json`);
+    assert.equal(exportedService.priceCurrency, sourceService.priceCurrency, `AI export currency for ${exportedService.slug} must match data/services.json`);
+  }
 
   const brokenGeoSamples = [
     ['accessibilita-arese.html', 'accessibilita-rho.html'],
@@ -183,6 +229,27 @@ function main() {
       !blogFooterHtml.includes('/agenzia-web-milano.html'),
     'Shared footer must not promote direct city landing pages sitewide'
   );
+  assert.ok(
+    blogFooterHtml.includes('https://g.page/r/CRblKdK0GGO_EBM/review') &&
+      blogFooterHtml.includes('Lascia una recensione'),
+    'Shared footer must retain the verified Google review action with neutral wording'
+  );
+  assert.ok(
+    !blogFooterHtml.includes('★★★★★') && !blogFooterHtml.includes('review-badge-stars'),
+    'Shared footer must not imply an unverified Google star rating'
+  );
+
+  for (const file of ['blog/quanto-costa-un-sito-web.html', 'blog/seo-per-piccole-imprese.html']) {
+    const schemas = parseJsonLd(readText(file), file);
+    assert.ok(
+      schemas.some((schema) => schema['@type'] === 'Organization' && schema.name === 'WebNovis Editorial Team'),
+      `${file} must model the collective editorial team as an Organization`
+    );
+    assert.ok(
+      !schemas.some((schema) => schema['@type'] === 'Person' && schema.name === 'WebNovis Editorial Team'),
+      `${file} must not model the collective editorial team as a Person`
+    );
+  }
 
   const caseStudyFiles = [
     'portfolio/case-study/aether-digital.html',

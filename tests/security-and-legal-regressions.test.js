@@ -60,6 +60,51 @@ async function main() {
       `${file} must not use height="auto" on the DesignRush badge`
     );
   }
+
+  for (const file of ['index.html', 'src/html/index.html']) {
+    const html = readText(file);
+    assert.ok(
+      !/"openingHours(?:Specification)?"\s*:/.test(html),
+      `${file} must not expose unverified business hours in structured data`
+    );
+    assert.ok(
+      !html.includes('https://www.wikidata.org/wiki/Q138340285') &&
+        !html.includes('https://www.linkedin.com/company/webnovis') &&
+        !html.includes('cylex-italia.it/rho/web-novis-16332'),
+      `${file} must not expose known obsolete or false entity references`
+    );
+  }
+
+  const publicHtmlFiles = [];
+  function walk(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (['node_modules', '.git', '.claude', 'dist', 'docs', 'reports', 'templates'].includes(entry.name)) continue;
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(fullPath);
+      else if (entry.isFile() && entry.name.endsWith('.html')) publicHtmlFiles.push(fullPath);
+    }
+  }
+  walk(ROOT);
+  const ratingBadges = [];
+  for (const filePath of publicHtmlFiles) {
+    const html = fs.readFileSync(filePath, 'utf8');
+    if (/href=["']https:\/\/g\.page\/r\/CRblKdK0GGO_EBM\/review["'][\s\S]{0,1800}(?:★★★★★|review-badge-stars)/i.test(html)) {
+      ratingBadges.push(path.relative(ROOT, filePath));
+    }
+  }
+  assert.deepEqual(
+    ratingBadges,
+    [],
+    `Google review actions must not display an unverified star value: ${ratingBadges.slice(0, 20).join(', ')}`
+  );
+
+  for (const sourceFile of ['config/site-footer.js', 'scripts/standardize-all.js']) {
+    const source = readText(sourceFile);
+    assert.ok(
+      !source.includes('review-badge-stars') && !source.includes('★★★★★'),
+      `${sourceFile} must not regenerate a static Google star value`
+    );
+  }
   await assertServerUsesSharedSecurityConfig();
 
 

@@ -1,6 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const { getBlogFooterHtml, normalizeFooterAssetMarkup, normalizePhoneCtaMarkup } = require('../config/site-footer');
+const {
+  getBlogFooterHtml,
+  normalizeFooterAssetMarkup,
+  normalizePhoneCtaMarkup,
+  normalizeReviewActionMarkup
+} = require('../config/site-footer');
+const { normalizeEntityJsonLd } = require('../config/entity-facts');
 const { normalizeImageLoadingInHtml } = require('../config/image-policy');
 const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
 const { ROOT_DIR, getPublishDir } = require('../config/publish-targets');
@@ -176,6 +182,8 @@ for (const filePath of walk(ROOT)) {
   let updated = normalizeBlogFooter(original, relativePath);
   updated = normalizeFooterAssetMarkup(updated);
   updated = normalizePhoneCtaMarkup(updated);
+  updated = normalizeReviewActionMarkup(updated);
+  updated = normalizeEntityJsonLd(updated);
   updated = normalizeImageLoadingInHtml(updated);
   updated = normalizeDesignRushLoader(updated, relativePath);
   updated = normalizeFooterWidgetLoaderRefs(updated, relativePath);

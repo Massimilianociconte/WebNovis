@@ -2725,10 +2725,11 @@ section {
     color: rgba(255, 255, 255, 0.85);
 }
 
-.footer-badges .review-badge-stars {
-    font-size: 0.65rem;
-    color: #f59e0b;
-    letter-spacing: 1px;
+.footer-badges .review-badge-action {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
 }
 
 .footer-badges .trustpilot-widget {

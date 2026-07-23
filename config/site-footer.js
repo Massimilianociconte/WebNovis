@@ -65,7 +65,7 @@ function sanitizeBrokenPhoneCtaMarkup(html) {
     .replace(LEGACY_PHONE_SR_ONLY_PATTERN, '');
 }
 
-function buildReviewBadgesInnerHtml(prefix = '..') {
+function buildThirdPartyReviewBadgesHtml(prefix = '..') {
   const base = normalizeRelativePrefix(prefix);
   const designRushBadge = buildImageTag({
     alt: 'DesignRush',
@@ -82,7 +82,21 @@ function buildReviewBadgesInnerHtml(prefix = '..') {
     style: 'display:block;border-radius:4px'
   });
 
-  return `<a href="https://g.page/r/CRblKdK0GGO_EBM/review" class="review-badge" aria-label="Recensioni Google di Web Novis" rel="noopener" target="_blank"><svg viewBox="0 0 48 48" height="18" width="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" fill="#EA4335"/><path d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" fill="#4285F4"/><path d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" fill="#FBBC05"/><path d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" fill="#34A853"/><path d="M0 0h48v48H0z" fill="none"/></svg><span class="review-badge-text"><span class="review-badge-label">Recensioni</span><span class="review-badge-name">Google</span><span class="review-badge-stars">★★★★★</span></span></a><div class="trustpilot-widget" data-businessunit-id="6994f84c14ed867d2322d2d8" data-locale="it-IT" data-style-height="52px" data-style-width="100%" data-template-id="56278e9abfbbba0bdcd568bc" data-token="ae6e8799-e395-4ec7-88fa-4d532286cc7d"><a href="https://it.trustpilot.com/review/webnovis.com" target="_blank" rel="noopener">Trustpilot</a></div><div class="review-badge" style="padding:0;background:0 0;border:none"><div aria-label="DesignRush agency reviews section" data-agency-id="110524" data-designrush-widget data-style="light"></div><noscript><a href="https://www.designrush.com/agency/profile/web-novis#reviews" target="_blank" aria-label="Visit Web Novis reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript></div><span style="display:inline-flex;align-items:center">${designRushBadge}</span><a href="https://www.goodfirms.co/company/web-novis" target="_blank" rel="noopener noreferrer" aria-label="Web Novis su GoodFirms" style="display:inline-flex;align-items:center"><picture><source srcset="${base}Img/goodfirms-logo.webp" type="image/webp">${goodFirmsBadge}</picture></a>`;
+  return `<div class="trustpilot-widget" data-businessunit-id="6994f84c14ed867d2322d2d8" data-locale="it-IT" data-style-height="52px" data-style-width="100%" data-template-id="56278e9abfbbba0bdcd568bc" data-token="ae6e8799-e395-4ec7-88fa-4d532286cc7d"><a href="https://it.trustpilot.com/review/webnovis.com" target="_blank" rel="noopener">Trustpilot</a></div><div class="review-badge" style="padding:0;background:0 0;border:none"><div aria-label="DesignRush agency reviews section" data-agency-id="110524" data-designrush-widget data-style="light"></div><noscript><a href="https://www.designrush.com/agency/profile/web-novis#reviews" target="_blank" aria-label="Visit Web Novis reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript></div><span style="display:inline-flex;align-items:center">${designRushBadge}</span><a href="https://www.goodfirms.co/company/web-novis" target="_blank" rel="noopener noreferrer" aria-label="Web Novis su GoodFirms" style="display:inline-flex;align-items:center"><picture><source srcset="${base}Img/goodfirms-logo.webp" type="image/webp">${goodFirmsBadge}</picture></a>`;
+}
+
+const GOOGLE_REVIEW_ACTION_PATTERN = /<a\b(?=[^>]*href=["']https:\/\/g\.page\/r\/CRblKdK0GGO_EBM\/review["'])[^>]*>[\s\S]*?<\/a>/gi;
+
+function buildGoogleReviewActionHtml() {
+  return `<a href="https://g.page/r/CRblKdK0GGO_EBM/review" title="Lascia una recensione Google a WebNovis" class="review-badge" aria-label="Lascia una recensione Google a WebNovis" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 48 48" height="18" width="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" fill="#EA4335"/><path d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" fill="#4285F4"/><path d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" fill="#FBBC05"/><path d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" fill="#34A853"/><path d="M0 0h48v48H0z" fill="none"/></svg><span class="review-badge-text"><span class="review-badge-label">Google</span><span class="review-badge-action">Lascia una recensione</span></span></a>`;
+}
+
+function normalizeReviewActionMarkup(html) {
+  return String(html).replace(GOOGLE_REVIEW_ACTION_PATTERN, buildGoogleReviewActionHtml());
+}
+
+function buildReviewBadgesInnerHtml(prefix = '..') {
+  return `${buildGoogleReviewActionHtml()}${buildThirdPartyReviewBadgesHtml(prefix)}`;
 }
 
 function buildReviewBadgesHtml(prefix = '..', wrapperClass = 'footer-reviews-badges') {
@@ -130,5 +144,6 @@ module.exports = {
   buildReviewBadgesHtml,
   getBlogFooterHtml,
   normalizeFooterAssetMarkup,
-  normalizePhoneCtaMarkup
+  normalizePhoneCtaMarkup,
+  normalizeReviewActionMarkup
 };
