@@ -118,7 +118,7 @@ module.exports = {
   },
   'sito-vetrina-bollate.html': {
     title: 'Sito vetrina a Bollate: da €1.200 e SEO integrata | WebNovis',
-    description: 'Sito vetrina a Bollate con design custom, SEO tecnica integrata e struttura orientata ai contatti. Da €1.200, gestione diretta da Rho e preventivo entro 24 ore.'
+    description: 'Sito vetrina a Bollate con design custom, SEO tecnica integrata e struttura orientata ai contatti. Prezzo indicativo da €1.200; dettagli confermati nella proposta.'
   },
   'graphic-design-bareggio.html': {
     title: 'Graphic design a Bareggio: logo e brand identity | WebNovis',
@@ -126,16 +126,16 @@ module.exports = {
   },
   'realizzazione-siti-web-garbagnate.html': {
     title: 'Realizzazione siti web a Garbagnate: da €1.200 e SEO | WebNovis',
-    description: 'Realizzazione siti web a Garbagnate Milanese per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e preventivo in 24 ore.'
+    description: 'Realizzazione siti web a Garbagnate Milanese per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e proposta personalizzata.'
   },
   'realizzazione-siti-web-bresso.html': {
     title: 'Realizzazione siti web a Bresso: da €1.200 e SEO | WebNovis',
-    description: 'Realizzazione siti web a Bresso per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e preventivo in 24 ore.'
+    description: 'Realizzazione siti web a Bresso per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e proposta personalizzata.'
   },
   'agenzia-web-rho.html': {
     // GSC: "web agency rho" = 324 impr a pos 13.3 con 0 clic → il title ora include la query esatta
     title: 'Web Agency Rho: siti web custom, SEO e branding | WebNovis',
-    description: 'WebNovis è la web agency di Rho (Via S. Giorgio 2): agenzia web per siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Preventivo in 24 ore.'
+    description: 'WebNovis è la web agency di Rho (Via S. Giorgio 2): siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Richiesta di preventivo senza impegno.'
   },
   'realizzazione-siti-web-rho.html': {
     title: 'Realizzazione siti web a Rho: da €1.200 e SEO | WebNovis',
@@ -147,7 +147,7 @@ module.exports = {
   },
   'realizzazione-siti-web-limbiate.html': {
     title: 'Siti web a Limbiate: da €1.200 e SEO | WebNovis',
-    description: 'Realizzazione siti web a Limbiate per PMI e professionisti: siti custom, landing ed e-commerce con SEO integrata, performance e preventivo in 24 ore.'
+    description: 'Realizzazione siti web a Limbiate per PMI e professionisti: siti custom, landing ed e-commerce con SEO integrata, performance e proposta personalizzata.'
   },
   'landing-page-milano.html': {
     title: 'Landing page a Milano: da €500 per lead generation | WebNovis',
@@ -207,15 +207,15 @@ module.exports = {
   },
   'realizzazione-siti-web-arese.html': {
     title: 'Realizzazione siti web ad Arese: da €1.200 e SEO | WebNovis',
-    description: 'Realizzazione siti web ad Arese per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e preventivo in 24 ore.'
+    description: 'Realizzazione siti web ad Arese per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e proposta personalizzata.'
   },
   'realizzazione-siti-web-cormano.html': {
     title: 'Realizzazione siti web a Cormano: da €1.200 e SEO | WebNovis',
-    description: 'Realizzazione siti web a Cormano per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e preventivo in 24 ore.'
+    description: 'Realizzazione siti web a Cormano per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e proposta personalizzata.'
   },
   'realizzazione-siti-web-parabiago.html': {
     title: 'Realizzazione siti web a Parabiago: da €1.200 e SEO | WebNovis',
-    description: 'Realizzazione siti web a Parabiago per PMI, artigiani e professionisti: siti custom, SEO tecnica, performance e preventivo gratuito entro 24 ore.'
+    description: 'Realizzazione siti web a Parabiago per PMI, artigiani e professionisti: siti custom, SEO tecnica, performance e richiesta di preventivo senza impegno.'
   },
   'realizzazione-siti-web-senago.html': {
     title: 'Realizzazione siti web a Senago: da €1.200 e SEO | WebNovis',
@@ -223,7 +223,7 @@ module.exports = {
   },
   'realizzazione-siti-web-solaro.html': {
     title: 'Realizzazione siti web a Solaro: da €1.200 e SEO | WebNovis',
-    description: 'Realizzazione siti web a Solaro per PMI e professionisti: codice custom, SEO tecnica integrata, siti veloci e preventivo gratuito entro 24 ore.'
+    description: 'Realizzazione siti web a Solaro per PMI e professionisti: codice custom, SEO tecnica integrata, siti veloci e richiesta di preventivo senza impegno.'
   },
   'email-marketing-milano.html': {
     title: 'Email marketing a Milano: newsletter e automazioni da €250/mese | WebNovis',
@@ -303,11 +303,11 @@ module.exports = {
   },
   'realizzazione-siti-web-bollate.html': {
     title: 'Realizzazione siti web a Bollate: da €1.200 e SEO | WebNovis',
-    description: 'Realizzazione siti web a Bollate per PMI, studi e attivita locali: siti custom, landing ed e-commerce con SEO tecnica e preventivo in 24 ore.'
+    description: 'Realizzazione siti web a Bollate per PMI, studi e attivita locali: siti custom, landing ed e-commerce con SEO tecnica e proposta personalizzata.'
   },
   'realizzazione-siti-web-legnano.html': {
     title: 'Realizzazione siti web a Legnano: da €1.200 e SEO | WebNovis',
-    description: 'Siti web a Legnano per PMI, artigiani e professionisti: codice custom, SEO integrata, performance e preventivo gratuito entro 24 ore.'
+    description: 'Siti web a Legnano per PMI, artigiani e professionisti: codice custom, SEO integrata, performance e richiesta di preventivo senza impegno.'
   },
   'agenzia-web-sesto-san-giovanni.html': {
     title: 'Agenzia web a Sesto San Giovanni: siti, SEO e Ads | WebNovis',
@@ -319,7 +319,7 @@ module.exports = {
   },
   'ecommerce-arese.html': {
     title: 'E-commerce ad Arese: shop online da €3.500 e SEO | WebNovis',
-    description: 'Realizzazione e-commerce ad Arese per negozi e brand locali: Shopify, WooCommerce o custom, SEO integrata, checkout curato e preventivo in 24 ore.'
+    description: 'Realizzazione e-commerce ad Arese per negozi e brand locali: Shopify, WooCommerce o custom, SEO integrata, checkout curato e proposta personalizzata.'
   },
   'ecommerce-rho.html': {
     title: 'Realizzazione e-commerce a Rho: da €3.500 e SEO | WebNovis',
@@ -331,19 +331,19 @@ module.exports = {
   },
   'agenzia-web-castellanza.html': {
     title: 'Siti web a Castellanza (VA): agenzia web custom | WebNovis',
-    description: 'Siti web a Castellanza per PMI e professionisti: siti custom da €1.200, e-commerce e SEO locale. Preventivo gratuito entro 24 ore.'
+    description: 'Siti web a Castellanza per PMI e professionisti: siti custom da €1.200, e-commerce e SEO locale. Prezzo indicativo da confermare nella proposta.'
   },
   'agenzia-web-arese.html': {
     title: 'Agenzia web ad Arese: siti custom, SEO e grafica | WebNovis',
-    description: 'Web agency ad Arese: siti custom, e-commerce, branding e SEO locale per PMI e negozi. Sede a Rho a 10 minuti, preventivo in 24 ore.'
+    description: 'Web agency ad Arese: siti custom, e-commerce, branding e SEO locale per PMI e negozi. Sede a Rho e proposta personalizzata.'
   },
   'agenzia-web-bollate.html': {
     title: 'Agenzia web a Bollate: siti custom, SEO e social | WebNovis',
-    description: 'Web agency per Bollate: siti web custom, siti vetrina, e-commerce e campagne locali per PMI e attività. Sede a Rho a 10 minuti, preventivo in 24 ore.'
+    description: 'Web agency per Bollate: siti web custom, siti vetrina, e-commerce e campagne locali per PMI e attività. Sede a Rho e proposta personalizzata.'
   },
   'servizi/brand-identity.html': {
     title: 'Brand Identity: costi, pacchetti e cosa include | WebNovis',
-    description: 'Quanto costa una brand identity? Pacchetti da €500 con logo, palette, tipografia e linee guida. Prezzi chiari, tempi reali e preventivo in 24 ore.'
+    description: 'Quanto costa una brand identity? Pacchetti indicativi da €500 con logo, palette, tipografia e linee guida. Prezzo e tempi vengono confermati nella proposta.'
   },
   'blog/chiedere-recensioni-clienti.html': {
     title: 'Come chiedere recensioni ai clienti: metodo e template | WebNovis',

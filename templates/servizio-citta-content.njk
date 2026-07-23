@@ -66,11 +66,11 @@
       <div class="service-grid">
         <div class="service-card-mini">
           <h3>Prezzo</h3>
-          <p><strong>Da €{{ service.priceFrom }}{{ service.priceUnit if service.priceUnit }}</strong> — preventivo personalizzato gratuito entro 24 ore per la tua attività a {{ city.name }}.</p>
+          <p><strong>Da €{{ service.priceFrom }}{{ service.priceUnit if service.priceUnit }}</strong>. La cifra è indicativa: perimetro, prezzo e tempistiche vengono confermati nella proposta personalizzata.</p>
         </div>
         <div class="service-card-mini">
           <h3>Tempi</h3>
-          <p><strong>{{ service.timeEstimate }}</strong> — dal brief iniziale alla consegna, con un unico interlocutore dedicato.</p>
+          <p>Stima indicativa: <strong>{{ service.timeEstimate }}</strong>. La proposta conferma calendario, dipendenze e revisioni previste.</p>
         </div>
         <div class="service-card-mini">
           <h3>Ideale per</h3>
@@ -125,7 +125,7 @@
       <p>{{ city.localContext.tessutoEconomico }}</p>
       <p>{{ city.localContext.opportunitaDigitale }}</p>
       {% endif %}
-      <p>Le attività di {{ city.name }} che investono in {{ service.name | lower }} possono intercettare la domanda locale e distinguersi dai competitor. Con prezzi a partire da <strong>€{{ service.priceFrom }}{{ service.priceUnit if service.priceUnit }}</strong> e tempi di <strong>{{ service.timeEstimate }}</strong>, WebNovis offre un percorso concreto verso la crescita digitale.</p>
+      <p>Le attività di {{ city.name }} che investono in {{ service.name | lower }} possono intercettare la domanda locale e distinguersi dai competitor. Prezzo e durata partono da stime indicative — <strong>€{{ service.priceFrom }}{{ service.priceUnit if service.priceUnit }}</strong> e <strong>{{ service.timeEstimate }}</strong> — da confermare nella proposta in base al perimetro.</p>
       {% endif %}
       {% if city.localContext and city.localContext.highlights %}
       <p>Punti di riferimento del territorio: {% for hl in city.localContext.highlights %}<strong>{{ hl }}</strong>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
@@ -288,7 +288,7 @@
           </tbody>
         </table>
       </div>
-      <p style="font-size:.85rem;color:var(--gray-light);opacity:.7">Prezzi IVA esclusa. Preventivo gratuito personalizzato entro 24 ore. Ultimo aggiornamento: {{ todayFormatted }}.</p>
+      <p style="font-size:.85rem;color:var(--gray-light);opacity:.7">Prezzi indicativi, IVA esclusa. La proposta personalizzata conferma perimetro, prezzo e tempistiche. Ultimo aggiornamento: {{ todayFormatted }}.</p>
     </div>
   </section>
   {% endif %}

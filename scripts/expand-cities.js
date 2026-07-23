@@ -132,19 +132,19 @@ function main() {
             },
             faqs: {
                 agenzia: [
-                    { q: `Quanto costa un sito web a ${nc.name}?`, a: `Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore.` },
+                    { q: `Quanto costa un sito web a ${nc.name}?`, a: `Prezzi indicativi: Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. La proposta conferma perimetro, prezzo e tempistiche.` },
                     { q: `Dove si trova WebNovis rispetto a ${nc.name}?`, a: `La nostra sede è a Rho, Via S. Giorgio 2 — ${driveMin} minuti in auto da ${nc.name}. Incontriamo i clienti in azienda o in videochiamata.` },
                     { q: `Servite anche i comuni vicini a ${nc.name}?`, a: `Sì. Serviamo ${nc.name} e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano.` },
                     { q: `Usate WordPress?`, a: `No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi.` },
-                    { q: `Quanto tempo per un sito?`, a: `Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane.` },
-                    { q: `Supporto post-lancio?`, a: `30 giorni di supporto gratuito. Manutenzione da €59/mese.` }
+                    { q: `Quanto tempo per un sito?`, a: `Stime indicative, da confermare nella proposta: Landing Page 5-7 giorni, Sito Vetrina 2-3 settimane, E-Commerce 4-8 settimane.` },
+                    { q: `Supporto post-lancio?`, a: `Il perimetro dell'assistenza post-lancio viene definito nella proposta. Manutenzione disponibile da €59/mese.` }
                 ],
                 realizzazione: [
-                    { q: `Quanto costa realizzare un sito web a ${nc.name}?`, a: `Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore.` },
+                    { q: `Quanto costa realizzare un sito web a ${nc.name}?`, a: `Prezzi indicativi: Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce custom da <strong>€3.500</strong>. La proposta conferma perimetro, prezzo e tempistiche.` },
                     { q: `WebNovis è vicina a ${nc.name}?`, a: `Sì, ${driveMin} minuti dalla nostra sede a Rho. Incontri in azienda o videochiamata.` },
                     { q: `Fate siti per il settore ${nc.sectors?.[0] || 'locale'}?`, a: `Sì. Codice 100% custom con SEO locale integrata, ideale per ${nc.sectors?.slice(0, 2).join(' e ') || 'attività locali'} di ${nc.name}.` },
                     { q: `SEO locale inclusa?`, a: `Sì. Posizionamento per ricerche geolocalizzate del territorio di ${nc.name}.` },
-                    { q: `Servizi integrati?`, a: `Sì. Web + graphic design (logo da €400) + social media (da €300/mese).` }
+                    { q: `Servizi integrati?`, a: `Sì. Web + graphic design (logo da €250) + social media (da €300/mese). Prezzi indicativi da confermare nella proposta.` }
                 ]
             }
         };

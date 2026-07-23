@@ -454,9 +454,9 @@ const articles = [
 <h2>I Nostri Prezzi: Trasparenti e Personalizzati</h2>
 <p>In WebNovis crediamo nella trasparenza. Ecco i nostri pacchetti di partenza:</p>
 <ul>
-    <li><strong>Landing Page</strong>: da €500. Design personalizzato, SEO base, form contatto, consegna in 1-2 settimane</li>
-    <li><strong>Sito Vetrina</strong>: da €1.200. Design premium su misura, SEO completa, blog integrato, consegna in 3-4 settimane</li>
-    <li><strong>E-Commerce</strong>: da €3.500. Catalogo prodotti, pagamenti sicuri, SEO avanzata, consegna in 6-8 settimane</li>
+    <li><strong>Landing Page</strong>: da €500. Design personalizzato, SEO base e form contatto; stima indicativa 1-2 settimane, da confermare nella proposta</li>
+    <li><strong>Sito Vetrina</strong>: da €1.200. Design premium su misura, SEO completa e blog integrato; stima indicativa 3-4 settimane, da confermare nella proposta</li>
+    <li><strong>E-Commerce</strong>: da €3.500. Catalogo prodotti, pagamenti sicuri e SEO avanzata; stima indicativa 6-8 settimane, da confermare nella proposta</li>
 </ul>
 <p>Ogni preventivo viene personalizzato dopo un briefing iniziale gratuito. <a href="../servizi/sviluppo-web.html">Scopri tutti i dettagli dei nostri servizi di sviluppo web →</a></p>`,
     relatedArticles: [
@@ -757,7 +757,7 @@ const articles = [
 <h2>Errori che Rendono una Landing Page Inefficace</h2>
 <ul>
     <li><strong>Troppe informazioni</strong>: la landing page non è il sito — deve avere UN solo obiettivo</li>
-    <li><strong>CTA debole</strong>: "Invia" non è una CTA. "Ricevi il preventivo in 24h" sì</li>
+    <li><strong>CTA debole</strong>: "Invia" non è una CTA. "Ricevi una stima personalizzata" comunica meglio il beneficio</li>
     <li><strong>Nessuna prova sociale</strong>: senza testimonianze, il visitatore non si fida</li>
     <li><strong>Velocità lenta</strong>: ogni secondo di caricamento in più riduce le conversioni del 7%</li>
     <li><strong>Non ottimizzata per mobile</strong>: il 70% del traffico ads arriva da smartphone</li>
@@ -2307,7 +2307,7 @@ const articles = [
 <p>Ogni secondo di caricamento in più riduce le conversioni del 7%. Un sito che carica in 1 secondo ha un tasso di conversione <strong>3x superiore</strong> a uno che carica in 5 secondi.</p>
 
 <h3>2. CTA Chiare e Visibili</h3>
-<p>"Invia" non è una CTA. "Ricevi il preventivo gratuito in 24h" sì. La CTA deve comunicare il <strong>beneficio</strong> e ridurre la <strong>percezione di rischio</strong>.</p>
+<p>"Invia" non è una CTA. "Ricevi una stima personalizzata" comunica invece il beneficio. La CTA deve essere verificabile e ridurre la <strong>percezione di rischio</strong>.</p>
 
 <h3>3. Social Proof</h3>
 <p>Recensioni Google, testimonianze con foto e nome, numeri concreti ("450+ progetti completati"), loghi clienti. Il cervello umano cerca conferme: se altri si fidano, anche io mi fido.</p>
@@ -2344,7 +2344,7 @@ const articles = [
     <li>Aggiungi <strong>recensioni Google</strong> vicino ai form</li>
     <li>Riduci i <strong>campi del form</strong> al minimo</li>
     <li>Velocizza il sito sotto i <strong>2.5 secondi</strong> (LCP)</li>
-    <li>Aggiungi <strong>urgenza</strong> dove pertinente ("Risposta in 24h")</li>
+    <li>Aggiungi <strong>chiarezza</strong> sul prossimo passo e indica una tempistica solo se verificabile</li>
 </ul>
 
 <p>In <a href="../chi-siamo.html">WebNovis</a> la CRO è integrata in ogni progetto: <a href="../servizi/sviluppo-web.html">siti web</a> progettati per convertire, non solo per essere belli. <a href="../preventivo.html">Migliora le conversioni del tuo sito →</a></p>`,
@@ -3284,7 +3284,7 @@ const articles = [
     <li><strong>Budget realistico</strong>: €1.500-4.000 per 5-8 pagine</li>
     <li><strong>Include</strong>: design custom, sviluppo, SEO base, mobile responsive, 2-3 revisioni</li>
     <li><strong>Tempistica</strong>: 3-6 settimane dalla firma</li>
-    <li><strong>Post-lancio</strong>: almeno 30 giorni di supporto incluso</li>
+    <li><strong>Post-lancio</strong>: durata e perimetro del supporto esplicitati nella proposta</li>
     <li><strong>Proprietà</strong>: codice e contenuti al 100% tuoi</li>
 </ul>
 
@@ -4942,7 +4942,7 @@ const articles = [
     readTime: '7 min',
     faq: [
       { question: 'Cos\'è una call-to-action e perché è importante?', answer: 'Una CTA (call-to-action) è l\'invito all\'azione che guida l\'utente verso il passo successivo: compilare un form, chiamare, acquistare. È importante perché senza una CTA chiara, l\'utente non sa cosa fare e lascia il sito. Una buona CTA può raddoppiare il tasso di conversione di una pagina.' },
-      { question: 'Come scrivere una CTA efficace?', answer: 'Una CTA efficace ha 3 caratteristiche: inizia con un verbo d\'azione (Richiedi, Scopri, Scarica), comunica un beneficio specifico (non "Invia" ma "Ricevi il preventivo in 24h"), e crea un senso di immediatezza. Deve essere visivamente distinta dal resto della pagina con un colore di contrasto.' },
+      { question: 'Come scrivere una CTA efficace?', answer: 'Una CTA efficace ha 3 caratteristiche: inizia con un verbo d\'azione (Richiedi, Scopri, Scarica), comunica un beneficio specifico (non "Invia" ma "Ricevi una stima personalizzata") e chiarisce il prossimo passo. Deve essere visivamente distinta dal resto della pagina con un colore di contrasto.' },
       { question: 'Quante CTA deve avere una pagina?', answer: 'Una pagina dovrebbe avere una CTA primaria (l\'azione principale che vuoi) e al massimo una secondaria (alternativa meno impegnativa). Troppe CTA confondono l\'utente. Per una landing page, un\'unica CTA ripetuta in più punti è la scelta migliore.' }
     ],
     content: `
@@ -4953,7 +4953,7 @@ const articles = [
 <ol>
     <li><strong>Verbo d\'azione</strong>: "Richiedi", "Scopri", "Scarica", "Inizia"</li>
     <li><strong>Beneficio</strong>: cosa ottiene l\'utente ("il preventivo gratuito", "la guida completa")</li>
-    <li><strong>Urgenza/immediatezza</strong>: "ora", "in 24h", "gratis"</li>
+    <li><strong>Immediatezza verificabile</strong>: "ora", "richiedi", "confronta"</li>
     <li><strong>Design visibile</strong>: colore di contrasto, dimensione sufficiente</li>
 </ol>
 
@@ -4965,7 +4965,7 @@ const articles = [
 <th style="text-align:left;padding:.75rem;color:var(--white)">Perché Funziona</th>
 </tr></thead>
 <tbody>
-<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Invia</td><td style="padding:.75rem">Ricevi il preventivo in 24h</td><td style="padding:.75rem">Beneficio + tempistica</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Invia</td><td style="padding:.75rem">Ricevi una stima personalizzata</td><td style="padding:.75rem">Beneficio + prossimo passo</td></tr>
 <tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Clicca qui</td><td style="padding:.75rem">Scopri i nostri servizi</td><td style="padding:.75rem">Azione + contenuto</td></tr>
 <tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Registrati</td><td style="padding:.75rem">Inizia gratis, nessuna carta richiesta</td><td style="padding:.75rem">Riduce la frizione</td></tr>
 <tr><td style="padding:.75rem">Maggiori informazioni</td><td style="padding:.75rem">Vedi i prezzi e i pacchetti</td><td style="padding:.75rem">Specifico e diretto</td></tr>
@@ -5340,7 +5340,7 @@ const articles = [
 <h3>3. Scrivi l\'Annuncio</h3>
 <ul>
     <li><strong>Titolo 1</strong>: keyword principale ("Sito Web Professionale a Milano")</li>
-    <li><strong>Titolo 2</strong>: beneficio ("Preventivo Gratuito in 24h")</li>
+    <li><strong>Titolo 2</strong>: beneficio ("Preventivo Gratuito su Misura")</li>
     <li><strong>Titolo 3</strong>: CTA o trust signal ("5★ su Google · 50+ Progetti")</li>
     <li><strong>Descrizione</strong>: espandi benefici, includi CTA finale</li>
 </ul>
@@ -6502,7 +6502,6 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <meta property="article:modified_time" content="${modifiedDateIso}">
     <meta property="article:section" content="${a.tag}">
     <meta property="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@webnovis">
     <meta property="twitter:title" content="${a.title}">
     <meta property="twitter:description" content="${a.description}">
     <meta property="twitter:image" content="${socialCover}">
@@ -6609,7 +6608,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
                 ${contentUpgradeHTML}
                 ${options.skipFinalCta ? '' : `<div class="article-cta">
                     <h3>Hai Bisogno di Aiuto con il Tuo Progetto?</h3>
-                    <p>Raccontaci la tua idea. Ti rispondiamo entro 24 ore con una consulenza gratuita e personalizzata.</p>
+                    <p>Raccontaci la tua idea. Valutiamo le informazioni per preparare un primo riscontro personalizzato.</p>
                     <p><a href="${serviceLink}" style="font-size:.95rem;">Scopri il servizio correlato →</a></p>
                     <a href="../contatti.html" ${buildInternalAttributionAttributes({ source: 'blog', medium: 'article', campaign: utmSlug })} class="btn btn-primary btn-large"><span>Contattaci Ora</span></a>
                 </div>`}

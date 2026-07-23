@@ -102,7 +102,7 @@ const articles = [
 
 <h2>9. Assenza di Urgenza o Scarcity</h2>
 <p>"Lo faccio dopo" è il nemico della conversione. Senza un motivo per agire adesso, il visitatore rimanda — e non torna.</p>
-<p><strong>Soluzione</strong>: aggiungi elementi di urgenza onesti: "Preventivo gratuito — risposta entro 24h", "Solo 3 slot disponibili questo mese", "Prezzo bloccato fino al [data]". Non inventare scarcity falsa — danneggia la credibilità.</p>
+<p><strong>Soluzione</strong>: usa inviti all'azione chiari e verificabili, come "Richiedi un preventivo gratuito" o "Confronta le opzioni disponibili". Non inventare urgenza o scarsità: danneggiano la credibilità.</p>
 
 <h2>10. Pagina "Chi Siamo" che Non Costruisce Fiducia</h2>
 <p>La pagina Chi Siamo è la 2ª più visitata dopo l'homepage (fonte: KoMarketing). Se è vuota, generica o senza foto reali, il visitatore percepisce il sito come poco affidabile.</p>

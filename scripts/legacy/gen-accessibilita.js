@@ -65,14 +65,14 @@ const faqItems = [
     { q: "L'accessibilità migliora la SEO?", a: "Sì. Google premia struttura semantica, alt text, heading gerarchici, performance e mobile-friendliness — tutti migliorano con l'accessibilità. Studio Deque Systems 2024: +12% traffico organico medio." },
     { q: "WebNovis sviluppa siti accessibili nativamente?", a: "Sì. Codice custom con WCAG 2.2: HTML semantico, navigazione tastiera, contrasto adeguato, alt text, heading, ARIA roles e compatibilità screen reader." },
     { q: "Offrite un certificato di conformità?", a: "Forniamo report audit dettagliato con score di conformità e Dichiarazione di Accessibilità conforme al modello AgID. Non esistono certificazioni ufficiali — la conformità è un processo continuo." },
-    { q: "Quanto costa il servizio di accessibilità?", a: "Audit iniziale: €890. Adeguamento completo: da €1.500. Monitoraggio continuo: €49/mese. Preventivo entro 24 ore." }
+    { q: "Quanto costa il servizio di accessibilità?", a: "Audit iniziale: €890. Adeguamento completo: da €1.500. Monitoraggio continuo: €49/mese. Prezzi indicativi da confermare nella proposta." }
 ];
 
 const faqHtml = faqItems.map(f => `<details class="faq-item"><summary>${f.q}</summary><p>${f.a}</p></details>`).join(' ');
 
 const faqSection = ` <section class="service-detail"><div class="container"><h2>Domande Frequenti — Accessibilità Web e EAA</h2>${faqHtml}</div></section>`;
 
-const ctaSection = ` <section class="cta-inline"><div class="container"><h2>Il tuo sito è conforme all'EAA? Scoprilo in 24 ore.</h2><p>Richiedi un audit di accessibilità con report dettagliato e checklist di interventi prioritari.</p><a href="../preventivo.html" class="btn btn-large btn-primary"><span>Richiedi Audit Accessibilità</span> <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a></div></section> </main> `;
+const ctaSection = ` <section class="cta-inline"><div class="container"><h2>Il tuo sito è conforme all'EAA? Richiedi una valutazione.</h2><p>Richiedi un audit di accessibilità con report dettagliato e checklist di interventi prioritari.</p><a href="../preventivo.html" class="btn btn-large btn-primary"><span>Richiedi Audit Accessibilità</span> <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a></div></section> </main> `;
 
 // JSON-LD schemas
 const breadcrumbSchema = JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.webnovis.com/"},{"@type":"ListItem","position":2,"name":"Servizi","item":"https://www.webnovis.com/servizi/"},{"@type":"ListItem","position":3,"name":"Accessibilità Web","item":"https://www.webnovis.com/servizi/accessibilita.html"}]});

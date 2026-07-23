@@ -4,12 +4,11 @@
  * Implements all actionable SEO improvements from the audit report.
  *
  * Fixes applied:
- * 1. CRITICO: twitter:site @webaboratorio → @webnovis (103 pages)
- * 2. ALTO: Remove FAQPage schema from commercial pages (keep FAQ HTML visible)
- * 3. BASSO: Remove <meta name="keywords"> (ignored by Google since 2009)
- * 4. BASSO: Remove hreflang tags from monolingual site (unnecessary overhead)
- * 5. MEDIO: Fix H3 in footer → <strong> semantic tags
- * 6. BASSO: Show "ultimo aggiornamento" date in blog article frontend
+ * 1. ALTO: Remove FAQPage schema from commercial pages (keep FAQ HTML visible)
+ * 2. BASSO: Remove <meta name="keywords"> (ignored by Google since 2009)
+ * 3. BASSO: Remove hreflang tags from monolingual site (unnecessary overhead)
+ * 4. MEDIO: Fix H3 in footer → <strong> semantic tags
+ * 5. BASSO: Show "ultimo aggiornamento" date in blog article frontend
  *
  * Usage: node scripts/seo-bulk-fix.js [--dry-run]
  */
@@ -21,7 +20,6 @@ const ROOT = path.resolve(__dirname, '..');
 const DRY_RUN = process.argv.includes('--dry-run');
 
 const stats = {
-  twitterFixed: 0,
   faqSchemaRemoved: 0,
   keywordsRemoved: 0,
   hreflangRemoved: 0,
@@ -52,18 +50,7 @@ function getAllHtmlFiles(dir) {
   return results;
 }
 
-// ─── Fix 1: twitter:site @webaboratorio → @webnovis ───────────────────────
-function fixTwitterSite(content, filePath) {
-  const pattern = /content="@webaboratorio"/g;
-  if (pattern.test(content)) {
-    stats.twitterFixed++;
-    log(`  ✓ Fix twitter:site: ${path.relative(ROOT, filePath)}`);
-    return content.replace(/content="@webaboratorio"/g, 'content="@webnovis"');
-  }
-  return content;
-}
-
-// ─── Fix 2: Remove FAQPage schema JSON-LD (keep FAQ HTML visible) ─────────
+// ─── Fix 1: Remove FAQPage schema JSON-LD (keep FAQ HTML visible) ─────────
 // Only removes the <script type="application/ld+json"> block containing FAQPage
 // Blog pages, service pages, location pages — all commercial
 function removeFaqPageSchema(content, filePath) {
@@ -197,7 +184,6 @@ function main() {
     const original = content;
     
     // Apply all fixes
-    content = fixTwitterSite(content, filePath);
     content = removeFaqPageSchema(content, filePath);
     content = removeMetaKeywords(content, filePath);
     content = removeHreflang(content, filePath);
@@ -222,7 +208,6 @@ function main() {
   console.log('  SUMMARY');
   console.log('═══════════════════════════════════════════════════════');
   console.log(`  Files processed:        ${stats.filesProcessed}`);
-  console.log(`  twitter:site fixed:     ${stats.twitterFixed}`);
   console.log(`  FAQPage schema removed: ${stats.faqSchemaRemoved}`);
   console.log(`  meta keywords removed:  ${stats.keywordsRemoved}`);
   console.log(`  hreflang removed:       ${stats.hreflangRemoved}`);

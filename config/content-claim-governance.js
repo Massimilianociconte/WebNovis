@@ -24,6 +24,48 @@ const UNSUPPORTED_GENERATED_CLAIM_PATTERNS = [
   { id: 'universal-performance', pattern: /\b(?:Lighthouse\s*(?:95|100|95\s*[-–]\s*100)|zero\s+vulnerabilit|uptime\s+(?:garantito\s+)?(?:del\s+)?99)/i }
 ];
 
+const UNSUPPORTED_PUBLISHED_CLAIM_PATTERNS = [
+  {
+    id: 'universal-lighthouse-score',
+    pattern: /\bLighthouse\s*(?:95\+|95\s*[-–]\s*100|95\s*(?:a|o)\s*100)\b/i
+  },
+  {
+    id: 'fixed-two-hour-response',
+    pattern: /\b(?:rispost[ae]|rispondiamo)[^.!?]{0,80}\b(?:garantit[ae]?[^.!?]{0,30})?entro\s+(?:2|due)\s+ore\b/i
+  },
+  {
+    id: 'founder-every-project',
+    pattern: /\b(?:il\s+)?fondatore\b[^.!?]{0,100}\b(?:segue|seguir[àa]|dedicat|direttamente|personalmente)[^.!?]{0,60}\b(?:ogni\s+)?progett/i
+  },
+  {
+    id: 'absolute-vulnerability-claim',
+    pattern: /\b(?:zero|nessun[aoe]?)\s+vulnerabilit(?:à|a)/i
+  },
+  {
+    id: 'fixed-free-support-period',
+    pattern: /\b30\s+giorni\s+di\s+supporto(?:\s+(?:gratuito|incluso|gratis))?\b/i
+  },
+  {
+    id: 'fixed-24-hour-commercial-sla',
+    pattern: /\b(?:preventiv[oa]|rispost[ae]|propost[ae]|rispondiamo)[^.!?]{0,110}\b(?:entro|in)\s+24\s+ore\b/i
+  },
+  {
+    id: 'universal-core-web-vitals-threshold',
+    pattern: /\b(?:LCP\s*(?:<|&lt;)\s*2[.,]5\s*s?|INP\s*(?:<|&lt;)\s*200\s*ms?|CLS\s*(?:<|&lt;)\s*0[.,]1)\b/i
+  },
+  {
+    id: 'fixed-delivery-promise',
+    pattern: /\b(?:tempi\s+certi|consegna\s+garantita|data\s+di\s+consegna\s+garantita)\b/i
+  }
+];
+
+const FIXED_DELIVERY_ESTIMATE_PATTERNS = [
+  /\b(?:Landing\s+Page|Sito\s+Vetrina|E-?Commerce)\s*:\s*\d+(?:\s*[-–]\s*\d+)?\s*(?:giorni|settimane|mesi)\b/i,
+  /\b(?:Briefing(?:\s+e\s+Analisi)?|Wireframe(?:\s+e\s+Design)?|Sviluppo\s+Custom|Test\s+e\s+Revisione)\s*\(\s*\d+(?:\s*[-–]\s*\d+)?\s*giorni\s*\)/i
+];
+
+const QUALIFIED_ESTIMATE_PATTERN = /\b(?:indicativ[ioe]|stima|dipend\w*|preventiv\w*\s+conferm|proposta\s+conferm|da\s+confermare)\b/i;
+
 function normalizeSources(source) {
   const values = Array.isArray(source) ? source : typeof source === 'string' ? [source] : [];
   return values.map((value) => String(value).trim()).filter(Boolean);
@@ -43,7 +85,10 @@ function hasApprovedProvenance(block) {
 function readApprovedContentBlock(filePath) {
   try {
     const block = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    return hasApprovedProvenance(block) ? block : null;
+    if (!hasApprovedProvenance(block)) return null;
+    if (findUnsupportedGeneratedClaims(block).length > 0) return null;
+    if (findUnsupportedPublishedClaims(JSON.stringify(block)).length > 0) return null;
+    return block;
   } catch (_) {
     return null;
   }
@@ -94,6 +139,52 @@ function findUnsupportedGeneratedClaims(block) {
   return findings;
 }
 
+function normalizePublishedText(value) {
+  return String(value || '')
+    .replace(
+      /<script\b([^>]*)>([\s\S]*?)<\/script>/gi,
+      (fullMatch, attributes, content) => /\btype=["']application\/ld\+json["']/i.test(attributes) ? ` ${content} ` : ' '
+    )
+    .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;|&#160;/gi, ' ')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&amp;/gi, '&')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function findUnsupportedPublishedClaims(value) {
+  const text = normalizePublishedText(value);
+  const findings = [];
+
+  for (const rule of UNSUPPORTED_PUBLISHED_CLAIM_PATTERNS) {
+    const match = text.match(rule.pattern);
+    if (!match) continue;
+    const index = match.index || 0;
+    findings.push({
+      id: rule.id,
+      excerpt: text.slice(Math.max(0, index - 80), index + match[0].length + 120)
+    });
+  }
+
+  for (const pattern of FIXED_DELIVERY_ESTIMATE_PATTERNS) {
+    const match = text.match(pattern);
+    if (!match) continue;
+    const index = match.index || 0;
+    const context = text.slice(Math.max(0, index - 220), index + match[0].length + 220);
+    if (QUALIFIED_ESTIMATE_PATTERN.test(context)) continue;
+    findings.push({
+      id: 'unqualified-fixed-delivery-estimate',
+      excerpt: context
+    });
+    break;
+  }
+
+  return findings;
+}
+
 function extractCustomBlocks(html = '') {
   const blocks = new Map();
   for (const match of String(html).matchAll(CUSTOM_BLOCK_REGEX)) {
@@ -137,7 +228,9 @@ function stripUnapprovedTier1EditorialBlocks(html, { approvedBlockKeys = [] } = 
 module.exports = {
   CLAIM_BEARING_CUSTOM_BLOCK_NAMES,
   UNSUPPORTED_GENERATED_CLAIM_PATTERNS,
+  UNSUPPORTED_PUBLISHED_CLAIM_PATTERNS,
   findUnsupportedGeneratedClaims,
+  findUnsupportedPublishedClaims,
   hasApprovedProvenance,
   loadApprovedContentBlocks,
   preserveGovernedCustomBlocks,

@@ -9,8 +9,8 @@ const ROOT = path.join(__dirname, '..');
 
 // New FAQs to add to Rho page (currently has 7, need 12+)
 const rhoNewFaqs = [
-    { q: 'Offrite piani di manutenzione per i siti web?', a: 'Sì. Ogni progetto include 30 giorni di supporto gratuito. Successivamente offriamo piani di manutenzione da €59/mese con aggiornamenti, backup automatici, monitoraggio performance e interventi prioritari.' },
-    { q: 'Il sito sarà ottimizzato per Google e i motori di ricerca?', a: 'Ogni sito WebNovis include SEO tecnica integrata: struttura HTML semantica, meta tag ottimizzati, Core Web Vitals (LCP < 2.5s, INP < 200ms, CLS < 0.1), sitemap XML, robots.txt e dati strutturati JSON-LD.' },
+    { q: 'Offrite piani di manutenzione per i siti web?', a: 'Sì. Il perimetro dell\'assistenza post-lancio viene definito nella proposta. Offriamo inoltre piani di manutenzione da €59/mese con aggiornamenti, backup automatici e monitoraggio performance.' },
+    { q: 'Il sito sarà ottimizzato per Google e i motori di ricerca?', a: 'Ogni sito WebNovis include SEO tecnica integrata: struttura HTML semantica, meta tag, Core Web Vitals misurati in base ai dati disponibili, sitemap XML, robots.txt e dati strutturati JSON-LD.' },
     { q: 'Potete realizzare un e-commerce per un negozio di Rho?', a: 'Sì. Realizziamo e-commerce custom senza commissioni sulle vendite, catalogo illimitato, pagamenti sicuri (Stripe, PayPal), gestione autonoma e spedizioni integrate. Ideale per il commercio rhodense.' },
     { q: 'Il sito sarà conforme al GDPR e all\'European Accessibility Act?', a: 'Sì. Ogni sito include cookie banner GDPR-compliant con Consent Mode v2, privacy policy e gestione consensi. Per l\'accessibilità EAA offriamo audit WCAG 2.1 AA dedicato da €890.' },
     { q: 'Posso gestire il sito in autonomia dopo il lancio?', a: 'Sì. Forniamo un pannello di gestione contenuti semplice e formazione inclusa nel progetto. Per i siti e-commerce, la gestione prodotti, ordini e inventario è completamente autonoma.' },
@@ -19,7 +19,7 @@ const rhoNewFaqs = [
 
 // New FAQs to add to Milano page (need to check current count first)
 const milanoNewFaqs = [
-    { q: 'Offrite piani di manutenzione e aggiornamento?', a: '30 giorni di supporto gratuito inclusi. Piani di manutenzione da €59/mese con backup, aggiornamenti, monitoraggio Core Web Vitals e interventi prioritari entro 2 ore lavorative.' },
+    { q: 'Offrite piani di manutenzione e aggiornamento?', a: 'Il perimetro dell\'assistenza post-lancio viene definito nella proposta. Piani di manutenzione disponibili da €59/mese con backup, aggiornamenti e monitoraggio Core Web Vitals.' },
     { q: 'Il sito includerà SEO tecnica ottimizzata?', a: 'Ogni sito WebNovis include SEO tecnica nativa: struttura semantica, meta tag, Core Web Vitals ottimizzati, sitemap XML, dati strutturati JSON-LD e compatibilità con Google AI Overviews.' },
     { q: 'Realizzate e-commerce per negozi e brand milanesi?', a: 'Sì. E-commerce custom senza commissioni, catalogo illimitato, checkout ottimizzato, pagamenti sicuri (Stripe, PayPal) e gestione ordini autonoma. Da €3.500.' },
     { q: 'Il sito sarà conforme al GDPR e all\'EAA?', a: 'Ogni sito include cookie banner GDPR-compliant con Consent Mode v2. Per la conformità European Accessibility Act (EAA) offriamo audit WCAG 2.1 AA da €890 e adeguamento completo.' },

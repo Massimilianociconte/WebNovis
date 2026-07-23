@@ -31,6 +31,7 @@ const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
 const { normalizeEntityJsonLd } = require('../config/entity-facts');
 const { normalizeReviewActionMarkup } = require('../config/site-footer');
 const {
+    findUnsupportedPublishedClaims,
     loadApprovedContentBlocks,
     preserveGovernedCustomBlocks,
     readApprovedContentBlock,
@@ -2690,6 +2691,10 @@ function validatePage(html, filename) {
         issues.push('⚠ WARNING: Missing answer-capsule class (GEO optimization)');
     }
 
+    for (const finding of findUnsupportedPublishedClaims(html)) {
+        issues.push(`⛔ UNSUPPORTED CLAIM [${finding.id}]: ${finding.excerpt.slice(0, 180)}`);
+    }
+
     return { filename, wordCount, internalLinks, schemaCount, issues };
 }
 
@@ -2865,6 +2870,15 @@ function main() {
         for (const hub of hubResults) {
             const relativePath = path.join(hub.dir, 'index.html');
             const html = finalizePublishedHtml(relativePath, hub.html);
+            const validation = validatePage(html, relativePath);
+            results.validations.push(validation);
+
+            if (validation.issues.some(issue => issue.startsWith('⛔'))) {
+                console.error(`  ❌ ${relativePath} — BLOCKED by validation:`);
+                validation.issues.forEach(issue => console.error(`     ${issue}`));
+                continue;
+            }
+
             if (!DRY_RUN && !VALIDATE_ONLY) {
                 writePublishedFile(relativePath, html);
             }

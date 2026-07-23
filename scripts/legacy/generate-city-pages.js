@@ -92,7 +92,7 @@ function generatePage(city) {
 
         // Meta description
         [/Cerchi un partner per la creazione di siti web a Rho\?[^"]+/,
-            `Cerchi un partner per la creazione di siti web a ${city.name}? WebNovis realizza siti professionali, veloci e ottimizzati SEO per aziende e professionisti di ${city.name} e hinterland milanese. Preventivo gratuito in 24h →`],
+            `Cerchi un partner per la creazione di siti web a ${city.name}? WebNovis realizza siti professionali, veloci e ottimizzati SEO per aziende e professionisti di ${city.name} e hinterland milanese. Richiedi un preventivo gratuito →`],
 
         // Keywords
         [/realizzazione siti web rho, creazione siti web rho, siti web rho, web agency rho, siti internet rho, agenzia web rho, sviluppo siti web rho, siti web professionali rho Milano/,

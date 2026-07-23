@@ -277,7 +277,7 @@ const LOCAL_PAGES_ALREADY_OPTIMIZED = new Set([
   'realizzazione-siti-web-arese.html'
 ]);
 const CONTACT_INFO_CARDS_PATTERN = /<div class="contatti-info-cards">[\s\S]*?<div class="contatti-map">[\s\S]*?<\/div>\s*<\/div>/i;
-const CONTACT_INFO_CARDS_REPLACEMENT = `<div class="contatti-info-cards"> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M3 8L10.89 13.26C11.54 13.67 12.46 13.67 13.11 13.26L21 8M5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19Z"/></svg> <h3>Email</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <a href="mailto:hello@webnovis.com" class="contatti-card-link">hello@webnovis.com</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <h3>Telefono</h3> </div> <div class="contatti-card-body contatti-card-body--offset contatti-card-stack"> <a href="tel:+393802647367" title="Chiama Web Novis" class="phone-cta" aria-label="Chiama WebNovis al numero +39 380 264 7367" data-contact-phone="+393802647367"><span class="phone-cta-label">Chiama WebNovis</span></a> <a href="https://wa.me/393802647367?text=Ciao%20Web%20Novis%2C%20vorrei%20maggiori%20informazioni" target="_blank" rel="noopener noreferrer" class="contatti-card-link">Scrivici su WhatsApp →</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> <h3>Sede</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Via S. Giorgio, 2<br>20017 Rho (MI), Italia</p> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <h3>Orari</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Aperto 24 ore su 24<br>7 giorni su 7</p> </div> </article> <div class="contatti-map"> <iframe allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.5!2d9.0393!3d45.5299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c1237f2e291d%3A0x7e38e24c285e5a0!2sVia%20S.%20Giorgio%2C%202%2C%2020017%20Rho%20MI!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" title="Sede Web Novis — Via S. Giorgio 2, Rho (MI)"></iframe> </div> </div>`;
+const CONTACT_INFO_CARDS_REPLACEMENT = `<div class="contatti-info-cards"> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M3 8L10.89 13.26C11.54 13.67 12.46 13.67 13.11 13.26L21 8M5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19Z"/></svg> <h3>Email</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <a href="mailto:hello@webnovis.com" class="contatti-card-link">hello@webnovis.com</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <h3>Telefono</h3> </div> <div class="contatti-card-body contatti-card-body--offset contatti-card-stack"> <a href="tel:+393802647367" title="Chiama Web Novis" class="phone-cta" aria-label="Chiama WebNovis al numero +39 380 264 7367" data-contact-phone="+393802647367"><span class="phone-cta-label">Chiama WebNovis</span></a> <a href="https://wa.me/393802647367?text=Ciao%20Web%20Novis%2C%20vorrei%20maggiori%20informazioni" target="_blank" rel="noopener noreferrer" class="contatti-card-link">Scrivici su WhatsApp →</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> <h3>Sede</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Via S. Giorgio, 2<br>20017 Rho (MI), Italia</p> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <h3>Contatti</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Usa i canali indicati.<br>Tempi e modalità vengono definiti al contatto.</p> </div> </article> <div class="contatti-map"> <iframe allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.5!2d9.0393!3d45.5299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c1237f2e291d%3A0x7e38e24c285e5a0!2sVia%20S.%20Giorgio%2C%202%2C%2020017%20Rho%20MI!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" title="Sede Web Novis — Via S. Giorgio 2, Rho (MI)"></iframe> </div> </div>`;
 const LEGAL_NAV_MENU = '<ul class="nav-menu" id="navMenu"> <li><a href="servizi/" class="nav-link">Servizi</a></li> <li><a href="portfolio.html" class="nav-link">Portfolio</a></li> <li><a href="chi-siamo.html" class="nav-link">Chi Siamo</a></li> <li><a href="blog/" class="nav-link">Blog</a></li> <li><a href="contatti.html" class="nav-link">Contatti</a></li> <li><a href="preventivo.html" class="nav-link nav-cta">Inizia Ora</a></li> </ul>';
 const PORTFOLIO_GRAPHIC_SECTION_PATTERN = /<section class="portfolio-section" style="padding:4rem 0" id="portfolio-grafico">[\s\S]*?<\/section>/i;
 const PORTFOLIO_SOCIAL_SECTION_PATTERN = /<section class="portfolio-section" style="padding:4rem 0;background:rgba\(255,255,255,.01\)" id="portfolio-social">[\s\S]*?<\/section>/i;
@@ -297,7 +297,7 @@ const LOCAL_PAGE_CONTENT_UPGRADES = {
     lead: 'A <strong>Cormano</strong> la concorrenza digitale è concreta: per essere scelti servono una proposta chiara, performance, segnali locali e una pagina capace di trasformare la visita in contatto.'
   },
   'realizzazione-siti-web-parabiago.html': {
-    sectionTag: 'Realizzazione siti web a Parabiago · da €1.200 · preventivo in 24 ore',
+    sectionTag: 'Realizzazione siti web a Parabiago · da €1.200 · SEO integrata',
     h1: 'Realizzazione siti web a Parabiago per PMI, artigiani e professionisti',
     answer: '<strong>WebNovis</strong> crea siti web a Parabiago per attività che vogliono sembrare più solide e ricevere più richieste. Siti vetrina da <strong>€1.200</strong>, landing da <strong>€500</strong> ed e-commerce da <strong>€3.500</strong>, con SEO integrata.',
     lead: 'Per le attività di <strong>Parabiago</strong>, un sito efficace deve raccontare competenza locale, servizi, prove di fiducia e percorso di contatto in modo più chiaro rispetto ai competitor generici.'
@@ -353,7 +353,7 @@ const LOCAL_PAGE_CONTENT_UPGRADES = {
   'realizzazione-siti-web-legnano.html': {
     sectionTag: 'Realizzazione siti web a Legnano · da €1.200 · SEO integrata',
     h1: 'Realizzazione siti web a Legnano per PMI, artigiani e professionisti',
-    answer: '<strong>WebNovis</strong> realizza siti web a Legnano con codice custom, SEO tecnica e percorsi di contatto chiari. Landing da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con preventivo gratuito entro 24 ore.',
+    answer: '<strong>WebNovis</strong> realizza siti web a Legnano con codice custom, SEO tecnica e percorsi di contatto chiari. Landing da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>; la proposta conferma perimetro, prezzo e tempistiche.',
     lead: 'A <strong>Legnano</strong> il sito deve aiutare a distinguersi in un mercato locale molto attivo: offerta, prova, prezzi indicativi e CTA devono essere leggibili subito.'
   },
   'realizzazione-siti-web-bollate.html': {
@@ -365,25 +365,25 @@ const LOCAL_PAGE_CONTENT_UPGRADES = {
   'agenzia-web-sesto-san-giovanni.html': {
     sectionTag: 'Agenzia web a Sesto San Giovanni · siti, SEO e campagne',
     h1: 'Agenzia web a Sesto San Giovanni per PMI e professionisti',
-    answer: '<strong>WebNovis</strong> supporta imprese e professionisti di Sesto San Giovanni con siti custom, branding, social media e campagne locali. La sede è a Rho, con gestione diretta, preventivo entro 24 ore e percorsi digitali misurabili.',
+    answer: '<strong>WebNovis</strong> supporta imprese e professionisti di Sesto San Giovanni con siti custom, branding, social media e campagne locali. La sede è a Rho, con gestione diretta e una proposta personalizzata sul perimetro del progetto.',
     lead: 'A <strong>Sesto San Giovanni</strong> la ricerca “agenzia web” è vicina alla prima pagina: per trasformare impression in contatti servono chiarezza sui servizi, prove di fiducia e collegamenti forti verso siti web, SEO e advertising.'
   },
   'ecommerce-arese.html': {
     sectionTag: 'E-commerce ad Arese · da €3.500 · SEO e checkout',
     h1: 'Realizzazione e-commerce ad Arese per negozi e brand locali',
-    answer: '<strong>WebNovis</strong> realizza e-commerce ad Arese con Shopify, WooCommerce o sviluppo custom: catalogo ordinato, pagamenti affidabili, SEO integrata e checkout orientato alle vendite. Progetti da <strong>€3.500</strong>, preventivo gratuito entro 24 ore dalla sede di Rho (10 minuti).',
+    answer: '<strong>WebNovis</strong> realizza e-commerce ad Arese con Shopify, WooCommerce o sviluppo custom: catalogo ordinato, pagamenti affidabili, SEO integrata e checkout orientato alle vendite. Progetti indicativi da <strong>€3.500</strong>; la proposta conferma prezzo e tempistiche.',
     lead: 'Ad <strong>Arese</strong>, tra grande retail e attività locali, vendere online significa competere con catene strutturate: servono schede prodotto credibili, velocità reale e un percorso di acquisto senza attriti.'
   },
   'ecommerce-rho.html': {
     sectionTag: 'E-commerce a Rho · da €3.500 · gestione diretta',
     h1: 'Realizzazione e-commerce a Rho per negozi, brand e PMI',
-    answer: '<strong>WebNovis</strong> sviluppa e-commerce a Rho — dove ha sede — con piattaforma adatta al catalogo (Shopify, WooCommerce o custom), SEO tecnica, UX mobile e gestione ordini semplice. Progetti da <strong>€3.500</strong>, preventivo gratuito entro 24 ore e incontri di persona in zona.',
+    answer: '<strong>WebNovis</strong> sviluppa e-commerce a Rho — dove ha sede — con piattaforma adatta al catalogo (Shopify, WooCommerce o custom), SEO tecnica, UX mobile e gestione ordini semplice. Progetti indicativi da <strong>€3.500</strong>; la proposta conferma prezzo e tempistiche.',
     lead: 'A <strong>Rho</strong> lavoriamo fianco a fianco con negozi e PMI: per un e-commerce locale contano la piattaforma giusta, costi chiari e un partner raggiungibile, non solo “andare online”.'
   },
   'seo-locale-limbiate.html': {
     sectionTag: 'SEO locale a Limbiate · da €400/mese · Maps e ricerche locali',
     h1: 'Consulenza SEO locale a Limbiate per farti trovare su Google',
-    answer: '<strong>WebNovis</strong> offre consulenza SEO locale a Limbiate: ottimizzazione Google Business Profile, pagine locali, recensioni e on-page per comparire su Maps e nelle ricerche “vicino a me”. Percorsi da <strong>€400/mese</strong> con report chiari e preventivo entro 24 ore.',
+    answer: '<strong>WebNovis</strong> offre consulenza SEO locale a Limbiate: ottimizzazione Google Business Profile, pagine locali, recensioni e on-page per comparire su Maps e nelle ricerche “vicino a me”. Percorsi indicativi da <strong>€400/mese</strong>; la proposta conferma attività e durata.',
     lead: 'A <strong>Limbiate</strong> la maggior parte delle ricerche commerciali è locale: chi cerca un servizio guarda mappa, recensioni e vicinanza prima di decidere chi contattare.'
   },
   'landing-page-monza.html': {
@@ -1347,11 +1347,11 @@ function alignPriorityContentTransforms(html, relativePath) {
   }
 
   if (normalizedPath === 'realizzazione-siti-web-garbagnate.html') {
-    let updated = replaceSectionTag(html, 'Realizzazione siti web a Garbagnate · preventivo in 24 ore');
+    let updated = replaceSectionTag(html, 'Realizzazione siti web a Garbagnate · da €1.200 · SEO integrata');
     updated = replaceFirstH1(updated, 'Realizzazione siti web a Garbagnate Milanese per PMI e professionisti');
     updated = replaceAnswerCapsule(
       updated,
-      '<strong>WebNovis</strong> realizza siti web a Garbagnate Milanese con design su misura, SEO tecnica integrata e codice 100% custom. Landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con gestione diretta da Rho e preventivo in 24 ore.'
+      '<strong>WebNovis</strong> realizza siti web a Garbagnate Milanese con design su misura, SEO tecnica integrata e codice 100% custom. Prezzi indicativi: landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>; la proposta conferma perimetro e tempistiche.'
     );
     return updated;
   }
@@ -1397,21 +1397,21 @@ function alignPriorityContentTransforms(html, relativePath) {
   }
 
   if (normalizedPath === 'sito-vetrina-bollate.html') {
-    let updated = replaceSectionTag(html, 'Sito vetrina a Bollate · preventivo in 24 ore');
+    let updated = replaceSectionTag(html, 'Sito vetrina a Bollate · da €1.200 · SEO integrata');
     updated = replaceFirstH1(updated, 'Sito vetrina a Bollate per aziende che vogliono più contatti');
     updated = replaceAnswerCapsule(
       updated,
-      '<strong>WebNovis</strong> realizza siti vetrina a Bollate con design su misura, SEO tecnica integrata e struttura orientata alle richieste. Siti vetrina da <strong>€1.200</strong>, tempi medi 2-3 settimane e gestione diretta da Rho con preventivo in 24 ore.'
+      '<strong>WebNovis</strong> realizza siti vetrina a Bollate con design su misura, SEO tecnica integrata e struttura orientata alle richieste. Prezzo indicativo da <strong>€1.200</strong>; la proposta conferma perimetro, prezzo e tempistiche.'
     );
     return updated;
   }
 
   if (normalizedPath === 'graphic-design-bareggio.html') {
-    let updated = replaceSectionTag(html, 'Graphic design a Bareggio · preventivo in 24 ore');
+    let updated = replaceSectionTag(html, 'Graphic design a Bareggio · da €250 · identità visiva');
     updated = replaceFirstH1(updated, 'Graphic design a Bareggio per logo, brand identity e coordinato');
     updated = replaceAnswerCapsule(
       updated,
-      '<strong>WebNovis</strong> offre graphic design a Bareggio per logo, brand identity e coordinato visivo. Progetti da <strong>€250</strong>, direzione creativa su misura e gestione diretta da Rho con preventivo rapido entro 24 ore.'
+      '<strong>WebNovis</strong> offre graphic design a Bareggio per logo, brand identity e coordinato visivo. Prezzo indicativo da <strong>€250</strong>; la proposta conferma output, revisioni, prezzo e tempistiche.'
     );
     return updated;
   }
@@ -1427,11 +1427,11 @@ function alignPriorityContentTransforms(html, relativePath) {
   }
 
   if (normalizedPath === 'ecommerce-milano.html') {
-    let updated = replaceSectionTag(html, 'E-commerce a Milano · da €3.500 · preventivo in 24 ore');
+    let updated = replaceSectionTag(html, 'E-commerce a Milano · da €3.500 · SEO integrata');
     updated = replaceFirstH1(updated, 'E-commerce a Milano per PMI, retail e vendita online');
     updated = replaceAnswerCapsule(
       updated,
-      '<strong>WebNovis</strong> realizza e-commerce a Milano con SEO integrata, UX orientata alle vendite e codice custom o stack Shopify/WooCommerce. Progetti da <strong>€3.500</strong>, gestione diretta da Rho e preventivo in 24 ore.'
+      '<strong>WebNovis</strong> realizza e-commerce a Milano con SEO integrata, UX orientata alle vendite e codice custom o stack Shopify/WooCommerce. Prezzo indicativo da <strong>€3.500</strong>; la proposta conferma piattaforma, integrazioni, prezzo e tempistiche.'
     );
     return updated;
   }
@@ -1547,21 +1547,21 @@ function alignPriorityContentTransforms(html, relativePath) {
   }
 
   if (normalizedPath === 'realizzazione-siti-web-bresso.html') {
-    let updated = replaceSectionTag(html, 'Realizzazione siti web a Bresso · preventivo in 24 ore');
+    let updated = replaceSectionTag(html, 'Realizzazione siti web a Bresso · da €1.200 · SEO integrata');
     updated = replaceFirstH1(updated, 'Realizzazione siti web a Bresso per PMI e professionisti');
     updated = replaceAnswerCapsule(
       updated,
-      '<strong>WebNovis</strong> realizza siti web a Bresso con design su misura, SEO tecnica integrata e codice 100% custom. Landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con gestione diretta da Rho e preventivo in 24 ore.'
+      '<strong>WebNovis</strong> realizza siti web a Bresso con design su misura, SEO tecnica integrata e codice 100% custom. Prezzi indicativi: landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>; la proposta conferma perimetro e tempistiche.'
     );
     return updated;
   }
 
   if (normalizedPath === 'realizzazione-siti-web-arese.html') {
-    let updated = replaceSectionTag(html, 'Realizzazione siti web ad Arese · preventivo in 24 ore');
+    let updated = replaceSectionTag(html, 'Realizzazione siti web ad Arese · da €1.200 · SEO integrata');
     updated = replaceFirstH1(updated, 'Realizzazione siti web ad Arese per PMI e professionisti');
     updated = replaceAnswerCapsule(
       updated,
-      '<strong>WebNovis</strong> realizza siti web ad Arese con design su misura, SEO tecnica integrata e codice 100% custom. Landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con gestione diretta da Rho e preventivo in 24 ore.'
+      '<strong>WebNovis</strong> realizza siti web ad Arese con design su misura, SEO tecnica integrata e codice 100% custom. Prezzi indicativi: landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>; la proposta conferma perimetro e tempistiche.'
     );
     return updated;
   }
@@ -1835,6 +1835,13 @@ function normalizeLocalMetricPlaceholders(html) {
   return html.replace(/<strong([^>]*)>NaN\+<\/strong>/g, '<strong$1>Mercato locale</strong>');
 }
 
+function removeUnverifiedTwitterSiteMeta(html) {
+  return String(html || '').replace(
+    /\s*<meta\b(?=[^>]*(?:name|property)\s*=\s*(?:["']twitter:site["']|twitter:site\b))[^>]*>/gi,
+    ''
+  );
+}
+
 function alignLocalPageOpportunityTransforms(html, relativePath) {
   const normalizedPath = normalizeRelativePath(relativePath);
   if (LOCAL_PAGES_ALREADY_OPTIMIZED.has(normalizedPath)) return html;
@@ -1851,7 +1858,7 @@ function alignLocalPageOpportunityTransforms(html, relativePath) {
 }
 
 function applySeoHtmlTransforms(html, relativePath) {
-  let updated = html;
+  let updated = removeUnverifiedTwitterSiteMeta(html);
   updated = alignPrioritySnippet(updated, relativePath);
   updated = alignPriorityContentTransforms(updated, relativePath);
   updated = alignLocalPageOpportunityTransforms(updated, relativePath);
@@ -1885,6 +1892,7 @@ module.exports = {
   alignLocalPageOpportunityTransforms,
   alignLocalAuthorityProof,
   normalizeLocalMetricPlaceholders,
+  removeUnverifiedTwitterSiteMeta,
   alignContactPageInfoCards,
   alignLegalNavbar,
   alignPortfolioExperience,

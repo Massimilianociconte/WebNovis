@@ -29,7 +29,7 @@ const cities = [
         schemaDesc: 'Agenzia web per Lainate e Nord-Ovest Milano specializzata in siti web 100% custom, graphic design e social media marketing. Sede a Rho (MI), 8 minuti da Lainate.',
         heroTag: 'Lainate — Milano (MI) 20045',
         h1: 'Agenzia Web a Lainate: Siti Professionali per Imprese e Professionisti',
-        heroCapsule: '<strong>WebNovis</strong> è l\'agenzia web di riferimento per PMI e professionisti di Lainate. Sede a Rho (8 minuti in auto via SP ex-SS33), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Preventivo gratuito entro 24 ore.',
+        heroCapsule: '<strong>WebNovis</strong> è l\'agenzia web di riferimento per PMI e professionisti di Lainate. Sede a Rho (8 minuti in auto via SP ex-SS33), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita e senza impegno.',
         breadcrumb: 'Agenzia Web Lainate',
         nearCities: [
             { name: 'Lainate', wiki: 'https://it.wikipedia.org/wiki/Lainate' },
@@ -46,19 +46,19 @@ const cities = [
             cards1: [
                 { h3: '8 minuti dalla nostra sede', p: 'WebNovis ha sede a Rho, a soli 8 minuti in auto da Lainate via SP ex-SS33. Incontri rapidi in azienda, senza traffico milanese.' },
                 { h3: 'Conoscenza del territorio', p: 'Dalle aziende di Via Litta alla zona industriale di Barbaiana, conosciamo il tessuto imprenditoriale di Lainate e i bisogni digitali delle PMI locali.' },
-                { h3: 'Risposta in 2 ore lavorative', p: 'Il fondatore segue ogni progetto. Nessun call center, nessun account manager. Comunicazione diretta e tempi di risposta garantiti.' }
+                { h3: 'Comunicazione e responsabilità chiare', p: 'Referenti, canali di confronto e tempi di risposta vengono definiti nella proposta in base al progetto.' }
             ],
             section3Title: 'Lainate e il contesto imprenditoriale: perché investire nel digitale',
             section3Text: '<p>Con oltre <strong>26.000 abitanti</strong> e una posizione strategica all\'incrocio tra A8 e tangenziale, Lainate attrae aziende dei settori manifatturiero, logistico e terziario. La vicinanza con <strong>Villa Litta</strong> — capolavoro barocco con il celebre Ninfeo — e l\'area commerciale garantiscono un bacino di clientela diversificato.</p><p>Le PMI di Lainate competono con aziende milanesi per la visibilità online. Un sito web professionale, veloce e ottimizzato SEO è il primo passo per catturare ricerche locali come <em>"web agency Lainate"</em>, <em>"sito web per azienda Lainate"</em> o <em>"e-commerce Lainate"</em>.</p>'
         },
         faqs: [
-            { q: 'Quanto costa un sito web a Lainate?', a: 'I prezzi partono da <strong>€500</strong> per una Landing Page, da <strong>€1.200</strong> per un Sito Vetrina e da <strong>€3.500</strong> per un E-Commerce custom. Preventivo gratuito entro 24 ore.' },
+            { q: 'Quanto costa un sito web a Lainate?', a: 'I prezzi partono da <strong>€500</strong> per una Landing Page, da <strong>€1.200</strong> per un Sito Vetrina e da <strong>€3.500</strong> per un E-Commerce custom. Richiesta di preventivo gratuita e senza impegno.' },
             { q: 'Dove siete rispetto a Lainate?', a: 'La nostra sede è a Rho, in Via S. Giorgio 2 — a 8 minuti in auto da Lainate via SP ex-SS33. Incontriamo i clienti presso le loro aziende o in videochiamata.' },
             { q: 'Servite solo Lainate o anche comuni vicini?', a: 'Oltre a Lainate serviamo Rho, Arese, Garbagnate Milanese, Nerviano, Pogliano Milanese, Bollate e tutta la Città Metropolitana di Milano.' },
             { q: 'Usate WordPress per i siti?', a: 'No. Ogni sito WebNovis è sviluppato con codice 100% custom (HTML5, CSS3, JavaScript). Performance superiori, sicurezza nativa, SEO ottimizzato — nessun template.' },
-            { q: 'Quanto tempo per un sito web?', a: 'Landing Page: 5-7 giorni lavorativi. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane.' },
-            { q: 'Offrite assistenza dopo il lancio?', a: '30 giorni di supporto gratuito inclusi in ogni progetto. Piani di manutenzione continuativa da €59/mese con aggiornamenti, backup e monitoraggio.' },
-            { q: 'Perché scegliere WebNovis invece di una web agency milanese?', a: 'Vicinanza (8 min da Lainate), comunicazione diretta con il fondatore, prezzi senza overhead delle agenzie di Milano centro, stessa qualità tecnica e risultati misurabili.' }
+            { q: 'Quanto tempo per un sito web?', a: 'Stime indicative, da confermare nella proposta: Landing Page 5-7 giorni lavorativi, Sito Vetrina 2-3 settimane, E-Commerce 4-8 settimane.' },
+            { q: 'Offrite assistenza dopo il lancio?', a: 'Il perimetro dell'assistenza post-lancio viene definito nella proposta. Piani di manutenzione continuativa da €59/mese con aggiornamenti, backup e monitoraggio.' },
+            { q: 'Perché scegliere WebNovis invece di una web agency milanese?', a: 'Vicinanza (8 min da Lainate), referente di progetto e responsabilità chiare, prezzi senza overhead delle agenzie di Milano centro, stessa qualità tecnica e risultati misurabili.' }
         ],
         ctaTitle: 'Pronto a portare online la tua attività di Lainate?'
     },
@@ -70,13 +70,13 @@ const cities = [
         lng: '9.0764',
         wiki: 'https://it.wikipedia.org/wiki/Arese',
         title: 'Agenzia Web ad Arese (Milano) — WebNovis | Siti Web Custom, E-Commerce e Social',
-        metaDesc: 'WebNovis è l\'agenzia web per Arese e Nord-Ovest Milano. Sviluppo siti 100% custom, e-commerce, graphic design. Sede a Rho, 10 minuti da Arese. Preventivo gratuito entro 24h.',
+        metaDesc: 'WebNovis è l\'agenzia web per Arese e Nord-Ovest Milano. Sviluppo siti 100% custom, e-commerce, graphic design. Sede a Rho, 10 minuti da Arese. Richiedi un preventivo gratuito.',
         keywords: 'agenzia web Arese, web agency Arese Milano, sviluppo siti web Arese, sito web azienda Arese, web designer Arese, e-commerce Arese, WebNovis Arese',
         ogTitle: 'Agenzia Web ad Arese — WebNovis | Siti Web Custom e Digital Marketing',
         schemaDesc: 'Agenzia web per Arese e Nord-Ovest Milano specializzata in siti web custom, e-commerce, graphic design e social media. Sede a Rho (MI), 10 minuti da Arese.',
         heroTag: 'Arese — Milano (MI) 20044',
         h1: 'Agenzia Web ad Arese: Siti Web e Digital Marketing per il Commercio e le PMI',
-        heroCapsule: '<strong>WebNovis</strong> è l\'agenzia web per PMI, commercianti e professionisti di Arese. Sede a Rho (10 minuti in auto), incontri in azienda o in videochiamata. Codice 100% custom — zero WordPress. Preventivo gratuito entro 24 ore.',
+        heroCapsule: '<strong>WebNovis</strong> è l\'agenzia web per PMI, commercianti e professionisti di Arese. Sede a Rho (10 minuti in auto), incontri in azienda o in videochiamata. Codice 100% custom — zero WordPress. Richiesta di preventivo gratuita e senza impegno.',
         breadcrumb: 'Agenzia Web Arese',
         nearCities: [
             { name: 'Arese', wiki: 'https://it.wikipedia.org/wiki/Arese' },
@@ -99,13 +99,13 @@ const cities = [
             section3Text: '<p>Con <strong>20.000 abitanti</strong> e un\'area commerciale che attira visitatori da tutta la Lombardia, Arese offre un mercato ricco per attività locali e e-commerce. La vicinanza all\'autostrada A8 e alla tangenziale ovest rende l\'area un hub logistico naturale per aziende di distribuzione e servizi.</p><p>Le ricerche locali come <em>"negozio online Arese"</em>, <em>"web designer Arese"</em> e <em>"sito web per attività Arese"</em> hanno competizione quasi inesistente — un\'opportunità concreta per chi investe ora nel digitale.</p>'
         },
         faqs: [
-            { q: 'Quanto costa un sito web per un\'attività di Arese?', a: 'Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Preventivo gratuito entro 24 ore.' },
+            { q: 'Quanto costa un sito web per un\'attività di Arese?', a: 'Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Richiesta di preventivo gratuita e senza impegno.' },
             { q: 'Dove si trova WebNovis rispetto ad Arese?', a: 'La nostra sede è a Rho, Via S. Giorgio 2 — 10 minuti in auto da Arese. Incontriamo i clienti in azienda o in videochiamata.' },
             { q: 'Potete creare un e-commerce per un negozio di Arese?', a: 'Sì. Realizziamo e-commerce custom senza commissioni sulle vendite, con catalogo illimitato, pagamenti sicuri e gestione autonoma. Ideale per il retail aresino.' },
             { q: 'Servite anche i comuni vicini ad Arese?', a: 'Oltre ad Arese serviamo Rho, Lainate, Garbagnate, Bollate, Pero, Cornaredo e tutta la Città Metropolitana di Milano.' },
             { q: 'Usate WordPress?', a: 'No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi senza plugin di terze parti.' },
-            { q: 'Quanto tempo per realizzare un sito?', a: 'Landing Page: 5-7 giorni. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane.' },
-            { q: 'Offrite supporto dopo il lancio del sito?', a: '30 giorni di supporto gratuito inclusi. Piani di manutenzione continuativa da €59/mese con aggiornamenti, backup e monitoraggio performance.' }
+            { q: 'Quanto tempo per realizzare un sito?', a: 'Stime indicative, da confermare nella proposta: Landing Page 5-7 giorni, Sito Vetrina 2-3 settimane, E-Commerce 4-8 settimane.' },
+            { q: 'Offrite supporto dopo il lancio del sito?', a: 'Il perimetro dell'assistenza post-lancio viene definito nella proposta. Piani di manutenzione continuativa da €59/mese con aggiornamenti, backup e monitoraggio performance.' }
         ],
         ctaTitle: 'Pronto a far crescere la tua attività di Arese online?'
     },
@@ -123,7 +123,7 @@ const cities = [
         schemaDesc: 'Agenzia web per Garbagnate Milanese specializzata in siti web custom, graphic design e social media per PMI e artigiani. Sede a Rho (MI), 12 minuti.',
         heroTag: 'Garbagnate Milanese — MI 20024',
         h1: 'Agenzia Web a Garbagnate Milanese: Siti Web Custom per Aziende e Artigiani',
-        heroCapsule: '<strong>WebNovis</strong> è l\'agenzia web per artigiani, PMI e professionisti di Garbagnate Milanese. Sede a Rho (12 minuti via SP527), incontri diretti o in videochiamata. Codice proprietario, zero WordPress. Preventivo gratuito entro 24 ore.',
+        heroCapsule: '<strong>WebNovis</strong> è l\'agenzia web per artigiani, PMI e professionisti di Garbagnate Milanese. Sede a Rho (12 minuti via SP527), incontri diretti o in videochiamata. Codice proprietario, zero WordPress. Richiesta di preventivo gratuita e senza impegno.',
         breadcrumb: 'Agenzia Web Garbagnate',
         nearCities: [
             { name: 'Garbagnate Milanese', wiki: 'https://it.wikipedia.org/wiki/Garbagnate_Milanese' },
@@ -140,19 +140,19 @@ const cities = [
             cards1: [
                 { h3: '12 minuti dalla nostra sede', p: 'WebNovis è a Rho, a soli 12 minuti in auto via SP527. Incontri rapidi in azienda, senza i costi e i tempi di una web agency milanese.' },
                 { h3: 'Competenza manifatturiera e B2B', p: 'La zona industriale di Garbagnate ospita aziende meccaniche, elettriche e di servizi B2B. Sappiamo comunicare l\'offerta tecnica a un pubblico B2B esigente.' },
-                { h3: 'Prezzi trasparenti', p: 'Nessun overhead da agenzia milanese. Preventivi chiari, tempistiche certe, comunicazione diretta con il fondatore del progetto.' }
+                { h3: 'Prezzi trasparenti', p: 'Nessun overhead da agenzia milanese. Preventivi chiari, tempistiche certe, referente di progetto e responsabilità chiare del progetto.' }
             ],
             section3Title: 'Garbagnate Milanese nel contesto digitale: opportunità concrete',
             section3Text: '<p>Garbagnate ha un tessuto produttivo diversificato: dalla <strong>zona industriale sud</strong> con PMI meccaniche e logistiche, al <strong>centro storico</strong> con studi professionali, commercio di vicinato e artigianato. L\'<strong>Ospedale Salvini</strong> genera un indotto di servizi sanitari e studi medici che beneficiano di un sito professionale.</p><p>Le ricerche <em>"web agency Garbagnate"</em>, <em>"sito web artigiano Garbagnate"</em> e <em>"e-commerce Garbagnate Milanese"</em> hanno volume in crescita e competizione quasi nulla — chi investe ora cattura il mercato locale.</p>'
         },
         faqs: [
-            { q: 'Quanto costa un sito web a Garbagnate Milanese?', a: 'I prezzi partono da <strong>€500</strong> per una Landing Page, da <strong>€1.200</strong> per un Sito Vetrina e da <strong>€3.500</strong> per un E-Commerce custom. Preventivo gratuito entro 24 ore.' },
+            { q: 'Quanto costa un sito web a Garbagnate Milanese?', a: 'I prezzi partono da <strong>€500</strong> per una Landing Page, da <strong>€1.200</strong> per un Sito Vetrina e da <strong>€3.500</strong> per un E-Commerce custom. Richiesta di preventivo gratuita e senza impegno.' },
             { q: 'Dove siete rispetto a Garbagnate?', a: 'La nostra sede è a Rho, Via S. Giorgio 2 — 12 minuti in auto via SP527. Incontriamo i clienti in azienda o in videochiamata.' },
             { q: 'Servite anche i comuni vicini?', a: 'Oltre a Garbagnate serviamo Rho, Lainate, Bollate, Cesate, Senago, Arese e tutta la Città Metropolitana di Milano.' },
             { q: 'Usate WordPress?', a: 'No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance superiori, sicurezza nativa, personalizzazione illimitata.' },
-            { q: 'Quanto tempo per un sito web?', a: 'Landing Page: 5-7 giorni lavorativi. Sito Vetrina: 2-3 settimane. E-Commerce: 4-8 settimane.' },
-            { q: 'Offrite supporto post-lancio?', a: '30 giorni di supporto gratuito inclusi. Manutenzione continuativa da €59/mese con backup, aggiornamenti e monitoraggio performance.' },
-            { q: 'Perché scegliere un\'agenzia locale invece di una milanese?', a: 'Vicinanza (12 min da Garbagnate), rapporto diretto con il fondatore, prezzi competitivi senza overhead da grande agenzia, conoscenza del tessuto imprenditoriale locale.' }
+            { q: 'Quanto tempo per un sito web?', a: 'Stime indicative, da confermare nella proposta: Landing Page 5-7 giorni lavorativi, Sito Vetrina 2-3 settimane, E-Commerce 4-8 settimane.' },
+            { q: 'Offrite supporto post-lancio?', a: 'Il perimetro dell'assistenza post-lancio viene definito nella proposta. Manutenzione continuativa da €59/mese con backup, aggiornamenti e monitoraggio performance.' },
+            { q: 'Perché scegliere un\'agenzia locale invece di una milanese?', a: 'Vicinanza (12 min da Garbagnate), referente di progetto e responsabilità chiare, prezzi competitivi senza overhead da grande agenzia, conoscenza del tessuto imprenditoriale locale.' }
         ],
         ctaTitle: 'Pronto a portare online la tua azienda di Garbagnate?'
     }
@@ -161,7 +161,7 @@ const cities = [
 // ─── Generate each city page from Rho template ──────────────────────
 
 function buildServicesGrid(cityName) {
-    return `<div class="service-grid"><div class="service-card-mini"><h3>Sito Web Vetrina</h3><p>Design personalizzato e SEO locale per studi e PMI di ${cityName}. <strong>Da €1.200</strong>. <a href="servizi/sito-vetrina.html">Scopri →</a></p></div><div class="service-card-mini"><h3>E-Commerce Custom</h3><p>Negozio online senza commissioni, catalogo illimitato, gestione autonoma. <strong>Da €3.500</strong>. <a href="servizi/ecommerce.html">Scopri →</a></p></div><div class="service-card-mini"><h3>Landing Page</h3><p>Pagine ad alta conversione per campagne digitali. <strong>Da €500</strong>. <a href="servizi/landing-page.html">Scopri →</a></p></div><div class="service-card-mini"><h3>Graphic Design e Branding</h3><p>Logo, identità visiva e coordinato aziendale. <strong>Da €400</strong>. <a href="servizi/graphic-design.html">Scopri →</a></p></div><div class="service-card-mini"><h3>Social Media Marketing</h3><p>Contenuti, analisi competitor e campagne Meta/LinkedIn. <strong>Da €300/mese</strong>. <a href="servizi/social-media.html">Scopri →</a></p></div><div class="service-card-mini"><h3>Accessibilità EAA</h3><p>Audit WCAG e adeguamento al nuovo obbligo europeo. <strong>Da €890</strong>. <a href="servizi/accessibilita.html">Scopri →</a></p></div></div>`;
+    return `<div class="service-grid"><div class="service-card-mini"><h3>Sito Web Vetrina</h3><p>Design personalizzato e SEO locale per studi e PMI di ${cityName}. <strong>Da €1.200</strong>. <a href="servizi/sito-vetrina.html">Scopri →</a></p></div><div class="service-card-mini"><h3>E-Commerce Custom</h3><p>Negozio online senza commissioni, catalogo illimitato, gestione autonoma. <strong>Da €3.500</strong>. <a href="servizi/ecommerce.html">Scopri →</a></p></div><div class="service-card-mini"><h3>Landing Page</h3><p>Pagine ad alta conversione per campagne digitali. <strong>Da €500</strong>. <a href="servizi/landing-page.html">Scopri →</a></p></div><div class="service-card-mini"><h3>Graphic Design e Branding</h3><p>Logo, identità visiva e coordinato aziendale. <strong>Da €250</strong>. <a href="servizi/graphic-design.html">Scopri →</a></p></div><div class="service-card-mini"><h3>Social Media Marketing</h3><p>Contenuti, analisi competitor e campagne Meta/LinkedIn. <strong>Da €300/mese</strong>. <a href="servizi/social-media.html">Scopri →</a></p></div><div class="service-card-mini"><h3>Accessibilità EAA</h3><p>Audit WCAG e adeguamento al nuovo obbligo europeo. <strong>Da €890</strong>. <a href="servizi/accessibilita.html">Scopri →</a></p></div></div>`;
 }
 
 function buildAreaServedList(city) {
@@ -213,7 +213,7 @@ for (const city of cities) {
 
     const faqSection = ` <section class="service-detail"><div class="container"><h2>Domande Frequenti — ${city.breadcrumb}</h2>${buildFaqHtml(city.faqs)}</div></section>`;
 
-    const ctaSection = ` <section class="cta-inline"><div class="container"><h2>${city.ctaTitle}</h2><p>Preventivo gratuito in 24 ore. Incontri presso la tua azienda o in videochiamata.</p><a href="contatti.html" class="btn btn-large btn-primary"><span>Contattaci Ora</span> <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a></div></section> </main>`;
+    const ctaSection = ` <section class="cta-inline"><div class="container"><h2>${city.ctaTitle}</h2><p>Richiedi una proposta personalizzata: perimetro, prezzo, tempistiche e modalità di confronto vengono definiti in base al progetto.</p><a href="contatti.html" class="btn btn-large btn-primary"><span>Contattaci Ora</span> <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a></div></section> </main>`;
 
     // Footer — extract from Rho page and update links
     const rhoFooterStart = rhoPage.indexOf('<footer');
