@@ -277,7 +277,7 @@ const LOCAL_PAGES_ALREADY_OPTIMIZED = new Set([
   'realizzazione-siti-web-arese.html'
 ]);
 const CONTACT_INFO_CARDS_PATTERN = /<div class="contatti-info-cards">[\s\S]*?<div class="contatti-map">[\s\S]*?<\/div>\s*<\/div>/i;
-const CONTACT_INFO_CARDS_REPLACEMENT = `<div class="contatti-info-cards"> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M3 8L10.89 13.26C11.54 13.67 12.46 13.67 13.11 13.26L21 8M5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19Z"/></svg> <h3>Email</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <a href="mailto:hello@webnovis.com" class="contatti-card-link">hello@webnovis.com</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <h3>Telefono</h3> </div> <div class="contatti-card-body contatti-card-body--offset contatti-card-stack"> <a href="tel:+393802647367" title="Chiama Web Novis" class="phone-cta" aria-label="Chiama WebNovis al numero +39 380 264 7367" data-contact-phone="+393802647367"><span class="phone-cta-label">Chiama WebNovis</span></a> <a href="https://wa.me/393802647367?text=Ciao%20Web%20Novis%2C%20vorrei%20maggiori%20informazioni" target="_blank" rel="noopener noreferrer" class="contatti-card-link">Scrivici su WhatsApp →</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> <h3>Sede</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Via S. Giorgio, 2<br>20017 Rho (MI), Italia</p> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <h3>Contatti</h3> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Usa i canali indicati.<br>Tempi e modalità vengono definiti al contatto.</p> </div> </article> <div class="contatti-map"> <iframe allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.5!2d9.0393!3d45.5299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c1237f2e291d%3A0x7e38e24c285e5a0!2sVia%20S.%20Giorgio%2C%202%2C%2020017%20Rho%20MI!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" title="Sede Web Novis — Via S. Giorgio 2, Rho (MI)"></iframe> </div> </div>`;
+const CONTACT_INFO_CARDS_REPLACEMENT = `<div class="contatti-info-cards"> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M3 8L10.89 13.26C11.54 13.67 12.46 13.67 13.11 13.26L21 8M5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19Z"/></svg> <h2>Email</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <a href="mailto:hello@webnovis.com" class="contatti-card-link">hello@webnovis.com</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <h2>Telefono</h2> </div> <div class="contatti-card-body contatti-card-body--offset contatti-card-stack"> <a href="tel:+393802647367" title="Chiama Web Novis" class="phone-cta" aria-label="Chiama WebNovis al numero +39 380 264 7367" data-contact-phone="+393802647367"><span class="phone-cta-label">Chiama WebNovis</span></a> <a href="https://wa.me/393802647367?text=Ciao%20Web%20Novis%2C%20vorrei%20maggiori%20informazioni" target="_blank" rel="noopener noreferrer" class="contatti-card-link">Scrivici su WhatsApp →</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> <h2>Sede</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Via S. Giorgio, 2<br>20017 Rho (MI), Italia</p> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <h2>Contatti</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Usa i canali indicati.<br>Tempi e modalità vengono definiti al contatto.</p> </div> </article> <div class="contatti-map"> <iframe allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.5!2d9.0393!3d45.5299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c1237f2e291d%3A0x7e38e24c285e5a0!2sVia%20S.%20Giorgio%2C%202%2C%2020017%20Rho%20MI!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" title="Sede Web Novis — Via S. Giorgio 2, Rho (MI)"></iframe> </div> </div>`;
 const LEGAL_NAV_MENU = '<ul class="nav-menu" id="navMenu"> <li><a href="servizi/" class="nav-link">Servizi</a></li> <li><a href="portfolio.html" class="nav-link">Portfolio</a></li> <li><a href="chi-siamo.html" class="nav-link">Chi Siamo</a></li> <li><a href="blog/" class="nav-link">Blog</a></li> <li><a href="contatti.html" class="nav-link">Contatti</a></li> <li><a href="preventivo.html" class="nav-link nav-cta">Inizia Ora</a></li> </ul>';
 const PORTFOLIO_GRAPHIC_SECTION_PATTERN = /<section class="portfolio-section" style="padding:4rem 0" id="portfolio-grafico">[\s\S]*?<\/section>/i;
 const PORTFOLIO_SOCIAL_SECTION_PATTERN = /<section class="portfolio-section" style="padding:4rem 0;background:rgba\(255,255,255,.01\)" id="portfolio-social">[\s\S]*?<\/section>/i;
@@ -860,6 +860,69 @@ function isNonPublicArtifactPath(relativePath = '') {
   return NON_PUBLIC_ARTIFACT_PATTERNS.some((pattern) => pattern.test(normalized));
 }
 
+function normalizeHtmlDocumentStructure(html, relativePath) {
+  const source = String(html || '');
+  if (normalizeRelativePath(relativePath) !== 'blog/index.html') return source;
+
+  const withoutDoctype = source.replace(/^\s*<!doctype\s+html[^>]*>\s*/i, '');
+  const documentMatch = withoutDoctype.match(
+    /^\s*<html\b([^>]*)>\s*<head\b[^>]*>([\s\S]*?)<\/head>\s*<body\b([^>]*)>([\s\S]*)<\/body>\s*<\/html>\s*$/i
+  );
+  if (!documentMatch) return source;
+
+  const [, htmlAttributes, currentHead, bodyAttributes, currentBody] = documentMatch;
+  let head = currentHead.trim();
+  let body = currentBody.replace(/^\s*\uFEFF?\s*/, '');
+  const skipLinkIndex = body.search(
+    /<a\b(?=[^>]*\bclass=["'][^"']*\bskip-link\b[^"']*["'])[^>]*>/i
+  );
+
+  if (skipLinkIndex > 0) {
+    const misplacedHeadContent = body.slice(0, skipLinkIndex).trim();
+    if (misplacedHeadContent) head = `${head} ${misplacedHeadContent}`;
+    body = body.slice(skipLinkIndex);
+  }
+
+  return `<!DOCTYPE html> <html${htmlAttributes}><head>${head}</head><body${bodyAttributes}> ${body.trim()}</body></html>`;
+}
+
+function ensureSkipLinkTargets(html) {
+  const skipLinkPattern = /<a\b(?=[^>]*\bclass=["'][^"']*\bskip-link\b[^"']*["'])[^>]*>/gi;
+  const targetIds = new Set(
+    [...String(html || '').matchAll(skipLinkPattern)]
+      .map((match) => getTagAttribute(match[0], 'href'))
+      .filter((href) => href.startsWith('#') && href.length > 1)
+      .map((href) => {
+        try {
+          return decodeURIComponent(href.slice(1));
+        } catch (_) {
+          return href.slice(1);
+        }
+      })
+  );
+
+  let updated = html;
+  for (const targetId of targetIds) {
+    const escapedTarget = escapeRegex(targetId);
+    const existingTargetPattern = new RegExp(`\\bid=(["'])${escapedTarget}\\1`, 'gi');
+    if ([...String(updated).matchAll(existingTargetPattern)].length !== 0) continue;
+
+    const preferredTagPattern = /<main\b[^>]*>/i.test(updated)
+      ? /<main\b[^>]*>/i
+      : /<section\b[^>]*>/i;
+    if (!preferredTagPattern.test(updated)) continue;
+
+    updated = updated.replace(preferredTagPattern, (openingTag) => {
+      if (!/\bid=(["']).*?\1/i.test(openingTag)) {
+        const tabindex = /\btabindex=(["']).*?\1/i.test(openingTag) ? '' : ' tabindex="-1"';
+        return openingTag.replace(/>$/, ` id="${escapeHtmlAttr(targetId)}"${tabindex}>`);
+      }
+      return `${openingTag}<span id="${escapeHtmlAttr(targetId)}" tabindex="-1"></span>`;
+    });
+  }
+  return updated;
+}
+
 function replaceTagContent(html, pattern, content) {
   return html.replace(pattern, (...args) => {
     const captures = args.slice(1, -2);
@@ -971,13 +1034,16 @@ function replaceArticleUpgrade(html, { title, description, href, label }) {
 }
 
 function ensureSelfHreflang(html, relativePath) {
-  if (isNonPublicArtifactPath(relativePath)) {
-    return html.replace(/\s*<link\b[^>]*\bhreflang=["']it-IT["'][^>]*>/gi, '');
-  }
+  const withoutExisting = html.replace(/\s*<link\b(?=[^>]*\bhreflang\s*=)[^>]*>/gi, '');
+  const publicPath = toPublicUrlPath(relativePath);
+  const isNoindex = isNonPublicArtifactPath(relativePath)
+    || NON_INDEXABLE_STATIC_PATHS.has(publicPath)
+    || getIndexationDirectivesForPath(publicPath) === 'noindex, follow';
+  if (isNoindex) return withoutExisting;
 
-  const href = toAbsolutePublicUrl(relativePath);
+  const canonicalTag = withoutExisting.match(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i);
+  const href = canonicalTag ? getTagAttribute(canonicalTag[0], 'href') : toAbsolutePublicUrl(relativePath);
   const hreflangTag = `<link rel="alternate" hreflang="it-IT" href="${href}">`;
-  const withoutExisting = html.replace(/\s*<link\b[^>]*\bhreflang=["']it-IT["'][^>]*>/gi, '');
 
   if (/<link\b[^>]*rel=["']canonical["'][^>]*>/i.test(withoutExisting)) {
     return withoutExisting.replace(/(<link\b[^>]*rel=["']canonical["'][^>]*>)/i, `$1 ${hreflangTag}`);
@@ -1858,7 +1924,8 @@ function alignLocalPageOpportunityTransforms(html, relativePath) {
 }
 
 function applySeoHtmlTransforms(html, relativePath) {
-  let updated = removeUnverifiedTwitterSiteMeta(html);
+  let updated = normalizeHtmlDocumentStructure(html, relativePath);
+  updated = removeUnverifiedTwitterSiteMeta(updated);
   updated = alignPrioritySnippet(updated, relativePath);
   updated = alignPriorityContentTransforms(updated, relativePath);
   updated = alignLocalPageOpportunityTransforms(updated, relativePath);
@@ -1871,11 +1938,12 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = alignEditorialContextLinks(updated, relativePath);
   updated = alignClusterStrategicLinks(updated, relativePath);
   updated = alignCanvaPartnerCredit(updated, relativePath);
-  updated = ensureSelfHreflang(updated, relativePath);
   updated = normalizeLocalMetricPlaceholders(updated);
   updated = alignRobotsDirectives(updated, relativePath);
+  updated = ensureSelfHreflang(updated, relativePath);
   updated = alignHomepageBrandExperience(updated, relativePath);
   updated = normalizeInternalAttributionLinks(updated);
+  updated = ensureSkipLinkTargets(updated);
   return updated;
 }
 
@@ -1886,6 +1954,8 @@ module.exports = {
   toPublicUrlPath,
   toAbsolutePublicUrl,
   isNonPublicArtifactPath,
+  normalizeHtmlDocumentStructure,
+  ensureSkipLinkTargets,
   ensureSelfHreflang,
   alignPrioritySnippet,
   alignPriorityContentTransforms,

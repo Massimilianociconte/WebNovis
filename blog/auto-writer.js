@@ -34,6 +34,7 @@ const TOPICS_FILE = path.join(__dirname, 'topics-queue.json');
 const LOG_FILE = path.join(__dirname, 'articles-log.json');
 const GENERATE_SITEMAP_SCRIPT = path.join(__dirname, '..', 'generate-sitemap.js');
 const BLOG_INDEX_FILE = path.join(__dirname, 'index.html');
+const { normalizeHtmlDocumentStructure } = require('../config/seo-html-transforms');
 
 const DRY_RUN = process.argv.includes('--dry-run');
 const REBUILD_INDEX_ONLY = process.argv.includes('--rebuild-index');
@@ -835,6 +836,7 @@ function updateBlogIndex(allArticlesMeta) {
     collectionPageScript
   );
 
+  html = normalizeHtmlDocumentStructure(html, 'blog/index.html');
   fs.writeFileSync(BLOG_INDEX_FILE, html, 'utf-8');
   log(`Updated blog/index.html (${allArticlesMeta.length} articles)`);
 }

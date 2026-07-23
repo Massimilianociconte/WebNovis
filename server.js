@@ -8,7 +8,6 @@ const crypto = require('crypto'); // Per timing-safe auth
 const aiConfig = require('./ai-config'); // Configurazione AI
 const { createSearchAiEngine, normalizePath: normalizeSearchPath } = require('./search-ai-engine');
 const { SECURITY_HEADERS, getAllowedCorsOrigins } = require('./config/security-headers');
-const { buildCspWithNonce } = require('./config/security-headers');
 const { getIndexationDirectivesForPath } = require('./config/pseo-governance');
 
 // Global fetch instance — eagerly imported at boot to avoid cold-start latency
@@ -298,14 +297,11 @@ app.use((req, res, next) => {
     next();
 });
 
-// 2.1 Security headers — trust signal + vulnerability prevention
-// Per-request CSP nonce: modern browsers enforce nonce over 'unsafe-inline'
+// 2.1 Security headers — trust signal + vulnerability prevention.
+// A nonce CSP is intentionally gated until the HTML delivery layer can inject
+// the same nonce into every executable inline and external script.
 app.use((req, res, next) => {
-    const nonce = crypto.randomBytes(16).toString('base64');
-    res.locals.cspNonce = nonce;
-    // Set all static security headers first, then override CSP with nonce
     res.set(SECURITY_HEADERS);
-    res.set('Content-Security-Policy', buildCspWithNonce(nonce));
     next();
 });
 

@@ -24,6 +24,10 @@ async function assertServerUsesSharedSecurityConfig() {
     serverSource.includes('res.set(SECURITY_HEADERS);'),
     'server.js must apply the shared security headers middleware'
   );
+  assert.ok(
+    !serverSource.includes('buildCspWithNonce') && !serverSource.includes('res.locals.cspNonce'),
+    'server.js must not advertise a nonce CSP unless nonce attributes are injected into every executable script'
+  );
 }
 
 async function main() {

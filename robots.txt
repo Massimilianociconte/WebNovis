@@ -1,10 +1,13 @@
 # robots.txt per WebNovis - Agenzia Digitale
 # https://www.webnovis.com
+#
+# Queste sono preferenze di crawling ("crawl preferences only"), non una
+# barriera di sicurezza o di accesso. I file tecnici sono esclusi dal build
+# pubblico e protetti a livello di hosting/applicazione.
 
-# Sitemap
 Sitemap: https://www.webnovis.com/sitemap.xml
 
-# Regole per tutti i motori di ricerca
+# Motori di ricerca generici, incluso Googlebot.
 User-agent: *
 Allow: /
 Allow: /css/
@@ -15,78 +18,99 @@ Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /webnovis-ai-data.json
 Allow: /8531a1fa-b8b0-4136-8741-b5895865d3c4.txt
-Disallow: /node_modules/
+Disallow: /.claude/
 Disallow: /.git/
+Disallow: /.github/
+Disallow: /.kiro/
+Disallow: /.superpowers/
 Disallow: /.vscode/
 Disallow: /.env
+Disallow: /config/
+Disallow: /data/
+Disallow: /dist/
+Disallow: /docs/
+Disallow: /node_modules/
+Disallow: /reports/
+Disallow: /scripts/
+Disallow: /src/
+Disallow: /templates/
+Disallow: /test-SEO/
+Disallow: /tests/
+Disallow: /blog/auto-writer.js
+Disallow: /blog/build-articles.js
+Disallow: /build.js
+Disallow: /generate-sitemap.js
 Disallow: /server.js
 Disallow: /package.json
 Disallow: /package-lock.json
+Disallow: /wrangler.jsonc
 Disallow: /*.bat$
+Disallow: /*.log$
+Disallow: /*.map$
 Disallow: /*.md$
 Disallow: /test-*.html
 Disallow: /*?s=
-Disallow: /server-log.txt
-Disallow: /*.log$
-Disallow: /docs/
-Disallow: /reports/
-Disallow: /templates/*.njk$
-Disallow: /dist/*.map$
 Disallow: /search-ai-index.json
 
-# File ottimizzati per AI (ChatGPT, Claude, Perplexity, Gemini, ecc.)
+# Crawler AI legittimi: stessi confini tecnici del gruppo generico.
 User-agent: GPTBot
-Allow: /
-Allow: /ai.txt
-Allow: /webnovis-ai-data.json
-
 User-agent: OAI-SearchBot
-Allow: /
-Allow: /ai.txt
-Allow: /webnovis-ai-data.json
-
 User-agent: ChatGPT-User
-Allow: /
-
 User-agent: PerplexityBot
-Allow: /
-Allow: /ai.txt
-Allow: /webnovis-ai-data.json
-
-User-agent: ClaudeBot
-Allow: /
-Allow: /ai.txt
-
-User-agent: CCBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
 User-agent: Perplexity-User
-Allow: /
-
+User-agent: ClaudeBot
+User-agent: CCBot
+User-agent: Google-Extended
 User-agent: anthropic-ai
-Allow: /
-
 User-agent: Applebot-Extended
-Allow: /
-
 User-agent: Amazonbot
-Allow: /
-
 User-agent: DuckAssistBot
-Allow: /
-
 User-agent: meta-externalagent
 Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /Img/
+Allow: /ai.txt
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /webnovis-ai-data.json
+Allow: /8531a1fa-b8b0-4136-8741-b5895865d3c4.txt
+Disallow: /.claude/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.kiro/
+Disallow: /.superpowers/
+Disallow: /.vscode/
+Disallow: /.env
+Disallow: /config/
+Disallow: /data/
+Disallow: /dist/
+Disallow: /docs/
+Disallow: /node_modules/
+Disallow: /reports/
+Disallow: /scripts/
+Disallow: /src/
+Disallow: /templates/
+Disallow: /test-SEO/
+Disallow: /tests/
+Disallow: /blog/auto-writer.js
+Disallow: /blog/build-articles.js
+Disallow: /build.js
+Disallow: /generate-sitemap.js
+Disallow: /server.js
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /wrangler.jsonc
+Disallow: /*.bat$
+Disallow: /*.log$
+Disallow: /*.map$
+Disallow: /*.md$
+Disallow: /test-*.html
+Disallow: /*?s=
+Disallow: /search-ai-index.json
 
-# Blocca scraper aggressivi
+# Scraper aggressivi.
 User-agent: MJ12bot
-Disallow: /
-
 User-agent: DotBot
-Disallow: /
-
 User-agent: BLEXBot
 Disallow: /

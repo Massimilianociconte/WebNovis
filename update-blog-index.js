@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { articles, stubArticles } = require('./blog/build-articles.js');
+const { normalizeHtmlDocumentStructure } = require('./config/seo-html-transforms');
 
 const allArticles = [...articles, ...stubArticles];
 const CATEGORY_MAP = {
@@ -50,7 +51,7 @@ const endIdx = html.indexOf(endToken, startIdx);
 
 if (startIdx !== -1 && endIdx !== -1) {
   html = html.substring(0, startIdx + startToken.length) + cardsHtml + '\n            ' + html.substring(endIdx);
-  fs.writeFileSync('blog/index.html', html);
+  fs.writeFileSync('blog/index.html', normalizeHtmlDocumentStructure(html, 'blog/index.html'));
   console.log('Successfully updated blog/index.html with ' + allArticles.length + ' articles');
 } else {
   console.log('Error: Could not find insertion points in blog/index.html');
