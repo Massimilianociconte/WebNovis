@@ -35,6 +35,8 @@ test-*.js
 # Build files
 dist/
 build/
+.dist.__staging__-*/
+.dist.__previous__-*/
 
 # Newsletter logs (contiene email iscritti — sensibile)
 newsletter-log.json

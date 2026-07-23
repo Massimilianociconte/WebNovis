@@ -20,8 +20,9 @@ const fs = require('fs');
 const path = require('path');
 const { TIER1_INDEXABLE_GEO_PATHS } = require('../config/pseo-governance');
 const { findUnsupportedPublishedClaims } = require('../config/content-claim-governance');
+const { getPublishDir } = require('../config/publish-targets');
 
-const ROOT = path.join(__dirname, '..');
+const PUBLISH_ROOT = getPublishDir();
 const SITE_URL = 'https://www.webnovis.com';
 const MAX_CHARS_PER_PAGE = 6000;
 
@@ -35,7 +36,7 @@ const CORE_PAGES = [
 ];
 
 function listServicePages() {
-  return fs.readdirSync(path.join(ROOT, 'servizi'))
+  return fs.readdirSync(path.join(PUBLISH_ROOT, 'servizi'))
     .filter((f) => f.endsWith('.html'))
     .sort()
     .map((f) => path.posix.join('servizi', f));
@@ -125,7 +126,7 @@ function assertClaimSafe(value, sourceLabel) {
 }
 
 function buildSection(relPath) {
-  const fsPath = path.join(ROOT, relPath);
+  const fsPath = path.join(PUBLISH_ROOT, relPath);
   if (!fs.existsSync(fsPath)) {
     throw new Error(`⛔ Missing configured llms-full source page: ${relPath}`);
   }
@@ -148,7 +149,7 @@ function buildSection(relPath) {
 }
 
 function main() {
-  const llmsIndex = fs.readFileSync(path.join(ROOT, 'llms.txt'), 'utf8');
+  const llmsIndex = fs.readFileSync(path.join(PUBLISH_ROOT, 'llms.txt'), 'utf8');
   const headerAbstract = llmsIndex.split('\n').slice(0, 4).join('\n').trim();
   assertClaimSafe(headerAbstract, 'llms.txt header');
 
@@ -175,7 +176,7 @@ function main() {
   ].join('\n');
 
   assertClaimSafe(out, 'llms-full.txt final export');
-  fs.writeFileSync(path.join(ROOT, 'llms-full.txt'), out, 'utf8');
+  fs.writeFileSync(path.join(PUBLISH_ROOT, 'llms-full.txt'), out, 'utf8');
   console.log(`✅ llms-full.txt generato: ${sections.length} pagine, ${(out.length / 1024).toFixed(0)} KB`);
 }
 

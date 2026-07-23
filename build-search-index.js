@@ -15,6 +15,7 @@ const { getIndexationDirectivesForPath } = require('./config/pseo-governance');
 const PROJECT_ROOT = getPublishDir();
 const OUTPUT_FILE = path.join(PROJECT_ROOT, 'search-index.json');
 const AI_OUTPUT_FILE = path.join(PROJECT_ROOT, 'search-ai-index.json');
+const PUBLIC_ONLY = process.argv.includes('--public-only');
 
 const ROOT_HTML_EXCLUDES = new Set([
   '404.html',
@@ -311,7 +312,12 @@ function writeJson(filePath, payload) {
 
 const { publicIndex, aiIndex } = buildIndexes();
 writeJson(OUTPUT_FILE, publicIndex);
-writeJson(AI_OUTPUT_FILE, aiIndex);
 
 console.log(`✅ Search index built: ${publicIndex.length} public pages indexed -> ${path.relative(ROOT_DIR, OUTPUT_FILE).replace(/\\/g, '/')}`);
-console.log(`✅ Search AI corpus built: ${aiIndex.length} pages indexed -> ${path.relative(ROOT_DIR, AI_OUTPUT_FILE).replace(/\\/g, '/')}`);
+if (PUBLIC_ONLY) {
+  if (fs.existsSync(AI_OUTPUT_FILE)) fs.rmSync(AI_OUTPUT_FILE);
+  console.log('ℹ️  Private AI corpus excluded from the public artifact.');
+} else {
+  writeJson(AI_OUTPUT_FILE, aiIndex);
+  console.log(`✅ Search AI corpus built: ${aiIndex.length} pages indexed -> ${path.relative(ROOT_DIR, AI_OUTPUT_FILE).replace(/\\/g, '/')}`);
+}

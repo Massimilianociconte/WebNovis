@@ -7,7 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const { ROOT_DIR, getPublishDir } = require('./config/publish-targets');
 const { shouldIncludeInSitemapPath } = require('./config/pseo-governance');
 
@@ -85,15 +85,41 @@ function formatDate(mtime) {
 }
 
 // Try to get the last git commit date for a file (more accurate than mtime)
-function getGitDate(absPath) {
-    try {
-        const result = execSync(
-            `git log -1 --format=%aI -- "${path.relative(ROOT_DIR, absPath).replace(/\\/g, '/')}"`,
-            { cwd: ROOT_DIR, encoding: 'utf-8', timeout: 5000 }
-        ).trim();
-        if (result) return result.split('T')[0];
-    } catch (e) { /* git not available or file not tracked */ }
+function getGitDate(relPath) {
+    const normalized = relPath.replace(/\\/g, '/');
+    const candidates = [
+        normalized,
+        `src/html/${normalized}`
+    ];
+    for (const candidate of candidates) {
+        try {
+            const result = execFileSync(
+                'git',
+                ['log', '-1', '--format=%aI', '--', candidate],
+                { cwd: ROOT_DIR, encoding: 'utf-8', timeout: 5000 }
+            ).trim();
+            if (result) return result.split('T')[0];
+        } catch (e) { /* git not available or file not tracked */ }
+    }
     return null;
+}
+
+function getDeterministicFallbackDate() {
+    if (process.env.SOURCE_DATE_EPOCH && /^\d+$/.test(process.env.SOURCE_DATE_EPOCH)) {
+        return new Date(Number(process.env.SOURCE_DATE_EPOCH) * 1000).toISOString().slice(0, 10);
+    }
+    if (process.env.BUILD_DATE && /^\d{4}-\d{2}-\d{2}$/.test(process.env.BUILD_DATE)) {
+        return process.env.BUILD_DATE;
+    }
+    try {
+        const commitDate = execFileSync('git', ['log', '-1', '--format=%aI'], {
+            cwd: ROOT_DIR,
+            encoding: 'utf-8',
+            timeout: 5000
+        }).trim();
+        if (commitDate) return commitDate.split('T')[0];
+    } catch (_) { /* use stable fallback below */ }
+    return '2026-02-27';
 }
 
 function xmlEscape(str) {
@@ -117,10 +143,9 @@ function headHasNoindex(absPath) {
 
 const files = collectHtmlFiles(ROOT);
 const entries = files.map(({ relPath, absPath }) => {
-    const mtime = fs.statSync(absPath).mtime;
     const urlPath = toUrlPath(relPath);
     const loc = urlPath === '/' ? BASE_URL + '/' : BASE_URL + urlPath;
-    const lastmod = getGitDate(absPath) || formatDate(mtime);
+    const lastmod = getGitDate(relPath) || getDeterministicFallbackDate();
     const images = PAGE_IMAGES[urlPath] || [];
     return { urlPath, loc, lastmod, images, absPath };
 }).filter((entry) => shouldIncludeInSitemapPath(entry.urlPath))

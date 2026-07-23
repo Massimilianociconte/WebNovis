@@ -27,6 +27,17 @@ jobs:
       - name: Run quality gate
         run: npm run ci:quality:dist
 
+      - name: Verify build did not mutate tracked sources
+        run: git diff --exit-code
+
+      - name: Upload sanitized public artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: webnovis-public-dist
+          path: dist/
+          include-hidden-files: true
+          if-no-files-found: error
+
       - name: Verify production headers
         if: github.event_name == 'workflow_dispatch'
         run: npm run verify:prod-headers

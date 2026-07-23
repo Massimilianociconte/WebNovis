@@ -30,6 +30,7 @@ const { removeSchemaReviewProperties } = require('./seo-aggregate-rating');
 const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
 const { normalizeEntityJsonLd } = require('../config/entity-facts');
 const { normalizeReviewActionMarkup } = require('../config/site-footer');
+const { resolveBuildInstant, resolveRomeCalendarDate } = require('../config/build-date');
 const {
     findUnsupportedPublishedClaims,
     loadApprovedContentBlocks,
@@ -65,31 +66,7 @@ const SEDE_LNG = '9.0393';
 const FIRST_DEPLOY_DATE = '2026-02-27';
 const CITY_AVATAR_PUBLIC_DIR = '/Img/cities';
 
-function resolveRomeCalendarDate(now = new Date()) {
-    const dateParts = Object.fromEntries(
-        new Intl.DateTimeFormat('en', {
-            timeZone: 'Europe/Rome',
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-        })
-            .formatToParts(now)
-            .filter(part => part.type !== 'literal')
-            .map(part => [part.type, part.value])
-    );
-
-    return {
-        iso: `${dateParts.year}-${dateParts.month}-${dateParts.day}`,
-        formatted: new Intl.DateTimeFormat('it-IT', {
-            timeZone: 'Europe/Rome',
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        }).format(now)
-    };
-}
-
-const { iso: TODAY, formatted: TODAY_FORMATTED } = resolveRomeCalendarDate();
+const { iso: TODAY, formatted: TODAY_FORMATTED } = resolveRomeCalendarDate(resolveBuildInstant());
 
 // Cache for base HTML pages (read once, reuse for all cities)
 const _basePageCache = {};
@@ -109,9 +86,16 @@ const VALIDATE_ONLY = args.includes('--validate-only');
 const typeArg = args.find(a => a.startsWith('--type='));
 const GEN_TYPE = typeArg ? typeArg.split('=')[1] : 'all';
 const outDirArg = args.find(a => a.startsWith('--out-dir='));
+const reportDirArg = args.find(a => a.startsWith('--report-dir='));
 const cityArg = args.find(a => a.startsWith('--city='));
 const serviceArg = args.find(a => a.startsWith('--service='));
 const PUBLISH_DIR = path.resolve(ROOT, outDirArg ? outDirArg.split('=')[1] : (process.env.PUBLISH_DIR || '.'));
+const REPORT_DIR = path.resolve(
+    ROOT,
+    reportDirArg
+        ? reportDirArg.split('=')[1]
+        : (process.env.REPORT_DIR || (PUBLISH_DIR === ROOT ? 'data' : 'build/public-artifact'))
+);
 const TARGET_CITY_SLUGS = new Set(
     (cityArg ? cityArg.split('=')[1] : '')
         .split(',')
@@ -2932,11 +2916,13 @@ function main() {
     // Generate link graph
     if (!DRY_RUN && !VALIDATE_ONLY) {
         const linkGraph = generateLinkGraph();
+        fs.mkdirSync(REPORT_DIR, { recursive: true });
+        const linkGraphPath = path.join(REPORT_DIR, 'link-graph.json');
         fs.writeFileSync(
-            path.join(ROOT, 'data', 'link-graph.json'),
+            linkGraphPath,
             JSON.stringify(linkGraph, null, 2), 'utf8'
         );
-        console.log(`\n  📊 Link graph: data/link-graph.json (${linkGraph.pages.length} pages)`);
+        console.log(`\n  📊 Link graph: ${path.relative(ROOT, linkGraphPath).replace(/\\/g, '/')} (${linkGraph.pages.length} pages)`);
     }
 
     // Summary

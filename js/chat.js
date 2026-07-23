@@ -351,7 +351,7 @@ function initWebyChatbot() {
         const msgDiv = document.createElement('div');
         msgDiv.className = `chat-message ${type === 'user' ? 'user-message' : 'bot-message'}`;
 
-        const botAvatar = `<picture><source srcset="Img/robot.webp" type="image/webp"><img alt="Weby" src="Img/robot-112.webp" class="bot-avatar-img"></picture>`;
+        const botAvatar = `<picture><source srcset="/Img/robot.webp" type="image/webp"><img alt="Weby" src="/Img/robot-112.webp" class="bot-avatar-img"></picture>`;
         const userAvatar = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
         const avatar = type === 'user' ? userAvatar : botAvatar;
         const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -646,7 +646,7 @@ function initWebyChatbot() {
         typingDiv.className = 'chat-message bot-message typing-indicator';
         typingDiv.innerHTML = `
             <div class="message-avatar">
-                <picture><source srcset="Img/robot.webp" type="image/webp"><img alt="Weby" src="Img/robot-112.webp" class="bot-avatar-img"></picture>
+                <picture><source srcset="/Img/robot.webp" type="image/webp"><img alt="Weby" src="/Img/robot-112.webp" class="bot-avatar-img"></picture>
             </div>
             <div class="message-content">
                 <div class="typing-dot"></div>

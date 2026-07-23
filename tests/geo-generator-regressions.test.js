@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { removeUnsupportedReviewMarkup } = require('../scripts/seo-aggregate-rating.js');
+const { resolveBuildInstant, resolveRomeCalendarDate } = require('../config/build-date.js');
 
 const ROOT = process.cwd();
 
@@ -37,10 +38,21 @@ function main() {
     'Geo generator should support an explicit publish directory configuration'
   );
   assert.ok(
-    generator.includes('resolveRomeCalendarDate') &&
-      generator.includes('const { iso: TODAY, formatted: TODAY_FORMATTED } = resolveRomeCalendarDate()') &&
+    generator.includes('resolveRomeCalendarDate(resolveBuildInstant())') &&
       !generator.includes("new Date().toISOString().split('T')[0]"),
-    'Geo generator must derive schema and visible dates from one Europe/Rome calendar value'
+    'Geo generator must derive schema and visible dates from the controlled Europe/Rome build instant'
+  );
+  const controlledInstant = resolveBuildInstant({ SOURCE_DATE_EPOCH: '1784764800' });
+  assert.equal(controlledInstant.toISOString(), '2026-07-23T00:00:00.000Z');
+  assert.deepEqual(
+    resolveRomeCalendarDate(controlledInstant),
+    { iso: '2026-07-23', formatted: '23 luglio 2026' },
+    'SOURCE_DATE_EPOCH must produce a stable Europe/Rome editorial date'
+  );
+  assert.equal(
+    resolveBuildInstant({ BUILD_DATE: '2026-07-24' }).toISOString(),
+    '2026-07-24T12:00:00.000Z',
+    'BUILD_DATE must be a stable explicit fallback when SOURCE_DATE_EPOCH is absent'
   );
   assert.ok(
     generator.includes("page = page.replace(/studio del mercato di Rho/g, `studio del mercato di ${city.name}`);"),

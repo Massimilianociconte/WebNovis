@@ -1,5 +1,6 @@
-# File da NON caricare come asset statici su Cloudflare Workers.
-# Sintassi tipo .gitignore. Vale solo per l'upload degli asset (wrangler deploy).
+# Difesa aggiuntiva per l'attuale configurazione Workers che punta alla root.
+# L'artefatto deployabile resta dist/, costruito da una allowlist esplicita:
+# questo file non sostituisce scripts/prepare-public-artifact.js.
 
 # Segreti — fondamentale per eventuali deploy lanciati in locale
 .env
@@ -18,6 +19,12 @@ pnpm-lock.yaml
 package-lock.json
 
 # Backend / tooling — non devono essere scaricabili dal dominio pubblico
+/*.js
+/*.md
+*.csv
+*.xlsx
+*.pdf
+*.jsonl
 server.js
 package.json
 *.config.js
@@ -36,6 +43,24 @@ build-search-index.js
 generate-sitemap.js
 indexnow-submit.js
 chat-config.json
+ai-config.js
+newsletter-engine.js
+search-ai-engine.js
+search-ai-index.json
+indexnow-log.json
+leads-log.json
+leads-log.jsonl
+newsletter-log.json
+newsletter-log.jsonl
+gone-urls.json
+missing_articles.json
+newsletter-template.html
+analyze*.js
+check*.js
+copy*.js
+fix*.js
+update*.js
+*.py
 
 # Sorgenti, pipeline e dati di build
 config/
@@ -47,8 +72,12 @@ tests/
 test-SEO/
 docs/
 reports/
+build/
 .claude/
+.superpowers/
 node_modules/
+blog/*.js
+blog/*.json
 
 # Artefatti di sviluppo / backup
 dist/

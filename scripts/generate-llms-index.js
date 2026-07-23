@@ -12,6 +12,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { getPublishDir } = require('../config/publish-targets');
 const {
   ALL_INDEXABLE_GEO_PATHS,
   TIER1_INDEXABLE_GEO_PATHS
@@ -19,9 +20,9 @@ const {
 const { ENTITY_FACTS } = require('../config/entity-facts');
 const servicesCatalog = require('../data/services.json');
 
-const ROOT = path.join(__dirname, '..');
+const PUBLISH_ROOT = getPublishDir();
 const SITE = ENTITY_FACTS.siteUrl;
-const OUT = path.join(ROOT, 'llms.txt');
+const OUT = path.join(PUBLISH_ROOT, 'llms.txt');
 const serviceBySlug = new Map(servicesCatalog.services.map((service) => [service.slug, service]));
 
 function formatPrice(service) {
@@ -30,7 +31,7 @@ function formatPrice(service) {
 
 function readTitle(filePath) {
   try {
-    const html = fs.readFileSync(path.join(ROOT, filePath), 'utf8');
+    const html = fs.readFileSync(path.join(PUBLISH_ROOT, filePath), 'utf8');
     const m = html.match(/<title>([^<]*)<\/title>/i);
     return m ? m[1].replace(/\s*\|\s*WebNovis.*$/i, '').trim() : filePath;
   } catch (_) {
@@ -59,7 +60,7 @@ function listIndexableAgenzia() {
 
 function countSitemapUrls() {
   try {
-    const xml = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
+    const xml = fs.readFileSync(path.join(PUBLISH_ROOT, 'sitemap.xml'), 'utf8');
     return (xml.match(/<url>/g) || []).length;
   } catch (_) {
     return 0;

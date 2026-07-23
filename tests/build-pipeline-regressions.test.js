@@ -25,8 +25,8 @@ function main() {
 
   assert.equal(
     scripts['build:site:dist'],
-    'npm run build:geo:dist && npm run normalize:public-html:dist && npm run update:footer:dist && npm run build:dist && npm run build:search-index:dist && npm run build:sitemap:dist && npm run build:llms && npm run build:llms-full && npm run validate:pages:dist',
-    'package.json must expose a canonical dist-first site build command'
+    'node scripts/prepare-public-artifact.js --out-dir=dist',
+    'package.json must expose one staging-first public build transaction'
   );
 
   assert.equal(
@@ -41,6 +41,18 @@ function main() {
     'package.json must expose build:llms-full for full LLM corpus generation'
   );
 
+  assert.equal(
+    scripts['build:search-index:dist'],
+    'node build-search-index.js --out-dir=dist --public-only',
+    'the public search build must exclude the private AI retrieval corpus'
+  );
+
+  assert.equal(
+    scripts['verify:artifact'],
+    'node scripts/verify-public-artifact.js --out-dir=dist',
+    'package.json must expose an explicit public artifact verifier'
+  );
+
   assert.match(
     scripts['test:regressions'] || '',
     /tests\/lcp-hero-regressions\.test\.js/,
@@ -49,7 +61,7 @@ function main() {
 
   assert.equal(
     scripts['ci:quality:dist'],
-    'npm run build:site:dist && npm run test:regressions && npm run test:seo-smoke && npm run test:api',
+    'npm run build:site:dist && npm run verify:artifact && npm run test:regressions && npm run test:seo-smoke && npm run test:api',
     'package.json must expose a canonical dist-first CI quality command'
   );
 
@@ -63,6 +75,12 @@ function main() {
     scripts['test:regressions'] || '',
     /tests\/build-pipeline-regressions\.test\.js/,
     'test:regressions must include the build pipeline regression checks'
+  );
+
+  assert.match(
+    scripts['test:regressions'] || '',
+    /tests\/public-artifact-regressions\.test\.js/,
+    'test:regressions must include public artifact safety checks'
   );
 
   assert.match(
@@ -81,6 +99,16 @@ function main() {
     workflow,
     /run: npm run ci:quality:dist/,
     'quality-gate workflow must use the canonical dist-first CI command'
+  );
+  assert.match(
+    workflow,
+    /git diff --exit-code/,
+    'quality-gate workflow must fail if a dist build mutates tracked source files'
+  );
+  assert.doesNotMatch(
+    workflow,
+    /verify:prod-headers[\s\S]*if:\s*(?!github\.event_name == 'workflow_dispatch')/,
+    'live production headers must not be treated as an implicit local build proof'
   );
 }
 

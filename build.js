@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const { minify } = require('terser');
 const CleanCSS = require('clean-css');
-const { getPublishDir } = require('./config/publish-targets');
+const { getBuildRoots } = require('./config/publish-targets');
 const { applySeoHtmlTransforms } = require('./config/seo-html-transforms');
 let htmlMinifier;
 try { htmlMinifier = require('html-minifier-terser'); } catch (e) { htmlMinifier = null; }
@@ -26,7 +26,7 @@ try {
     lightningLoadError = error;
 }
 
-const PROJECT_ROOT = getPublishDir();
+const { sourceRoot: SOURCE_ROOT, publishRoot: PUBLISH_ROOT } = getBuildRoots();
 
 const config = {
     discovery: {
@@ -34,7 +34,17 @@ const config = {
         skipDirs: ['.git', 'node_modules']
     },
     js: {
-        explicitInputs: ['js/main.js', 'js/chat.js', 'js/text-effects.js', 'js/noncritical-loader.js', 'js/search.js', 'js/web-vitals-reporter.js', 'js/footer-widgets-loader.js'],
+        explicitInputs: [
+            'js/main.js',
+            'js/chat.js',
+            'js/cursor.js',
+            'js/footer-widgets-loader.js',
+            'js/globe.js',
+            'js/noncritical-loader.js',
+            'js/search.js',
+            'js/text-effects.js',
+            'js/web-vitals-reporter.js'
+        ],
         suffix: '.min.js',
         skip: [],
         overrides: {},
@@ -146,8 +156,8 @@ function getSavings(originalSize, minifiedSize) {
     return { saved, percent };
 }
 
-function listFilesRecursive(startDir, skipDirs) {
-    const absStart = path.resolve(PROJECT_ROOT, startDir);
+function listFilesRecursive(startDir, skipDirs, baseRoot = SOURCE_ROOT) {
+    const absStart = path.resolve(baseRoot, startDir);
     if (!fs.existsSync(absStart)) return [];
 
     const out = [];
@@ -158,7 +168,7 @@ function listFilesRecursive(startDir, skipDirs) {
         const entries = fs.readdirSync(current, { withFileTypes: true });
         for (const entry of entries) {
             const absPath = path.join(current, entry.name);
-            const relPath = normalizePath(path.relative(PROJECT_ROOT, absPath));
+            const relPath = normalizePath(path.relative(baseRoot, absPath));
             if (entry.isDirectory()) {
                 if (skipDirs.includes(entry.name)) continue;
                 stack.push(absPath);
@@ -190,14 +200,14 @@ function resolveLocalAsset(assetRef, htmlDirRel) {
         relPath = normalizePath(path.join(htmlDirRel, cleanRef));
     }
 
-    const abs = path.resolve(PROJECT_ROOT, relPath);
-    if (!abs.startsWith(PROJECT_ROOT)) return null;
+    const abs = path.resolve(SOURCE_ROOT, relPath);
+    if (!abs.startsWith(SOURCE_ROOT)) return null;
 
-    return normalizePath(path.relative(PROJECT_ROOT, abs));
+    return normalizePath(path.relative(SOURCE_ROOT, abs));
 }
 
 function discoverAssetsFromHtml(htmlPathRel) {
-    const absHtmlPath = path.resolve(PROJECT_ROOT, htmlPathRel);
+    const absHtmlPath = path.resolve(PUBLISH_ROOT, htmlPathRel);
     if (!fs.existsSync(absHtmlPath)) return { js: [], css: [] };
 
     const html = fs.readFileSync(absHtmlPath, 'utf8');
@@ -232,7 +242,7 @@ function toSourceAsset(assetPath, ext) {
 function collectBuildInputs() {
     const discoveredFiles = new Set();
     for (const root of config.discovery.htmlRoots) {
-        const files = listFilesRecursive(root, config.discovery.skipDirs);
+        const files = listFilesRecursive(root, config.discovery.skipDirs, PUBLISH_ROOT);
         files.forEach((file) => discoveredFiles.add(file));
     }
     const htmlFiles = [...discoveredFiles].filter((file) => file.toLowerCase().endsWith('.html'));
@@ -257,12 +267,12 @@ function collectBuildInputs() {
 
     const jsInputs = [...jsCandidates]
         .filter((file) => file.endsWith('.js') && !file.endsWith('.min.js'))
-        .filter((file) => fs.existsSync(path.resolve(PROJECT_ROOT, file)))
+        .filter((file) => fs.existsSync(path.resolve(SOURCE_ROOT, file)))
         .sort();
 
     const cssInputs = [...cssCandidates]
         .filter((file) => file.endsWith('.css') && !file.endsWith('.min.css'))
-        .filter((file) => fs.existsSync(path.resolve(PROJECT_ROOT, file)))
+        .filter((file) => fs.existsSync(path.resolve(SOURCE_ROOT, file)))
         .sort();
 
     return { htmlFiles, jsInputs, cssInputs };
@@ -270,7 +280,7 @@ function collectBuildInputs() {
 
 function outputPathFor(sourcePath, suffix) {
     const parsed = path.parse(sourcePath);
-    return normalizePath(path.join(parsed.dir, `${parsed.name}${suffix}`));
+    return path.resolve(PUBLISH_ROOT, parsed.dir, `${parsed.name}${suffix}`);
 }
 
 function shouldSkip(filePath, skipList) {
@@ -279,7 +289,8 @@ function shouldSkip(filePath, skipList) {
 
 async function minifyJsFile(filePath) {
     try {
-        const source = fs.readFileSync(filePath, 'utf8');
+        const sourcePath = path.resolve(SOURCE_ROOT, filePath);
+        const source = fs.readFileSync(sourcePath, 'utf8');
         const originalSize = Buffer.byteLength(source, 'utf8');
 
         const override = config.js.overrides[filePath];
@@ -288,11 +299,12 @@ async function minifyJsFile(filePath) {
         if (!result || !result.code) throw new Error('Terser returned empty output');
 
         const outPath = outputPathFor(filePath, config.js.suffix);
+        fs.mkdirSync(path.dirname(outPath), { recursive: true });
         fs.writeFileSync(outPath, result.code, 'utf8');
         const minifiedSize = Buffer.byteLength(result.code, 'utf8');
         const { saved, percent } = getSavings(originalSize, minifiedSize);
 
-        log('OK', `${filePath} -> ${outPath} (${formatBytes(originalSize)} -> ${formatBytes(minifiedSize)}, -${percent}%, saved ${formatBytes(saved)})`);
+        log('OK', `${filePath} -> ${normalizePath(path.relative(PUBLISH_ROOT, outPath))} (${formatBytes(originalSize)} -> ${formatBytes(minifiedSize)}, -${percent}%, saved ${formatBytes(saved)})`);
         return { success: true, originalSize, minifiedSize };
     } catch (error) {
         log('ERR', `JS minify failed for ${filePath}: ${error.message}`);
@@ -308,7 +320,7 @@ function minifyCssWithLightning(filePath, source) {
     const lightningOptions = deepMerge(config.css.lightningOptions, override);
     const transformed = lightningTransform({
         ...lightningOptions,
-        filename: path.resolve(PROJECT_ROOT, filePath),
+        filename: path.resolve(SOURCE_ROOT, filePath),
         code: Buffer.from(source, 'utf8')
     });
     return Buffer.from(transformed.code).toString('utf8');
@@ -324,7 +336,7 @@ function minifyCssWithCleanCss(source) {
 
 function minifyCssFile(filePath) {
     try {
-        const source = fs.readFileSync(filePath, 'utf8');
+        const source = fs.readFileSync(path.resolve(SOURCE_ROOT, filePath), 'utf8');
         const originalSize = Buffer.byteLength(source, 'utf8');
         const forceFallback = config.css.forceCleanCss.includes(filePath);
 
@@ -345,11 +357,12 @@ function minifyCssFile(filePath) {
         }
 
         const outPath = outputPathFor(filePath, config.css.suffix);
+        fs.mkdirSync(path.dirname(outPath), { recursive: true });
         fs.writeFileSync(outPath, minified, 'utf8');
         const minifiedSize = Buffer.byteLength(minified, 'utf8');
         const { saved, percent } = getSavings(originalSize, minifiedSize);
 
-        log('OK', `${filePath} -> ${outPath} [${engine}] (${formatBytes(originalSize)} -> ${formatBytes(minifiedSize)}, -${percent}%, saved ${formatBytes(saved)})`);
+        log('OK', `${filePath} -> ${normalizePath(path.relative(PUBLISH_ROOT, outPath))} [${engine}] (${formatBytes(originalSize)} -> ${formatBytes(minifiedSize)}, -${percent}%, saved ${formatBytes(saved)})`);
         return { success: true, originalSize, minifiedSize };
     } catch (error) {
         log('ERR', `CSS minify failed for ${filePath}: ${error.message}`);
@@ -363,6 +376,9 @@ async function build() {
     log('INFO', `HTML scanned: ${htmlFiles.length}`);
     log('INFO', `JS inputs: ${jsInputs.length}`);
     log('INFO', `CSS inputs: ${cssInputs.length}`);
+    if (PUBLISH_ROOT !== SOURCE_ROOT && (jsInputs.length === 0 || cssInputs.length === 0)) {
+        throw new Error(`Public build requires non-zero JS and CSS inputs (JS=${jsInputs.length}, CSS=${cssInputs.length})`);
+    }
 
     let totalOriginal = 0;
     let totalMinified = 0;
@@ -431,23 +447,24 @@ async function build() {
         // Only minify HTML files from src/html/ -> write minified to root output paths
         // Geo-generated pages and other HTML files are NOT touched by this pipeline.
         const srcHtmlBase = 'src/html';
-        const srcHtmlAbsBase = path.resolve(PROJECT_ROOT, srcHtmlBase);
+        const srcHtmlAbsBase = path.resolve(SOURCE_ROOT, srcHtmlBase);
         const srcHtmlFiles = fs.existsSync(srcHtmlAbsBase)
-            ? listFilesRecursive(srcHtmlBase, config.discovery.skipDirs).filter(f => f.endsWith('.html'))
+            ? listFilesRecursive(srcHtmlBase, config.discovery.skipDirs, SOURCE_ROOT).filter(f => f.endsWith('.html'))
             : [];
         for (const srcFile of srcHtmlFiles) {
             try {
                 // e.g. src/html/index.html -> index.html
                 //      src/html/servizi/web-design.html -> servizi/web-design.html
                 const relOutputPath = srcFile.replace(/^src\/html\//, '');
-                const absInputPath = path.resolve(PROJECT_ROOT, srcFile);
-                const absOutputPath = path.resolve(PROJECT_ROOT, relOutputPath);
+                const absInputPath = path.resolve(SOURCE_ROOT, srcFile);
+                const absOutputPath = path.resolve(PUBLISH_ROOT, relOutputPath);
                 const source = fs.readFileSync(absInputPath, 'utf8');
                 const origSize = Buffer.byteLength(source, 'utf8');
                 // applySeoHtmlTransforms uses the OUTPUT path (not src path) for URL-based logic
                 const transformed = applySeoHtmlTransforms(source, relOutputPath);
                 const minified = await htmlMinifier.minify(transformed, htmlMinifyOptions);
                 const minSize = Buffer.byteLength(minified, 'utf8');
+                fs.mkdirSync(path.dirname(absOutputPath), { recursive: true });
                 fs.writeFileSync(absOutputPath, minified, 'utf8');
                 htmlOrigTotal += origSize;
                 htmlMinTotal += minSize;

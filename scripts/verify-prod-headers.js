@@ -1,18 +1,6 @@
 const { SECURITY_HEADERS } = require('../config/security-headers');
 
-const BASE_URL = process.env.PRODUCTION_SITE_URL || 'https://www.webnovis.com';
-const targets = [
-  { path: '/', expectedHeaders: SECURITY_HEADERS },
-  { path: '/blog/', expectedHeaders: SECURITY_HEADERS },
-  { path: '/portfolio.html', expectedHeaders: SECURITY_HEADERS },
-  {
-    path: '/api/health',
-    expectedHeaders: {
-      ...SECURITY_HEADERS,
-      'X-Robots-Tag': 'noindex, nofollow'
-    }
-  }
-];
+const DEFAULT_PRODUCTION_SITE_URL = 'https://www.webnovis.com';
 
 const edgeManagedHeaders = new Set([
   'Strict-Transport-Security',
@@ -43,44 +31,95 @@ function buildMismatch(headerName, expectedValue, actualValue) {
   };
 }
 
-async function verifyTarget(target) {
-  const url = new URL(target.path, BASE_URL).toString();
-  const response = await fetch(url, {
-    headers: { 'user-agent': 'WebNovisHeaderVerifier/1.0' }
+function buildTargets(env = process.env) {
+  const siteTargets = [
+    { path: '/', expectedStatuses: [200], expectedHeaders: SECURITY_HEADERS },
+    { path: '/blog/', expectedStatuses: [200], expectedHeaders: SECURITY_HEADERS },
+    { path: '/accessibilita-assago.html', expectedStatuses: [200], expectedHeaders: SECURITY_HEADERS },
+    { path: '/css/style.min.css', expectedStatuses: [200], expectedHeaders: SECURITY_HEADERS },
+    { path: '/agenzie-web-rho.html', expectedStatuses: [301, 308], expectedLocation: '/agenzia-web-rho.html' },
+    { path: '/__webnovis-artifact-404__', expectedStatuses: [404], expectedHeaders: SECURITY_HEADERS },
+    { path: '/package.json', expectedStatuses: [404] },
+    { path: '/config/pseo-governance.js', expectedStatuses: [404] },
+    { path: '/search-ai-index.json', expectedStatuses: [404] }
+  ];
+
+  const apiBaseUrl = String(env.API_BASE_URL || '').trim();
+  const apiTargets = apiBaseUrl
+    ? [{
+        path: '/api/health',
+        baseUrl: apiBaseUrl,
+        expectedStatuses: [200],
+        expectedHeaders: { 'X-Robots-Tag': 'noindex, nofollow' }
+      }]
+    : [];
+
+  return { apiTargets, siteTargets };
+}
+
+async function verifyTarget(target, options = {}) {
+  const baseUrl = target.baseUrl
+    || options.baseUrl
+    || process.env.PRODUCTION_SITE_URL
+    || DEFAULT_PRODUCTION_SITE_URL;
+  const fetchImpl = options.fetchImpl || fetch;
+  const url = new URL(target.path, baseUrl).toString();
+  const response = await fetchImpl(url, {
+    headers: { 'user-agent': 'WebNovisHeaderVerifier/2.0' },
+    redirect: 'manual'
   });
 
   const mismatches = [];
-  for (const [headerName, expectedValue] of Object.entries(target.expectedHeaders)) {
+  for (const [headerName, expectedValue] of Object.entries(target.expectedHeaders || {})) {
     const actualValue = response.headers.get(headerName);
     if (normalizeHeaderValue(actualValue) !== normalizeHeaderValue(expectedValue)) {
       mismatches.push(buildMismatch(headerName, expectedValue, actualValue));
     }
   }
 
+  const expectedStatuses = target.expectedStatuses || [200];
+  const statusMatches = expectedStatuses.includes(response.status);
+  const expectedLocation = target.expectedLocation || '';
+  const actualLocation = response.headers.get('location') || '';
+  const locationMatches = !expectedLocation
+    || new URL(actualLocation, url).pathname === new URL(expectedLocation, url).pathname;
+
   return {
-    url,
+    actualLocation,
+    expectedLocation,
+    expectedStatuses,
+    locationMatches,
+    mismatches,
     status: response.status,
-    mismatches
+    statusMatches,
+    url
   };
 }
 
-async function main() {
+async function main(env = process.env, options = {}) {
   const failures = [];
   const warnings = [];
+  const { apiTargets, siteTargets } = buildTargets(env);
+  const targets = [...siteTargets, ...apiTargets];
+
+  if (apiTargets.length === 0) {
+    console.log('N/A API header verification (API_BASE_URL not configured).');
+  }
 
   for (const target of targets) {
-    const result = await verifyTarget(target);
+    const result = await verifyTarget(target, {
+      baseUrl: env.PRODUCTION_SITE_URL || DEFAULT_PRODUCTION_SITE_URL,
+      fetchImpl: options.fetchImpl
+    });
     const hardFailures = result.mismatches.filter((mismatch) => mismatch.severity === 'error');
     const softWarnings = result.mismatches.filter((mismatch) => mismatch.severity !== 'error');
 
-    if (result.status >= 400 || hardFailures.length > 0) {
+    if (!result.statusMatches || !result.locationMatches || hardFailures.length > 0) {
       failures.push(result);
       continue;
     }
-    if (softWarnings.length > 0) {
-      warnings.push(result);
-    }
-    console.log(`OK ${result.url}`);
+    if (softWarnings.length > 0) warnings.push(result);
+    console.log(`OK ${result.url} (${result.status})`);
   }
 
   for (const warning of warnings) {
@@ -95,20 +134,38 @@ async function main() {
 
   if (failures.length > 0) {
     for (const failure of failures) {
-      console.error(`FAIL ${failure.url} (status ${failure.status})`);
+      console.error(`FAIL ${failure.url} (status ${failure.status}; expected ${failure.expectedStatuses.join('/')})`);
+      if (!failure.locationMatches) {
+        console.error(`  Location expected: ${failure.expectedLocation}`);
+        console.error(`  Location actual:   ${failure.actualLocation || '(missing)'}`);
+      }
       for (const mismatch of failure.mismatches.filter((entry) => entry.severity === 'error')) {
         console.error(`  ${mismatch.headerName}`);
         console.error(`    expected: ${mismatch.expectedValue}`);
         console.error(`    actual:   ${mismatch.actualValue}`);
       }
     }
-    process.exit(1);
+    const error = new Error(`Production header verification failed for ${failures.length} target(s).`);
+    error.failures = failures;
+    throw error;
   }
 
   console.log(`Production header verification passed${warnings.length > 0 ? ' with warnings' : ''}.`);
+  return { failures, warnings };
 }
 
-main().catch((error) => {
-  console.error('Production header verification failed:', error.message);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  DEFAULT_PRODUCTION_SITE_URL,
+  buildMismatch,
+  buildTargets,
+  main,
+  normalizeHeaderValue,
+  verifyTarget
+};
