@@ -86,6 +86,18 @@ function main() {
     findUnsupportedPublishedClaims(syntheticRisky).length >= 9,
     'the final-HTML denylist must reject each reviewed unsupported commercial claim class'
   );
+  for (const compactSla of [
+    'Preventivo gratuito entro 24h.',
+    'Risposta in 24 h.',
+    'Proposta personalizzata entro 24h.',
+    'Rispondo entro 24 h.'
+  ]) {
+    assert.ok(
+      findUnsupportedPublishedClaims(compactSla)
+        .some((finding) => finding.id === 'fixed-24-hour-commercial-sla'),
+      `compact 24-hour commercial SLA variants must be blocked: ${compactSla}`
+    );
+  }
   assert.equal(
     findUnsupportedPublishedClaims('Prezzi e tempistiche sono indicativi; la proposta conferma perimetro, prezzo e data di consegna.').length,
     0,
@@ -194,6 +206,45 @@ function main() {
   }
 
   const publicHtml = listPublicHtml();
+  const rawCommercial24HourPattern = /(?:preventiv\w*|rispost\w*|propost\w*|rispond\w*|analisi\s+personalizzata|report\s+dettagliato|(?:ri)?contatt\w*)[^.!?]{0,180}(?:entro|in)\s+24\s*(?:h|ore)\b/gi;
+  const editorial24HourAllowlist = new Map();
+  const rawCommercialScanTargets = [...new Set([
+    ...publicHtml,
+    ...walkHtml('src/html'),
+    ...geoGeneratorSources,
+    'blog/build-articles.js',
+    'chat-config.json',
+    'js/chat.js',
+    'js/chat.min.js',
+    'server.js',
+    'search-index.json',
+    'search-ai-index.json'
+  ])].sort();
+  const unexpectedRaw24HourClaims = [];
+  const observedEditorial24HourClaims = [];
+  for (const relativePath of rawCommercialScanTargets) {
+    const matches = [...read(relativePath).matchAll(new RegExp(rawCommercial24HourPattern.source, 'gi'))]
+      .map((match) => match[0].replace(/\s+/g, ' ').trim());
+    const allowedFragments = editorial24HourAllowlist.get(relativePath) || [];
+    for (const match of matches) {
+      const allowed = allowedFragments.find((fragment) => match.includes(fragment));
+      if (allowed) observedEditorial24HourClaims.push(`${relativePath}|${allowed}`);
+      else unexpectedRaw24HourClaims.push({ relativePath, excerpt: match.slice(0, 220) });
+    }
+  }
+  assert.deepEqual(
+    unexpectedRaw24HourClaims,
+    [],
+    `raw public/source artifacts must not retain a fixed commercial 24-hour SLA: ${JSON.stringify(unexpectedRaw24HourClaims.slice(0, 10))}`
+  );
+  assert.deepEqual(
+    observedEditorial24HourClaims.sort(),
+    [...editorial24HourAllowlist.entries()]
+      .flatMap(([relativePath, fragments]) => fragments.map((fragment) => `${relativePath}|${fragment}`))
+      .sort(),
+    'commercial-looking editorial 24h examples should stay absent unless explicitly reviewed and allowlisted'
+  );
+
   const editorialClaimAllowlist = new Set([
     'blog/seo-on-page-checklist.html|universal-core-web-vitals-threshold',
     'blog/velocita-sito-web-guida.html|universal-core-web-vitals-threshold'
@@ -223,6 +274,30 @@ function main() {
     [],
     'the blog generator must not regenerate fixed commercial response claims; editorial benchmarks remain allowed'
   );
+
+  const neutralCroGuidance = 'Aggiungi <strong>chiarezza</strong> sul prossimo passo e indica una tempistica solo se verificabile';
+  assert.ok(
+    read('blog/build-articles.js').includes(neutralCroGuidance),
+    'the CRO article source must retain neutral, verifiable timing guidance'
+  );
+  assert.ok(
+    read('blog/ottimizzazione-tasso-conversione.html').includes(neutralCroGuidance),
+    'the rendered CRO article must stay synchronized with its corrected source'
+  );
+
+  for (const notFoundPath of ['src/html/404.html', '404.html']) {
+    const html = read(notFoundPath);
+    assert.deepEqual(
+      findUnsupportedPublishedClaims(html),
+      [],
+      `${notFoundPath} must not publish a fixed 24-hour commercial SLA`
+    );
+    assert.doesNotMatch(
+      html,
+      /(?:rispost[ae]|analisi\s+personalizzata|report\s+dettagliato|contatteremo)[^.!?]{0,130}(?:entro|in)\s+24\s*h\b/i,
+      `${notFoundPath} must not retain a compact 24-hour SLA in visible or post-submit copy`
+    );
+  }
 
   const twitterSiteHits = publicHtml.filter((relativePath) =>
     /<meta\b(?=[^>]*(?:name|property)=["']twitter:site["'])[^>]*>/i.test(read(relativePath))

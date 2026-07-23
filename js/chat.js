@@ -572,7 +572,7 @@ function initWebyChatbot() {
 
         // Objection: need to think
         if (lower.match(/(devo pensare|ci penso|non sono sicuro|forse|magari|vedremo|non so)/)) {
-            return "Assolutamente, prenditi il tempo che ti serve! [icon:smile]\n\nPosso inviarti un preventivo dettagliato via email così hai tutto nero su bianco.\n\nQual è la tua email? Rispondo entro 24 ore, senza impegno.";
+            return "Assolutamente, prenditi il tempo che ti serve! [icon:smile]\n\nPosso inviarti un preventivo dettagliato via email così hai tutto nero su bianco.\n\nQual è la tua email? Ti ricontatteremo attraverso i canali indicati, senza impegno.";
         }
 
         // Already have a site
@@ -617,7 +617,7 @@ function initWebyChatbot() {
 
         // Contact
         if (lower.match(/(contatt|email|parlare|scrivere|chiamare|telefon|whatsapp|ricontatt)/)) {
-            return "Puoi contattarci così [icon:mail]\n\n• Email: hello@webnovis.com\n• WhatsApp: wa.me/393802647367\n• Form contatti: qui sotto nella pagina\n\nRispondiamo entro 24 ore!";
+            return "Puoi contattarci così [icon:mail]\n\n• Email: hello@webnovis.com\n• WhatsApp: wa.me/393802647367\n• Form contatti: qui sotto nella pagina\n\nTi ricontatteremo attraverso i canali indicati.";
         }
 
         // Support / Maintenance

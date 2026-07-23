@@ -2755,6 +2755,19 @@ function main() {
     }
     console.log('');
 
+    const targetAgenziaCities = cities.filter(city => city.generate?.agenzia && matchesTargetCity(city));
+    const targetRealizzazioneCities = cities.filter(city => city.generate?.realizzazione && matchesTargetCity(city));
+    const targetGeoServices = services.filter(service => shouldGenerateGeoForService(service) && matchesTargetService(service));
+    const targetServiceCities = targetAgenziaCities;
+    const expected = {
+        agenzia: GEN_TYPE === 'all' || GEN_TYPE === 'agenzia' ? targetAgenziaCities.length : 0,
+        realizzazione: GEN_TYPE === 'all' || GEN_TYPE === 'realizzazione' ? targetRealizzazioneCities.length : 0,
+        servizio: GEN_TYPE === 'all' || GEN_TYPE === 'servizio'
+            ? targetGeoServices.length * targetServiceCities.length
+            : 0,
+        hubs: GEN_TYPE === 'all' || GEN_TYPE === 'hubs' ? 3 : 0
+    };
+    const blockedOrFailed = { agenzia: 0, realizzazione: 0, servizio: 0, hubs: 0 };
     const results = { agenzia: [], realizzazione: [], servizio: [], hubs: [], validations: [] };
     let generated = 0;
     let skipped = 0;
@@ -2776,13 +2789,18 @@ function main() {
             } else {
                 html = generateAgenziaPage(city);
             }
-            if (!html) { console.error(`  ❌ Failed: agenzia-web-${city.slug}.html`); continue; }
+            if (!html) {
+                blockedOrFailed.agenzia++;
+                console.error(`  ❌ Failed: agenzia-web-${city.slug}.html`);
+                continue;
+            }
 
             html = finalizePublishedHtml(filename, html);
             const validation = validatePage(html, filename);
             results.validations.push(validation);
 
             if (validation.issues.some(i => i.startsWith('⛔'))) {
+                blockedOrFailed.agenzia++;
                 console.error(`  ❌ ${filename} — BLOCKED by validation:`);
                 validation.issues.forEach(i => console.error(`     ${i}`));
                 continue;
@@ -2807,7 +2825,11 @@ function main() {
             if (!matchesTargetCity(city)) { skipped++; continue; }
 
             let html = generateRealizzazionePage(city);
-            if (!html) { console.error(`  ❌ Failed: realizzazione-siti-web-${city.slug}.html`); continue; }
+            if (!html) {
+                blockedOrFailed.realizzazione++;
+                console.error(`  ❌ Failed: realizzazione-siti-web-${city.slug}.html`);
+                continue;
+            }
 
             const filename = `realizzazione-siti-web-${city.slug}.html`;
             html = finalizePublishedHtml(filename, html);
@@ -2815,6 +2837,7 @@ function main() {
             results.validations.push(validation);
 
             if (validation.issues.some(i => i.startsWith('⛔'))) {
+                blockedOrFailed.realizzazione++;
                 console.error(`  ❌ ${filename} — BLOCKED by validation:`);
                 validation.issues.forEach(i => console.error(`     ${i}`));
                 continue;
@@ -2833,22 +2856,31 @@ function main() {
 
     // Generate servizio×città pages (third page type — the combinatorial matrix)
     if (GEN_TYPE === 'all' || GEN_TYPE === 'servizio') {
-        const geoEligibleServices = services.filter(s => shouldGenerateGeoForService(s) && matchesTargetService(s));
-        const eligibleCities = cities.filter(c => c.generate?.agenzia && matchesTargetCity(c));
+        const geoEligibleServices = targetGeoServices;
+        const eligibleCities = targetServiceCities;
         console.log(`\n─── Generating servizio×città pages (${geoEligibleServices.length} services × ${eligibleCities.length} cities) ───`);
 
         for (const service of geoEligibleServices) {
+            const succeededBefore = results.servizio.length;
+            const failedBefore = blockedOrFailed.servizio;
             for (const city of eligibleCities) {
-                let html = generateServizioCittaPage(service, city);
-                if (!html) continue;
-
                 const filename = `${service.slug}-${city.slug}.html`;
+                let html = generateServizioCittaPage(service, city);
+                if (!html) {
+                    blockedOrFailed.servizio++;
+                    console.error(`  ❌ Failed: ${filename}`);
+                    continue;
+                }
+
                 html = finalizePublishedHtml(filename, html);
                 const validation = validatePage(html, filename);
                 results.validations.push(validation);
 
                 if (validation.issues.some(i => i.startsWith('⛔'))) {
-                    continue; // Silently skip critically invalid pages
+                    blockedOrFailed.servizio++;
+                    console.error(`  ❌ ${filename} — BLOCKED by validation:`);
+                    validation.issues.forEach(issue => console.error(`     ${issue}`));
+                    continue;
                 }
 
                 if (!DRY_RUN && !VALIDATE_ONLY) {
@@ -2857,9 +2889,13 @@ function main() {
                 results.servizio.push(filename);
                 generated++;
             }
-            // Log per-service summary
-            const svcCount = eligibleCities.length;
-            console.log(`  ✅ ${service.slug}-*.html — ${svcCount} cities`);
+            const serviceSucceeded = results.servizio.length - succeededBefore;
+            const serviceFailed = blockedOrFailed.servizio - failedBefore;
+            const serviceExpected = eligibleCities.length;
+            const status = serviceSucceeded === serviceExpected && serviceFailed === 0 ? '✅' : '❌';
+            console.log(
+                `  ${status} ${service.slug}-*.html — ${serviceSucceeded}/${serviceExpected} cities; ${serviceFailed} blocked/failed`
+            );
         }
     }
 
@@ -2867,6 +2903,9 @@ function main() {
     if (GEN_TYPE === 'all' || GEN_TYPE === 'hubs') {
         console.log('\n─── Generating hub pages ───');
         const hubResults = generateHubPages();
+        if (hubResults.length < expected.hubs) {
+            blockedOrFailed.hubs += expected.hubs - hubResults.length;
+        }
         for (const hub of hubResults) {
             const relativePath = path.join(hub.dir, 'index.html');
             const html = finalizePublishedHtml(relativePath, hub.html);
@@ -2874,6 +2913,7 @@ function main() {
             results.validations.push(validation);
 
             if (validation.issues.some(issue => issue.startsWith('⛔'))) {
+                blockedOrFailed.hubs++;
                 console.error(`  ❌ ${relativePath} — BLOCKED by validation:`);
                 validation.issues.forEach(issue => console.error(`     ${issue}`));
                 continue;
@@ -2884,9 +2924,9 @@ function main() {
             }
             const sizeKb = Math.round(Buffer.byteLength(html) / 1024);
             console.log(`  ✅ ${hub.dir}/index.html (${sizeKb}KB)`);
+            results.hubs.push(`${hub.dir}/index.html`);
             generated++;
         }
-        results.hubs = hubResults.map(h => `${h.dir}/index.html`);
     }
 
     // Generate link graph
@@ -2900,17 +2940,46 @@ function main() {
     }
 
     // Summary
+    const actual = {
+        agenzia: results.agenzia.length,
+        realizzazione: results.realizzazione.length,
+        servizio: results.servizio.length,
+        hubs: results.hubs.length
+    };
+    const categories = ['agenzia', 'realizzazione', 'servizio', 'hubs'];
+    const expectedTotal = categories.reduce((sum, category) => sum + expected[category], 0);
+    const succeededTotal = categories.reduce((sum, category) => sum + actual[category], 0);
+    const blockedOrFailedTotal = categories.reduce((sum, category) => sum + blockedOrFailed[category], 0);
+    const countMismatches = categories.filter(category => actual[category] !== expected[category]);
+
     console.log('\n══════════════════════════════════════════════════════');
     console.log(`  Generated: ${generated} | Skipped: ${skipped}`);
-    console.log(`  Agenzia: ${results.agenzia.length} | Realizzazione: ${results.realizzazione.length} | Servizio×Città: ${results.servizio.length} | Hub: ${results.hubs.length}`);
+    console.log(`  Expected: ${expectedTotal} | Succeeded: ${succeededTotal} | Blocked/failed: ${blockedOrFailedTotal}`);
+    console.log(
+        `  Agenzia: ${actual.agenzia}/${expected.agenzia} | `
+        + `Realizzazione: ${actual.realizzazione}/${expected.realizzazione} | `
+        + `Servizio×Città: ${actual.servizio}/${expected.servizio} | `
+        + `Hub: ${actual.hubs}/${expected.hubs}`
+    );
 
-    const warnings = results.validations.reduce((sum, v) => sum + v.issues.length, 0);
+    const warnings = results.validations.reduce(
+        (sum, validation) => sum + validation.issues.filter(issue => !issue.startsWith('⛔')).length,
+        0
+    );
     if (warnings > 0) {
         console.log(`  ⚠ Total validation warnings: ${warnings}`);
     }
 
     if (DRY_RUN) console.log('  🔍 DRY RUN — no files written');
     if (VALIDATE_ONLY) console.log('  🔍 VALIDATE ONLY — no files written');
+
+    if (blockedOrFailedTotal > 0 || countMismatches.length > 0) {
+        if (countMismatches.length > 0) {
+            console.error(`  ⛔ Target count mismatch: ${countMismatches.join(', ')}`);
+        }
+        console.error('  ⛔ GEO generation failed closed; review the blocked/failed outputs above.');
+        process.exitCode = 1;
+    }
 
     console.log('══════════════════════════════════════════════════════');
 }

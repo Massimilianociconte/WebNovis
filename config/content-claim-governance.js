@@ -47,7 +47,7 @@ const UNSUPPORTED_PUBLISHED_CLAIM_PATTERNS = [
   },
   {
     id: 'fixed-24-hour-commercial-sla',
-    pattern: /\b(?:preventiv[oa]|rispost[ae]|propost[ae]|rispondiamo)[^.!?]{0,110}\b(?:entro|in)\s+24\s+ore\b/i
+    pattern: /\b(?:preventiv\w*|rispost\w*|propost\w*|rispond\w*|analisi\s+personalizzata|report\s+dettagliato|(?:ri)?contatt\w*)[^.!?]{0,110}\b(?:entro|in)\s+24\s*(?:ore|h)\b/i
   },
   {
     id: 'universal-core-web-vitals-threshold',

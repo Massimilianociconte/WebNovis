@@ -985,7 +985,7 @@ app.post('/api/lead', leadLimiter, async (req, res) => {
                             ${cleanUrl ? `<tr><td style="padding:8px 12px;color:#888;border-bottom:1px solid #222;">Sito Web</td><td style="padding:8px 12px;border-bottom:1px solid #222;">${isLinkableUrl ? `<a href="${escapeHtml(cleanUrl)}" style="color:#38b6ff;" target="_blank">${escapeHtml(cleanUrl)}</a>` : escapeHtml(cleanUrl)}</td></tr>` : ''}
                             <tr><td style="padding:8px 12px;color:#888;">Data</td><td style="padding:8px 12px;color:#ccc;">${new Date().toLocaleString('it-IT', { timeZone: 'Europe/Rome' })}</td></tr>
                         </table>
-                        <p style="color:#666;font-size:13px;margin-top:24px;">Lead catturato dalla pagina 404 di webnovis.com — Rispondi entro 24h.</p>
+                        <p style="color:#666;font-size:13px;margin-top:24px;">Lead catturato dalla pagina 404 di webnovis.com — gestire secondo la priorità concordata.</p>
                     </div>`;
 
                 const brevoMailRes = await fetch('https://api.brevo.com/v3/smtp/email', {
@@ -1312,7 +1312,7 @@ Quale ti interessa di più? Posso darti maggiori dettagli! ✨`;
 
 📧 Email: ${config.companyInfo.email}
 
-Oppure compila il form nella sezione contatti qui sotto. Rispondiamo entro 24 ore! 🚀`;
+Oppure compila il form nella sezione contatti qui sotto. Ti ricontatteremo attraverso i canali indicati. 🚀`;
     }
 
     return `Grazie per il tuo messaggio! Per informazioni dettagliate sui nostri servizi e prezzi, scrivici a ${config.companyInfo.email} o compila il form. Il nostro team sarà felice di aiutarti! 💬`;

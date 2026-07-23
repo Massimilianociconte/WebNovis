@@ -5988,7 +5988,7 @@ const articles = [
     faq: [
       { question: 'Come chiedere recensioni ai clienti senza sembrare insistenti?', answer: 'Il segreto è il timing: chiedi entro 24-48h dal completamento del servizio, quando la soddisfazione è massima. Usa un messaggio breve, personale e con il link diretto alla pagina di recensione. Non chiedere a tutti: seleziona i clienti più soddisfatti. Un follow-up gentile dopo 3-4 giorni è accettabile se non hanno ancora scritto.' },
       { question: 'Le recensioni Google influenzano il posizionamento?', answer: 'Sì, molto. Le recensioni sono il fattore #1 per il ranking nel Local Pack di Google (i 3 risultati con mappa). Conta il numero di recensioni, il punteggio medio, la frequenza (recensioni recenti pesano di più) e le keyword usate naturalmente dai clienti. Un\'attività con 50+ recensioni a 4.5★ ha un vantaggio significativo sulla concorrenza.' },
-      { question: 'Come gestire le recensioni negative?', answer: 'Rispondi sempre, rapidamente (entro 24h) e professionalmente. Non difenderti: ringrazia per il feedback, riconosci il problema, offri una soluzione. Le recensioni negative gestite bene possono diventare un asset: mostrano che ascolti i clienti. Non chiedere mai di cancellare una recensione — Google lo penalizza.' }
+      { question: 'Come gestire le recensioni negative?', answer: 'Rispondi sempre in tempi compatibili con la tua organizzazione e con tono professionale. Non difenderti: ringrazia per il feedback, riconosci il problema, offri una soluzione. Le recensioni negative gestite bene possono diventare un asset: mostrano che ascolti i clienti. Non chiedere mai di cancellare una recensione — Google lo penalizza.' }
     ],
     content: `
 <p>Le recensioni sono la <strong>riprova sociale più potente</strong> per un\'attività locale. Il 93% dei consumatori legge le recensioni online prima di acquistare. Eppure la maggior parte delle PMI non ha un sistema per raccoglierle. Ecco come ottenere più recensioni in modo etico e sistematico.</p>
@@ -6054,7 +6054,7 @@ const articles = [
 
 <h2>Gestire le Recensioni Negative</h2>
 <ol>
-    <li><strong>Rispondi entro 24h</strong>: rapidità dimostra attenzione</li>
+    <li><strong>Rispondi con tempestività</strong>: una risposta curata dimostra attenzione</li>
     <li><strong>Ringrazia</strong>: "Grazie per il feedback, ci aiuta a migliorare"</li>
     <li><strong>Riconosci</strong>: non negare il problema</li>
     <li><strong>Offri soluzione</strong>: "Vorremmo rimediare, contattaci a [email]"</li>
