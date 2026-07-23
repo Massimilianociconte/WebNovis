@@ -31,6 +31,8 @@ const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
 const {
     getIndexationDirectivesForPath,
     getIndexableGeoPaths,
+    isIndexableGeoPath,
+    isGeoPath,
     isTier1Path,
     isTier2Path,
     isDeAmplifiedPath
@@ -152,7 +154,37 @@ function finalizePublishedHtml(relativePath, html) {
     const targetPath = resolvePublishPath(relativePath);
     const preserved = preserveCustomBlocks(targetPath, html).replace(/^\uFEFF/, '');
     const normalizedPath = String(relativePath).replace(/\\/g, '/');
-    return normalizeGeneratedRuntimeScripts(applySeoHtmlTransforms(preserved, normalizedPath), normalizedPath);
+    const transformed = applySeoHtmlTransforms(preserved, normalizedPath);
+    const crawlSafe = removeDeamplifiedGeoAnchors(transformed, normalizedPath);
+    return normalizeGeneratedRuntimeScripts(crawlSafe, normalizedPath);
+}
+
+function toPublicPath(relativePath) {
+    const normalized = String(relativePath || '').replace(/\\/g, '/').replace(/^\.?\//, '');
+    return `/${normalized}`.replace(/\/index\.html$/, '/');
+}
+
+function resolveInternalPathname(rawHref, sourcePath) {
+    try {
+        const resolved = new URL(String(rawHref || '').replace(/&amp;/g, '&'), new URL(sourcePath, SITE));
+        if (!['webnovis.com', 'www.webnovis.com'].includes(resolved.hostname)) return null;
+        return resolved.pathname;
+    } catch (_) {
+        return null;
+    }
+}
+
+function removeDeamplifiedGeoAnchors(html, relativePath) {
+    const sourcePath = toPublicPath(relativePath);
+    if (!isIndexableGeoPath(sourcePath)) return html;
+
+    return String(html || '').replace(/<a\b[^>]*>[\s\S]*?<\/a>/gi, (anchor) => {
+        const hrefMatch = anchor.match(/\bhref=(['"])(.*?)\1/i);
+        if (!hrefMatch) return anchor;
+        const targetPath = resolveInternalPathname(hrefMatch[2], sourcePath);
+        if (!targetPath || !isGeoPath(targetPath) || isIndexableGeoPath(targetPath)) return anchor;
+        return anchor.replace(/^<a\b[^>]*>/i, '').replace(/<\/a>$/i, '');
+    });
 }
 
 function writePublishedFile(relativePath, html) {
@@ -478,26 +510,26 @@ function buildCoverageScopes(agenziaCities, realizzazioneCities, serviceCoverage
     return [
         {
             key: 'agenzia',
-            label: 'Copertura completa',
+            label: 'Landing Agenzia Web',
             count: agenziaCities.length,
-            helper: 'comuni serviti da WebNovis',
-            description: 'Comuni in cui presidiamo la presenza come agenzia web completa: sito, design, social e consulenza.',
+            helper: 'pagine locali indicizzabili',
+            description: 'Pagine Agenzia Web approvate per l’indicizzazione; non rappresentano l’intera area operativa dichiarata.',
             href: '/agenzia-web/'
         },
         {
             key: 'realizzazione',
-            label: 'Landing core attive',
+            label: 'Landing Realizzazione Siti',
             count: realizzazioneCities.length,
-            helper: 'landing siti già pubblicate',
-            description: 'Comuni in cui il cluster “realizzazione siti web” ha una landing dedicata e navigabile.',
+            helper: 'pagine locali indicizzabili',
+            description: 'Pagine del cluster “realizzazione siti web” approvate per l’indicizzazione.',
             href: '/realizzazione-siti-web/'
         },
         {
             key: 'extended',
-            label: 'Servizi locali attivi',
+            label: 'Landing per servizio',
             count: serviceCoverageCities.length,
-            helper: 'comuni con landing servizio attive',
-            description: 'Ogni servizio elencato in questa pagina ha una landing locale navigabile in tutti i territori del network WebNovis.',
+            helper: 'territori rappresentati da pagine indicizzabili',
+            description: 'Le combinazioni servizio-città elencate sono soltanto quelle approvate; il numero di pagine varia per servizio.',
             href: '/zone-servite/'
         }
     ];
@@ -1708,14 +1740,17 @@ function generateAgenziaPage(city) {
     const agenziaSeo = getAgenziaSeoCopy(city);
 
     // Compute data for template
-    const nearest = getNearestCities(city, cities, 5);
+    const approvedAgencyCities = cities.filter((candidate) =>
+        isIndexableGeoPath(`/agenzia-web-${candidate.slug}.html`)
+    );
+    const nearest = getNearestCities(city, approvedAgencyCities, 5);
     const nearCitiesData = (city.nearCities || []).map(ncSlug => {
         const nc = cityMap.get(ncSlug);
         return nc ? { name: nc.name, wiki: nc.wikipedia } : { name: ncSlug };
     });
 
     const relatedPages = nearest.map(nc => ({
-        url: `agenzia-web-${nc.slug}.html`,
+        url: `/agenzia-web-${nc.slug}.html`,
         label: `Agenzia Web ${nc.name}`,
         distance: nc.distanzaSede,
         population: nc.population ? nc.population.toLocaleString('it-IT') : null
@@ -2051,27 +2086,31 @@ function generateServizioCittaPage(service, city) {
     if (!rhoPage) return null;
 
     const slug = `${service.slug}-${city.slug}`;
+    const pagePath = `/${slug}.html`;
+    const tier = resolvePageTier(pagePath);
+    const isIndexable = tier > 0;
     const canonical = `${SITE}/${slug}.html`;
     const seo = getServiceLocalSeoCopy(service, city);
-    // Nearest cities that also have this service×city page
-    const nearest = getNearestCities(city, cities, 5);
-    const relatedCityPages = nearest
-        .filter(nc => !nc.isSede && serviceCoverageCitySlugs.has(nc.slug))
+    // Nearest cities whose same-service landing is approved for indexation.
+    const approvedServiceCities = cities.filter((candidate) =>
+        !candidate.isSede
+        && serviceCoverageCitySlugs.has(candidate.slug)
+        && isIndexableGeoPath(`/${service.slug}-${candidate.slug}.html`)
+    );
+    const relatedCityPages = getNearestCities(city, approvedServiceCities, 5)
         .slice(0, 3)
         .map(nc => ({
-            url: `${service.slug}-${nc.slug}.html`,
+            url: `/${service.slug}-${nc.slug}.html`,
             label: `${service.shortName} a ${nc.name}`,
             distance: nc.distanzaSede
         }));
 
-    // Other services in the same city (only link to services that have geo pages)
-    const geoServices = services.filter(s => shouldGenerateGeoForService(s) && s.slug !== service.slug);
-    const relatedServicePages = geoServices
-        .slice(0, 3)
-        .map(svc => ({
-            url: `${svc.slug}-${city.slug}.html`,
-            label: `${svc.shortName} a ${city.name}`
-        }));
+    // Other services in the same city, restricted to approved indexable landings.
+    const geoServices = services.filter((candidate) =>
+        shouldGenerateGeoForService(candidate)
+        && candidate.slug !== service.slug
+        && isIndexableGeoPath(`/${candidate.slug}-${city.slug}.html`)
+    );
 
     // AI content for this city — vary by service cluster to avoid intra-municipal duplication
     const aiBlock = contentBlocks.get(city.slug);
@@ -2141,7 +2180,7 @@ function generateServizioCittaPage(service, city) {
     const relatedServicePagesExpanded = geoServices
         .slice(0, 6)
         .map(svc => ({
-            url: `${svc.slug}-${city.slug}.html`,
+            url: `/${svc.slug}-${city.slug}.html`,
             label: `${svc.shortName} a ${city.name}`
         }));
 
@@ -2149,10 +2188,6 @@ function generateServizioCittaPage(service, city) {
     // tier === 1: Tier 1 indexable pages (unique content emphasized, full feature set)
     // tier === 2: Tier 2 indexable pages (standard template, full internal linking)
     // tier === 0: de-amplified pages (noindex,follow) — slim structure to reduce doorway footprint
-    const pagePath = `/${slug}.html`;
-    const tier = resolvePageTier(pagePath);
-    const isIndexable = tier > 0;
-
     // Load per-city Tier 1 content overrides when present (hand-crafted editorial).
     // See data/content-blocks/tier1-<city>-<service>.json for structure.
     let tier1Content = null;
@@ -2175,7 +2210,15 @@ function generateServizioCittaPage(service, city) {
         }),
         relatedCityPages: relatedCityPages,
         relatedServicePages: relatedServicePagesExpanded,
-        allCoreServices: tableServices,
+        allCoreServices: tableServices.map((candidate) => ({
+            ...candidate,
+            geoUrl: isIndexableGeoPath(`/${candidate.slug}-${city.slug}.html`)
+                ? `/${candidate.slug}-${city.slug}.html`
+                : null
+        })),
+        agencyCityPageUrl: isIndexableGeoPath(`/agenzia-web-${city.slug}.html`)
+            ? `/agenzia-web-${city.slug}.html`
+            : null,
         faqs: faqs,
         aiContent: aiContent,
         competitiveInsight: competitiveInsight,
@@ -2499,6 +2542,7 @@ function generateHubPages() {
     ).values()];
     const coverageScopes = buildCoverageScopes(agenziaCities, realizzazioneCities, serviceCoverageCities);
     const featuredCities = withCityUiMeta(agenziaCities.filter((city) => city.slug !== 'rho'));
+    const totalItems = agenziaCities.length + realizzazioneCities.length + Object.values(serviceCityCounts).reduce((sum, count) => sum + count, 0);
 
     const zoneData = {
         agenziaCities: withCityUiMeta(agenziaCities),
@@ -2511,14 +2555,13 @@ function generateHubPages() {
         serviceCityCounts: serviceCityCounts,
         coverageScopes: coverageScopes,
         featuredCities: featuredCities,
+        totalIndexablePages: totalItems,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
         site: SITE
     };
     const zoneContent = njkEnv.render('hub-zone-servite.njk', zoneData);
 
-    // Total items across all categories
-    const totalItems = agenziaCities.length + realizzazioneCities.length + Object.values(serviceCityCounts).reduce((sum, count) => sum + count, 0);
     const zoneSchemas = [
         {
             "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -2528,22 +2571,22 @@ function generateHubPages() {
         },
         {
             "@context": "https://schema.org", "@type": "CollectionPage",
-            "name": "Zone Servite da WebNovis — Servizi Web nell'Hinterland Milanese",
-            "description": "Mappa completa di tutti i servizi WebNovis per comune: sviluppo web, e-commerce, SEO locale, branding.",
+            "name": "Pagine locali indicizzabili WebNovis per zona e servizio",
+            "description": `${totalItems} landing locali approvate per l'indicizzazione, distinte dalla rete operativa dichiarata di ${networkCities.length} territori serviti.`,
             "url": SITE + "/zone-servite/",
             "inLanguage": "it",
             "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
             "numberOfItems": totalItems,
             "hasPart": [
-                { "@type": "CollectionPage", "name": "Agenzia Web — Tutti i Comuni", "url": SITE + "/agenzia-web/" },
-                { "@type": "CollectionPage", "name": "Realizzazione Siti Web — Tutti i Comuni", "url": SITE + "/realizzazione-siti-web/" }
+                { "@type": "CollectionPage", "name": `${agenziaCities.length} landing Agenzia Web indicizzabili`, "url": SITE + "/agenzia-web/" },
+                { "@type": "CollectionPage", "name": `${realizzazioneCities.length} landing Realizzazione Siti Web indicizzabili`, "url": SITE + "/realizzazione-siti-web/" }
             ]
         }
     ];
     const zoneHtml = buildHubPage(
         'zone-servite',
-        'Zone Servite da WebNovis — Tutti i Servizi Web per Comune | Hinterland Milano',
-        `Pagine locali indicizzabili WebNovis per agenzia web, realizzazione siti, SEO locale e altri servizi nella rete di ${networkCities.length} territori serviti.`,
+        'Pagine Locali Indicizzabili per Zona e Servizio | WebNovis',
+        `${totalItems} landing locali indicizzabili WebNovis per agenzia web, realizzazione siti, SEO locale e altri servizi; rete operativa dichiarata di ${networkCities.length} territori serviti.`,
         'zone servite WebNovis, servizi web comuni Milano, agenzia web hinterland, web agency zone Milano',
         zoneContent,
         zoneSchemas
@@ -2556,21 +2599,21 @@ function generateHubPages() {
 // ─── Internal Linking Helpers ─────────────────────────────────────────────────
 
 function buildGeoLinksSection(city, pageType) {
-    const nearest = getNearestCities(city, cities, 3);
-    if (nearest.length === 0) return '';
-
     const prefix = pageType === 'agenzia' ? 'agenzia-web-' : 'realizzazione-siti-web-';
     const label = pageType === 'agenzia' ? 'Agenzia Web' : 'Realizzazione Siti Web';
     const genKey = pageType === 'agenzia' ? 'agenzia' : 'realizzazione';
-
-    const validNearest = nearest.filter(nc => nc.generate[genKey]).slice(0, 3);
+    const approvedCities = cities.filter((candidate) =>
+        candidate.generate[genKey]
+        && isIndexableGeoPath(`/${prefix}${candidate.slug}.html`)
+    );
+    const validNearest = getNearestCities(city, approvedCities, 3);
     if (validNearest.length === 0) return '';
 
     let html = `\n<section class="service-detail" style="background:rgba(255,255,255,.01)"><div class="container">`;
     html += `<h2>Serviamo anche i comuni vicini a ${city.name}</h2>`;
     html += `<p>Scopri i nostri servizi nelle città vicine: `;
     const links = validNearest.map(nc =>
-        `<a href="${prefix}${nc.slug}.html" style="color:var(--primary-light)">${label} a ${nc.name}</a> (${nc.distanzaSede})`
+        `<a href="/${prefix}${nc.slug}.html" style="color:var(--primary-light)">${label} a ${nc.name}</a> (${nc.distanzaSede})`
     );
     html += links.join(', ') + '.</p>';
     html += `</div></section>\n`;
@@ -2644,34 +2687,37 @@ function validatePage(html, filename) {
 
 function generateLinkGraph() {
     const graph = { generated: TODAY, pages: [] };
-    const indexableGeoPaths = new Set(getIndexableGeoPaths());
-    const approvedCitiesFor = (serviceSlug) => cities.filter((city) =>
-        indexableGeoPaths.has(`/${serviceSlug}-${city.slug}.html`)
-    );
-    const agencyCities = approvedCitiesFor('agenzia-web');
-    const websiteCities = approvedCitiesFor('realizzazione-siti-web');
+    for (const publicPath of getIndexableGeoPaths()) {
+        const filePath = resolvePublishPath(publicPath.replace(/^\//, ''));
+        if (!fs.existsSync(filePath)) {
+            throw new Error(`Cannot build rendered GEO link graph: missing ${filePath}`);
+        }
 
-    for (const city of cities) {
-        const agencyPath = `/agenzia-web-${city.slug}.html`;
-        if (indexableGeoPaths.has(agencyPath)) {
-            graph.pages.push({
-                url: agencyPath,
-                type: 'agenzia',
-                city: city.name,
-                linksTo: getNearestCities(city, agencyCities, 5)
-                    .map(nc => `/agenzia-web-${nc.slug}.html`)
-            });
+        const html = fs.readFileSync(filePath, 'utf8');
+        const linksTo = [];
+        for (const match of html.matchAll(/<a\b[^>]*\bhref=(['"])(.*?)\1/gi)) {
+            const targetPath = resolveInternalPathname(match[2], publicPath);
+            if (!targetPath || targetPath === publicPath || !isIndexableGeoPath(targetPath)) continue;
+            if (!linksTo.includes(targetPath)) linksTo.push(targetPath);
         }
-        const websitePath = `/realizzazione-siti-web-${city.slug}.html`;
-        if (indexableGeoPaths.has(websitePath)) {
-            graph.pages.push({
-                url: websitePath,
-                type: 'realizzazione',
-                city: city.name,
-                linksTo: getNearestCities(city, websiteCities, 5)
-                    .map(nc => `/realizzazione-siti-web-${nc.slug}.html`)
-            });
-        }
+
+        const city = cities.find((candidate) => publicPath.endsWith(`-${candidate.slug}.html`));
+        const serviceSlug = city
+            ? publicPath.slice(1, -(`-${city.slug}.html`.length))
+            : '';
+        graph.pages.push({
+            url: publicPath,
+            type: serviceSlug === 'agenzia-web'
+                ? 'agenzia'
+                : serviceSlug === 'realizzazione-siti-web'
+                    ? 'realizzazione'
+                    : 'servizio',
+            city: city ? city.name : '',
+            ...(serviceSlug && !['agenzia-web', 'realizzazione-siti-web'].includes(serviceSlug)
+                ? { service: serviceSlug }
+                : {}),
+            linksTo
+        });
     }
 
     return graph;

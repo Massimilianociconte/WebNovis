@@ -24,6 +24,11 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const {
+    getIndexableGeoPaths,
+    isGeoPath,
+    isIndexableGeoPath
+} = require('../config/pseo-governance');
 
 const ROOT = path.join(__dirname, '..');
 const args = process.argv.slice(2);
@@ -148,6 +153,8 @@ function checkLinkGraph() {
     const allPages = new Set(graph.pages.map(p => p.url));
     const orphans = [];
     const brokenLinks = [];
+    const deamplifiedGeoLinks = [];
+    const renderedGraphMismatches = [];
 
     for (const page of graph.pages) {
         // Check if linked pages exist
@@ -161,14 +168,73 @@ function checkLinkGraph() {
         const filePath = path.join(ROOT, page.url.replace(/^\//, ''));
         if (!fs.existsSync(filePath)) {
             orphans.push(page.url);
+            continue;
+        }
+
+        const html = fs.readFileSync(filePath, 'utf8');
+        const renderedLinks = [];
+        for (const match of html.matchAll(/<a\b[^>]*\bhref=(['"])(.*?)\1/gi)) {
+            let targetPath;
+            try {
+                const target = new URL(match[2].replace(/&amp;/g, '&'), new URL(page.url, 'https://www.webnovis.com'));
+                if (!['webnovis.com', 'www.webnovis.com'].includes(target.hostname)) continue;
+                targetPath = target.pathname;
+            } catch (_) {
+                continue;
+            }
+            if (!isGeoPath(targetPath) || targetPath === page.url) continue;
+            if (!isIndexableGeoPath(targetPath)) {
+                deamplifiedGeoLinks.push({ from: page.url, to: targetPath });
+                continue;
+            }
+            if (!renderedLinks.includes(targetPath)) renderedLinks.push(targetPath);
+        }
+
+        const storedLinks = [...new Set(Array.isArray(page.linksTo) ? page.linksTo : [])];
+        if (JSON.stringify(storedLinks) !== JSON.stringify(renderedLinks)) {
+            renderedGraphMismatches.push({
+                page: page.url,
+                stored: storedLinks,
+                rendered: renderedLinks
+            });
         }
     }
+
+    const missingIndexablePages = getIndexableGeoPaths().filter((pathname) => !allPages.has(pathname));
 
     // Find pages with zero inbound links
     const inboundCount = {};
     for (const page of graph.pages) {
         if (!inboundCount[page.url]) inboundCount[page.url] = 0;
         for (const target of page.linksTo) {
+            inboundCount[target] = (inboundCount[target] || 0) + 1;
+        }
+    }
+
+    // The stored graph intentionally contains GEO source pages only. Include
+    // the approved discovery hubs before reporting a page as having no inlink.
+    for (const relativePath of [
+        'index.html',
+        'agenzia-web/index.html',
+        'realizzazione-siti-web/index.html',
+        'zone-servite/index.html'
+    ]) {
+        const hubPath = path.join(ROOT, relativePath);
+        if (!fs.existsSync(hubPath)) continue;
+        const hubHtml = fs.readFileSync(hubPath, 'utf8');
+        const hubUrl = relativePath === 'index.html' ? '/' : `/${relativePath.replace(/index\.html$/, '')}`;
+        const hubTargets = new Set();
+        for (const match of hubHtml.matchAll(/<a\b[^>]*\bhref=(['"])(.*?)\1/gi)) {
+            try {
+                const target = new URL(match[2].replace(/&amp;/g, '&'), new URL(hubUrl, 'https://www.webnovis.com'));
+                if (['webnovis.com', 'www.webnovis.com'].includes(target.hostname) && isIndexableGeoPath(target.pathname)) {
+                    hubTargets.add(target.pathname);
+                }
+            } catch (_) {
+                // Ignore malformed or non-URL href values; other checks report them.
+            }
+        }
+        for (const target of hubTargets) {
             inboundCount[target] = (inboundCount[target] || 0) + 1;
         }
     }
@@ -180,7 +246,10 @@ function checkLinkGraph() {
         totalLinks: graph.pages.reduce((s, p) => s + p.linksTo.length, 0),
         orphanFiles: orphans,
         brokenLinks: brokenLinks,
-        zeroInbound: zeroInbound
+        zeroInbound: zeroInbound,
+        missingIndexablePages,
+        deamplifiedGeoLinks,
+        renderedGraphMismatches
     };
 }
 
@@ -251,6 +320,12 @@ function main() {
             if (report.linkGraph.zeroInbound.length > 0) {
                 report.alerts.push({ level: 'WARNING', msg: `${report.linkGraph.zeroInbound.length} pages with zero inbound links` });
             }
+            if (report.linkGraph.deamplifiedGeoLinks.length > 0) {
+                report.alerts.push({ level: 'CRITICAL', msg: `${report.linkGraph.deamplifiedGeoLinks.length} rendered links from indexable GEO pages to de-amplified GEO targets` });
+            }
+            if (report.linkGraph.renderedGraphMismatches.length > 0 || report.linkGraph.missingIndexablePages.length > 0) {
+                report.alerts.push({ level: 'CRITICAL', msg: 'Stored GEO link graph does not match the rendered indexable GEO corpus' });
+            }
         }
 
         // 5. Data layer health
@@ -312,6 +387,8 @@ function main() {
             console.log(`  Broken links: ${report.linkGraph.brokenLinks.length}`);
             console.log(`  Zero inbound: ${report.linkGraph.zeroInbound.length}`);
             console.log(`  Orphan files: ${report.linkGraph.orphanFiles.length}`);
+            console.log(`  De-amplified rendered targets: ${report.linkGraph.deamplifiedGeoLinks.length}`);
+            console.log(`  Rendered graph mismatches: ${report.linkGraph.renderedGraphMismatches.length}`);
         }
 
         // Data layer

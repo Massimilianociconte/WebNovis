@@ -2,159 +2,15 @@
   "generated": "2026-07-23",
   "pages": [
     {
-      "url": "/agenzia-web-rho.html",
-      "type": "agenzia",
-      "city": "Rho",
-      "linksTo": [
-        "/agenzia-web-cornaredo.html",
-        "/agenzia-web-arese.html",
-        "/agenzia-web-pero.html",
-        "/agenzia-web-lainate.html",
-        "/agenzia-web-baranzate.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-rho.html",
-      "type": "realizzazione",
-      "city": "Rho",
-      "linksTo": [
-        "/realizzazione-siti-web-arese.html",
-        "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-bollate.html",
-        "/realizzazione-siti-web-caronno-pertusella.html",
-        "/realizzazione-siti-web-origgio.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-lainate.html",
-      "type": "agenzia",
-      "city": "Lainate",
-      "linksTo": [
-        "/agenzia-web-garbagnate.html",
-        "/agenzia-web-arese.html",
-        "/agenzia-web-rho.html",
-        "/agenzia-web-saronno.html",
-        "/agenzia-web-parabiago.html"
-      ]
-    },
-    {
       "url": "/agenzia-web-arese.html",
       "type": "agenzia",
       "city": "Arese",
       "linksTo": [
+        "/seo-locale-arese.html",
+        "/sito-vetrina-arese.html",
         "/agenzia-web-garbagnate.html",
         "/agenzia-web-bollate.html",
-        "/agenzia-web-rho.html",
-        "/agenzia-web-baranzate.html",
-        "/agenzia-web-pero.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-arese.html",
-      "type": "realizzazione",
-      "city": "Arese",
-      "linksTo": [
-        "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-bollate.html",
-        "/realizzazione-siti-web-rho.html",
-        "/realizzazione-siti-web-senago.html",
-        "/realizzazione-siti-web-caronno-pertusella.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-garbagnate.html",
-      "type": "agenzia",
-      "city": "Garbagnate Milanese",
-      "linksTo": [
-        "/agenzia-web-arese.html",
-        "/agenzia-web-lainate.html",
-        "/agenzia-web-bollate.html",
-        "/agenzia-web-rho.html",
-        "/agenzia-web-baranzate.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-garbagnate.html",
-      "type": "realizzazione",
-      "city": "Garbagnate Milanese",
-      "linksTo": [
-        "/realizzazione-siti-web-arese.html",
-        "/realizzazione-siti-web-caronno-pertusella.html",
-        "/realizzazione-siti-web-senago.html",
-        "/realizzazione-siti-web-limbiate.html",
-        "/realizzazione-siti-web-solaro.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-pero.html",
-      "type": "agenzia",
-      "city": "Pero",
-      "linksTo": [
-        "/agenzia-web-baranzate.html",
-        "/agenzia-web-cornaredo.html",
-        "/agenzia-web-settimo-milanese.html",
-        "/agenzia-web-rho.html",
-        "/agenzia-web-novate-milanese.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-cornaredo.html",
-      "type": "agenzia",
-      "city": "Cornaredo",
-      "linksTo": [
-        "/agenzia-web-settimo-milanese.html",
-        "/agenzia-web-rho.html",
-        "/agenzia-web-pero.html",
-        "/agenzia-web-baranzate.html",
-        "/agenzia-web-arese.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-settimo-milanese.html",
-      "type": "agenzia",
-      "city": "Settimo Milanese",
-      "linksTo": [
-        "/agenzia-web-cornaredo.html",
-        "/agenzia-web-pero.html",
-        "/agenzia-web-milano-ovest.html",
-        "/agenzia-web-rho.html",
-        "/agenzia-web-baranzate.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-milano.html",
-      "type": "agenzia",
-      "city": "Milano",
-      "linksTo": [
-        "/agenzia-web-milano-ovest.html",
-        "/agenzia-web-milano-nord.html",
-        "/agenzia-web-sesto-san-giovanni.html",
-        "/agenzia-web-novate-milanese.html",
-        "/agenzia-web-baranzate.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-bollate.html",
-      "type": "agenzia",
-      "city": "Bollate",
-      "linksTo": [
-        "/agenzia-web-novate-milanese.html",
-        "/agenzia-web-baranzate.html",
-        "/agenzia-web-arese.html",
-        "/agenzia-web-garbagnate.html",
-        "/agenzia-web-pero.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-bollate.html",
-      "type": "realizzazione",
-      "city": "Bollate",
-      "linksTo": [
-        "/realizzazione-siti-web-senago.html",
-        "/realizzazione-siti-web-arese.html",
-        "/realizzazione-siti-web-cormano.html",
-        "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-limbiate.html"
+        "/agenzia-web-rho.html"
       ]
     },
     {
@@ -164,153 +20,18 @@
       "linksTo": [
         "/agenzia-web-novate-milanese.html",
         "/agenzia-web-pero.html",
-        "/agenzia-web-bollate.html",
-        "/agenzia-web-arese.html",
-        "/agenzia-web-milano-ovest.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-senago.html",
-      "type": "realizzazione",
-      "city": "Senago",
-      "linksTo": [
-        "/realizzazione-siti-web-limbiate.html",
-        "/realizzazione-siti-web-bollate.html",
-        "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-cormano.html",
-        "/realizzazione-siti-web-arese.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-novate-milanese.html",
-      "type": "agenzia",
-      "city": "Novate Milanese",
-      "linksTo": [
-        "/agenzia-web-bollate.html",
-        "/agenzia-web-baranzate.html",
-        "/agenzia-web-milano-nord.html",
-        "/agenzia-web-pero.html",
-        "/agenzia-web-arese.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-arluno.html",
-      "type": "realizzazione",
-      "city": "Arluno",
-      "linksTo": [
-        "/realizzazione-siti-web-parabiago.html",
-        "/realizzazione-siti-web-magenta.html",
-        "/realizzazione-siti-web-rho.html",
-        "/realizzazione-siti-web-legnano.html",
-        "/realizzazione-siti-web-arese.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-parabiago.html",
-      "type": "agenzia",
-      "city": "Parabiago",
-      "linksTo": [
-        "/agenzia-web-legnano.html",
-        "/agenzia-web-lainate.html",
-        "/agenzia-web-castellanza.html",
-        "/agenzia-web-rho.html",
-        "/agenzia-web-cornaredo.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-parabiago.html",
-      "type": "realizzazione",
-      "city": "Parabiago",
-      "linksTo": [
-        "/realizzazione-siti-web-legnano.html",
-        "/realizzazione-siti-web-arluno.html",
-        "/realizzazione-siti-web-origgio.html",
-        "/realizzazione-siti-web-castellanza.html",
-        "/realizzazione-siti-web-rho.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-buccinasco.html",
-      "type": "realizzazione",
-      "city": "Buccinasco",
-      "linksTo": [
-        "/realizzazione-siti-web-milano-ovest.html",
-        "/realizzazione-siti-web-rho.html",
-        "/realizzazione-siti-web-bollate.html",
-        "/realizzazione-siti-web-arese.html",
-        "/realizzazione-siti-web-cormano.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-cormano.html",
-      "type": "realizzazione",
-      "city": "Cormano",
-      "linksTo": [
-        "/realizzazione-siti-web-bollate.html",
-        "/realizzazione-siti-web-senago.html",
-        "/realizzazione-siti-web-limbiate.html",
-        "/realizzazione-siti-web-arese.html",
-        "/realizzazione-siti-web-garbagnate.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-cinisello-balsamo.html",
-      "type": "agenzia",
-      "city": "Cinisello Balsamo",
-      "linksTo": [
-        "/agenzia-web-sesto-san-giovanni.html",
-        "/agenzia-web-milano-nord.html",
-        "/agenzia-web-monza.html",
-        "/agenzia-web-novate-milanese.html",
         "/agenzia-web-bollate.html"
       ]
     },
     {
-      "url": "/agenzia-web-sesto-san-giovanni.html",
+      "url": "/agenzia-web-bollate.html",
       "type": "agenzia",
-      "city": "Sesto San Giovanni",
+      "city": "Bollate",
       "linksTo": [
-        "/agenzia-web-cinisello-balsamo.html",
-        "/agenzia-web-milano-nord.html",
-        "/agenzia-web-monza.html",
+        "/realizzazione-siti-web-bollate.html",
         "/agenzia-web-novate-milanese.html",
-        "/agenzia-web-milano.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-magenta.html",
-      "type": "realizzazione",
-      "city": "Magenta",
-      "linksTo": [
-        "/realizzazione-siti-web-arluno.html",
-        "/realizzazione-siti-web-parabiago.html",
-        "/realizzazione-siti-web-rho.html",
-        "/realizzazione-siti-web-legnano.html",
-        "/realizzazione-siti-web-castellanza.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-legnano.html",
-      "type": "agenzia",
-      "city": "Legnano",
-      "linksTo": [
-        "/agenzia-web-castellanza.html",
-        "/agenzia-web-parabiago.html",
-        "/agenzia-web-lainate.html",
-        "/agenzia-web-saronno.html",
-        "/agenzia-web-rho.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-legnano.html",
-      "type": "realizzazione",
-      "city": "Legnano",
-      "linksTo": [
-        "/realizzazione-siti-web-castellanza.html",
-        "/realizzazione-siti-web-parabiago.html",
-        "/realizzazione-siti-web-origgio.html",
-        "/realizzazione-siti-web-arluno.html",
-        "/realizzazione-siti-web-caronno-pertusella.html"
+        "/agenzia-web-baranzate.html",
+        "/agenzia-web-arese.html"
       ]
     },
     {
@@ -320,57 +41,61 @@
       "linksTo": [
         "/agenzia-web-legnano.html",
         "/agenzia-web-parabiago.html",
+        "/agenzia-web-lainate.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-cinisello-balsamo.html",
+      "type": "agenzia",
+      "city": "Cinisello Balsamo",
+      "linksTo": [
+        "/seo-locale-cinisello-balsamo.html",
+        "/agenzia-web-sesto-san-giovanni.html",
+        "/agenzia-web-milano-nord.html",
+        "/agenzia-web-monza.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-cornaredo.html",
+      "type": "agenzia",
+      "city": "Cornaredo",
+      "linksTo": [
+        "/agenzia-web-settimo-milanese.html",
+        "/agenzia-web-rho.html",
+        "/agenzia-web-pero.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-garbagnate.html",
+      "type": "agenzia",
+      "city": "Garbagnate Milanese",
+      "linksTo": [
+        "/seo-locale-garbagnate.html",
+        "/agenzia-web-arese.html",
         "/agenzia-web-lainate.html",
-        "/agenzia-web-saronno.html",
+        "/agenzia-web-bollate.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-lainate.html",
+      "type": "agenzia",
+      "city": "Lainate",
+      "linksTo": [
+        "/seo-locale-lainate.html",
+        "/agenzia-web-garbagnate.html",
+        "/agenzia-web-arese.html",
         "/agenzia-web-rho.html"
       ]
     },
     {
-      "url": "/realizzazione-siti-web-castellanza.html",
-      "type": "realizzazione",
-      "city": "Castellanza",
+      "url": "/agenzia-web-legnano.html",
+      "type": "agenzia",
+      "city": "Legnano",
       "linksTo": [
         "/realizzazione-siti-web-legnano.html",
-        "/realizzazione-siti-web-parabiago.html",
-        "/realizzazione-siti-web-origgio.html",
-        "/realizzazione-siti-web-caronno-pertusella.html",
-        "/realizzazione-siti-web-arluno.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-saronno.html",
-      "type": "agenzia",
-      "city": "Saronno",
-      "linksTo": [
-        "/agenzia-web-lainate.html",
-        "/agenzia-web-garbagnate.html",
-        "/agenzia-web-arese.html",
+        "/agenzia-web-castellanza.html",
         "/agenzia-web-parabiago.html",
-        "/agenzia-web-legnano.html"
-      ]
-    },
-    {
-      "url": "/agenzia-web-milano-ovest.html",
-      "type": "agenzia",
-      "city": "Milano Ovest",
-      "linksTo": [
-        "/agenzia-web-milano.html",
-        "/agenzia-web-pero.html",
-        "/agenzia-web-milano-nord.html",
-        "/agenzia-web-baranzate.html",
-        "/agenzia-web-novate-milanese.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-milano-ovest.html",
-      "type": "realizzazione",
-      "city": "Milano Ovest",
-      "linksTo": [
-        "/realizzazione-siti-web-buccinasco.html",
-        "/realizzazione-siti-web-bollate.html",
-        "/realizzazione-siti-web-cormano.html",
-        "/realizzazione-siti-web-arese.html",
-        "/realizzazione-siti-web-rho.html"
+        "/agenzia-web-lainate.html"
       ]
     },
     {
@@ -380,57 +105,28 @@
       "linksTo": [
         "/agenzia-web-novate-milanese.html",
         "/agenzia-web-sesto-san-giovanni.html",
-        "/agenzia-web-milano-ovest.html",
+        "/agenzia-web-milano-ovest.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-milano-ovest.html",
+      "type": "agenzia",
+      "city": "Milano Ovest",
+      "linksTo": [
+        "/realizzazione-siti-web-milano-ovest.html",
         "/agenzia-web-milano.html",
-        "/agenzia-web-baranzate.html"
+        "/agenzia-web-pero.html",
+        "/agenzia-web-milano-nord.html"
       ]
     },
     {
-      "url": "/realizzazione-siti-web-solaro.html",
-      "type": "realizzazione",
-      "city": "Solaro",
+      "url": "/agenzia-web-milano.html",
+      "type": "agenzia",
+      "city": "Milano",
       "linksTo": [
-        "/realizzazione-siti-web-caronno-pertusella.html",
-        "/realizzazione-siti-web-limbiate.html",
-        "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-origgio.html",
-        "/realizzazione-siti-web-senago.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-origgio.html",
-      "type": "realizzazione",
-      "city": "Origgio",
-      "linksTo": [
-        "/realizzazione-siti-web-caronno-pertusella.html",
-        "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-solaro.html",
-        "/realizzazione-siti-web-arese.html",
-        "/realizzazione-siti-web-parabiago.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-caronno-pertusella.html",
-      "type": "realizzazione",
-      "city": "Caronno Pertusella",
-      "linksTo": [
-        "/realizzazione-siti-web-origgio.html",
-        "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-solaro.html",
-        "/realizzazione-siti-web-arese.html",
-        "/realizzazione-siti-web-limbiate.html"
-      ]
-    },
-    {
-      "url": "/realizzazione-siti-web-limbiate.html",
-      "type": "realizzazione",
-      "city": "Limbiate",
-      "linksTo": [
-        "/realizzazione-siti-web-senago.html",
-        "/realizzazione-siti-web-garbagnate.html",
-        "/realizzazione-siti-web-solaro.html",
-        "/realizzazione-siti-web-bollate.html",
-        "/realizzazione-siti-web-cormano.html"
+        "/agenzia-web-milano-ovest.html",
+        "/agenzia-web-milano-nord.html",
+        "/agenzia-web-sesto-san-giovanni.html"
       ]
     },
     {
@@ -440,9 +136,767 @@
       "linksTo": [
         "/agenzia-web-cinisello-balsamo.html",
         "/agenzia-web-sesto-san-giovanni.html",
+        "/agenzia-web-milano-nord.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-novate-milanese.html",
+      "type": "agenzia",
+      "city": "Novate Milanese",
+      "linksTo": [
+        "/agenzia-web-bollate.html",
+        "/agenzia-web-baranzate.html",
+        "/agenzia-web-milano-nord.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-parabiago.html",
+      "type": "agenzia",
+      "city": "Parabiago",
+      "linksTo": [
+        "/agenzia-web-legnano.html",
+        "/agenzia-web-lainate.html",
+        "/agenzia-web-castellanza.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-pero.html",
+      "type": "agenzia",
+      "city": "Pero",
+      "linksTo": [
+        "/agenzia-web-baranzate.html",
+        "/agenzia-web-cornaredo.html",
+        "/agenzia-web-settimo-milanese.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-rho.html",
+      "type": "agenzia",
+      "city": "Rho",
+      "linksTo": [
+        "/seo-locale-rho.html",
+        "/realizzazione-siti-web-rho.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-saronno.html",
+      "type": "agenzia",
+      "city": "Saronno",
+      "linksTo": [
+        "/agenzia-web-lainate.html",
+        "/agenzia-web-garbagnate.html",
+        "/agenzia-web-arese.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-sesto-san-giovanni.html",
+      "type": "agenzia",
+      "city": "Sesto San Giovanni",
+      "linksTo": [
+        "/agenzia-web-cinisello-balsamo.html",
         "/agenzia-web-milano-nord.html",
-        "/agenzia-web-novate-milanese.html",
+        "/agenzia-web-monza.html"
+      ]
+    },
+    {
+      "url": "/agenzia-web-settimo-milanese.html",
+      "type": "agenzia",
+      "city": "Settimo Milanese",
+      "linksTo": [
+        "/agenzia-web-cornaredo.html",
+        "/agenzia-web-pero.html",
+        "/agenzia-web-milano-ovest.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-arese.html",
+      "type": "servizio",
+      "city": "Arese",
+      "service": "ecommerce",
+      "linksTo": [
+        "/sito-vetrina-arese.html",
+        "/landing-page-arese.html",
+        "/seo-locale-arese.html",
+        "/ecommerce-garbagnate.html",
+        "/ecommerce-bollate.html",
+        "/ecommerce-lainate.html",
+        "/agenzia-web-arese.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-bollate.html",
+      "type": "servizio",
+      "city": "Bollate",
+      "service": "ecommerce",
+      "linksTo": [
+        "/sito-vetrina-bollate.html",
+        "/landing-page-bollate.html",
+        "/ecommerce-senago.html",
+        "/ecommerce-arese.html",
+        "/ecommerce-cormano.html",
         "/agenzia-web-bollate.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-bresso.html",
+      "type": "servizio",
+      "city": "Bresso",
+      "service": "ecommerce",
+      "linksTo": [
+        "/seo-locale-bresso.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-cinisello-balsamo.html",
+      "type": "servizio",
+      "city": "Cinisello Balsamo",
+      "service": "ecommerce",
+      "linksTo": [
+        "/seo-locale-cinisello-balsamo.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-cormano.html",
+      "type": "servizio",
+      "city": "Cormano",
+      "service": "ecommerce",
+      "linksTo": [
+        "/seo-locale-cormano.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-garbagnate.html",
+      "type": "servizio",
+      "city": "Garbagnate Milanese",
+      "service": "ecommerce",
+      "linksTo": [
+        "/seo-locale-garbagnate.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-lainate.html",
+      "type": "servizio",
+      "city": "Lainate",
+      "service": "ecommerce",
+      "linksTo": [
+        "/sito-vetrina-lainate.html",
+        "/seo-locale-lainate.html",
+        "/ecommerce-garbagnate.html",
+        "/ecommerce-arese.html",
+        "/ecommerce-bollate.html",
+        "/agenzia-web-lainate.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-legnano.html",
+      "type": "servizio",
+      "city": "Legnano",
+      "service": "ecommerce",
+      "linksTo": [
+        "/sito-vetrina-legnano.html",
+        "/social-media-legnano.html",
+        "/ecommerce-lainate.html",
+        "/ecommerce-garbagnate.html",
+        "/ecommerce-arese.html",
+        "/agenzia-web-legnano.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-limbiate.html",
+      "type": "servizio",
+      "city": "Limbiate",
+      "service": "ecommerce",
+      "linksTo": []
+    },
+    {
+      "url": "/ecommerce-milano.html",
+      "type": "servizio",
+      "city": "Milano",
+      "service": "ecommerce",
+      "linksTo": [
+        "/landing-page-milano.html",
+        "/graphic-design-milano.html",
+        "/social-media-milano.html",
+        "/seo-locale-milano.html",
+        "/email-marketing-milano.html",
+        "/ecommerce-bresso.html",
+        "/ecommerce-cormano.html",
+        "/ecommerce-cinisello-balsamo.html",
+        "/agenzia-web-milano.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-monza.html",
+      "type": "servizio",
+      "city": "Monza",
+      "service": "ecommerce",
+      "linksTo": [
+        "/email-marketing-monza.html",
+        "/google-ads-monza.html",
+        "/ecommerce-cinisello-balsamo.html",
+        "/ecommerce-bresso.html",
+        "/ecommerce-cormano.html",
+        "/agenzia-web-monza.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-rho.html",
+      "type": "servizio",
+      "city": "Rho",
+      "service": "ecommerce",
+      "linksTo": [
+        "/sito-vetrina-rho.html",
+        "/landing-page-rho.html",
+        "/seo-locale-rho.html",
+        "/ecommerce-arese.html",
+        "/ecommerce-lainate.html",
+        "/ecommerce-garbagnate.html",
+        "/agenzia-web-rho.html"
+      ]
+    },
+    {
+      "url": "/ecommerce-senago.html",
+      "type": "servizio",
+      "city": "Senago",
+      "service": "ecommerce",
+      "linksTo": [
+        "/seo-locale-senago.html"
+      ]
+    },
+    {
+      "url": "/email-marketing-milano.html",
+      "type": "servizio",
+      "city": "Milano",
+      "service": "email-marketing",
+      "linksTo": [
+        "/ecommerce-milano.html",
+        "/landing-page-milano.html",
+        "/graphic-design-milano.html"
+      ]
+    },
+    {
+      "url": "/email-marketing-monza.html",
+      "type": "servizio",
+      "city": "Monza",
+      "service": "email-marketing",
+      "linksTo": [
+        "/ecommerce-monza.html",
+        "/google-ads-monza.html"
+      ]
+    },
+    {
+      "url": "/google-ads-monza.html",
+      "type": "servizio",
+      "city": "Monza",
+      "service": "google-ads",
+      "linksTo": [
+        "/ecommerce-monza.html",
+        "/email-marketing-monza.html"
+      ]
+    },
+    {
+      "url": "/graphic-design-milano.html",
+      "type": "servizio",
+      "city": "Milano",
+      "service": "graphic-design",
+      "linksTo": [
+        "/ecommerce-milano.html",
+        "/landing-page-milano.html",
+        "/social-media-milano.html"
+      ]
+    },
+    {
+      "url": "/landing-page-arese.html",
+      "type": "servizio",
+      "city": "Arese",
+      "service": "landing-page",
+      "linksTo": [
+        "/sito-vetrina-arese.html",
+        "/ecommerce-arese.html",
+        "/seo-locale-arese.html",
+        "/landing-page-bollate.html",
+        "/landing-page-milano-ovest.html",
+        "/landing-page-milano.html",
+        "/agenzia-web-arese.html"
+      ]
+    },
+    {
+      "url": "/landing-page-bollate.html",
+      "type": "servizio",
+      "city": "Bollate",
+      "service": "landing-page",
+      "linksTo": [
+        "/sito-vetrina-bollate.html",
+        "/ecommerce-bollate.html",
+        "/landing-page-arese.html",
+        "/landing-page-milano-ovest.html",
+        "/landing-page-milano.html",
+        "/agenzia-web-bollate.html"
+      ]
+    },
+    {
+      "url": "/landing-page-milano-ovest.html",
+      "type": "servizio",
+      "city": "Milano Ovest",
+      "service": "landing-page",
+      "linksTo": [
+        "/landing-page-milano.html",
+        "/landing-page-bollate.html",
+        "/landing-page-arese.html"
+      ]
+    },
+    {
+      "url": "/landing-page-milano.html",
+      "type": "servizio",
+      "city": "Milano",
+      "service": "landing-page",
+      "linksTo": [
+        "/ecommerce-milano.html",
+        "/graphic-design-milano.html",
+        "/social-media-milano.html"
+      ]
+    },
+    {
+      "url": "/landing-page-rho.html",
+      "type": "servizio",
+      "city": "Rho",
+      "service": "landing-page",
+      "linksTo": [
+        "/sito-vetrina-rho.html",
+        "/ecommerce-rho.html",
+        "/seo-locale-rho.html",
+        "/landing-page-arese.html",
+        "/landing-page-bollate.html",
+        "/landing-page-milano-ovest.html",
+        "/agenzia-web-rho.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-arese.html",
+      "type": "realizzazione",
+      "city": "Arese",
+      "linksTo": [
+        "/realizzazione-siti-web-garbagnate.html",
+        "/realizzazione-siti-web-bollate.html",
+        "/realizzazione-siti-web-rho.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-arluno.html",
+      "type": "realizzazione",
+      "city": "Arluno",
+      "linksTo": [
+        "/realizzazione-siti-web-parabiago.html",
+        "/realizzazione-siti-web-magenta.html",
+        "/realizzazione-siti-web-rho.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-bollate.html",
+      "type": "realizzazione",
+      "city": "Bollate",
+      "linksTo": [
+        "/realizzazione-siti-web-senago.html",
+        "/realizzazione-siti-web-arese.html",
+        "/realizzazione-siti-web-cormano.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-buccinasco.html",
+      "type": "realizzazione",
+      "city": "Buccinasco",
+      "linksTo": [
+        "/realizzazione-siti-web-milano-ovest.html",
+        "/realizzazione-siti-web-rho.html",
+        "/realizzazione-siti-web-bollate.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-caronno-pertusella.html",
+      "type": "realizzazione",
+      "city": "Caronno Pertusella",
+      "linksTo": [
+        "/realizzazione-siti-web-origgio.html",
+        "/realizzazione-siti-web-garbagnate.html",
+        "/realizzazione-siti-web-solaro.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-castellanza.html",
+      "type": "realizzazione",
+      "city": "Castellanza",
+      "linksTo": [
+        "/realizzazione-siti-web-legnano.html",
+        "/realizzazione-siti-web-parabiago.html",
+        "/realizzazione-siti-web-origgio.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-cormano.html",
+      "type": "realizzazione",
+      "city": "Cormano",
+      "linksTo": [
+        "/realizzazione-siti-web-bollate.html",
+        "/realizzazione-siti-web-senago.html",
+        "/realizzazione-siti-web-limbiate.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-garbagnate.html",
+      "type": "realizzazione",
+      "city": "Garbagnate Milanese",
+      "linksTo": [
+        "/realizzazione-siti-web-arese.html",
+        "/realizzazione-siti-web-caronno-pertusella.html",
+        "/realizzazione-siti-web-senago.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-legnano.html",
+      "type": "realizzazione",
+      "city": "Legnano",
+      "linksTo": [
+        "/realizzazione-siti-web-castellanza.html",
+        "/realizzazione-siti-web-parabiago.html",
+        "/realizzazione-siti-web-origgio.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-limbiate.html",
+      "type": "realizzazione",
+      "city": "Limbiate",
+      "linksTo": [
+        "/realizzazione-siti-web-senago.html",
+        "/realizzazione-siti-web-garbagnate.html",
+        "/realizzazione-siti-web-solaro.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-magenta.html",
+      "type": "realizzazione",
+      "city": "Magenta",
+      "linksTo": [
+        "/realizzazione-siti-web-arluno.html",
+        "/realizzazione-siti-web-parabiago.html",
+        "/realizzazione-siti-web-rho.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-milano-ovest.html",
+      "type": "realizzazione",
+      "city": "Milano Ovest",
+      "linksTo": [
+        "/realizzazione-siti-web-buccinasco.html",
+        "/realizzazione-siti-web-bollate.html",
+        "/realizzazione-siti-web-cormano.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-origgio.html",
+      "type": "realizzazione",
+      "city": "Origgio",
+      "linksTo": [
+        "/realizzazione-siti-web-caronno-pertusella.html",
+        "/realizzazione-siti-web-garbagnate.html",
+        "/realizzazione-siti-web-solaro.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-parabiago.html",
+      "type": "realizzazione",
+      "city": "Parabiago",
+      "linksTo": [
+        "/realizzazione-siti-web-legnano.html",
+        "/realizzazione-siti-web-arluno.html",
+        "/realizzazione-siti-web-origgio.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-rho.html",
+      "type": "realizzazione",
+      "city": "Rho",
+      "linksTo": [
+        "/realizzazione-siti-web-arese.html",
+        "/realizzazione-siti-web-garbagnate.html",
+        "/realizzazione-siti-web-bollate.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-senago.html",
+      "type": "realizzazione",
+      "city": "Senago",
+      "linksTo": [
+        "/realizzazione-siti-web-limbiate.html",
+        "/realizzazione-siti-web-bollate.html",
+        "/realizzazione-siti-web-garbagnate.html"
+      ]
+    },
+    {
+      "url": "/realizzazione-siti-web-solaro.html",
+      "type": "realizzazione",
+      "city": "Solaro",
+      "linksTo": [
+        "/realizzazione-siti-web-caronno-pertusella.html",
+        "/realizzazione-siti-web-limbiate.html",
+        "/realizzazione-siti-web-garbagnate.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-arese.html",
+      "type": "servizio",
+      "city": "Arese",
+      "service": "seo-locale",
+      "linksTo": [
+        "/sito-vetrina-arese.html",
+        "/ecommerce-arese.html",
+        "/landing-page-arese.html",
+        "/seo-locale-garbagnate.html",
+        "/seo-locale-lainate.html",
+        "/seo-locale-senago.html",
+        "/agenzia-web-arese.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-bresso.html",
+      "type": "servizio",
+      "city": "Bresso",
+      "service": "seo-locale",
+      "linksTo": [
+        "/ecommerce-bresso.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-cinisello-balsamo.html",
+      "type": "servizio",
+      "city": "Cinisello Balsamo",
+      "service": "seo-locale",
+      "linksTo": [
+        "/ecommerce-cinisello-balsamo.html",
+        "/seo-locale-bresso.html",
+        "/seo-locale-sesto-san-giovanni.html",
+        "/seo-locale-cormano.html",
+        "/agenzia-web-cinisello-balsamo.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-cormano.html",
+      "type": "servizio",
+      "city": "Cormano",
+      "service": "seo-locale",
+      "linksTo": [
+        "/ecommerce-cormano.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-garbagnate.html",
+      "type": "servizio",
+      "city": "Garbagnate Milanese",
+      "service": "seo-locale",
+      "linksTo": [
+        "/ecommerce-garbagnate.html",
+        "/seo-locale-arese.html",
+        "/seo-locale-senago.html",
+        "/seo-locale-lainate.html",
+        "/agenzia-web-garbagnate.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-lainate.html",
+      "type": "servizio",
+      "city": "Lainate",
+      "service": "seo-locale",
+      "linksTo": [
+        "/sito-vetrina-lainate.html",
+        "/ecommerce-lainate.html",
+        "/seo-locale-garbagnate.html",
+        "/seo-locale-arese.html",
+        "/seo-locale-parabiago.html",
+        "/agenzia-web-lainate.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-milano.html",
+      "type": "servizio",
+      "city": "Milano",
+      "service": "seo-locale",
+      "linksTo": [
+        "/ecommerce-milano.html",
+        "/landing-page-milano.html",
+        "/graphic-design-milano.html",
+        "/social-media-milano.html",
+        "/email-marketing-milano.html",
+        "/seo-locale-sesto-san-giovanni.html",
+        "/seo-locale-bresso.html",
+        "/seo-locale-rozzano.html",
+        "/agenzia-web-milano.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-parabiago.html",
+      "type": "servizio",
+      "city": "Parabiago",
+      "service": "seo-locale",
+      "linksTo": [
+        "/social-media-parabiago.html",
+        "/seo-locale-lainate.html",
+        "/seo-locale-arese.html",
+        "/seo-locale-garbagnate.html",
+        "/agenzia-web-parabiago.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-rho.html",
+      "type": "servizio",
+      "city": "Rho",
+      "service": "seo-locale",
+      "linksTo": [
+        "/sito-vetrina-rho.html",
+        "/ecommerce-rho.html",
+        "/landing-page-rho.html",
+        "/seo-locale-arese.html",
+        "/seo-locale-lainate.html",
+        "/seo-locale-garbagnate.html",
+        "/agenzia-web-rho.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-rozzano.html",
+      "type": "servizio",
+      "city": "Rozzano",
+      "service": "seo-locale",
+      "linksTo": []
+    },
+    {
+      "url": "/seo-locale-senago.html",
+      "type": "servizio",
+      "city": "Senago",
+      "service": "seo-locale",
+      "linksTo": [
+        "/ecommerce-senago.html"
+      ]
+    },
+    {
+      "url": "/seo-locale-sesto-san-giovanni.html",
+      "type": "servizio",
+      "city": "Sesto San Giovanni",
+      "service": "seo-locale",
+      "linksTo": [
+        "/social-media-sesto-san-giovanni.html",
+        "/seo-locale-cinisello-balsamo.html",
+        "/seo-locale-bresso.html",
+        "/seo-locale-cormano.html",
+        "/agenzia-web-sesto-san-giovanni.html"
+      ]
+    },
+    {
+      "url": "/sito-vetrina-arese.html",
+      "type": "servizio",
+      "city": "Arese",
+      "service": "sito-vetrina",
+      "linksTo": [
+        "/seo-locale-arese.html",
+        "/ecommerce-arese.html",
+        "/landing-page-arese.html",
+        "/sito-vetrina-bollate.html",
+        "/sito-vetrina-lainate.html",
+        "/sito-vetrina-legnano.html",
+        "/agenzia-web-arese.html"
+      ]
+    },
+    {
+      "url": "/sito-vetrina-bollate.html",
+      "type": "servizio",
+      "city": "Bollate",
+      "service": "sito-vetrina",
+      "linksTo": [
+        "/ecommerce-bollate.html",
+        "/landing-page-bollate.html",
+        "/sito-vetrina-arese.html",
+        "/sito-vetrina-lainate.html",
+        "/sito-vetrina-legnano.html",
+        "/agenzia-web-bollate.html"
+      ]
+    },
+    {
+      "url": "/sito-vetrina-lainate.html",
+      "type": "servizio",
+      "city": "Lainate",
+      "service": "sito-vetrina",
+      "linksTo": [
+        "/ecommerce-lainate.html",
+        "/seo-locale-lainate.html",
+        "/sito-vetrina-arese.html",
+        "/sito-vetrina-bollate.html",
+        "/sito-vetrina-legnano.html",
+        "/agenzia-web-lainate.html"
+      ]
+    },
+    {
+      "url": "/sito-vetrina-legnano.html",
+      "type": "servizio",
+      "city": "Legnano",
+      "service": "sito-vetrina",
+      "linksTo": [
+        "/ecommerce-legnano.html",
+        "/social-media-legnano.html",
+        "/sito-vetrina-lainate.html",
+        "/sito-vetrina-arese.html",
+        "/sito-vetrina-bollate.html",
+        "/agenzia-web-legnano.html"
+      ]
+    },
+    {
+      "url": "/sito-vetrina-rho.html",
+      "type": "servizio",
+      "city": "Rho",
+      "service": "sito-vetrina",
+      "linksTo": [
+        "/ecommerce-rho.html",
+        "/landing-page-rho.html",
+        "/seo-locale-rho.html",
+        "/sito-vetrina-arese.html",
+        "/sito-vetrina-lainate.html",
+        "/sito-vetrina-bollate.html",
+        "/agenzia-web-rho.html"
+      ]
+    },
+    {
+      "url": "/social-media-legnano.html",
+      "type": "servizio",
+      "city": "Legnano",
+      "service": "social-media",
+      "linksTo": [
+        "/sito-vetrina-legnano.html",
+        "/ecommerce-legnano.html"
+      ]
+    },
+    {
+      "url": "/social-media-milano.html",
+      "type": "servizio",
+      "city": "Milano",
+      "service": "social-media",
+      "linksTo": [
+        "/ecommerce-milano.html",
+        "/landing-page-milano.html",
+        "/graphic-design-milano.html"
+      ]
+    },
+    {
+      "url": "/social-media-parabiago.html",
+      "type": "servizio",
+      "city": "Parabiago",
+      "service": "social-media",
+      "linksTo": [
+        "/seo-locale-parabiago.html"
+      ]
+    },
+    {
+      "url": "/social-media-sesto-san-giovanni.html",
+      "type": "servizio",
+      "city": "Sesto San Giovanni",
+      "service": "social-media",
+      "linksTo": [
+        "/seo-locale-sesto-san-giovanni.html"
       ]
     }
   ]

@@ -1,4 +1,5 @@
 const assert = require('node:assert/strict');
+const childProcess = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -20,7 +21,7 @@ function extractInternalPathnames(html, sourcePath = '/') {
     .map((match) => {
       try {
         const url = new URL(match[1].replace(/&amp;/g, '&'), baseUrl);
-        return url.hostname === 'www.webnovis.com' ? url.pathname : null;
+        return ['webnovis.com', 'www.webnovis.com'].includes(url.hostname) ? url.pathname : null;
       } catch (_) {
         return null;
       }
@@ -61,6 +62,28 @@ function main() {
     'zone-servite/index.html must preserve a discoverable link to every approved GEO landing'
   );
 
+  const approvedGeoPaths = getIndexableGeoPaths();
+  const renderedGeoLinks = new Map();
+  const indexableGeoViolations = [];
+  for (const publicPath of approvedGeoPaths) {
+    const relativePath = publicPath.replace(/^\//, '');
+    assert.ok(fs.existsSync(path.join(ROOT, relativePath)), `${publicPath} must exist as a published indexable GEO file`);
+    const geoLinks = extractInternalPathnames(readText(relativePath), publicPath).filter(isGeoPath);
+    const forbidden = [...new Set(geoLinks.filter((pathname) => !ALL_INDEXABLE_GEO_PATHS.has(pathname)))];
+    if (forbidden.length > 0) {
+      indexableGeoViolations.push({ source: publicPath, forbidden });
+    }
+    renderedGeoLinks.set(
+      publicPath,
+      [...new Set(geoLinks.filter((pathname) => ALL_INDEXABLE_GEO_PATHS.has(pathname) && pathname !== publicPath))].sort()
+    );
+  }
+  assert.deepEqual(
+    indexableGeoViolations,
+    [],
+    `all ${approvedGeoPaths.length} indexable GEO files must link only to approved GEO targets; offenders: ${indexableGeoViolations.slice(0, 8).map((entry) => `${entry.source} -> ${entry.forbidden.join(', ')}`).join(' | ')}`
+  );
+
   const linkGraph = JSON.parse(readText('data/link-graph.json'));
   const graphPaths = linkGraph.pages.flatMap((page) => [page.url, ...page.linksTo]);
   assert.deepEqual(
@@ -68,6 +91,55 @@ function main() {
     [],
     'the generated GEO link graph must not reintroduce de-amplified pages or targets'
   );
+  assert.deepEqual(
+    linkGraph.pages.map((page) => page.url).sort(),
+    approvedGeoPaths,
+    'the generated GEO link graph must include every rendered indexable GEO page, not a partial inferred subset'
+  );
+  for (const page of linkGraph.pages) {
+    assert.deepEqual(
+      [...page.linksTo].sort(),
+      renderedGeoLinks.get(page.url),
+      `${page.url} link-graph edges must exactly match its rendered approved GEO anchors`
+    );
+  }
+
+  const monitorReport = JSON.parse(childProcess.execFileSync(
+    process.execPath,
+    ['scripts/monitor-seo.js', '--json'],
+    { cwd: ROOT, encoding: 'utf8' }
+  ));
+  assert.deepEqual(
+    monitorReport.linkGraph.deamplifiedGeoLinks,
+    [],
+    'SEO monitoring must inspect rendered indexable GEO pages for de-amplified outbound GEO links'
+  );
+  assert.deepEqual(
+    monitorReport.linkGraph.renderedGraphMismatches,
+    [],
+    'SEO monitoring must detect any mismatch between the stored graph and rendered GEO anchors'
+  );
+  assert.deepEqual(
+    monitorReport.linkGraph.zeroInbound,
+    [],
+    'SEO monitoring must include the approved GEO hubs before declaring an indexable GEO page without inbound links'
+  );
+
+  const zoneHubHtml = readText('zone-servite/index.html');
+  assert.match(zoneHubHtml, /pagine locali indicizzabili/i, 'zone-servite must label the linked subset as indexable local pages');
+  for (const ambiguousClaim of [
+    /tutti i comuni serviti/i,
+    /atlante territori/i,
+    /panoramica rapida dei comuni coperti/i,
+    /mappa completa di tutti i servizi/i,
+    /tutti i servizi web per comune/i
+  ]) {
+    assert.doesNotMatch(
+      zoneHubHtml,
+      ambiguousClaim,
+      `zone-servite must not describe its approved landing subset as complete operational coverage: ${ambiguousClaim}`
+    );
+  }
 
   const translationGuide = readText('blog/tradurre-sito-web-guida.html');
   assert.ok(

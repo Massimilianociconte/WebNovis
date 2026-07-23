@@ -280,7 +280,7 @@
           <tbody>
             {% for svc in allCoreServices %}
             <tr style="border-bottom:1px solid rgba(255,255,255,.05){% if svc.slug == service.slug %};background:rgba(91,106,174,.1){% endif %}">
-              <td style="padding:12px 16px;color:var(--primary-light);font-weight:{% if svc.slug == service.slug %}700{% else %}600{% endif %}">{% if svc.slug == service.slug %}{{ svc.shortName }} ←{% else %}<a href="/{{ svc.slug }}-{{ city.slug }}.html" style="color:var(--primary-light);text-decoration:none">{{ svc.shortName }}</a>{% endif %}</td>
+              <td style="padding:12px 16px;color:var(--primary-light);font-weight:{% if svc.slug == service.slug %}700{% else %}600{% endif %}">{% if svc.slug == service.slug %}{{ svc.shortName }} ←{% elseif svc.geoUrl %}<a href="{{ svc.geoUrl }}" style="color:var(--primary-light);text-decoration:none">{{ svc.shortName }}</a>{% else %}{{ svc.shortName }}{% endif %}</td>
               <td style="padding:12px 16px;color:var(--gray-light)">€{{ svc.priceFrom }}{{ svc.priceUnit if svc.priceUnit }}</td>
               <td style="padding:12px 16px;color:var(--gray-light)">{{ svc.timeEstimate }}</td>
             </tr>
@@ -336,7 +336,7 @@
         {% for rp in relatedServicePages %}{% if loop.index <= maxRelated %}
         <a href="{{ rp.url }}" style="color:var(--primary-light)">{{ rp.label }}</a>{% if loop.index < maxRelated and relatedServicePages | length > loop.index %},{% endif %}
         {% endif %}{% endfor %}
-        {% if tier >= 1 %}— <a href="/agenzia-web-{{ city.slug }}.html" style="color:var(--primary-light)">Tutti i servizi a {{ city.name }}</a>{% endif %}
+        {% if tier >= 1 and agencyCityPageUrl %}— <a href="{{ agencyCityPageUrl }}" style="color:var(--primary-light)">Agenzia Web a {{ city.name }}</a>{% endif %}
       </p>
     </div>
   </section>
