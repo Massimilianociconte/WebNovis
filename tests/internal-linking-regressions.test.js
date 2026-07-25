@@ -126,7 +126,24 @@ function main() {
   );
 
   const zoneHubHtml = readText('zone-servite/index.html');
-  assert.match(zoneHubHtml, /pagine locali indicizzabili/i, 'zone-servite must label the linked subset as indexable local pages');
+  // The hub must still distinguish the served network from the subset that has
+  // a dedicated page — but in the client's language, never in indexing jargon,
+  // which is what tests/editorial-language-regressions.test.js now forbids.
+  assert.match(
+    zoneHubHtml,
+    /comuni con pagina dedicata/i,
+    'zone-servite must label the linked subset as the comuni that have a dedicated page'
+  );
+  assert.match(
+    zoneHubHtml,
+    /comuni serviti|comuni dell(?:'|’)hinterland/i,
+    'zone-servite must still state the wider served network so the subset is not read as total coverage'
+  );
+  assert.doesNotMatch(
+    zoneHubHtml,
+    /indicizzabil|approvate per l(?:'|’)indicizzazione|governance SEO/i,
+    'zone-servite must not expose indexing jargon to visitors'
+  );
   for (const ambiguousClaim of [
     /tutti i comuni serviti/i,
     /atlante territori/i,

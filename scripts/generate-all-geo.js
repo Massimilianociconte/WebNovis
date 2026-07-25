@@ -507,26 +507,26 @@ function buildCoverageScopes(agenziaCities, realizzazioneCities, serviceCoverage
     return [
         {
             key: 'agenzia',
-            label: 'Landing Agenzia Web',
+            label: 'Agenzia web',
             count: agenziaCities.length,
-            helper: 'pagine locali indicizzabili',
-            description: 'Pagine Agenzia Web approvate per l’indicizzazione; non rappresentano l’intera area operativa dichiarata.',
+            helper: 'comuni con pagina dedicata',
+            description: 'Consulenza digitale completa: sito, identità visiva, presenza locale e social per PMI e professionisti.',
             href: '/agenzia-web/'
         },
         {
             key: 'realizzazione',
-            label: 'Landing Realizzazione Siti',
+            label: 'Realizzazione siti web',
             count: realizzazioneCities.length,
-            helper: 'pagine locali indicizzabili',
-            description: 'Pagine del cluster “realizzazione siti web” approvate per l’indicizzazione.',
+            helper: 'comuni con pagina dedicata',
+            description: 'Siti su misura scritti da zero, senza WordPress e senza template, con struttura SEO e velocità curate dall’inizio.',
             href: '/realizzazione-siti-web/'
         },
         {
             key: 'extended',
-            label: 'Landing per servizio',
+            label: 'Servizi specifici',
             count: serviceCoverageCities.length,
-            helper: 'territori rappresentati da pagine indicizzabili',
-            description: 'Le combinazioni servizio-città elencate sono soltanto quelle approvate; il numero di pagine varia per servizio.',
+            helper: 'comuni coperti per servizio',
+            description: 'E-commerce, SEO locale, grafica, social e campagne: ogni servizio ha i comuni in cui lo seguiamo più spesso.',
             href: '/zone-servite/'
         }
     ];
@@ -2451,7 +2451,7 @@ function generateHubPages() {
         {
             "@context": "https://schema.org", "@type": "CollectionPage",
             "name": "Agenzia Web nei Comuni della Provincia di Milano",
-            "description": `Pagine locali indicizzabili WebNovis per ${agenziaCities.length} comuni, nella rete di ${networkCities.length} territori serviti dall'agenzia con sede a Rho.`,
+            "description": `I ${agenziaCities.length} comuni con una pagina agenzia web dedicata, all'interno dei ${networkCities.length} territori dell'hinterland milanese serviti da WebNovis, con sede a Rho.`,
             "url": SITE + "/agenzia-web/",
             "inLanguage": "it",
             "dateModified": TODAY,
@@ -2467,7 +2467,7 @@ function generateHubPages() {
     const agenziaHtml = buildHubPage(
         'agenzia-web',
         'Agenzia Web nei Comuni di Milano — WebNovis | Web Agency Hinterland',
-        `${agenziaCities.length} pagine locali indicizzabili nella rete di ${networkCities.length} territori serviti da WebNovis. Siti custom, grafica e social. Sede a Rho.`,
+        `Agenzia web per PMI e professionisti in ${networkCities.length} comuni dell'hinterland milanese: siti custom senza WordPress, grafica, e-commerce e presenza locale. Sede a Rho.`,
         'agenzia web Milano, web agency hinterland milanese, agenzia web comuni Milano, WebNovis',
         agenziaContent,
         agenziaSchemas
@@ -2498,7 +2498,7 @@ function generateHubPages() {
         {
             "@context": "https://schema.org", "@type": "CollectionPage",
             "name": "Realizzazione Siti Web a Milano e in Lombardia",
-            "description": `Realizzazione siti web a Milano e in Lombardia: ${realizzazioneCities.length} landing locali indicizzabili nella rete WebNovis di ${networkCities.length} territori serviti.`,
+            "description": `Realizzazione siti web a Milano e in Lombardia: i ${realizzazioneCities.length} comuni con una pagina dedicata, nei ${networkCities.length} territori serviti da WebNovis con sede a Rho.`,
             "url": SITE + "/realizzazione-siti-web/",
             "inLanguage": "it",
             "dateModified": TODAY,
@@ -2516,7 +2516,7 @@ function generateHubPages() {
         // GSC: query "realizzazione/creazione siti web lombardia" (370+ impr a pos 76-84)
         // → l'hub ora copre esplicitamente Milano e Lombardia
         'Realizzazione Siti Web a Milano e in Lombardia — WebNovis',
-        `Realizzazione siti web a Milano e in Lombardia: ${realizzazioneCities.length} landing locali indicizzabili nella rete WebNovis di ${networkCities.length} territori serviti. Codice custom e SEO integrata.`,
+        `Realizzazione siti web a Milano e in Lombardia per PMI e professionisti: codice custom senza WordPress, SEO integrata e design su misura. Sede a Rho, ${networkCities.length} comuni serviti.`,
         'realizzazione siti web Milano, realizzazione siti web Lombardia, creazione siti web Lombardia, siti web hinterland milanese, WebNovis',
         realizzazioneContent,
         realizzazioneSchemas
@@ -2566,23 +2566,24 @@ function generateHubPages() {
         },
         {
             "@context": "https://schema.org", "@type": "CollectionPage",
-            "name": "Pagine locali indicizzabili WebNovis per zona e servizio",
-            "description": `${totalItems} landing locali approvate per l'indicizzazione, distinte dalla rete operativa dichiarata di ${networkCities.length} territori serviti.`,
+            "name": "Zone servite da WebNovis: comuni e servizi",
+            "description": `I comuni dell'hinterland milanese in cui WebNovis segue PMI e professionisti, con le pagine dedicate per agenzia web, realizzazione siti, e-commerce, SEO locale e altri servizi.`,
             "url": SITE + "/zone-servite/",
             "inLanguage": "it",
+            "dateModified": TODAY,
             "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
             "numberOfItems": totalItems,
             "hasPart": [
-                { "@type": "CollectionPage", "name": `${agenziaCities.length} landing Agenzia Web indicizzabili`, "url": SITE + "/agenzia-web/" },
-                { "@type": "CollectionPage", "name": `${realizzazioneCities.length} landing Realizzazione Siti Web indicizzabili`, "url": SITE + "/realizzazione-siti-web/" }
+                { "@type": "CollectionPage", "name": `Agenzia web: ${agenziaCities.length} comuni con pagina dedicata`, "url": SITE + "/agenzia-web/" },
+                { "@type": "CollectionPage", "name": `Realizzazione siti web: ${realizzazioneCities.length} comuni con pagina dedicata`, "url": SITE + "/realizzazione-siti-web/" }
             ]
         }
     ];
     const zoneHtml = buildHubPage(
         'zone-servite',
-        'Pagine Locali Indicizzabili per Zona e Servizio | WebNovis',
-        `${totalItems} landing locali indicizzabili WebNovis per agenzia web, realizzazione siti, SEO locale e altri servizi; rete operativa dichiarata di ${networkCities.length} territori serviti.`,
-        'zone servite WebNovis, servizi web comuni Milano, agenzia web hinterland, web agency zone Milano',
+        'Zone servite: agenzia web nell’hinterland milanese | WebNovis',
+        `WebNovis è l’agenzia web con sede a Rho che segue PMI e professionisti in ${networkCities.length} comuni dell’hinterland milanese: siti custom, e-commerce, SEO locale, grafica e social.`,
+        'zone servite WebNovis, agenzia web hinterland milanese, web agency comuni Milano, siti web provincia Milano',
         zoneContent,
         zoneSchemas
     );

@@ -257,7 +257,7 @@ module.exports = {
     title: 'Email marketing a Legnano: newsletter e automazioni | WebNovis',
     description: 'Email marketing a Legnano con newsletter, automazioni e flussi di recupero per aumentare richieste, riacquisti e fidelizzazione.'
   },
-  'accessibilita-cinisello-balsamo.html': {
+  'accessibilità-cinisello-balsamo.html': {
     title: 'Accessibilità web a Cinisello Balsamo: audit EAA e WCAG | WebNovis',
     description: 'Accessibilità web a Cinisello Balsamo per aziende e professionisti: audit EAA, adeguamento WCAG e piano operativo per ridurre rischi e blocchi di compliance.'
   },
@@ -286,8 +286,8 @@ module.exports = {
     description: 'Tecniche di copywriting per annunci Google e Meta: promessa, pubblico, CTA, prove e coerenza con la landing page per non sprecare budget.'
   },
   'blog/strumenti-test-accessibilita.html': {
-    title: 'Test accessibilita sito web: strumenti e controlli WCAG | WebNovis',
-    description: 'Strumenti per testare accessibilita e WCAG: cosa controllare, limiti dei tool automatici e quando serve un audit manuale per siti aziendali.'
+    title: 'Test accessibilità sito web: strumenti e controlli WCAG | WebNovis',
+    description: 'Strumenti per testare accessibilità e WCAG: cosa controllare, limiti dei tool automatici e quando serve un audit manuale per siti aziendali.'
   },
   'blog/digital-transformation-pmi.html': {
     title: 'Trasformazione digitale PMI: roadmap, costi ed errori | WebNovis',
@@ -303,7 +303,7 @@ module.exports = {
   },
   'realizzazione-siti-web-bollate.html': {
     title: 'Realizzazione siti web a Bollate: da €1.200 e SEO | WebNovis',
-    description: 'Realizzazione siti web a Bollate per PMI, studi e attivita locali: siti custom, landing ed e-commerce con SEO tecnica e proposta personalizzata.'
+    description: 'Realizzazione siti web a Bollate per PMI, studi e attività locali: siti custom, landing ed e-commerce con SEO tecnica e proposta personalizzata.'
   },
   'realizzazione-siti-web-legnano.html': {
     title: 'Realizzazione siti web a Legnano: da €1.200 e SEO | WebNovis',

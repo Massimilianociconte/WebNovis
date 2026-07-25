@@ -21,22 +21,22 @@ const PAGE_CARDS = {
   },
   'blog/obblighi-legge-accessibilita-siti.html': {
     label: 'Compliance',
-    title: 'Obblighi accessibilita per siti aziendali',
+    title: 'Obblighi accessibilità per siti aziendali',
     desc: 'Soglie, adempimenti, costi di adeguamento e priorita operative per PMI e aziende italiane.'
   },
   'blog/accessibilita-web-guida.html': {
     label: 'Guida base',
-    title: 'Accessibilita web: guida per PMI',
+    title: 'Accessibilità web: guida per PMI',
     desc: 'Panoramica pratica su WCAG, audit, implementazione e governance dei contenuti accessibili.'
   },
   'blog/normativa-accessibilita-web-2026.html': {
     label: 'Normativa',
-    title: 'Normativa accessibilita web 2026',
+    title: 'Normativa accessibilità web 2026',
     desc: 'Timeline, scadenze e requisiti EAA/WCAG da monitorare per evitare ritardi e interventi parziali.'
   },
   'blog/strumenti-test-accessibilita.html': {
     label: 'Checklist',
-    title: 'Strumenti per test di accessibilita',
+    title: 'Strumenti per test di accessibilità',
     desc: 'Tool automatici e verifiche manuali per misurare problemi reali prima di correggere il sito.'
   },
   'blog/european-accessibility-act-siti-web.html': {
@@ -87,7 +87,7 @@ const PAGE_CARDS = {
   'blog/instagram-carousel-guida.html': {
     label: 'Formato',
     title: 'Carousel Instagram: guida',
-    desc: 'Come usare i caroselli per spiegare, convertire e far scorrere contenuti piu profondi.'
+    desc: 'Come usare i caroselli per spiegare, convertire e far scorrere contenuti più profondi.'
   },
   'blog/instagram-reels-strategia.html': {
     label: 'Formato',
@@ -107,7 +107,7 @@ const PAGE_CARDS = {
   'blog/social-media-strategy-2026.html': {
     label: 'Strategia',
     title: 'Social media strategy 2026',
-    desc: 'Canali, obiettivi, KPI e priorita per costruire un piano social piu misurabile.'
+    desc: 'Canali, obiettivi, KPI e priorita per costruire un piano social più misurabile.'
   },
   'blog/quanto-costa-campagna-facebook-ads.html': {
     label: 'Prezzi ads',
@@ -173,17 +173,17 @@ const SERVICE_CARDS = {
     title: 'Audit tecnico e sviluppo web',
     desc: 'Roadmap tecnica, ottimizzazione on-page e interventi concreti sulle pagine che devono generare lead.'
   },
-  accessibilita: {
+  accessibilità: {
     href: '../servizi/accessibilita.html',
     label: 'Servizio correlato',
-    title: 'Accessibilita Web EAA',
-    desc: 'Audit, adeguamento WCAG e supporto operativo per rendere il sito conforme e piu solido.'
+    title: 'Accessibilità Web EAA',
+    desc: 'Audit, adeguamento WCAG e supporto operativo per rendere il sito conforme e più solido.'
   },
   social: {
     href: '../servizi/social-media.html',
     label: 'Servizio correlato',
     title: 'Social Media Marketing',
-    desc: 'Strategia editoriale, contenuti e campagne Meta orientate a visibilita e lead qualificati.'
+    desc: 'Strategia editoriale, contenuti e campagne Meta orientate a visibilità e lead qualificati.'
   },
   ads: {
     href: '../landing-page-milano.html',
@@ -195,7 +195,7 @@ const SERVICE_CARDS = {
     href: '../servizi/ecommerce.html',
     label: 'Servizio correlato',
     title: 'E-Commerce Custom',
-    desc: 'Scelta piattaforma, funnel e sviluppo su misura per vendere online con piu controllo.'
+    desc: 'Scelta piattaforma, funnel e sviluppo su misura per vendere online con più controllo.'
   }
 };
 
@@ -204,12 +204,12 @@ const HUB_CARDS = {
     href: '/realizzazione-siti-web/',
     label: 'Hub locale',
     title: 'Siti Web per i Comuni serviti',
-    desc: 'Il nodo locale che raccoglie le pagine commerciali piu vicine a sviluppo web e lead generation.'
+    desc: 'Il nodo locale che raccoglie le pagine commerciali più vicine a sviluppo web e lead generation.'
   },
-  accessibilita: {
+  accessibilità: {
     href: '/zone-servite/#accessibilita',
     label: 'Hub locale',
-    title: 'Accessibilita Web per Comune',
+    title: 'Accessibilità Web per Comune',
     desc: 'Le pagine territoriali per audit, adeguamento EAA e supporto WCAG rivolto alle imprese locali.'
   },
   social: {
@@ -222,7 +222,7 @@ const HUB_CARDS = {
     href: '/landing-page-milano.html',
     label: 'Pagina locale',
     title: 'Landing page a Milano per lead generation',
-    desc: 'Una landing locale gia pronta per Google Ads e Meta Ads, pensata per trasformare traffico in contatti.'
+    desc: 'Una landing locale già pronta per Google Ads e Meta Ads, pensata per trasformare traffico in contatti.'
   },
   adsLocal: {
     href: '/google-ads-monza.html',
@@ -240,7 +240,7 @@ const HUB_CARDS = {
     href: '/ecommerce-milano.html',
     label: 'Pagina locale',
     title: 'E-commerce a Milano',
-    desc: 'La landing locale piu vicina a chi cerca uno shop custom tra Milano e hinterland.'
+    desc: 'La landing locale più vicina a chi cerca uno shop custom tra Milano e hinterland.'
   }
 };
 
@@ -273,11 +273,11 @@ const CLUSTERS = [
     ]
   },
   {
-    id: 'accessibilita',
-    title: 'Percorsi consigliati nel cluster Accessibilita',
+    id: 'accessibilità',
+    title: 'Percorsi consigliati nel cluster Accessibilità',
     pillar: 'blog/obblighi-legge-accessibilita-siti.html',
     serviceCard: 'accessibilita',
-    hubCard: 'accessibilita',
+    hubCard: 'accessibilità',
     pages: [
       'blog/obblighi-legge-accessibilita-siti.html',
       'blog/accessibilita-web-guida.html',

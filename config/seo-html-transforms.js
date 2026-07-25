@@ -115,11 +115,11 @@ const MONEY_PAGE_INTERNAL_LINK_BLOCKS = {
     ]
   },
   'blog/strumenti-test-accessibilita.html': {
-    title: 'Hai trovato problemi di accessibilita? Trasformali in un piano',
+    title: 'Hai trovato problemi di accessibilità? Trasformali in un piano',
     text: 'I tool automatici aiutano a scoprire errori, ma per adeguare davvero un sito servono priorita, correzioni WCAG e verifica manuale sui flussi importanti.',
     links: [
-      { href: '../servizi/accessibilita.html', label: 'Audit accessibilita web' },
-      { href: '/accessibilita-cinisello-balsamo.html', label: 'Accessibilita a Cinisello Balsamo' }
+      { href: '../servizi/accessibilita.html', label: 'Audit accessibilità web' },
+      { href: '/accessibilita-cinisello-balsamo.html', label: 'Accessibilità a Cinisello Balsamo' }
     ]
   },
   'blog/digital-transformation-pmi.html': {
@@ -342,11 +342,11 @@ const LOCAL_PAGE_CONTENT_UPGRADES = {
     sectionTag: 'E-commerce a Monza · da €3.500 · SEO e checkout',
     h1: 'E-commerce a Monza per negozi, retail e brand locali',
     answer: '<strong>WebNovis</strong> realizza e-commerce a Monza con Shopify, WooCommerce o sviluppo custom, SEO integrata, catalogo ordinato e checkout orientato alle vendite. Progetti da <strong>€3.500</strong>, con preventivo rapido e strategia prima della piattaforma.',
-    lead: 'A <strong>Monza</strong> la concorrenza e-commerce richiede piu di uno shop online: categorie chiare, schede prodotto credibili, performance, pagamenti affidabili e un percorso di acquisto senza attriti.'
+    lead: 'A <strong>Monza</strong> la concorrenza e-commerce richiede più di uno shop online: categorie chiare, schede prodotto credibili, performance, pagamenti affidabili e un percorso di acquisto senza attriti.'
   },
   'ecommerce-garbagnate.html': {
     sectionTag: 'E-commerce a Garbagnate Milanese · vendite online e SEO',
-    h1: 'E-commerce a Garbagnate per attivita locali che vogliono vendere online',
+    h1: 'E-commerce a Garbagnate per attività locali che vogliono vendere online',
     answer: '<strong>WebNovis</strong> sviluppa e-commerce a Garbagnate Milanese per negozi, brand e PMI: piattaforma adatta al catalogo, SEO tecnica, UX mobile, pagamenti e gestione ordini. Preventivo rapido e progetto da <strong>€3.500</strong>.',
     lead: 'Per un negozio o brand di <strong>Garbagnate Milanese</strong>, l’e-commerce deve essere sostenibile da gestire e abbastanza solido da competere anche fuori dal territorio.'
   },
@@ -358,9 +358,9 @@ const LOCAL_PAGE_CONTENT_UPGRADES = {
   },
   'realizzazione-siti-web-bollate.html': {
     sectionTag: 'Realizzazione siti web a Bollate · siti vetrina e SEO',
-    h1: 'Realizzazione siti web a Bollate per attivita locali e PMI',
-    answer: '<strong>WebNovis</strong> crea siti web a Bollate per aziende, studi e attivita locali che vogliono piu richieste da Google. Siti vetrina da <strong>€1.200</strong>, landing da <strong>€500</strong> ed e-commerce da <strong>€3.500</strong>.',
-    lead: 'Le ricerche su <strong>Bollate</strong> mostrano intento pratico: chi cerca siti vetrina o sviluppo web vuole capire subito costi, tempi, metodo e affidabilita del fornitore.'
+    h1: 'Realizzazione siti web a Bollate per attività locali e PMI',
+    answer: '<strong>WebNovis</strong> crea siti web a Bollate per aziende, studi e attività locali che vogliono più richieste da Google. Siti vetrina da <strong>€1.200</strong>, landing da <strong>€500</strong> ed e-commerce da <strong>€3.500</strong>.',
+    lead: 'Le ricerche su <strong>Bollate</strong> mostrano intento pratico: chi cerca siti vetrina o sviluppo web vuole capire subito costi, tempi, metodo e affidabilità del fornitore.'
   },
   'agenzia-web-sesto-san-giovanni.html': {
     sectionTag: 'Agenzia web a Sesto San Giovanni · siti, SEO e campagne',
@@ -410,7 +410,7 @@ const LOCAL_PAGE_CONTENT_UPGRADES = {
     answer: '<strong>WebNovis</strong> imposta email marketing a Legnano con newsletter, automazioni e flussi CRM pensati per aumentare richieste, riacquisti e relazione con i clienti senza disperdere contatti acquisiti.',
     lead: 'Per chi lavora a <strong>Legnano</strong> con clienti ricorrenti, lead o riacquisti, l’email marketing resta uno dei canali più efficienti: costa poco, si misura bene e aiuta a non perdere opportunità già generate.'
   },
-  'accessibilita-cinisello-balsamo.html': {
+  'accessibilità-cinisello-balsamo.html': {
     sectionTag: 'Accessibilità web a Cinisello Balsamo · audit EAA e WCAG',
     h1: 'Accessibilità web a Cinisello Balsamo per ridurre rischi e blocchi di compliance',
     answer: '<strong>WebNovis</strong> supporta aziende e professionisti di Cinisello Balsamo con audit EAA, adeguamento WCAG e priorità operative chiare. L’obiettivo è capire cosa va corretto davvero e come intervenire senza rifare tutto da zero.',
@@ -913,8 +913,8 @@ function ensureSkipLinkTargets(html) {
     if (!preferredTagPattern.test(updated)) continue;
 
     updated = updated.replace(preferredTagPattern, (openingTag) => {
-      if (!/\bid=(["']).*?\1/i.test(openingTag)) {
-        const tabindex = /\btabindex=(["']).*?\1/i.test(openingTag) ? '' : ' tabindex="-1"';
+      if (!/\bid=(["']).*?"/i.test(openingTag)) {
+        const tabindex = /\btabindex=(["']).*?"/i.test(openingTag) ? '' : ' tabindex="-1"';
         return openingTag.replace(/>$/, ` id="${escapeHtmlAttr(targetId)}"${tabindex}>`);
       }
       return `${openingTag}<span id="${escapeHtmlAttr(targetId)}" tabindex="-1"></span>`;
@@ -1731,7 +1731,7 @@ function normalizeInternalAttributionLinks(html) {
   ]);
 
   return String(html || '').replace(/<a\b[^>]*>/gi, (tag) => {
-    const hrefMatch = tag.match(/\bhref=(["'])(.*?)\1/i);
+    const hrefMatch = tag.match(/\bhref=(["'])(.*?)"/i);
     if (!hrefMatch) return tag;
 
     const rawHref = hrefMatch[2].replace(/&amp;/g, '&');
