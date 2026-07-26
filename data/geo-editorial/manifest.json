@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "editorialVersion": "2026-07-23-v1",
-  "editorialDate": "2026-07-23",
+  "editorialVersion": "2026-07-26-v2",
+  "editorialDate": "2026-07-26",
   "totalRecords": 80,
   "files": [
     {
@@ -18,7 +18,7 @@
       "recordCount": 17,
       "sourceArtifact": "WebNovis-Publishable-Copy-Realizzazione-17-2026-07-23.json",
       "sourceSha256": "f658bd48c2e4c0408796a60286110c4278b2a6ccafcdb317160c1bf4791e943a",
-      "contentSha256": "79945e6cad8ac27949d4874e37120e0e2564447345da1fa77fa392e6e02fc77a"
+      "contentSha256": "a94559dbec2cf2f244b472642df1c4ebc3016b53b7ca85e7b9a380d57e3bd69d"
     },
     {
       "cluster": "ecommerce",

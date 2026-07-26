@@ -14,7 +14,7 @@ const { findUnsupportedPublishedClaims } = require('./content-claim-governance')
 
 const DATA_DIR = path.join(__dirname, '..', 'data', 'geo-editorial');
 const MANIFEST_PATH = path.join(DATA_DIR, 'manifest.json');
-const EDITORIAL_VERSION = '2026-07-23-v1';
+const EDITORIAL_VERSION = '2026-07-26-v2';
 const SOURCE_RECORD_FIELDS = Object.freeze([
   'path',
   'city',
@@ -86,7 +86,36 @@ const PATH_PATTERN = /^\/[a-z0-9-]+\.html$/;
 const LOCAL_PATH_PATTERN = /(?:\/Users\/|file:\/\/|[A-Z]:\\)/i;
 const MARKUP_PATTERN = /[<>]/;
 const CONTROL_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/;
-const UNSUPPORTED_EDITORIAL_PATTERN = /(?:€\s*\d|\d[\d.,]*\s*€|\bLCP\b|\bINP\b|\bCLS\b|PageSpeed|Lighthouse\s*\d|\b\d(?:[.,]\d)?\s*\/\s*5\b)/i;
+// Performance scores and star ratings stay forbidden: nothing on the site can
+// substantiate them. Prices are different — they come from the service
+// catalogue, are already published site-wide and are one of the few genuinely
+// proprietary facts a local page can offer, so they are checked against
+// data/services.json instead of being banned outright.
+const UNSUPPORTED_EDITORIAL_PATTERN = /(?:\bLCP\b|\bINP\b|\bCLS\b|PageSpeed|Lighthouse\s*\d|\b\d(?:[.,]\d)?\s*\/\s*5\b)/i;
+const PRICE_PATTERN = /€\s*([\d.]+)|([\d.]+)\s*€/g;
+
+/** Catalogue prices, normalised to plain integers ("1.200" -> 1200). */
+function getCataloguePrices() {
+  const services = require('../data/services.json');
+  const list = Array.isArray(services) ? services : services.services || [];
+  const prices = new Set();
+  for (const service of list) {
+    if (service && service.priceFrom != null) prices.add(Number(service.priceFrom));
+  }
+  return prices;
+}
+
+/** Any price quoted in the copy must exist in the catalogue. */
+function findUncataloguedPrices(text) {
+  const catalogue = getCataloguePrices();
+  const found = [];
+  for (const match of String(text || '').matchAll(PRICE_PATTERN)) {
+    const raw = match[1] || match[2] || '';
+    const value = Number(raw.replace(/\./g, ''));
+    if (!Number.isFinite(value) || !catalogue.has(value)) found.push(raw);
+  }
+  return found;
+}
 
 let cachedCorpus = null;
 let cachedRecordMap = null;
@@ -345,7 +374,11 @@ function validateRecord(record, label) {
     fail(`${record.path} contains unsupported published claim ${claimFindings[0].id}`);
   }
   if (UNSUPPORTED_EDITORIAL_PATTERN.test(visibleText)) {
-    fail(`${record.path} contains an unsupported price, rating or numeric performance claim`);
+    fail(`${record.path} contains an unsupported rating or numeric performance claim`);
+  }
+  const uncatalogued = findUncataloguedPrices(visibleText);
+  if (uncatalogued.length > 0) {
+    fail(`${record.path} quotes a price not present in the service catalogue: €${uncatalogued[0]}`);
   }
 
   if (descriptor.city.isSede === true) {
@@ -354,7 +387,10 @@ function validateRecord(record, label) {
       fail(`${record.path} must visibly qualify Rho as the declared headquarters`);
     }
   } else if (
-    !/area servita|non (?:è |e |una )?sede|sede dichiarata (?:di WebNovis )?(?:è |e )?a Rho/i.test(visibleText)
+    // The requirement is that the page never implies a local office. Locating
+    // the sede in Rho satisfies it just as well as the literal "area servita",
+    // and reads far better than repeating the same formula on every page.
+    !/area servita|non (?:è |e |una )?sede|sede[^.!?]{0,40}\b(?:a|di|in)\s+Rho\b|\bRho\b[^.!?]{0,40}\bsede\b/i.test(visibleText)
   ) {
     fail(`${record.path} must visibly qualify ${record.city} as area served or identify Rho as headquarters`);
   }

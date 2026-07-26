@@ -1427,6 +1427,62 @@ function getServiceLocalSeoCopy(service, city) {
     return { ...fallback, ...(overrides[service.slug] || {}) };
 }
 
+/* ── Hand-written per-city editorial ──────────────────────────────────────── */
+
+const { getGeoEditorialRecord } = require('../config/geo-editorial');
+
+function escapeEditorialHtml(value) {
+    return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+/** Prefer the hand-written metadata when a city has an editorial record. */
+function applyEditorialSeoOverrides(seo, editorial) {
+    if (!editorial) return seo;
+    return {
+        ...seo,
+        title: editorial.title || seo.title,
+        description: editorial.description || seo.description,
+        ogTitle: editorial.title || seo.ogTitle,
+        ogDescription: editorial.description || seo.ogDescription,
+        heroH1: editorial.h1 || seo.heroH1,
+        heroCapsule: editorial.answer_capsule || seo.heroCapsule
+    };
+}
+
+/**
+ * Replace the first shared "why you need a website" block with the copy written
+ * for that specific comune.
+ *
+ * The territorial pages were built by swapping the city name inside one base
+ * page, which is why they overlapped by more than half. Swapping in the
+ * hand-written intro and its three sections is what actually makes the page
+ * about that place instead of about the template.
+ */
+function applyEditorialBody(page, editorial) {
+    if (!editorial) return page;
+
+    const sections = Array.isArray(editorial.sections) ? editorial.sections : [];
+    const body = sections
+        .map((section) => `<h3>${escapeEditorialHtml(section.heading)}</h3> <p>${escapeEditorialHtml(section.body)}</p>`)
+        .join(' ');
+    const closing = editorial.cta
+        ? ` <p class="editorial-close"><strong>${escapeEditorialHtml(editorial.cta)}</strong></p>`
+        : '';
+
+    const block = '<section class="service-detail" id="contesto-locale">'
+        + '<div class="container">'
+        + `<h2>${escapeEditorialHtml(`${editorial.service} a ${editorial.city}: il contesto locale`)}</h2> `
+        + `<p>${escapeEditorialHtml(editorial.intro)}</p> ${body}${closing}`
+        + '</div></section>';
+
+    const firstSection = page.match(/<section class="service-detail"[\s\S]*?<\/section>/);
+    if (!firstSection) return page;
+    return page.replace(firstSection[0], block);
+}
+
 function getRealizzazioneSeoCopy(city) {
     const landingPrice = formatCatalogPrice('landing-page');
     const websitePrice = formatCatalogPrice('sito-vetrina');
@@ -1894,9 +1950,14 @@ function generateRealizzazionePage(city) {
     let page = basePage;
 
     const canonical = `${SITE}/realizzazione-siti-web-${city.slug}.html`;
-    const realizzazioneSeo = getRealizzazioneSeoCopy(city);
+    const editorial = getGeoEditorialRecord(`/realizzazione-siti-web-${city.slug}.html`);
+    const realizzazioneSeo = applyEditorialSeoOverrides(getRealizzazioneSeoCopy(city), editorial);
     const aiBlock = contentBlocks.get(city.slug);
-    const resolvedFaqs = resolvePageFaqs(city, 'realizzazione', aiBlock);
+    // Hand-written per-city questions replace the shared set when available:
+    // they are the part of the page a visitor from that comune actually needs.
+    const resolvedFaqs = (editorial && editorial.faqs && editorial.faqs.length)
+        ? editorial.faqs.map((faq) => ({ q: faq.question, a: faq.answer }))
+        : resolvePageFaqs(city, 'realizzazione', aiBlock);
     const headEnd = page.indexOf('</head>');
 
     if (headEnd > 0) {
@@ -1931,6 +1992,8 @@ function generateRealizzazionePage(city) {
         `<time datetime="${TODAY}">${TODAY_FORMATTED}</time>`
     );
     page = page.replace(/Rho, Milano \(MI\) 20017/, `${city.name}, ${getProvinceDisplay(city)} ${city.cap}`);
+
+    page = applyEditorialBody(page, editorial);
 
     // Schema LocalBusiness
     page = page.replace(/"WebNovis — Web Agency Rho"/g, `"WebNovis — Web Agency ${city.name}"`);
