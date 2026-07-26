@@ -104,6 +104,48 @@ function getGitDate(relPath) {
     return null;
 }
 
+/* ── lastmod from real content change ─────────────────────────────────────── */
+
+const LASTMOD_STORE = path.join(ROOT_DIR, 'data', 'content-lastmod.json');
+
+/**
+ * Fingerprint what a reader actually gets, ignoring the shared chrome.
+ *
+ * Navigation, footer, scripts, styles and generated timestamps change on every
+ * site-wide rebuild; including them would move every lastmod at once, which is
+ * exactly the pattern that teaches crawlers to ignore the field.
+ */
+function contentFingerprint(absPath) {
+    const html = fs.readFileSync(absPath, 'utf8');
+    const body = html
+        .replace(/<script[\s\S]*?<\/script>/gi, '')
+        .replace(/<style[\s\S]*?<\/style>/gi, '')
+        .replace(/<nav[\s\S]*?<\/nav>/gi, '')
+        .replace(/<header[\s\S]*?<\/header>/gi, '')
+        .replace(/<footer[\s\S]*?<\/footer>/gi, '')
+        .replace(/<link\b[^>]*>/gi, '')
+        .replace(/<time\b[^>]*>[\s\S]*?<\/time>/gi, '')
+        .replace(/\d{4}-\d{2}-\d{2}/g, '')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    return require('crypto').createHash('sha256').update(body).digest('hex').slice(0, 32);
+}
+
+function readLastmodStore() {
+    try {
+        return JSON.parse(fs.readFileSync(LASTMOD_STORE, 'utf8'));
+    } catch (_) {
+        return {};
+    }
+}
+
+function writeLastmodStore(store) {
+    const sorted = Object.fromEntries(Object.keys(store).sort().map((key) => [key, store[key]]));
+    fs.mkdirSync(path.dirname(LASTMOD_STORE), { recursive: true });
+    fs.writeFileSync(LASTMOD_STORE, `${JSON.stringify(sorted, null, 1)}\n`, 'utf8');
+}
+
 function getDeterministicFallbackDate() {
     if (process.env.SOURCE_DATE_EPOCH && /^\d+$/.test(process.env.SOURCE_DATE_EPOCH)) {
         return new Date(Number(process.env.SOURCE_DATE_EPOCH) * 1000).toISOString().slice(0, 10);
@@ -142,15 +184,34 @@ function headHasNoindex(absPath) {
 }
 
 const files = collectHtmlFiles(ROOT);
+const lastmodStore = readLastmodStore();
+const today = getDeterministicFallbackDate();
+const seenUrlPaths = new Set();
+
 const entries = files.map(({ relPath, absPath }) => {
     const urlPath = toUrlPath(relPath);
     const loc = urlPath === '/' ? BASE_URL + '/' : BASE_URL + urlPath;
-    const lastmod = getGitDate(relPath) || getDeterministicFallbackDate();
+
+    // lastmod tracks substantive content, not build time: the stored date only
+    // moves when the page's own copy changes.
+    const fingerprint = contentFingerprint(absPath);
+    const known = lastmodStore[urlPath];
+    const lastmod = known && known.hash === fingerprint
+        ? known.lastmod
+        : (known ? today : (getGitDate(relPath) || today));
+    lastmodStore[urlPath] = { hash: fingerprint, lastmod };
+    seenUrlPaths.add(urlPath);
+
     const images = PAGE_IMAGES[urlPath] || [];
     return { urlPath, loc, lastmod, images, absPath };
 }).filter((entry) => shouldIncludeInSitemapPath(entry.urlPath))
     .filter((entry) => !headHasNoindex(entry.absPath))
     .sort((a, b) => a.loc.localeCompare(b.loc));
+
+for (const urlPath of Object.keys(lastmodStore)) {
+    if (!seenUrlPaths.has(urlPath)) delete lastmodStore[urlPath];
+}
+writeLastmodStore(lastmodStore);
 
 // Build XML
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
