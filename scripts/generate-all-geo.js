@@ -2053,10 +2053,16 @@ function generateRealizzazionePage(city) {
         ? `${aiBlock.localMarketAnalysis}</p>\n                <p>${aiBlock.competitiveContext || ctx.opportunitaDigitale || ''}`
         : `${ctx.tessutoEconomico || ''}</p>\n                <p>${ctx.opportunitaDigitale || ''}`;
 
+    // Landmark locali: stesso pattern reso da agenzia-web e servizio×città,
+    // così anche la famiglia realizzazione espone i punti di riferimento del comune.
+    const highlightsSentence = (ctx.highlights && ctx.highlights.length > 0)
+        ? `\n                <p>Punti di riferimento del territorio: ${ctx.highlights.map(hl => `<strong>${hl}</strong>`).join(', ')}.</p>`
+        : '';
+
     if (ctx.tessutoEconomico || aiBlock?.localMarketAnalysis) {
         page = page.replace(
             /Rho non è un comune qualsiasi dell'hinterland milanese[\s\S]*?ROI più misurabile che puoi fare\.\s*<\/p>/,
-            `${marketIntro}</p>
+            `${marketIntro}</p>${highlightsSentence}
                 <p>La differenza tra un sito che "c'è" e un sito che <strong>lavora per te 24/7</strong> sta nella qualità dell'agenzia che lo realizza: strategia, codice, design e SEO devono essere eccellenti, non "sufficienti".</p>`
         );
     }

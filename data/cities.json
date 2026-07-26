@@ -2,7 +2,7 @@
   "_meta": {
     "description": "Centralized city data for WebNovis geo page generation",
     "version": "2.0.0",
-    "lastUpdated": "2026-02-27",
+    "lastUpdated": "2026-07-26",
     "sede": {
       "city": "Rho",
       "cap": "20017",
@@ -1361,15 +1361,16 @@
       "localContext": {
         "highlights": [
           "Zona industriale attiva",
+          "Asse del Sempione (SS33)",
           "Vicinanza a Rho e Nerviano"
         ],
-        "tessutoEconomico": "Pogliano Milanese è un comune di 8500 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Zona industriale attiva.",
+        "tessutoEconomico": "Pogliano Milanese si sviluppa lungo l'asse del Sempione tra Rho e Nerviano, con una zona industriale attiva e un tessuto di officine, artigiani e piccole imprese che lavorano per le filiere metalmeccanica e logistica dell'Alto Milanese.",
         "settoriChiave": [
           "manifatturiero",
           "logistica",
           "artigianato"
         ],
-        "opportunitaDigitale": "Le attività di Pogliano Milanese operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "A pochi minuti dal polo fieristico di Rho, le imprese di Pogliano competono su un bacino che va oltre i confini comunali: farsi trovare per le ricerche di zona e di categoria significa intercettare committenze da tutto l'asse del Sempione."
       },
       "images": {
         "img1": {
@@ -1459,15 +1460,16 @@
       "localContext": {
         "highlights": [
           "Parco delle Groane",
-          "Stazione S2 Passante Milano"
+          "Stazione Trenord linea Milano–Saronno",
+          "Villaggio INA-Casa"
         ],
-        "tessutoEconomico": "Cesate è un comune di 14.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Parco delle Groane.",
+        "tessutoEconomico": "Cesate unisce il carattere residenziale ai margini del Parco delle Groane con un commercio di prossimità e piccole attività di servizi. Il collegamento ferroviario diretto con Milano e Saronno ne fa un comune di pendolari con domanda locale costante.",
         "settoriChiave": [
           "commercio",
           "servizi",
           "residenziale"
         ],
-        "opportunitaDigitale": "Le attività di Cesate operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "In un comune residenziale come Cesate, chi cerca un professionista o un negozio parte quasi sempre da Google. Una presenza digitale curata permette anche a una piccola attività di diventare il riferimento locale prima dei competitor dei comuni vicini."
       },
       "images": {
         "img1": {
@@ -1556,17 +1558,18 @@
       ],
       "localContext": {
         "highlights": [
+          "Villa San Carlo Borromeo",
           "Villa Sioli Legnani",
           "Zona industriale nord"
         ],
-        "tessutoEconomico": "Senago è un comune di 22.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Villa Sioli Legnani.",
+        "tessutoEconomico": "Senago affianca alla zona industriale nord un centro vivo di commercio e artigianato, tra il canale Villoresi e le Groane. Villa San Carlo Borromeo e Villa Sioli Legnani ne fanno anche una meta di eventi e cerimonie.",
         "settoriChiave": [
           "industria",
           "commercio",
           "artigianato",
           "servizi"
         ],
-        "opportunitaDigitale": "Le attività di Senago operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Tra eventi in villa, artigiani e imprese della zona industriale, a Senago convivono clientele molto diverse: un sito professionale aiuta ogni attività a parlare al proprio pubblico e a raccogliere richieste qualificate dalla fascia nord-ovest."
       },
       "images": {
         "img1": {
@@ -1656,16 +1659,17 @@
       "localContext": {
         "highlights": [
           "Confine con Milano Comasina",
+          "Stazione ferroviaria di Novate Milanese",
           "Linea M3 nelle vicinanze"
         ],
-        "tessutoEconomico": "Novate Milanese è un comune di 21.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Confine con Milano Comasina.",
+        "tessutoEconomico": "Novate Milanese, al confine nord-ovest di Milano, ha una tradizione metalmeccanica e grafica che si è evoluta in un mix di terziario, logistica e commercio. La stazione ferroviaria e la vicinanza alla M3 Comasina la collegano direttamente al mercato milanese.",
         "settoriChiave": [
           "terziario",
           "commercio",
           "logistica",
           "servizi"
         ],
-        "opportunitaDigitale": "Le attività di Novate Milanese operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Essere a ridosso di Milano è un vantaggio solo per chi è visibile: le attività di Novate possono intercettare sia le ricerche locali sia i clienti milanesi appena oltre il confine, se sito e scheda Google lavorano insieme."
       },
       "images": {
         "img1": {
@@ -1754,17 +1758,18 @@
       ],
       "localContext": {
         "highlights": [
-          "Centro commerciale Brianza",
-          "Zona industriale Palazzolo"
+          "Biblioteca e centro culturale Tilane",
+          "Zona industriale Palazzolo",
+          "Superstrada Milano–Meda"
         ],
-        "tessutoEconomico": "Paderno Dugnano è un comune di 47.000 abitanti nell'hinterland milanese. Centro commerciale Brianza.",
+        "tessutoEconomico": "Paderno Dugnano, 47.000 abitanti lungo la Milano–Meda, conserva una solida base manifatturiera nella zona industriale di Palazzolo e un commercio diffuso tra le frazioni. Tilane, il centro culturale civico, è il punto di riferimento della città.",
         "settoriChiave": [
           "industria",
           "commercio",
           "servizi",
           "ristorazione"
         ],
-        "opportunitaDigitale": "Le attività di Paderno Dugnano operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Con più frazioni e clienti che gravitano tra Milano e la Brianza, a Paderno Dugnano la sfida è farsi trovare per zona e per servizio: pagine locali ben costruite portano richieste da tutto il quadrante della Milano–Meda."
       },
       "images": {
         "img1": {
@@ -1853,17 +1858,18 @@
       ],
       "localContext": {
         "highlights": [
+          "Casello A4 Milano–Torino",
           "Direttrice Milano-Magenta",
           "Tessuto agricolo e artigianale"
         ],
-        "tessutoEconomico": "Arluno è un comune di 12.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Direttrice Milano-Magenta.",
+        "tessutoEconomico": "Arluno mantiene un'anima agricola e artigiana lungo la direttrice Milano–Magenta, con il casello A4 che ha attirato logistica e piccole imprese. Il tessuto è fatto di aziende familiari e attività di servizio radicate nel territorio.",
         "settoriChiave": [
           "agricoltura",
           "artigianato",
           "piccole imprese",
           "commercio"
         ],
-        "opportunitaDigitale": "Le attività di Arluno operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Per le imprese di Arluno il casello A4 significa clienti potenziali ben oltre il comune: una presenza online professionale trasforma la posizione strategica in richieste concrete, dal Magentino fino all'hinterland ovest."
       },
       "images": {
         "img1": {
@@ -1953,16 +1959,17 @@
       "localContext": {
         "highlights": [
           "Distretto calzaturiero storico",
-          "Villa Corvini"
+          "Villa Corvini",
+          "Ferrovia Milano–Gallarate"
         ],
-        "tessutoEconomico": "Parabiago è un comune di 28.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Distretto calzaturiero storico.",
+        "tessutoEconomico": "Parabiago è la città della calzatura: il distretto calzaturiero storico convive con meccanica, artigianato e un centro commerciale naturale vivace. La ferrovia per Milano e l'asse del Sempione la collegano a tutto l'Alto Milanese.",
         "settoriChiave": [
           "calzaturiero",
           "manifatturiero",
           "commercio",
           "artigianato"
         ],
-        "opportunitaDigitale": "Le attività di Parabiago operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Un distretto produttivo riconosciuto come quello della calzatura merita una vetrina digitale all'altezza: per le imprese di Parabiago il sito è lo strumento per vendere il made in Italy oltre il territorio e farsi trovare dai buyer."
       },
       "images": {
         "img1": {
@@ -2052,16 +2059,17 @@
       "localContext": {
         "highlights": [
           "Villa Trivulzio",
+          "SS11 Padana Superiore",
           "Posizione tra Milano e Abbiategrasso"
         ],
-        "tessutoEconomico": "Bareggio è un comune di 17.500 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Villa Trivulzio.",
+        "tessutoEconomico": "Bareggio, tra Milano e Magenta lungo la Padana Superiore, unisce quartieri residenziali, commercio di vicinato e aziende agricole della campagna circostante. Villa Trivulzio è il segno storico del paese.",
         "settoriChiave": [
           "servizi",
           "commercio",
           "artigianato",
           "logistica"
         ],
-        "opportunitaDigitale": "Le attività di Bareggio operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "A Bareggio molte attività vivono del passaggio sulla SS11 e della clientela dei comuni contigui: un sito curato con SEO locale permette di catturare le ricerche di zona che oggi finiscono ai competitor di Magenta e Corbetta."
       },
       "images": {
         "img1": {
@@ -2151,15 +2159,16 @@
       "localContext": {
         "highlights": [
           "Castello Visconteo",
+          "Parco Agricolo Sud Milano",
           "Comune residenziale di pregio"
         ],
-        "tessutoEconomico": "Cusago è un comune di 4000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Castello Visconteo.",
+        "tessutoEconomico": "Cusago è un piccolo comune di pregio attorno al Castello Visconteo, immerso nel Parco Agricolo Sud Milano. Ristorazione, professionisti e servizi di qualità servono una clientela con aspettative alte, tra residenza e cerimonie al castello.",
         "settoriChiave": [
           "servizi",
           "professionisti",
           "ristorazione"
         ],
-        "opportunitaDigitale": "Le attività di Cusago operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "In un comune piccolo ma di pregio come Cusago la partita si gioca sulla qualità percepita: un sito elegante e veloce è il biglietto da visita che una clientela esigente si aspetta, anche solo per scegliere dove cenare o chi contattare."
       },
       "images": {
         "img1": {
@@ -2249,16 +2258,17 @@
       "localContext": {
         "highlights": [
           "Naviglio Grande",
-          "Centro commerciale Bonola nelle vicinanze"
+          "Zona industriale della Vigevanese",
+          "Distretto arredo e design"
         ],
-        "tessutoEconomico": "Trezzano sul Naviglio è un comune di 22.000 abitanti nell'hinterland milanese. Naviglio Grande.",
+        "tessutoEconomico": "Trezzano sul Naviglio è uno dei poli produttivi del sud-ovest milanese: lungo la Vigevanese si concentrano aziende di arredo, design e logistica, mentre il Naviglio Grande segna il confine nord del comune.",
         "settoriChiave": [
           "industria",
           "commercio",
           "servizi",
           "ristorazione"
         ],
-        "opportunitaDigitale": "Le attività di Trezzano sul Naviglio operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Molte aziende di Trezzano lavorano in B2B su scala regionale: un sito professionale con cataloghi e referenze chiare è spesso il primo filtro con cui un buyer decide se chiedere un preventivo — prima ancora della visita in showroom."
       },
       "images": {
         "img1": {
@@ -2348,16 +2358,17 @@
       "localContext": {
         "highlights": [
           "Confine con Milano Baggio",
+          "Asse della Vigevanese",
           "Area residenziale in crescita"
         ],
-        "tessutoEconomico": "Cesano Boscone è un comune di 24.000 abitanti nell'hinterland milanese. Confine con Milano Baggio.",
+        "tessutoEconomico": "Cesano Boscone, al confine con Milano Baggio, è un comune residenziale in crescita servito dalla Vigevanese, con commercio di prossimità, professionisti e servizi alla persona che lavorano su un bacino fitto e densamente abitato.",
         "settoriChiave": [
           "servizi",
           "commercio",
           "professionisti",
           "ristorazione"
         ],
-        "opportunitaDigitale": "Le attività di Cesano Boscone operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "In un'area densa come Cesano Boscone la concorrenza è a pochi isolati: comparire nelle ricerche locali fa la differenza tra un'agenda piena e una vuota. Il sito è ciò che trasforma la visibilità in chiamate e appuntamenti."
       },
       "images": {
         "img1": {
@@ -2447,16 +2458,17 @@
       "localContext": {
         "highlights": [
           "Naviglio Pavese",
+          "Parco Agricolo Sud Milano",
           "Area residenziale sud Milano"
         ],
-        "tessutoEconomico": "Buccinasco è un comune di 27.000 abitanti nell'hinterland milanese. Naviglio Pavese.",
+        "tessutoEconomico": "Buccinasco è un comune residenziale del sud-ovest milanese affacciato sul Parco Agricolo Sud, con quartieri verdi, commercio di vicinato e una comunità di professionisti e piccole imprese di servizi che serve anche Corsico e Assago.",
         "settoriChiave": [
           "commercio",
           "servizi",
           "ristorazione",
           "professionisti"
         ],
-        "opportunitaDigitale": "Le attività di Buccinasco operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "A Buccinasco il passaparola conta, ma sempre più spesso inizia online: recensioni, scheda Google e un sito curato decidono chi viene contattato. Le attività visibili nella ricerca locale intercettano anche i nuovi residenti appena arrivati."
       },
       "images": {
         "img1": {
@@ -2554,7 +2566,7 @@
           "commercio",
           "industria leggera"
         ],
-        "opportunitaDigitale": "Le attività di Cormano operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Tra Brusuglio e il centro, le attività di Cormano servono un bacino che scavalca il confine con Milano: farsi trovare sulle ricerche di zona — da Cusano Milanino a Bresso — significa allargare la clientela senza aprire una seconda sede."
       },
       "images": {
         "img1": {
@@ -2644,16 +2656,17 @@
       "localContext": {
         "highlights": [
           "Parco Nord Milano",
-          "Stazione M1 nelle vicinanze"
+          "Aeroporto di Bresso — Aero Club Milano",
+          "Capolinea M5 Bignami a due passi"
         ],
-        "tessutoEconomico": "Bresso è un comune di 27.000 abitanti nell'hinterland milanese. Parco Nord Milano.",
+        "tessutoEconomico": "Bresso, tra il Parco Nord e il confine milanese, è tra i comuni più densamente abitati d'Italia: commercio, ristorazione e servizi vivono di prossimità, con l'aeroporto dell'Aero Club Milano e il parco come luoghi identitari.",
         "settoriChiave": [
           "commercio",
           "servizi",
           "terziario",
           "ristorazione"
         ],
-        "opportunitaDigitale": "Le attività di Bresso operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Densità significa domanda: a Bresso ogni ricerca locale ha decine di potenziali clienti dietro. Un sito rapido e una scheda Google curata trasformano questa domanda di quartiere in prenotazioni e richieste quotidiane."
       },
       "images": {
         "img1": {
@@ -2742,17 +2755,18 @@
       ],
       "localContext": {
         "highlights": [
+          "Villa Ghirlanda Silva",
           "Centro culturale Il Pertini",
           "Hub commerciale nord Milano"
         ],
-        "tessutoEconomico": "Cinisello Balsamo è un comune di 76.000 abitanti nell'hinterland milanese. Centro culturale Il Pertini.",
+        "tessutoEconomico": "Cinisello Balsamo, 76.000 abitanti, è lo snodo commerciale del Nord Milano: l'asse di viale Fulvio Testi attira terziario e tech, mentre Villa Ghirlanda Silva e il Pertini animano il centro. Il tessuto unisce industria, servizi e grande distribuzione.",
         "settoriChiave": [
           "industria",
           "commercio",
           "servizi",
           "tech"
         ],
-        "opportunitaDigitale": "Le attività di Cinisello Balsamo operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "A Cinisello convivono clienti di quartiere e aziende del terziario: le attività che costruiscono pagine locali chiare per ciascun pubblico intercettano sia le ricerche di prossimità sia le commesse B2B del Nord Milano."
       },
       "images": {
         "img1": {
@@ -2841,11 +2855,11 @@
       ],
       "localContext": {
         "highlights": [
-          "Ex area Falck — riqualificazione urbana",
+          "Ex area Falck — riqualificazione MilanoSesto",
           "Stazione M1 Sesto",
-          "MIL — Made in Lambrate"
+          "Spazio MIL — archeologia industriale ex Breda"
         ],
-        "tessutoEconomico": "Sesto San Giovanni è un comune di 82.000 abitanti nell'hinterland milanese. Ex area Falck — riqualificazione urbana.",
+        "tessutoEconomico": "Sesto San Giovanni, l'ex città delle fabbriche (Falck, Breda, Marelli), è oggi un cantiere di rigenerazione: l'area MilanoSesto, il polo universitario e i nuovi insediamenti terziari stanno ridisegnando l'economia locale, ben collegata dalla M1.",
         "settoriChiave": [
           "tech",
           "industria",
@@ -2853,7 +2867,7 @@
           "servizi",
           "commercio"
         ],
-        "opportunitaDigitale": "Le attività di Sesto San Giovanni operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "In una città che cambia pelle come Sesto, nuovi residenti e nuove imprese cercano tutto online: chi si posiziona ora sulle ricerche locali costruisce un vantaggio che vale per anni, man mano che la riqualificazione porta domanda nuova."
       },
       "images": {
         "img1": {
@@ -2946,14 +2960,14 @@
           "Ospedale Fornaroli",
           "Direttrice Milano-Novara"
         ],
-        "tessutoEconomico": "Magenta è un comune di 24.000 abitanti nell'hinterland milanese. Storica Battaglia di Magenta.",
+        "tessutoEconomico": "Magenta è il centro di riferimento del Magentino: l'ospedale Fornaroli, il commercio del centro storico e le imprese della direttrice Milano–Novara ne fanno una piccola capitale di servizi, con la memoria della battaglia del 1859 nel nome.",
         "settoriChiave": [
           "sanitario",
           "commercio",
           "servizi",
           "agricoltura"
         ],
-        "opportunitaDigitale": "Le attività di Magenta operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Come polo di servizi del Magentino, Magenta attira clientela dai comuni circostanti: le attività che presidiano le ricerche dell'intero bacino — non solo cittadine — moltiplicano il raggio d'azione senza costi aggiuntivi."
       },
       "images": {
         "img1": {
@@ -3042,11 +3056,11 @@
       ],
       "localContext": {
         "highlights": [
-          "Palio di Legnano",
-          "Distretto industriale storico",
+          "Palio di Legnano e Castello Visconteo",
+          "Distretto industriale storico dell’Alto Milanese",
           "Centro città vivace"
         ],
-        "tessutoEconomico": "Legnano è un comune di 61.000 abitanti nell'hinterland milanese. Palio di Legnano.",
+        "tessutoEconomico": "Legnano, 61.000 abitanti sull'Olona, è la capitale storica dell'industria dell'Alto Milanese: alla tradizione meccanica e tessile si sono affiancati terziario, sanità e un commercio cittadino vivace, con il Palio a scandire l'identità locale.",
         "settoriChiave": [
           "industria",
           "tessile",
@@ -3054,7 +3068,7 @@
           "commercio",
           "ristorazione"
         ],
-        "opportunitaDigitale": "Le attività di Legnano operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Legnano è un mercato cittadino vero, con concorrenza in quasi ogni categoria: per emergere servono un sito professionale e una strategia locale coerente. Chi la costruisce intercetta anche la domanda di Castellanza e dei comuni limitrofi."
       },
       "images": {
         "img1": {
@@ -3143,17 +3157,18 @@
       ],
       "localContext": {
         "highlights": [
-          "Università LIUC",
-          "Polo universitario e imprenditoriale"
+          "Università LIUC — Carlo Cattaneo",
+          "Ex Cotonificio Cantoni",
+          "Fiume Olona"
         ],
-        "tessutoEconomico": "Castellanza è un comune di 14.500 abitanti nell'hinterland milanese. Università LIUC.",
+        "tessutoEconomico": "Castellanza, sull'Olona tra Legnano e Busto Arsizio, ospita la LIUC — Università Cattaneo negli spazi recuperati dell'ex Cotonificio Cantoni: un simbolo della riconversione dal tessile al terziario avanzato che oggi caratterizza l'economia locale.",
         "settoriChiave": [
           "formazione",
           "tech",
           "servizi",
           "commercio"
         ],
-        "opportunitaDigitale": "Le attività di Castellanza operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Con la LIUC che porta ogni giorno studenti, docenti e imprese, Castellanza ha un pubblico giovane e qualificato: bar, servizi e professionisti che curano la propria presenza digitale sono quelli che questo pubblico trova e sceglie."
       },
       "images": {
         "img1": {
@@ -3246,7 +3261,7 @@
           "Nodo ferroviario FNM/RFI",
           "Distretto dolciario (Amaretti)"
         ],
-        "tessutoEconomico": "Saronno è un comune di 40.000 abitanti nell'hinterland milanese. Santuario della Beata Vergine dei Miracoli.",
+        "tessutoEconomico": "Saronno è il nodo ferroviario dell'area tra Milano, Como e Varese e la patria dell'amaretto: al distretto dolciario storico si affiancano meccanica, commercio e servizi, con un centro pedonale tra i più frequentati della zona.",
         "settoriChiave": [
           "dolciario",
           "meccanico",
@@ -3254,7 +3269,7 @@
           "servizi",
           "trasporti"
         ],
-        "opportunitaDigitale": "Le attività di Saronno operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Ogni giorno migliaia di pendolari passano da Saronno: per le attività locali è un pubblico enorme che cerca tutto dal telefono. Essere visibili per le ricerche vicino alla stazione e di categoria è il modo più diretto per intercettarlo."
       },
       "images": {
         "img1": {
@@ -3348,7 +3363,7 @@
           "Fiera Citylife",
           "De Angeli"
         ],
-        "tessutoEconomico": "Milano Ovest è un comune di 200.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. QT8.",
+        "tessutoEconomico": "La zona ovest di Milano va dai grattacieli di CityLife ai quartieri residenziali di QT8 e De Angeli, fino a San Siro: un mosaico di studi professionali, negozi storici, ristorazione e nuove imprese in uno dei mercati più competitivi d'Italia.",
         "settoriChiave": [
           "moda",
           "design",
@@ -3356,7 +3371,7 @@
           "ristorazione",
           "commercio"
         ],
-        "opportunitaDigitale": "Le attività di Milano Ovest operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "A Milano ovest la concorrenza è massima ma la domanda anche: le ricerche sono di quartiere — De Angeli, Wagner, San Siro — e chi ottimizza per il proprio micro-bacino supera i grandi player generalisti proprio dove il cliente vive."
       },
       "images": {
         "img1": {
@@ -3450,7 +3465,7 @@
           "Comasina",
           "Affori"
         ],
-        "tessutoEconomico": "Milano Nord è un comune di 180.000 abitanti nell'hinterland milanese. Bicocca.",
+        "tessutoEconomico": "Il quadrante nord di Milano ruota attorno alla Bicocca — università e sedi corporate — e all'ospedale Niguarda, con i quartieri di Affori e Comasina serviti dalla M3: un mix di sanità, ricerca, servizi e commercio di quartiere.",
         "settoriChiave": [
           "università",
           "sanitario",
@@ -3458,7 +3473,7 @@
           "servizi",
           "commercio"
         ],
-        "opportunitaDigitale": "Le attività di Milano Nord operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Tra studenti della Bicocca, lavoratori di Niguarda e residenti dei quartieri, Milano nord esprime domande locali molto diverse: le attività che parlano al proprio quartiere — non a tutta Milano — sono quelle che convertono di più."
       },
       "images": {
         "img1": {
@@ -3548,15 +3563,16 @@
       "localContext": {
         "highlights": [
           "Parco delle Groane",
+          "Asse Saronno–Monza (ex SS527)",
           "Comune residenziale tranquillo"
         ],
-        "tessutoEconomico": "Solaro è un comune di 14.500 abitanti nell'hinterland milanese. Parco delle Groane.",
+        "tessutoEconomico": "Solaro è un comune residenziale ai margini del Parco delle Groane, attraversato dall'asse Saronno–Monza: piccole imprese, artigiani e commercio di prossimità servono il paese e il traffico di passaggio tra le due province.",
         "settoriChiave": [
           "servizi",
           "commercio",
           "artigianato"
         ],
-        "opportunitaDigitale": "Le attività di Solaro operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Per le attività di Solaro il bacino vero è sovracomunale: chi si fa trovare anche dalle ricerche di Ceriano, Cesate e Limbiate raddoppia il mercato potenziale. La SEO locale serve esattamente a questo."
       },
       "images": {
         "img1": {
@@ -3646,15 +3662,16 @@
       "localContext": {
         "highlights": [
           "Tessuto manifatturiero",
+          "Frazione Cantalupo",
           "Vicinanza a Legnano"
         ],
-        "tessutoEconomico": "Cerro Maggiore è un comune di 15.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Tessuto manifatturiero.",
+        "tessutoEconomico": "Cerro Maggiore, tra Legnano e l'asse del Sempione, conserva un tessuto manifatturiero e artigiano attivo, con la frazione di Cantalupo e una posizione comoda sia verso l'autostrada A8 sia verso il centro legnanese.",
         "settoriChiave": [
           "manifatturiero",
           "commercio",
           "artigianato"
         ],
-        "opportunitaDigitale": "Le attività di Cerro Maggiore operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Molte imprese di Cerro lavorano conto terzi e vivono di relazioni: un sito professionale dà sostanza al passaparola, mostra le lavorazioni e apre contatti nuovi oltre la cerchia storica di clienti dell'Alto Milanese."
       },
       "images": {
         "img1": {
@@ -3746,13 +3763,13 @@
           "Nodo ferroviario FNM",
           "Area residenziale in crescita"
         ],
-        "tessutoEconomico": "Rescaldina è un comune di 14.500 abitanti nell'hinterland milanese. Nodo ferroviario FNM.",
+        "tessutoEconomico": "Rescaldina, all'estremo nord-ovest della città metropolitana, unisce il carattere residenziale a un polo commerciale rilevante lungo la Saronnese, con la ferrovia che la collega al nodo di Saronno e da lì a Milano e Malpensa.",
         "settoriChiave": [
           "servizi",
           "commercio",
           "professionisti"
         ],
-        "opportunitaDigitale": "Le attività di Rescaldina operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Il traffico della Saronnese porta a Rescaldina clienti da tutto il quadrante: le attività che affiancano al punto vendita una presenza online curata trasformano il passaggio in clientela fedele e ordini ripetuti."
       },
       "images": {
         "img1": {
@@ -3841,16 +3858,17 @@
       ],
       "localContext": {
         "highlights": [
+          "Polo chimico-farmaceutico",
           "Zona industriale est",
-          "Vicinanza a Saronno e Lainate"
+          "Svincoli A8/A9 vicini"
         ],
-        "tessutoEconomico": "Origgio è un comune di 8000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Zona industriale est.",
+        "tessutoEconomico": "Origgio, al confine tra Varesotto e Milanese, ospita nella zona industriale sedi di gruppi chimico-farmaceutici e logistica avanzata, favorite dagli svincoli A8 e A9: un tessuto d'impresa notevole rispetto agli 8.000 abitanti.",
         "settoriChiave": [
           "logistica",
           "industria",
           "servizi"
         ],
-        "opportunitaDigitale": "Le attività di Origgio operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Con multinazionali e PMI a due passi, a Origgio anche un'attività di servizi ha un mercato B2B alla porta: presentarsi online in modo professionale è il requisito minimo per entrare nelle liste fornitori di queste aziende."
       },
       "images": {
         "img1": {
@@ -3939,17 +3957,18 @@
       ],
       "localContext": {
         "highlights": [
-          "Stazione FNM Saronno Sud",
-          "Tessuto PMI consolidato"
+          "Stazione sulla linea Milano–Saronno",
+          "Tessuto PMI consolidato",
+          "Margini del Parco delle Groane"
         ],
-        "tessutoEconomico": "Caronno Pertusella è un comune di 18.000 abitanti nell'hinterland milanese, a pochi minuti dalla nostra sede di Rho. Stazione FNM Saronno Sud.",
+        "tessutoEconomico": "Caronno Pertusella si è sviluppata lungo la ferrovia Milano–Saronno con un tessuto consolidato di PMI meccaniche e artigiane, cresciuto negli anni insieme ai quartieri residenziali che attraggono famiglie dall'area milanese.",
         "settoriChiave": [
           "PMI",
           "commercio",
           "artigianato",
           "servizi"
         ],
-        "opportunitaDigitale": "Le attività di Caronno Pertusella operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Tra Saronno e le Groane, Caronno è al centro di un bacino denso: le PMI che raccontano online le proprie lavorazioni intercettano committenti di due province, mentre i servizi locali catturano le famiglie appena trasferite."
       },
       "images": {
         "img1": {
@@ -4039,6 +4058,7 @@
       "localContext": {
         "highlights": [
           "Parco delle Groane",
+          "Tranvia Milano–Limbiate",
           "Mombello"
         ],
         "tessutoEconomico": "Limbiate è un comune di 36.000 abitanti tra Groane, Mombello e l'asse verso Senago e Paderno Dugnano. Il territorio ha un tessuto diffuso di commercio, servizi, artigianato e attività legate alla prossimità.",
@@ -4048,7 +4068,7 @@
           "artigianato",
           "benessere"
         ],
-        "opportunitaDigitale": "Le attività di Limbiate operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Per le attività di Limbiate — dal benessere ai servizi — la clientela arriva da tutta la Brianza ovest: una presenza digitale ben costruita permette di farsi scegliere prima ancora che il cliente passi davanti alla vetrina."
       },
       "images": {
         "img1": {
@@ -4141,14 +4161,14 @@
           "Zona industriale storica",
           "Confine con Milano Giambellino"
         ],
-        "tessutoEconomico": "Corsico è un comune di 35.000 abitanti nell'hinterland milanese. Naviglio Grande.",
+        "tessutoEconomico": "Corsico, 35.000 abitanti sul Naviglio Grande, è la porta sud-ovest di Milano: la zona industriale storica convive con la grande distribuzione della Vigevanese e con un centro che mantiene commercio e servizi di prossimità.",
         "settoriChiave": [
           "industria",
           "commercio",
           "servizi",
           "ristorazione"
         ],
-        "opportunitaDigitale": "Le attività di Corsico operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Stretta tra Milano e i centri commerciali, Corsico impone alle attività locali di differenziarsi: un sito che valorizza specialità e vicinanza è l'arma con cui il negozio o lo studio di quartiere si difende — e vince — sulla comodità."
       },
       "images": {
         "img1": {
@@ -4238,16 +4258,17 @@
       "localContext": {
         "highlights": [
           "Milanofiori — polo business e commerciale",
-          "Forum di Assago"
+          "Unipol Forum",
+          "Capolinea M2 Assago Forum"
         ],
-        "tessutoEconomico": "Assago è un comune di 10.000 abitanti nell'hinterland milanese. Milanofiori — polo business e commerciale.",
+        "tessutoEconomico": "Assago è il polo direzionale del sud Milano: Milanofiori concentra sedi di imprese e uffici, l'Unipol Forum porta eventi e concerti da tutta Italia e la linea M2 collega il comune al centro di Milano in circa venti minuti.",
         "settoriChiave": [
           "business",
           "commercio",
           "eventi",
           "servizi"
         ],
-        "opportunitaDigitale": "Le attività di Assago operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Tra uffici di Milanofiori ed eventi al Forum, Assago muove ogni giorno migliaia di persone: ristorazione, servizi e imprese B2B che si fanno trovare online intercettano un pubblico che va ben oltre i 10.000 residenti."
       },
       "images": {
         "img1": {
@@ -4337,16 +4358,17 @@
       "localContext": {
         "highlights": [
           "Humanitas Research Hospital",
+          "Humanitas University",
           "Centro commerciale Fiordaliso"
         ],
-        "tessutoEconomico": "Rozzano è un comune di 43.000 abitanti nell'hinterland milanese. Humanitas Research Hospital.",
+        "tessutoEconomico": "Rozzano ospita due poli che attraggono persone da tutta la Lombardia: l'Humanitas con ospedale, ricerca e università, e il centro commerciale Fiordaliso. Attorno, un tessuto di servizi, logistica e commercio in continua evoluzione.",
         "settoriChiave": [
           "sanitario",
           "commercio",
           "servizi",
           "logistica"
         ],
-        "opportunitaDigitale": "Le attività di Rozzano operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "Pazienti, studenti e visitatori arrivano ogni giorno a Rozzano da fuori: per le attività locali è domanda aggiuntiva già pronta — chi è visibile nelle ricerche attorno a Humanitas e al Fiordaliso la converte in clienti."
       },
       "images": {
         "img1": {
@@ -4439,7 +4461,7 @@
           "Villa Reale e Parco",
           "Capoluogo Brianza"
         ],
-        "tessutoEconomico": "Monza è un comune di 124.000 abitanti nell'hinterland milanese. Autodromo Nazionale.",
+        "tessutoEconomico": "Monza è il capoluogo della Brianza: al richiamo internazionale dell'Autodromo e della Villa Reale affianca un'economia solida di manifattura brianzola, terziario, finanza e un commercio di centro storico tra i più vitali della Lombardia.",
         "settoriChiave": [
           "manifatturiero",
           "finanziario",
@@ -4447,7 +4469,7 @@
           "servizi",
           "turismo"
         ],
-        "opportunitaDigitale": "Le attività di Monza operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "A Monza convivono il negozio sotto i portici e l'azienda che esporta: entrambi si giocano i clienti sulle ricerche locali e sulla reputazione online. Un sito all'altezza del brand è ciò che distingue chi cresce da chi resta fermo."
       },
       "images": {
         "img1": {
@@ -4540,14 +4562,14 @@
           "Linea M2 Cologno",
           "Hub media"
         ],
-        "tessutoEconomico": "Cologno Monzese è un comune di 48.000 abitanti nell'hinterland milanese. Studi Mediaset.",
+        "tessutoEconomico": "Cologno Monzese è sinonimo di media: gli studi Mediaset ne hanno fatto un polo televisivo nazionale, attorno a cui gravitano produzione, servizi e terziario, con la linea M2 che collega i quartieri a Milano.",
         "settoriChiave": [
           "media",
           "servizi",
           "commercio",
           "terziario"
         ],
-        "opportunitaDigitale": "Le attività di Cologno Monzese operano in un mercato locale dove la visibilità digitale fa la differenza. Un sito web professionale con SEO locale integrata permette di intercettare clienti che cercano servizi nella zona."
+        "opportunitaDigitale": "L'indotto media porta a Cologno professionisti e aziende di produzione: chi offre servizi — dal catering al noleggio alla consulenza — trova un mercato specializzato che cerca fornitori online, spesso con urgenza."
       },
       "images": {
         "img1": {
