@@ -6079,61 +6079,873 @@ const articles = [
   }
 ];
 
-// Shorter articles (stubs for now - fully SEO-structured pages with 300-500 word content)
+// Shorter articles: hand-written editorial guides (formerly template stubs, rewritten July 2026)
 const stubArticles = [
-  { slug: 'brand-identity-guida-completa', title: 'Brand Identity: Cos\'è, Perché Serve e Come Crearla da Zero', description: 'Guida completa alla brand identity: logo, colori, tipografia, tone of voice. Come creare un\'identità di marca efficace per il tuo business.', tag: 'Branding', date: '8 Febbraio 2026', isoDate: '2026-02-08', readTime: '11 min', keyword: 'brand identity' },
-  { slug: 'social-media-strategy-2026', title: 'Social Media Strategy 2026: Cosa Funziona Davvero per le Aziende', description: 'Le strategie social media più efficaci nel 2026: algoritmi, formati, frequenza di pubblicazione e metriche che contano.', tag: 'Social Media', date: '7 Febbraio 2026', isoDate: '2026-02-07', readTime: '8 min', keyword: 'social media strategy' },
-  { slug: 'restyling-sito-web-quando-farlo', title: 'Restyling del Sito Web: Quando Farlo e Come Non Perdere il Posizionamento', description: 'Segnali che indicano la necessità di un restyling e best practice per rinnovare il sito senza perdere ranking SEO.', tag: 'Web Development', date: '6 Febbraio 2026', isoDate: '2026-02-06', readTime: '7 min', keyword: 'restyling sito web' },
-  { slug: 'landing-page-efficace', title: 'Come Creare una Landing Page che Converte: Anatomia del Successo', description: 'Hero, copy, CTA, social proof: tutti gli elementi di una landing page ad alta conversione con esempi reali.', tag: 'Conversioni', date: '5 Febbraio 2026', isoDate: '2026-02-05', readTime: '9 min', keyword: 'landing page efficace' },
-  { slug: 'instagram-per-aziende', title: 'Instagram per Aziende: Guida Completa alla Crescita Organica', description: 'Profilo business, content strategy, hashtag, reel: come crescere su Instagram senza budget pubblicitario.', tag: 'Instagram', date: '4 Febbraio 2026', isoDate: '2026-02-04', readTime: '10 min', keyword: 'instagram per aziende' },
-  { slug: 'sito-web-mobile-first', title: 'Mobile First Design: Perché il Tuo Sito Deve Partire dallo Smartphone', description: 'Il 70% del traffico web è mobile. Perché il design mobile-first è essenziale e come implementarlo.', tag: 'Performance', date: '3 Febbraio 2026', isoDate: '2026-02-03', readTime: '6 min', keyword: 'mobile first design' },
-  { slug: 'core-web-vitals-guida', title: 'Core Web Vitals: Cosa Sono e Come Migliorarli per il Tuo Sito', description: 'LCP, INP, CLS: le metriche Google per valutare il tuo sito. Guida pratica per ottimizzarle.', tag: 'SEO Tecnica', date: '2 Febbraio 2026', isoDate: '2026-02-02', readTime: '8 min', keyword: 'core web vitals' },
-  { slug: 'logo-design-processo-creativo', title: 'Il Processo di Creazione di un Logo: Dal Brief al Design Finale', description: 'Come nasce un logo professionale? Le fasi del processo creativo con esempi concreti dai nostri progetti.', tag: 'Design', date: '1 Febbraio 2026', isoDate: '2026-02-01', readTime: '7 min', keyword: 'logo design processo' },
-  { slug: 'facebook-ads-guida-pratica', title: 'Facebook Ads per Principianti: Come Creare Campagne che Funzionano', description: 'Targeting, budget, creatività, A/B test: guida step-by-step per le tue prime campagne Meta Ads.', tag: 'Advertising', date: '30 Gennaio 2026', isoDate: '2026-01-30', readTime: '11 min', keyword: 'facebook ads guida' },
-  { slug: 'wordpress-vs-codice-custom', title: 'WordPress vs Codice Custom: Quale Scegliere per il Tuo Progetto?', description: 'Vantaggi, svantaggi, costi e performance a confronto. La guida definitiva per scegliere la tecnologia giusta.', tag: 'Tecnologia', date: '28 Gennaio 2026', isoDate: '2026-01-28', readTime: '9 min', keyword: 'wordpress vs custom' },
-  { slug: 'content-marketing-per-pmi', title: 'Content Marketing per PMI: Come Attrarre Clienti con i Contenuti', description: 'Blog, video, newsletter: strategie di content marketing efficaci per piccole e medie imprese.', tag: 'Content Marketing', date: '26 Gennaio 2026', isoDate: '2026-01-26', readTime: '8 min', keyword: 'content marketing PMI' },
-  { slug: 'errori-comuni-siti-web', title: '10 Errori Comuni nei Siti Web che Ti Fanno Perdere Clienti', description: 'Velocità, navigazione, CTA mancanti: gli errori più frequenti e come correggerli.', tag: 'Best Practice', date: '24 Gennaio 2026', isoDate: '2026-01-24', readTime: '7 min', keyword: 'errori siti web' },
-  { slug: 'rebranding-aziendale-guida', title: 'Rebranding Aziendale: Quando Farlo e Come Gestire il Cambiamento', description: 'Segnali di necessità di rebranding, processo da seguire e come comunicare il cambiamento.', tag: 'Branding', date: '22 Gennaio 2026', isoDate: '2026-01-22', readTime: '8 min', keyword: 'rebranding aziendale' },
-  { slug: 'ecommerce-errori-da-evitare', title: 'E-Commerce: 8 Errori che Uccidono le Vendite (e Come Evitarli)', description: 'Checkout complicato, schede prodotto povere, niente SEO: gli errori e-commerce più costosi.', tag: 'E-Commerce', date: '20 Gennaio 2026', isoDate: '2026-01-20', readTime: '9 min', keyword: 'errori ecommerce' },
-  { slug: 'personal-branding-online', title: 'Personal Branding Online: Come Costruire la Tua Autorità nel Digitale', description: 'Sito personale, LinkedIn, contenuti: strategie per posizionarti come esperto nel tuo settore.', tag: 'Personal Brand', date: '18 Gennaio 2026', isoDate: '2026-01-18', readTime: '7 min', keyword: 'personal branding online' },
-  { slug: 'google-analytics-4-guida', title: 'Google Analytics 4: Guida Pratica per Capire i Dati del Tuo Sito', description: 'Configurazione, metriche chiave, report: tutto su GA4 per decisioni basate sui dati.', tag: 'Analytics', date: '16 Gennaio 2026', isoDate: '2026-01-16', readTime: '10 min', keyword: 'google analytics 4 guida' },
-];
+  {
+    slug: 'brand-identity-guida-completa',
+    title: 'Brand Identity: Cos\'è, Perché Serve e Come Crearla da Zero',
+    description: 'Guida completa alla brand identity: logo, colori, tipografia, tone of voice. Come creare un\'identità di marca efficace per il tuo business.',
+    tag: 'Branding',
+    date: '8 Febbraio 2026',
+    isoDate: '2026-02-08',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '6 min',
+    keyword: 'brand identity',
+    faq: [
+      {
+        question: 'Qual è la differenza tra logo e brand identity?',
+        answer: 'Il logo è un elemento della brand identity, non il suo sinonimo. La brand identity comprende anche palette colori, tipografia, stile fotografico, tone of voice e il modo in cui tutti questi elementi vengono applicati nei diversi punti di contatto: sito, social, materiale stampato, email.'
+      },
+      {
+        question: 'Una piccola impresa ha davvero bisogno di una brand identity?',
+        answer: 'Sì, ma in scala adeguata: non serve un manuale di cento pagine, servono un logo usabile ovunque, due o tre colori fissi, una tipografia leggibile e regole semplici scritte da qualche parte. È la coerenza nel tempo, non la complessità del sistema, a costruire riconoscibilità.'
+      },
+      {
+        question: 'Ogni quanto va aggiornata una brand identity?',
+        answer: 'Non esiste una scadenza fissa: si interviene quando l\'identità non rappresenta più l\'azienda (nuovo posizionamento, nuovo pubblico, fusione) o quando crea problemi pratici, come un logo illeggibile nei formati digitali. Aggiornare per moda, senza un motivo, brucia riconoscibilità accumulata.'
+      }
+    ],
+    content: `
+<p>La brand identity è l'insieme degli elementi con cui un'azienda si rende riconoscibile: logo, colori, tipografia, stile delle immagini e tono con cui parla. Non è un esercizio estetico: è ciò che permette a un cliente di riconoscerti in mezzo ai concorrenti e di ricordarsi di te alla seconda occasione. In questa guida vediamo <strong>di cosa è fatta e come costruirla da zero</strong>, in una scala sensata anche per una piccola impresa.</p>
 
-function generateStubContent(a) {
-  const serviceLink = resolveServiceLink(a);
-
-  return `
-<p><strong>Risposta rapida:</strong> ${a.keyword} incide direttamente su visibilità, qualità del traffico e conversioni. Se vuoi risultati misurabili nel 2026, devi combinare contenuti utili, struttura tecnica corretta e ottimizzazione continua: è questo mix che rende il sito più citabile dalle AI e più competitivo su Google.</p>
-
-<h2>Cos'è ${a.keyword} e perché conta nel 2026?</h2>
-<p>${a.keyword} è un fattore strategico perché oggi il percorso di ricerca è frammentato tra Google, AI Overviews e motori generativi. Un contenuto ben strutturato può intercettare tutte queste superfici contemporaneamente, aumentando autorevolezza percepita e probabilità di lead qualificati.</p>
-<p>Nel nostro contesto, lavorare su ${a.keyword} significa ridurre dispersione del budget, migliorare la coerenza dei segnali SEO/GEO e accelerare la crescita delle query branded nel medio periodo.</p>
-
-<h2>Quali risultati puoi aspettarti nei primi 90 giorni?</h2>
-<p>Nei primi 90 giorni i risultati principali arrivano da tre leve: miglioramenti tecnici ad alto impatto, pubblicazione di contenuti orientati all'intento e internal linking strategico verso pagine servizio. Questa fase non punta ai "numeri vanity", ma a traffico più qualificato e maggiore tasso di conversione.</p>
-<p>Nei nostri benchmark operativi, le pagine con struttura Q&A chiara e dati concreti tendono a ottenere maggiore visibilità: in particolare, contenuti con FAQ ben costruite possono aumentare la probabilità di citazione nei motori AI rispetto a pagine equivalenti senza sezione FAQ.</p>
+<h2>Di cosa è fatta una brand identity</h2>
+<p>Gli elementi fondamentali sono cinque, e devono funzionare insieme:</p>
 <ul>
-    <li><strong>Traffico più pertinente</strong>: meno visite casuali, più utenti con intento reale</li>
-    <li><strong>Migliore citabilità AI</strong>: risposte modulari e dati concreti favoriscono l'estrazione</li>
-    <li><strong>Lead più pronti</strong>: CTA contestuali e percorso interno riducono frizione</li>
+    <li><strong>Logo</strong>: il simbolo che firma tutto. Deve reggere in piccolo (favicon, profilo social) e in grande (insegna), a colori e in monocromia.</li>
+    <li><strong>Palette colori</strong>: due o tre colori fissi, usati sempre negli stessi ruoli. È il colore, prima ancora del logo, che le persone riconoscono a distanza.</li>
+    <li><strong>Tipografia</strong>: uno o due caratteri, scelti per leggibilità su schermo oltre che per carattere.</li>
+    <li><strong>Stile fotografico</strong>: foto vere della tua attività trattate in modo coerente battono qualsiasi immagine d'archivio.</li>
+    <li><strong>Tone of voice</strong>: il modo in cui scrivi — formale o diretto, tecnico o divulgativo — deve essere lo stesso sul sito, nelle email e nei social.</li>
 </ul>
 
-<h2>Checklist operativa: da dove iniziare subito</h2>
-<p>Per ottenere impatto rapido, adotta una sequenza semplice: prima chiarezza strategica, poi implementazione tecnica, infine ottimizzazione continua basata sui dati. Questo evita interventi isolati e massimizza il rendimento di ogni ora investita.</p>
+<h2>Perché conviene farla bene</h2>
+<p>Una identità coerente lavora su due fronti. Verso l'esterno, costruisce riconoscibilità: ogni contatto con il cliente rafforza il precedente invece di ripartire da zero. Verso l'interno, fa risparmiare: quando esistono regole chiare, ogni nuovo materiale — un volantino, una campagna, una pagina del sito — nasce già coerente senza dover reinventare tutto e senza dipendere dal gusto del fornitore di turno.</p>
+<p>Il costo dell'incoerenza è concreto ma silenzioso: un sito con un'immagine, i social con un'altra e un biglietto da visita con una terza comunicano trascuratezza, e la trascuratezza percepita si trasferisce sul giudizio del prodotto o del servizio.</p>
+
+<h2>Come costruirla da zero, in cinque passi</h2>
 <ol>
-    <li><strong>Definisci un obiettivo business</strong> (lead, richieste preventivo, vendita)</li>
-    <li><strong>Allinea contenuto e search intent</strong> con heading in formato domanda</li>
-    <li><strong>Inserisci link interni contestuali</strong> verso servizi e articoli correlati</li>
-    <li><strong>Aggiungi dati strutturati</strong> (Article, FAQPage, BreadcrumbList)</li>
-    <li><strong>Monitora key events</strong> in GA4 e ottimizza ogni 30 giorni</li>
+    <li><strong>Parti dal posizionamento, non dai colori.</strong> A chi ti rivolgi, cosa ti distingue davvero, come vuoi essere percepito: senza queste risposte ogni scelta grafica è arbitraria.</li>
+    <li><strong>Definisci l'identità verbale.</strong> Come parli, quali parole usi e quali eviti. È la parte più trascurata e quella che si nota di più nel tempo.</li>
+    <li><strong>Progetta l'identità visiva.</strong> Logo, palette e tipografia insieme, testandoli sui formati reali: schermo del telefono, scheda Google, insegna, stampa.</li>
+    <li><strong>Scrivi le regole.</strong> Anche una pagina sola: versioni del logo consentite, codici colore esatti, caratteri, esempi d'uso corretto e scorretto.</li>
+    <li><strong>Applicala ovunque, gradualmente.</strong> Prima i punti di contatto più visti (sito, social, scheda Google), poi il resto man mano che si ristampa o si rifà.</li>
 </ol>
 
-<h2>Errori frequenti che rallentano i risultati</h2>
-<p>Gli errori più costosi sono keyword stuffing, contenuti generici e assenza di strategia di aggiornamento. Nel contesto AI-search, contenuti poco specifici o senza struttura chiara vengono raramente citati, anche se ben scritti.</p>
+<h2>Gli errori che vediamo più spesso</h2>
+<p>Il primo è <strong>partire dal logo</strong> saltando il posizionamento: si ottiene un simbolo gradevole che non racconta nulla. Il secondo è la <strong>coerenza a metà</strong>: identità nuova sul sito e materiale vecchio ovunque, per anni. Il terzo è <strong>copiare il leader di settore</strong>: se assomigli al concorrente più grande, lavori gratis per la sua riconoscibilità, non per la tua.</p>
 
-<h2>Come trasformare questa guida in risultati concreti</h2>
-<p>Se vuoi applicare ${a.keyword} in modo pratico e misurabile al tuo progetto, possiamo aiutarti con un piano operativo su misura e priorità ad alto impatto. <a href="${serviceLink}">Scopri il servizio più adatto →</a></p>`;
-}
+<h2>Da dove iniziare</h2>
+<p>Se hai già un'attività avviata, non serve buttare tutto: spesso basta un intervento di riordino — stesso logo ripulito, palette ridotta e fissata, regole scritte — per ottenere in poche settimane una coerenza che cambia la percezione. Se invece parti da zero, investire nell'identità prima del sito evita di dover rifare il sito dopo sei mesi. Per capire come impostarla sul tuo caso, <a href="../servizi/graphic-design.html">guarda il nostro servizio di graphic design</a> o <a href="../preventivo.html">chiedi un preventivo</a>.</p>`
+  },
+  {
+    slug: 'social-media-strategy-2026',
+    title: 'Social Media Strategy 2026: Cosa Funziona Davvero per le Aziende',
+    description: 'Le strategie social media più efficaci nel 2026: algoritmi, formati, frequenza di pubblicazione e metriche che contano.',
+    tag: 'Social Media',
+    date: '7 Febbraio 2026',
+    isoDate: '2026-02-07',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '6 min',
+    keyword: 'social media strategy',
+    faq: [
+      {
+        question: 'Su quanti social deve essere presente un\'azienda?',
+        answer: 'Meno di quanti pensi: per la maggior parte delle PMI due canali curati con costanza rendono più di quattro canali trascurati. La scelta dipende da dove passa il tempo il tuo cliente, non dalle mode: un profilo abbandonato è un segnale negativo per chi ti sta valutando.'
+      },
+      {
+        question: 'Quante volte a settimana bisogna pubblicare?',
+        answer: 'La frequenza giusta è quella che riesci a mantenere per anni, non per un mese. Meglio due contenuti a settimana fatti bene e costanti che pubblicare ogni giorno per sei settimane e poi sparire: nei social aziendali la regolarità conta più del volume.'
+      },
+      {
+        question: 'I follower sono una metrica importante?',
+        answer: 'Da soli no: contano le azioni che portano valore — messaggi, richieste, visite al sito, persone che ti citano in negozio. Un profilo con pochi follower veri e locali può generare più clienti di uno con numeri alti ma pubblico generico o comprato.'
+      }
+    ],
+    content: `
+<p>La domanda giusta nel 2026 non è "su quale social devo stare" ma "cosa posso sostenere nel tempo che il mio pubblico trovi utile". Gli algoritmi cambiano ogni anno; i principi che seguono no. Questa guida è pensata per aziende e PMI che gestiscono i social con risorse limitate e vogliono <strong>risultati commerciali, non metriche di vanità</strong>.</p>
+
+<h2>Cosa è cambiato davvero</h2>
+<p>Tre cose rendono il 2026 diverso dagli anni scorsi. Primo: la portata organica dei post è sempre più legata alla qualità del singolo contenuto e sempre meno al numero di follower — ogni post compete da solo. Secondo: i social sono diventati motori di ricerca, soprattutto per i più giovani: le persone cercano ristoranti, servizi e prodotti direttamente dentro le piattaforme, quindi didascalie e profili vanno scritti pensando anche alla ricerca. Terzo: il contenuto generato con AI ha invaso i feed, e per contrasto <strong>il contenuto autentico e verificabile è diventato più prezioso</strong> — volti veri, luoghi veri, lavoro vero.</p>
+
+<h2>Scegliere i canali: pochi e giusti</h2>
+<p>Il criterio è uno: dove sta il tuo cliente quando è nel mood giusto per te. Un ristorante vive su Instagram; un'azienda che vende ad altre aziende ha più senso su LinkedIn; per il pubblico locale over 40, Facebook è ancora molto vivo; la scheda Google — che quasi nessuno considera un social — è spesso il canale con il pubblico più pronto all'acquisto di tutti. Scegli al massimo due canali primari e presidiali sul serio.</p>
+
+<h2>I pilastri di contenuto: il calendario che non si esaurisce</h2>
+<p>Il modo più solido per non rimanere senza idee è definire tre o quattro pilastri fissi e ruotarli. Per un'azienda tipica funzionano bene:</p>
+<ul>
+    <li><strong>Il lavoro mentre accade</strong>: dietro le quinte, progetti in corso, problemi risolti. È il contenuto più difficile da copiare.</li>
+    <li><strong>Le persone</strong>: chi fa il lavoro, con nome e volto. La fiducia si dà alle persone, non ai loghi.</li>
+    <li><strong>Risposte alle domande vere dei clienti</strong>: quelle che senti ripetere in preventivo o al telefono sono contenuti già validati.</li>
+    <li><strong>Prova concreta</strong>: risultati mostrabili, prima/dopo, dettagli di qualità che l'occhio non allenato non noterebbe.</li>
+</ul>
+
+<h2>Formati: il video breve serve, la costanza di più</h2>
+<p>Il video breve resta il formato più spinto dalle piattaforme, ma non deve diventare una tassa: un video semplice girato col telefono, con un'idea chiara nei primi due secondi, batte un montaggio elaborato senza idea. E se il video non è sostenibile per te, caroselli e foto ben fatte con testi curati continuano a funzionare. Il formato che ti fa smettere di pubblicare è il formato sbagliato.</p>
+
+<h2>Misurare ciò che conta</h2>
+<p>Le metriche utili per un'azienda sono quelle vicine al fatturato: messaggi e richieste ricevute, clic verso il sito, telefonate dalla scheda, persone che citano un contenuto quando comprano. Guardale una volta al mese e chiediti una sola cosa: quale tipo di contenuto le ha generate? Poi fai più di quello. Se vuoi delegare la parte operativa mantenendo la tua voce, <a href="../servizi/social-media.html">ecco come gestiamo i social per le aziende</a>.</p>`
+  },
+  {
+    slug: 'restyling-sito-web-quando-farlo',
+    title: 'Restyling del Sito Web: Quando Farlo e Come Non Perdere il Posizionamento',
+    description: 'Segnali che indicano la necessità di un restyling e best practice per rinnovare il sito senza perdere ranking SEO.',
+    tag: 'Web Development',
+    date: '6 Febbraio 2026',
+    isoDate: '2026-02-06',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '7 min',
+    keyword: 'restyling sito web',
+    faq: [
+      {
+        question: 'Il restyling fa perdere il posizionamento su Google?',
+        answer: 'Può farlo, se gestito male: cambiare gli URL senza redirect, eliminare pagine che portavano traffico o riscrivere i title senza criterio sono le cause più comuni. Con una mappa dei redirect 301, il confronto prima/dopo dei contenuti e un controllo in Search Console nelle settimane successive, il rischio si gestisce.'
+      },
+      {
+        question: 'Meglio un restyling o rifare il sito da zero?',
+        answer: 'Dipende dalle fondamenta: se la struttura tecnica è sana e il problema è estetico o di contenuti, il restyling basta. Se il sito è lento per costruzione, non è mobile-friendly o è costruito su una tecnologia abbandonata, rattopparlo costa più che rifarlo bene una volta sola.'
+      },
+      {
+        question: 'Ogni quanto va rifatto un sito web?',
+        answer: 'Non esiste una scadenza automatica: un sito ben costruito e aggiornato nei contenuti può reggere molti anni. Il segnale giusto non è l\'età ma il divario tra ciò che il sito comunica e ciò che l\'azienda è diventata, oppure problemi misurabili di velocità, usabilità o conversione.'
+      }
+    ],
+    content: `
+<p>Il restyling di un sito web è uno di quei lavori che si rimandano finché non fanno male: il sito "funziona ancora", quindi si aspetta. Il problema è che un sito invecchiato non smette di funzionare all'improvviso — smette di convincere, in silenzio, un visitatore alla volta. In questa guida vediamo <strong>quando il restyling è davvero necessario e come farlo senza buttare via il posizionamento</strong> costruito negli anni.</p>
+
+<h2>I segnali che è ora di intervenire</h2>
+<p>Alcuni segnali sono visibili a occhio nudo, altri stanno nei dati:</p>
+<ul>
+    <li><strong>Il sito non ti rappresenta più</strong>: servizi cambiati, foto vecchie, un tono che non è più il tuo. Se ti vergogni a mandare il link, il problema è già serio.</li>
+    <li><strong>Su smartphone è faticoso</strong>: testi piccoli, elementi che si accavallano, moduli impraticabili. La maggior parte delle visite oggi arriva da mobile.</li>
+    <li><strong>È lento in modo percepibile</strong>: se la pagina impiega diversi secondi a diventare usabile, una parte dei visitatori se ne va prima di vederla.</li>
+    <li><strong>Le richieste sono calate a parità di traffico</strong>: le persone arrivano ma non contattano. È il sintomo tipico di un sito che non convince più.</li>
+    <li><strong>Aggiornarlo è diventato impossibile</strong>: se ogni modifica richiede il tecnico di turno o rompe qualcosa, il sito è diventato un costo fisso.</li>
+</ul>
+
+<h2>Restyling o rifacimento: la differenza che conta</h2>
+<p>Restyling significa rinnovare l'aspetto e i contenuti mantenendo le fondamenta; rifacimento significa ricostruire anche quelle. La scelta non è estetica ma tecnica: se il sito è strutturalmente sano — veloce, sicuro, ben indicizzato — conviene intervenire su grafica, testi e percorsi. Se invece è lento per come è costruito, poggia su un tema appesantito o su una piattaforma non più mantenuta, il restyling è un cerotto: si spende due volte.</p>
+
+<h2>Come non perdere il posizionamento</h2>
+<p>Il patrimonio SEO di un sito vive negli URL, nei contenuti e nei link che puntano verso di esso. Un restyling fatto senza attenzione può disperderlo in una settimana. Le regole essenziali:</p>
+<ol>
+    <li><strong>Censisci prima le pagine che lavorano.</strong> Da Search Console e Analytics individua le pagine che portano traffico e contatti: sono quelle da proteggere.</li>
+    <li><strong>Mantieni gli URL dove possibile.</strong> Ogni URL che cambia senza redirect è posizionamento buttato. Se la struttura deve cambiare, prepara una mappa di redirect 301 pagina per pagina.</li>
+    <li><strong>Non tagliare contenuti che rankano.</strong> Snellire va bene, ma una pagina che intercetta ricerche va migliorata, non eliminata.</li>
+    <li><strong>Conserva title, description e heading che funzionano.</strong> Riscriverli tutti "perché il sito è nuovo" azzera segnali che Google aveva già premiato.</li>
+    <li><strong>Controlla dopo il lancio.</strong> Nelle settimane successive tieni d'occhio Search Console: errori di scansione, pagine escluse e cali anomali vanno intercettati subito.</li>
+</ol>
+
+<h2>Gli errori più comuni che vediamo</h2>
+<p>Il primo è il <strong>restyling solo grafico</strong>: si cambia la pelle e si lasciano testi vecchi di cinque anni, così il sito è bello ma dice le cose sbagliate. Il secondo è il <strong>lancio senza redirect</strong>, che trasforma anni di indicizzazione in una lista di errori 404. Il terzo è <strong>copiare il concorrente</strong>: il restyling è l'occasione per differenziarsi, non per assomigliare a tutti gli altri del settore.</p>
+
+<h2>Da dove cominciare</h2>
+<p>Prima di parlare di grafica, fai un bilancio onesto: cosa deve ottenere il sito nei prossimi tre anni, cosa dell'attuale funziona e va conservato, cosa lo frena. Con quelle risposte, la scelta tra restyling e rifacimento diventa quasi automatica. Se vuoi un parere tecnico sul tuo caso specifico, <a href="../servizi/sviluppo-web.html">guarda come lavoriamo sui siti web</a> o <a href="../preventivo.html">chiedi un preventivo</a>: ti diciamo anche se il restyling non serve.</p>`
+  },
+  {
+    slug: 'landing-page-efficace',
+    title: 'Come Creare una Landing Page che Converte: Anatomia del Successo',
+    description: 'Hero, copy, CTA, social proof: tutti gli elementi di una landing page ad alta conversione con esempi reali.',
+    tag: 'Conversioni',
+    date: '5 Febbraio 2026',
+    isoDate: '2026-02-05',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '8 min',
+    keyword: 'landing page efficace',
+    faq: [
+      {
+        question: 'Che differenza c\'è tra una landing page e una pagina del sito?',
+        answer: 'La landing page ha un solo compito: trasformare chi arriva da una campagna in un contatto. Per questo elimina le distrazioni — spesso anche il menu — e svolge un solo argomento. Una pagina del sito, invece, fa parte di un percorso più ampio e deve permettere di esplorare.'
+      },
+      {
+        question: 'Quanto deve essere lunga una landing page?',
+        answer: 'Quanto serve a sostenere la promessa, non un centimetro di più. Un\'offerta semplice e nota può convertire con una pagina corta; un servizio costoso o nuovo richiede più spazio per spiegare, mostrare prove e rispondere alle obiezioni. La lunghezza giusta la decide la complessità della decisione.'
+      },
+      {
+        question: 'Una landing page serve anche senza campagne a pagamento?',
+        answer: 'Raramente: la landing vive di traffico che le viene portato, da campagne, email o QR code. Senza un flusso di visite dedicato rimane una pagina orfana. Se il traffico è organico, di solito è più efficace lavorare sulle pagine servizio del sito.'
+      }
+    ],
+    content: `
+<p>Una landing page efficace non è una pagina "più bella": è una pagina con <strong>un solo compito e nessuna distrazione</strong>. Chi arriva da un annuncio ha cliccato per una promessa precisa, e la pagina deve mantenerla nel minor numero di passaggi possibile. Vediamo com'è fatta, elemento per elemento, una landing che converte.</p>
+
+<h2>La regola che viene prima di tutto</h2>
+<p>Una landing, una promessa. Se la pagina cerca di vendere due cose, ne vende zero: ogni offerta aggiuntiva, ogni link fuori percorso, ogni sezione "già che ci siamo" diluisce il messaggio e disperde il visitatore. Quando le promesse sono davvero due, la soluzione è semplice: due pagine.</p>
+
+<h2>L'anatomia, sezione per sezione</h2>
+<ol>
+    <li><strong>Hero con continuità.</strong> Il titolo deve ripetere la promessa dell'annuncio che ha generato il clic: chi atterra deve pensare "sono nel posto giusto" in un secondo. Sottotitolo che chiarisce per chi è l'offerta, e la prima call to action già visibile.</li>
+    <li><strong>Il problema, con le parole del cliente.</strong> Prima di parlare di te, dimostra di aver capito la situazione di chi legge. Le frasi che i clienti usano al telefono o nelle richieste di preventivo sono il miglior copy possibile.</li>
+    <li><strong>La soluzione, concreta.</strong> Cosa ottiene la persona, in quali passaggi, cosa è incluso. Elenchi brevi battono paragrafi densi: chi legge una landing scorre, non studia.</li>
+    <li><strong>La prova.</strong> Testimonianze vere con nome e contesto, esempi di lavori svolti, numeri verificabili. La prova falsa o generica ("azienda leader") ottiene l'effetto contrario.</li>
+    <li><strong>Le obiezioni.</strong> Una breve sezione di domande e risposte che affronta i dubbi reali: costi, tempi, cosa succede dopo il contatto. Ogni obiezione risolta in pagina è una email in meno che non riceverai mai.</li>
+    <li><strong>Il modulo.</strong> Chiedi il minimo indispensabile: ogni campo in più è attrito. Nome, contatto e una domanda aperta bastano quasi sempre. E di' chiaramente cosa succede dopo l'invio.</li>
+</ol>
+
+<h2>La call to action: una, chiara, ripetuta</h2>
+<p>La CTA deve dire cosa succede, non essere generica: "Richiedi il preventivo gratuito" funziona meglio di "Invia" perché elimina l'incertezza. Va ripetuta lungo la pagina — dopo la hero, dopo le prove, in fondo — ma deve essere sempre la stessa azione: due CTA diverse sono due promesse, e siamo di nuovo al punto di partenza.</p>
+
+<h2>Gli errori che azzerano le conversioni</h2>
+<ul>
+    <li><strong>Il menu di navigazione completo</strong>: ogni voce è un'uscita di emergenza dalla pagina che hai pagato per far visitare.</li>
+    <li><strong>La rottura di continuità</strong>: l'annuncio promette una cosa, la pagina ne racconta un'altra. È la prima causa di abbandono immediato.</li>
+    <li><strong>Il modulo interrogatorio</strong>: dieci campi obbligatori per una prima richiesta di contatto.</li>
+    <li><strong>La pagina lenta</strong>: su mobile, ogni secondo di attesa costa visitatori che hai già pagato con la campagna.</li>
+    <li><strong>Nessuna misurazione</strong>: senza tracciare gli invii del modulo non saprai mai se la pagina funziona o quanto ti costa ogni contatto.</li>
+</ul>
+
+<h2>Testare, ma con criterio</h2>
+<p>I test A/B hanno senso quando c'è traffico sufficiente e si cambia una cosa alla volta, partendo dagli elementi a maggiore impatto: titolo, offerta, CTA. Con poco traffico, meglio concentrarsi sui fondamentali — chiarezza della promessa e qualità della prova — che cercare micro-ottimizzazioni statisticamente insignificanti.</p>
+
+<h2>In pratica</h2>
+<p>Se stai per lanciare una campagna e ti serve una pagina costruita per convertire, <a href="../servizi/landing-page.html">guarda il nostro servizio landing page</a>: verifichiamo prima di tutto che il tuo caso sia davvero da landing, e se non lo è te lo diciamo. Oppure <a href="../preventivo.html">chiedi direttamente un preventivo</a>.</p>`
+  },
+  {
+    slug: 'instagram-per-aziende',
+    title: 'Instagram per Aziende: Guida Completa alla Crescita Organica',
+    description: 'Profilo business, content strategy, hashtag, reel: come crescere su Instagram senza budget pubblicitario.',
+    tag: 'Instagram',
+    date: '4 Febbraio 2026',
+    isoDate: '2026-02-04',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '8 min',
+    keyword: 'instagram per aziende',
+    faq: [
+      {
+        question: 'Instagram funziona per qualsiasi tipo di azienda?',
+        answer: 'No: rende al massimo per attività con una componente visiva — ristorazione, artigianato, estetica, interior, prodotti fisici — e per chi vende a consumatori finali. Un\'azienda B2B molto tecnica può usarlo come vetrina di credibilità, ma difficilmente sarà il suo canale principale di acquisizione.'
+      },
+      {
+        question: 'Quanto tempo richiede gestire bene un profilo aziendale?',
+        answer: 'Con un metodo — pilastri di contenuto definiti e produzione a blocchi — bastano poche ore a settimana per due o tre contenuti curati più le storie. Senza metodo, il tempo raddoppia e la costanza crolla: è l\'improvvisazione quotidiana, non la piattaforma, a consumare le energie.'
+      },
+      {
+        question: 'Gli hashtag servono ancora nel 2026?',
+        answer: 'Molto meno di un tempo: la distribuzione dei contenuti oggi dipende soprattutto dall\'interesse che il contenuto stesso genera nei primi minuti. Pochi hashtag pertinenti aiutano a inquadrare l\'argomento, ma nessuna lista di trenta tag salva un contenuto debole.'
+      }
+    ],
+    content: `
+<p>Instagram per un'azienda non è "pubblicare belle foto": è costruire, un contenuto alla volta, la prova che sai fare il tuo lavoro. La crescita organica — senza pubblicità — è più lenta di qualche anno fa, ma resta possibile per chi ha <strong>qualcosa di vero da mostrare e la costanza per mostrarlo</strong>. Ecco come impostarla con criterio.</p>
+
+<h2>Prima domanda: Instagram è il canale giusto per te?</h2>
+<p>Il tuo cliente passa del tempo su Instagram nel momento in cui è ricettivo verso ciò che offri? Per un ristorante, una pasticceria, un parrucchiere, un architetto, la risposta è quasi sempre sì. Per un'officina meccanica o un fornitore industriale, spesso il canale giusto è un altro. Rispondere onestamente a questa domanda prima di iniziare evita mesi di lavoro nel posto sbagliato.</p>
+
+<h2>Il profilo: la tua vetrina in nove secondi</h2>
+<p>Chi scopre un tuo contenuto e apre il profilo decide in pochi secondi se seguirti o contattarti. Tre cose devono essere impeccabili:</p>
+<ul>
+    <li><strong>La bio</strong>: cosa fai, per chi, dove. Chiaro e concreto, senza slogan vuoti. Con un link che porta dove vuoi tu (sito o contatto diretto).</li>
+    <li><strong>Il passaggio a profilo aziendale</strong>: sblocca statistiche, pulsanti di contatto e la categoria dell'attività. È gratuito e va fatto subito.</li>
+    <li><strong>La griglia recente</strong>: gli ultimi nove post sono la tua vetrina. Devono far capire a colpo d'occhio cosa fai e con quale livello di cura.</li>
+</ul>
+
+<h2>Cosa pubblicare: i pilastri che non si esauriscono</h2>
+<p>Il metodo più solido è definire tre o quattro filoni fissi e alternarli, invece di improvvisare ogni giorno:</p>
+<ul>
+    <li><strong>Il lavoro mentre accade</strong>: cantieri, preparazioni, retro del bancone. È il contenuto più autentico e il più difficile da copiare.</li>
+    <li><strong>Prima e dopo</strong>: il formato più efficace per chiunque trasformi qualcosa — spazi, capelli, siti web, prodotti.</li>
+    <li><strong>Le persone</strong>: chi lavora con te, con nome e volto. I profili aziendali senza volti crescono sistematicamente meno.</li>
+    <li><strong>Risposte alle domande vere</strong>: ogni domanda che i clienti ti fanno al telefono è un contenuto già validato dal mercato.</li>
+</ul>
+
+<h2>Reel, caroselli e storie: a cosa serve cosa</h2>
+<p>I <strong>reel</strong> sono lo strumento principale per farsi scoprire da chi non ti segue: brevi, con l'idea chiara nei primi due secondi, girati anche solo col telefono. I <strong>caroselli</strong> funzionano per approfondire — un progetto raccontato in più tavole, una mini-guida — e generano salvataggi, il segnale che l'algoritmo premia di più. Le <strong>storie</strong> parlano a chi già ti segue: quotidianità, sondaggi, dietro le quinte. Non serve eccellere in tutto: serve scegliere il formato sostenibile per te e tenerlo vivo.</p>
+
+<h2>La costanza batte il colpo di genio</h2>
+<p>Due o tre contenuti a settimana mantenuti per un anno valgono più di un mese di pubblicazione quotidiana seguito dal silenzio. Il trucco pratico è produrre a blocchi: una sessione ogni due settimane in cui si girano e fotografano più contenuti, poi programmati. Così il profilo vive anche nelle settimane piene di lavoro — che sono esattamente quelle in cui avresti più cose da mostrare e meno tempo per farlo.</p>
+
+<h2>Misurare quello che conta davvero</h2>
+<p>Follower e like sono le metriche più visibili e le meno importanti. Per un'azienda contano: messaggi ricevuti, clic sul sito, telefonate, persone che in negozio citano un contenuto. Una volta al mese, guarda quali contenuti hanno generato queste azioni e fai più di quello. Se vuoi delegare la parte operativa senza perdere la tua voce, <a href="../servizi/social-media.html">ecco come gestiamo i social per le aziende</a>.</p>`
+  },
+  {
+    slug: 'sito-web-mobile-first',
+    title: 'Mobile First Design: Perché il Tuo Sito Deve Partire dallo Smartphone',
+    description: 'Il 70% del traffico web è mobile. Perché il design mobile-first è essenziale e come implementarlo.',
+    tag: 'Performance',
+    date: '3 Febbraio 2026',
+    isoDate: '2026-02-03',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '6 min',
+    keyword: 'mobile first design',
+    faq: [
+      {
+        question: 'Cosa significa esattamente mobile-first?',
+        answer: 'Significa progettare il sito partendo dallo schermo dello smartphone — contenuti, gerarchie, interazioni — e poi adattarlo agli schermi grandi, invece del contrario. Non è solo una tecnica di sviluppo: è un ordine di priorità che costringe a decidere cosa conta davvero in ogni pagina.'
+      },
+      {
+        question: 'Un sito responsive non è già mobile-first?',
+        answer: 'Non necessariamente: molti siti responsive nascono su desktop e vengono "compressi" per il telefono, con menu affollati, testi fitti e pulsanti minuscoli. Il risultato tecnico si adatta allo schermo, ma l\'esperienza resta pensata per un altro dispositivo. Mobile-first è il processo, responsive è solo il comportamento.'
+      },
+      {
+        question: 'Il mobile conta anche per la SEO?',
+        answer: 'Sì: Google indicizza i siti valutando prima di tutto la versione mobile (mobile-first indexing). Un sito scomodo o incompleto da telefono parte penalizzato nella ricerca, oltre a perdere i visitatori che già riceve.'
+      }
+    ],
+    content: `
+<p>La maggior parte delle visite a un sito aziendale oggi arriva da uno smartphone — per i siti locali la quota è ancora più alta, perché si cerca "sul momento": un numero da chiamare, un orario, un indirizzo. Eppure moltissimi siti vengono ancora progettati guardando un monitor da 27 pollici. Il <strong>mobile-first design</strong> ribalta l'ordine: si parte dallo schermo piccolo, dove ogni pixel costa, e si allarga poi verso il desktop.</p>
+
+<h2>Perché partire dal piccolo cambia tutto</h2>
+<p>Progettare prima per smartphone non è un vincolo tecnico: è un esercizio di priorità. Su uno schermo di sei pollici non c'è spazio per tre slider, otto banner e dodici voci di menu: bisogna decidere cosa serve davvero a chi visita. Questa disciplina migliora anche la versione desktop, perché elimina il superfluo alla radice invece di nasconderlo. Il percorso inverso — comprimere un sito desktop dentro un telefono — produce quasi sempre pagine affollate, lente e frustranti.</p>
+
+<h2>Cosa vuol dire in pratica</h2>
+<ul>
+    <li><strong>Contenuto prima di tutto</strong>: la prima schermata da mobile deve dire chi sei, cosa fai e come contattarti. Niente caroselli decorativi che occupano lo spazio più prezioso del sito.</li>
+    <li><strong>Tocco, non clic</strong>: pulsanti e link dimensionati per un pollice, distanziati abbastanza da non premere quello sbagliato. Il numero di telefono deve avviare la chiamata al tocco.</li>
+    <li><strong>Testi leggibili senza zoom</strong>: dimensione adeguata, righe corte, paragrafi brevi. Se serve lo zoom, il design è sbagliato.</li>
+    <li><strong>Moduli minimi</strong>: compilare campi da telefono è faticoso. Ogni campo eliminato aumenta le richieste che ricevi.</li>
+    <li><strong>Peso sotto controllo</strong>: immagini nei formati moderni e nelle dimensioni giuste, niente librerie caricate per usarne una funzione. Su rete mobile la pesantezza si paga in visitatori persi.</li>
+</ul>
+
+<h2>Velocità: il fattore che non perdona</h2>
+<p>Da mobile la connessione non è sempre buona e la pazienza è poca: una pagina che impiega troppi secondi a diventare usabile perde una parte dei visitatori prima ancora di essere vista. La velocità non si aggiunge alla fine con un plugin: si costruisce con scelte fatte all'inizio — codice essenziale, immagini ottimizzate, niente zavorra. È uno dei motivi per cui sviluppiamo i siti scrivendo il codice da zero invece di partire da temi preconfezionati.</p>
+
+<h2>Google guarda il tuo sito da telefono</h2>
+<p>Con il mobile-first indexing, Google valuta e indicizza i siti basandosi sulla versione mobile. Se da telefono mancano contenuti, i menu nascondono sezioni o la pagina è lenta, è quella versione a determinare il posizionamento — non la versione desktop che magari è perfetta. Curare il mobile non è quindi solo una questione di esperienza utente: è la base della visibilità su Google.</p>
+
+<h2>Come capire se il tuo sito ha un problema</h2>
+<p>Prendi il telefono e fai quello che farebbe un cliente: cerca la tua attività, apri il sito, prova a trovare un servizio e a contattarti. Se in trenta secondi non ci riesci senza zoom e senza errori di tocco, i tuoi visitatori sono nella stessa situazione — ma loro non hanno motivo di insistere. Se vuoi un parere su come rimettere in sesto il tuo sito partendo dal mobile, <a href="../servizi/sviluppo-web.html">guarda come sviluppiamo i siti</a> o <a href="../preventivo.html">richiedi un preventivo</a>.</p>`
+  },
+  {
+    slug: 'core-web-vitals-guida',
+    title: 'Core Web Vitals: Cosa Sono e Come Migliorarli per il Tuo Sito',
+    description: 'LCP, INP, CLS: le metriche Google per valutare il tuo sito. Guida pratica per ottimizzarle.',
+    tag: 'SEO Tecnica',
+    date: '2 Febbraio 2026',
+    isoDate: '2026-02-02',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '7 min',
+    keyword: 'core web vitals',
+    faq: [
+      {
+        question: 'I Core Web Vitals influenzano il posizionamento su Google?',
+        answer: 'Sì, sono tra i fattori di ranking, anche se il contenuto resta il criterio principale: a parità di pertinenza, un sito con esperienza di caricamento migliore è avvantaggiato. Ma l\'effetto più concreto è sugli utenti: un sito lento perde visitatori a prescindere da dove si posiziona.'
+      },
+      {
+        question: 'Dove posso misurare i Core Web Vitals del mio sito?',
+        answer: 'Gli strumenti gratuiti di Google bastano: PageSpeed Insights per l\'analisi di una singola pagina con dati reali degli utenti quando disponibili, e il rapporto dedicato in Search Console per una visione d\'insieme del sito. È importante guardare i dati mobile, non solo desktop.'
+      },
+      {
+        question: 'Un punteggio basso si sistema con un plugin?',
+        answer: 'Raramente: i plugin di ottimizzazione possono limare, ma se il problema è strutturale — tema pesante, troppi script, immagini enormi — la soluzione richiede interventi sul codice o scelte più radicali. Un punteggio molto basso di solito racconta come il sito è stato costruito, non quale plugin manca.'
+      }
+    ],
+    content: `
+<p>I Core Web Vitals sono le tre metriche con cui Google misura l'esperienza concreta di caricamento di una pagina: quanto ci mette a mostrare il contenuto principale, quanto reagisce in fretta ai tocchi, quanto "balla" il layout mentre carica. Non sono un vezzo da tecnici: raccontano <strong>ciò che i tuoi visitatori provano ogni volta che aprono il sito</strong>, e influenzano sia il posizionamento sia le conversioni.</p>
+
+<h2>Le tre metriche, spiegate semplici</h2>
+<ul>
+    <li><strong>LCP — Largest Contentful Paint</strong>: quanto tempo passa prima che l'elemento principale della pagina (di solito un'immagine o il titolo) sia visibile. Soglia buona: entro 2,5 secondi. È la sensazione di "quanto è veloce il sito".</li>
+    <li><strong>INP — Interaction to Next Paint</strong>: quanto in fretta la pagina risponde ai tocchi e ai clic — aprire un menu, premere un pulsante. Soglia buona: sotto i 200 millisecondi. È la differenza tra un sito reattivo e uno che sembra impallato.</li>
+    <li><strong>CLS — Cumulative Layout Shift</strong>: quanto si spostano gli elementi mentre la pagina carica. Soglia buona: sotto 0,1. È il fastidio di premere un pulsante che nel frattempo si è spostato.</li>
+</ul>
+
+<h2>Come misurarli senza spendere nulla</h2>
+<p>Due strumenti gratuiti di Google coprono tutto. <strong>PageSpeed Insights</strong> analizza una pagina alla volta e, quando il sito ha traffico sufficiente, mostra i dati raccolti dagli utenti reali — i più attendibili. <strong>Search Console</strong>, nel rapporto "Segnali web essenziali", raggruppa le pagine del sito per stato: buone, da migliorare, scarse. Guarda sempre i dati mobile prima di quelli desktop: è lì che si gioca la partita.</p>
+
+<h2>Migliorare l'LCP: far arrivare subito ciò che conta</h2>
+<p>Il colpevole tipico è un'immagine principale troppo pesante o servita in un formato datato. Le contromisure più efficaci: comprimere le immagini e usare formati moderni come WebP, dimensionarle per lo schermo reale invece di caricare l'originale gigante, non nascondere il contenuto principale dietro script che devono eseguire prima, e avere un hosting che risponde in fretta. Spesso il solo lavoro sulle immagini sposta l'LCP da "scarso" a "buono".</p>
+
+<h2>Migliorare l'INP: alleggerire il lavoro del browser</h2>
+<p>Se la pagina risponde lenta ai tocchi, quasi sempre c'è troppo JavaScript in esecuzione: script di tracciamento accumulati negli anni, librerie caricate per intero per usarne una funzione, temi che fanno tutto e quindi caricano tutto. La cura è la sottrazione: rimuovere gli script non più usati, caricare il resto solo quando serve, e in generale preferire soluzioni leggere a soluzioni comode.</p>
+
+<h2>Migliorare il CLS: fermare il balletto</h2>
+<p>Il layout si sposta quando il browser scopre le dimensioni delle cose solo dopo averle caricate. Le regole: dichiarare sempre larghezza e altezza di immagini e video, riservare in anticipo lo spazio per banner e contenuti caricati dopo, caricare i font in modo che il testo non cambi dimensione a metà lettura. Sono dettagli di costruzione: costano poco se previsti, tanto se recuperati dopo.</p>
+
+<h2>Il punto vero: i Vitals si costruiscono, non si riparano</h2>
+<p>Un sito nato leggero — codice essenziale, immagini trattate bene, niente dipendenze superflue — supera le soglie senza sforzi particolari. Un sito nato pesante può migliorare, ma con rendimenti decrescenti: a un certo punto ottimizzare costa più che ricostruire. È il motivo per cui trattiamo la performance come una scelta di progetto, non come una rifinitura finale. Se il tuo sito ha punteggi in rosso e vuoi capire quanto è recuperabile, <a href="../servizi/sviluppo-web.html">guarda il nostro approccio allo sviluppo</a> o <a href="../preventivo.html">parliamone con un preventivo</a>.</p>`
+  },
+  {
+    slug: 'logo-design-processo-creativo',
+    title: 'Il Processo di Creazione di un Logo: Dal Brief al Design Finale',
+    description: 'Come nasce un logo professionale? Le fasi del processo creativo con esempi concreti dai nostri progetti.',
+    tag: 'Design',
+    date: '1 Febbraio 2026',
+    isoDate: '2026-02-01',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '6 min',
+    keyword: 'logo design processo',
+    faq: [
+      {
+        question: 'Quanto costa un logo professionale?',
+        answer: 'Dipende dalla profondità del lavoro: un logo progettato con ricerca, proposte motivate e consegna di tutti i formati d\'uso ha un costo diverso da un simbolo disegnato in un\'ora. Diffida degli estremi: il logo da pochi euro è quasi sempre un clipart riciclato, e il prezzo alto da solo non garantisce qualità.'
+      },
+      {
+        question: 'Cosa devo ricevere alla consegna di un logo?',
+        answer: 'I file vettoriali (che si ingrandiscono all\'infinito senza perdere qualità), le versioni in positivo, negativo e monocromia, i formati per web e stampa, e una guida anche breve con colori esatti e regole d\'uso. Se ricevi solo un JPG, il lavoro è incompleto.'
+      },
+      {
+        question: 'Quante proposte è giusto ricevere?',
+        answer: 'Meglio poche proposte motivate che tante varianti casuali: due o tre direzioni pensate, ciascuna con la sua logica, permettono una scelta consapevole. Il designer che presenta venti bozze sta delegando a te il suo lavoro di selezione.'
+      }
+    ],
+    content: `
+<p>Un logo professionale non nasce da un lampo di genio davanti allo schermo: nasce da un processo, e la qualità del risultato dipende più dal processo che dal talento del momento. Capire come funziona ti serve anche da committente: sapere <strong>cosa aspettarti in ogni fase</strong> è il modo migliore per valutare chi hai di fronte e per collaborare bene.</p>
+
+<h2>Fase 1: il brief — le domande prima dei disegni</h2>
+<p>Tutto parte da una conversazione strutturata: cosa fa l'azienda, per chi, cosa la distingue, come vuole essere percepita, chi sono i concorrenti e come si presentano. Un designer che inizia a disegnare senza aver fatto queste domande sta decorando, non progettando. Dal brief esce un documento condiviso: è la bussola contro cui si valuteranno tutte le proposte, ed evita il pericolosissimo criterio del "mi piace / non mi piace".</p>
+
+<h2>Fase 2: la ricerca — capire il territorio</h2>
+<p>Prima di proporre, si studia: come si presentano i concorrenti diretti, quali codici visivi dominano il settore, cosa è già saturo e dove c'è spazio per distinguersi. Questa fase è invisibile nel risultato finale ma decisiva: un logo bellissimo che assomiglia a quello del concorrente più grande è un regalo alla sua riconoscibilità, non alla tua.</p>
+
+<h2>Fase 3: le proposte — poche direzioni, ben motivate</h2>
+<p>Il momento delle proposte separa i professionisti dagli improvvisatori. Il metodo serio prevede due o tre direzioni distinte, ognuna presentata con la sua logica: perché queste forme, perché questi riferimenti, come risponde al brief. E ogni proposta va mostrata nei contesti reali — insegna, profilo social, biglietto, favicon — perché un logo si giudica al lavoro, non isolato su una tavola bianca.</p>
+
+<h2>Fase 4: la rifinitura — dove si fa la qualità</h2>
+<p>Scelta la direzione, inizia il lavoro fine: proporzioni, spaziature, versione orizzontale e simbolo da solo, comportamento in piccolo e in monocromia. È la fase che non si vede ma si sente: la differenza tra un logo che funziona ovunque e uno che "in favicon non si legge" sta tutta qui. Un buon test: il logo deve reggere stampato in nero su un timbro e ridotto a 16 pixel.</p>
+
+<h2>Fase 5: la consegna — il logo è un sistema, non un file</h2>
+<p>La consegna professionale comprende i file vettoriali sorgente, le versioni per ogni uso (positivo, negativo, monocromia), i formati per web e stampa e una guida d'uso con codici colore esatti, caratteri e regole essenziali. Senza questo corredo, il logo si degrada in fretta: ognuno lo userà come capita, e in un anno ne circoleranno cinque versioni diverse.</p>
+
+<h2>Cosa chiedere a chi te lo progetta</h2>
+<p>Tre domande smascherano subito il livello: come strutturi il brief? Mi mostri le proposte applicate a contesti reali? Cosa è incluso nella consegna? Chi risponde bene a queste tre, di solito, lavora bene. Se stai valutando un logo nuovo o il restyling di quello attuale, <a href="../servizi/brand-identity.html">guarda come lavoriamo sulla brand identity</a> o <a href="../preventivo.html">chiedi un preventivo</a>.</p>`
+  },
+  {
+    slug: 'facebook-ads-guida-pratica',
+    title: 'Facebook Ads per Principianti: Come Creare Campagne che Funzionano',
+    description: 'Targeting, budget, creatività, A/B test: guida step-by-step per le tue prime campagne Meta Ads.',
+    tag: 'Advertising',
+    date: '30 Gennaio 2026',
+    isoDate: '2026-01-30',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '8 min',
+    keyword: 'facebook ads guida',
+    faq: [
+      {
+        question: 'Quanto budget serve per iniziare con Meta Ads?',
+        answer: 'Meno di quanto si pensi per imparare, più di quanto si spera per avere risultati stabili: con pochi euro al giorno si possono testare messaggi e pubblici, ma servono settimane di dati prima di trarre conclusioni. L\'errore da evitare è giudicare una campagna dopo tre giorni e venti euro.'
+      },
+      {
+        question: 'Meglio il pulsante "Metti in evidenza" o Gestione inserzioni?',
+        answer: 'Il pulsante rapido sotto i post è comodo ma limitato: obiettivi generici e poco controllo. Gestione inserzioni richiede una curva di apprendimento ma permette di scegliere l\'obiettivo giusto, escludere pubblici inutili e misurare i risultati veri. Se fai sul serio, passa a Gestione inserzioni da subito.'
+      },
+      {
+        question: 'Le campagne Meta funzionano per le attività locali?',
+        answer: 'Sì, spesso molto bene: la possibilità di mostrare annunci solo a chi vive o si trova in una zona precisa le rende adatte a negozi, ristoranti e servizi di prossimità. La condizione è avere un\'offerta chiara e una destinazione decente: l\'annuncio migliore non salva una pagina che non convince.'
+      }
+    ],
+    content: `
+<p>Le campagne su Facebook e Instagram — oggi "Meta Ads" — restano uno degli strumenti più accessibili per farsi conoscere: budget liberi, targeting geografico preciso, formati flessibili. Ma proprio l'accessibilità è la trappola: <strong>è facilissimo spendere, molto meno facile spendere bene</strong>. Questa guida copre le basi che evitano gli errori più costosi delle prime campagne.</p>
+
+<h2>Prima di aprire il gestore: le tre domande</h2>
+<p>Una campagna funziona se prima hai risposto a: <strong>cosa offro</strong> (un'offerta specifica, non "esistiamo anche noi"), <strong>a chi</strong> (chi è la persona che dovrebbe fermarsi sul tuo annuncio) e <strong>dove la porto</strong> (una pagina all'altezza dell'annuncio, non la home generica). La maggior parte delle campagne che "non funzionano" fallisce qui, non nelle impostazioni tecniche.</p>
+
+<h2>L'obiettivo giusto cambia tutto</h2>
+<p>Meta ottimizza la consegna degli annunci in base all'obiettivo che scegli: se chiedi interazioni, troverà gente che mette like; se chiedi contatti, cercherà gente che compila moduli. Scegliere "interazioni" perché costa meno e sperare nei clienti è l'errore più diffuso in assoluto. Per un'azienda, gli obiettivi sensati sono quasi sempre traffico qualificato, contatti o vendite — e la scelta va fatta all'inizio, perché determina tutto il comportamento della campagna.</p>
+
+<h2>Il targeting: preciso ma non microscopico</h2>
+<p>Per un'attività locale, il raggio geografico è il filtro più potente: inutile pagare per mostrare l'annuncio a chi non verrà mai. Sul resto, la tendenza attuale premia pubblici relativamente ampi: l'algoritmo è diventato bravo a trovare le persone giuste da solo, e gli iper-filtri di interessi che andavano di moda anni fa oggi spesso peggiorano i risultati e alzano i costi. Regola pratica: geografia stretta, demografia sensata, interessi con mano leggera.</p>
+
+<h2>La creatività: dove si vince davvero</h2>
+<p>A parità di impostazioni, la differenza la fa quello che le persone vedono:</p>
+<ul>
+    <li><strong>L'immagine o il video devono fermare lo scroll</strong>: foto vere del tuo lavoro battono quasi sempre le immagini d'archivio patinate che tutti riconoscono come pubblicità.</li>
+    <li><strong>Il messaggio deve essere uno</strong>: un'offerta, un beneficio, un invito. L'annuncio che dice tre cose non ne comunica nessuna.</li>
+    <li><strong>Il testo parla al cliente, non di te</strong>: "Rinnova il tuo bagno in una settimana" funziona meglio di "Siamo un'azienda leader dal 1985".</li>
+    <li><strong>Prepara più varianti</strong>: due o tre creatività diverse per lo stesso obiettivo permettono all'algoritmo di capire in fretta cosa funziona.</li>
+</ul>
+
+<h2>Budget e pazienza: il sistema deve imparare</h2>
+<p>Ogni campagna attraversa una fase di apprendimento in cui i risultati ballano: è normale. Toccare le impostazioni ogni giorno riavvia l'apprendimento e brucia budget. Il metodo sano: budget quotidiano sostenibile, nessuna modifica per almeno una settimana, poi decisioni basate sui numeri — quanto costa un contatto, non quanti like arrivano. E i contatti vanno tracciati con il pixel o le API di Meta sulla pagina di destinazione, altrimenti stai navigando a vista.</p>
+
+<h2>Gli errori dei principianti, in ordine di costo</h2>
+<ol>
+    <li><strong>Mandare il traffico alla home page</strong> invece che a una pagina dedicata all'offerta.</li>
+    <li><strong>Obiettivo sbagliato</strong>: comprare like sperando in clienti.</li>
+    <li><strong>Giudicare troppo presto</strong>: tre giorni di dati non dicono nulla.</li>
+    <li><strong>Nessun tracciamento</strong>: senza misurare i contatti, ogni valutazione è una sensazione.</li>
+    <li><strong>Annunci autoreferenziali</strong>: parlare di sé invece che del problema del cliente.</li>
+</ol>
+
+<h2>Quando ha senso delegare</h2>
+<p>Se il budget mensile inizia a pesare o le campagne diventano più di una, l'improvvisazione costa più della gestione professionale. Se vuoi capire se le tue campagne stanno rendendo quanto potrebbero — o partire con il piede giusto — <a href="../servizi/social-media.html">guarda come gestiamo social e campagne</a> o <a href="../preventivo.html">chiedi un preventivo</a>.</p>`
+  },
+  {
+    slug: 'wordpress-vs-codice-custom',
+    title: 'WordPress vs Codice Custom: Quale Scegliere per il Tuo Progetto?',
+    description: 'Vantaggi, svantaggi, costi e performance a confronto. La guida definitiva per scegliere la tecnologia giusta.',
+    tag: 'Tecnologia',
+    date: '28 Gennaio 2026',
+    isoDate: '2026-01-28',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '8 min',
+    keyword: 'wordpress vs custom',
+    faq: [
+      {
+        question: 'Un sito in codice custom costa sempre di più di WordPress?',
+        answer: 'All\'inizio spesso sì, sul ciclo di vita non è detto: WordPress ha costi ricorrenti che si sottovalutano — licenze dei plugin, manutenzione, aggiornamenti, interventi quando qualcosa si rompe. Un sito custom ben fatto ha costi di gestione minimi. Il confronto onesto si fa su tre-cinque anni, non sul preventivo iniziale.'
+      },
+      {
+        question: 'Con il codice custom posso aggiornare i contenuti da solo?',
+        answer: 'Dipende da come viene costruito: si può prevedere un\'area di gestione per le parti che cambiano spesso, oppure concordare che gli aggiornamenti li faccia chi ha sviluppato il sito. Va chiarito prima, in base a quanto spesso prevedi davvero di modificare i contenuti — spesso meno di quanto si immagina.'
+      },
+      {
+        question: 'WordPress è sconsigliato in assoluto?',
+        answer: 'No: per progetti editoriali con molti autori, blog intensivi o chi deve pubblicare contenuti ogni giorno in autonomia resta una scelta sensata. Il problema non è WordPress in sé, ma usarlo per tutto: per un sito aziendale che cambia poco, la sua flessibilità si paga in peso, manutenzione e superficie di attacco senza dare benefici.'
+      }
+    ],
+    content: `
+<p>È la domanda che prima o poi fa chiunque debba rifare il sito: meglio WordPress o un sito sviluppato su misura? La risposta onesta è che <strong>dipende dal progetto</strong> — ma "dipende" non significa che sia indifferente. Vediamo i criteri concreti, senza tifoserie.</p>
+
+<h2>Cosa sono davvero le due opzioni</h2>
+<p><strong>WordPress</strong> è un CMS: un sistema pronto che gestisce contenuti, temi e funzionalità tramite plugin. Copre una fetta enorme del web proprio perché abbassa la barriera d'ingresso. <strong>Codice custom</strong> significa che il sito viene scritto da zero — HTML, CSS, JavaScript ed eventuale backend — contenendo solo ciò che serve a quel progetto. Nessun tema da adattare, nessun plugin di terzi, nessuna funzione dormiente.</p>
+
+<h2>Performance: la differenza strutturale</h2>
+<p>Un tema WordPress commerciale deve funzionare per migliaia di siti diversi, quindi carica codice per ogni eventualità — anche quella che non ti riguarda. Ogni plugin aggiunge il suo peso. Il risultato tipico è un sito che fa molte cose ma le fa lento, e che richiede plugin di caching per compensare. Il sito custom parte dall'altro capo: contiene solo il necessario, e la velocità non va "ottimizzata dopo" perché è una proprietà di nascita. Sui Core Web Vitals questa differenza si vede regolarmente.</p>
+
+<h2>Manutenzione e sicurezza: il costo nascosto</h2>
+<p>WordPress richiede manutenzione continua: aggiornamenti del core, del tema e di ogni plugin, con il rischio periodico che qualcosa entri in conflitto. Ed essendo la piattaforma più diffusa al mondo, è anche la più attaccata: gran parte delle violazioni passa da plugin non aggiornati. Un sito custom statico o quasi ha una superficie di attacco minima e non conosce l'ansia da aggiornamento: meno pezzi ci sono, meno pezzi si rompono.</p>
+
+<h2>Autonomia sui contenuti: il vero punto a favore di WordPress</h2>
+<p>Se pubblichi articoli ogni settimana, hai più redattori o gestisci un catalogo che cambia in continuazione, un CMS è fatto per questo. È il caso d'uso in cui WordPress dà il meglio. Il punto è essere onesti sulla frequenza reale: moltissimi siti aziendali nascono "perché dobbiamo poter modificare tutto da soli" e poi restano identici per anni — pagando intanto il prezzo in peso e manutenzione di una flessibilità mai usata. E per le parti che cambiano davvero, anche un sito custom può prevedere una gestione dedicata.</p>
+
+<h2>Il criterio di scelta, in breve</h2>
+<ul>
+    <li><strong>Sito aziendale o vetrina che cambia poco</strong>: custom. Più veloce, più sicuro, più economico da mantenere.</li>
+    <li><strong>Blog o magazine con pubblicazione intensa e più autori</strong>: WordPress o un CMS moderno hanno senso.</li>
+    <li><strong>Progetti con esigenze particolari</strong> (prenotazioni su misura, integrazioni specifiche): custom, perché piegare WordPress a ciò per cui non è nato costa più che costruire giusto.</li>
+    <li><strong>E-commerce</strong>: valutazione a parte — contano catalogo, volumi e integrazioni più della piattaforma in sé.</li>
+</ul>
+
+<h2>La domanda giusta da fare a chi ti fa il preventivo</h2>
+<p>Non "che tecnologia usi?" ma "perché proponi questa tecnologia per il mio caso?". Chi propone sempre la stessa soluzione a tutti sta vendendo quello che sa fare, non quello che ti serve. Noi sviluppiamo siti in codice custom perché per i progetti che seguiamo — siti aziendali che devono essere veloci, solidi e senza costi di gestione a sorpresa — è quasi sempre la scelta migliore; e quando non lo è, lo diciamo. <a href="../servizi/sviluppo-web.html">Qui trovi il nostro approccio allo sviluppo</a>, oppure <a href="../preventivo.html">raccontaci il progetto</a>.</p>`
+  },
+  {
+    slug: 'content-marketing-per-pmi',
+    title: 'Content Marketing per PMI: Come Attrarre Clienti con i Contenuti',
+    description: 'Blog, video, newsletter: strategie di content marketing efficaci per piccole e medie imprese.',
+    tag: 'Content Marketing',
+    date: '26 Gennaio 2026',
+    isoDate: '2026-01-26',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '7 min',
+    keyword: 'content marketing PMI',
+    faq: [
+      {
+        question: 'Il content marketing funziona anche per una piccola azienda locale?',
+        answer: 'Sì, anzi spesso funziona meglio: una PMI locale compete su ricerche specifiche e territoriali dove i grandi non arrivano, e la competenza vera del titolare — raccontata bene — è un contenuto che nessun concorrente può copiare. La scala è diversa: servono pochi contenuti giusti, non un piano editoriale da multinazionale.'
+      },
+      {
+        question: 'Quanto tempo serve prima di vedere risultati?',
+        answer: 'I contenuti sono un investimento a rendimento lento e cumulativo: un articolo utile continua a portare visite e richieste per anni, ma raramente dà effetti nelle prime settimane. Il confronto corretto non è con la pubblicità — che si spegne quando smetti di pagare — ma con la costruzione di un patrimonio.'
+      },
+      {
+        question: 'Posso usare l\'AI per scrivere i contenuti?',
+        answer: 'Come supporto sì, come sostituto no: i contenuti generati in serie senza competenza reale dietro si riconoscono, non si distinguono da quelli dei concorrenti che usano lo stesso metodo e raramente costruiscono fiducia. Il valore sta in ciò che solo tu sai: casi reali, errori visti sul campo, risposte da esperienza diretta.'
+      }
+    ],
+    content: `
+<p>Il content marketing per una PMI non è "aprire un blog perché si deve": è rispondere pubblicamente, e meglio dei concorrenti, alle domande che i tuoi potenziali clienti si fanno prima di comprare. Fatto così, <strong>lavora per te per anni</strong>: ogni contenuto è un venditore che non dorme mai. Fatto male — contenuti generici pubblicati per riempire — è solo tempo perso. Vediamo come farlo con le risorse vere di una piccola impresa.</p>
+
+<h2>Il principio: rispondi alle domande che già ricevi</h2>
+<p>Il miglior piano editoriale di una PMI è già scritto nelle conversazioni con i clienti: le domande al telefono, le obiezioni nei preventivi, i dubbi ricorrenti prima della firma. "Quanto costa?", "quanto dura?", "che differenza c'è tra X e Y?", "come scelgo il fornitore giusto?". Ogni domanda vera è un contenuto già validato dal mercato: qualcuno la sta cercando su Google in questo momento, e chi risponde meglio si prende il contatto.</p>
+
+<h2>La competenza è il tuo vantaggio sleale</h2>
+<p>Una PMI non può competere in volume di contenuti con i grandi, ma può stravincere in specificità: il titolare che spiega come riconoscere un lavoro fatto male, i casi reali visti in vent'anni di mestiere, gli errori che i clienti fanno prima di arrivare da te. Questo materiale non è replicabile né dai concorrenti né dall'AI, e costruisce l'unica cosa che conta nella vendita di servizi: la fiducia prima del contatto.</p>
+
+<h2>I formati, in ordine di praticità</h2>
+<ul>
+    <li><strong>Le pagine servizio ben scritte</strong>: vengono prima del blog. Se le pagine che vendono sono povere, il blog porta traffico a un negozio vuoto.</li>
+    <li><strong>Gli articoli che rispondono a domande specifiche</strong>: uno al mese, fatto bene, batte quattro riempitivi. Titolo chiaro, risposta onesta, esempi concreti.</li>
+    <li><strong>La newsletter</strong>: il canale più sottovalutato. Chi ti ha lasciato l\'email ti ha già dato fiducia: coltivarla costa poco e rende nel tempo.</li>
+    <li><strong>Il riuso sui social</strong>: ogni articolo diventa due o tre post. Non serve produrre contenuti diversi per ogni canale: serve spremere bene quelli buoni.</li>
+</ul>
+
+<h2>Il ritmo sostenibile batte l'entusiasmo iniziale</h2>
+<p>Il ciclo tipico del blog aziendale: cinque articoli il primo mese, due il secondo, silenzio dal terzo. Meglio partire con un impegno minimo — un contenuto al mese — e mantenerlo per un anno: dodici risposte solide alle dodici domande più frequenti dei tuoi clienti sono una base che molti concorrenti non avranno mai. E il contenuto scritto una volta continua a lavorare: aggiornarlo ogni tanto costa una frazione dello scriverne di nuovi.</p>
+
+<h2>Misurare senza ossessionarsi</h2>
+<p>Le metriche che contano per una PMI sono poche: le visite dalle ricerche crescono nel tempo? I contatti citano i contenuti ("ho letto il vostro articolo su...")? Le pagine più lette portano verso il contatto? Un controllo al mese in Search Console e Analytics basta. Il resto — like, condivisioni, tempo di lettura — è contorno.</p>
+
+<h2>Da dove partire domani mattina</h2>
+<p>Scrivi le dieci domande che i clienti ti fanno più spesso. Ordinale per frequenza. La prima è il tuo primo contenuto. Se preferisci che testi e strategia li curi qualcuno che lo fa di mestiere — con le tue conoscenze e la tua voce — <a href="../servizi/consulenze.html">guarda le nostre consulenze</a> o <a href="../preventivo.html">parliamone</a>.</p>`
+  },
+  {
+    slug: 'errori-comuni-siti-web',
+    title: '10 Errori Comuni nei Siti Web che Ti Fanno Perdere Clienti',
+    description: 'Velocità, navigazione, CTA mancanti: gli errori più frequenti e come correggerli.',
+    tag: 'Best Practice',
+    date: '24 Gennaio 2026',
+    isoDate: '2026-01-24',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '7 min',
+    keyword: 'errori siti web',
+    faq: [
+      {
+        question: 'Qual è l\'errore più costoso in un sito aziendale?',
+        answer: 'Il contatto difficile: telefono non cliccabile, modulo chilometrico, nessuna indicazione chiara su cosa fare. Si può sopravvivere a un design datato, non a un cliente convinto che non riesce a contattarti: è l\'unico errore che azzera direttamente il risultato di tutto il resto.'
+      },
+      {
+        question: 'Come capisco quali errori ha il mio sito?',
+        answer: 'Il test più economico è osservare una persona non del mestiere — un conoscente, non un collega — mentre cerca sul tuo sito un servizio e prova a contattarti da telefono. Dove esita, si perde o sbuffa, lì c\'è un errore. Cinque minuti di osservazione valgono più di molte analisi.'
+      },
+      {
+        question: 'Conviene correggere il sito attuale o rifarlo?',
+        answer: 'Se gli errori sono di contenuto e percorso — testi vaghi, contatti nascosti, pagine mancanti — spesso si corregge. Se sono strutturali — lentezza di fondo, mobile inutilizzabile, tecnologia abbandonata — il rattoppo costa più del rifacimento. Il confine lo dice una verifica tecnica onesta.'
+      }
+    ],
+    content: `
+<p>La maggior parte dei siti aziendali non perde clienti per mancanza di estro grafico: li perde per <strong>errori concreti e ripetuti</strong>, quasi sempre gli stessi. Questa è la lista dei dieci che vediamo più spesso quando analizziamo siti esistenti — con il criterio per riconoscerli e correggerli.</p>
+
+<h2>Gli errori che costano contatti</h2>
+<ol>
+    <li><strong>Contatto difficile.</strong> Numero non cliccabile da mobile, email nascosta nel footer, modulo con dieci campi. Chi è pronto a contattarti va accompagnato, non ostacolato: telefono cliccabile, modulo minimo, contatti raggiungibili da ogni pagina.</li>
+    <li><strong>Nessuna call to action.</strong> Pagine che descrivono e poi... finiscono. Ogni pagina deve chiudere con un passo successivo esplicito: chiedi un preventivo, chiama, scrivici.</li>
+    <li><strong>Home page che non dice cosa fai.</strong> Slogan evocativi ("Realizziamo i tuoi sogni") al posto delle tre informazioni vitali: cosa fai, per chi, dove. Se in cinque secondi non si capisce, il visitatore è già altrove.</li>
+    <li><strong>Testi che parlano di te invece che al cliente.</strong> "La nostra mission", "il nostro team dinamico". Il visitatore cerca la risposta a una sola domanda: cosa risolvi per me?</li>
+    <li><strong>Nessuna prova.</strong> Zero lavori mostrati, zero recensioni, zero nomi. Le affermazioni senza prove ("qualità e professionalità") le fanno tutti: è la prova concreta a distinguere.</li>
+</ol>
+
+<h2>Gli errori che allontanano i visitatori</h2>
+<ol start="6">
+    <li><strong>Lentezza.</strong> Ogni secondo di caricamento in più fa evaporare una parte dei visitatori, soprattutto da mobile. Le cause tipiche: immagini enormi, temi appesantiti, script accumulati negli anni.</li>
+    <li><strong>Mobile trascurato.</strong> Testi microscopici, pulsanti impremibili, elementi che si sovrappongono. La maggioranza delle visite arriva da telefono: se lì l\'esperienza è penosa, il sito è rotto per la maggioranza dei tuoi potenziali clienti.</li>
+    <li><strong>Navigazione labirintica.</strong> Menu con troppe voci, sottomenu imprevedibili, pagine raggiungibili solo per caso. Regola: qualunque informazione importante a non più di due clic dalla home.</li>
+    <li><strong>Informazioni scadute.</strong> Orari vecchi, servizi che non offri più, "news" ferme a tre anni fa. Ogni informazione sbagliata è un piccolo tradimento della fiducia — e un blog abbandonato comunica peggio di nessun blog.</li>
+    <li><strong>Muri di testo.</strong> Paragrafi da quindici righe senza titoli né elenchi. Sul web si scorre prima di leggere: titoli parlanti, paragrafi brevi, elenchi puntati dove servono.</li>
+</ol>
+
+<h2>Il filo conduttore</h2>
+<p>Quasi tutti questi errori nascono dallo stesso vizio: il sito costruito dal punto di vista dell'azienda invece che da quello del cliente. L'antidoto è una domanda da farsi su ogni pagina: <em>una persona che non mi conosce, arrivata qui da una ricerca, trova quello che cerca e capisce cosa fare dopo?</em> Se la risposta è no, hai trovato il prossimo intervento da fare.</p>
+
+<h2>Da dove iniziare</h2>
+<p>Non serve correggere tutto insieme: parti dagli errori che bloccano il contatto (1-5), che si sistemano spesso in giorni, poi affronta quelli strutturali (6-8) che possono richiedere interventi più profondi. Se vuoi una verifica onesta di quali errori ha il tuo sito e quanto costa correggerli — o se conviene rifarlo — <a href="../servizi/sviluppo-web.html">guarda come lavoriamo</a> o <a href="../preventivo.html">chiedi un parere con un preventivo</a>.</p>`
+  },
+  {
+    slug: 'rebranding-aziendale-guida',
+    title: 'Rebranding Aziendale: Quando Farlo e Come Gestire il Cambiamento',
+    description: 'Segnali di necessità di rebranding, processo da seguire e come comunicare il cambiamento.',
+    tag: 'Branding',
+    date: '22 Gennaio 2026',
+    isoDate: '2026-01-22',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '7 min',
+    keyword: 'rebranding aziendale',
+    faq: [
+      {
+        question: 'Rebranding e restyling del logo sono la stessa cosa?',
+        answer: 'No: il restyling ammoderna l\'aspetto mantenendo l\'identità riconoscibile — stesso nome, stessa sostanza, veste aggiornata. Il rebranding ridefinisce il posizionamento: può toccare nome, promessa, pubblico e di conseguenza tutta l\'immagine. Il primo è manutenzione, il secondo è una svolta strategica.'
+      },
+      {
+        question: 'Il rebranding fa perdere i clienti abituali?',
+        answer: 'Il rischio esiste se il cambiamento arriva senza spiegazioni: i clienti fedeli sono affezionati anche ai segni. Si gestisce comunicando prima e durante — cosa cambia, perché, cosa resta uguale — e mantenendo elementi di continuità dove possibile. Il silenzio è l\'unico vero errore.'
+      },
+      {
+        question: 'Quanto dura un processo di rebranding?',
+        answer: 'Dipende dalla portata: un riposizionamento con nuova identità visiva richiede tipicamente alcuni mesi tra analisi, progettazione e applicazione sui materiali principali. La sostituzione completa su tutti i punti di contatto può proseguire più a lungo, ed è normale pianificarla per gradi.'
+      }
+    ],
+    content: `
+<p>Il rebranding è una delle decisioni più delicate nella vita di un'azienda: si mette mano a ciò che le persone riconoscono per costruire qualcosa che le rappresenti meglio. Fatto al momento giusto è una spinta; fatto per noia o per moda <strong>brucia riconoscibilità pagata in anni</strong>. La differenza sta in due cose: i motivi e il metodo.</p>
+
+<h2>I motivi giusti (e quelli sbagliati)</h2>
+<p>Il rebranding è giustificato quando l'identità attuale <em>mente</em> sull'azienda: fai cose diverse da quando è nata, ti rivolgi a un pubblico diverso, sei cresciuto oltre il perimetro che il nome o l'immagine raccontano. Segnali tipici:</p>
+<ul>
+    <li><strong>Il posizionamento è cambiato</strong>: da fornitore locale a player nazionale, da prodotto singolo a gamma completa, da economico a premium (o viceversa).</li>
+    <li><strong>L'identità ti confonde con altri</strong>: nome simile a concorrenti, immagine indistinguibile dalla media del settore.</li>
+    <li><strong>Un'operazione straordinaria</strong>: fusione, acquisizione, passaggio generazionale con cambio di direzione.</li>
+    <li><strong>La reputazione richiede una cesura</strong>: quando serve segnare visibilmente un prima e un dopo.</li>
+</ul>
+<p>I motivi sbagliati: "il logo mi ha stancato", "il concorrente ha rifatto tutto", "serve una rinfrescata". Per la stanchezza estetica esiste il restyling, che è un'altra cosa: aggiorna la veste senza toccare l'identità.</p>
+
+<h2>Il processo: prima la strategia, poi i segni</h2>
+<p>L'errore classico è partire dal nuovo logo. Il rebranding serio parte da un bilancio: cosa rappresenta oggi il marchio per i clienti (chiederlo a loro, non supporlo), cosa deve rappresentare domani, quale distanza c'è da colmare. Solo con queste risposte si progettano i segni nuovi — nome se serve, identità visiva, tono di voce. E prima di annunciare qualsiasi cosa, serve l'inventario completo dei punti di contatto da aggiornare: sito, insegne, mezzi, modulistica, profili, divise. È la parte che tutti sottovalutano ed è quella che determina i costi reali.</p>
+
+<h2>Comunicare il cambiamento: la parte che decide il risultato</h2>
+<p>Un rebranding non comunicato è un rebranding subito. Le regole essenziali:</p>
+<ol>
+    <li><strong>Prima l'interno.</strong> Chi lavora con te deve conoscere il cambiamento e i suoi motivi prima dei clienti: saranno loro a spiegarlo cento volte.</li>
+    <li><strong>Racconta il perché, non solo il cosa.</strong> "Cambiamo perché siamo diventati questo" trasforma il cambiamento da capriccio a evoluzione naturale.</li>
+    <li><strong>Rassicura su ciò che non cambia.</strong> Le persone, la qualità, i rapporti: è la prima preoccupazione dei clienti storici, va disinnescata subito.</li>
+    <li><strong>Gestisci la transizione tecnica.</strong> Se cambia il nome o il dominio: redirect dal vecchio sito, aggiornamento della scheda Google e dei profili, coerenza ovunque. È il momento in cui si può perdere visibilità costruita in anni, e va pianificato come un trasloco.</li>
+</ol>
+
+<h2>L'errore più comune: il rebranding a metà</h2>
+<p>Identità nuova sul sito, vecchia sull'insegna, mista sui documenti — per anni. Il doppio segno confonde più di quanto il nuovo migliori: meglio una transizione pianificata per fasi, con le priorità chiare (prima i punti di contatto più visti), che un cambiamento infinito. Il budget del rebranding deve includere l'applicazione, non solo il progetto.</p>
+
+<h2>Se ci stai pensando</h2>
+<p>La prima domanda da farti non è "che immagine vorrei" ma "cosa non racconta più l'identità attuale". Se la risposta è solida, il rebranding è un investimento; se è vaga, probabilmente ti serve altro — magari solo un restyling. Se vuoi ragionarci con qualcuno che progetta identità per mestiere, <a href="../servizi/brand-identity.html">guarda il nostro lavoro sulla brand identity</a> o <a href="../preventivo.html">parliamone</a>.</p>`
+  },
+  {
+    slug: 'ecommerce-errori-da-evitare',
+    title: 'E-Commerce: 8 Errori che Uccidono le Vendite (e Come Evitarli)',
+    description: 'Checkout complicato, schede prodotto povere, niente SEO: gli errori e-commerce più costosi.',
+    tag: 'E-Commerce',
+    date: '20 Gennaio 2026',
+    isoDate: '2026-01-20',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '8 min',
+    keyword: 'errori ecommerce',
+    faq: [
+      {
+        question: 'Perché il mio e-commerce riceve visite ma non vende?',
+        answer: 'Le cause più frequenti, in ordine: costi di spedizione scoperti solo al checkout, schede prodotto che non rispondono ai dubbi, procedura di acquisto lunga o con registrazione obbligatoria, mancanza di elementi di fiducia. Il punto esatto lo dicono i dati: guarda in quale passaggio del percorso le persone abbandonano.'
+      },
+      {
+        question: 'Quanto incidono le spese di spedizione sulle vendite?',
+        answer: 'Sono tra le prime cause di abbandono del carrello in assoluto: non tanto il costo in sé, quanto scoprirlo all\'ultimo passaggio. La regola è la trasparenza immediata: costi visibili già in scheda prodotto o comunque prima del checkout, e la soglia per la spedizione gratuita, se c\'è, annunciata ovunque.'
+      },
+      {
+        question: 'Serve la registrazione obbligatoria per ordinare?',
+        answer: 'No, ed è uno degli errori più costosi: obbligare a creare un account prima di pagare fa perdere una parte consistente degli acquirenti pronti. La soluzione standard è il checkout come ospite, con l\'invito facoltativo a salvare i dati dopo l\'acquisto completato.'
+      }
+    ],
+    content: `
+<p>Aprire un e-commerce è diventato facile; venderci è un'altra storia. La differenza tra un negozio online che fattura e uno che accumula visite senza ordini raramente sta nel prodotto: sta in <strong>una serie di errori riconoscibili e correggibili</strong> lungo il percorso di acquisto. Questi sono gli otto che incontriamo più spesso, dal più letale in giù.</p>
+
+<h2>1. Costi nascosti fino al checkout</h2>
+<p>Il cliente sceglie, inserisce l'indirizzo e scopre spedizione e supplementi all'ultimo passo: è la ricetta perfetta per l'abbandono, e la prima causa in quasi tutte le ricerche sul tema. La cura è la trasparenza anticipata: costi di spedizione visibili in scheda prodotto, eventuale soglia di gratuità comunicata ovunque, nessuna sorpresa dopo.</p>
+
+<h2>2. Registrazione obbligatoria per comprare</h2>
+<p>"Crea un account per continuare" è una barriera messa esattamente nel momento in cui il cliente ha la carta in mano. Il checkout come ospite deve esistere sempre; l'account lo proponi dopo, a acquisto completato, quando il costo psicologico è zero.</p>
+
+<h2>3. Schede prodotto che non vendono</h2>
+<p>Una foto sgranata, due righe di descrizione del fornitore, nessuna misura: così il prodotto non si vende, si spera che si venda. La scheda deve rispondere a ogni dubbio che in negozio risolverebbe il commesso: foto multiple e zoomabili, dimensioni e materiali esatti, a chi serve e a chi no, disponibilità reale, tempi di consegna. E descrizioni scritte da te: quelle copiate dal fornitore sono identiche su decine di siti, e Google lo sa.</p>
+
+<h2>4. Checkout a ostacoli</h2>
+<p>Ogni passaggio in più tra carrello e pagamento è un rubinetto che perde: moduli lunghi, campi inutili, errori poco chiari, pagine lente. L'ideale è un percorso breve e leggibile, con indicazione chiara di dove ci si trova e metodi di pagamento che le persone conoscono e di cui si fidano — carte, PayPal, e le opzioni che il tuo pubblico usa davvero.</p>
+
+<h2>5. Fiducia data per scontata</h2>
+<p>Chi compra da un negozio che non conosce cerca segnali: chi siete (con indirizzo e contatti veri), politica di reso chiara e leggibile prima dell'acquisto, recensioni autentiche, assistenza raggiungibile. L'assenza di questi elementi non si nota — si paga in ordini che non arrivano, da parte di gente che non ti dirà mai perché.</p>
+
+<h2>6. Mobile trattato come ripiego</h2>
+<p>Gran parte degli acquisti online parte da smartphone: se il tuo checkout è scomodo da telefono — campi piccoli, tastiere sbagliate, pulsanti impremibili — stai perdendo la fetta più grande del pubblico. Il test è semplice: compra un tuo prodotto dal tuo telefono, cronometro alla mano.</p>
+
+<h2>7. Nessun lavoro sulla visibilità</h2>
+<p>L'e-commerce pubblicato e lasciato lì non riceve visite: le categorie e le schede vanno ottimizzate per come le persone cercano, i contenuti duplicati eliminati, la struttura resa scansionabile. E la visibilità va costruita anche fuori: comparatori, campagne, social — con i conti fatti su quanto può costare acquisire un ordine.</p>
+
+<h2>8. Vendere senza guardare i numeri</h2>
+<p>Dove abbandonano i clienti? Quali prodotti si guardano ma non si comprano? Quanto costa in pubblicità ogni ordine? Senza tracciamento configurato — e-commerce analytics, eventi sul funnel — ogni decisione è un tentativo. I dati non vendono da soli, ma dicono esattamente dove intervenire per primo.</p>
+
+<h2>Il punto di partenza giusto</h2>
+<p>Se il tuo negozio online vende meno di quanto dovrebbe, non serve rifare tutto: serve trovare quale di questi errori pesa di più nel tuo caso — i dati e un occhio esperto bastano per capirlo in fretta. <a href="../servizi/ecommerce.html">Guarda come costruiamo e sistemiamo gli e-commerce</a> o <a href="../preventivo.html">raccontaci cosa non va</a>.</p>`
+  },
+  {
+    slug: 'personal-branding-online',
+    title: 'Personal Branding Online: Come Costruire la Tua Autorità nel Digitale',
+    description: 'Sito personale, LinkedIn, contenuti: strategie per posizionarti come esperto nel tuo settore.',
+    tag: 'Personal Brand',
+    date: '18 Gennaio 2026',
+    isoDate: '2026-01-18',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '7 min',
+    keyword: 'personal branding online',
+    faq: [
+      {
+        question: 'Il personal branding serve solo a freelance e consulenti?',
+        answer: 'No: aiuta chiunque venga scelto anche per chi è, non solo per cosa vende — professionisti, artigiani, titolari di PMI, manager. Nei servizi, in particolare, le persone comprano da persone: il titolare riconoscibile e credibile è spesso il miglior canale commerciale dell\'azienda.'
+      },
+      {
+        question: 'Serve un sito personale o basta LinkedIn?',
+        answer: 'LinkedIn è il canale, il sito è la casa: sul social non controlli né l\'algoritmo né il formato né il destino del profilo, sul tuo dominio sì. Anche un sito personale essenziale — chi sei, cosa fai, cosa hai fatto, come contattarti — dà una solidità che nessun profilo social sostituisce.'
+      },
+      {
+        question: 'Quanto tempo richiede costruire un personal brand?',
+        answer: 'La versione onesta: mesi per le fondamenta, anni per l\'autorità. Ma non serve arrivare in fondo per avere benefici: già dopo poche settimane di presenza curata e contenuti utili si notano più richieste di contatto e conversazioni migliori. È un investimento cumulativo, non una campagna.'
+      }
+    ],
+    content: `
+<p>Il personal branding non è autopromozione a tappeto né selfie motivazionali: è fare in modo che, quando qualcuno cerca uno bravo nel tuo campo, <strong>il tuo nome venga in mente — e regga la verifica</strong>. Perché la verifica ormai è automatica: chiunque stia per lavorare con te, prima ti cerca su Google. La domanda è solo cosa troverà.</p>
+
+<h2>Prima le fondamenta: il posizionamento</h2>
+<p>Un personal brand efficace risponde in una frase a tre domande: cosa fai, per chi, con quale approccio distintivo. "Aiuto le PMI manifatturiere a vendere all'estero" è un posizionamento; "mi occupo di export e marketing a 360 gradi" è rumore. La specificità spaventa — sembra chiudere porte — ma è ciò che fa scattare la memoria: nessuno raccomanda un generalista.</p>
+
+<h2>La casa: il tuo sito personale</h2>
+<p>Tutto ciò che costruisci sui social vive in affitto: algoritmi che cambiano, portate che crollano, account che possono sparire. Il sito personale è l'unico posto interamente tuo, e non serve che sia grande:</p>
+<ul>
+    <li><strong>Chi sei e cosa fai</strong>, nella prima schermata, senza giri di parole.</li>
+    <li><strong>La prova</strong>: progetti, risultati, esperienze, eventuali pubblicazioni o interventi. Con nomi e fatti, non aggettivi.</li>
+    <li><strong>Cosa dicono gli altri</strong>: due o tre testimonianze vere valgono più di dieci autodescrizioni.</li>
+    <li><strong>Come contattarti</strong>, in un passaggio.</li>
+</ul>
+<p>Bonus concreto: quando qualcuno cerca il tuo nome, un sito personale curato è il primo risultato che controlli tu — non un profilo social qualunque scelto dall'algoritmo.</p>
+
+<h2>Il canale: dove farsi trovare (uno basta)</h2>
+<p>Per la maggior parte dei professionisti italiani il canale naturale è LinkedIn; per mestieri visivi può essere Instagram; per altri una newsletter. La regola è la stessa dei brand aziendali: meglio un canale presidiato con costanza che quattro profili moribondi. Sul canale scelto, il profilo va trattato come una pagina di vendita: headline che dice cosa fai per chi (non solo il job title), sommario che parla ai clienti e non ai recruiter, esperienze raccontate per risultati.</p>
+
+<h2>Il motore: contenuti che dimostrano, non che proclamano</h2>
+<p>L'autorità si costruisce mostrando il ragionamento, non dichiarando l'esperienza. I contenuti che funzionano per un personal brand sono sempre gli stessi: casi reali raccontati con onestà (inclusi gli errori), risposte alle domande che i clienti ti fanno ogni settimana, opinioni argomentate dove il tuo settore sbaglia per abitudine. Un contenuto così a settimana, per un anno, ti mette davanti al 95% dei tuoi concorrenti — non perché sei più bravo, ma perché sei l'unico che lo dimostra in pubblico.</p>
+
+<h2>Gli errori che rovinano il lavoro</h2>
+<ul>
+    <li><strong>L'imitazione dei guru</strong>: frasi motivazionali e pose da palcoscenico quando vendi competenza tecnica. Il pubblico giusto se ne accorge e si allontana.</li>
+    <li><strong>Il personaggio insostenibile</strong>: costruire un'immagine lontana da come sei davvero è faticoso e prima o poi si vede. Il personal brand sostenibile è la tua versione professionale, non un'altra persona.</li>
+    <li><strong>Parlare solo di sé</strong>: il contenuto che funziona dà qualcosa al lettore. La regola pratica: nove contenuti utili per ogni contenuto promozionale.</li>
+    <li><strong>Mollare dopo due mesi</strong>: l\'autorità è interesse composto. Chi smette azzera, chi continua accumula.</li>
+</ul>
+
+<h2>Il primo passo concreto</h2>
+<p>Cerca il tuo nome su Google, in incognito. Quello che vedi è il tuo personal brand attuale — scelto da altri. Se non ti rappresenta, il primo mattone è quasi sempre un sito personale fatto bene: <a href="../servizi/sito-vetrina.html">guarda come li realizziamo</a> o <a href="../preventivo.html">parliamone direttamente</a>.</p>`
+  },
+  {
+    slug: 'google-analytics-4-guida',
+    title: 'Google Analytics 4: Guida Pratica per Capire i Dati del Tuo Sito',
+    description: 'Configurazione, metriche chiave, report: tutto su GA4 per decisioni basate sui dati.',
+    tag: 'Analytics',
+    date: '16 Gennaio 2026',
+    isoDate: '2026-01-16',
+    updatedDate: '26 Luglio 2026',
+    updatedIsoDate: '2026-07-26',
+    readTime: '8 min',
+    keyword: 'google analytics 4 guida',
+    faq: [
+      {
+        question: 'Google Analytics 4 è gratuito?',
+        answer: 'Sì, per le esigenze di qualunque PMI la versione gratuita copre tutto: raccolta dati, report, eventi personalizzati, collegamento con Search Console e Google Ads. La versione a pagamento esiste ma riguarda volumi e necessità da grande impresa.'
+      },
+      {
+        question: 'GA4 è a norma privacy in Italia?',
+        answer: 'Il tema è stato oggetto di provvedimenti e va gestito: serve il consenso tramite cookie banner prima di attivare il tracciamento, la configurazione va impostata minimizzando i dati raccolti e la questione del trasferimento dati va seguita nelle sue evoluzioni. In alternativa esistono strumenti di statistica più essenziali che non richiedono consenso: la scelta dipende da quanta profondità di analisi ti serve davvero.'
+      },
+      {
+        question: 'Quali sono i dati più importanti da guardare per una PMI?',
+        answer: 'Tre su tutti: da dove arrivano le visite (per capire quali canali rendono), quali pagine vengono viste (per capire cosa interessa) e quanti visitatori compiono l\'azione che conta — modulo inviato, telefonata, acquisto. Tutto il resto è utile solo dopo che questi tre sono chiari.'
+      }
+    ],
+    content: `
+<p>Google Analytics 4 è lo strumento gratuito con cui vedere cosa succede davvero sul tuo sito: quante persone arrivano, da dove, cosa guardano e — soprattutto — <strong>quante fanno l'azione per cui il sito esiste</strong>. Il problema di GA4 non è la mancanza di dati: è l'eccesso. Questa guida serve a orientarsi senza perdersi, dal punto di vista di chi ha un'azienda e non fa l'analista di mestiere.</p>
+
+<h2>Come funziona GA4, in due concetti</h2>
+<p>GA4 registra <strong>eventi</strong>: ogni cosa che accade — una pagina vista, un clic, un invio di modulo — è un evento. Tra tutti gli eventi, tu designi come <strong>eventi chiave</strong> (key events) quelli che rappresentano il successo del sito: la richiesta di preventivo, la telefonata, l'acquisto. Questa distinzione è tutto: senza eventi chiave configurati, GA4 ti dice quanta gente passa ma non quanta compra, che è l'unica domanda che conta.</p>
+
+<h2>La configurazione minima che serve davvero</h2>
+<ol>
+    <li><strong>Installazione</strong>: il tag di GA4 su tutte le pagine, direttamente o tramite Google Tag Manager — e attivato solo dopo il consenso nel cookie banner, come richiede la normativa.</li>
+    <li><strong>Eventi chiave</strong>: traccia l'invio dei moduli, i clic su telefono ed email, ed eventualmente gli acquisti. È il passaggio che il 90% dei siti salta.</li>
+    <li><strong>Collegamento con Search Console</strong>: aggiunge la visione di come le persone ti trovano su Google — con quali ricerche, con quali clic.</li>
+    <li><strong>Esclusione del traffico interno</strong>: le tue visite e quelle dei colleghi inquinano i numeri di un sito piccolo più di quanto immagini.</li>
+</ol>
+
+<h2>I tre report da guardare ogni mese</h2>
+<p>Dimentica il resto finché questi tre non sono un'abitudine:</p>
+<ul>
+    <li><strong>Acquisizione traffico</strong>: da dove arrivano le visite — ricerca organica, social, campagne, accessi diretti. Risponde a: quali canali mi stanno portando pubblico? E incrociato con gli eventi chiave: quali canali portano <em>clienti</em>, non solo visite?</li>
+    <li><strong>Pagine e schermate</strong>: le pagine più viste e quelle ignorate. Se la pagina del tuo servizio principale non è tra le prime, c'è un problema di percorso o di visibilità.</li>
+    <li><strong>Eventi chiave nel tempo</strong>: quante azioni di valore genera il sito, mese su mese. È il numero che riassume tutto: se cresce, il sito lavora; se cala, gli altri report ti dicono dove cercare.</li>
+</ul>
+
+<h2>Leggere i numeri senza farsi ingannare</h2>
+<p>Tre avvertenze da chi i dati li guarda ogni giorno. Primo: <strong>le tendenze contano più dei valori assoluti</strong> — mille o duemila visite al mese dicono poco, la direzione su sei mesi dice tutto. Secondo: <strong>confronta periodi omogenei</strong> — agosto con agosto, non agosto con marzo. Terzo: <strong>diffida delle metriche di vanità</strong> — il tempo sulla pagina e le visite totali gratificano, ma la sola domanda da farsi è: il sito sta generando più contatti o vendite di prima?</p>
+
+<h2>GA4 e la privacy: il punto pratico</h2>
+<p>In Italia l'uso di GA4 richiede attenzione: consenso esplicito prima del tracciamento, configurazione che minimizzi i dati raccolti, informativa aggiornata. Per molti siti vetrina, in alternativa, strumenti di statistica essenziali e rispettosi della privacy possono bastare. La scelta giusta dipende da quanto è articolato il tuo marketing: più canali e campagne hai, più GA4 ripaga la sua complessità.</p>
+
+<h2>Il passo successivo</h2>
+<p>Se GA4 è installato ma non hai mai configurato gli eventi chiave, il tuo prossimo passo è quello: mezz'ora di lavoro che trasforma le statistiche in uno strumento di decisione. Se preferisci che configurazione e lettura periodica le faccia qualcuno per te — con un report comprensibile invece di quaranta grafici — <a href="../servizi/consulenze.html">guarda le nostre consulenze</a> o <a href="../preventivo.html">scrivici</a>.</p>`
+  },
+];
 
 function generateDefaultFaq(a) {
   const topic = a.keyword;
@@ -6654,7 +7466,6 @@ module.exports = {
   buildRelatedArticlesHTML,
   getAutomaticRelatedArticles,
   resolveStrategicLinks,
-  generateStubContent,
   generateDefaultFaq,
   GLOBAL_CONTENT_REFRESH_DATE_ISO,
   GLOBAL_CONTENT_REFRESH_DATE_HUMAN
@@ -6683,7 +7494,7 @@ if (require.main === module) {
     const filepath = path.join(BLOG_DIR, `${a.slug}.html`);
     const relatedArticles = getAutomaticRelatedArticles(a, allArticles);
     const relatedHTML = buildRelatedArticlesHTML(relatedArticles, a.tag);
-    const content = `${generateStubContent(a)}${relatedHTML}`;
+    const content = `${a.content}${relatedHTML}`;
     const strategicLinks = resolveStrategicLinks(a, allArticles, resolveServiceLink(a));
     const html = buildArticleHTML(a, content, { strategicLinks });
     const existed = fs.existsSync(filepath);
