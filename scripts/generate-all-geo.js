@@ -1794,7 +1794,8 @@ function generateAgenziaPage(city) {
     }
 
     const canonical = `${SITE}/agenzia-web-${city.slug}.html`;
-    const agenziaSeo = getAgenziaSeoCopy(city);
+    const editorial = getGeoEditorialRecord(`/agenzia-web-${city.slug}.html`);
+    const agenziaSeo = applyEditorialSeoOverrides(getAgenziaSeoCopy(city), editorial);
 
     // Compute data for template
     const approvedAgencyCities = cities.filter((candidate) =>
@@ -1838,7 +1839,9 @@ function generateAgenziaPage(city) {
     const section3Text = aiBlock?.localMarketAnalysis
         ? `<p>${aiBlock.localMarketAnalysis}</p>` + (aiBlock.competitiveContext ? `<p>${aiBlock.competitiveContext}</p>` : '')
         : buildLocalContextHtml(city);
-    const resolvedFaqs = resolvePageFaqs(city, 'agenzia', aiBlock);
+    const resolvedFaqs = (editorial && editorial.faqs && editorial.faqs.length)
+        ? editorial.faqs.map((faq) => ({ q: faq.question, a: faq.answer }))
+        : resolvePageFaqs(city, 'agenzia', aiBlock);
     const section1Intro = aiBlock?.competitiveContext
         ? (ctx.tessutoEconomico || '') + ' ' + aiBlock.competitiveContext
         : ctx.tessutoEconomico || `${city.name} è un comune dell'hinterland milanese con un tessuto imprenditoriale attivo.`;
@@ -1889,6 +1892,7 @@ function generateAgenziaPage(city) {
         tier: agenziaTier,
         isIndexable: agenziaIsIndexable,
         tier1Content: agenziaTier1Content,
+        editorial: editorial || null,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
         site: SITE
@@ -2150,7 +2154,8 @@ function generateServizioCittaPage(service, city) {
     const tier = resolvePageTier(pagePath);
     const isIndexable = tier > 0;
     const canonical = `${SITE}/${slug}.html`;
-    const seo = getServiceLocalSeoCopy(service, city);
+    const editorial = getGeoEditorialRecord(pagePath);
+    const seo = applyEditorialSeoOverrides(getServiceLocalSeoCopy(service, city), editorial);
     // Nearest cities whose same-service landing is approved for indexation.
     const approvedServiceCities = cities.filter((candidate) =>
         !candidate.isSede
@@ -2230,11 +2235,14 @@ function generateServizioCittaPage(service, city) {
     else faqPool = strategyFaqPool;
 
     // Build final FAQ list: 2 universal + 5 cluster-specific
-    const faqs = [
+    const faqs = (editorial && editorial.faqs && editorial.faqs.length)
+        ? editorial.faqs.map((faq) => ({ q: faq.question, a: faq.answer }))
+        : [
         { q: `Quanto costa ${service.name.toLowerCase()} a ${city.name}?`, a: `${service.name} a ${city.name}: prezzo di catalogo da <strong>€${service.priceFrom}${service.priceUnit || ''}</strong>. La stima ${service.timeEstimate.toLowerCase()} è indicativa; il preventivo conferma perimetro, prezzo e tempi del caso specifico.` },
         { q: `WebNovis è vicina a ${city.name}?`, a: `La nostra sede è a Rho, Via S. Giorgio 2 — ${city.distanzaSede} in auto da ${city.name}. Incontriamo i clienti in azienda o in videochiamata.` },
         ...faqPool
     ];
+
 
     // Related services: show 6 instead of 3 for better internal linking
     const relatedServicePagesExpanded = geoServices
@@ -2284,6 +2292,7 @@ function generateServizioCittaPage(service, city) {
         tier: tier,
         isIndexable: isIndexable,
         tier1Content: tier1Content,
+        editorial: editorial || null,
         today: TODAY,
         todayFormatted: TODAY_FORMATTED,
         site: SITE

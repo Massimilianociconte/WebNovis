@@ -26,7 +26,7 @@
       "recordCount": 13,
       "sourceArtifact": "WebNovis-Publishable-Copy-Ecommerce-13-2026-07-23.json",
       "sourceSha256": "cb49feb42cad40cf0ae4938b491ffccedd932bedd354850a175ef704fdd70a5a",
-      "contentSha256": "d9474ecf668bbe0637206c9082cfa5fbf32f13d6e1863bf8ce7599b6773469f0"
+      "contentSha256": "9cfb33e14e6e0dcdfeaf741871bbd855c09953605ae73945a980b9b971e67e33"
     },
     {
       "cluster": "seo-locale",
@@ -34,7 +34,7 @@
       "recordCount": 12,
       "sourceArtifact": "WebNovis-Publishable-Copy-SEO-Locale-12-2026-07-23.json",
       "sourceSha256": "7068ec5aae4a6b1e9befe7331490b1ea9a38065a4f738da9a754e92467e3b797",
-      "contentSha256": "fb626215ca669fe39f9dd54c94b7955d3ca6103aed5046c13d2abe1161d47206"
+      "contentSha256": "901ff9b2a1632b09b42b88bc8234c9bf5776aa9db89735692352a382f90e9039"
     },
     {
       "cluster": "other-services",

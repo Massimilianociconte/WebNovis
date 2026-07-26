@@ -55,6 +55,20 @@
   </section>
 
   {# ═══ SECTION 1 — Service description specific to this city ═══ #}
+{% if editorial %}
+  <section class="service-detail" id="contesto-locale">
+    <div class="container">
+      <h2>{{ editorial.service }} a {{ editorial.city }}: il contesto locale</h2>
+      <p>{{ editorial.intro }}</p>
+      {% for block in editorial.sections %}
+      <h3>{{ block.heading }}</h3>
+      <p>{{ block.body }}</p>
+      {% endfor %}
+      {% if editorial.cta %}<p class="editorial-close"><strong>{{ editorial.cta }}</strong></p>{% endif %}
+    </div>
+  </section>
+  {% endif %}
+
   <section class="service-detail">
     <div class="container">
       <h2>{{ seo.sectionTitle }}</h2>
