@@ -994,6 +994,30 @@ function ensureFaqPageSchema(html, relativePath) {
     : `${withoutGenerated}${block}`;
 }
 
+/* ── Stylesheets: one request per file ────────────────────────────────────── */
+
+/**
+ * Drop stylesheet links that request a file already requested on the page.
+ *
+ * Two loading strategies were layered over time — the versioned
+ * `media="print"` + `onload` async pattern and an older plain `media="all"`
+ * link — and because the URLs differ by query string the browser treats them
+ * as distinct resources and downloads each file twice. The versioned async
+ * link is authoritative; later duplicates of the same file are removed.
+ */
+function deduplicateStylesheetLinks(html) {
+  const seen = new Set();
+  return String(html || '').replace(/<link\b[^>]*>/gi, (tag) => {
+    if (!/\brel=["']stylesheet["']/i.test(tag)) return tag;
+    const href = getTagAttribute(tag, 'href');
+    if (!href) return tag;
+
+    const key = href.split('?')[0].replace(/^https?:/, '');
+    if (!seen.has(key)) { seen.add(key); return tag; }
+    return '';
+  }).replace(/\s{2,}(?=<)/g, ' ');
+}
+
 /* ── Article authorship: a named editor instead of an abstract team ───────── */
 
 const ENTITY_FACTS_FOR_AUTHOR = require('./entity-facts').ENTITY_FACTS;
@@ -2184,6 +2208,7 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = ensureFaqPageSchema(updated, relativePath);
   updated = ensureServiceHubCollectionSchema(updated, relativePath);
   updated = alignArticleAuthorship(updated, relativePath);
+  updated = deduplicateStylesheetLinks(updated);
   return updated;
 }
 
@@ -2199,6 +2224,7 @@ module.exports = {
   ensureFaqPageSchema,
   ensureServiceHubCollectionSchema,
   alignArticleAuthorship,
+  deduplicateStylesheetLinks,
   extractVisibleFaqPairs,
   ensureSelfHreflang,
   alignPrioritySnippet,
