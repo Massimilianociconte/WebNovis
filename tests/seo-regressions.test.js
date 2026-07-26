@@ -239,15 +239,25 @@ function main() {
     'Shared footer must not imply an unverified Google star rating'
   );
 
+  // Articles are attributed to the named editor already published on
+  // /chi-siamo.html, with WebNovis as publisher. An abstract "editorial team"
+  // is not a disambiguable entity and must not be reintroduced.
   for (const file of ['blog/quanto-costa-un-sito-web.html', 'blog/seo-per-piccole-imprese.html']) {
     const schemas = parseJsonLd(readText(file), file);
+    const posts = schemas.filter((schema) => ['BlogPosting', 'Article'].includes(schema['@type']));
+    assert.ok(posts.length > 0, `${file} must declare its article schema`);
+    for (const post of posts) {
+      assert.equal(post.author?.['@type'], 'Person', `${file} must attribute the article to a person`);
+      assert.equal(
+        post.author?.['@id'],
+        'https://www.webnovis.com/#person-massimiliano',
+        `${file} must reference the named editor already declared on chi-siamo`
+      );
+      assert.ok(post.publisher, `${file} must keep WebNovis as publisher`);
+    }
     assert.ok(
-      schemas.some((schema) => schema['@type'] === 'Organization' && schema.name === 'WebNovis Editorial Team'),
-      `${file} must model the collective editorial team as an Organization`
-    );
-    assert.ok(
-      !schemas.some((schema) => schema['@type'] === 'Person' && schema.name === 'WebNovis Editorial Team'),
-      `${file} must not model the collective editorial team as a Person`
+      !schemas.some((schema) => schema.name === 'WebNovis Editorial Team'),
+      `${file} must not keep an unreferenced collective editorial-team entity`
     );
   }
 

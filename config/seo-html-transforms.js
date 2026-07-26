@@ -886,6 +886,243 @@ function normalizeHtmlDocumentStructure(html, relativePath) {
   return `<!DOCTYPE html> <html${htmlAttributes}><head>${head}</head><body${bodyAttributes}> ${body.trim()}</body></html>`;
 }
 
+/* ── FAQPage from the FAQ that is already visible on the page ─────────────── */
+
+/** Marks the block we generate, so regeneration replaces instead of stacking. */
+const GENERATED_FAQ_MARKER = 'data-faq-source="visible-content"';
+// Deliberately does not consume surrounding whitespace: stripping and
+// re-injecting must return byte-identical HTML.
+const GENERATED_FAQ_PATTERN =
+  /<script type="application\/ld\+json" data-faq-source="visible-content">[\s\S]*?<\/script>/gi;
+const FAQ_HEADING_PATTERN = /<h2\b[^>]*>\s*(?:[^<]*\b(?:domande frequenti|faq)\b[^<]*)<\/h2>/i;
+
+/** Plain text of an HTML fragment, safe to place inside JSON-LD. */
+function faqPlainText(fragment) {
+  return String(fragment || '')
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;|&apos;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Read the question/answer pairs a visitor can actually see.
+ * Supports both published shapes: `<h3>Q</h3><p>A</p>` sequences under a
+ * "Domande frequenti" heading, and `<details><summary>Q</summary><p>A</p>`.
+ */
+function extractVisibleFaqPairs(html) {
+  const source = String(html || '');
+  const pairs = [];
+
+  for (const block of source.match(/<details\b[^>]*>[\s\S]*?<\/details>/gi) || []) {
+    const question = block.match(/<summary\b[^>]*>([\s\S]*?)<\/summary>/i);
+    if (!question) continue;
+    const answer = block
+      .replace(/<summary\b[^>]*>[\s\S]*?<\/summary>/i, '')
+      .replace(/^[\s\S]*?<details\b[^>]*>/i, '');
+    pairs.push({ q: faqPlainText(question[1]), a: faqPlainText(answer) });
+  }
+
+  const headingAt = source.search(FAQ_HEADING_PATTERN);
+  if (headingAt >= 0) {
+    // Stay inside the FAQ block: stop at the next h2 or the end of its section.
+    const after = source.slice(headingAt).replace(FAQ_HEADING_PATTERN, '');
+    const sectionEnd = after.search(/<h2\b|<\/section>/i);
+    const scope = sectionEnd >= 0 ? after.slice(0, sectionEnd) : after;
+    const sequence = /<h3\b[^>]*>([\s\S]*?)<\/h3>\s*((?:<p\b[^>]*>[\s\S]*?<\/p>\s*)+)/gi;
+    let match;
+    while ((match = sequence.exec(scope)) !== null) {
+      pairs.push({ q: faqPlainText(match[1]), a: faqPlainText(match[2]) });
+    }
+  }
+
+  const seen = new Set();
+  return pairs.filter(({ q, a }) => {
+    if (!q || !a || q.length < 8 || a.length < 20) return false;
+    const key = q.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+/**
+ * Publish a FAQPage for pages that already answer questions on screen.
+ *
+ * Never invents content: every question and answer is lifted verbatim from the
+ * rendered page. Pages that ship a hand-authored FAQPage are left untouched,
+ * and noindex pages get nothing.
+ */
+function ensureFaqPageSchema(html, relativePath) {
+  const withoutGenerated = String(html || '').replace(GENERATED_FAQ_PATTERN, '');
+
+  const publicPath = toPublicUrlPath(relativePath);
+  const isNoindex = isNonPublicArtifactPath(relativePath)
+    || NON_INDEXABLE_STATIC_PATHS.has(publicPath)
+    || getIndexationDirectivesForPath(publicPath) === 'noindex, follow'
+    || /<meta\b(?=[^>]*\bname=["']robots["'])[^>]*\bcontent=["'][^"']*\bnoindex\b/i.test(withoutGenerated);
+  if (isNoindex) return withoutGenerated;
+
+  // A hand-authored FAQPage stays the single source of truth for that page.
+  if (/"@type"\s*:\s*"FAQPage"/.test(withoutGenerated)) return withoutGenerated;
+
+  const pairs = extractVisibleFaqPairs(withoutGenerated);
+  if (pairs.length < 2) return withoutGenerated;
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${toAbsolutePublicUrl(relativePath)}#faq`,
+    mainEntity: pairs.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a }
+    }))
+  };
+
+  const block = `<script type="application/ld+json" ${GENERATED_FAQ_MARKER}>`
+    + `${JSON.stringify(schema)}</script>`;
+
+  return /<\/body>/i.test(withoutGenerated)
+    ? withoutGenerated.replace(/<\/body>/i, `${block}</body>`)
+    : `${withoutGenerated}${block}`;
+}
+
+/* ── Article authorship: a named editor instead of an abstract team ───────── */
+
+const ENTITY_FACTS_FOR_AUTHOR = require('./entity-facts').ENTITY_FACTS;
+
+/**
+ * Attribute blog articles to the named editor already declared on
+ * /chi-siamo.html, keeping WebNovis as publisher.
+ *
+ * An "editorial team" is not a disambiguable entity: search and generative
+ * systems weigh a person with declared expertise (knowsAbout, jobTitle, a
+ * profile URL) far more heavily. The person referenced here is real and
+ * already published on the site — nothing is invented.
+ */
+function alignArticleAuthorship(html, relativePath) {
+  const source = String(html || '');
+  if (!/^blog\//.test(normalizeRelativePath(relativePath))) return source;
+  if (!/"@type"\s*:\s*"BlogPosting"/.test(source)) return source;
+
+  const person = {
+    '@type': 'Person',
+    '@id': ENTITY_FACTS_FOR_AUTHOR.personAuthorId,
+    name: ENTITY_FACTS_FOR_AUTHOR.personAuthorName,
+    jobTitle: ENTITY_FACTS_FOR_AUTHOR.personAuthorJobTitle,
+    url: ENTITY_FACTS_FOR_AUTHOR.personAuthorUrl,
+    worksFor: { '@id': ENTITY_FACTS_FOR_AUTHOR.organizationId }
+  };
+  const publisher = { '@id': ENTITY_FACTS_FOR_AUTHOR.organizationId };
+
+  return source.replace(
+    /\s*<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi,
+    (block, jsonText) => {
+      let parsed;
+      try { parsed = JSON.parse(jsonText); } catch (_) { return block; }
+
+      // Drop the now-unreferenced "WebNovis Editorial Team" node: keeping a
+      // second authoring entity around only dilutes the real one.
+      const isOrphanEditorialTeam = (node) => node
+        && typeof node === 'object'
+        && !Array.isArray(node)
+        && node['@id'] === ENTITY_FACTS_FOR_AUTHOR.editorialTeamId;
+      if (isOrphanEditorialTeam(parsed)) return '';
+      if (Array.isArray(parsed)) {
+        const kept = parsed.filter((node) => !isOrphanEditorialTeam(node));
+        if (!kept.length) return '';
+        if (kept.length !== parsed.length) parsed = kept;
+      }
+
+      let touched = false;
+      const visit = (node) => {
+        if (Array.isArray(node)) { node.forEach(visit); return; }
+        if (!node || typeof node !== 'object') return;
+        if (node['@type'] === 'BlogPosting' || node['@type'] === 'Article') {
+          node.author = person;
+          if (!node.publisher) node.publisher = publisher;
+          touched = true;
+        }
+        Object.values(node).forEach(visit);
+      };
+      visit(parsed);
+      const attributes = block.slice(block.indexOf('<script') + 7, block.indexOf('>'));
+      const rebuilt = ` <script${attributes}>${JSON.stringify(parsed)}</script>`;
+      if (!touched) return rebuilt === block ? block : rebuilt;
+      return rebuilt;
+    }
+  );
+}
+
+/* ── Service hub: ItemList of the services actually listed on the page ────── */
+
+const GENERATED_ITEMLIST_MARKER = 'data-itemlist-source="visible-content"';
+const GENERATED_ITEMLIST_PATTERN =
+  /<script type="application\/ld\+json" data-itemlist-source="visible-content">[\s\S]*?<\/script>/gi;
+
+/**
+ * Describe /servizi/ as the collection it visibly is.
+ *
+ * Generative engines answer "which services does WebNovis offer" from a
+ * structured list; the hub previously exposed only BreadcrumbList and WebPage.
+ * Entries are read from the rendered cards, so the markup cannot drift from
+ * what the visitor sees.
+ */
+function ensureServiceHubCollectionSchema(html, relativePath) {
+  const withoutGenerated = String(html || '').replace(GENERATED_ITEMLIST_PATTERN, '');
+  if (toPublicUrlPath(relativePath) !== '/servizi/') return withoutGenerated;
+
+  const cards = [...withoutGenerated.matchAll(
+    /<a\b[^>]*href=["']([a-z0-9-]+\.html)["'][^>]*class=["'][^"']*service-hub-card[^"']*["'][\s\S]*?<div class="hub-title">([\s\S]*?)<\/div>[\s\S]*?<p class="hub-desc">([\s\S]*?)<\/p>/gi
+  )];
+  if (cards.length < 3) return withoutGenerated;
+
+  const seen = new Set();
+  const items = [];
+  for (const [, href, title, description] of cards) {
+    if (seen.has(href)) continue;
+    seen.add(href);
+    items.push({
+      '@type': 'ListItem',
+      position: items.length + 1,
+      name: faqPlainText(title),
+      description: faqPlainText(description),
+      url: `${BASE_URL}/servizi/${href}`
+    });
+  }
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${BASE_URL}/servizi/#servizi`,
+    name: 'Servizi WebNovis',
+    description: 'I servizi digitali offerti da WebNovis, agenzia web con sede a Rho: '
+      + 'sviluppo siti e e-commerce, brand identity, graphic design, social media, accessibilità e consulenze.',
+    url: `${BASE_URL}/servizi/`,
+    inLanguage: 'it',
+    isPartOf: { '@type': 'WebSite', url: `${BASE_URL}/` },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: items.length,
+      itemListOrder: 'https://schema.org/ItemListUnordered',
+      itemListElement: items
+    }
+  };
+
+  const block = `<script type="application/ld+json" ${GENERATED_ITEMLIST_MARKER}>`
+    + `${JSON.stringify(schema)}</script>`;
+  return /<\/body>/i.test(withoutGenerated)
+    ? withoutGenerated.replace(/<\/body>/i, `${block}</body>`)
+    : `${withoutGenerated}${block}`;
+}
+
 function ensureSkipLinkTargets(html) {
   const skipLinkPattern = /<a\b(?=[^>]*\bclass=["'][^"']*\bskip-link\b[^"']*["'])[^>]*>/gi;
   const targetIds = new Set(
@@ -1944,6 +2181,9 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = alignHomepageBrandExperience(updated, relativePath);
   updated = normalizeInternalAttributionLinks(updated);
   updated = ensureSkipLinkTargets(updated);
+  updated = ensureFaqPageSchema(updated, relativePath);
+  updated = ensureServiceHubCollectionSchema(updated, relativePath);
+  updated = alignArticleAuthorship(updated, relativePath);
   return updated;
 }
 
@@ -1956,6 +2196,10 @@ module.exports = {
   isNonPublicArtifactPath,
   normalizeHtmlDocumentStructure,
   ensureSkipLinkTargets,
+  ensureFaqPageSchema,
+  ensureServiceHubCollectionSchema,
+  alignArticleAuthorship,
+  extractVisibleFaqPairs,
   ensureSelfHreflang,
   alignPrioritySnippet,
   alignPriorityContentTransforms,

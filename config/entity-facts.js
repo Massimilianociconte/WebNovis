@@ -6,6 +6,13 @@ const ENTITY_FACTS = Object.freeze({
   localBusinessId: 'https://www.webnovis.com/#localbusiness',
   editorialTeamId: 'https://www.webnovis.com/#author-webnovis-editorial-team',
   editorialTeamName: 'WebNovis Editorial Team',
+  // Named editor already declared on /chi-siamo.html. Used as the article
+  // author so expertise is attributable to a person rather than to an abstract
+  // "editorial team"; the organisation stays the publisher.
+  personAuthorId: 'https://www.webnovis.com/#person-massimiliano',
+  personAuthorName: 'Massimiliano',
+  personAuthorJobTitle: 'Co-Founder & Web Developer',
+  personAuthorUrl: 'https://www.webnovis.com/chi-siamo.html',
   email: 'hello@webnovis.com',
   phoneDisplay: '+39 380 264 7367',
   phoneE164: '+393802647367',
