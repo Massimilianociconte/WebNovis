@@ -140,7 +140,13 @@ function readLastmodStore() {
     }
 }
 
+/**
+ * The store lives with the sources, so a publish build into dist/ must read it
+ * without writing: the artifact pipeline requires the source worktree to come
+ * out of the build byte-identical.
+ */
 function writeLastmodStore(store) {
+    if (path.resolve(ROOT) !== path.resolve(ROOT_DIR)) return;
     const sorted = Object.fromEntries(Object.keys(store).sort().map((key) => [key, store[key]]));
     fs.mkdirSync(path.dirname(LASTMOD_STORE), { recursive: true });
     fs.writeFileSync(LASTMOD_STORE, `${JSON.stringify(sorted, null, 1)}\n`, 'utf8');
