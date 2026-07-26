@@ -144,6 +144,9 @@
       {% if city.localContext and city.localContext.highlights %}
       <p>Punti di riferimento del territorio: {% for hl in city.localContext.highlights %}<strong>{{ hl }}</strong>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
       {% endif %}
+      {% if cityCap %}
+      <p>Operiamo in tutto il territorio comunale di {{ city.name }} (CAP {{ cityCap }}{% if city.province %}, provincia di {{ 'Milano' if city.province == 'MI' else ('Monza e Brianza' if city.province == 'MB' else 'Varese') }}{% endif %}) e nei comuni limitrofi.</p>
+      {% endif %}
     </div>
   </section>
 

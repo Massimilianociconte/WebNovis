@@ -535,7 +535,7 @@
     {
       "slug": "cornaredo",
       "name": "Cornaredo",
-      "cap": "20010",
+      "cap": "20007",
       "lat": 45.4978,
       "lng": 9.04,
       "population": 20000,
@@ -1036,7 +1036,7 @@
     {
       "slug": "pregnana-milanese",
       "name": "Pregnana Milanese",
-      "cap": "20010",
+      "cap": "20006",
       "lat": 45.5206,
       "lng": 9.0106,
       "population": 7000,
@@ -1136,7 +1136,7 @@
     {
       "slug": "vanzago",
       "name": "Vanzago",
-      "cap": "20010",
+      "cap": "20043",
       "lat": 45.525,
       "lng": 8.995,
       "population": 9000,
@@ -1337,7 +1337,7 @@
     {
       "slug": "pogliano-milanese",
       "name": "Pogliano Milanese",
-      "cap": "20010",
+      "cap": "20005",
       "lat": 45.5375,
       "lng": 8.9947,
       "population": 8500,
@@ -1835,7 +1835,7 @@
     {
       "slug": "arluno",
       "name": "Arluno",
-      "cap": "20010",
+      "cap": "20004",
       "lat": 45.5053,
       "lng": 8.9486,
       "population": 12000,
@@ -2035,7 +2035,7 @@
     {
       "slug": "bareggio",
       "name": "Bareggio",
-      "cap": "20010",
+      "cap": "20008",
       "lat": 45.4756,
       "lng": 9.0025,
       "population": 17500,
@@ -2135,7 +2135,7 @@
     {
       "slug": "cusago",
       "name": "Cusago",
-      "cap": "20090",
+      "cap": "20047",
       "lat": 45.4486,
       "lng": 9.0319,
       "population": 4000,

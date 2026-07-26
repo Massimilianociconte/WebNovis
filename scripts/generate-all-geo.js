@@ -500,6 +500,17 @@ function getAreaServedEntity(city) {
         entity.sameAs = city.wikipedia;
     }
 
+    // CAP ufficiale del comune (Place.address): segnale geo esplicito per i motori.
+    // Escluso per le aree sintetiche (Milano Nord/Ovest) che non hanno un CAP proprio.
+    if (!isSyntheticArea && city.cap) {
+        entity.address = {
+            "@type": "PostalAddress",
+            "addressLocality": city.name,
+            "postalCode": city.cap,
+            "addressCountry": "IT"
+        };
+    }
+
     return entity;
 }
 
@@ -2274,6 +2285,9 @@ function generateServizioCittaPage(service, city) {
 
     const templateData = {
         city: city,
+        // CAP mostrato nel copy visibile: solo per comuni reali, non per le aree
+        // sintetiche Milano Nord/Ovest che non hanno un CAP univoco.
+        cityCap: (city.slug === 'milano-nord' || city.slug === 'milano-ovest') ? null : city.cap,
         service: service,
         seo: seo,
         nearCitiesData: (city.nearCities || []).slice(0, 5).map(ncSlug => {
@@ -2359,7 +2373,7 @@ function generateServizioCittaPage(service, city) {
             "name": `${service.shortName} a ${city.name}`,
             "description": seo.schemaDescription,
             "provider": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
-            "areaServed": { "@type": "City", "name": city.name, "sameAs": city.wikipedia },
+            "areaServed": getAreaServedEntity(city),
             "url": canonical,
             ...(service.hasPage ? {
                 "hasOfferCatalog": {
