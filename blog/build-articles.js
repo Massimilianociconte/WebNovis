@@ -7,12 +7,52 @@ const fs = require('fs');
 const path = require('path');
 const { getClusterStrategicLinks } = require('../config/blog-cluster-links');
 const { getBlogFooterHtml } = require('../config/site-footer');
+const { ENTITY_FACTS } = require('../config/entity-facts');
 const servicesCatalog = require('../data/services.json');
 
 const BLOG_DIR = __dirname;
 const SITE_URL = 'https://www.webnovis.com';
+// Versioni asset allineate al resto del sito (vedi bump-css-version.js / noncritical-loader.js).
+// Prima erano hardcoded a 1.4 / 2.0: gli articoli servivano CSS diverso dal resto del sito.
+const ASSET_VERSION = '20260728c';
+const REVOLUTION_CSS_VERSION = '1.5';
+const SEARCH_CSS_VERSION = '2.1';
+// La byline visibile deve combaciare con l'author del JSON-LD, che
+// config/seo-html-transforms.js normalizza a Person (#person-massimiliano).
+// Prima diceva "WebNovis Editorial Team": schema e pagina si contraddicevano.
+const VISIBLE_AUTHOR_NAME = ENTITY_FACTS.personAuthorName;
+const VISIBLE_AUTHOR_ROLE = ENTITY_FACTS.personAuthorJobTitle.replace(/&/g, '&amp;');
+const SKIP_LINK_HTML = '<a href="#main-content" class="skip-link" style="position:absolute;top:-100%;left:0;z-index:100000;padding:.8rem 1.5rem;background:#7b8cc9;color:#fff;font-size:.9rem;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s">Vai al contenuto</a><style>.skip-link:focus{top:0}</style>';
 const GLOBAL_CONTENT_REFRESH_DATE_ISO = '2026-02-17';
 const GLOBAL_CONTENT_REFRESH_DATE_HUMAN = '17 Febbraio 2026';
+
+const IT_MONTHS = [
+  'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
+  'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
+];
+
+function formatItalianDate(iso) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
+  if (!match) return '';
+  const [, year, month, day] = match;
+  return `${Number(day)} ${IT_MONTHS[Number(month) - 1]} ${year}`;
+}
+
+/**
+ * dateModified non può mai precedere datePublished: Google scarta lo schema
+ * incoerente e il "Aggiornato: ..." visibile contraddice la data di pubblicazione.
+ * GLOBAL_CONTENT_REFRESH_DATE_ISO è una data di refresh redazionale globale, quindi
+ * per gli articoli pubblicati DOPO quel refresh va riportata alla data di pubblicazione.
+ */
+function resolveModifiedDate(publishedIso, candidateIso, candidateHuman) {
+  const published = String(publishedIso || '');
+  const candidate = String(candidateIso || '');
+  if (!published) return { iso: candidate, human: candidateHuman || formatItalianDate(candidate) };
+  if (!candidate || candidate < published) {
+    return { iso: published, human: formatItalianDate(published) };
+  }
+  return { iso: candidate, human: candidateHuman || formatItalianDate(candidate) };
+}
 const DEFAULT_SERVICE_LINK = '../servizi/sviluppo-web.html';
 const SERVICE_ENTRIES = Array.isArray(servicesCatalog.services) ? servicesCatalog.services : [];
 const SERVICE_DETAILS_BY_BLOG_LINK = new Map(
@@ -7201,8 +7241,13 @@ function buildArticleHTML(a, contentHTML, options = {}) {
   const canonical = `${SITE_URL}/blog/${a.slug}.html`;
   const socialCover = resolveSocialCover(a);
   const publishedDateIso = a.isoDate;
-  const modifiedDateIso = a.updatedIsoDate || GLOBAL_CONTENT_REFRESH_DATE_ISO;
-  const modifiedDateHuman = a.updatedDate || GLOBAL_CONTENT_REFRESH_DATE_HUMAN;
+  // Tieni accoppiati iso e human: se l'articolo dichiara updatedIsoDate senza
+  // updatedDate, la stringa leggibile va derivata da quell'iso, non dal refresh globale.
+  const resolvedModified = a.updatedIsoDate
+    ? resolveModifiedDate(publishedDateIso, a.updatedIsoDate, a.updatedDate)
+    : resolveModifiedDate(publishedDateIso, GLOBAL_CONTENT_REFRESH_DATE_ISO, GLOBAL_CONTENT_REFRESH_DATE_HUMAN);
+  const modifiedDateIso = resolvedModified.iso;
+  const modifiedDateHuman = resolvedModified.human;
   const serviceLink = resolveServiceLink(a);
   const inlineCtaData = resolveInlineCta(serviceLink);
   const contentUpgradeData = resolveContentUpgrade(serviceLink);
@@ -7325,12 +7370,13 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <meta property="twitter:title" content="${a.title}">
     <meta property="twitter:description" content="${a.description}">
     <meta property="twitter:image" content="${socialCover}">
-    <link rel="stylesheet" href="../css/style.min.css?v=1.4">
-    <link rel="stylesheet" href="../css/revolution.min.css?v=1.4" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="../css/search.min.css?v=2.0" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="../css/style.min.css?v=${ASSET_VERSION}">
+    <link rel="stylesheet" href="../css/revolution.min.css?v=${REVOLUTION_CSS_VERSION}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="../css/search.min.css?v=${SEARCH_CSS_VERSION}" media="print" onload="this.media='all'">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"></noscript>
     <style>
         .article-hero{padding:130px 0 40px;text-align:center;position:relative}
         .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(91,106,174,.12) 0%,transparent 70%);pointer-events:none}
@@ -7410,12 +7456,13 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     </style>
 </head>
 <body>
+    ${SKIP_LINK_HTML}
     <nav class="nav" id="nav"><div class="container nav-container"><a href="../index.html" class="logo"><img src="../Img/webnovis-logo-bianco.png" alt="WebNovis Logo" class="logo-image" width="150" height="40"></a><div class="search-wrapper" id="searchWrapper"><div class="search-bar" id="searchBar"><svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" class="search-input" id="searchInput" placeholder="Cerca nel sito..." aria-label="Cerca nel sito" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="searchResults"><kbd class="search-shortcut">Ctrl K</kbd><button class="search-clear" id="searchClear" aria-label="Cancella ricerca"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="search-results" id="searchResults" role="listbox" aria-label="Risultati di ricerca"></div></div><button class="search-mobile-toggle" id="searchMobileToggle" aria-label="Cerca nel sito"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button><ul class="nav-menu" id="navMenu"><li><a href="../servizi/sviluppo-web.html" class="nav-link">Servizi</a></li><li><a href="../portfolio.html" class="nav-link">Portfolio</a></li><li><a href="../chi-siamo.html" class="nav-link">Chi Siamo</a></li><li><a href="index.html" class="nav-link">Blog</a></li><li><a href="../contatti.html" class="nav-link">Contatti</a></li><li><a href="../contatti.html" class="nav-link nav-cta">Inizia Ora</a></li></ul><button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button></div></nav>
     <div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Cerca nel sito"><div class="search-modal-header"><div class="search-bar" id="searchBarMobile"><svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" class="search-input" id="searchInputMobile" placeholder="Cerca nel sito..." aria-label="Cerca nel sito" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="searchResultsMobile" autocapitalize="off" autocorrect="off" inputmode="search" spellcheck="false"><button class="search-clear" id="searchClearMobile" aria-label="Cancella ricerca"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><button class="search-modal-close" id="searchModalClose" aria-label="Chiudi ricerca"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="search-results" id="searchResultsMobile" role="listbox" aria-label="Risultati di ricerca"></div></div>
-    <main>
+    <main id="main-content" tabindex="-1">
         <div class="container breadcrumb"><a href="../index.html">Home</a><span class="separator">/</span><a href="index.html">Blog</a><span class="separator">/</span><span class="current-page">${a.title.split(':')[0]}</span></div>
         <article>
-            <header class="article-hero"><div class="container"><span class="article-tag">${a.tag}</span><h1>${a.title}</h1><p class="article-meta">Di WebNovis Editorial Team · ${a.date} · ${a.readTime} di lettura · <span class="article-updated">Aggiornato: ${modifiedDateHuman}</span></p></div></header>
+            <header class="article-hero"><div class="container"><span class="article-tag">${a.tag}</span><h1>${a.title}</h1><p class="article-meta">Di <a href="../chi-siamo.html" rel="author">${VISIBLE_AUTHOR_NAME}</a>, ${VISIBLE_AUTHOR_ROLE} · ${a.date} · ${a.readTime} di lettura · <span class="article-updated">Aggiornato: ${modifiedDateHuman}</span></p></div></header>
             <div class="article-content">
                 <div class="article-summary">
                     <p><strong>In breve:</strong> ${a.description}</p>
