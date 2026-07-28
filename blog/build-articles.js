@@ -7158,7 +7158,7 @@ function getAutomaticRelatedArticles(currentArticle, pool, limit = 3) {
 function buildAiEditorialNoteHTML() {
   return `
                 <aside class="article-ai-note" id="nota-redazione-ai" aria-label="Nota sulla redazione" style="max-width:760px;margin:2rem auto 2.5rem;padding:.85rem 1rem;border-top:1px solid rgba(255,255,255,.06);color:rgba(250,248,243,.42);font-size:.78rem;line-height:1.55">
-                    <p style="margin:0;color:inherit;font-size:inherit;line-height:inherit">Questo articolo è stato redatto con il supporto di strumenti di intelligenza artificiale e revisionato da un membro del team WebNovis prima della pubblicazione. Per dettagli sui sistemi AI del sito: <a href="../privacy-policy.html#sistemi-ai" style="color:rgba(168,180,248,.75);text-decoration:none;border-bottom:1px solid rgba(168,180,248,.2)">Informativa privacy — sistemi AI</a>.</p>
+                    <p style="margin:0;color:inherit;font-size:inherit;line-height:inherit">Questo articolo è stato redatto con il supporto di strumenti di intelligenza artificiale e revisionato da un membro del team WebNovis prima della pubblicazione. Anche l'immagine di copertina è generata con intelligenza artificiale. Per dettagli sui sistemi AI del sito: <a href="../privacy-policy.html#sistemi-ai" style="color:rgba(168,180,248,.75);text-decoration:none;border-bottom:1px solid rgba(168,180,248,.2)">Informativa privacy — sistemi AI</a>.</p>
                 </aside>`;
 }
 
