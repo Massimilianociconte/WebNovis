@@ -74,9 +74,11 @@ jobs:
       - name: Rebuild sitemap
         run: node generate-sitemap.js
 
-      # Step 5: Validate pages (non-blocking — logs warnings but doesn't fail)
+      # Step 5: Validate pages — BLOCCANTE.
+      # Se la generazione produce pagine non valide il workflow deve fermarsi
+      # PRIMA del commit: altrimenti pubblichiamo centinaia di pagine rotte.
       - name: Validate page quality
-        run: node scripts/validate-pages.js || true
+        run: node scripts/validate-pages.js
 
       # Step 6: Run SEO monitoring report
       - name: SEO monitoring report
@@ -92,7 +94,9 @@ jobs:
       - name: Commit and push
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🌍 pSEO: auto-generated geo pages & AI content [skip ci]"
+          # NB: niente [skip ci]. Questi commit toccano centinaia di pagine
+          # pubbliche e devono passare dal Quality Gate come qualsiasi altro push.
+          commit_message: "🌍 pSEO: auto-generated geo pages & AI content"
           file_pattern: |
             agenzia-web-*.html
             realizzazione-siti-web-*.html

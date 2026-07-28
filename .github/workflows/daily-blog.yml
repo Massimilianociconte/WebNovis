@@ -49,6 +49,7 @@ jobs:
       - name: Commit and push new articles
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "📝 Auto-generated blog articles [skip ci]"
+          # NB: niente [skip ci]. Gli articoli generati devono passare dal Quality Gate.
+          commit_message: "📝 Auto-generated blog articles"
           file_pattern: "blog/*.html blog/*.json sitemap.xml indexnow-log.json"
           commit_author: "WebNovis Bot <bot@webnovis.com>"

@@ -38,6 +38,9 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
 
+      # Gira su ogni push a main: è il gate che rileva header di sicurezza
+      # mancanti in produzione (CSP/Permissions-Policy) e sorgenti esposti.
+      # Su PR da fork non gira (la produzione non è ancora cambiata).
       - name: Verify production headers
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name != 'pull_request'
         run: npm run verify:prod-headers
