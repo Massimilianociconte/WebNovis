@@ -17,11 +17,10 @@ const SITE_URL = 'https://www.webnovis.com';
 const ASSET_VERSION = '20260728c';
 const REVOLUTION_CSS_VERSION = '1.5';
 const SEARCH_CSS_VERSION = '2.1';
-// La byline visibile deve combaciare con l'author del JSON-LD, che
-// config/seo-html-transforms.js normalizza a Person (#person-massimiliano).
-// Prima diceva "WebNovis Editorial Team": schema e pagina si contraddicevano.
-const VISIBLE_AUTHOR_NAME = ENTITY_FACTS.personAuthorName;
-const VISIBLE_AUTHOR_ROLE = ENTITY_FACTS.personAuthorJobTitle.replace(/&/g, '&amp;');
+// Scelta editoriale: gli articoli sono firmati dall'agenzia, non da una persona.
+// Deve combaciare con l'author del JSON-LD, che config/seo-html-transforms.js
+// normalizza al nodo Organization `#organization`.
+const VISIBLE_AUTHOR_NAME = ENTITY_FACTS.name;
 const SKIP_LINK_HTML = '<a href="#main-content" class="skip-link" style="position:absolute;top:-100%;left:0;z-index:100000;padding:.8rem 1.5rem;background:#7b8cc9;color:#fff;font-size:.9rem;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s">Vai al contenuto</a><style>.skip-link:focus{top:0}</style>';
 const GLOBAL_CONTENT_REFRESH_DATE_ISO = '2026-02-17';
 const GLOBAL_CONTENT_REFRESH_DATE_HUMAN = '17 Febbraio 2026';
@@ -7462,7 +7461,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <main id="main-content" tabindex="-1">
         <div class="container breadcrumb"><a href="../index.html">Home</a><span class="separator">/</span><a href="index.html">Blog</a><span class="separator">/</span><span class="current-page">${a.title.split(':')[0]}</span></div>
         <article>
-            <header class="article-hero"><div class="container"><span class="article-tag">${a.tag}</span><h1>${a.title}</h1><p class="article-meta">Di <a href="../chi-siamo.html" rel="author">${VISIBLE_AUTHOR_NAME}</a>, ${VISIBLE_AUTHOR_ROLE} · ${a.date} · ${a.readTime} di lettura · <span class="article-updated">Aggiornato: ${modifiedDateHuman}</span></p></div></header>
+            <header class="article-hero"><div class="container"><span class="article-tag">${a.tag}</span><h1>${a.title}</h1><p class="article-meta">Di <a href="../chi-siamo.html" rel="author">${VISIBLE_AUTHOR_NAME}</a> · ${a.date} · ${a.readTime} di lettura · <span class="article-updated">Aggiornato: ${modifiedDateHuman}</span></p></div></header>
             <div class="article-content">
                 <div class="article-summary">
                     <p><strong>In breve:</strong> ${a.description}</p>

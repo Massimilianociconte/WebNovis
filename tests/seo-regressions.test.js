@@ -239,25 +239,34 @@ function main() {
     'Shared footer must not imply an unverified Google star rating'
   );
 
-  // Articles are attributed to the named editor already published on
-  // /chi-siamo.html, with WebNovis as publisher. An abstract "editorial team"
-  // is not a disambiguable entity and must not be reintroduced.
+  // Scelta editoriale: gli articoli sono firmati da WebNovis, mai da una
+  // persona. author e publisher puntano entrambi al nodo Organization, e la
+  // byline visibile deve dire la stessa cosa dello schema.
   for (const file of ['blog/quanto-costa-un-sito-web.html', 'blog/seo-per-piccole-imprese.html']) {
-    const schemas = parseJsonLd(readText(file), file);
+    const html = readText(file);
+    const schemas = parseJsonLd(html, file);
     const posts = schemas.filter((schema) => ['BlogPosting', 'Article'].includes(schema['@type']));
     assert.ok(posts.length > 0, `${file} must declare its article schema`);
     for (const post of posts) {
-      assert.equal(post.author?.['@type'], 'Person', `${file} must attribute the article to a person`);
       assert.equal(
         post.author?.['@id'],
-        'https://www.webnovis.com/#person-massimiliano',
-        `${file} must reference the named editor already declared on chi-siamo`
+        'https://www.webnovis.com/#organization',
+        `${file} must attribute the article to WebNovis, not to a person`
       );
       assert.ok(post.publisher, `${file} must keep WebNovis as publisher`);
     }
     assert.ok(
+      !JSON.stringify(schemas).includes('#person-massimiliano'),
+      `${file} must not attribute the article to an individual editor`
+    );
+    assert.ok(
       !schemas.some((schema) => schema.name === 'WebNovis Editorial Team'),
       `${file} must not keep an unreferenced collective editorial-team entity`
+    );
+    assert.match(
+      html,
+      /class="article-meta">Di <a href="\.\.\/chi-siamo\.html" rel="author">WebNovis<\/a>/,
+      `${file} visible byline must read "Di WebNovis"`
     );
   }
 

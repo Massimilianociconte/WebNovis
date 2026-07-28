@@ -165,16 +165,27 @@ function fixCssVersions(html, report) {
   return out;
 }
 
-// ── 5. Byline coerente con lo schema Person ──────────────────────────────────
+// ── 5. Byline: sempre WebNovis ───────────────────────────────────────────────
+// Scelta editoriale: gli articoli sono firmati dall'agenzia. La byline visibile
+// deve dire lo stesso dell'author nel JSON-LD (nodo Organization).
 function fixByline(html, report) {
-  if (!html.includes('Di WebNovis Editorial Team')) return html;
-  // Solo se il JSON-LD dichiara davvero il Person: altrimenti creeremmo l'incoerenza inversa.
-  if (!html.includes(ENTITY_FACTS.personAuthorId)) return html;
-  report.byline += 1;
-  const role = ENTITY_FACTS.personAuthorJobTitle.replace(/&/g, '&amp;');
-  return html.split('Di WebNovis Editorial Team').join(
-    `Di <a href="../chi-siamo.html" rel="author">${ENTITY_FACTS.personAuthorName}</a>, ${role}`
-  );
+  const target = `Di <a href="../chi-siamo.html" rel="author">${ENTITY_FACTS.name}</a>`;
+  if (html.includes(target)) return html;
+
+  // La variante con ruolo ("…</a>, Co-Founder &amp; Web Developer") va rimossa
+  // senza mangiare lo spazio prima del separatore "·" che segue.
+  const variants = [
+    /Di <a href="\.\.\/chi-siamo\.html" rel="author">[^<]*<\/a>(?:,[^·<]*?)?(?=\s*·)/,
+    /Di <a href="\.\.\/chi-siamo\.html" rel="author">[^<]*<\/a>/,
+    /Di WebNovis Editorial Team/
+  ];
+  for (const pattern of variants) {
+    if (pattern.test(html)) {
+      report.byline += 1;
+      return html.replace(pattern, target);
+    }
+  }
+  return html;
 }
 
 function main() {

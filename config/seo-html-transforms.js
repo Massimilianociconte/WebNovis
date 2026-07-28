@@ -1023,26 +1023,23 @@ function deduplicateStylesheetLinks(html) {
 const ENTITY_FACTS_FOR_AUTHOR = require('./entity-facts').ENTITY_FACTS;
 
 /**
- * Attribute blog articles to the named editor already declared on
- * /chi-siamo.html, keeping WebNovis as publisher.
+ * Attribute blog articles to WebNovis.
  *
- * An "editorial team" is not a disambiguable entity: search and generative
- * systems weigh a person with declared expertise (knowsAbout, jobTitle, a
- * profile URL) far more heavily. The person referenced here is real and
- * already published on the site — nothing is invented.
+ * Scelta editoriale: la firma è sempre l'agenzia, mai una persona singola.
+ * L'author punta quindi al nodo Organization già dichiarato sul sito
+ * (`#organization`), lo stesso che fa da publisher — coerente con la byline
+ * visibile generata da blog/build-articles.js.
  */
 function alignArticleAuthorship(html, relativePath) {
   const source = String(html || '');
   if (!/^blog\//.test(normalizeRelativePath(relativePath))) return source;
   if (!/"@type"\s*:\s*"BlogPosting"/.test(source)) return source;
 
-  const person = {
-    '@type': 'Person',
-    '@id': ENTITY_FACTS_FOR_AUTHOR.personAuthorId,
-    name: ENTITY_FACTS_FOR_AUTHOR.personAuthorName,
-    jobTitle: ENTITY_FACTS_FOR_AUTHOR.personAuthorJobTitle,
-    url: ENTITY_FACTS_FOR_AUTHOR.personAuthorUrl,
-    worksFor: { '@id': ENTITY_FACTS_FOR_AUTHOR.organizationId }
+  const author = {
+    '@type': 'Organization',
+    '@id': ENTITY_FACTS_FOR_AUTHOR.organizationId,
+    name: ENTITY_FACTS_FOR_AUTHOR.name,
+    url: `${ENTITY_FACTS_FOR_AUTHOR.siteUrl}/`
   };
   const publisher = { '@id': ENTITY_FACTS_FOR_AUTHOR.organizationId };
 
@@ -1070,7 +1067,7 @@ function alignArticleAuthorship(html, relativePath) {
         if (Array.isArray(node)) { node.forEach(visit); return; }
         if (!node || typeof node !== 'object') return;
         if (node['@type'] === 'BlogPosting' || node['@type'] === 'Article') {
-          node.author = person;
+          node.author = author;
           if (!node.publisher) node.publisher = publisher;
           touched = true;
         }
