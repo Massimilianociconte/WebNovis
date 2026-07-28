@@ -2360,6 +2360,21 @@ section {
     font-weight: 500;
 }
 
+/* Opzione sotto il cursore di tastiera (aria-activedescendant).
+   Serve un contrasto più marcato di :hover: è l'unico riscontro visivo
+   per chi naviga con le frecce, dato che il focus resta sul trigger. */
+.custom-option.is-active {
+    background: rgba(91, 106, 174, 0.32);
+    color: var(--white);
+    box-shadow: inset 3px 0 0 var(--primary-light);
+}
+
+.custom-select-trigger:focus-visible {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+    border-color: var(--primary);
+}
+
 .custom-options::-webkit-scrollbar { width: 5px; }
 .custom-options::-webkit-scrollbar-track { background: transparent; }
 .custom-options::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 10px; }
@@ -4629,6 +4644,25 @@ section {
 }
 
 /* AI Act transparency — subtle, non-alarming */
+/* Barra "modalità offline": compare solo quando il worker AI non risponde e
+   le risposte arrivano dalla guida locale. Deve essere leggibile, non decorativa:
+   sta dicendo all'utente che non sta più parlando con il modello. */
+.chat-status-bar {
+    margin: 0;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    color: #fde68a;
+    background: rgba(180, 83, 9, 0.22);
+    border-bottom: 1px solid rgba(251, 191, 36, 0.35);
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+.chat-status-bar[hidden] {
+    display: none;
+}
+
 .chat-ai-notice {
     display: flex;
     flex-direction: column;

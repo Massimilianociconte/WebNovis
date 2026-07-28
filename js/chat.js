@@ -60,7 +60,9 @@ function initWebyChatbot() {
         scrollLocked: false,
         leadCaptured: false,
         messageCount: 0,
-        sessionId: Date.now().toString(36)
+        sessionId: Date.now().toString(36),
+        // 'online' | 'degraded' — guida la barra di stato del widget.
+        connection: 'online'
     };
     let keepAliveTimer = null;
     let keepAliveStarted = false;
@@ -167,23 +169,45 @@ function initWebyChatbot() {
     if (elements.input) {
         elements.input.setAttribute('maxlength', CHAT_CONFIG.maxMessageLength);
 
-        // Inject character counter
+        // Inject character counter.
+        // Il contatore è informazione di stato del campo: va esposto come
+        // live region e collegato all'input, altrimenti chi non vede il numero
+        // scopre il limite solo quando il testo smette di essere accettato.
         const inputWrapper = elements.input.parentElement;
         charCounter = document.createElement('span');
         charCounter.className = 'chat-char-counter';
+        charCounter.id = 'chatCharCounter';
+        charCounter.setAttribute('role', 'status');
+        charCounter.setAttribute('aria-live', 'polite');
+        charCounter.setAttribute('aria-atomic', 'true');
         charCounter.style.cssText = 'position:absolute;bottom:28px;right:60px;font-size:0.65rem;color:rgba(255,255,255,0.25);pointer-events:none;transition:color 0.2s;';
         if (inputWrapper) {
             inputWrapper.style.position = 'relative';
             inputWrapper.appendChild(charCounter);
         }
+        const describedBy = elements.input.getAttribute('aria-describedby');
+        elements.input.setAttribute(
+            'aria-describedby',
+            describedBy ? `${describedBy} chatCharCounter` : 'chatCharCounter'
+        );
 
+        let lastAnnouncedBucket = null;
         elements.input.addEventListener('input', () => {
             const remaining = CHAT_CONFIG.maxMessageLength - elements.input.value.length;
             if (remaining <= 80) {
                 charCounter.textContent = remaining;
                 charCounter.style.color = remaining <= 20 ? 'rgba(239,68,68,0.7)' : 'rgba(255,255,255,0.35)';
+                // Annuncia a soglie, non a ogni tasto: una live region che parla
+                // 80 volte di fila è peggio del silenzio.
+                const bucket = remaining <= 10 ? 10 : remaining <= 20 ? 20 : remaining <= 50 ? 50 : 80;
+                if (bucket !== lastAnnouncedBucket) {
+                    lastAnnouncedBucket = bucket;
+                    charCounter.setAttribute('aria-label', `${remaining} caratteri rimanenti`);
+                }
             } else {
                 charCounter.textContent = '';
+                charCounter.removeAttribute('aria-label');
+                lastAnnouncedBucket = null;
             }
         });
 
@@ -431,9 +455,10 @@ function initWebyChatbot() {
         }
 
         try {
-            const response = await fetchResponseWithRetry(message);
+            const { text: response, degraded } = await fetchResponseWithRetry(message);
             hideTyping();
             appendMessage(response, 'bot');
+            setConnectionState(degraded ? 'degraded' : 'online');
 
             state.history.push({ role: 'user', content: message });
             state.history.push({ role: 'assistant', content: response });
@@ -456,7 +481,7 @@ function initWebyChatbot() {
     async function fetchResponseWithRetry(message) {
         for (let attempt = 0; attempt <= CHAT_CONFIG.maxRetries; attempt++) {
             try {
-                return await fetchResponse(message, attempt);
+                return { text: await fetchResponse(message, attempt), degraded: false };
             } catch (err) {
                 if (attempt < CHAT_CONFIG.maxRetries) {
                     // Exponential backoff: 1.2s, 2.4s
@@ -464,8 +489,45 @@ function initWebyChatbot() {
                 }
             }
         }
-        // All retries exhausted — use local fallback silently
-        return getLocalFallback(message);
+        // Retry esauriti. Il fallback locale è una guida pre-scritta, NON una
+        // risposta del modello: restituirlo in silenzio farebbe credere all'utente
+        // di stare ancora parlando con l'assistente AI. Lo marchiamo come degradato
+        // e lo stato viene reso visibile e annunciato (coerenza con la disclosure
+        // AI Act già presente nel widget).
+        return { text: getLocalFallback(message), degraded: true };
+    }
+
+    /**
+     * Mostra/nasconde la barra "modalità offline" sopra i messaggi.
+     * Viene creata al primo bisogno per non toccare il markup di ogni pagina.
+     */
+    function setConnectionState(mode) {
+        if (state.connection === mode) return;
+        state.connection = mode;
+        if (!elements.popup) return;
+
+        let bar = elements.popup.querySelector('.chat-status-bar');
+        if (!bar) {
+            if (mode !== 'degraded') return;
+            bar = document.createElement('p');
+            bar.className = 'chat-status-bar';
+            bar.setAttribute('role', 'status');
+            bar.setAttribute('aria-live', 'polite');
+            const messages = elements.messages || elements.popup.querySelector('.chat-messages');
+            if (messages && messages.parentNode) {
+                messages.parentNode.insertBefore(bar, messages);
+            } else {
+                elements.popup.appendChild(bar);
+            }
+        }
+
+        if (mode === 'degraded') {
+            bar.hidden = false;
+            bar.textContent = 'Assistente non raggiungibile: queste risposte vengono da una guida offline, non sono generate dall\'AI. Per una risposta su misura scrivi a hello@webnovis.com.';
+        } else {
+            bar.hidden = true;
+            bar.textContent = '';
+        }
     }
 
     async function fetchResponse(message, attempt = 0) {
@@ -505,7 +567,11 @@ function initWebyChatbot() {
                 await new Promise(r => setTimeout(r, targetDelay - elapsed));
             }
 
-            return responseText || getLocalFallback(message);
+            // Risposta 200 ma vuota: è comunque una mancata risposta del modello.
+            // La trattiamo come errore così passa dal ramo "degradato" invece di
+            // presentare la guida offline come output dell'AI.
+            if (!responseText) throw new Error('Empty AI response');
+            return responseText;
 
         } catch (error) {
             clearTimeout(timeout);

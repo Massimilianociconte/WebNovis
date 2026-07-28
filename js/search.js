@@ -579,6 +579,45 @@
     return topScore > WEAK_LOCAL_SCORE_THRESHOLD;
   }
 
+  // ─── Annuncio per screen reader ──────────────────────────────────────────────
+  // Il pannello risultati è un listbox che si popola senza cambio pagina: senza
+  // una live region chi usa uno screen reader non sa se la ricerca ha prodotto
+  // qualcosa. Una sola region condivisa fra ricerca desktop e modale mobile.
+  var srStatusEl = null;
+  var srStatusTimer = null;
+
+  function getSrStatusEl() {
+    if (srStatusEl && document.body.contains(srStatusEl)) return srStatusEl;
+    srStatusEl = document.getElementById('searchSrStatus');
+    if (!srStatusEl) {
+      srStatusEl = document.createElement('div');
+      srStatusEl.id = 'searchSrStatus';
+      srStatusEl.className = 'sr-only';
+      srStatusEl.setAttribute('role', 'status');
+      srStatusEl.setAttribute('aria-live', 'polite');
+      srStatusEl.setAttribute('aria-atomic', 'true');
+      document.body.appendChild(srStatusEl);
+    }
+    return srStatusEl;
+  }
+
+  function announceResults(localCount, hasAi, query) {
+    var el = getSrStatusEl();
+    var message;
+    if (!localCount && !hasAi) {
+      message = 'Nessun risultato per ' + query;
+    } else {
+      message = localCount === 1 ? '1 risultato per ' + query : localCount + ' risultati per ' + query;
+      if (hasAi) message += ', più una risposta generata con AI';
+    }
+    // Debounce: la ricerca ri-renderizza a ogni tasto, annunciare ogni
+    // keystroke renderebbe la live region inascoltabile.
+    if (srStatusTimer) clearTimeout(srStatusTimer);
+    srStatusTimer = setTimeout(function () {
+      el.textContent = message;
+    }, 400);
+  }
+
   // ─── Render (target-aware) ───────────────────────────────────────────────────
   function renderResultsTo(resultsEl, inputEl, local, ai, query, selIdx) {
     if (!resultsEl) return;
@@ -640,6 +679,8 @@
 
     resultsEl.innerHTML = html;
     resultsEl.classList.add('visible');
+
+    announceResults(local.length, !!ai, query);
 
     resultsEl.querySelectorAll('.search-related-tag').forEach(function (btn) {
       btn.addEventListener('click', function () {

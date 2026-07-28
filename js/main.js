@@ -2173,42 +2173,167 @@ if (processLineGlow && processLineDot && processLineSvg && !isMobile) {
 })();
 
 // ===== CUSTOM SELECT =====
+// Pattern combobox/listbox (WAI-ARIA APG). Il markup nasce come <div tabindex="0">
+// senza role, senza nome accessibile e senza tastiera: qui viene promosso a
+// combobox completo a runtime, così i due form di conversione restano usabili
+// da tastiera e da screen reader senza dover riscrivere l'HTML di ogni pagina.
 (function() {
     const customSelects = document.querySelectorAll('.custom-select-wrapper');
     if (!customSelects.length) return;
 
+    let uid = 0;
+
+    function closeAll(except) {
+        customSelects.forEach(w => {
+            if (w === except) return;
+            w.classList.remove('open');
+            const t = w.querySelector('.custom-select-trigger');
+            if (t) {
+                t.setAttribute('aria-expanded', 'false');
+                t.removeAttribute('aria-activedescendant');
+            }
+        });
+    }
+
     customSelects.forEach(wrapper => {
         const trigger = wrapper.querySelector('.custom-select-trigger');
         const textEl = wrapper.querySelector('.custom-select-text');
-        const options = wrapper.querySelectorAll('.custom-option');
+        const list = wrapper.querySelector('.custom-options');
+        const options = Array.prototype.slice.call(wrapper.querySelectorAll('.custom-option'));
         const hiddenInput = wrapper.querySelector('input[type="hidden"]');
-        if (!trigger || !textEl || !hiddenInput) return;
+        if (!trigger || !textEl || !hiddenInput || !list) return;
+
+        const base = wrapper.id || hiddenInput.id || `custom-select-${++uid}`;
+        const listId = `${base}-listbox`;
+
+        // --- ARIA statica -----------------------------------------------------
+        list.id = listId;
+        list.setAttribute('role', 'listbox');
+        trigger.setAttribute('role', 'combobox');
+        trigger.setAttribute('aria-haspopup', 'listbox');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.setAttribute('aria-controls', listId);
+        if (!trigger.hasAttribute('tabindex')) trigger.setAttribute('tabindex', '0');
+
+        // La <label for="..."> punta all'input hidden, che non espone nome
+        // accessibile: la ricolleghiamo al trigger via aria-labelledby.
+        const formGroup = wrapper.closest('.form-group');
+        const label = formGroup && formGroup.querySelector('label');
+        if (label) {
+            if (!label.id) label.id = `${base}-label`;
+            trigger.setAttribute('aria-labelledby', `${label.id} ${base}-value`);
+        }
+        if (!textEl.id) textEl.id = `${base}-value`;
+
+        options.forEach((option, index) => {
+            option.id = `${base}-option-${index}`;
+            option.setAttribute('role', 'option');
+            option.setAttribute('aria-selected', 'false');
+        });
+
+        let activeIndex = -1;
+
+        function isOpen() {
+            return wrapper.classList.contains('open');
+        }
+
+        function setActive(index, scroll) {
+            if (!options.length) return;
+            activeIndex = Math.max(0, Math.min(index, options.length - 1));
+            options.forEach((opt, i) => opt.classList.toggle('is-active', i === activeIndex));
+            trigger.setAttribute('aria-activedescendant', options[activeIndex].id);
+            if (scroll !== false && options[activeIndex].scrollIntoView) {
+                options[activeIndex].scrollIntoView({ block: 'nearest' });
+            }
+        }
+
+        function open() {
+            closeAll(wrapper);
+            wrapper.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+            const selected = options.findIndex(o => o.getAttribute('aria-selected') === 'true');
+            setActive(selected >= 0 ? selected : 0);
+        }
+
+        function close(refocus) {
+            wrapper.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.removeAttribute('aria-activedescendant');
+            options.forEach(opt => opt.classList.remove('is-active'));
+            if (refocus) trigger.focus();
+        }
+
+        function select(option) {
+            textEl.textContent = option.textContent;
+            trigger.classList.add('has-value');
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+                opt.setAttribute('aria-selected', 'false');
+            });
+            option.classList.add('selected');
+            option.setAttribute('aria-selected', 'true');
+            hiddenInput.value = option.getAttribute('data-value');
+            if (formGroup) formGroup.classList.remove('is-invalid');
+            hiddenInput.dispatchEvent(new Event('input', { bubbles: true }));
+        }
 
         trigger.addEventListener('click', function(e) {
             e.stopPropagation();
-            customSelects.forEach(w => { if (w !== wrapper) w.classList.remove('open'); });
-            wrapper.classList.toggle('open');
+            if (isOpen()) close(false); else open();
         });
 
-        options.forEach(option => {
+        trigger.addEventListener('keydown', function(e) {
+            switch (e.key) {
+                case 'Enter':
+                case ' ':
+                case 'Spacebar':
+                    e.preventDefault();
+                    if (isOpen() && activeIndex >= 0) {
+                        select(options[activeIndex]);
+                        close(true);
+                    } else {
+                        open();
+                    }
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    if (!isOpen()) open(); else setActive(activeIndex + 1);
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    if (!isOpen()) open(); else setActive(activeIndex - 1);
+                    break;
+                case 'Home':
+                    if (isOpen()) { e.preventDefault(); setActive(0); }
+                    break;
+                case 'End':
+                    if (isOpen()) { e.preventDefault(); setActive(options.length - 1); }
+                    break;
+                case 'Escape':
+                    if (isOpen()) { e.preventDefault(); close(true); }
+                    break;
+                case 'Tab':
+                    if (isOpen()) close(false);
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        options.forEach((option, index) => {
             option.addEventListener('click', function(e) {
                 e.stopPropagation();
-                const value = this.getAttribute('data-value');
-                textEl.textContent = this.textContent;
-                trigger.classList.add('has-value');
-                options.forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
-                hiddenInput.value = value;
-                wrapper.classList.remove('open');
-                const formGroup = wrapper.closest('.form-group');
-                if (formGroup) formGroup.classList.remove('is-invalid');
-                hiddenInput.dispatchEvent(new Event('input', { bubbles: true }));
+                select(option);
+                close(true);
+            });
+            option.addEventListener('mousemove', function() {
+                if (isOpen()) setActive(index, false);
             });
         });
     });
 
     document.addEventListener('click', function() {
-        customSelects.forEach(w => w.classList.remove('open'));
+        closeAll(null);
     });
 })();
 

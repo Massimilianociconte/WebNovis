@@ -65,7 +65,7 @@
         '<span class="chat-ai-notice-sep" aria-hidden="true">·</span>' +
         '<a href="https://wa.me/393802647367" rel="noopener noreferrer" target="_blank" title="Contatta il team su WhatsApp">Team umano</a>' +
         '</span></p>' +
-      '<div class="chat-messages" id="chatMessages">' +
+      '<div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-atomic="false" aria-label="Conversazione con l'assistente Weby">' +
         '<div class="bot-message chat-message">' +
           '<div class="message-avatar">' +
             '<picture>' +
