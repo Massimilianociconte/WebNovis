@@ -6,9 +6,9 @@ const _isLocal = window.location.hostname === 'localhost' || window.location.hos
 
 // Configuration
 const CHAT_CONFIG = {
-    apiEndpoint: _isLocal ? 'http://localhost:3000/api/chat' : 'https://webnovis-chat.onrender.com/api/chat',
-    leadEndpoint: _isLocal ? 'http://localhost:3000/api/chat-lead' : 'https://webnovis-chat.onrender.com/api/chat-lead',
-    healthCheckUrl: _isLocal ? 'http://localhost:3000/api/health' : 'https://webnovis-chat.onrender.com/api/health',
+    apiEndpoint: _isLocal ? ((window.WEBNOVIS_LOCAL_AI_API || 'http://127.0.0.1:8787') + '/api/chat') : 'https://webnovis-ai.nexify-api.workers.dev/api/chat',
+    leadEndpoint: _isLocal ? ((window.WEBNOVIS_LOCAL_AI_API || 'http://127.0.0.1:8787') + '/api/chat-lead') : 'https://webnovis-ai.nexify-api.workers.dev/api/chat-lead',
+    healthCheckUrl: _isLocal ? ((window.WEBNOVIS_LOCAL_AI_API || 'http://127.0.0.1:8787') + '/api/health') : 'https://webnovis-ai.nexify-api.workers.dev/api/health',
     maxMessageLength: 500,
     maxHistoryLength: 8,
     minTypingTime: 600,
@@ -107,8 +107,38 @@ function initWebyChatbot() {
     // Store original viewport for mobile keyboard handling
     const originalViewportHeight = window.innerHeight;
 
+    function ensureAiTransparencyNotice() {
+        if (!elements.popup || elements.popup.querySelector('.chat-ai-notice')) return;
+        const notice = document.createElement('p');
+        notice.className = 'chat-ai-notice';
+        notice.setAttribute('role', 'status');
+        const privacyHref = (window.location.pathname.includes('/blog/') || window.location.pathname.includes('/servizi/'))
+            ? '../privacy-policy.html#sistemi-ai'
+            : 'privacy-policy.html#sistemi-ai';
+        notice.innerHTML =
+            'Stai chattando con un assistente automatico basato su intelligenza artificiale. ' +
+            'Le risposte possono contenere imprecisioni. ' +
+            '<a href="' + privacyHref + '" title="Informativa sui sistemi AI">Privacy</a>' +
+            ' · ' +
+            '<a href="https://wa.me/393802647367" rel="noopener noreferrer" target="_blank" title="Contatta il team su WhatsApp">Team umano</a>';
+        const messages = elements.messages || elements.popup.querySelector('.chat-messages');
+        if (messages && messages.parentNode === elements.popup) {
+            elements.popup.insertBefore(notice, messages);
+        } else {
+            const header = elements.popup.querySelector('.chat-header');
+            if (header && header.nextSibling) {
+                elements.popup.insertBefore(notice, header.nextSibling);
+            } else {
+                elements.popup.appendChild(notice);
+            }
+        }
+    }
+
     // Restore previous session from localStorage (if recent)
     restoreSession();
+
+    // AI Act Art. 50 — ensure a clear, persistent disclosure is present in the widget
+    ensureAiTransparencyNotice();
 
     // --- EVENT LISTENERS ---
 
@@ -450,7 +480,8 @@ function initWebyChatbot() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: message,
-                    sessionId: state.sessionId
+                    sessionId: state.sessionId,
+                    currentPage: window.location.pathname || '/'
                 }),
                 signal: controller.signal
             });
@@ -552,7 +583,7 @@ function initWebyChatbot() {
 
         // Greetings
         if (lower.match(/^(ciao|salve|buongiorno|buonasera|hey|hello|hi|hola|salut)/)) {
-            return "Ciao! [icon:sparkles] Sono Weby, l'assistente di WebNovis.\nLavoriamo su siti web, grafica e social media.\n\nCosa posso fare per te oggi?";
+            return "Ciao! [icon:sparkles] Sono Weby, l'assistente AI di WebNovis.\nLavoriamo su siti web, grafica e social media.\n\nCosa posso fare per te oggi?";
         }
 
         // Thanks
@@ -561,8 +592,8 @@ function initWebyChatbot() {
         }
 
         // Prices / Budget
-        if (lower.match(/(prezz|cost|quanto|tariff|listino|budget|preventiv)/)) {
-            return "Ecco i prezzi di partenza [icon:chevronDown]\n\n[icon:globe] Web:\n• Landing Page: da €500\n• Sito Vetrina: da €1.200\n• E-commerce: da €3.500\n\n[icon:palette] Design:\n• Logo: da €150\n• Brand Identity: da €450\n\n[icon:smartphone] Social Media: da €300/mese\n\nI preventivi sono sempre gratuiti e su misura.\nVuoi che ti prepariamo uno personalizzato?";
+        if (lower.match(/(prezz|cost|quanto\s*cost|tariff|listino|budget|preventiv)/)) {
+            return "Ecco i prezzi di partenza [icon:chevronDown]\n\n[icon:globe] Web:\n• Landing Page: da €500\n• Sito Vetrina: da €1.200\n• E-commerce: da €3.500\n\n[icon:palette] Design:\n• Logo: da €250\n• Brand Identity: da €500\n\n[icon:smartphone] Social Media: da €300/mese\n\nI preventivi sono sempre gratuiti e su misura.\nVuoi che ti prepariamo uno personalizzato?";
         }
 
         // Objection: too expensive
@@ -592,7 +623,7 @@ function initWebyChatbot() {
 
         // Design / Logo / Brand
         if (lower.match(/(logo|grafica|brand|design|identit|visual|stampa|flyer|brochure|packaging|coordinato)/)) {
-            return "Creiamo identità visive memorabili! [icon:sparkles]\n\n• Logo professionale: da €150\n• Brand Identity completa: da €450\n• Materiale stampa: preventivo\n• Packaging: preventivo\n\nTutto disegnato da zero, nessun template!\n\nVuoi vedere esempi nel portfolio?";
+            return "Creiamo identità visive memorabili! [icon:sparkles]\n\n• Logo professionale: da €250\n• Brand Identity completa: da €500\n• Materiale stampa: preventivo\n• Packaging: preventivo\n\nTutto disegnato da zero, nessun template!\n\nVuoi vedere esempi nel portfolio?";
         }
 
         // Photo / Video
@@ -622,7 +653,7 @@ function initWebyChatbot() {
 
         // Support / Maintenance
         if (lower.match(/(support|aiuto|problema|assist|manutenzione|aggiornament)/)) {
-            return "Offriamo supporto dedicato! [icon:tool]\n\n• Chatbot (io!)\n• WhatsApp\n• Email: hello@webnovis.com\n\nAssistenza continua anche dopo il lancio.\n\nCome posso aiutarti?";
+            return "Offriamo supporto dedicato! [icon:tool]\n\n• Chatbot AI (io!)\n• WhatsApp\n• Email: hello@webnovis.com\n\nAssistenza continua anche dopo il lancio.\n\nCome posso aiutarti?";
         }
 
         // SEO
@@ -632,7 +663,7 @@ function initWebyChatbot() {
 
         // Chi siete / About
         if (lower.match(/(chi siete|chi sei|chi e webnovis|di cosa vi occupate|cosa fate|presentati)/)) {
-            return "Sono Weby, l'assistente di Web Novis! [icon:sparkles]\n\nWebNovis è un'agenzia digitale italiana con sede a Rho (MI).\nCi occupiamo di siti web, grafica, branding e social media.\n\nFilosofia: design 100% su misura, zero template, SEO inclusa.\n\nVuoi vedere il portfolio o ricevere un preventivo gratuito?";
+            return "Sono Weby, l'assistente AI di Web Novis! [icon:sparkles]\n\nWebNovis è un'agenzia digitale italiana con sede a Rho (MI).\nCi occupiamo di siti web, grafica, branding e social media.\n\nFilosofia: design 100% su misura, zero template, SEO inclusa.\n\nVuoi vedere il portfolio o ricevere un preventivo gratuito?";
         }
 
         // Default

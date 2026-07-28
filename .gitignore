@@ -68,3 +68,8 @@ files_changed.txt
 contatti-*.txt
 wrapper-css.txt
 custom-options-css.txt
+
+# Secret locali Cloudflare Workers
+.dev.vars
+.dev.vars.*
+!.dev.vars.example

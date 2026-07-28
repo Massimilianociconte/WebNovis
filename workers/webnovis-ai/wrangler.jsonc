@@ -1,0 +1,26 @@
+{
+	"$schema": "../../node_modules/wrangler/config-schema.json",
+	"name": "webnovis-ai",
+	"main": "src/index.js",
+	"compatibility_date": "2026-07-28",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"workers_dev": true,
+	"preview_urls": true,
+	"observability": {
+		"enabled": true,
+		"head_sampling_rate": 1
+	},
+	"vars": {
+		"SERVICE_NAME": "webnovis-ai",
+		"ENVIRONMENT": "production"
+	},
+	// Sessions / rate-limit / search cache / leads (auto-provisioned on first deploy if id omitted)
+	"kv_namespaces": [
+		{
+			"binding": "SESSIONS",
+			"id": "1e14835cbedd4c5e8f01706a053d4320"
+		}
+	]
+}

@@ -19,8 +19,12 @@
   var STRONG_LOCAL_SCORE_THRESHOLD = 0.12;
   var WEAK_LOCAL_SCORE_THRESHOLD = 0.23;
   var MAX_LOCAL_RESULTS = 8;
-  var ENABLE_REMOTE_AI = window.WEBNOVIS_ENABLE_REMOTE_SEARCH_AI === true || IS_LOCAL;
-  var SEARCH_API_BASE = window.WEBNOVIS_SEARCH_API_BASE || (IS_LOCAL ? 'http://localhost:3000' : 'https://webnovis-chat.onrender.com');
+  // Remote AI search ON by default in production (Cloudflare Worker).
+  // Opt-out: window.WEBNOVIS_ENABLE_REMOTE_SEARCH_AI = false
+  var ENABLE_REMOTE_AI = window.WEBNOVIS_ENABLE_REMOTE_SEARCH_AI !== false;
+  var SEARCH_API_BASE = window.WEBNOVIS_SEARCH_API_BASE || (IS_LOCAL
+    ? (window.WEBNOVIS_LOCAL_AI_API || 'http://127.0.0.1:8787')
+    : 'https://webnovis-ai.nexify-api.workers.dev');
   var AI_ENDPOINT = SEARCH_API_BASE + '/api/search-ai';
   var FUSE_CDN = 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js';
   var LOCAL_AI_STOP_WORDS = {
@@ -598,8 +602,9 @@
 
     if (ai && ai.answer) {
       html += '<div class="search-results-section search-ai-section">';
-      html += '<div class="search-results-label"><span class="search-ai-badge">AI</span> Risposta intelligente</div>';
+      html += '<div class="search-results-label"><span class="search-ai-badge">AI</span> Risposta generata con AI</div>';
       html += '<div class="search-ai-answer">' + renderAiAnswer(ai.answer) + '</div>';
+      html += '<p class="search-ai-footnote">Sintesi automatica: verifica i dettagli importanti sulle pagine collegate.</p>';
       if (ai.suggestedPages && ai.suggestedPages.length) {
         ai.suggestedPages.forEach(function (p) {
           html += '<a href="' + escHTML(p.url) + '" class="search-result-item search-ai-suggestion">' +
@@ -653,8 +658,9 @@
   // ─── Incremental AI append (avoids full re-render flicker) ─────────────────
   function buildAiSectionHTML(ai, inputEl) {
     var html = '<div class="search-results-section search-ai-section">';
-    html += '<div class="search-results-label"><span class="search-ai-badge">AI</span> Risposta intelligente</div>';
+    html += '<div class="search-results-label"><span class="search-ai-badge">AI</span> Risposta generata con AI</div>';
     html += '<div class="search-ai-answer">' + renderAiAnswer(ai.answer) + '</div>';
+    html += '<p class="search-ai-footnote">Sintesi automatica: verifica i dettagli importanti sulle pagine collegate.</p>';
     if (ai.suggestedPages && ai.suggestedPages.length) {
       ai.suggestedPages.forEach(function (p) {
         html += '<a href="' + escHTML(p.url) + '" class="search-result-item search-ai-suggestion">' +

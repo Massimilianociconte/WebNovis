@@ -785,3 +785,11 @@
         display: none;
     }
 }
+
+.search-ai-footnote {
+    margin: 0.35rem 0 0.15rem;
+    padding: 0 0.25rem;
+    font-size: 0.62rem;
+    line-height: 1.4;
+    color: var(--gray-500, rgba(250,248,243,0.4));
+}

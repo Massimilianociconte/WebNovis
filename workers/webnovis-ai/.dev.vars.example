@@ -1,0 +1,8 @@
+# Copy to .dev.vars for local `wrangler dev` (never commit .dev.vars)
+GEMINI_API_KEY_CHAT=
+GEMINI_API_KEY_SEARCH=
+BREVO_API_KEY=
+BREVO_SENDER_EMAIL=newsletter@webnovis.com
+BREVO_SENDER_NAME=WebNovis
+BREVO_NOTIFICATION_EMAIL=hello@webnovis.com
+CORS_ORIGINS=https://www.webnovis.com,https://webnovis.com

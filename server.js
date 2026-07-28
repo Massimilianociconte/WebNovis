@@ -535,7 +535,7 @@ try {
     config = JSON.parse(fs.readFileSync(path.join(__dirname, 'chat-config.json'), 'utf8'));
 } catch (err) {
     console.error('❌ Failed to load chat-config.json:', err.message);
-    config = { companyInfo: { email: 'hello@webnovis.com' }, chatbotInstructions: 'Sei Weby, assistente di WebNovis.' };
+    config = { companyInfo: { email: 'hello@webnovis.com' }, chatbotInstructions: 'Sei Weby, assistente AI di WebNovis. Dichiarati sempre come assistente di intelligenza artificiale.' };
 }
 
 // Crea il system prompt da inviare a ChatGPT
@@ -1108,7 +1108,7 @@ function getDeterministicChatResponse(message) {
 
     // Only intercept pure greetings (short, no follow-up question)
     if (/^(ciao|salve|buongiorno|buonasera|hey|hello|hi|hola|salut)[!.\s]*$/i.test(lower)) {
-        return "Ciao! Sono Weby, l'assistente AI di WebNovis.\nCi occupiamo di siti web, grafica e social media.\n\nCome posso aiutarti oggi?";
+        return "Ciao! Sono Weby, l'assistente AI di WebNovis (risposte automatiche).\nCi occupiamo di siti web, grafica e social media.\n\nCome posso aiutarti oggi?";
     }
 
     // Only intercept pure thanks (no follow-up)
@@ -1203,10 +1203,9 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 9000);
 
-        let geminiResponse;
-        try {
-            geminiResponse = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/${aiConfig.chatModel}:generateContent?key=${GEMINI_API_KEY_CHAT}`,
+        async function callChatModel(modelName) {
+            const response = await fetch(
+                `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${GEMINI_API_KEY_CHAT}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1222,21 +1221,32 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
                     signal: controller.signal
                 }
             );
+            const data = await response.json();
+            if (!response.ok) {
+                const msg = data.error?.message || `Gemini API error: ${response.status}`;
+                const err = new Error(msg);
+                err.retryable = response.status === 429 || response.status >= 500 || /high demand|unavailable|overloaded/i.test(msg);
+                throw err;
+            }
+            const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (!text) throw new Error('Empty Gemini response');
+            return text;
+        }
+
+        let response;
+        try {
+            try {
+                response = await callChatModel(aiConfig.chatModel);
+            } catch (primaryErr) {
+                if (primaryErr.retryable && aiConfig.chatFallbackModel) {
+                    console.warn('⚠️ Chat primary model failed, trying fallback:', primaryErr.message);
+                    response = await callChatModel(aiConfig.chatFallbackModel);
+                } else {
+                    throw primaryErr;
+                }
+            }
         } finally {
             clearTimeout(timeout);
-        }
-
-        const data = await geminiResponse.json();
-
-        if (!geminiResponse.ok) {
-            console.error('❌ Gemini API error:', data.error?.message || geminiResponse.status);
-            throw new Error(data.error?.message || `Gemini API error: ${geminiResponse.status}`);
-        }
-
-        let response = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-        if (!response) {
-            throw new Error('Empty Gemini response');
         }
 
         // CLEANUP: Rimuove eventuali residui di markdown se l'AI non ha obbedito
@@ -1272,7 +1282,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
 function getLocalResponse(message) {
     const lowerMessage = message.toLowerCase();
 
-    if (lowerMessage.includes('prezzo') || lowerMessage.includes('costo') || lowerMessage.includes('preventivo')) {
+    if (/(prezz|cost|preventiv|budget|tariff|listin|quanto\s*costa)/i.test(lowerMessage)) {
         return `Ecco i nostri prezzi principali:
 
 💻 Web Development:
@@ -1281,8 +1291,8 @@ function getLocalResponse(message) {
 • E-commerce: da €3.500
 
 🎨 Graphic Design:
-• Logo: da €150
-• Brand Identity: da €450
+• Logo: da €250
+• Brand Identity: da €500
 • Materiale Stampa: preventivo
 
 📱 Social Media:

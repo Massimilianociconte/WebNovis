@@ -2,7 +2,9 @@
 // Manteniamo nomi espliciti per evitare hardcode sparsi in server.js e negli script di build.
 const models = {
     chat: 'gemini-2.5-flash-lite',
+    chatFallback: 'gemini-2.5-flash',
     search: 'gemini-2.5-flash-lite',
+    searchFallback: 'gemini-2.5-flash',
     writer: 'gemini-2.5-flash'
 };
 
@@ -12,7 +14,9 @@ module.exports = {
     // Compatibilità con il vecchio consumo della config
     model: models.chat,
     chatModel: models.chat,
+    chatFallbackModel: models.chatFallback,
     searchModel: models.search,
+    searchFallbackModel: models.searchFallback,
     writerModel: models.writer,
 
     // Parametri di generazione

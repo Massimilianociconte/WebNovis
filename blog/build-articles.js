@@ -7154,6 +7154,14 @@ function getAutomaticRelatedArticles(currentArticle, pool, limit = 3) {
     }));
 }
 
+
+function buildAiEditorialNoteHTML() {
+  return `
+                <aside class="article-ai-note" id="nota-redazione-ai" aria-label="Nota sulla redazione" style="max-width:760px;margin:2rem auto 2.5rem;padding:.85rem 1rem;border-top:1px solid rgba(255,255,255,.06);color:rgba(250,248,243,.42);font-size:.78rem;line-height:1.55">
+                    <p style="margin:0;color:inherit;font-size:inherit;line-height:inherit">Questo articolo è stato redatto con il supporto di strumenti di intelligenza artificiale e revisionato da un membro del team WebNovis prima della pubblicazione. Per dettagli sui sistemi AI del sito: <a href="../privacy-policy.html#sistemi-ai" style="color:rgba(168,180,248,.75);text-decoration:none;border-bottom:1px solid rgba(168,180,248,.2)">Informativa privacy — sistemi AI</a>.</p>
+                </aside>`;
+}
+
 function buildFaqHTML(faq = [], articleTag = '') {
   if (!faq.length) {
     return '';
@@ -7371,6 +7379,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
         .article-inline-cta p{margin:0 0 .6rem;font-size:.96rem;line-height:1.7}
         .article-inline-link{font-weight:600;text-decoration:none;color:var(--primary-light)}
         .article-inline-link:hover{text-decoration:underline}
+        .article-ai-note{max-width:760px;margin:2rem auto 2.5rem;padding:.85rem 1rem;border-top:1px solid rgba(255,255,255,.06);color:rgba(250,248,243,.42);font-size:.78rem;line-height:1.55}.article-ai-note p{margin:0;color:inherit;font-size:inherit;line-height:inherit}.article-ai-note a{color:rgba(168,180,248,.75);text-decoration:none;border-bottom:1px solid rgba(168,180,248,.2)}
         .article-faq{padding:2.5rem 0;border-top:1px solid rgba(255,255,255,.06);margin-top:1.5rem}
         .article-sources{padding:2.2rem 0;border-top:1px solid rgba(255,255,255,.06)}
         .article-sources ul{margin:1rem 0 0;padding-left:1.2rem}
@@ -7424,6 +7433,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
                     <p><a href="${serviceLink}" style="font-size:.95rem;">Scopri il servizio correlato →</a></p>
                     <a href="../contatti.html" ${buildInternalAttributionAttributes({ source: 'blog', medium: 'article', campaign: utmSlug })} class="btn btn-primary btn-large"><span>Contattaci Ora</span></a>
                 </div>`}
+                ${buildAiEditorialNoteHTML()}
             </div>
         </article>
     </main>
@@ -7458,6 +7468,7 @@ module.exports = {
   resolveContentUpgrade,
   resolveSourceSet,
   buildArticleHTML,
+  buildAiEditorialNoteHTML,
   buildFaqHTML,
   buildInlineCtaHTML,
   buildContentUpgradeHTML,

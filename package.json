@@ -47,7 +47,11 @@
     "ci:quality:dist": "npm run build:site:dist && npm run verify:artifact && npm run test:regressions && npm run test:seo-smoke && npm run test:api",
     "sync:headers": "node scripts/sync-security-headers.js",
     "sync:headers:dist": "node scripts/sync-security-headers.js --out-dir=dist",
-    "verify:artifact": "node scripts/verify-public-artifact.js --out-dir=dist"
+    "verify:artifact": "node scripts/verify-public-artifact.js --out-dir=dist",
+    "ai:prepare": "node scripts/prepare-ai-worker-data.js",
+    "ai:dev": "npm run ai:prepare && npx wrangler dev -c workers/webnovis-ai/wrangler.jsonc",
+    "ai:deploy": "npm run ai:prepare && npx wrangler deploy -c workers/webnovis-ai/wrangler.jsonc",
+    "ai:tail": "npx wrangler tail webnovis-ai"
   },
   "keywords": [
     "chatbot",
@@ -75,6 +79,7 @@
     "sharp": "^0.34.5",
     "terser": "^5.26.0",
     "vitest": "^4.0.18",
-    "web-vitals": "^5.1.0"
+    "web-vitals": "^5.1.0",
+    "wrangler": "^4.115.0"
   }
 }

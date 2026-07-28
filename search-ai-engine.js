@@ -58,6 +58,7 @@ function inferIntent(queryNorm) {
   if (/(chi siamo|agenzia|team|azienda|storia)/.test(queryNorm)) return 'about';
   if (/(blog|guida|articolo|come fare|cos e|cose|differenza)/.test(queryNorm)) return 'informational';
   if (/(rho|milano|monza|bollate|arese|bresso|buccinasco|legnano|comune|zona|vicino)/.test(queryNorm)) return 'local';
+  if (/(sito|landing|ecommerce|e commerce|logo|brand|social|seo|accessibil)/.test(queryNorm)) return 'commercial';
   return 'general';
 }
 
@@ -145,6 +146,8 @@ function buildRelatedQueries(query, docs) {
   return related.slice(0, 4);
 }
 
+const MIN_SCORE_THRESHOLD = 8;
+
 function scoreDocument(doc, queryNorm, queryTokens, intent, currentPage) {
   let score = 0;
 
@@ -165,8 +168,22 @@ function scoreDocument(doc, queryNorm, queryTokens, intent, currentPage) {
     if (doc._contentNorm.includes(token)) score += 1;
   });
 
+  // No lexical signal → do not invent relevance via type boosts
+  if (score <= 0) return 0;
+
+  // Prefer service pages for commercial intent
+  if (doc.type === 'servizio') score += 10;
+  if (doc.url.startsWith('/servizi/')) score += 8;
+  if (doc.url === '/preventivo.html') score += 6;
+
   if (intent === 'pricing' && /(quanto costa|prezzo|costo|budget|preventiv)/.test(`${doc._titleNorm} ${doc._descriptionNorm}`)) {
     score += 9;
+  }
+  if ((intent === 'pricing' || intent === 'commercial' || intent === 'general') && doc.type === 'servizio') score += 16;
+  if ((intent === 'pricing' || intent === 'commercial' || intent === 'general') && doc.type === 'locale') score -= 20;
+  // generic product queries without city: demote GEO clones hard
+  if (intent !== 'local' && !/(rho|milano|monza|bollate|arese|bresso|legnano|comune|zona)/.test(queryNorm) && doc.type === 'locale') {
+    score -= 24;
   }
   if (intent === 'contact' && doc.url === '/contatti.html') score += 14;
   if (intent === 'portfolio' && (doc.type === 'portfolio' || doc.url === '/portfolio.html')) score += 10;
@@ -200,7 +217,7 @@ function createSearchAiEngine({ rootDir }) {
         ...doc,
         score: scoreDocument(doc, queryNorm, queryTokens, intent, currentPage)
       }))
-      .filter((doc) => doc.score > 0)
+      .filter((doc) => doc.score >= MIN_SCORE_THRESHOLD)
       .sort((a, b) => b.score - a.score || a.url.localeCompare(b.url));
 
     if (!ranked.length) return [];
@@ -259,7 +276,14 @@ function createSearchAiEngine({ rootDir }) {
       .slice(0, 3);
 
     if (!relevantDocs.length) {
-      return { answer: '', suggestedPages: [], relatedQueries: [] };
+      return {
+        answer: 'Non ho trovato pagine abbastanza pertinenti. Prova termini diversi oppure apri [Contatti](/contatti.html) o [Preventivo](/preventivo.html).',
+        suggestedPages: [
+          { title: 'Contatti', url: '/contatti.html', relevance: 0.7 },
+          { title: 'Preventivo', url: '/preventivo.html', relevance: 0.7 }
+        ],
+        relatedQueries: ['servizi webnovis', 'quanto costa un sito web', 'contatti webnovis']
+      };
     }
 
     const intent = inferIntent(normalizeText(query));

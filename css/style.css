@@ -4628,6 +4628,43 @@ section {
     color: var(--gray-light);
 }
 
+/* AI Act transparency — subtle, non-alarming */
+.chat-ai-notice {
+    display: block;
+    margin: 0;
+    padding: 0.45rem 1.25rem 0.55rem;
+    font-size: 0.68rem;
+    line-height: 1.45;
+    color: rgba(250, 248, 243, 0.48);
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: left;
+}
+.chat-ai-notice a {
+    color: rgba(168, 180, 248, 0.85);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(168, 180, 248, 0.25);
+}
+.chat-ai-notice a:hover {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+.chat-header-text h3 .chat-ai-pill {
+    display: inline-block;
+    margin-left: 0.35rem;
+    padding: 0.1rem 0.4rem;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: middle;
+    color: rgba(250, 248, 243, 0.9);
+    background: rgba(91, 106, 174, 0.35);
+    border: 1px solid rgba(91, 106, 174, 0.45);
+    border-radius: 999px;
+}
+
+
 .chat-close {
     width: 32px;
     height: 32px;
@@ -8100,4 +8137,30 @@ img {
 
 .article-updated time {
     font-weight: 500;
+}
+
+
+/* Blog AI editorial note — visible, secondary */
+.article-ai-note {
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    padding: 0.85rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(250, 248, 243, 0.42);
+    font-size: 0.78rem;
+    line-height: 1.55;
+}
+.article-ai-note p {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+.article-ai-note a {
+    color: rgba(168, 180, 248, 0.75);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(168, 180, 248, 0.2);
+}
+.article-ai-note a:hover {
+    color: #fff;
 }

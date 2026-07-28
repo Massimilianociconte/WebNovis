@@ -90,3 +90,6 @@ copy_results.txt
 contatti-*.txt
 tmp_*
 _extract_*
+
+# Backend Cloudflare Worker — non pubblicare come asset statico
+workers/

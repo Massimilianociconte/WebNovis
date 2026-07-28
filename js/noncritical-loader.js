@@ -36,10 +36,12 @@
 
     function runOnce(fn) {
         var hasRun = false;
+        var cached;
         return function () {
-            if (hasRun) return;
+            if (hasRun) return cached;
             hasRun = true;
-            fn();
+            cached = fn();
+            return cached;
         };
     }
 
@@ -91,29 +93,49 @@
     scheduleIdle(loadCursor, 4500);
 
     var ensureChatLoaded = function () {
-        if (!document.getElementById('chatButton') && !document.querySelector('.weby-chat-container')) return;
-        return loadScript('chat.min.js').catch(function () {});
+        // Inject shell on pages without embedded widget, then load chat runtime
+        var loadRuntime = function () {
+            if (!document.getElementById('chatButton') && !document.querySelector('.weby-chat-container')) {
+                return Promise.resolve();
+            }
+            return loadScript('chat.min.js').catch(function () {});
+        };
+        if (!document.getElementById('chatButton') && !document.querySelector('.weby-chat-container')) {
+            return loadScript('weby-shell.min.js')
+                .catch(function () { return loadScript('weby-shell.js'); })
+                .then(loadRuntime);
+        }
+        return loadRuntime();
     };
     var loadChat = runOnce(function () {
-        ensureChatLoaded();
+        return ensureChatLoaded();
     });
-    var chatIntentTarget = document.getElementById('chatButton') || document.querySelector('.weby-chat-container');
-    if (chatIntentTarget) {
+    var bindChatIntent = function () {
+        var chatIntentTarget = document.getElementById('chatButton') || document.querySelector('.weby-chat-container');
+        if (!chatIntentTarget || chatIntentTarget.__webyBound) return;
+        chatIntentTarget.__webyBound = true;
         chatIntentTarget.addEventListener('click', function handleChatIntent(event) {
             if (window.__webnovisChatInitialized) return;
             event.preventDefault();
             event.stopImmediatePropagation();
             ensureChatLoaded().then(function () {
                 requestAnimationFrame(function () {
-                    chatIntentTarget.click();
+                    var btn = document.getElementById('chatButton');
+                    if (btn) btn.click();
                 });
             });
         }, { capture: true });
-    }
+    };
+    bindChatIntent();
+    // Site-wide: load chat shell + runtime after idle (desktop) or first intent
     afterWindowLoad(function () {
-        if (isMobileViewport) return;
-        scheduleIdle(loadChat, 9000);
+        scheduleIdle(function () {
+            Promise.resolve(loadChat()).then(bindChatIntent).catch(function () {});
+        }, isMobileViewport ? 12000 : 6000);
     });
+    window.addEventListener('pointerdown', runOnce(function () {
+        Promise.resolve(loadChat()).then(bindChatIntent).catch(function () {});
+    }), { passive: true, once: true });
 
     var textEffectsTarget = document.querySelector('.text-reveal-wrapper, .morphing-text-container');
     var loadTextEffects = runOnce(function () {
