@@ -40,12 +40,16 @@ const EXCLUDE_PATTERNS = [
 const PAGE_IMAGES = {
     '/': [{ loc: '/Img/webnovis-logo-bianco.png', title: 'Web Novis — Agenzia Web Milano Rho', caption: 'Logo Web Novis, agenzia web a Milano e Rho' }],
     '/portfolio/case-study/aether-digital.html': [{ loc: '/Img/portfolio/aether-digital-mockup-800.webp', title: 'Aether Digital — sito web custom by Web Novis', caption: 'Mockup sito web Aether Digital realizzato da Web Novis' }],
-    '/portfolio/case-study/arconti31.html': [{ loc: '/Img/portfolio/arconti31-mockup-800.webp', title: 'Arconti31 — portfolio fotografico by Web Novis', caption: 'Mockup sito web Arconti31 realizzato da Web Novis' }],
-    '/portfolio/case-study/ember-oak.html': [{ loc: '/Img/portfolio/ember-&-oak-mockup-800.webp', title: 'Ember & Oak — e-commerce by Web Novis', caption: 'Mockup sito e-commerce Ember & Oak realizzato da Web Novis' }],
+    // Arconti 31 è un pub storico a Gallarate, non uno studio fotografico.
+    '/portfolio/case-study/arconti31.html': [{ loc: '/Img/portfolio/arconti31-mockup-800.webp', title: 'Arconti 31 — sito web pub by Web Novis', caption: 'Mockup sito web Arconti 31 realizzato da Web Novis' }],
+    // Ember & Oak è un ristorante fine dining, non un e-commerce.
+    '/portfolio/case-study/ember-oak.html': [{ loc: '/Img/portfolio/ember-&-oak-mockup-800.webp', title: 'Ember & Oak — sito web ristorante by Web Novis', caption: 'Mockup sito web Ember & Oak realizzato da Web Novis' }],
     '/portfolio/case-study/fbtotalsecurity.html': [{ loc: '/Img/portfolio/fbtotalsecurity-mockup-800.webp', title: 'FB Total Security — sito web by Web Novis', caption: 'Mockup sito web FB Total Security realizzato da Web Novis' }],
     '/portfolio/case-study/lumina-creative.html': [{ loc: '/Img/portfolio/lumina-creative-mockup-800.webp', title: 'Lumina Creative — sito web by Web Novis', caption: 'Mockup sito web Lumina Creative realizzato da Web Novis' }],
-    '/portfolio/case-study/mikuna.html': [{ loc: '/Img/portfolio/mikuna-mockup-800.webp', title: 'Mikuna Italia — sito web by Web Novis', caption: 'Mockup sito web Mikuna Italia realizzato da Web Novis' }],
-    '/portfolio/case-study/mimmo-fratelli.html': [{ loc: '/Img/portfolio/mimmo-fratelli-mockup-800.webp', title: 'Mimmo Fratelli — sito web by Web Novis', caption: 'Mockup sito web Mimmo Fratelli realizzato da Web Novis' }],
+    // Il cliente è "Mikuna", ristorante peruviano a Varese (non "Mikuna Italia").
+    '/portfolio/case-study/mikuna.html': [{ loc: '/Img/portfolio/mikuna-mockup-800.webp', title: 'Mikuna — sito web ristorante by Web Novis', caption: 'Mockup sito web Mikuna realizzato da Web Novis' }],
+    '/portfolio/case-study/mimmo-fratelli.html': [{ loc: '/Img/portfolio/mimmo-fratelli-mockup-800.webp', title: 'Mimmo Fratelli — e-commerce ortofrutta by Web Novis', caption: 'Mockup e-commerce Mimmo Fratelli realizzato da Web Novis' }],
+    '/portfolio/case-study/comeleapi.html': [{ loc: '/Img/portfolio/comeleapi-mockup-800.webp', title: 'comeleapi — sito web benessere by Web Novis', caption: 'Mockup sito web comeleapi realizzato da Web Novis' }],
     '/portfolio/case-study/muse-editorial.html': [{ loc: '/Img/portfolio/muse-editorial-mockup-800.webp', title: 'Muse Editorial — sito web by Web Novis', caption: 'Mockup sito web Muse Editorial realizzato da Web Novis' }],
     '/portfolio/case-study/popblock-studio.html': [{ loc: '/Img/portfolio/pop-block-mockup-800.webp', title: 'Popblock Studio — sito web by Web Novis', caption: 'Mockup sito web Popblock Studio realizzato da Web Novis' }],
     '/portfolio/case-study/quickseo.html': [{ loc: '/Img/portfolio/quick-seo-mockup-800.webp', title: 'QuickSEO — sito web by Web Novis', caption: 'Mockup sito web QuickSEO realizzato da Web Novis' }],
