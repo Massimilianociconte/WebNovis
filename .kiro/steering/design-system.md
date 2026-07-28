@@ -16,23 +16,34 @@ WebNovis è un'agenzia digitale premium. Il design deve comunicare:
 
 ## 🎨 1. Token Definitions - Palette Colori
 
+> **Fonte di verità: `css/style.css` (blocco `:root`).**
+> Se questo documento e `css/style.css` divergono, vince il CSS.
+> Allineato il 2026-07-29: la vecchia palette oro/bordeaux (`#b8860b` / `#8b1538`)
+> documentata qui **non era più in uso da tempo** — il sito è blu dal restyling.
+
 ### Colori Primari
 ```css
 :root {
-    /* Oro Premium - Colore principale */
-    --primary: #b8860b;           /* Oro scuro elegante */
-    --primary-dark: #8b6914;      /* Oro bronzo */
-    --primary-light: #daa520;     /* Oro chiaro */
-    --primary-glow: rgba(184, 134, 11, 0.3);
-    
-    /* Bordeaux Accent - Colore secondario */
-    --secondary: #8b1538;         /* Rosso bordeaux profondo */
-    --secondary-light: #a91d47;   /* Bordeaux chiaro */
-    --secondary-glow: rgba(139, 21, 56, 0.3);
-    
+    /* Blu Brand - Colore principale */
+    --primary: #5B6AAE;
+    --primary-deep: #1E3A8A;
+    --primary-dark: #2D3464;
+    --primary-light: #7B8CC9;
+    --primary-glow: rgba(91, 106, 174, 0.3);
+
+    /* Navy Accent - Colore secondario */
+    --secondary: #3A4785;
+    --secondary-light: #4E5D9E;
+    --secondary-glow: rgba(58, 71, 133, 0.3);
+
     /* Accent */
-    --accent: #cd853f;            /* Oro rosa */
-    --accent-light: #deb887;      /* Beige dorato */
+    --accent: #8E9BD4;
+    --accent-light: #B0BAE3;
+
+    /* Electric Blue — accento vivido per elementi ad alto impatto (CTA, badge) */
+    --electric: #2563EB;
+    --electric-light: #3B82F6;
+    --electric-glow: rgba(37, 99, 235, 0.35);
 }
 ```
 
@@ -40,46 +51,53 @@ WebNovis è un'agenzia digitale premium. Il design deve comunicare:
 ```css
 :root {
     /* Dark Mode Base */
-    --dark: #0a0a0a;              /* Nero profondo */
-    --dark-light: #141414;        /* Nero carbone */
-    --dark-medium: #1a1a1a;       /* Grigio scurissimo */
-    --dark-surface: #222222;      /* Superficie card */
-    
+    --dark: #0a0a0a;
+    --dark-light: #141414;
+    --dark-medium: #1a1a1a;
+    --dark-surface: #222222;
+
     /* Grigi */
     --gray-900: #1a1a1a;
     --gray-800: #2d2d2d;
     --gray-700: #404040;
     --gray-600: #525252;
-    --gray-500: #6b6b6b;
-    --gray-400: #8a8a8a;
+    --gray-500: #787878;
+    --gray-400: #949494;
     --gray-300: #a3a3a3;
     --gray-200: #c4c4c4;
     --gray-100: #e5e5e5;
-    
+    --gray: #787878;
+    --gray-light: #c4b5a0;
+
     /* Testo */
-    --text-primary: #faf8f3;      /* Bianco caldo */
-    --text-secondary: #c4b5a0;    /* Beige chiaro */
-    --text-muted: #8a8a8a;        /* Grigio medio */
+    --text-primary: #faf8f3;
+    --text-secondary: #c4b5a0;   /* 9.87:1 su #0a0a0a — passa AA e AAA */
+    --text-muted: #949494;
+    --white: #faf8f3;
 }
 ```
 
-### Gradienti Premium
+### Gradienti
 ```css
 :root {
-    /* Gradienti Hero */
-    --gradient-gold: linear-gradient(135deg, #b8860b 0%, #daa520 50%, #cd853f 100%);
-    --gradient-luxury: linear-gradient(135deg, #b8860b 0%, #8b1538 100%);
+    --gradient-brand: linear-gradient(135deg, #3B82F6 0%, #5B6AAE 50%, #7B8CC9 100%);
+    --gradient-deep: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
     --gradient-dark: linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
     --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-    
-    /* Gradienti Testo */
-    --gradient-text: linear-gradient(90deg, #daa520 0%, #b8860b 50%, #cd853f 100%);
-    
-    /* Glow Effects */
-    --glow-gold: 0 0 40px rgba(184, 134, 11, 0.4);
-    --glow-bordeaux: 0 0 40px rgba(139, 21, 56, 0.4);
+    --gradient-text: linear-gradient(90deg, #1E3A8A 0%, #3B82F6 50%, #7B8CC9 100%);
+    --gradient-1: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+    --gradient-2: linear-gradient(135deg, #2563EB 0%, #5B6AAE 100%);
+    --gradient-3: linear-gradient(135deg, #5B6AAE 0%, #3B82F6 100%);
 }
 ```
+
+### Nota sui font
+`--font-display` / `--font-heading` dichiarano `'Syne'` e `--font-body` dichiara
+`'Inter'`, ma **le pagine principali non caricano i webfont Google**: il rendering
+avviene sul fallback di sistema. È una scelta di performance, non un bug — chi
+tocca la tipografia deve saperlo prima di "sistemare" i preload.
+Gli articoli del blog e le pagine portfolio caricano i font Google in modo
+**non bloccante** (`media="print"` + `onload`), mai come stylesheet sincrono.
 
 ---
 
@@ -184,10 +202,10 @@ WebNovis è un'agenzia digitale premium. Il design deve comunicare:
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
     
     /* Glow Shadows */
-    --shadow-glow-gold: 0 0 30px rgba(184, 134, 11, 0.3),
-                        0 0 60px rgba(184, 134, 11, 0.1);
-    --shadow-glow-bordeaux: 0 0 30px rgba(139, 21, 56, 0.3),
-                            0 0 60px rgba(139, 21, 56, 0.1);
+    --shadow-glow-brand: 0 0 30px rgba(91, 106, 174, 0.3),
+                         0 0 60px rgba(91, 106, 174, 0.1);
+    --shadow-glow-navy: 0 0 30px rgba(58, 71, 133, 0.3),
+                        0 0 60px rgba(58, 71, 133, 0.1);
 }
 ```
 
@@ -258,7 +276,7 @@ WebNovis è un'agenzia digitale premium. Il design deve comunicare:
 
 /* Glow Pulse - Per CTA */
 @keyframes glowPulse {
-    0%, 100% { box-shadow: var(--shadow-glow-gold); }
+    0%, 100% { box-shadow: var(--shadow-glow-brand); }
     50% { box-shadow: 0 0 50px rgba(184, 134, 11, 0.5); }
 }
 ```
@@ -310,9 +328,9 @@ WebNovis è un'agenzia digitale premium. Il design deve comunicare:
 }
 
 .btn-primary {
-    background: var(--gradient-gold);
+    background: var(--gradient-brand);
     color: var(--dark);
-    box-shadow: var(--shadow-glow-gold);
+    box-shadow: var(--shadow-glow-brand);
 }
 
 .btn-primary:hover {
@@ -478,7 +496,7 @@ WebNovis è un'agenzia digitale premium. Il design deve comunicare:
     content: '';
     position: absolute;
     inset: -2px;
-    background: var(--gradient-gold);
+    background: var(--gradient-brand);
     border-radius: inherit;
     opacity: 0;
     z-index: -1;

@@ -6,6 +6,27 @@
 # Node modules
 node_modules/
 
+# Master immagini non ottimizzate (PSD export multi-MB).
+# Il sito serve solo i WebP in Img/portfolio/: i master vanno tenuti fuori
+# dal repo, che coincide con la directory pubblicata da GitHub Pages.
+Img/Mockup-images-GBP/
+Img/immagini-portfolio-siti-webnovis-compresse/
+
+# Script usa-e-getta nella root: la root È il sito pubblico, quindi qualunque
+# .js/.py lasciato qui diventa scaricabile. I nuovi one-off vanno in scripts/dev/.
+/check*.js
+/check*.py
+/debug*.js
+/debug*.py
+/diag*.js
+/analyze*.js
+/analyze*.py
+/find_*.py
+/fix_*.py
+/print_*.py
+/get_*.py
+/update_*.py
+
 # Logs
 *.log
 npm-debug.log*
