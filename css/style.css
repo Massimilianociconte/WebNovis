@@ -4630,24 +4630,58 @@ section {
 
 /* AI Act transparency — subtle, non-alarming */
 .chat-ai-notice {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
     margin: 0;
-    padding: 0.45rem 1.25rem 0.55rem;
+    padding: 0.55rem 1.1rem 0.6rem;
     font-size: 0.68rem;
-    line-height: 1.45;
+    line-height: 1.4;
     color: rgba(250, 248, 243, 0.48);
     background: rgba(255, 255, 255, 0.03);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     text-align: left;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+.chat-ai-notice-text {
+    display: block;
+    max-width: 100%;
+}
+.chat-ai-notice-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.45rem;
+}
+.chat-ai-notice-sep {
+    opacity: 0.55;
 }
 .chat-ai-notice a {
-    color: rgba(168, 180, 248, 0.85);
+    color: rgba(168, 180, 248, 0.9);
     text-decoration: none;
-    border-bottom: 1px solid rgba(168, 180, 248, 0.25);
+    border-bottom: 1px solid rgba(168, 180, 248, 0.28);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 .chat-ai-notice a:hover {
     color: #fff;
     border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+/* Prevent bot price lists from overflowing the bubble */
+.chat-popup .message-content,
+.chat-popup .message-rich-content {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
+}
+.chat-popup .message-rich-content p,
+.chat-popup .bot-message .message-content p {
+    margin: 0 0 0.35rem;
+}
+.chat-popup .bot-message .message-content p:last-child {
+    margin-bottom: 0;
 }
 .chat-header-text h3 .chat-ai-pill {
     display: inline-block;

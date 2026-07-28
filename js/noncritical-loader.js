@@ -6,10 +6,16 @@
     var baseUrl = currentScript && currentScript.src
         ? new URL('.', currentScript.src).href
         : new URL('js/', window.location.href).href;
+    var ASSET_V = '20260728c';
     var loadedScripts = new Set();
 
     function resolveAsset(name) {
-        return new URL(name, baseUrl).href;
+        var url = new URL(name, baseUrl);
+        // Cache-bust chat/search AI assets so production never sticks to old Render URLs
+        if (/^(chat|weby-shell|search)\.min\.js$/.test(name.split('?')[0])) {
+            url.searchParams.set('v', ASSET_V);
+        }
+        return url.href;
     }
 
     function loadScript(name, options) {

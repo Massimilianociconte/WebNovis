@@ -59,11 +59,12 @@
         '</button>' +
       '</div>' +
       '<p class="chat-ai-notice" role="status">' +
-        'Stai chattando con un assistente automatico basato su intelligenza artificiale. ' +
-        'Le risposte possono contenere imprecisioni. ' +
-        '<a href="' + privacyHref + '" title="Informativa sui sistemi AI">Privacy</a> · ' +
+        '<span class="chat-ai-notice-text">Stai chattando con un assistente automatico basato su intelligenza artificiale. Le risposte possono contenere imprecisioni.</span>' +
+        '<span class="chat-ai-notice-links">' +
+        '<a href="' + privacyHref + '" title="Informativa sui sistemi AI">Privacy</a>' +
+        '<span class="chat-ai-notice-sep" aria-hidden="true">·</span>' +
         '<a href="https://wa.me/393802647367" rel="noopener noreferrer" target="_blank" title="Contatta il team su WhatsApp">Team umano</a>' +
-      '</p>' +
+        '</span></p>' +
       '<div class="chat-messages" id="chatMessages">' +
         '<div class="bot-message chat-message">' +
           '<div class="message-avatar">' +

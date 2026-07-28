@@ -66,19 +66,19 @@ function initWebyChatbot() {
     let keepAliveStarted = false;
 
     function startKeepAlive() {
+        // Cloudflare Workers stay warm enough; skip periodic polling to avoid console noise
+        // if a transient network/adblock issue occurs. One optional warm-up is enough.
         if (keepAliveStarted) return;
         keepAliveStarted = true;
-
-        const heartbeat = () => {
-            fetch(CHAT_CONFIG.healthCheckUrl, { keepalive: true }).catch(() => {});
-        };
-
-        heartbeat();
-
-        const interval = isMobileChat
-            ? CHAT_CONFIG.keepAliveInterval * 2
-            : CHAT_CONFIG.keepAliveInterval;
-        keepAliveTimer = setInterval(heartbeat, interval);
+        if (_isLocal) return;
+        try {
+            fetch(CHAT_CONFIG.healthCheckUrl, {
+                method: 'GET',
+                mode: 'cors',
+                cache: 'no-store',
+                keepalive: true
+            }).catch(function () { /* silent */ });
+        } catch (e) { /* silent */ }
     }
 
     function setupKeepAlive() {
@@ -116,11 +116,12 @@ function initWebyChatbot() {
             ? '../privacy-policy.html#sistemi-ai'
             : 'privacy-policy.html#sistemi-ai';
         notice.innerHTML =
-            'Stai chattando con un assistente automatico basato su intelligenza artificiale. ' +
-            'Le risposte possono contenere imprecisioni. ' +
+            '<span class="chat-ai-notice-text">Stai chattando con un assistente automatico basato su intelligenza artificiale. Le risposte possono contenere imprecisioni.</span>' +
+            '<span class="chat-ai-notice-links">' +
             '<a href="' + privacyHref + '" title="Informativa sui sistemi AI">Privacy</a>' +
-            ' · ' +
-            '<a href="https://wa.me/393802647367" rel="noopener noreferrer" target="_blank" title="Contatta il team su WhatsApp">Team umano</a>';
+            '<span class="chat-ai-notice-sep" aria-hidden="true">·</span>' +
+            '<a href="https://wa.me/393802647367" rel="noopener noreferrer" target="_blank" title="Contatta il team su WhatsApp">Team umano</a>' +
+            '</span>';
         const messages = elements.messages || elements.popup.querySelector('.chat-messages');
         if (messages && messages.parentNode === elements.popup) {
             elements.popup.insertBefore(notice, messages);
