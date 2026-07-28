@@ -29,7 +29,12 @@ const DESIGNRUSH_SCRIPT_PATTERN = /<script\b[^>]*src="https:\/\/www\.designrush\
 const DESIGNRUSH_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/designrush-loader\.js"[^>]*><\/script>/gi;
 const FOOTER_WIDGET_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader(?:\.min)?\.js"[^>]*><\/script>/i;
 const FOOTER_WIDGET_LOADER_GLOBAL_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader(?:\.min)?\.js"[^>]*><\/script>/gi;
-const NONCRITICAL_LOADER_PATTERN = /\s*<script\b[^>]*src="([^"]*?)js\/noncritical-loader(?:\.min)?\.js"[^>]*><\/script>\s*/i;
+// Il pattern deve tollerare il cache-busting `?v=...`: senza `[^"]*` prima
+// della virgoletta la variante versionata non veniva riconosciuta, quindi
+// normalizeNonCriticalLoader ne rimuoveva una e ne aggiungeva un'altra,
+// lasciando DUE <script> del loader sulla stessa pagina.
+const NONCRITICAL_LOADER_PATTERN = /\s*<script\b[^>]*src="([^"]*?)js\/noncritical-loader(?:\.min)?\.js(\?[^"]*)?"[^>]*><\/script>\s*/i;
+const NONCRITICAL_LOADER_GLOBAL_PATTERN = /\s*<script\b[^>]*src="(?:[^"]*?)js\/noncritical-loader(?:\.min)?\.js(?:\?[^"]*)?"[^>]*><\/script>\s*/gi;
 const WEB_VITALS_REPORTER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/web-vitals-reporter(?:\.min)?\.js"[^>]*><\/script>/gi;
 const MAIN_MIN_SCRIPT_PATTERN = /<script\b[^>]*src="([^"]*?)js\/main\.min\.js"[^>]*><\/script>/i;
 const NONCRITICAL_SCRIPT_PATTERNS = [
@@ -119,7 +124,14 @@ function ensureFooterWidgetLoader(html, relativePath) {
 }
 
 function normalizeNonCriticalLoader(html, relativePath) {
-  const loaderPath = `${getRootPrefix(relativePath)}js/noncritical-loader.min.js`;
+  // Preserva l'eventuale cache-busting già presente sulla pagina: il loader
+  // è versionato insieme a chat/search, riscriverlo senza `?v=` farebbe
+  // servire il file vecchio dalla cache dopo un deploy.
+  // Una pagina può contenere sia la variante versionata sia quella nuda
+  // (generatore geo + cache-bust successivo): vince sempre quella versionata.
+  const versionedMatch = /src="[^"]*js\/noncritical-loader(?:\.min)?\.js(\?[^"]*)"/i.exec(html);
+  const existingVersion = versionedMatch ? versionedMatch[1] : '';
+  const loaderPath = `${getRootPrefix(relativePath)}js/noncritical-loader.min.js${existingVersion}`;
   const loaderTag = `<script defer src="${loaderPath}"></script>`;
   let updated = html;
 
@@ -127,7 +139,8 @@ function normalizeNonCriticalLoader(html, relativePath) {
     updated = updated.replace(pattern, '');
   }
 
-  updated = updated.replace(NONCRITICAL_LOADER_PATTERN, '');
+  // Rimuove TUTTE le occorrenze (versionate e non) prima di reinserirne una sola.
+  updated = updated.replace(NONCRITICAL_LOADER_GLOBAL_PATTERN, ' ');
 
   if (MAIN_MIN_SCRIPT_PATTERN.test(updated)) {
     return updated.replace(MAIN_MIN_SCRIPT_PATTERN, (match) => `${match} ${loaderTag} `);

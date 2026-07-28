@@ -71,9 +71,12 @@ function assertHubScriptPaths(relativePath) {
     'footer-widgets-loader.min.js',
     'noncritical-loader.min.js'
   ]) {
+    // L'asserzione riguarda la PROFONDITÀ del path, non il cache-busting:
+    // `?v=...` è consentito, altrimenti un asset versionato fa fallire un
+    // controllo che con il versioning non c'entra nulla.
     assert.match(
       html,
-      new RegExp(`\\bsrc=["']${expectedPrefix.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}js/${filename.replace(/\./g, '\\.')}["']`, 'i'),
+      new RegExp(`\\bsrc=["']${expectedPrefix.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}js/${filename.replace(/\./g, '\\.')}(?:\\?[^"']*)?["']`, 'i'),
       `${relativePath} must use its depth-correct runtime path for ${filename} after build:geo`
     );
   }

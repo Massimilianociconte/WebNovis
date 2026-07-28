@@ -25,6 +25,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const nunjucks = require('nunjucks');
 const { removeSchemaReviewProperties } = require('./seo-aggregate-rating');
 const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
@@ -67,6 +68,69 @@ const FIRST_DEPLOY_DATE = '2026-02-27';
 const CITY_AVATAR_PUBLIC_DIR = '/Img/cities';
 
 const { iso: TODAY, formatted: TODAY_FORMATTED } = resolveRomeCalendarDate(resolveBuildInstant());
+
+// ─── dateModified reale, non data di build ───────────────────────────────────
+// Prima ogni rigenerazione stampava TODAY su tutte le pagine: ~868 URL con lo
+// stesso dateModified e lo stesso lastmod in sitemap, cioè freshness artificiale
+// su un corpus che nella maggior parte dei casi non era cambiato.
+//
+// Ora le pagine vengono renderizzate con dei segnaposto; writePublishedFile
+// calcola l'impronta del contenuto SENZA date, la confronta con quella salvata
+// in data/geo-page-dates.json e riusa la data precedente se nulla è cambiato.
+const PAGE_DATE_ISO_TOKEN = '@@GEO_DATE_ISO@@';
+const PAGE_DATE_HUMAN_TOKEN = '@@GEO_DATE_HUMAN@@';
+const PAGE_DATES_FILE = path.join(ROOT, 'data', 'geo-page-dates.json');
+
+function loadPageDates() {
+    try {
+        const raw = JSON.parse(fs.readFileSync(PAGE_DATES_FILE, 'utf8'));
+        return (raw && typeof raw.pages === 'object' && raw.pages) ? raw : { version: 1, pages: {} };
+    } catch (_) {
+        return { version: 1, pages: {} };
+    }
+}
+
+const pageDates = loadPageDates();
+let pageDatesDirty = false;
+
+function formatItalianDate(iso) {
+    const parsed = new Date(`${iso}T12:00:00Z`);
+    if (Number.isNaN(parsed.getTime())) return TODAY_FORMATTED;
+    return new Intl.DateTimeFormat('it-IT', {
+        timeZone: 'Europe/Rome', day: 'numeric', month: 'long', year: 'numeric'
+    }).format(parsed);
+}
+
+/**
+ * Restituisce la data di ultima modifica *editoriale* della pagina.
+ * L'impronta è calcolata sull'HTML con i segnaposto ancora dentro, quindi è
+ * indipendente dalla data per costruzione: due build identiche a distanza di
+ * mesi producono la stessa impronta e quindi la stessa data.
+ */
+function resolveEditorialDate(publicPath, htmlWithTokens) {
+    const fingerprint = crypto.createHash('sha256').update(htmlWithTokens).digest('hex').slice(0, 32);
+    const previous = pageDates.pages[publicPath];
+    if (previous && previous.fingerprint === fingerprint && previous.dateModified) {
+        return previous.dateModified;
+    }
+    pageDates.pages[publicPath] = { fingerprint, dateModified: TODAY };
+    pageDatesDirty = true;
+    return TODAY;
+}
+
+function savePageDates() {
+    if (!pageDatesDirty || DRY_RUN || VALIDATE_ONLY) return;
+    const sorted = Object.keys(pageDates.pages).sort().reduce((acc, key) => {
+        acc[key] = pageDates.pages[key];
+        return acc;
+    }, {});
+    fs.mkdirSync(path.dirname(PAGE_DATES_FILE), { recursive: true });
+    fs.writeFileSync(
+        PAGE_DATES_FILE,
+        `${JSON.stringify({ version: 1, pages: sorted }, null, 2)}\n`,
+        'utf8'
+    );
+}
 
 // Cache for base HTML pages (read once, reuse for all cities)
 const _basePageCache = {};
@@ -131,9 +195,13 @@ function normalizeGeneratedRuntimeScripts(html, relativePath) {
             `<script defer src="${runtimePath('footer-widgets-loader.min.js')}"></script>`
         );
 
-    const nonCriticalPattern = /<script\b[^>]*src="[^"]*?js\/noncritical-loader(?:\.min)?\.js"[^>]*><\/script>/i;
-    const mainPattern = /<script\b[^>]*src="[^"]*?js\/main\.min\.js"[^>]*><\/script>/i;
-    const nonCriticalTag = `<script defer src="${runtimePath('noncritical-loader.min.js')}"></script>`;
+    // I pattern devono accettare il cache-busting `?v=...`: senza, il tag
+    // versionato ereditato dalla base page non veniva rimosso e finiva
+    // affiancato a quello reinserito qui (due loader sulla stessa pagina).
+    const nonCriticalPattern = /<script\b[^>]*src="[^"]*?js\/noncritical-loader(?:\.min)?\.js(?:\?[^"]*)?"[^>]*><\/script>/gi;
+    const mainPattern = /<script\b[^>]*src="[^"]*?js\/main\.min\.js(?:\?[^"]*)?"[^>]*><\/script>/i;
+    const existingVersion = (/src="[^"]*js\/noncritical-loader(?:\.min)?\.js(\?[^"]*)"/i.exec(updated) || [])[1] || '';
+    const nonCriticalTag = `<script defer src="${runtimePath('noncritical-loader.min.js')}${existingVersion}"></script>`;
     updated = updated.replace(nonCriticalPattern, '');
     if (mainPattern.test(updated)) {
         updated = updated.replace(mainPattern, (match) => `${match} ${nonCriticalTag}`);
@@ -183,8 +251,21 @@ function removeDeamplifiedGeoAnchors(html, relativePath) {
 
 function writePublishedFile(relativePath, html) {
     const targetPath = resolvePublishPath(relativePath);
+    const resolved = applyEditorialDate(toPublicPath(relativePath), html);
     fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-    fs.writeFileSync(targetPath, html, 'utf8');
+    fs.writeFileSync(targetPath, resolved, 'utf8');
+}
+
+/** Sostituisce i segnaposto data con la data editoriale risolta per quella pagina. */
+function applyEditorialDate(publicPath, html) {
+    const source = String(html || '');
+    if (!source.includes(PAGE_DATE_ISO_TOKEN) && !source.includes(PAGE_DATE_HUMAN_TOKEN)) {
+        return source;
+    }
+    const iso = resolveEditorialDate(publicPath, source);
+    return source
+        .split(PAGE_DATE_ISO_TOKEN).join(iso)
+        .split(PAGE_DATE_HUMAN_TOKEN).join(formatItalianDate(iso));
 }
 
 function getCityAvatarPublicPath(city) {
@@ -1607,7 +1688,7 @@ function generateSchemas(city, pageType, resolvedFaqs) {
             "isPartOf": { "@id": SITE + "/#website" },
             "about": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
             "datePublished": FIRST_DEPLOY_DATE,
-            "dateModified": TODAY
+            "dateModified": PAGE_DATE_ISO_TOKEN
         },
         // Service
         {
@@ -1674,7 +1755,7 @@ function stripJsonLdFromHead(headHtml) {
 
 function normalizeHandCraftedTailWhitespace(html) {
     return html.replace(
-        /(<script defer src="[^"]*js\/noncritical-loader\.min\.js"><\/script>)\s*(?=<script type="speculationrules">)/i,
+        /(<script defer src="[^"]*js\/noncritical-loader\.min\.js(?:\?[^"]*)?"><\/script>)\s*(?=<script type="speculationrules">)/i,
         '$1'
     );
 }
@@ -1904,8 +1985,8 @@ function generateAgenziaPage(city) {
         isIndexable: agenziaIsIndexable,
         tier1Content: agenziaTier1Content,
         editorial: editorial || null,
-        today: TODAY,
-        todayFormatted: TODAY_FORMATTED,
+        today: PAGE_DATE_ISO_TOKEN,
+        todayFormatted: PAGE_DATE_HUMAN_TOKEN,
         site: SITE
     };
 
@@ -2004,7 +2085,7 @@ function generateRealizzazionePage(city) {
     page = page.replace(/<p class="answer-capsule">[\s\S]*?<\/p>/, `<p class="answer-capsule">${realizzazioneSeo.heroCapsule}</p>`);
     page = page.replace(
         /<time\b[^>]*datetime=["']\d{4}-\d{2}-\d{2}["'][^>]*>[\s\S]*?<\/time>/i,
-        `<time datetime="${TODAY}">${TODAY_FORMATTED}</time>`
+        `<time datetime="${PAGE_DATE_ISO_TOKEN}">${PAGE_DATE_HUMAN_TOKEN}</time>`
     );
     page = page.replace(/Rho, Milano \(MI\) 20017/, `${city.name}, ${getProvinceDisplay(city)} ${city.cap}`);
 
@@ -2313,8 +2394,8 @@ function generateServizioCittaPage(service, city) {
         isIndexable: isIndexable,
         tier1Content: tier1Content,
         editorial: editorial || null,
-        today: TODAY,
-        todayFormatted: TODAY_FORMATTED,
+        today: PAGE_DATE_ISO_TOKEN,
+        todayFormatted: PAGE_DATE_HUMAN_TOKEN,
         site: SITE
     };
 
@@ -2364,7 +2445,7 @@ function generateServizioCittaPage(service, city) {
             "isPartOf": { "@id": SITE + "/#website" },
             "about": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
             "datePublished": FIRST_DEPLOY_DATE,
-            "dateModified": TODAY
+            "dateModified": PAGE_DATE_ISO_TOKEN
         },
         {
             "@context": "https://schema.org", "@type": "Service",
@@ -2528,8 +2609,8 @@ function generateHubPages() {
         coreServices: coreServices,
         networkCoverageCount: networkCities.length,
         totalCities: agenziaCities.length,
-        today: TODAY,
-        todayFormatted: TODAY_FORMATTED,
+        today: PAGE_DATE_ISO_TOKEN,
+        todayFormatted: PAGE_DATE_HUMAN_TOKEN,
         site: SITE
     };
     const agenziaContent = njkEnv.render('hub-agenzia-web.njk', agenziaData);
@@ -2546,7 +2627,7 @@ function generateHubPages() {
             "description": `I ${agenziaCities.length} comuni con una pagina agenzia web dedicata, all'interno dei ${networkCities.length} territori dell'hinterland milanese serviti da WebNovis, con sede a Rho.`,
             "url": SITE + "/agenzia-web/",
             "inLanguage": "it",
-            "dateModified": TODAY,
+            "dateModified": PAGE_DATE_ISO_TOKEN,
             "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
             "numberOfItems": agenziaCities.length,
             "hasPart": agenziaCities.map(c => ({
@@ -2575,8 +2656,8 @@ function generateHubPages() {
         cities: realizzazioneCitiesUi,
         networkCoverageCount: networkCities.length,
         totalCities: realizzazioneCities.length,
-        today: TODAY,
-        todayFormatted: TODAY_FORMATTED,
+        today: PAGE_DATE_ISO_TOKEN,
+        todayFormatted: PAGE_DATE_HUMAN_TOKEN,
         site: SITE
     };
     const realizzazioneContent = njkEnv.render('hub-realizzazione-siti-web.njk', realizzazioneData);
@@ -2593,7 +2674,7 @@ function generateHubPages() {
             "description": `Realizzazione siti web a Milano e in Lombardia: i ${realizzazioneCities.length} comuni con una pagina dedicata, nei ${networkCities.length} territori serviti da WebNovis con sede a Rho.`,
             "url": SITE + "/realizzazione-siti-web/",
             "inLanguage": "it",
-            "dateModified": TODAY,
+            "dateModified": PAGE_DATE_ISO_TOKEN,
             "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
             "numberOfItems": realizzazioneCities.length,
             "hasPart": realizzazioneCities.map(c => ({
@@ -2643,8 +2724,8 @@ function generateHubPages() {
         coverageScopes: coverageScopes,
         featuredCities: featuredCities,
         totalIndexablePages: totalItems,
-        today: TODAY,
-        todayFormatted: TODAY_FORMATTED,
+        today: PAGE_DATE_ISO_TOKEN,
+        todayFormatted: PAGE_DATE_HUMAN_TOKEN,
         site: SITE
     };
     const zoneContent = njkEnv.render('hub-zone-servite.njk', zoneData);
@@ -2662,7 +2743,7 @@ function generateHubPages() {
             "description": `I comuni dell'hinterland milanese in cui WebNovis segue PMI e professionisti, con le pagine dedicate per agenzia web, realizzazione siti, e-commerce, SEO locale e altri servizi.`,
             "url": SITE + "/zone-servite/",
             "inLanguage": "it",
-            "dateModified": TODAY,
+            "dateModified": PAGE_DATE_ISO_TOKEN,
             "isPartOf": { "@type": "WebSite", "url": SITE + "/" },
             "numberOfItems": totalItems,
             "hasPart": [
@@ -3051,6 +3132,13 @@ function main() {
 
     if (DRY_RUN) console.log('  🔍 DRY RUN — no files written');
     if (VALIDATE_ONLY) console.log('  🔍 VALIDATE ONLY — no files written');
+
+    // Persistiamo l'indice delle date DOPO la scrittura: se la generazione
+    // fallisce a metà non vogliamo salvare impronte di pagine mai scritte.
+    savePageDates();
+    if (pageDatesDirty) {
+        console.log(`  📅 Date editoriali aggiornate: ${Object.keys(pageDates.pages).length} pagine indicizzate in data/geo-page-dates.json`);
+    }
 
     if (blockedOrFailedTotal > 0 || countMismatches.length > 0) {
         if (countMismatches.length > 0) {
