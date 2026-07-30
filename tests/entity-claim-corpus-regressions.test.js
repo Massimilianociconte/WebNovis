@@ -15,6 +15,16 @@ function read(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 }
 
+function readGeoGeneratorSources() {
+  const entry = read('scripts/generate-all-geo.js');
+  const geoDir = path.join(ROOT, 'scripts', 'geo');
+  const modules = fs.readdirSync(geoDir)
+    .filter((name) => name.endsWith('.js') && !name.startsWith('_'))
+    .sort()
+    .map((name) => read(path.join('scripts', 'geo', name)));
+  return [entry, ...modules].join('\n');
+}
+
 function walkHtml(relativeDirectory) {
   const absoluteDirectory = path.join(ROOT, relativeDirectory);
   if (!fs.existsSync(absoluteDirectory)) return [];
@@ -142,7 +152,7 @@ function main() {
     'rendered SEO Locale pages must retain the legitimate €400/month offer'
   );
 
-  const generator = read('scripts/generate-all-geo.js');
+  const generator = readGeoGeneratorSources();
   assert.ok(
     generator.includes('findUnsupportedPublishedClaims'),
     'the GEO generator must apply the published-claim denylist before writing final HTML'

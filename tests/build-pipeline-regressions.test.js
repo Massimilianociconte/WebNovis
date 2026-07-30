@@ -65,6 +65,22 @@ function main() {
     'package.json must expose a canonical dist-first CI quality command'
   );
 
+  assert.equal(
+    scripts['deploy:workers:check'],
+    'npm run build:site:dist && npx wrangler deploy --dry-run',
+    'package.json must expose a dry-run Workers deploy check (build + wrangler --dry-run)'
+  );
+  assert.equal(
+    scripts['deploy:site:dry'],
+    'npm run deploy:workers:check',
+    'deploy:site:dry must alias deploy:workers:check'
+  );
+  assert.equal(
+    scripts['deploy:site'],
+    'npm run build:site:dist && npx wrangler deploy',
+    'package.json must expose deploy:site (requires wrangler auth; do not run in CI blindly)'
+  );
+
   assert.match(
     scripts['test:regressions'] || '',
     /tests\/image-loading-policy\.test\.js/,

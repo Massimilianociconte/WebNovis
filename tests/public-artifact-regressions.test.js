@@ -19,6 +19,7 @@ function main() {
   assert.ok(fs.existsSync(verifyScriptPath), 'public artifact verifier must exist');
 
   const {
+    DIST_ASSETS_IGNORE,
     DYNAMIC_RUNTIME_DEPENDENCIES,
     FORBIDDEN_PUBLIC_BASENAMES,
     FORBIDDEN_PUBLIC_PREFIXES,
@@ -143,6 +144,8 @@ function main() {
     'package.json must expose the artifact verifier'
   );
 
+  // Root .assetsignore remains a belt-and-suspenders guard if assets.directory is
+  // ever pointed at the repo root by mistake. Canonical deploy uses dist/.
   const assetsIgnore = fs.readFileSync(path.join(ROOT, '.assetsignore'), 'utf8');
   for (const sensitivePattern of [
     '/*.js',
@@ -161,9 +164,25 @@ function main() {
   ]) {
     assert.ok(
       assetsIgnore.split(/\r?\n/).includes(sensitivePattern),
-      `.assetsignore must exclude ${sensitivePattern} while production still points at the root`
+      `root .assetsignore must still exclude ${sensitivePattern} as a root-deploy safety net`
     );
   }
+
+  assert.match(DIST_ASSETS_IGNORE, /sanitized dist/i, 'dist .assetsignore must document dist as asset root');
+  assert.doesNotMatch(
+    DIST_ASSETS_IGNORE,
+    /^dist\/?$/m,
+    'dist .assetsignore must not exclude dist/ itself'
+  );
+  assert.doesNotMatch(
+    DIST_ASSETS_IGNORE,
+    /^(?:_headers|_redirects)$/m,
+    'dist .assetsignore must not exclude _headers/_redirects (Workers parses them)'
+  );
+  assert.ok(
+    !FORBIDDEN_PUBLIC_BASENAMES.has('.assetsignore'),
+    '.assetsignore is a required dist sentinel for Workers Assets, not a forbidden basename'
+  );
 
   const sourceChat = fs.readFileSync(path.join(ROOT, 'js', 'chat.js'), 'utf8');
   const minifiedChat = fs.readFileSync(path.join(ROOT, 'js', 'chat.min.js'), 'utf8');

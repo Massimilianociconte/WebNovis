@@ -1,0 +1,19 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "webnovis-forms",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-28",
+  "workers_dev": true,
+  "preview_urls": true,
+  "vars": {
+    "SERVICE_NAME": "webnovis-forms",
+    "ENVIRONMENT": "production",
+    // Comma-separated hostnames allowed by Turnstile siteverify (no localhost in production)
+    "TURNSTILE_HOSTNAMES": "www.webnovis.com,webnovis.com",
+    "WEB3FORMS_ENDPOINT": "https://api.web3forms.com/submit"
+  }
+  // Secrets (set via wrangler secret put, never commit):
+  //   TURNSTILE_SECRET
+  // Optional override:
+  //   WEB3FORMS_ACCESS_KEY  (if you want to inject server-side instead of client)
+}

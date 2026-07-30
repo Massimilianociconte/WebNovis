@@ -64,6 +64,8 @@ Tier 1 (priorità editoriale interna): 24 URL — elenco completo in https://www
 - [Structure Arch — Case Study](https://www.webnovis.com/portfolio/case-study/structure-arch.html): Studio di architettura — portfolio progetti.
 - [Ember & Oak — Case Study](https://www.webnovis.com/portfolio/case-study/ember-oak.html): Ristorante — sito con prenotazioni online.
 - [Arconti 31 — Case Study](https://www.webnovis.com/portfolio/case-study/arconti31.html): Attività locale — presenza digitale completa.
+- [UnimiDoc — Case Study](https://www.webnovis.com/portfolio/case-study/unimidoc.html): Piattaforma EdTech — appunti verificati per la Statale di Milano, ricerca per corso ed esame e sistema a crediti.
+- [Momentum — Case Study](https://www.webnovis.com/portfolio/case-study/momentum.html): App padel — segnapunti offline per Apple Watch e Wear OS, landing page, blog e preview Android.
 
 ## Azienda
 
@@ -114,4 +116,4 @@ I prezzi sono valori iniziali presenti in data/services.json, non preventivi né
 
 - [ai.txt](https://www.webnovis.com/ai.txt): export editoriale sintetico; nessun beneficio di ranking o citazione è dichiarato.
 - [Dati JSON AI](https://www.webnovis.com/webnovis-ai-data.json): gli stessi fatti e prezzi di catalogo in JSON, con campi non verificati esplicitamente esclusi.
-- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa del sito con 351 URL indicizzabili (allineata a meta robots index).
+- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa del sito con 353 URL indicizzabili (allineata a meta robots index).

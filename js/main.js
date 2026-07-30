@@ -972,6 +972,97 @@ async function subscribeToNewsletter(email, name, source) {
 }
 
 // Enhanced Form Validation with Visual Feedback
+// ─── Cloudflare Turnstile (optional; enabled when sitekey is set in site-config.js) ───
+const webnovisSiteConfig = window.WEBNOVIS_SITE_CONFIG || {};
+const turnstileSitekey = String(webnovisSiteConfig.TURNSTILE_SITEKEY || '').trim();
+const formSubmitMode = String(webnovisSiteConfig.FORM_SUBMIT_MODE || 'web3forms').toLowerCase();
+const formProxyUrl = String(webnovisSiteConfig.FORM_PROXY_URL || '').trim();
+const turnstileTheme = String(webnovisSiteConfig.TURNSTILE_THEME || 'dark');
+const turnstileWidgetIds = new WeakMap();
+
+function loadTurnstileScript() {
+    if (window.turnstile) return Promise.resolve();
+    if (window.__webnovisTurnstileLoading) return window.__webnovisTurnstileLoading;
+    window.__webnovisTurnstileLoading = new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[data-webnovis-turnstile]');
+        if (existing) {
+            existing.addEventListener('load', () => resolve(), { once: true });
+            existing.addEventListener('error', () => reject(new Error('turnstile_script')), { once: true });
+            return;
+        }
+        const s = document.createElement('script');
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        s.async = true;
+        s.defer = true;
+        s.dataset.webnovisTurnstile = '1';
+        s.onload = () => resolve();
+        s.onerror = () => reject(new Error('turnstile_script'));
+        document.head.appendChild(s);
+    });
+    return window.__webnovisTurnstileLoading;
+}
+
+function resolveTurnstileAction(form) {
+    if (form && form.id === 'newsletterForm') return 'newsletter';
+    if (/preventivo/i.test(location.pathname)) return 'preventivo';
+    return 'contact';
+}
+
+async function mountTurnstileOnForm(form) {
+    if (!turnstileSitekey || !form) return null;
+    let host = form.querySelector('.cf-turnstile, [data-webnovis-turnstile-host]');
+    if (!host) {
+        host = document.createElement('div');
+        host.className = 'cf-turnstile webnovis-turnstile-host';
+        host.setAttribute('data-webnovis-turnstile-host', '1');
+        host.style.margin = '0.75rem 0 1rem';
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn && submitBtn.parentElement) {
+            submitBtn.parentElement.insertBefore(host, submitBtn);
+        } else {
+            form.appendChild(host);
+        }
+    }
+    try {
+        await loadTurnstileScript();
+        if (!window.turnstile) return null;
+        if (turnstileWidgetIds.has(form)) return turnstileWidgetIds.get(form);
+        const widgetId = window.turnstile.render(host, {
+            sitekey: turnstileSitekey,
+            theme: turnstileTheme,
+            action: resolveTurnstileAction(form)
+        });
+        turnstileWidgetIds.set(form, widgetId);
+        return widgetId;
+    } catch (err) {
+        console.warn('[WebNovis] Turnstile mount failed', err);
+        return null;
+    }
+}
+
+function getTurnstileToken(form) {
+    if (!turnstileSitekey) return '';
+    const field = form.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
+    if (field && field.value) return field.value;
+    const widgetId = turnstileWidgetIds.get(form);
+    if (widgetId != null && window.turnstile && typeof window.turnstile.getResponse === 'function') {
+        return window.turnstile.getResponse(widgetId) || '';
+    }
+    return '';
+}
+
+function resetTurnstile(form) {
+    const widgetId = turnstileWidgetIds.get(form);
+    if (widgetId != null && window.turnstile && typeof window.turnstile.reset === 'function') {
+        try { window.turnstile.reset(widgetId); } catch (_) { /* ignore */ }
+    }
+}
+
+function resolveFormSubmitEndpoint() {
+    if (formSubmitMode === 'proxy' && formProxyUrl) return formProxyUrl;
+    return 'https://api.web3forms.com/submit';
+}
+
 const contactForm = document.querySelector('.contact-form');
 
 if (contactForm) {
@@ -980,6 +1071,9 @@ if (contactForm) {
     const replytoInput = contactForm.querySelector('input[name="replyto"]');
     if (emailInput && replytoInput) {
         emailInput.addEventListener('input', () => { replytoInput.value = emailInput.value; });
+    }
+    if (turnstileSitekey) {
+        mountTurnstileOnForm(contactForm);
     }
 
     const fields = contactForm.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
@@ -1134,7 +1228,15 @@ if (contactForm) {
                 formData.set('budget', budgetEl.value);
             }
 
-            const response = await fetch('https://api.web3forms.com/submit', {
+            if (turnstileSitekey) {
+                const captchaToken = getTurnstileToken(contactForm);
+                if (!captchaToken) {
+                    throw new Error('Completa la verifica anti-bot prima di inviare.');
+                }
+                formData.set('cf-turnstile-response', captchaToken);
+            }
+
+            const response = await fetch(resolveFormSubmitEndpoint(), {
                 method: 'POST',
                 body: formData
             });
@@ -1144,6 +1246,7 @@ if (contactForm) {
             if (data.success) {
                 // Meta Pixel: Lead conversion event
                 trackMetaEvent('Lead', { content_name: 'Contact Form' });
+                if (turnstileSitekey) resetTurnstile(contactForm);
 
                 // Se il checkbox newsletter è selezionato, iscrivi a Brevo
                 const newsletterBox = document.getElementById('newsletterCheckbox');
@@ -1182,11 +1285,14 @@ if (contactForm) {
         } catch (error) {
             button.innerHTML = originalHTML;
             updateSubmitState();
+            if (turnstileSitekey) resetTurnstile(contactForm);
             if (resultDiv) {
                 resultDiv.style.display = 'block';
                 resultDiv.style.background = 'rgba(239, 68, 68, 0.1)';
                 resultDiv.style.color = '#ef4444';
-                resultDiv.textContent = 'Errore nell\'invio. Riprova o scrivici a hello@webnovis.com';
+                resultDiv.textContent = (error && error.message && /verifica anti-bot|captcha/i.test(error.message))
+                    ? error.message
+                    : 'Errore nell\'invio. Riprova o scrivici a hello@webnovis.com';
                 setTimeout(() => { resultDiv.style.display = 'none'; }, 5000);
             }
         }

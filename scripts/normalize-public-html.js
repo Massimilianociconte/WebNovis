@@ -123,6 +123,18 @@ function ensureFooterWidgetLoader(html, relativePath) {
   return html.replace(/<\/body>/i, `${loaderTag} </body>`);
 }
 
+/** Inject public site-config (Turnstile sitekey, form mode) before main.min.js once. */
+function ensureSiteConfigScript(html, relativePath) {
+  if (/js\/site-config\.js/i.test(html)) return html;
+  if (!/<script\b[^>]*src="[^"]*js\/main\.min\.js/i.test(html)) return html;
+  const prefix = getRootPrefix(relativePath);
+  const tag = `<script src="${prefix}js/site-config.js"></script>`;
+  return html.replace(
+    /<script\b([^>]*src="[^"]*js\/main\.min\.js[^"]*"[^>]*)><\/script>/i,
+    `${tag} <script$1></script>`
+  );
+}
+
 function normalizeNonCriticalLoader(html, relativePath) {
   // Preserva l'eventuale cache-busting già presente sulla pagina: il loader
   // è versionato insieme a chat/search, riscriverlo senza `?v=` farebbe
@@ -201,6 +213,7 @@ for (const filePath of walk(ROOT)) {
   updated = normalizeDesignRushLoader(updated, relativePath);
   updated = normalizeFooterWidgetLoaderRefs(updated, relativePath);
   updated = ensureFooterWidgetLoader(updated, relativePath);
+  updated = ensureSiteConfigScript(updated, relativePath);
   updated = normalizeNonCriticalLoader(updated, relativePath);
   updated = normalizeWebVitalsReporterRefs(updated, relativePath);
   updated = normalizeFooterLogoLoading(updated);

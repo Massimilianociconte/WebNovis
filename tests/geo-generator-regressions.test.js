@@ -10,6 +10,17 @@ function readText(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 }
 
+/** Concatenate the public entrypoint + all scripts/geo modules (post-split source). */
+function readGeoGeneratorSources() {
+  const entry = readText('scripts/generate-all-geo.js');
+  const geoDir = path.join(ROOT, 'scripts', 'geo');
+  const modules = fs.readdirSync(geoDir)
+    .filter((name) => name.endsWith('.js') && !name.startsWith('_'))
+    .sort()
+    .map((name) => readText(path.join('scripts', 'geo', name)));
+  return [entry, ...modules].join('\n');
+}
+
 function main() {
   assert.ok(
     fs.existsSync(path.join(ROOT, 'templates', 'base-pages', 'agenzia-web-source.html')),
@@ -20,7 +31,7 @@ function main() {
     'A dedicated realizzazione geo source template must exist under templates/base-pages'
   );
 
-  const generator = readText('scripts/generate-all-geo.js');
+  const generator = readGeoGeneratorSources();
   const agenziaTemplate = readText('templates/agenzia-web-content.njk');
   const agenziaBase = readText('templates/base-pages/agenzia-web-source.html');
   const realizzazioneBase = readText('templates/base-pages/realizzazione-siti-web-source.html');

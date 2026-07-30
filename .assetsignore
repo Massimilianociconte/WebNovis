@@ -1,4 +1,6 @@
-# Difesa aggiuntiva per l'attuale configurazione Workers che punta alla root.
+# Difesa aggiuntiva se qualcuno punta ancora wrangler assets.directory alla root.
+# Il deploy canonico usa assets.directory = dist/ (vedi wrangler.jsonc) e un
+# .assetsignore dist-specifico generato da prepare-public-artifact.js.
 # L'artefatto deployabile resta dist/, costruito da una allowlist esplicita:
 # questo file non sostituisce scripts/prepare-public-artifact.js.
 

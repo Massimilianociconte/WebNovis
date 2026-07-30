@@ -132,6 +132,8 @@ Tier 1 (priorità editoriale interna): ${tier1Count} URL — elenco completo in 
 - [Structure Arch — Case Study](${SITE}/portfolio/case-study/structure-arch.html): Studio di architettura — portfolio progetti.
 - [Ember & Oak — Case Study](${SITE}/portfolio/case-study/ember-oak.html): Ristorante — sito con prenotazioni online.
 - [Arconti 31 — Case Study](${SITE}/portfolio/case-study/arconti31.html): Attività locale — presenza digitale completa.
+- [UnimiDoc — Case Study](${SITE}/portfolio/case-study/unimidoc.html): Piattaforma EdTech — appunti verificati per la Statale di Milano, ricerca per corso ed esame e sistema a crediti.
+- [Momentum — Case Study](${SITE}/portfolio/case-study/momentum.html): App padel — segnapunti offline per Apple Watch e Wear OS, landing page, blog e preview Android.
 
 ## Azienda
 

@@ -6,12 +6,12 @@ const DEFAULT_CORS_ORIGINS = [
 
 const CONTENT_SECURITY_POLICY_DIRECTIVES = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://widget.trustpilot.com https://connect.facebook.net https://www.clarity.ms https://scripts.clarity.ms https://cdn.jsdelivr.net https://web3forms.com https://esm.sh https://www.designrush.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://widget.trustpilot.com https://connect.facebook.net https://www.clarity.ms https://scripts.clarity.ms https://cdn.jsdelivr.net https://web3forms.com https://esm.sh https://www.designrush.com https://challenges.cloudflare.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.designrush.com",
   "img-src 'self' data: https: blob:",
   "font-src 'self' https://fonts.gstatic.com https://www.designrush.com",
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://widget.trustpilot.com https://webnovis-ai.nexify-api.workers.dev https://*.workers.dev",
-  "frame-src https://widget.trustpilot.com https://www.facebook.com https://www.google.com https://maps.google.com",
+  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://widget.trustpilot.com https://webnovis-ai.nexify-api.workers.dev https://*.workers.dev https://challenges.cloudflare.com",
+  "frame-src https://widget.trustpilot.com https://www.facebook.com https://www.google.com https://maps.google.com https://challenges.cloudflare.com",
   "frame-ancestors 'none'",
   "object-src 'none'",
   "base-uri 'self'",

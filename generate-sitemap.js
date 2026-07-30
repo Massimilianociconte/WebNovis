@@ -48,6 +48,10 @@ const PAGE_IMAGES = {
     '/portfolio/case-study/lumina-creative.html': [{ loc: '/Img/portfolio/lumina-creative-mockup-800.webp', title: 'Lumina Creative — sito web by Web Novis', caption: 'Mockup sito web Lumina Creative realizzato da Web Novis' }],
     // Il cliente è "Mikuna", ristorante peruviano a Varese (non "Mikuna Italia").
     '/portfolio/case-study/mikuna.html': [{ loc: '/Img/portfolio/mikuna-mockup-800.webp', title: 'Mikuna — sito web ristorante by Web Novis', caption: 'Mockup sito web Mikuna realizzato da Web Novis' }],
+    // Momentum: app padel (iOS/Android/Watch), landing + blog + preview APK.
+    '/portfolio/case-study/momentum.html': [{ loc: '/Img/portfolio/momentum-mockup-800.webp', title: 'Momentum — landing app padel by Web Novis', caption: 'Mockup landing page Momentum realizzata da Web Novis' }],
+    // UnimiDoc: piattaforma appunti verificati per la Statale di Milano.
+    '/portfolio/case-study/unimidoc.html': [{ loc: '/Img/portfolio/unimidoc-mockup-800.webp', title: 'UnimiDoc — piattaforma appunti universitari by Web Novis', caption: 'Mockup piattaforma UnimiDoc realizzata da Web Novis' }],
     '/portfolio/case-study/mimmo-fratelli.html': [{ loc: '/Img/portfolio/mimmo-fratelli-mockup-800.webp', title: 'Mimmo Fratelli — e-commerce ortofrutta by Web Novis', caption: 'Mockup e-commerce Mimmo Fratelli realizzato da Web Novis' }],
     '/portfolio/case-study/comeleapi.html': [{ loc: '/Img/portfolio/comeleapi-mockup-800.webp', title: 'comeleapi — sito web benessere by Web Novis', caption: 'Mockup sito web comeleapi realizzato da Web Novis' }],
     '/portfolio/case-study/muse-editorial.html': [{ loc: '/Img/portfolio/muse-editorial-mockup-800.webp', title: 'Muse Editorial — sito web by Web Novis', caption: 'Mockup sito web Muse Editorial realizzato da Web Novis' }],

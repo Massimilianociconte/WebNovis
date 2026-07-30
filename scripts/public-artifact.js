@@ -53,7 +53,6 @@ const FORBIDDEN_PUBLIC_PREFIXES = [
 ];
 
 const FORBIDDEN_PUBLIC_BASENAMES = new Set([
-  '.assetsignore',
   'ai-config.js',
   'build-search-index.js',
   'build.js',
@@ -80,6 +79,22 @@ const DYNAMIC_RUNTIME_DEPENDENCIES = Object.freeze({
   'js/web-vitals-reporter.min.js': ['js/web-vitals.iife.js']
 });
 
+// Defense-in-depth for Workers Assets when assets.directory = dist/.
+// Patterns are relative to dist/. Never list "dist/" itself.
+// _headers and _redirects must remain present so Workers can parse them
+// (they are not served as client files).
+const DIST_ASSETS_IGNORE = [
+  '# Cloudflare Workers Assets — root is the sanitized dist/ artifact.',
+  '# prepare-public-artifact.js is the allowlist; this file is belt-and-suspenders.',
+  '# Do NOT exclude _headers or _redirects (Workers parses them from asset root).',
+  '',
+  '.DS_Store',
+  '*.map',
+  '*.log',
+  '.assetsignore',
+  ''
+].join('\n');
+
 const PUBLIC_SENTINELS = [
   '.nojekyll',
   '404.html',
@@ -87,6 +102,7 @@ const PUBLIC_SENTINELS = [
   'Img/favicon-512.png',
   'Img/favicon.png',
   'Img/webnovis-logo-bianco.webp',
+  '.assetsignore',
   '_headers',
   '_redirects',
   'ai.txt',
@@ -274,6 +290,7 @@ function urlPathToHtmlFile(urlValue) {
 }
 
 module.exports = {
+  DIST_ASSETS_IGNORE,
   DYNAMIC_RUNTIME_DEPENDENCIES,
   FORBIDDEN_PUBLIC_BASENAMES,
   FORBIDDEN_PUBLIC_PREFIXES,

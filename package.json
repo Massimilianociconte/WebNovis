@@ -48,10 +48,16 @@
     "sync:headers": "node scripts/sync-security-headers.js",
     "sync:headers:dist": "node scripts/sync-security-headers.js --out-dir=dist",
     "verify:artifact": "node scripts/verify-public-artifact.js --out-dir=dist",
+    "deploy:workers:check": "npm run build:site:dist && npx wrangler deploy --dry-run",
+    "deploy:site:dry": "npm run deploy:workers:check",
+    "deploy:site": "npm run build:site:dist && npx wrangler deploy",
     "ai:prepare": "node scripts/prepare-ai-worker-data.js",
     "ai:dev": "npm run ai:prepare && npx wrangler dev -c workers/webnovis-ai/wrangler.jsonc",
     "ai:deploy": "npm run ai:prepare && npx wrangler deploy -c workers/webnovis-ai/wrangler.jsonc",
-    "ai:tail": "npx wrangler tail webnovis-ai"
+    "ai:tail": "npx wrangler tail webnovis-ai",
+    "forms:deploy": "npx wrangler deploy -c workers/webnovis-forms/wrangler.jsonc",
+    "forms:dev": "npx wrangler dev -c workers/webnovis-forms/wrangler.jsonc",
+    "blog:apply-clusters": "node scripts/apply-blog-cluster-links.js"
   },
   "keywords": [
     "chatbot",

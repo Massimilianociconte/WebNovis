@@ -1,7 +1,16 @@
 {
   // Configurazione Cloudflare Workers (static assets) per www.webnovis.com
-  // Deploy: il flusso "Workers Builds" collegato a GitHub esegue `npx wrangler deploy`
-  // e legge questo file. Comando di generazione: VUOTO (sito già pronto in root).
+  //
+  // Flusso deploy locale (richiede `npx wrangler login`):
+  //   npm run build:site:dist && npx wrangler deploy
+  //   oppure: npm run deploy:site
+  // Dry-run (build + controlli senza upload):
+  //   npm run deploy:workers:check
+  //
+  // Workers Builds (GitHub): Comando di generazione = `npm ci && npm run build:site:dist`
+  //                         Comando Distribuisci   = `npx wrangler deploy`
+  // L'artefatto pubblico è dist/ (allowlist via scripts/prepare-public-artifact.js),
+  // NON la root del repository.
   //
   // ⚠️ IMPORTANTE — html_handling: "none"
   // Il default di Cloudflare ("auto-trailing-slash") farebbe un redirect 307 di OGNI
@@ -9,11 +18,11 @@
   // Sarebbe una migrazione di URL dell'intero sito: tutte le pagine sono indicizzate
   // su Google come .html e i canonical puntano agli .html. Con "none" gli URL restano
   // IDENTICI a GitHub Pages. Gli indici di directory (/, /blog/, /servizi/, ...) sono
-  // gestiti con rewrite 200 nel file _redirects.
+  // gestiti con rewrite 200 nel file _redirects (dentro dist/).
   "name": "webnovis",
   "compatibility_date": "2026-06-09",
   "assets": {
-    "directory": ".",
+    "directory": "dist",
     "html_handling": "none",
     "not_found_handling": "404-page"
   }

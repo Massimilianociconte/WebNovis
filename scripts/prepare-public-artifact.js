@@ -6,6 +6,7 @@ const { execFileSync, spawnSync } = require('node:child_process');
 
 const { ROOT_DIR, getPublishDir, getReportDir } = require('../config/publish-targets');
 const {
+  DIST_ASSETS_IGNORE,
   PUBLIC_FONT_EXTENSIONS,
   PUBLIC_HTML_ROOT_FILES,
   PUBLIC_MEDIA_EXTENSIONS,
@@ -111,6 +112,10 @@ function materializeStaticSources(stagingRoot) {
   for (const filename of PUBLIC_TECHNICAL_FILES) {
     copyFile(path.join(ROOT_DIR, filename), path.join(stagingRoot, filename));
   }
+
+  // Workers Assets reads .assetsignore from assets.directory (dist/). Dist-appropriate
+  // content only — never the root .assetsignore (which excludes dist/ itself).
+  fs.writeFileSync(path.join(stagingRoot, '.assetsignore'), DIST_ASSETS_IGNORE, 'utf8');
 
   for (const entry of fs.readdirSync(ROOT_DIR, { withFileTypes: true })) {
     if (entry.isFile() && /^[a-f0-9]{32}\.txt$/i.test(entry.name)) {
