@@ -29,7 +29,8 @@ const PUBLIC_SUBDIRS = [
   path.join('portfolio', 'case-study'),
   'agenzia-web',
   'realizzazione-siti-web',
-  'zone-servite'
+  'zone-servite',
+  'quanto-costa-un-sito-web'
 ];
 
 const STOP_WORDS = new Set([

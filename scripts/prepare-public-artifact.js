@@ -217,6 +217,10 @@ function main(env = process.env) {
       path.join(ROOT_DIR, 'js', 'web-vitals.iife.js'),
       path.join(stagingRoot, 'js', 'web-vitals.iife.js')
     );
+    copyFile(
+      path.join(ROOT_DIR, 'js', 'site-config.js'),
+      path.join(stagingRoot, 'js', 'site-config.js')
+    );
 
     runNode('scripts/normalize-public-html.js', [`--out-dir=${stagingRoot}`], buildEnv);
     runNode('scripts/update-footer.js', [`--out-dir=${stagingRoot}`], buildEnv);
