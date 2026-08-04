@@ -55,9 +55,37 @@ Pipeline: `npm run ci:quality:dist` **VERDE** (exit 0) — 1330 file artefatto, 
 | Nessuna pagina sui costi (intento "quanto costa") | Rilevato → **Corretto** (P4) | `quanto-costa-un-sito-web/` pubblicata |
 | CI dist rotta a HEAD | Rilevato → **Corretto** (P4) | `ci:quality:dist` exit 0 |
 | Sovrapposizione intenzione geo Milano (5 pagine) | Rilevato → **Monitorato** | Canonical self OK; follow-up in GSC |
-| Claim "bot AI bloccati" | Rilevato → **Non confermato** | Da verificare in GSC |
+| Claim "bot AI bloccati" | Rilevato → **Smentito per il presente** | `robots.txt` consente esplicitamente GPTBot, OAI-SearchBot e tutti i crawler AI (`Allow: /`, `Allow: /llms-full.txt`). Nessun blocco attivo |
 | Claim "87 URL /agenzia-web/ 404" | Rilevato → **Non confermato** | Da verificare in GSC |
 | Baseline GSC | Rilevato → **Non verificabile** | Monitoraggio da avviare post-pubblicazione |
+| Schema Service "€400/mese" | Rilevato → **Corretto** (`86a92f62`) | `Offer.price` fisso → `priceSpecification` con `minPrice` 400 + `unitCode` MON, coerente con il visibile "da €400/mese" |
+
+---
+
+## Controlli di accettazione pre-merge (12 punti)
+
+Eseguiti sul branch dopo la valutazione; 10/12 superati, 2 gap aperti.
+
+| # | Controllo | Esito |
+|---|-----------|-------|
+| 1 | Fresh clone: `npm ci` + `ci:quality:dist` + `git status`/`git diff --exit-code` | ✅ **PASS** — CI verde e repository immutato dalla pipeline (idempotenza reale) |
+| 2 | Revisione manuale sorgenti recuperate da dist/ | ✅ **PASS** — pagine complete (CTA, FAQ, prezzi, link interni in pagina); ⚠ incoerenza minore: intro "consegna 2-6 settimane" vs FAQ "3-4 settimane" in `quanto-costa-un-sito-web` |
+| 3 | Audit diff non-testuale dei 1163 HTML | ✅ **PASS** — canonical/robots/description/OG/JSON-LD/href/hreflang/data-attr identici su 1161 file; 2 blog: FAQPage 7→6 domande (rimossa dal JSON-LD una voce che era un CTA, non una FAQ) |
+| 4 | Claim prezzi e "performance garantite" | ✅ **PASS** — "performance garantite" assente dal repo; €400/€500/€80/€1.200/€3.500/€500/€59 tutti confermati in `data/services.json` |
+| 5 | Schema Service €400/mese | ✅ **CORRETTO** (`86a92f62`) — `priceSpecification` minPrice 400 EUR, `unitCode` MON; CI dist rilanciata verde dopo la correzione |
+| 6 | JSON-LD vs contenuto visibile | ✅ **PASS** — FAQPage 3/3 e 4/4 coincidenti con le FAQ visibili; BreadcrumbList coerenti |
+| 7 | Link interni verso le 2 nuove pagine | ❌ **GAP** — nessuna pagina HTML pubblicata linka `servizi/seo-milano.html` o `quanto-costa-un-sito-web/`; presenti solo in sitemap/search-index/config per un blog inesistente (`blog/quanto-costa-un-sito-web.html`) |
+| 8 | Mappa pagine Milano | ⚠ **PARZIALE** — 3 pagine index con intenzione "SEO Milano" sovrapposta: `servizi/seo-milano.html` (nuova, primaria proposta), `seo-locale-milano.html` (Tier2), `agenzia-web-milano.html` (Tier2, supporter). Le varianti Milano Nord/Ovest hanno intenzione geografica distinta e non cannibalizzano "Milano" puro. Strategia di differenziazione da definire con dati GSC |
+| 9 | Audit 791 noindex | ✅ **PASS** — la quasi totalità sono pagine geo pSEO auto-de-amplificate dalla governance (`AUTO_DEAMPLIFIED_GEO_PATHS`), più test/utility/archive; nessun pattern anomalo di pagine commerciali non indicizzate |
+| 10 | OAI-SearchBot / GPTBot | ✅ **PASS** — robots.txt: entrambi `Allow: /` (stessi confini del gruppo generico); il claim "bot AI bloccati" è smentito per il presente |
+| 11 | llms-full.txt | ✅ **PASS** — 41 sezioni, 43 URL, **0 URL noindex**, nessun duplicato; generazione byte-deterministica (test dedicato) |
+| 12 | Sitemap vs URL indicizzabili | ✅ **PASS** — 355 URL, 0 noindex, 0 duplicati; search-index con 0 missing/extra |
+
+### Gap aperti prima del merge
+
+1. **Internal linking** (controllo 7): aggiungere link editoriali alle 2 nuove pagine da homepage, `servizi/`, articoli del cluster costi e pagine geo Milano. Richiede decisione sui testi/anchor (vincolo stringhe esatte) e modifica delle sorgenti `src/html` + rigenerazione.
+2. **Strategia anti-cannibalizzazione Milano** (controllo 8): stabilire pagina primaria per "SEO Milano" tra `servizi/seo-milano.html`, `seo-locale-milano.html`, `agenzia-web-milano.html` e differenziare title/contenuti. Senza dati GSC non è possibile chiudere; proposta: primaria `servizi/seo-milano.html`, `seo-locale-milano.html` orientata alle ricerche "SEO locale Milano quartieri", `agenzia-web-milano.html` già supporter.
+3. **Incoerenza tempistiche** (controllo 2): allineare "2-6 settimane" (intro) e "3-4 settimane" (FAQ) in `quanto-costa-un-sito-web`.
 
 ---
 
@@ -67,3 +95,4 @@ Pipeline: `npm run ci:quality:dist` **VERDE** (exit 0) — 1330 file artefatto, 
 2. **GSC**: richiedere l'indicizzazione delle 2 nuove pagine; impostare monitoraggio 2-4 settimane per le query "SEO Milano" e "quanto costa un sito web".
 3. **P2**: confrontare in GSC quali pagine vengono servite per le query geo Milano sovrapposte; valutare consolidamento se emergono cannibalizzazioni.
 4. **Aggiornamento conteggi**: se il conteggio inventario (1152) o `llms-full.txt` (41 sezioni) cambia, aggiornare i test prima della prossima release.
+5. **Merge**: chiudere i 3 gap aperti (link interni, mappa Milano, tempistiche) o approvare la PR con gap documentati e follow-up pianificato.
