@@ -64,7 +64,7 @@ Pipeline: `npm run ci:quality:dist` **VERDE** (exit 0) — 1330 file artefatto, 
 
 ## Controlli di accettazione pre-merge (12 punti)
 
-Eseguiti sul branch dopo la valutazione; 10/12 superati, 2 gap aperti.
+Eseguiti sul branch dopo la valutazione; 10/12 superati, 2 gap aperti. Chiusi in `c24dd4b6` i gap "Internal linking" e "Incoerenza tempistiche"; resta aperta solo la strategia anti-cannibalizzazione Milano (dipendente da dati GSC).
 
 | # | Controllo | Esito |
 |---|-----------|-------|
@@ -74,7 +74,7 @@ Eseguiti sul branch dopo la valutazione; 10/12 superati, 2 gap aperti.
 | 4 | Claim prezzi e "performance garantite" | ✅ **PASS** — "performance garantite" assente dal repo; €400/€500/€80/€1.200/€3.500/€500/€59 tutti confermati in `data/services.json` |
 | 5 | Schema Service €400/mese | ✅ **CORRETTO** (`86a92f62`) — `priceSpecification` minPrice 400 EUR, `unitCode` MON; CI dist rilanciata verde dopo la correzione |
 | 6 | JSON-LD vs contenuto visibile | ✅ **PASS** — FAQPage 3/3 e 4/4 coincidenti con le FAQ visibili; BreadcrumbList coerenti |
-| 7 | Link interni verso le 2 nuove pagine | ❌ **GAP** — nessuna pagina HTML pubblicata linka `servizi/seo-milano.html` o `quanto-costa-un-sito-web/`; presenti solo in sitemap/search-index/config per un blog inesistente (`blog/quanto-costa-un-sito-web.html`) |
+| 7 | Link interni verso le 2 nuove pagine | ✅ **CHIUSO** (`c24dd4b6`) — 12 link editoriali aggiunti: card `servizi/index.html` → seo-milano; consulenze, sviluppo-web (×2), seo-locale-milano, agenzia-web-milano, blog marketing-digitale-attivita-locali-milano, blog quanto-costa-un-sito-web, blog quanto-costa-un-ecommerce (via `config/seo-html-transforms.js`, sopravvive alla rigenerazione), blog come-scegliere-web-agency, seo-milano ↔ quanto-costa-un-sito-web (reciproci). Test `internal-linking` PASS |
 | 8 | Mappa pagine Milano | ⚠ **PARZIALE** — 3 pagine index con intenzione "SEO Milano" sovrapposta: `servizi/seo-milano.html` (nuova, primaria proposta), `seo-locale-milano.html` (Tier2), `agenzia-web-milano.html` (Tier2, supporter). Le varianti Milano Nord/Ovest hanno intenzione geografica distinta e non cannibalizzano "Milano" puro. Strategia di differenziazione da definire con dati GSC |
 | 9 | Audit 791 noindex | ✅ **PASS** — la quasi totalità sono pagine geo pSEO auto-de-amplificate dalla governance (`AUTO_DEAMPLIFIED_GEO_PATHS`), più test/utility/archive; nessun pattern anomalo di pagine commerciali non indicizzate |
 | 10 | OAI-SearchBot / GPTBot | ✅ **PASS** — robots.txt: entrambi `Allow: /` (stessi confini del gruppo generico); il claim "bot AI bloccati" è smentito per il presente |
@@ -83,9 +83,9 @@ Eseguiti sul branch dopo la valutazione; 10/12 superati, 2 gap aperti.
 
 ### Gap aperti prima del merge
 
-1. **Internal linking** (controllo 7): aggiungere link editoriali alle 2 nuove pagine da homepage, `servizi/`, articoli del cluster costi e pagine geo Milano. Richiede decisione sui testi/anchor (vincolo stringhe esatte) e modifica delle sorgenti `src/html` + rigenerazione.
-2. **Strategia anti-cannibalizzazione Milano** (controllo 8): stabilire pagina primaria per "SEO Milano" tra `servizi/seo-milano.html`, `seo-locale-milano.html`, `agenzia-web-milano.html` e differenziare title/contenuti. Senza dati GSC non è possibile chiudere; proposta: primaria `servizi/seo-milano.html`, `seo-locale-milano.html` orientata alle ricerche "SEO locale Milano quartieri", `agenzia-web-milano.html` già supporter.
-3. **Incoerenza tempistiche** (controllo 2): allineare "2-6 settimane" (intro) e "3-4 settimane" (FAQ) in `quanto-costa-un-sito-web`.
+1. **Internal linking** (controllo 7): ✅ **CHIUSO** in `c24dd4b6` — 12 link editoriali (vedi tabella); i link per i blog con aside money-links rigenerato vanno aggiunti in `config/seo-html-transforms.js` (single source of truth), non nell'HTML.
+2. **Strategia anti-cannibalizzazione Milano** (controllo 8): ⏳ **APERTO** — stabilire pagina primaria per "SEO Milano" tra `servizi/seo-milano.html`, `seo-locale-milano.html`, `agenzia-web-milano.html` e differenziare title/contenuti. Senza dati GSC non è possibile chiudere; proposta: primaria `servizi/seo-milano.html`, `seo-locale-milano.html` orientata alle ricerche "SEO locale Milano quartieri", `agenzia-web-milano.html` già supporter.
+3. **Incoerenza tempistiche** (controllo 2): ✅ **CHIUSA** in `c24dd4b6` — intro e FAQ ora dicono entrambe "3-4 settimane per un sito vetrina standard nell'intervallo 2-6 settimane" (visibile e JSON-LD allineati).
 
 ---
 
@@ -95,4 +95,4 @@ Eseguiti sul branch dopo la valutazione; 10/12 superati, 2 gap aperti.
 2. **GSC**: richiedere l'indicizzazione delle 2 nuove pagine; impostare monitoraggio 2-4 settimane per le query "SEO Milano" e "quanto costa un sito web".
 3. **P2**: confrontare in GSC quali pagine vengono servite per le query geo Milano sovrapposte; valutare consolidamento se emergono cannibalizzazioni.
 4. **Aggiornamento conteggi**: se il conteggio inventario (1152) o `llms-full.txt` (41 sezioni) cambia, aggiornare i test prima della prossima release.
-5. **Merge**: chiudere i 3 gap aperti (link interni, mappa Milano, tempistiche) o approvare la PR con gap documentati e follow-up pianificato.
+5. **Merge**: gap residuo solo sulla mappa Milano (in attesa GSC); internal linking e tempistiche chiusi in `c24dd4b6`. Approvare la PR con il gap documentato e follow-up pianificato, oppure attendere i dati GSC.
