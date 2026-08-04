@@ -188,8 +188,8 @@ function main() {
   const indexHtml = readText('index.html');
   assert.match(
     indexHtml,
-    /<h1 class="hero-title">[\s\S]*WebNovis[\s\S]*agenzia web a Rho e Milano/i,
-    'Homepage hero H1 must make the brand and the primary geo intent explicit'
+    /<h1 class="hero-title">[\s\S]*Web agency a Milano[\s\S]*non template/i,
+    'Homepage hero H1 must carry the primary geo intent and the approved wording'
   );
   assert.ok(
     indexHtml.includes('Percorsi principali'),
