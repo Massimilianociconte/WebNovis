@@ -41,7 +41,8 @@ const MONEY_PAGE_INTERNAL_LINK_BLOCKS = {
     links: [
       { href: '../servizi/ecommerce.html', label: 'E-commerce custom da €3.500' },
       { href: '/ecommerce-milano.html', label: 'E-commerce a Milano' },
-      { href: '/ecommerce-bresso.html', label: 'E-commerce a Bresso' }
+      { href: '/ecommerce-bresso.html', label: 'E-commerce a Bresso' },
+      { href: '../quanto-costa-un-sito-web/index.html', label: 'Costi di un sito web professionale' }
     ]
   },
   'blog/pagamenti-online-ecommerce.html': {
