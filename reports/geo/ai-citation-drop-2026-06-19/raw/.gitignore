@@ -1,0 +1,3 @@
+# Raw Bing Webmaster Tools exports — excluded from version control for privacy.
+# Commit SHA-256 hashes in SOURCE_FILES.md instead.
+*.csv

@@ -1,0 +1,32 @@
+{
+  "14d": {
+    "window": "14 days",
+    "before": {
+      "days": 14,
+      "citations": 769,
+      "avgCitations": 54.9,
+      "avgPages": 14.43
+    },
+    "after": {
+      "days": 14,
+      "citations": 5,
+      "avgCitations": 0.4,
+      "avgPages": 0.07
+    }
+  },
+  "30d": {
+    "window": "30 days",
+    "before": {
+      "days": 30,
+      "citations": 1267,
+      "avgCitations": 42.2,
+      "avgPages": 13.13
+    },
+    "after": {
+      "days": 30,
+      "citations": 36,
+      "avgCitations": 1.2,
+      "avgPages": 0.37
+    }
+  }
+}

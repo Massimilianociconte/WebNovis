@@ -1,0 +1,21 @@
+{
+  "prePeriod": {
+    "days": 46,
+    "citations": 1835,
+    "avgDailyCitations": 39.9,
+    "pages": 619,
+    "avgDailyPages": 13.5
+  },
+  "postPeriod": {
+    "days": 44,
+    "citations": 80,
+    "avgDailyCitations": 1.8,
+    "pages": 20,
+    "avgDailyPages": 0.45,
+    "zeroCitationDays": 29
+  },
+  "variation": {
+    "avgDailyCitationsPCT": -95.4,
+    "avgDailyPagesPCT": -96.6
+  }
+}

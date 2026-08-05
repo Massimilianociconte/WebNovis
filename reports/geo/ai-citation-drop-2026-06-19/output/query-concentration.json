@@ -1,0 +1,126 @@
+{
+  "totalRows": 13,
+  "totalCitations": 355,
+  "topQueryShare": 68.7,
+  "topTwoShare": 75.5,
+  "topFourShare": 84.5,
+  "distribution": [
+    {
+      "rank": 1,
+      "query": "mockup significato",
+      "intent": "Informational",
+      "topic": "E-commerce",
+      "citations": 244,
+      "sharePct": "68.73%",
+      "cumulativeSharePct": "68.73%"
+    },
+    {
+      "rank": 2,
+      "query": "mockup cos'è",
+      "intent": "Informational",
+      "topic": "Product Design",
+      "citations": 24,
+      "sharePct": "6.76%",
+      "cumulativeSharePct": "75.49%"
+    },
+    {
+      "rank": 3,
+      "query": "strumenti design intelligenza artificiale PMI popolari",
+      "intent": "Informational",
+      "topic": "AI Tools & Platforms",
+      "citations": 17,
+      "sharePct": "4.79%",
+      "cumulativeSharePct": "80.28%"
+    },
+    {
+      "rank": 4,
+      "query": "strumenti design intelligenza artificiale popolari PMI",
+      "intent": "Informational",
+      "topic": "AI Tools & Platforms",
+      "citations": 15,
+      "sharePct": "4.23%",
+      "cumulativeSharePct": "84.51%"
+    },
+    {
+      "rank": 5,
+      "query": "migliori piattaforme pagamenti online integrazione ecommerce",
+      "intent": "Informational",
+      "topic": "Ecommerce Platforms",
+      "citations": 10,
+      "sharePct": "2.82%",
+      "cumulativeSharePct": "87.32%"
+    },
+    {
+      "rank": 6,
+      "query": "manutenzione sito web",
+      "intent": "Learn and Solve",
+      "topic": "E-commerce",
+      "citations": 10,
+      "sharePct": "2.82%",
+      "cumulativeSharePct": "90.14%"
+    },
+    {
+      "rank": 7,
+      "query": "come opzioni di reso semplici riducono attrito ecommerce",
+      "intent": "Research",
+      "topic": "Cart Abandonment",
+      "citations": 9,
+      "sharePct": "2.54%",
+      "cumulativeSharePct": "92.68%"
+    },
+    {
+      "rank": 8,
+      "query": "strumenti per mantenere coerenza del brand",
+      "intent": "Learn and Solve",
+      "topic": "Marketing & Advertising",
+      "citations": 5,
+      "sharePct": "1.41%",
+      "cumulativeSharePct": "94.08%"
+    },
+    {
+      "rank": 9,
+      "query": "strumenti efficaci email marketing SMS marketing",
+      "intent": "Comparison",
+      "topic": "Marketing & Advertising",
+      "citations": 5,
+      "sharePct": "1.41%",
+      "cumulativeSharePct": "95.49%"
+    },
+    {
+      "rank": 10,
+      "query": "confronto soluzioni resi e-commerce negozi online",
+      "intent": "Comparison",
+      "topic": "Ecommerce Platforms",
+      "citations": 5,
+      "sharePct": "1.41%",
+      "cumulativeSharePct": "96.90%"
+    },
+    {
+      "rank": 11,
+      "query": "migliori piattaforme pagamenti online integrazione e-commerce",
+      "intent": "Informational",
+      "topic": "Ecommerce Platforms",
+      "citations": 4,
+      "sharePct": "1.13%",
+      "cumulativeSharePct": "98.03%"
+    },
+    {
+      "rank": 12,
+      "query": "soluzioni resi e-commerce negozio online",
+      "intent": "Informational",
+      "topic": "Order Management",
+      "citations": 4,
+      "sharePct": "1.13%",
+      "cumulativeSharePct": "99.15%"
+    },
+    {
+      "rank": 13,
+      "query": "tendenze gestione resi e-commerce 2026 variazioni normative",
+      "intent": "Research",
+      "topic": "Order Management",
+      "citations": 3,
+      "sharePct": "0.85%",
+      "cumulativeSharePct": "100.00%"
+    }
+  ]
+}
