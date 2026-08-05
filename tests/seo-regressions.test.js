@@ -435,7 +435,8 @@ function main() {
     'quanto-costa-un-sito-web/index.html'
   ];
   const claimAuditPages = [
-    'servizi/seo-milano.html'
+    'servizi/seo-milano.html',
+    'quanto-costa-un-sito-web/index.html'
   ];
 
   for (const file of wave2TitleFiles) {
