@@ -116,4 +116,4 @@ I prezzi sono valori iniziali presenti in data/services.json, non preventivi né
 
 - [ai.txt](https://www.webnovis.com/ai.txt): export editoriale sintetico; nessun beneficio di ranking o citazione è dichiarato.
 - [Dati JSON AI](https://www.webnovis.com/webnovis-ai-data.json): gli stessi fatti e prezzi di catalogo in JSON, con campi non verificati esplicitamente esclusi.
-- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa del sito con 353 URL indicizzabili (allineata a meta robots index).
+- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa del sito con 357 URL indicizzabili (allineata a meta robots index).
