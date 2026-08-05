@@ -99,8 +99,9 @@ Eseguiti sul branch dopo la valutazione; 10/12 superati, 2 gap aperti. Chiusi in
 | Promesse SEO €400 (report/monitoraggio/revisione trimestrale) | ✅ **VERIFICATE** — già presenti nella sezione Reporting di `seo-milano`; "report mensile", "monitoraggio continuo" e "revisione trimestrale" sono documentati | nessun fix |
 | Tempistiche 3-4 settimane vs catalogo 2-3 | ✅ **CHIUSA** — see punto tempo sopra | `f36fd16c` |
 | Aggiungere test specifici (social, claim, tempistiche) | ✅ **CHIUSO** — aggiunti guard-rail in `tests/seo-regressions.test.js`: `social-meta` (twitter title/description ≠ template, keyword-sharing), `claim` (nessun "4.2"/"superiore media"), `estimate` (nessun "3-4 settimane", allineamento `services.json`) | `f36fd16c` |
+| Coerenza tempistiche claim su `servizi/sito-vetrina.html` (out diff PR) | ✅ **CHIUSA** — "3-4 settimane" → "2-3 settimane" (visibile + FAQ) e claim "superiore media" → "strutturalmente solida"; estesi i guard-rail `claimAuditPages` e `estimatePages` a questa landing | `2464d05b`
 
-> Il claim su `servizi/sito-vetrina.html` (fuori diff PR originale) è stato corretto per coerenza editoriale.
+> Il claim su `servizi/sito-vetrina.html` (fuori diff PR originale) è stato corretto per coerenza editoriale: "3-4 settimane" → "2-3 settimane" e "superiore media competitor" → "strutturalmente solida"; commit `2464d05b`.
 
 ---
 
