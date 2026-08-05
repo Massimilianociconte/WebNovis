@@ -12,7 +12,7 @@
   "sustainedRegimeStartValue": 0,
   "boundaryResolution": {
     "changePointDate": "2026-06-21",
-    "changePointMethod": "CUSUM mean-shift (maximises |meanAfter - meanBefore| / pooled SE)",
+    "changePointMethod": "mean-shift t-score (maximises |meanAfter - meanBefore| / pooled SE)",
     "onsetDate": "2026-06-20",
     "onsetMethod": "CUSUM max cumulative sum (first day departing pre-period regime)",
     "onsetDescription": "2026-06-19 (84 citations) → 2026-06-20 (33 citations)",

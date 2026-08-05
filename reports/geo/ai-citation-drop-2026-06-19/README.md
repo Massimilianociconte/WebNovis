@@ -50,7 +50,7 @@ in the window leading up to or during the crash.
 | File | Purpose |
 |---|---|
 | `raw/webnovis.com_AIPerformanceOverviewStats_8_5_2026.csv` | Daily citations & cited pages (exported from Bing WMT) |
-| `raw/webnovis.com_AISearchQueriesReport_8_5_2026.csv` | Query-level citation breakdown (CSV has no date columns; assumed post-crash based on export date and data volume) |
+| `raw/webnovis.com_AISearchQueriesReport_8_5_2026.csv` | Query-level citation breakdown (undated snapshot — CSV has no date columns; association with post-onset regime is inferred, not verified) |
 | `analyze_citations.js` | Reproducible analysis script (Node.js, no deps) |
 | `output/*.json`, `output/*.csv` | Machine-readable analysis results |
 
@@ -86,7 +86,7 @@ Two distinct dates mark the crash onset:
 | Date | Role | Evidence |
 |---|---|---|
 | **June 20, 2026** | Onset (CUSUM cumulative max) | Jun 19: 84 citations → Jun 20: 33 citations (61% drop) |
-| **June 21, 2026** | CUSUM mean-shift change point | Jun 20: 33 citations → Jun 21: 0 citations (first zero-citation day) |
+| **June 21, 2026** | Mean-shift t-score change point | Jun 20: 33 citations → Jun 21: 0 citations (first zero-citation day) |
 
 - **Method:** CUSUM (cumulative sum, identifies onset) + mean-shift t-score (identifies max mean difference)
 - **Mean-shift score:** 12.78
@@ -102,12 +102,12 @@ for full `boundaryResolution` metadata.
 ### 3.4 Post-Onset Query Concentration
 
 The query report (exported Aug 5, 2026; CSV has no date columns, so the
-post-change-point period is **assumed**, not verified) contains only
-**13 rows / 355 total citations**.
-The top query (`"mockup significato"`) accounts for **68.7%** of all
-post-crash citations. The top 2 queries account for **75.5%**, top 4 for
-**84.5%**. This extreme concentration is consistent with a low-sample
-regime rather than organic, distributed query coverage.
+period is an **undated snapshot** — association with the post-onset regime
+is inferred, not verified) contains only **13 rows / 355 total citations**.
+The top query (`"mockup significato"`) accounts for **68.7%** of citations
+**within this undated query export**. The top 2 queries account for
+**75.5%**, top 4 for **84.5%**. This extreme concentration is consistent
+with a low-sample regime rather than organic, distributed query coverage.
 
 | Rank | Query | Bing Citation Share | Within-Export Share |
 |---|---|---|---|

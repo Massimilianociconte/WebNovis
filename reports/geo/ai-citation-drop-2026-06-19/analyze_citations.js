@@ -117,7 +117,7 @@ const baseline = {
     onsetDate: '2026-06-20',
     onsetTransition: 'Jun 19 (84 citations) → Jun 20 (33 citations)',
     sustainedZeroRegimeStart: '2026-06-21',
-    boundaryNote: 'The CUSUM mean-shift algorithm places the change point at Jun 20 (index 46). The baseline breakDate is set to Jun 20, placing it in the post-period. The sustained zero-citation regime begins Jun 21. See change-point.json for details.'
+    boundaryNote: 'The baseline breakDate is set to the CUSUM onset date (Jun 20, index 46), placing it in the post-period. The sustained zero-citation regime begins Jun 21, which is the mean-shift t-score change point (index 47). See change-point.json for details.'
   },
   prePeriod: {
     days: preDays,
@@ -236,7 +236,7 @@ const changePoint = {
   sustainedRegimeStartValue: bestCp !== null ? data[bestCp].citations : null,
   boundaryResolution: {
     changePointDate: bestCp !== null ? fmtDate(data[bestCp].date) : null,
-    changePointMethod: 'CUSUM mean-shift (maximises |meanAfter - meanBefore| / pooled SE)',
+    changePointMethod: 'mean-shift t-score (maximises |meanAfter - meanBefore| / pooled SE)',
     onsetDate: cusumDate,
     onsetMethod: 'CUSUM max cumulative sum (first day departing pre-period regime)',
     onsetDescription: onsetIdx > 0 ? `${fmtDate(data[onsetIdx - 1].date)} (${data[onsetIdx - 1].citations} citations) → ${cusumDate} (${data[onsetIdx].citations} citations)` : null,
@@ -304,8 +304,8 @@ const concentration = {
   exportMetadata: {
     exportDate: '2026-08-05',
     reportType: 'Bing Webmaster Tools — AI Search Queries Report',
-    dateRange: 'UNKNOWN — CSV does not contain date columns. Assumed to cover the full post-crash period shown in the daily overview export (Jun 20 – Aug 2), since the query report was exported on the same date (Aug 5) and contains only post-change-point data.',
-    filterAssumption: 'No explicit date or filter metadata is present in the CSV header. The post-crash classification is inferred from the change-point context, not from explicit date filtering.',
+    dateRange: 'UNKNOWN — the CSV contains no date columns or recoverable filter metadata. The export is analyzed as an undated query snapshot; compatibility with the post-onset regime is an inference, not a verified date range.',
+    filterAssumption: 'No explicit date or filter metadata is present in the CSV header. Any association with the post-onset regime is inferred from context, not from explicit date filtering.',
     samplingDisclaimer: 'Bing states: "AI Performance data is sampled, and grounding queries and pages may each be sampled over slightly different time windows." Citation Share values from this column represent Bing\'s share metric, not within-export percentages.'
   },
   totalRows: queryData.length,
