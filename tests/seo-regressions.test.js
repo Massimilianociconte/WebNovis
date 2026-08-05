@@ -459,8 +459,9 @@ function main() {
   }
 
   const unverifiedNumericClaims = [
-    /rating medio sopra 4\.2/i,
-    /già superiore alla media dei competitor/i
+    /rating\s+medio\s+(?:sopra|superiore\s+a)\s+4[.,]2/i,
+    /già\s+superiore\s+alla\s+media\s+dei\s+competitor/i,
+    /4[.,]2\s*(?:stelle|su\s+5)/i
   ];
   for (const file of claimAuditPages) {
     const html = readText(file);
