@@ -22,7 +22,8 @@ module.exports = {
   },
   'blog/quanto-costa-gestione-social-media.html': {
     // GSC: 1.366 impr a pos 5.5 con 0 clic → title riallineato alla query "quanto costa"
-    title: 'Quanto costa gestire i social? Prezzi 2026 | WebNovis',
+    // FIX 2026-08-04: title approvato in sessione precedente applicato live
+    title: 'Quanto Costa la Gestione Social Media nel 2026? | WebNovis',
     description: 'Quanto costa farsi gestire i social nel 2026: pacchetti mensili da €300, cosa include, fee agenzia e tabella prezzi reale per valutare un preventivo.'
   },
   'blog/quanto-costa-campagna-facebook-ads.html': {
@@ -32,7 +33,8 @@ module.exports = {
   },
   'blog/quanto-costa-un-ecommerce.html': {
     // GSC: 460 impr a pos 4.8 con 0 clic → title riallineato alla query "quanto costa"
-    title: 'Quanto costa un e-commerce? Tabella prezzi 2026 | WebNovis',
+    // FIX 2026-08-04: title approvato in sessione precedente applicato live
+    title: 'Quanto Costa un E-Commerce nel 2026? Prezzi Reali',
     description: 'Quanto costa aprire un e-commerce nel 2026: tabella prezzi, Shopify vs custom, commissioni, costi nascosti, tempi e budget realistico per PMI.'
   },
   'blog/quanto-costa-un-logo.html': {
