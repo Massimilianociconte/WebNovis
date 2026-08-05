@@ -430,10 +430,47 @@ function main() {
     'blog/quanto-costa-una-landing-page.html'
   ];
 
+  const socialMetaPages = [
+    'servizi/seo-milano.html',
+    'quanto-costa-un-sito-web/index.html'
+  ];
+  const claimAuditPages = [
+    'servizi/seo-milano.html'
+  ];
+
   for (const file of wave2TitleFiles) {
     const title = extractTitle(readText(file), file);
     assert.ok(title.length <= 65, `${file} title must stay within the 65-character Wave 2 guardrail`);
   }
+
+  for (const file of socialMetaPages) {
+    const html = readText(file);
+    const title = extractTitle(html, file);
+    const titleKeyword = title.split('|')[0].trim().toLowerCase();
+    const twitterTitle = (html.match(/content="([^"]*)"\s+name="twitter:title"/i) || [])[1] || '';
+    const twitterDesc = (html.match(/content="([^"]*)"\s+name="twitter:description"/i) || [])[1] || '';
+    assert.ok(twitterTitle, `${file} must expose a twitter:title`);
+    assert.ok(twitterDesc, `${file} must expose a twitter:description`);
+    assert.ok(!twitterTitle.includes('Realizzazione Siti Web'), `${file} twitter:title must not inherit the stale "Realizzazione Siti Web" copy`);
+    assert.ok(titleKeyword.split(/\s+/).some((w) => w && twitterTitle.toLowerCase().includes(w)), `${file} twitter:title must share a keyword with <title>`);
+    assert.ok(twitterDesc.length > 40, `${file} twitter:description must be a real snippet, not a stub`);
+  }
+
+  const unverifiedNumericClaims = [
+    /rating medio sopra 4\.2/i,
+    /già superiore alla media dei competitor/i
+  ];
+  for (const file of claimAuditPages) {
+    const html = readText(file);
+    for (const pattern of unverifiedNumericClaims) {
+      assert.ok(!pattern.test(html), `${file} must not carry the unverified claim: ${pattern}`);
+    }
+  }
+
+  const quantoCostaHtml = readText('quanto-costa-un-sito-web/index.html');
+  const vetrinaEstimate = servicesCatalog.services.find((s) => s.slug === 'sito-vetrina').timeEstimate;
+  assert.ok(!quantoCostaHtml.includes('3-4 settimane'), 'quanto-costa-un-sito-web must not expose the stale "3-4 settimane" estimate');
+  assert.ok(quantoCostaHtml.includes(vetrinaEstimate), `quanto-costa-un-sito-web estimate must stay aligned with services.json (sito-vetrina = ${vetrinaEstimate})`);
 
   console.log('SEO regression checks passed.');
 }
