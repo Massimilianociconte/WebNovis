@@ -436,7 +436,8 @@ function main() {
   ];
   const claimAuditPages = [
     'servizi/seo-milano.html',
-    'quanto-costa-un-sito-web/index.html'
+    'quanto-costa-un-sito-web/index.html',
+    'servizi/sito-vetrina.html'
   ];
 
   for (const file of wave2TitleFiles) {
@@ -468,10 +469,16 @@ function main() {
     }
   }
 
-  const quantoCostaHtml = readText('quanto-costa-un-sito-web/index.html');
-  const vetrinaEstimate = servicesCatalog.services.find((s) => s.slug === 'sito-vetrina').timeEstimate;
-  assert.ok(!quantoCostaHtml.includes('3-4 settimane'), 'quanto-costa-un-sito-web must not expose the stale "3-4 settimane" estimate');
-  assert.ok(quantoCostaHtml.includes(vetrinaEstimate), `quanto-costa-un-sito-web estimate must stay aligned with services.json (sito-vetrina = ${vetrinaEstimate})`);
+  const estimatePages = [
+    { file: 'quanto-costa-un-sito-web/index.html', slug: 'sito-vetrina' },
+    { file: 'servizi/sito-vetrina.html', slug: 'sito-vetrina' }
+  ];
+  for (const { file, slug } of estimatePages) {
+    const html = readText(file);
+    const estimate = servicesCatalog.services.find((s) => s.slug === slug).timeEstimate;
+    assert.ok(!html.includes('3-4 settimane'), `${file} must not expose the stale "3-4 settimane" estimate`);
+    assert.ok(html.includes(estimate), `${file} estimate must stay aligned with services.json (${slug} = ${estimate})`);
+  }
 
   console.log('SEO regression checks passed.');
 }
