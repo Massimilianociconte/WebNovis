@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "breakDate": "2026-06-20",
+    "prePeriodStart": "2026-05-05",
+    "prePeriodEnd": "2026-06-19",
+    "postPeriodStart": "2026-06-20",
+    "postPeriodEnd": "2026-08-02",
+    "changePointDate": "2026-06-20",
+    "onsetDate": "2026-06-20",
+    "onsetTransition": "Jun 19 (84 citations) → Jun 20 (33 citations)",
+    "sustainedZeroRegimeStart": "2026-06-21",
+    "boundaryNote": "The baseline breakDate is set to the CUSUM onset date (Jun 20, index 46), placing it in the post-period. The sustained zero-citation regime begins Jun 21, which is the mean-shift t-score change point (index 47). See change-point.json for details."
+  },
+  "prePeriod": {
+    "days": 46,
+    "citations": 1835,
+    "avgDailyCitations": 39.9,
+    "pages": 619,
+    "avgDailyPages": 13.5
+  },
+  "postPeriod": {
+    "days": 44,
+    "citations": 80,
+    "avgDailyCitations": 1.8,
+    "pages": 20,
+    "avgDailyPages": 0.45,
+    "zeroCitationDays": 29
+  },
+  "variation": {
+    "avgDailyCitationsPCT": -95.4,
+    "avgDailyPagesPCT": -96.6
+  }
+}

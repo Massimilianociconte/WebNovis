@@ -1,0 +1,21 @@
+{
+  "detectedIndex": 47,
+  "detectedDate": "2026-06-21",
+  "score": 12.7826,
+  "cusumMax": 867.9,
+  "cusumChangeDate": "2026-06-20",
+  "globalMean": 21.3,
+  "onsetDate": "2026-06-20",
+  "onsetBeforeValue": 84,
+  "onsetValue": 33,
+  "sustainedRegimeStart": "2026-06-21",
+  "sustainedRegimeStartValue": 0,
+  "boundaryResolution": {
+    "changePointDate": "2026-06-21",
+    "changePointMethod": "mean-shift t-score (maximises |meanAfter - meanBefore| / pooled SE)",
+    "onsetDate": "2026-06-20",
+    "onsetMethod": "CUSUM max cumulative sum (first day departing pre-period regime)",
+    "onsetDescription": "2026-06-19 (84 citations) → 2026-06-20 (33 citations)",
+    "sustainedRegimeDescription": "2026-06-20 (33 citations) → 2026-06-21 (0 citations) (first zero-citation day)"
+  }
+}
