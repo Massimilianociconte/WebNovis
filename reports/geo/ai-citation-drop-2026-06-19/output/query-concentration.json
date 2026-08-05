@@ -1,4 +1,11 @@
 {
+  "exportMetadata": {
+    "exportDate": "2026-08-05",
+    "reportType": "Bing Webmaster Tools — AI Search Queries Report",
+    "dateRange": "UNKNOWN — CSV does not contain date columns. Assumed to cover the full post-crash period shown in the daily overview export (Jun 20 – Aug 2), since the query report was exported on the same date (Aug 5) and contains only post-change-point data.",
+    "filterAssumption": "No explicit date or filter metadata is present in the CSV header. The post-crash classification is inferred from the change-point context, not from explicit date filtering.",
+    "samplingDisclaimer": "Bing states: \"AI Performance data is sampled, and grounding queries and pages may each be sampled over slightly different time windows.\" Citation Share values from this column represent Bing's share metric, not within-export percentages."
+  },
   "totalRows": 13,
   "totalCitations": 355,
   "topQueryShare": 68.7,
@@ -11,8 +18,9 @@
       "intent": "Informational",
       "topic": "E-commerce",
       "citations": 244,
-      "sharePct": "68.73%",
-      "cumulativeSharePct": "68.73%"
+      "bingCitationShare": "17.40%",
+      "withinExportSharePct": "68.73%",
+      "cumulativeWithinExportSharePct": "68.73%"
     },
     {
       "rank": 2,
@@ -20,8 +28,9 @@
       "intent": "Informational",
       "topic": "Product Design",
       "citations": 24,
-      "sharePct": "6.76%",
-      "cumulativeSharePct": "75.49%"
+      "bingCitationShare": "10.71%",
+      "withinExportSharePct": "6.76%",
+      "cumulativeWithinExportSharePct": "75.49%"
     },
     {
       "rank": 3,
@@ -29,8 +38,9 @@
       "intent": "Informational",
       "topic": "AI Tools & Platforms",
       "citations": 17,
-      "sharePct": "4.79%",
-      "cumulativeSharePct": "80.28%"
+      "bingCitationShare": "80.95%",
+      "withinExportSharePct": "4.79%",
+      "cumulativeWithinExportSharePct": "80.28%"
     },
     {
       "rank": 4,
@@ -38,8 +48,9 @@
       "intent": "Informational",
       "topic": "AI Tools & Platforms",
       "citations": 15,
-      "sharePct": "4.23%",
-      "cumulativeSharePct": "84.51%"
+      "bingCitationShare": "68.18%",
+      "withinExportSharePct": "4.23%",
+      "cumulativeWithinExportSharePct": "84.51%"
     },
     {
       "rank": 5,
@@ -47,8 +58,9 @@
       "intent": "Informational",
       "topic": "Ecommerce Platforms",
       "citations": 10,
-      "sharePct": "2.82%",
-      "cumulativeSharePct": "87.32%"
+      "bingCitationShare": "23.81%",
+      "withinExportSharePct": "2.82%",
+      "cumulativeWithinExportSharePct": "87.32%"
     },
     {
       "rank": 6,
@@ -56,8 +68,9 @@
       "intent": "Learn and Solve",
       "topic": "E-commerce",
       "citations": 10,
-      "sharePct": "2.82%",
-      "cumulativeSharePct": "90.14%"
+      "bingCitationShare": "37.04%",
+      "withinExportSharePct": "2.82%",
+      "cumulativeWithinExportSharePct": "90.14%"
     },
     {
       "rank": 7,
@@ -65,8 +78,9 @@
       "intent": "Research",
       "topic": "Cart Abandonment",
       "citations": 9,
-      "sharePct": "2.54%",
-      "cumulativeSharePct": "92.68%"
+      "bingCitationShare": "29.03%",
+      "withinExportSharePct": "2.54%",
+      "cumulativeWithinExportSharePct": "92.68%"
     },
     {
       "rank": 8,
@@ -74,8 +88,9 @@
       "intent": "Learn and Solve",
       "topic": "Marketing & Advertising",
       "citations": 5,
-      "sharePct": "1.41%",
-      "cumulativeSharePct": "94.08%"
+      "bingCitationShare": "13.16%",
+      "withinExportSharePct": "1.41%",
+      "cumulativeWithinExportSharePct": "94.08%"
     },
     {
       "rank": 9,
@@ -83,8 +98,9 @@
       "intent": "Comparison",
       "topic": "Marketing & Advertising",
       "citations": 5,
-      "sharePct": "1.41%",
-      "cumulativeSharePct": "95.49%"
+      "bingCitationShare": "15.15%",
+      "withinExportSharePct": "1.41%",
+      "cumulativeWithinExportSharePct": "95.49%"
     },
     {
       "rank": 10,
@@ -92,8 +108,9 @@
       "intent": "Comparison",
       "topic": "Ecommerce Platforms",
       "citations": 5,
-      "sharePct": "1.41%",
-      "cumulativeSharePct": "96.90%"
+      "bingCitationShare": "17.24%",
+      "withinExportSharePct": "1.41%",
+      "cumulativeWithinExportSharePct": "96.90%"
     },
     {
       "rank": 11,
@@ -101,8 +118,9 @@
       "intent": "Informational",
       "topic": "Ecommerce Platforms",
       "citations": 4,
-      "sharePct": "1.13%",
-      "cumulativeSharePct": "98.03%"
+      "bingCitationShare": "13.33%",
+      "withinExportSharePct": "1.13%",
+      "cumulativeWithinExportSharePct": "98.03%"
     },
     {
       "rank": 12,
@@ -110,8 +128,9 @@
       "intent": "Informational",
       "topic": "Order Management",
       "citations": 4,
-      "sharePct": "1.13%",
-      "cumulativeSharePct": "99.15%"
+      "bingCitationShare": "20.00%",
+      "withinExportSharePct": "1.13%",
+      "cumulativeWithinExportSharePct": "99.15%"
     },
     {
       "rank": 13,
@@ -119,8 +138,9 @@
       "intent": "Research",
       "topic": "Order Management",
       "citations": 3,
-      "sharePct": "0.85%",
-      "cumulativeSharePct": "100.00%"
+      "bingCitationShare": "8.57%",
+      "withinExportSharePct": "0.85%",
+      "cumulativeWithinExportSharePct": "100.00%"
     }
   ]
 }

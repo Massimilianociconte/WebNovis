@@ -75,7 +75,7 @@ const queryData = queryRep.rows.map(r => ({
   intent: r.Intent,
   topic: r.Topic,
   citations: parseInt(r.Citations, 10),
-  share: r['Citation Share'] || r['Citation Share']
+  bingCitationShare: r['Citation Share'] || ''
 })).filter(d => d.query);
 
 // ── 1. Baseline quantitativa ────────────────────────────────────────
@@ -107,6 +107,18 @@ const pctPages = ((postAvgPages - preAvgPages) / preAvgPages) * 100;
 const zeroDays = postPeriod.filter(d => d.citations === 0).length;
 
 const baseline = {
+  metadata: {
+    breakDate: fmtDate(breakDate),
+    prePeriodStart: '2026-05-05',
+    prePeriodEnd: '2026-06-19',
+    postPeriodStart: '2026-06-20',
+    postPeriodEnd: '2026-08-02',
+    changePointDate: '2026-06-20',
+    onsetDate: '2026-06-20',
+    onsetTransition: 'Jun 19 (84 citations) → Jun 20 (33 citations)',
+    sustainedZeroRegimeStart: '2026-06-21',
+    boundaryNote: 'The CUSUM mean-shift algorithm places the change point at Jun 20 (index 46). The baseline breakDate is set to Jun 20, placing it in the post-period. The sustained zero-citation regime begins Jun 21. See change-point.json for details.'
+  },
   prePeriod: {
     days: preDays,
     citations: preCitations,
@@ -167,8 +179,11 @@ let bestCp = null;
 let bestScore = -Infinity;
 
 for (let i = 5; i < data.length - 5; i++) {
-  const before = data.slice(0, i + 1);
-  const after = data.slice(i + 1);
+  // before = data[0..i-1] (excludes change point), after = data[i..] (includes change point)
+  // This is consistent with the baseline break date (breakDate) which places
+  // the break date in the post-period.
+  const before = data.slice(0, i);
+  const after = data.slice(i);
   if (before.length < 5 || after.length < 5) continue;
 
   const meanBefore = avg(before, 'citations');
@@ -186,7 +201,7 @@ for (let i = 5; i < data.length - 5; i++) {
   }
 }
 
-// CUSUM analysis
+// CUSUM analysis — identifies the onset date (max cumulative deviation)
 let cusumPos = 0, cusumNeg = 0;
 let cusumMax = 0, cusumDate = null;
 const globalMean = avg(data, 'citations');
@@ -201,19 +216,41 @@ for (let i = 0; i < data.length; i++) {
   }
 }
 
+// Onset date: the CUSUM change point (max cumulative deviation) — this is the
+// first day that marks the departure from the pre-period regime (Jun 20, 84→33).
+// The mean-shift algorithm detects the point of maximum mean difference (Jun 21, 33→0),
+// which is the start of the sustained zero-citation regime.
+const onsetIdx = cusumDate !== null ? data.findIndex(d => fmtDate(d.date) === cusumDate) : 46;
+
 const changePoint = {
   detectedIndex: bestCp,
   detectedDate: bestCp !== null ? fmtDate(data[bestCp].date) : null,
   score: Number(bestScore.toFixed(4)),
   cusumMax: Number(cusumMax.toFixed(1)),
   cusumChangeDate: cusumDate,
-  globalMean: Number(globalMean.toFixed(1))
+  globalMean: Number(globalMean.toFixed(1)),
+  onsetDate: cusumDate,
+  onsetBeforeValue: onsetIdx > 0 ? data[onsetIdx - 1].citations : null,
+  onsetValue: onsetIdx >= 0 ? data[onsetIdx].citations : null,
+  sustainedRegimeStart: bestCp !== null ? fmtDate(data[bestCp].date) : null,
+  sustainedRegimeStartValue: bestCp !== null ? data[bestCp].citations : null,
+  boundaryResolution: {
+    changePointDate: bestCp !== null ? fmtDate(data[bestCp].date) : null,
+    changePointMethod: 'CUSUM mean-shift (maximises |meanAfter - meanBefore| / pooled SE)',
+    onsetDate: cusumDate,
+    onsetMethod: 'CUSUM max cumulative sum (first day departing pre-period regime)',
+    onsetDescription: onsetIdx > 0 ? `${fmtDate(data[onsetIdx - 1].date)} (${data[onsetIdx - 1].citations} citations) → ${cusumDate} (${data[onsetIdx].citations} citations)` : null,
+    sustainedRegimeDescription: bestCp !== null ? `${cusumDate} (${data[onsetIdx].citations} citations) → ${fmtDate(data[bestCp].date)} (${data[bestCp].citations} citations) (first zero-citation day)` : null
+  }
 };
 fs.writeFileSync(path.join(OUT, 'change-point.json'), JSON.stringify(changePoint, null, 2));
 
 // ── 5. 14-day and 30-day before/after comparison ─────────────────────
 
-const cpDate = bestCp !== null ? data[bestCp].date : breakDate;
+// Use the onset date (breakDate/Jun 20) as the canonical split for period
+// comparison, NOT the mean-shift change point (Jun 21). This keeps the
+// comparison consistent with the baseline breakDate.
+const cpDate = breakDate;
 
 function periodCompare(cp, days) {
   const beforeStart = new Date(cp);
@@ -222,7 +259,7 @@ function periodCompare(cp, days) {
   afterEnd.setDate(afterEnd.getDate() + days);
 
   const before = data.filter(d => d.date >= beforeStart && d.date < cp);
-  const after = data.filter(d => d.date > cp && d.date <= afterEnd);
+  const after = data.filter(d => d.date >= cp && d.date < afterEnd);
 
   return {
     window: `${days} days`,
@@ -258,11 +295,19 @@ const queryDist = sortedQueries.map((q, i) => ({
   intent: q.intent,
   topic: q.topic,
   citations: q.citations,
-  sharePct: ((q.citations / totalQueryCitations) * 100).toFixed(2) + '%',
-  cumulativeSharePct: ((sortedQueries.slice(0, i + 1).reduce((a, c) => a + c.citations, 0) / totalQueryCitations) * 100).toFixed(2) + '%'
+  bingCitationShare: q.bingCitationShare,
+  withinExportSharePct: ((q.citations / totalQueryCitations) * 100).toFixed(2) + '%',
+  cumulativeWithinExportSharePct: ((sortedQueries.slice(0, i + 1).reduce((a, c) => a + c.citations, 0) / totalQueryCitations) * 100).toFixed(2) + '%'
 }));
 
 const concentration = {
+  exportMetadata: {
+    exportDate: '2026-08-05',
+    reportType: 'Bing Webmaster Tools — AI Search Queries Report',
+    dateRange: 'UNKNOWN — CSV does not contain date columns. Assumed to cover the full post-crash period shown in the daily overview export (Jun 20 – Aug 2), since the query report was exported on the same date (Aug 5) and contains only post-change-point data.',
+    filterAssumption: 'No explicit date or filter metadata is present in the CSV header. The post-crash classification is inferred from the change-point context, not from explicit date filtering.',
+    samplingDisclaimer: 'Bing states: "AI Performance data is sampled, and grounding queries and pages may each be sampled over slightly different time windows." Citation Share values from this column represent Bing\'s share metric, not within-export percentages.'
+  },
   totalRows: queryData.length,
   totalCitations: totalQueryCitations,
   topQueryShare: Number((sortedQueries[0].citations / totalQueryCitations * 100).toFixed(1)),
@@ -273,8 +318,8 @@ const concentration = {
 
 fs.writeFileSync(path.join(OUT, 'query-concentration.json'), JSON.stringify(concentration, null, 2));
 fs.writeFileSync(path.join(OUT, 'query-distribution.csv'),
-  'Query,Citations,Citation Share\n' +
-  queryDist.map(d => `"${d.query}",${d.citations},${d.sharePct}`).join('\n') + '\n'
+  'Query,Citations,Bing Citation Share,Within-Export Share,Cumulative Within-Export Share\n' +
+  queryDist.map(d => `"${d.query}",${d.citations},${d.bingCitationShare},${d.withinExportSharePct},${d.cumulativeWithinExportSharePct}`).join('\n') + '\n'
 );
 
 // ── 7. Citation-to-page ratio ───────────────────────────────────────
@@ -336,8 +381,8 @@ console.log('\n=== CHANGE POINT ===');
 console.log(JSON.stringify(changePoint, null, 2));
 console.log('\n=== CONCENTRAZIONE ===');
 console.log(`Totale righe query: ${concentration.totalRows}`);
-console.log(`Totale citazioni query: ${concentration.totalCitations}`);
-console.log(`Prima query (${sortedQueries[0].query}): ${concentration.topQueryShare}%`);
+console.log(`Totale citazioni (esportazione): ${concentration.totalCitations}`);
+console.log(`Prima query (${sortedQueries[0].query}): ${concentration.topQueryShare}% del totale esportazione (within-export share)`);
 console.log(`Prime due: ${concentration.topTwoShare}%`);
 console.log(`Prime quattro: ${concentration.topFourShare}%`);
 console.log(`\n=== INTERVALI ANOMALI (giorni a zero) ===`);

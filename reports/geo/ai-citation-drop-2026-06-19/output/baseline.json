@@ -1,4 +1,16 @@
 {
+  "metadata": {
+    "breakDate": "2026-06-20",
+    "prePeriodStart": "2026-05-05",
+    "prePeriodEnd": "2026-06-19",
+    "postPeriodStart": "2026-06-20",
+    "postPeriodEnd": "2026-08-02",
+    "changePointDate": "2026-06-20",
+    "onsetDate": "2026-06-20",
+    "onsetTransition": "Jun 19 (84 citations) → Jun 20 (33 citations)",
+    "sustainedZeroRegimeStart": "2026-06-21",
+    "boundaryNote": "The CUSUM mean-shift algorithm places the change point at Jun 20 (index 46). The baseline breakDate is set to Jun 20, placing it in the post-period. The sustained zero-citation regime begins Jun 21. See change-point.json for details."
+  },
   "prePeriod": {
     "days": 46,
     "citations": 1835,

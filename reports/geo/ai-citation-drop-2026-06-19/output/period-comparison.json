@@ -9,9 +9,9 @@
     },
     "after": {
       "days": 14,
-      "citations": 5,
-      "avgCitations": 0.4,
-      "avgPages": 0.07
+      "citations": 33,
+      "avgCitations": 2.4,
+      "avgPages": 0.43
     }
   },
   "30d": {
@@ -24,9 +24,9 @@
     },
     "after": {
       "days": 30,
-      "citations": 36,
-      "avgCitations": 1.2,
-      "avgPages": 0.37
+      "citations": 67,
+      "avgCitations": 2.2,
+      "avgPages": 0.53
     }
   }
 }
