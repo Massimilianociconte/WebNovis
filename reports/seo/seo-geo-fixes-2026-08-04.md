@@ -85,7 +85,22 @@ Eseguiti sul branch dopo la valutazione; 10/12 superati, 2 gap aperti. Chiusi in
 
 1. **Internal linking** (controllo 7): ✅ **CHIUSO** in `c24dd4b6` — 12 link editoriali (vedi tabella); i link per i blog con aside money-links rigenerato vanno aggiunti in `config/seo-html-transforms.js` (single source of truth), non nell'HTML.
 2. **Strategia anti-cannibalizzazione Milano** (controllo 8): ⏳ **APERTO** — stabilire pagina primaria per "SEO Milano" tra `servizi/seo-milano.html`, `seo-locale-milano.html`, `agenzia-web-milano.html` e differenziare title/contenuti. Senza dati GSC non è possibile chiudere; proposta: primaria `servizi/seo-milano.html`, `seo-locale-milano.html` orientata alle ricerche "SEO locale Milano quartieri", `agenzia-web-milano.html` già supporter.
-3. **Incoerenza tempistiche** (controllo 2): ✅ **CHIUSA** in `c24dd4b6` — intro e FAQ ora dicono entrambe "3-4 settimane per un sito vetrina standard nell'intervallo 2-6 settimane" (visibile e JSON-LD allineati).
+3. **Incoerenza tempistiche** (controllo 2): ✅ **CHIUSA** — intro e FAQ visibile + JSON-LD ora dicono "2-3 settimane per un sito vetrina standard, intervallo complessivo 2-6 settimane", allineati a `data/services.json` (`sito-vetrina.timeEstimate` = "2-3 settimane"). Prima del fix erroneamente scritto "3-4 settimane".
+
+---
+
+## Correzioni post-review (feedback su PR #3)
+
+| Punto reviewer | Stato | Commit |
+|---|---|---|
+| `twitter:title/description` errati su **entrambe** le landing (erede "Realizzazione Siti Web") | ✅ **CHIUSY** — allineati a `<title>`/og: su `servizi/seo-milano.html` e `quanto-costa-un-sito-web/index.html` | `f36fd16c` |
+| Soglie recensioni non documentate (30-50, rating 4.2) | ✅ **CHIUSO** — riformulati in "stime indicative" con rating "alto (>4,0)" e disclaimer "dipendono da settore e concorrenza"; visibile e FAQ JSON-LD allineati | `f36fd16c` |
+| Claim "SEO superiore media competitor" non dimostrato | ✅ **CHIUSO** — "già superiore alla media dei competitor" → "strutturalmente solida", in `quanto-costa-un-sito-web` (visibile + JSON-LD) e `servizi/sito-vetrina` | `39bba0db` |
+| Promesse SEO €400 (report/monitoraggio/revisione trimestrale) | ✅ **VERIFICATE** — già presenti nella sezione Reporting di `seo-milano`; "report mensile", "monitoraggio continuo" e "revisione trimestrale" sono documentati | nessun fix |
+| Tempistiche 3-4 settimane vs catalogo 2-3 | ✅ **CHIUSA** — see punto tempo sopra | `f36fd16c` |
+| Aggiungere test specifici (social, claim, tempistiche) | ✅ **CHIUSO** — aggiunti guard-rail in `tests/seo-regressions.test.js`: `social-meta` (twitter title/description ≠ template, keyword-sharing), `claim` (nessun "4.2"/"superiore media"), `estimate` (nessun "3-4 settimane", allineamento `services.json`) | `f36fd16c` |
+
+> Il claim su `servizi/sito-vetrina.html` (fuori diff PR originale) è stato corretto per coerenza editoriale.
 
 ---
 
