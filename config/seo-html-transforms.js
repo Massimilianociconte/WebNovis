@@ -2182,6 +2182,29 @@ function alignLocalPageOpportunityTransforms(html, relativePath) {
   return updated;
 }
 
+const OG_IMAGE_DIMENSIONS = {
+  'https://www.webnovis.com/Img/og-image-social-graph.jpeg': ['1600', '840'],
+  'https://www.webnovis.com/Img/blog-cat-web.png': ['800', '450'],
+  'https://www.webnovis.com/Img/blog-cat-seo.png': ['800', '450'],
+  'https://www.webnovis.com/Img/blog-cat-marketing.png': ['800', '450'],
+  'https://www.webnovis.com/Img/blog-cat-social.png': ['800', '450']
+};
+
+function injectOgImageDimensions(html) {
+  if (/property="og:image:width"/i.test(html)) return html; // idempotent
+  for (const [url, [w, h]] of Object.entries(OG_IMAGE_DIMENSIONS)) {
+    const escaped = url.replace(/[./]/g, '\\$&');
+    const pattern = new RegExp(
+      `(<meta\\b[^>]*\\bproperty="og:image"[^>]*\\bcontent="${escaped}"[^>]*>|<meta\\b[^>]*\\bcontent="${escaped}"[^>]*\\bproperty="og:image"[^>]*>)`,
+      'i'
+    );
+    if (pattern.test(html)) {
+      return html.replace(pattern, `$1 <meta property="og:image:width" content="${w}"> <meta property="og:image:height" content="${h}">`);
+    }
+  }
+  return html;
+}
+
 function applySeoHtmlTransforms(html, relativePath) {
   let updated = normalizeHtmlDocumentStructure(html, relativePath);
   updated = removeUnverifiedTwitterSiteMeta(updated);
@@ -2206,6 +2229,7 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = ensureFaqPageSchema(updated, relativePath);
   updated = ensureServiceHubCollectionSchema(updated, relativePath);
   updated = alignArticleAuthorship(updated, relativePath);
+  updated = injectOgImageDimensions(updated);
   updated = deduplicateStylesheetLinks(updated);
   return updated;
 }
