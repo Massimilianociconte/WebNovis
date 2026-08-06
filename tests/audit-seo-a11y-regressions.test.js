@@ -127,8 +127,9 @@ function main() {
   }
 
   // M2: portfolio nicole-inspired must use the async pattern
+  // (noscript fallback copies required by M1 are excluded from this check)
   {
-    const html = read('src/html/portfolio.html');
+    const html = read('src/html/portfolio.html').replace(/<noscript>[\s\S]*?<\/noscript>/g, '');
     if (/<link href="css\/nicole-inspired\.min\.css[^"]*" rel="stylesheet">/.test(html)) {
       failures.push('portfolio.html: nicole-inspired render-blocking (M2)');
     }
