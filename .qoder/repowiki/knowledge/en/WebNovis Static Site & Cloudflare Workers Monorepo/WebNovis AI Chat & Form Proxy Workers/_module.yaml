@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: workers
+title: WebNovis AI Chat & Form Proxy Workers
+scope:
+    - workers/
+source_files: []
+depends_on: []
+related_to:
+    - path: build_system
+    - path: static_assets

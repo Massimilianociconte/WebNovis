@@ -1,0 +1,6 @@
+- Workers expose a default-exported object with a single `fetch(request, env, ctx)` handler that routes by `request.method` + `url.pathname` and wraps every response with CORS headers via a shared helper.
+- JSON responses are produced through a local `json(body, status, extraHeaders)` helper that sets `application/json; charset=utf-8` and merges any extra headers.
+- Environment configuration is read exclusively from the `env` parameter passed by the Worker runtime (e.g. `env.SESSIONS`, `env.GEMINI_API_KEY_*`, `env.TURNSTILE_SECRET`), never from module-level constants.
+- Rate limiting is implemented as per-IP bucket counters stored in KV under keys of the form `<prefix>:<clientIp>:<bucket>` with TTL equal to the window plus a small buffer.
+- User input is sanitized before use: HTML tags stripped, length capped, and path/query parameters normalized via dedicated helpers (`normalizePath`, `normalizeText`, `safeText`).
+- External API calls (Gemini, Brevo, Web3Forms, Turnstile) are wrapped with explicit timeouts (`AbortSignal.timeout`) and caught errors fall back to safe defaults or cached responses rather than propagating failures.

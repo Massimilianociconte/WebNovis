@@ -1,0 +1,5 @@
+- City/page data is modeled as an in-memory array of objects (slug, name, cap, lat, lng, wiki, localized text blocks) that drives templating via sequential regex replacements against a single source HTML template.
+- Each script is a single flat file with no imports beyond Node built-ins or Python stdlib, intended to be executed directly rather than imported as a module.
+- Output filenames are derived from a `slug` field combined with a fixed suffix (e.g. `realizzazione-siti-web-${city.slug}.html`, `agenzia-web-${city.slug}.html`).
+- Localized content (titles, meta descriptions, hero copy, FAQ, nearby cities) is embedded inline in the data definition rather than loaded from external files, keeping each generator self-contained.
+- Asset references are swapped by matching exact placeholder strings (e.g. `rho-fiera-milano.webp`, `rho-digital-ecosystem.webp`) and replacing them with city-specific filenames while preserving responsive `<source>` syntax.

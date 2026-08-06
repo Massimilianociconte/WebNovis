@@ -1,0 +1,1 @@
+No build scripts live here; the data is authored and committed as JSON. Provenance is tracked via `sourceArtifact` filenames and `contentSha256` hashes in `geo-editorial/manifest.json`, so changes to editorial copy must be accompanied by updated checksums to keep the manifest in sync with the source artifact.

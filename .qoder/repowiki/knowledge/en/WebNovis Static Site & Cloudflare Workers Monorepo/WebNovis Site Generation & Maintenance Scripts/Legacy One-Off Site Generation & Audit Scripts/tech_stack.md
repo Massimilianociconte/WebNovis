@@ -1,0 +1,1 @@
+Node.js (built-in `fs`/`path` only) for page generation and asset checks; Python (standard library plus likely BeautifulSoup/lxml for HTML parsing) for image processing, WebP conversion, and audit tasks. No external npm/pip dependencies declared.

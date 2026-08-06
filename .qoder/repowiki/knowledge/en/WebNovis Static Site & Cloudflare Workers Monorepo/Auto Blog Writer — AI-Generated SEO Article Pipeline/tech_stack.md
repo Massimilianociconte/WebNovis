@@ -1,0 +1,1 @@
+Node.js script using native `fetch` against Google Gemini REST API (`gemini-2.5-flash`) and Groq OpenAI-compatible chat endpoint (`llama-3.3-70b-versatile`); `dotenv` for `.env` config; `child_process.execFileSync` to invoke `generate-sitemap.js`; GitHub Actions cron triggers via `.github/workflows/daily-blog.yml`.

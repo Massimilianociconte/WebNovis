@@ -1,0 +1,1 @@
+Plain Node.js CommonJS modules with Nunjucks templating (`templates/*.njk`); JSON-LD Schema.org output; governance rules pulled from `../../config/content-claim-governance` and `../../config/pseo-governance`; date resolution via `../../config/build-date`.

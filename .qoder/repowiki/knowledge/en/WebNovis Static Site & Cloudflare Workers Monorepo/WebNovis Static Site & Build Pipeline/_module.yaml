@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: build_system
+title: WebNovis Static Site & Build Pipeline
+scope:
+    - config/
+    - src/html/
+source_files: []
+depends_on: []
+related_to:
+    - path: workers

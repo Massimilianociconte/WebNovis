@@ -1,0 +1,1 @@
+`npm ci && npm run build:site:dist && npx wrangler deploy` is the canonical CI deploy flow; locally `npm run ai:dev` / `npm run forms:dev` start workers, and `npm run ci:quality` runs the full build + validation + test suite.

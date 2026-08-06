@@ -287,6 +287,25 @@ abbr[title] {
     --radius-3xl: 2rem;
     --radius-full: 9999px;
 
+    /* ========== COMPONENT TOKENS (semantic layer) ==========
+       Scala raggi deliberata: controlli 10px, bottoni 12px, card 16px,
+       pill riservata ai soli link terziari (chip/filtri). */
+    --radius-control: 0.625rem;
+    --radius-btn: 0.75rem;
+    --radius-card: 1rem;
+    --radius-chip: var(--radius-full);
+    /* Altezze CTA: desktop ~52-56px, mobile >= 52px (WCAG target) */
+    --btn-height: 3.25rem;
+    --btn-height-lg: 3.5rem;
+    /* Easing senza rimbalzo + focus ring unico per tutto il sistema */
+    --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.4);
+    /* Superfici e bordi dei controlli */
+    --control-bg: rgba(255, 255, 255, 0.05);
+    --control-bg-hover: rgba(255, 255, 255, 0.08);
+    --control-border: rgba(255, 255, 255, 0.1);
+    --control-border-hover: rgba(255, 255, 255, 0.22);
+
     /* ========== SHADOW TOKENS ========== */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
@@ -569,10 +588,17 @@ body {
 }
 
 .nav-cta {
-    background: var(--gradient-1);
-    padding: 0.6rem 1.5rem;
-    border-radius: 50px;
+    background: linear-gradient(160deg, #2b63f0 0%, #2563eb 55%, #1d4ed8 100%);
+    padding: 0.55rem 1.35rem;
+    border-radius: var(--radius-btn);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     color: var(--white) !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    font-weight: 600;
+    transition: transform 0.22s var(--ease-standard), filter 0.22s ease, box-shadow 0.22s ease;
 }
 
 .nav-cta::after {
@@ -580,8 +606,9 @@ body {
 }
 
 .nav-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(91, 106, 174, 0.3);
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.28);
 }
 
 .nav-toggle {
@@ -777,6 +804,8 @@ body {
     /* LCP candidate: must be opaque on first paint (no fadeInUp/backwards) */
     opacity: 1;
     color: var(--white, #faf8f3);
+    /* Evita parole isolate sull'ultima riga */
+    text-wrap: balance;
 }
 
 .gradient-text {
@@ -809,13 +838,61 @@ body {
     font-size: clamp(1.1rem, 2vw, 1.35rem);
     color: rgba(255, 255, 255, 0.92);
     margin-bottom: 2.5rem;
-    max-width: 600px;
+    max-width: 620px;
     line-height: 1.7;
     text-align: center;
     opacity: 1;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     position: relative;
     z-index: 2;
+    text-wrap: pretty;
+}
+
+/* Microprova sotto le CTA hero: discreta ma leggibile */
+.hero-microcopy {
+    margin: 1.4rem 0 0;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    color: var(--gray-light);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+/* Link terziari hero: chip pill, unico uso del radius full consentito */
+.hero-core-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+}
+
+.hero-core-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.45rem 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-chip);
+    color: var(--gray-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.hero-core-links a:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--white);
+}
+
+.hero-core-links a:focus-visible {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
 }
 
 .hero-cta {
@@ -843,47 +920,87 @@ body {
 .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    padding: 14px 30px;
-    border-radius: 11px;
+    min-height: var(--btn-height);
+    padding: 0.8rem 1.6rem;
+    border-radius: var(--radius-btn);
+    font-family: var(--font-body);
     font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-align: center;
     text-decoration: none;
-    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition:
+        transform 0.22s var(--ease-standard),
+        background-color 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        filter 0.22s ease;
     cursor: pointer;
-    border: none;
-    font-size: 0.92rem;
+    border: 1px solid transparent;
     position: relative;
     overflow: hidden;
 }
 
 .btn-primary {
-    background: linear-gradient(160deg, #2563EB 0%, #3B82F6 45%, #60A5FA 100%);
+    background: linear-gradient(160deg, #2b63f0 0%, #2563eb 55%, #1d4ed8 100%);
     color: #fff;
+    border-color: rgba(255, 255, 255, 0.14);
     box-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.12),
-        0 4px 12px rgba(37, 99, 235, 0.28),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 1px 2px rgba(4, 8, 20, 0.35),
+        0 6px 16px rgba(37, 99, 235, 0.22);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px) scale(1.025);
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+    border-color: rgba(255, 255, 255, 0.24);
     box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.1),
-        0 8px 24px rgba(37, 99, 235, 0.38),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        0 2px 4px rgba(4, 8, 20, 0.3),
+        0 10px 24px rgba(37, 99, 235, 0.3);
 }
 
 .btn-secondary {
-    background: rgba(91, 106, 174, 0.25);
+    background: rgba(255, 255, 255, 0.04);
     color: var(--white);
-    border: 1px solid rgba(91, 106, 174, 0.6);
-    backdrop-filter: blur(16px);
+    border-color: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .btn-secondary:hover {
-    background: rgba(91, 106, 174, 0.4);
-    border-color: rgba(96, 165, 250, 0.8);
-    transform: translateY(-2px) scale(1.025);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.28);
+    transform: translateY(-1px);
+}
+
+/* Text link terziario: nessun contenitore, freccia + underline animata */
+.link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--primary-light);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.25s ease, color 0.2s ease;
+}
+
+.link-arrow:hover {
+    color: var(--white);
+    background-size: 100% 1px;
+}
+
+.link-arrow:focus-visible {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
 }
 
 /* ===== HERO CTA REFINEMENT ===== */
@@ -899,79 +1016,9 @@ body {
 }
 
 .hero-cta .btn {
-    min-width: clamp(11.5rem, 18vw, 14rem);
-    min-height: 3.6rem;
-    padding: 0.95rem 1.6rem;
-    border-radius: 999px;
-    letter-spacing: 0.012em;
-}
-
-.hero-cta .btn-primary,
-.hero-cta .btn-secondary {
-    overflow: hidden;
-    isolation: isolate;
-}
-
-.hero-cta .btn-primary {
-    border: 1px solid rgba(214, 225, 255, 0.2);
-    background:
-        linear-gradient(135deg, rgba(75, 106, 230, 0.98) 0%, rgba(96, 130, 239, 0.95) 52%, rgba(145, 180, 255, 0.92) 100%);
-    box-shadow:
-        0 16px 34px rgba(37, 99, 235, 0.2),
-        0 4px 14px rgba(7, 12, 28, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.22);
-}
-
-.hero-cta .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 1px;
-    border-radius: inherit;
-    background:
-        radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.22), transparent 28%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 48%);
-    pointer-events: none;
-    z-index: 1;
-}
-
-.hero-cta .btn-primary:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow:
-        0 18px 38px rgba(37, 99, 235, 0.24),
-        0 8px 18px rgba(7, 12, 28, 0.24),
-        0 0 0 1px rgba(174, 202, 255, 0.14),
-        inset 0 1px 0 rgba(255, 255, 255, 0.24);
-}
-
-.hero-cta .btn-secondary {
-    border: 1px solid rgba(173, 190, 255, 0.18);
-    background:
-        linear-gradient(180deg, rgba(20, 31, 63, 0.74) 0%, rgba(12, 18, 39, 0.58) 100%);
-    box-shadow:
-        0 12px 26px rgba(5, 10, 28, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-.hero-cta .btn-secondary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background:
-        radial-gradient(circle at 18% 20%, rgba(123, 140, 201, 0.16), transparent 24%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 45%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-.hero-cta .btn-secondary:hover {
-    background:
-        linear-gradient(180deg, rgba(29, 41, 82, 0.86) 0%, rgba(14, 21, 47, 0.7) 100%);
-    border-color: rgba(185, 199, 255, 0.28);
-    box-shadow:
-        0 16px 32px rgba(5, 10, 28, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.14);
-    transform: translateY(-2px) scale(1.015);
+    min-width: clamp(11rem, 17vw, 13.5rem);
+    min-height: var(--btn-height-lg);
+    padding: 0.9rem 1.7rem;
 }
 
 .btn-large {
@@ -2124,7 +2171,8 @@ section {
     border-radius: 12px;
     color: var(--gray-light);
     font-family: inherit;
-    font-size: 0.95rem;
+    /* 16px minimo: evita lo zoom automatico di iOS al focus */
+    font-size: 1rem;
     transition: all 0.3s ease;
 }
 
@@ -2134,6 +2182,7 @@ section {
     outline: none;
     border-color: var(--primary);
     background: rgba(255, 255, 255, 0.08);
+    box-shadow: var(--focus-ring);
 }
 
 .form-group.is-invalid input,
@@ -2146,7 +2195,7 @@ section {
 .field-error {
     display: none;
     margin-top: 0.45rem;
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     color: #ef4444;
     line-height: 1.4;
 }
@@ -2158,6 +2207,14 @@ section {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+}
+
+/* Touch target >= 52px su mobile per tutti i controlli dei form */
+@media (max-width: 768px) {
+    .form-group input,
+    .form-group select {
+        min-height: var(--btn-height);
+    }
 }
 
 /* ===== FORM CHECKBOXES ===== */
@@ -2984,10 +3041,13 @@ section {
     }
 
     .nav-cta {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
         text-align: center;
-        display: inline-block;
-        width: auto;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        min-height: var(--btn-height);
+        font-size: 1.05rem;
     }
 
     .nav-toggle {
@@ -3605,8 +3665,7 @@ section {
 /* Effetto Glow sui Form Inputs */
 .form-group input:focus,
 .form-group textarea:focus {
-    box-shadow: 0 0 0 3px rgba(91, 106, 174, 0.2),
-        0 0 20px rgba(91, 106, 174, 0.3);
+    box-shadow: var(--focus-ring);
 }
 
 /* Animazione Bounce sui Nav Links */
@@ -6437,8 +6496,8 @@ img {
 
     /* ── Mobile Hero: Enhanced frosted badge ── */
     .hero-badge {
-        margin-top: 1rem;
-        margin-bottom: 1.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
         font-size: 0.85rem;
         font-weight: 600;
         padding: 0.55rem 1.4rem;
@@ -6455,34 +6514,29 @@ img {
     }
 
     .hero-fx-ready .hero-badge {
-        /* Decorative shimmer only after first paint — no opacity:0 keyframes */
-        animation: heroBadgeShimmer 4s ease-in-out 1.2s infinite;
+        /* Nessuno shimmer continuo: il badge resta statico dopo il paint */
     }
 
     .badge-dot {
         background: #5b8aff;
-        box-shadow: 0 0 10px rgba(91, 138, 255, 0.8), 0 0 20px rgba(91, 138, 255, 0.4);
         animation: pulse 2s ease-in-out infinite;
     }
 
-    /* ── Mobile Hero: Cinematic title typography ── */
+    /* ── Mobile Hero: titolo compatto e bilanciato (3-4 righe max) ── */
     .hero-title {
         padding: 0 0.5rem;
-        font-size: clamp(2.4rem, 9vw, 3.4rem);
-        line-height: 1.15;
-        letter-spacing: -0.025em;
-        text-shadow:
-            0 4px 16px rgba(0, 0, 0, 0.8),
-            0 12px 40px rgba(0, 0, 0, 0.5),
-            0 0 60px rgba(37, 99, 235, 0.15);
-        margin-bottom: 1.4rem;
+        font-size: clamp(2rem, 7.2vw, 2.7rem);
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+        margin-bottom: 1.25rem;
     }
 
-    /* ── Mobile Hero: Animated gradient text ── */
+    /* ── Mobile Hero: gradiente statico sul titolo (niente shimmer continuo) ── */
     .hero-title .gradient-text,
     .hero .hero-title .gradient-text.glitch {
-        background: linear-gradient(135deg, #ffffff 0%, #dbeafe 30%, #93c5fd 50%, #bfdbfe 70%, #ffffff 100%) !important;
-        background-size: 200% 100% !important;
+        background: linear-gradient(135deg, #ffffff 0%, #dbeafe 40%, #93c5fd 70%, #ffffff 100%) !important;
+        background-size: 100% 100% !important;
         -webkit-background-clip: text !important;
         background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
@@ -6491,14 +6545,9 @@ img {
         filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
     }
 
-    .hero-fx-ready .hero-title .gradient-text,
-    .hero-fx-ready .hero .hero-title .gradient-text.glitch {
-        animation: heroTextShimmer 6s linear infinite !important;
-    }
-
     .hero-title .highlight-gold {
         color: #ffdda1;
-        text-shadow: 0 0 40px rgba(255, 215, 0, 0.3), 0 0 15px rgba(255, 215, 0, 0.2), 0 2px 4px rgba(0,0,0,0.8);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     }
 
     /* -- Disable glitch pseudo-elements on mobile (causes text distortion) -- */
@@ -6524,7 +6573,7 @@ img {
     }
     
     .hero-fx-ready .hero-rotating-wrapper {
-        animation: heroRotatingGlow 4s ease-in-out infinite;
+        /* Glow continuo rimosso: distraeva dalla lettura del titolo */
     }
 
     .hero-rotating-word {
@@ -6534,17 +6583,15 @@ img {
         text-shadow: none;
     }
 
-    /* ── Mobile Hero: Elevated subtitle ── */
+    /* ── Mobile Hero: sottotitolo leggibile, senza glow ── */
     .hero-subtitle {
-        margin-bottom: 2.8rem;
-        line-height: 1.7;
-        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        line-height: 1.65;
+        font-size: 1.05rem;
         font-weight: 400;
-        color: rgba(255, 255, 255, 0.85);
-        padding: 0 1.5rem;
-        text-shadow:
-            0 2px 8px rgba(0, 0, 0, 0.8),
-            0 4px 24px rgba(0, 0, 0, 0.4);
+        color: rgba(255, 255, 255, 0.88);
+        padding: 0 1.25rem;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
         letter-spacing: 0.01em;
     }
 
@@ -6565,30 +6612,18 @@ img {
 
     .hero-cta .btn {
         width: 100%;
-        min-height: 60px;
+        min-height: var(--btn-height);
         justify-content: center;
-        border-radius: 16px;
-        padding: 1rem 1.4rem;
-        font-size: 1.05rem;
-        font-weight: 700;
+        border-radius: var(--radius-btn);
+        padding: 0.85rem 1.4rem;
+        font-size: 1rem;
+        font-weight: 600;
         letter-spacing: 0.01em;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     }
 
     .hero-cta .btn-primary {
-        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow:
-            0 12px 28px rgba(37, 99, 235, 0.25),
-            0 4px 12px rgba(0, 0, 0, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.25);
         transform: translateY(0);
-        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
         color: #ffffff;
-    }
-
-    .hero-fx-ready .hero-cta .btn-primary {
-        animation: ctaGlowPulse 4s ease-in-out infinite;
     }
 
     .hero-cta .btn-primary svg {
@@ -6601,27 +6636,32 @@ img {
     }
 
     .hero-cta .btn-primary:active {
-        transform: translateY(2px) scale(0.98);
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.2);
-        animation: none;
-    }
-
-    .hero-cta .btn-secondary {
-        background: rgba(15, 23, 42, 0.6);
-        color: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(148, 163, 184, 0.25);
-        backdrop-filter: blur(20px) saturate(150%);
-        -webkit-backdrop-filter: blur(20px) saturate(150%);
-        box-shadow:
-            0 8px 24px rgba(0, 0, 0, 0.2),
-            inset 0 1px 1px rgba(255, 255, 255, 0.1);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(1px);
+        filter: brightness(0.95);
     }
 
     .hero-cta .btn-secondary:active {
-        background: rgba(15, 23, 42, 0.8);
-        border-color: rgba(148, 163, 184, 0.4);
-        transform: scale(0.98);
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(1px);
+    }
+
+    .hero-microcopy {
+        padding: 0 1.5rem;
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+
+    /* Schermi stretti (<=380px): nasconde la freccia per mantenere le CTA
+       su una riga e di altezza identica */
+    @media (max-width: 380px) {
+        .hero-cta .btn {
+            font-size: 0.92rem;
+            padding: 0.8rem 1rem;
+        }
+
+        .hero-cta .btn svg {
+            display: none;
+        }
     }
 
     .contatti-card-body--offset {
@@ -6634,14 +6674,14 @@ img {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         width: 100%;
         padding: 0 1.5rem;
-        gap: 0.8rem !important;
-        margin-top: 1.5rem !important;
+        gap: 0.7rem !important;
+        margin-top: 1.25rem !important;
     }
 
     .hero-core-links a {
         position: relative;
         overflow: hidden;
-        min-height: 52px;
+        min-height: 48px;
         justify-content: center !important;
         padding: 0.8rem 1rem !important;
         border-radius: 14px !important;

@@ -1,0 +1,1 @@
+Pure JSON data artifacts consumed by a static-site / pSEO build pipeline; schema versioning via `_meta.version` (2.0.0) and `schemaVersion`/`editorialVersion` in the geo-editorial manifest, with SHA-256 checksums (`contentSha256`, `sourceSha256`) for content provenance.

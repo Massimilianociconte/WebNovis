@@ -1,0 +1,1 @@
+Node.js build pipeline that generates, validates, and deploys the WebNovis static marketing site (HTML/CSS/JS) plus Cloudflare Workers for AI chat and contact forms.

@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: scripts/legacy_oneoffs
+title: Legacy One-Off Site Generation & Audit Scripts
+scope:
+    - scripts/legacy/
+source_files: []
+depends_on: []
+related_to: []

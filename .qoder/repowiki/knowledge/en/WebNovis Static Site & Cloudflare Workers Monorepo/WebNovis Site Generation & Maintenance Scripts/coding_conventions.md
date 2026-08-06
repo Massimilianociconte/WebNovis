@@ -1,0 +1,3 @@
+- Each script is a self-contained CLI that reads configuration from environment variables or a local `config.js` module and writes results to the site's published HTML tree under a computed filename.
+- Generated pages follow a uniform lifecycle: render HTML → finalize with `finalizePublishedHtml` → validate via `validatePage` → write only if no blocking issues and not in dry-run mode.
+- Geo page generation uses a typed matrix of city×service combinations driven by shared `data.js`/`config.js` rather than per-page hand-written code.

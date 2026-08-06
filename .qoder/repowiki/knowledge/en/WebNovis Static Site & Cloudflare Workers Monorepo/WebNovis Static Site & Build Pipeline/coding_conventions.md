@@ -1,0 +1,6 @@
+- Cross-cutting configuration lives in `config/*.js` modules that export both data constants and transformation functions (e.g. `SECURITY_HEADERS`, `ENTITY_FACTS`, `buildCspWithNonce`, `normalizeEntityJsonLd`) rather than scattering values across build scripts.
+- Build steps are exposed as npm scripts with parallel `:dist` variants that accept `--out-dir=dist` so the same logic can target development or production artifacts without duplication.
+- Generated HTML pages embed all metadata inline — OG/Twitter meta tags, canonical links, `speculationrules` for prerender/prefetch, and `application/ld+json` JSON-LD blocks — instead of relying on a template engine at render time.
+- Security headers and cache rules are authored once in `config/security-headers.js` and regenerated into platform-specific formats (Netlify/Cloudflare `_headers`) via `sync:headers`, keeping runtime and static header definitions in sync.
+- JSON-LD normalization is centralized: `entity-facts.js` rewrites any WebNovis-related `@id` to canonical organization/local business IDs and strips forbidden `sameAs` entries before the HTML is emitted.
+- Regression tests are grouped under `tests/*-regressions.test.js` and invoked together via `test:regressions`, asserting structural, SEO, security, and content invariants on the built output.

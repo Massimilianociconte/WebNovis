@@ -1,0 +1,1 @@
+Entry points are npm scripts defined at the repo root: `npm run build:geo` runs the unified geo generator, `npm run build:ai-content` generates AI content for cities, and `npm run ci:quality` executes the full validation pipeline; individual scripts can also be run directly with `node scripts/<name>.js`.

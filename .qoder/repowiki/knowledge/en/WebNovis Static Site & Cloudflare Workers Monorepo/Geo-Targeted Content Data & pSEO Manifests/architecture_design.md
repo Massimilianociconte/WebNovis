@@ -1,0 +1,10 @@
+The module is a flat data store consumed by a static-site generator / pSEO pipeline; it contains no code, only JSON manifests and content blocks.
+
+- `cities.json` is the canonical registry of ~46 municipalities in the hinterland of Rho (MI), each entry carrying slug, coordinates, population, province, distance-to-sede flags (`isSede`, `distanzaSedeKm`), `nearCities` adjacency lists, localized `localContext` (highlights, economic fabric, digital opportunities), image references, and per-service FAQ sets keyed by `agenzia` / `realizzazione`. A `_meta.sede` anchors the agency's headquarters at Rho.
+- `services.json` defines the full service catalog with fields like `slug`, `schemaType`, `url`, `hasPage`, `tier` (`core` vs `extended`), pricing (`priceFrom`, `priceUnit`, `priceCurrency: EUR`), time estimates, target keywords, and deprecation flags (`skipGeoGeneration`, `canonicalServiceSlug`).
+- `geo-editorial/` holds human-authored copy split into five cluster files (`agency.json`, `ecommerce.json`, `seo-locale.json`, `realizzazione.json`, `other-services.json`) plus a `manifest.json` that indexes every generated page path under a `recordIndex` array, assigns a `Tier 1` / `Tier 2` / `Data-validated` priority tier, and records `sourceArtifact` + `contentSha256` for provenance and change detection.
+- `content-blocks/` provides per-city content fragments — one file per city slug (e.g. `rho.json`, `milano.json`) and additional `tier1-*.json` blocks for high-priority pages — which are merged into generated pages.
+- `content-lastmod.json` maps every published URL to a content hash and `lastmod` date, used to emit `<link rel="alternate" hreflang="...">` / sitemap entries and detect stale pages.
+- Supporting manifests: `city-avatars-manifest.json` (image assets), `geo-page-dates.json` (publish dates per geo page), `link-graph.json` (inter-page link topology), and `gsc/README.md` (Google Search Console notes).
+
+Dependency direction is strictly one-way: generators read these JSON files to assemble HTML; nothing in this directory imports from elsewhere.

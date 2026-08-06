@@ -1,0 +1,1 @@
+Node.js/Python script collection that generates, validates, and maintains WebNovis static site pages — centered on the unified pSEO geo page pipeline with legacy one-off migration utilities.

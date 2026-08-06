@@ -1,0 +1,1 @@
+Cloudflare Workers providing the WebNovis AI chatbot (Gemini-powered with in-memory search grounding), lead capture, and a Turnstile-to-Web3Forms form submission proxy.

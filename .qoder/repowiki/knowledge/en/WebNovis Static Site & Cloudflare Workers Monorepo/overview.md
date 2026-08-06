@@ -1,0 +1,1 @@
+Node.js-driven monorepo that generates a geo-targeted static marketing site for ~80 Milan-area cities, powers it with Cloudflare Workers for AI chat and form handling, and deploys everything to Cloudflare Pages via Wrangler.

@@ -1,0 +1,6 @@
+- Every top-level JSON file begins with a `_meta` block containing `description`, `version`, and `lastUpdated` to document provenance and enable version-aware consumption.
+- City entries use kebab-case slugs derived from the municipality name (e.g. `milano-ovest`, `pregnana-milanese`) and reference related cities via `nearCities` arrays of matching slugs.
+- Services are classified into two tiers — `core` (always shown on geo pages) and `extended` (shown only on service×city pages) — and flagged with `hasPage` to distinguish existing pages from pSEO-only targets.
+- Pricing is expressed numerically in `priceFrom` with an explicit `priceCurrency: EUR` and optional `priceUnit` (e.g. `/mese`) rather than embedded strings, keeping price rendering consistent across templates.
+- Generated page paths follow a `{service}-{city}.html` convention (e.g. `/agenzia-web-rho.html`, `/ecommerce-milano.html`) and are enumerated centrally in `geo-editorial/manifest.json`'s `recordIndex` with a `tier` label.
+- Content blocks are split per city and per tier, with `tier1-*.json` files reserved for high-priority pages while base city files hold shared content, enabling selective merging during generation.

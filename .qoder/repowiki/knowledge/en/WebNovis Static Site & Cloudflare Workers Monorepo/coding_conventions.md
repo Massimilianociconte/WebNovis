@@ -1,0 +1,5 @@
+- Generated HTML pages follow a `<service>-<city>.html` naming pattern derived from the content data manifest.
+- Build artifacts always target `dist/` via `--out-dir=dist` flags on scripts, keeping source and publish roots separate.
+- Wrangler configurations are split per worker (`workers/webnovis-ai/wrangler.jsonc`, `workers/webnovis-forms/wrangler.jsonc`) and invoked through top-level npm scripts rather than direct CLI calls.
+- Scripts accept `--dry-run` and `--validate-only` flags for safe iteration before committing generated pages.
+- SEO and security concerns are centralized in shared modules (`config/seo-html-transforms.js`, `scripts/sync-security-headers.js`) rather than duplicated per page.

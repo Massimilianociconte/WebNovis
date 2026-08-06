@@ -1,0 +1,1 @@
+Node.js + npm scripts, Cloudflare Workers + Wrangler for serverless functions, LightningCSS/CleanCSS/Terser for asset minification, Nunjucks templating, Vitest for tests, and Cloudflare Pages hosting with `_redirects` and `_headers` for routing/security headers.

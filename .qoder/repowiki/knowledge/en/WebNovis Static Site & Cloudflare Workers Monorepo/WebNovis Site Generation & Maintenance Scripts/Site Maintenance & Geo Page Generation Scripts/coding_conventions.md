@@ -1,0 +1,6 @@
+- Each script is a self-contained CommonJS module that reads/writes files relative to `ROOT = path.join(__dirname, '..')` rather than relying on cwd.
+- CLI flags are parsed from `process.argv.slice(2)` using simple string includes/splits (e.g. `--dry-run`, `--type=`, `--city=`) instead of a flag parser library.
+- Generated HTML follows a uniform pipeline: produce raw HTML → call `finalizePublishedHtml` for canonical/meta injection → run `validatePage` and treat any issue starting with '⛔' as a blocking failure.
+- Configuration constants (site URL, coordinates, publish/report dirs, date tokens) are centralized in `geo/config.js` and re-exported to other modules rather than duplicated.
+- Data sources (cities, services, approved content blocks) are loaded once at module top-level from JSON files and exposed as module exports for reuse across renderers.
+- Legacy one-off scripts live under `legacy/root-oneoff/` with descriptive filenames (`check_images.py`, `fix_paths.py`, `convert_webp.js`) and are not imported by any other code, keeping them isolated as disposable tools.

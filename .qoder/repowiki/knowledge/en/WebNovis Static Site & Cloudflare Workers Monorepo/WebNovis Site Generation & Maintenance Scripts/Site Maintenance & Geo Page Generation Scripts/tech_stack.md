@@ -1,0 +1,1 @@
+Node.js with CommonJS `require()` modules; Nunjucks templating engine configured with autoescape disabled and block trimming; JSON-driven data model from `data/cities.json` and `data/services.json`; Python scripts for legacy image/path migrations; PowerShell `.ps1` scripts for SEO analysis; integrates with external build-date and pSEO governance config modules under `config/`.

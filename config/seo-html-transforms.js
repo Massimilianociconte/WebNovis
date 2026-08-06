@@ -18,7 +18,7 @@ const NON_PUBLIC_ARTIFACT_PATTERNS = [
 const NON_INDEXABLE_STATIC_PATHS = new Set(['/404.html', '/grazie.html']);
 const HOMEPAGE_HERO_OLD = '<h1 class="hero-title"> <span class="glitch gradient-text" data-text="Agenzia Digitale">Agenzia Digitale</span> che <span class="highlight-gold">Accende</span><br> la tua <span class="sr-only">visibilità, crescita, identità e presenza online</span><span class="hero-rotating-wrapper" aria-hidden="true"> <span class="hero-rotating-word active">visibilità</span> <span class="hero-rotating-word">crescita</span> <span class="hero-rotating-word">identità</span> <span class="hero-rotating-word">presenza</span> </span> </h1> <p class="hero-subtitle"> La tua agenzia digitale a Milano per sviluppo web,<br> grafica e crescita della tua visibilità online </p> <div class="hero-cta"> <a href="contatti.html" title="Contattaci per iniziare il tuo progetto" class="btn btn-primary"> <span>Scopri Come</span> <svg viewBox="0 0 20 20" fill="none" height="20" width="20"> <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/> </svg> </a> <a href="#servizi" title="Scopri i nostri servizi" class="btn btn-secondary">I Nostri Servizi</a> </div>';
 const HOMEPAGE_CORE_LINKS_PATTERN = /\s*<(?:p|nav) class="hero-core-links"[^>]*>[\s\S]*?<\/(?:p|nav)>\s*/i;
-const HOMEPAGE_CORE_LINKS_HTML = '<nav class="hero-core-links" aria-label="Percorsi principali" style="display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1rem"> <a href="/servizi/sviluppo-web.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Sviluppo Web</a> <a href="/servizi/graphic-design.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Graphic Design</a> <a href="/servizi/social-media.html" style="display:inline-flex;align-items:center;padding:.45rem .85rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--gray-light);text-decoration:none;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)">Social Media</a> </nav>';
+const HOMEPAGE_CORE_LINKS_HTML = '<nav class="hero-core-links" aria-label="Percorsi principali"> <a href="/servizi/sviluppo-web.html">Sviluppo Web</a> <a href="/servizi/graphic-design.html">Graphic Design</a> <a href="/servizi/social-media.html">Social Media</a> </nav>';
 const HOMEPAGE_HERO_NEW = `<h1 class="hero-title"> <span class="glitch gradient-text" data-text="WebNovis">WebNovis</span><br> agenzia web a Rho e Milano che <span class="highlight-gold">accende</span><br> la tua <span class="sr-only">visibilità, crescita, identità e presenza online</span><span class="hero-rotating-wrapper" aria-hidden="true"> <span class="hero-rotating-word active">visibilità</span> <span class="hero-rotating-word">crescita</span> <span class="hero-rotating-word">identità</span> <span class="hero-rotating-word">presenza</span> </span> </h1> <p class="hero-subtitle"> Siti web custom, e-commerce, branding e SEO locale<br> per PMI e professionisti tra Rho, Milano e hinterland </p> <div class="hero-cta"> <a href="contatti.html" title="Contattaci per iniziare il tuo progetto" class="btn btn-primary"> <span>Scopri Come</span> <svg viewBox="0 0 20 20" fill="none" height="20" width="20"> <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/> </svg> </a> <a href="#servizi" title="Scopri i nostri servizi" class="btn btn-secondary">I Nostri Servizi</a> </div> ${HOMEPAGE_CORE_LINKS_HTML}`;
 const HOMEPAGE_MOBILE_PRELOAD_OLD = '<link href="Img/sfondo-mobile.webp" rel="preload" media="(max-width: 768px)" as="image" fetchpriority="high" type="image/webp">';
 const HOMEPAGE_MOBILE_PRELOAD_NEW = '<link href="Img/sfondo-mobile-hq.webp" rel="preload" media="(max-width: 768px)" as="image" fetchpriority="high" type="image/webp">';
@@ -1363,10 +1363,14 @@ function alignHomepageBrandExperience(html, relativePath) {
   updated = updated.replace(HOMEPAGE_CORE_LINKS_PATTERN, '');
   updated = updated.replace(HOMEPAGE_HERO_OLD, HOMEPAGE_HERO_NEW);
   if (!updated.includes('Percorsi principali')) {
-    updated = updated.replace(
-      /(<div class="hero-cta">[\s\S]*?<\/div>)(\s*<\/div>\s*<\/div>\s*<\/section>)/i,
-      `$1 ${HOMEPAGE_CORE_LINKS_HTML}$2`
-    );
+    // Reinserisce i percorsi principali subito dopo la microprova (o, nei
+    // markup legacy senza microcopy, dopo il gruppo CTA). Mai ancorare a
+    // sequenze generiche di chiusure </div></div></section>: potrebbero
+    // appartenere a sezioni successive (es. counters).
+    const anchor = /<p class="hero-microcopy">[\s\S]*?<\/p>/i.test(updated)
+      ? /(<p class="hero-microcopy">[\s\S]*?<\/p>)/i
+      : /(<div class="hero-cta">[\s\S]*?<\/div>)/i;
+    updated = updated.replace(anchor, `$1 ${HOMEPAGE_CORE_LINKS_HTML}`);
   }
   updated = updated.replace(
     '<p class="ai-summary-text"><strong>Web Novis</strong>',
@@ -2191,6 +2195,15 @@ function alignLocalPageOpportunityTransforms(html, relativePath) {
   return updated;
 }
 
+// CTA primaria globale uniforme (design system): la label "Inizia Ora" era
+// usata per destinazioni diverse; preventivo.html usa "Richiedi Preventivo",
+// contatti.html usa "Contattaci" (coerente con la destinazione).
+function normalizePrimaryCtaLabels(html) {
+  return String(html || '')
+    .replace(/(<a\b[^>]*href="[^"]*preventivo\.html"[^>]*>)\s*Inizia Ora\s*(<\/a>)/g, '$1Richiedi Preventivo$2')
+    .replace(/(<a\b[^>]*href="[^"]*contatti\.html"[^>]*>)\s*Inizia Ora\s*(<\/a>)/g, '$1Contattaci$2');
+}
+
 function ensureNoscriptStylesheetFallbacks(html) {
   const source = String(html || '');
   const asyncHrefs = [];
@@ -2256,6 +2269,7 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = ensureFaqPageSchema(updated, relativePath);
   updated = ensureServiceHubCollectionSchema(updated, relativePath);
   updated = alignArticleAuthorship(updated, relativePath);
+  updated = normalizePrimaryCtaLabels(updated);
   updated = ensureNoscriptStylesheetFallbacks(updated);
   updated = injectOgImageDimensions(updated);
   updated = deduplicateStylesheetLinks(updated);

@@ -1,0 +1,1 @@
+Deprecated Node.js and Python one-off scripts that previously generated geo-targeted city landing pages, audited site assets, and performed ad-hoc HTML/SEO fixes before being replaced by the unified pSEO pipeline.

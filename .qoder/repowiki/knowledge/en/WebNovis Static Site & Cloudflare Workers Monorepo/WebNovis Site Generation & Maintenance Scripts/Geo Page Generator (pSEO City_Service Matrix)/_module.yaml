@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: scripts/geo_generators
+title: Geo Page Generator (pSEO City/Service Matrix)
+scope:
+    - scripts/geo/
+source_files: []
+depends_on: []
+related_to:
+    - path: content_data

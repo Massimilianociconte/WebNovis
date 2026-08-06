@@ -1,0 +1,1 @@
+Node.js/Python one-off scripts that generate, audit, fix, and maintain WebNovis static site pages — including the unified geo (city×service) page generator and legacy migration utilities.

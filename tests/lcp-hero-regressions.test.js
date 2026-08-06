@@ -44,6 +44,19 @@ function main() {
     'mobile .hero-content must not re-enable heroStaggerIn'
   );
 
+  // revolution.css loads AFTER style.css on pages — a fadeIn* entrance there
+  // silently reintroduces the opacity:0 first paint on hero elements.
+  const rev = read('css/revolution.css');
+  for (const sel of ['.hero-badge', '.hero-title', '.hero-subtitle', '.hero-cta', '.hero-content']) {
+    const rule = rev.match(new RegExp(sel.replace(/\./g, '\\.') + '\\s*\\{([^}]+)\\}'));
+    if (rule) {
+      assert.ok(
+        !/animation\s*:\s*[^;]*fadeIn/i.test(rule[1]),
+        `revolution.css ${sel} must not animate with fadeIn* (breaks LCP first paint)`
+      );
+    }
+  }
+
   // Published + source homepage must expose a real LCP <img>
   for (const [label, html] of [
     ['index.html', index],

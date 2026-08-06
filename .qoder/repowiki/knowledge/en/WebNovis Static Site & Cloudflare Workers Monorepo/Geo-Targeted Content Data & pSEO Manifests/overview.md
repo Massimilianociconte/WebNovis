@@ -1,0 +1,1 @@
+Centralized JSON data sources that drive WebNovis's geo-targeted page generation across ~80 Milan-area cities, services catalog, editorial copy clusters, and site-wide last-modified tracking.

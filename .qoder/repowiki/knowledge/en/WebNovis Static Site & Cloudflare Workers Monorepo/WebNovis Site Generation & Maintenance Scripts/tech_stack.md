@@ -1,0 +1,1 @@
+Node.js CLIs using CommonJS `require()` and the built-in `fs`/`path` modules; Python one-offs coexist alongside Node scripts in the legacy folder; Nunjucks templates are rendered by the geo pipeline.

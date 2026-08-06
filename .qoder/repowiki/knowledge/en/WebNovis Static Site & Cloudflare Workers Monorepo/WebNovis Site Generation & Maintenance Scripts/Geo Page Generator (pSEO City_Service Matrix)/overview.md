@@ -1,0 +1,1 @@
+Node.js CLI that generates per-city and per-service×city landing pages for WebNovis's local SEO, assembling Nunjucks templates, JSON-LD schemas, editorial content, and validation into published HTML.

@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: content_data
+title: Geo-Targeted Content Data & pSEO Manifests
+scope:
+    - data/
+source_files: []
+depends_on: []
+related_to:
+    - path: blog
+    - path: scripts/geo_generators

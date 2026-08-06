@@ -1,0 +1,6 @@
+- Each generated article follows a fixed A→H structural contract enforced by a large static Italian master prompt (Risposta rapida, H2/H3 sections, Errors section, Checklist, FAQ, Sources, CTA inline + final CTA) rather than programmatic validation.
+- AI responses are parsed through a three-tier recovery pipeline: direct `JSON.parse`, then `repairJSON` (control char removal, trailing comma fix, newline escaping), then regex extraction of the first `{...}` block before throwing.
+- Content post-processing normalizes all absolute URLs produced by the AI into relative paths (`https://www.webnovis.com/blog/slug → slug.html`, `/contatti → ../contatti.html`, service keywords mapped to specific `../servizi/*.html`).
+- Topic lifecycle is tracked via two JSON files: `topics-queue.json` (source of truth with `used` flag) and `articles-log.json` (append-only log of generated articles with embedded `qualityChecks` self-assessment).
+- Blog index regeneration preserves manually assigned per-article cover images by extracting non-category image mappings from the existing `index.html` before rebuilding the card grid.
+- External dependencies are invoked via explicit path constants at the top of the file (`TOPICS_FILE`, `LOG_FILE`, `GENERATE_SITEMAP_SCRIPT`, `BLOG_INDEX_FILE`) rather than inline string concatenation.
