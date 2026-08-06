@@ -2191,6 +2191,24 @@ function alignLocalPageOpportunityTransforms(html, relativePath) {
   return updated;
 }
 
+function ensureNoscriptStylesheetFallbacks(html) {
+  const source = String(html || '');
+  const asyncHrefs = [];
+  for (const m of source.matchAll(/<link href="([^"]+)" rel="stylesheet" media="print"/g)) {
+    if (!asyncHrefs.includes(m[1])) asyncHrefs.push(m[1]);
+  }
+  if (asyncHrefs.length === 0) return source;
+
+  const noscriptBodies = [...source.matchAll(/<noscript>([\s\S]*?)<\/noscript>/gi)].map((m) => m[1]);
+  if (asyncHrefs.every((h) => noscriptBodies.some((body) => body.includes(h)))) return source; // idempotent
+
+  const block = `<noscript>${asyncHrefs.map((h) => `<link href="${h}" rel="stylesheet">`).join(' ')} </noscript>`;
+  if (/<noscript>\s*<\/noscript>/i.test(source)) {
+    return source.replace(/<noscript>\s*<\/noscript>/i, block);
+  }
+  return source.replace(/<\/head>/i, `${block} </head>`);
+}
+
 const OG_IMAGE_DIMENSIONS = {
   'https://www.webnovis.com/Img/og-image-social-graph.jpeg': ['1600', '840'],
   'https://www.webnovis.com/Img/blog-cat-web.png': ['800', '450'],
@@ -2238,6 +2256,7 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = ensureFaqPageSchema(updated, relativePath);
   updated = ensureServiceHubCollectionSchema(updated, relativePath);
   updated = alignArticleAuthorship(updated, relativePath);
+  updated = ensureNoscriptStylesheetFallbacks(updated);
   updated = injectOgImageDimensions(updated);
   updated = deduplicateStylesheetLinks(updated);
   return updated;

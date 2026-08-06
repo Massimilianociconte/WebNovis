@@ -67,6 +67,18 @@ function main() {
     }
   }
 
+  // M1 on generated pages (geo + blog): fallbacks are injected by the shared
+  // ensureNoscriptStylesheetFallbacks transform during normalize
+  for (const rel of ['realizzazione-siti-web-arese.html', 'agenzia-web-milano.html', 'blog/index.html']) {
+    const html = read(rel);
+    const asyncHrefs = [...html.matchAll(/<link href="([^"]+)" rel="stylesheet" media="print"/g)].map((m) => m[1]);
+    if (asyncHrefs.length === 0) continue;
+    const noscripts = [...html.matchAll(/<noscript>([\s\S]*?)<\/noscript>/g)].map((m) => m[1]).join(' ');
+    for (const href of asyncHrefs) {
+      if (!noscripts.includes(href)) failures.push(`${rel}: noscript missing fallback for ${href} (M1)`);
+    }
+  }
+
   // M4: no SearchAction anywhere (no server-side ?s= results page exists)
   for (const rel of SRC_PAGES) {
     if (/"@type"\s*:\s*"SearchAction"/.test(read(`src/html/${rel}`))) {
