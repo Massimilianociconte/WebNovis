@@ -1008,7 +1008,15 @@ function ensureFaqPageSchema(html, relativePath) {
  */
 function deduplicateStylesheetLinks(html) {
   const seen = new Set();
-  return String(html || '').replace(/<link\b[^>]*>/gi, (tag) => {
+  const source = String(html || '');
+  // I <link> dentro <noscript> sono i fallback no-JS richiesti (M1): duplicano
+  // volutamente gli href caricati in async e non vanno mai deduplicati.
+  const noscripts = [];
+  const masked = source.replace(/<noscript>[\s\S]*?<\/noscript>/gi, (block) => {
+    noscripts.push(block);
+    return `\u0000NOSCRIPT_${noscripts.length - 1}\u0000`;
+  });
+  const deduped = masked.replace(/<link\b[^>]*>/gi, (tag) => {
     if (!/\brel=["']stylesheet["']/i.test(tag)) return tag;
     const href = getTagAttribute(tag, 'href');
     if (!href) return tag;
@@ -1017,6 +1025,7 @@ function deduplicateStylesheetLinks(html) {
     if (!seen.has(key)) { seen.add(key); return tag; }
     return '';
   }).replace(/\s{2,}(?=<)/g, ' ');
+  return deduped.replace(/\u0000NOSCRIPT_(\d+)\u0000/g, (_, i) => noscripts[Number(i)]);
 }
 
 /* ── Article authorship: a named editor instead of an abstract team ───────── */
