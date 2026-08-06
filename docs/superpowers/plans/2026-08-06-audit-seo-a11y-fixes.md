@@ -429,3 +429,20 @@ B1 (index): replace all 4 occurrences:
 - [ ] **Step 7: Commit** — `git commit -m "build: regenerate public HTML after audit fixes"`
 
 **Self-review notes:** every audit item maps to a task or a documented skip (A2 verified-fixed, M3/B2/B5/B7 skip rationale in header). No placeholders; all edit strings are exact.
+
+---
+
+## Execution notes (2026-08-06) — deviations discovered during execution
+
+All 11 tasks executed inline and verified. Two pipeline defects were discovered mid-flight and fixed as part of the work; without these fixes the A1/M1 fixes were silently reverted on every `npm run normalize:public-html`:
+
+1. **`deduplicateStylesheetLinks` (config/seo-html-transforms.js)** stripped the M1 `<noscript>` fallback `<link>` tags as "duplicate stylesheets" (same href as the async `media="print"` copies). Fix: mask `<noscript>` blocks before deduping, restore after. This protects fallbacks on all ~2250 public pages, not just src pages.
+2. **`normalize-public-html.js` walked `src/`** (missing from `EXCLUDED_DIRS`) and rewrote loader script paths using filesystem depth (`../../js/`, `../../../js/`) — wrong for sources that publish to root/depth-1. Fix: added `'src'` to `EXCLUDED_DIRS`; re-applied A1/M1 to sources.
+
+Also during execution:
+- **Execution order swap:** Task 9 (B6/B8/M2) was executed before Task 5 (M1), as the plan itself required (noscript fallbacks must mirror final hrefs after the portfolio CSS/font changes).
+- **Test refinement:** the M2 check now strips `<noscript>` blocks before matching (fallback copies required by M1 intentionally match the render-blocking pattern).
+- **Extra fixes beyond the audit:** chi-siamo.html loaded `footer-widgets-loader.min.js` twice (deduped); grazie.html conversion script read the wrong localStorage key `cookieConsent` (now `cookie_consent` ×3), gained a `window.__gaConfigured` guard, and dropped the dead `AW-CONVERSION_ID/CONVERSION_LABEL` placeholder; partner.html had broken `../css/` links (root-output page) — all corrected in Task 3.
+- Final state: `npm run build` + `normalize:public-html` (idempotent, 0 rewrites on second run), `validate:pages`, all 26 `test:regressions` suites (incl. the new `audit-seo-a11y-regressions`), `test:seo-smoke` — all green; 22/22 spot checks on built output passed.
+
+**Known follow-up (out of plan scope):** the 649 geo-generated pages share the same empty-`<noscript>` pattern; extending M1 fallbacks requires changing the geo generator head template (`scripts/geo/head-meta.js`) and re-running `build:geo`. The pipeline fixes above already ensure those fallbacks would survive normalization once generated.
