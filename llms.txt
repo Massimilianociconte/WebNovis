@@ -84,6 +84,18 @@ Tier 1 (priorità editoriale interna): 24 URL — elenco completo in https://www
 - [Brand Identity — Guida Completa](https://www.webnovis.com/blog/brand-identity-guida-completa.html): Come costruire un'identità di marca efficace.
 - [Social Media Strategy 2026](https://www.webnovis.com/blog/social-media-strategy-2026.html): Strategie social media aggiornate per il 2026.
 - [Core Web Vitals — Guida](https://www.webnovis.com/blog/core-web-vitals-guida.html): Ottimizzare LCP, INP e CLS per prestazioni e SEO.
+- [SEO Locale e Google Maps](https://www.webnovis.com/blog/seo-locale-google-maps.html): Come apparire primi nei risultati locali.
+- [Schema Markup — Guida ai Dati Strutturati](https://www.webnovis.com/blog/schema-markup-guida.html): Implementare dati strutturati per rich snippet e AI.
+- [Sito Web che Non Converte: 15 Cause](https://www.webnovis.com/blog/sito-web-che-non-converte.html): Diagnosi e soluzioni per aumentare lead e contatti.
+- [Accessibilità Web e Sanzioni EAA 2026](https://www.webnovis.com/blog/sanzioni-sito-non-accessibile-2026.html): Obblighi, scadenze e rischi legali.
+- [Test A/B: Migliorare le Conversioni con i Dati](https://www.webnovis.com/blog/test-ab-sito-web-guida.html): Come usare esperimenti basati sui dati.
+- [Dominio e Hosting: Guida per Non Tecnici](https://www.webnovis.com/blog/dominio-hosting-guida-non-tecnico.html): Scegliere dominio e hosting senza farsi fregare.
+- [Automazione Marketing per PMI](https://www.webnovis.com/blog/automazione-marketing-pmi-strumenti.html): 7 strumenti che fanno risparmiare ore ogni settimana.
+- [GDPR e Sito Web: Guida alla Conformità](https://www.webnovis.com/blog/gdpr-sito-web-guida.html): Requisiti privacy per siti aziendali italiani.
+- [Google Analytics 4 — Guida Pratica](https://www.webnovis.com/blog/google-analytics-4-guida.html): Configurare GA4 e leggere i dati che contano.
+- [UX Design: 10 Best Practice](https://www.webnovis.com/blog/ux-design-best-practice.html): Regole fondamentali per un sito che converte.
+- [Strategia Digitale per PMI](https://www.webnovis.com/blog/strategia-digitale-pmi.html): Da dove iniziare e quali canali attivare per primi.
+- [Sito Web Professionale: Checklist 2026](https://www.webnovis.com/blog/sito-web-professionale-checklist.html): I 20 elementi essenziali di un sito che funziona.
 
 ## Informazioni di Contatto
 
@@ -116,4 +128,4 @@ I prezzi sono valori iniziali presenti in data/services.json, non preventivi né
 
 - [ai.txt](https://www.webnovis.com/ai.txt): export editoriale sintetico; nessun beneficio di ranking o citazione è dichiarato.
 - [Dati JSON AI](https://www.webnovis.com/webnovis-ai-data.json): gli stessi fatti e prezzi di catalogo in JSON, con campi non verificati esplicitamente esclusi.
-- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa del sito con 357 URL indicizzabili (allineata a meta robots index).
+- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa del sito con 360 URL indicizzabili (allineata a meta robots index).

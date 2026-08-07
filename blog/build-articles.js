@@ -62,7 +62,7 @@ const SERVICE_DETAILS_BY_BLOG_LINK = new Map(
 
 const AUTHOR_PROFILE = {
   id: `${SITE_URL}/#author-webnovis-editorial-team`,
-  name: 'WebNovis Editorial Team',
+  name: 'Team Editoriale di WebNovis',
   url: `${SITE_URL}/chi-siamo.html`,
   image: `${SITE_URL}/Img/webnovis-logo-bianco.png`,
   sameAs: ['https://www.instagram.com/web.novis', 'https://www.facebook.com/share/1C7hNnkqEU/'],
@@ -7320,7 +7320,11 @@ function buildAiEditorialNoteHTML() {
   return `
                 <aside class="article-ai-note" id="nota-redazione-ai" aria-label="Nota sulla redazione" style="max-width:760px;margin:2rem auto 2.5rem;padding:.85rem 1rem;border-top:1px solid rgba(255,255,255,.06);color:rgba(250,248,243,.42);font-size:.78rem;line-height:1.55">
                     <p style="margin:0;color:inherit;font-size:inherit;line-height:inherit">Questo articolo è stato redatto con il supporto di strumenti di intelligenza artificiale e revisionato da un membro del team WebNovis prima della pubblicazione. Anche l'immagine di copertina è generata con intelligenza artificiale. Per dettagli sui sistemi AI del sito: <a href="../privacy-policy.html#sistemi-ai" style="color:rgba(168,180,248,.75);text-decoration:none;border-bottom:1px solid rgba(168,180,248,.2)">Informativa privacy — sistemi AI</a>.</p>
-                </aside>`;
+                </aside>
+                <section class="article-author-bio" aria-labelledby="author-bio-title" style="max-width:760px;margin:0 auto 3rem;padding:1.5rem;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px">
+                    <h2 id="author-bio-title" style="font-size:1rem;color:var(--white);margin:0 0 .75rem">Team Editoriale di WebNovis</h2>
+                    <p style="margin:0;color:var(--text-muted);font-size:.9rem;line-height:1.7">WebNovis è un'agenzia web italiana con sede a Rho (Milano), specializzata in sviluppo siti web custom, graphic design, brand identity e social media marketing. Il nostro team editoriale pubblica guide, approfondimenti e risorse pratiche per aiutare PMI, startup e professionisti a crescere online con strategie digitali concrete. <a href="../chi-siamo.html" style="color:rgba(168,180,248,.8);text-decoration:none;border-bottom:1px solid rgba(168,180,248,.2)">Scopri chi siamo →</a></p>
+                </section>`;
 }
 
 function buildFaqHTML(faq = [], articleTag = '') {
@@ -7583,7 +7587,7 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <main id="main-content" tabindex="-1">
         <div class="container breadcrumb"><a href="../index.html">Home</a><span class="separator">/</span><a href="index.html">Blog</a><span class="separator">/</span><span class="current-page">${a.title.split(':')[0]}</span></div>
         <article>
-            <header class="article-hero"><div class="container"><span class="article-tag">${a.tag}</span><h1>${a.title}</h1><p class="article-meta">Di <a href="../chi-siamo.html" rel="author">${VISIBLE_AUTHOR_NAME}</a> · ${a.date} · ${a.readTime} di lettura · <span class="article-updated">Aggiornato: ${modifiedDateHuman}</span></p></div></header>
+            <header class="article-hero"><div class="container"><span class="article-tag">${a.tag}</span><h1>${a.title}</h1><p class="article-meta">Di <a href="../chi-siamo.html" rel="author">${VISIBLE_AUTHOR_NAME}</a> · ${a.date} · ${a.readTime} di lettura · <span class="article-updated">Aggiornato: ${modifiedDateHuman}</span></p><p class="article-review-badge" style="display:inline-block;margin-top:.5rem;padding:.25rem .75rem;background:rgba(37,99,235,.1);border:1px solid rgba(96,165,250,.2);border-radius:999px;font-size:.78rem;color:rgba(168,180,248,.8)">✅ Revisione editoriale WebNovis</p></div></header>
             <div class="article-content">
                 <div class="article-summary">
                     <p><strong>In breve:</strong> ${a.description}</p>

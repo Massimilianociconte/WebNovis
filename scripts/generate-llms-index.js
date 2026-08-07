@@ -152,6 +152,18 @@ Tier 1 (priorità editoriale interna): ${tier1Count} URL — elenco completo in 
 - [Brand Identity — Guida Completa](${SITE}/blog/brand-identity-guida-completa.html): Come costruire un'identità di marca efficace.
 - [Social Media Strategy 2026](${SITE}/blog/social-media-strategy-2026.html): Strategie social media aggiornate per il 2026.
 - [Core Web Vitals — Guida](${SITE}/blog/core-web-vitals-guida.html): Ottimizzare LCP, INP e CLS per prestazioni e SEO.
+- [SEO Locale e Google Maps](${SITE}/blog/seo-locale-google-maps.html): Come apparire primi nei risultati locali.
+- [Schema Markup — Guida ai Dati Strutturati](${SITE}/blog/schema-markup-guida.html): Implementare dati strutturati per rich snippet e AI.
+- [Sito Web che Non Converte: 15 Cause](${SITE}/blog/sito-web-che-non-converte.html): Diagnosi e soluzioni per aumentare lead e contatti.
+- [Accessibilità Web e Sanzioni EAA 2026](${SITE}/blog/sanzioni-sito-non-accessibile-2026.html): Obblighi, scadenze e rischi legali.
+- [Test A/B: Migliorare le Conversioni con i Dati](${SITE}/blog/test-ab-sito-web-guida.html): Come usare esperimenti basati sui dati.
+- [Dominio e Hosting: Guida per Non Tecnici](${SITE}/blog/dominio-hosting-guida-non-tecnico.html): Scegliere dominio e hosting senza farsi fregare.
+- [Automazione Marketing per PMI](${SITE}/blog/automazione-marketing-pmi-strumenti.html): 7 strumenti che fanno risparmiare ore ogni settimana.
+- [GDPR e Sito Web: Guida alla Conformità](${SITE}/blog/gdpr-sito-web-guida.html): Requisiti privacy per siti aziendali italiani.
+- [Google Analytics 4 — Guida Pratica](${SITE}/blog/google-analytics-4-guida.html): Configurare GA4 e leggere i dati che contano.
+- [UX Design: 10 Best Practice](${SITE}/blog/ux-design-best-practice.html): Regole fondamentali per un sito che converte.
+- [Strategia Digitale per PMI](${SITE}/blog/strategia-digitale-pmi.html): Da dove iniziare e quali canali attivare per primi.
+- [Sito Web Professionale: Checklist 2026](${SITE}/blog/sito-web-professionale-checklist.html): I 20 elementi essenziali di un sito che funziona.
 
 ## Informazioni di Contatto
 
