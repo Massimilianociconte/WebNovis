@@ -2255,6 +2255,118 @@ const articles = [
     ]
   },
   {
+    slug: 'ai-act-2026-obblighi',
+    title: 'AI Act 2026: Cosa Cambia dal 2 Agosto per il Tuo Sito Web',
+    description: 'Dal 2 agosto 2026 l’AI Act è pienamente applicabile: trasparenza per chatbot e contenuti generati dall’intelligenza artificiale, controlli e sanzioni. Cosa cambia per siti web, imprese, PMI e persone.',
+    tag: 'Tecnologia',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    updatedDate: '7 Agosto 2026',
+    updatedIsoDate: '2026-08-07',
+    readTime: '12 min',
+    sources: [
+      { name: 'Regolamento (UE) 2024/1689 — AI Act (EUR-Lex)', url: 'https://eur-lex.europa.eu/eli/reg/2024/1689/oj' },
+      { name: 'Commissione europea — Legge sull’intelligenza artificiale', url: 'https://digital-strategy.ec.europa.eu/it/policies/regulatory-framework-ai' },
+      { name: 'AI Act Service Desk — Domande e risposte della Commissione UE', url: 'https://ai-act-service-desk.ec.europa.eu/en/faq' },
+      { name: 'Linee guida della Commissione UE sull’articolo 50 (trasparenza)', url: 'https://digital-strategy.ec.europa.eu/en/policies/transparency-obligations-ai-act' },
+    ],
+    faq: [
+      { question: 'L’AI Act è davvero in vigore dal 2 agosto 2026?', answer: 'Sì. Il Regolamento (UE) 2024/1689 è in vigore dal 1° agosto 2024, ma gli obblighi principali entrano in applicazione a scaglioni. Dal 2 agosto 2026 vengono applicate le regole di trasparenza, la governance sui modelli di IA generica e iniziano i controlli delle autorità nazionali. Alcune disposizioni successive partono dal 2 dicembre 2026, mentre gli obblighi per i sistemi ad alto rischio sono stati rinviati dal cosiddetto Digital Omnibus: si arriva al 2 dicembre 2027, e all’agosto 2028 per una parte delle categorie armonizzate.' },
+      { question: 'Un sito web con chatbot deve adeguarsi all’AI Act?', answer: 'Sì. Se il sito contiene un chatbot o un assistente conversazionale basato su intelligenza artificiale, il titolare deve rendere chiaro all’utente che sta interagendo con una macchina. La riconoscibilità del chatbot è uno degli obblighi in applicazione dal 2 agosto 2026, e i sistemi già immessi sul mercato hanno tempo fino al 2 dicembre 2026 per adeguare etichettatura e funzionalità di rilevamento dei contenuti.' },
+      { question: 'Quali sono le sanzioni previste dall’AI Act?', answer: 'Le sanzioni sono proporzionate al rischio e al fatturato. Per le pratiche vietate si arriva fino a 35 milioni di euro o al 7% del fatturato annuo mondiale; per gli altri obblighi principali, come la trasparenza, fino a 15 milioni di euro o al 3% del fatturato. Le autorità nazionali di controllo diventano operative a partire dal 2 agosto 2026, con un coordinamento europeo dell’applicazione.' },
+      { question: 'Cosa significa "sistema ad alto rischio" secondo il regolamento?', answer: 'Sono i sistemi di IA che possono incidere su salute, sicurezza e diritti fondamentali delle persone: valutazione creditizia, selezione del personale, istruzione, servizi essenziali, accesso a prestazioni pubbliche, gestione di frontiere e attività giudiziarie. Per queste categorie il regolamento prevede valutazioni di conformità, registrazione in apposite banche dati e controllo nel ciclo di vita del sistema. Gli obblighi diventano applicabili dal 2 dicembre 2027, e dall’agosto 2028 per una parte delle categorie armonizzate.' },
+      { question: 'Come si valuta se un sito web è in linea con l’AI Act?', answer: 'Si verificano tre aree: i sistemi di IA presenti (chatbot, contenuti generati, personalizzazione e classificazione degli utenti), le informative e i consensi rivolti all’utente, e la documentazione che dimostra gli adempimenti. WebNovis esegue il controllo sul sito, restituisce un giudizio di allineamento (in linea o non in linea) e, quando serve, adegua direttamente il sito alle nuove regole.' },
+    ],
+    relatedArticles: [
+      { slug: 'chatbot-sito-web-guida', title: 'Chatbot per il Sito Web: Quando Serve e Come Implementarlo nel 2026', desc: 'Guida ai chatbot per siti aziendali: tipologie, costi, benefici, implementazione. Quando un chatbot aiuta realmente il business e quando è superfluo.' },
+      { slug: 'dati-obbligatori-sito-web', title: 'Dati Obbligatori Sito Web Aziendale: Guida Legale Completa 2026', desc: 'Tutti i dati obbligatori per un sito web aziendale: Partita IVA, Cookie Policy, GDPR. Evita sanzioni e costruisci fiducia con i tuoi clienti.' },
+      { slug: 'sito-intelligenza-artificiale-limiti', title: 'Creare un Sito con l’Intelligenza Artificiale: Verità e Limiti per la tua PMI', desc: 'L’IA può generare un sito web, ma non sempre è la soluzione giusta per la tua impresa: i limiti reali dei site builder AI e quando serve un professionista.' },
+    ],
+    strategicGuideSlugs: ['chatbot-sito-web-guida'],
+    content: `
+<p>Il 2 agosto 2026 l’AI Act — il Regolamento (UE) 2024/1689 — diventa, di fatto, un obbligo concreto per chi fa impresa online. Non è una novità dell’ultimo minuto: il regolamento è in vigore dal 2024 e le sue regole entrano in applicazione a scaglioni. Ma è proprio il 2 agosto 2026 a segnare il momento in cui trasparenza, controlli e sanzioni iniziano a essere applicati davvero.</p>
+<p>Per i proprietari di siti web, e-commerce e servizi digitali è la scadenza più rilevante degli ultimi anni: da qui in avanti non basta affermare che “rispettiamo la legge”, bisogna poterlo dimostrare. E il primo posto dove questa dimostrazione deve essere visibile è il sito: il luogo in cui i visitatori incontrano chatbot, contenuti generati dall’intelligenza artificiale, personalizzazione e decisioni automatizzate.</p>
+
+<h2>Il 2 agosto 2026: la data che rende il regolamento concreto</h2>
+<p>L’AI Act regola l’intelligenza artificiale in base al rischio che ogni sistema comporta: più alto è il rischio, più forti sono gli obblighi. L’entrata in applicazione è progressiva: alcune regole erano già attive, altre partono proprio dal 2 agosto 2026, alcune sono state rinviate dal cosiddetto “Digital Omnibus sull’IA” (Regolamento UE 2026/1744).</p>
+<ul>
+<li><strong>2 febbraio 2025</strong>: entrano in vigore i divieti sulle pratiche inammissibili (manipolazione, social scoring, riconoscimento delle emozioni sul posto di lavoro) e l’obbligo di alfabetizzazione sull’IA (AI literacy) per chi usa la tecnologia.</li>
+<li><strong>2 agosto 2025</strong>: si attiva la governance europea e nazionale, con l’Ufficio europeo per l’IA e le prime regole sui modelli di uso generale (GPAI).</li>
+<li><strong>2 agosto 2026</strong>: entrano in applicazione concreta gli obblighi di trasparenza, i controlli delle autorità nazionali e il quadro sanzionatorio per chi fornisce o usa l’IA.</li>
+<li><strong>2 dicembre 2026</strong>: scade il tempo concesso ai sistemi già immessi sul mercato prima del 2 agosto 2026 per adeguare etichettatura e funzionalità di rilevamento dei contenuti generati.</li>
+<li><strong>2 dicembre 2027 e agosto 2028</strong>: entrano in applicazione gli obblighi più pesanti, quelli previsti per i sistemi ad alto rischio, dopo il rinvio del Digital Omnibus.</li>
+</ul>
+<p>Chi gestisce un sito non deve aspettare il 2027 per agire: le regole che si vedono, quelle sulla trasparenza e sull’informazione degli utenti, sono in applicazione da oggi. E con esse, il capitolo delle sanzioni.</p>
+
+<h2>Un sistema a livelli: il rischio decide le regole</h2>
+<p>L’AI Act funziona dividendo i sistemi di intelligenza artificiale in livelli di rischio. A ogni livello corrispondono obblighi diversi: più forti sono le possibili conseguenze per le persone, più rigide sono le regole per chi usa la tecnologia. Per orientarsi nel proprio sito web, questa divisione è il punto di partenza: capire in quale livello si colloca ciò che fai è il primo passo di ogni adeguamento.</p>
+<h3>Rischio inaccettabile: le pratiche vietate</h3>
+<p>Sono i comportamenti che il regolamento proibisce in assoluto, già dal febbraio 2025: manipolazione subliminale, strumenti che sfruttano la vulnerabilità delle persone, valutazione sociale, riconoscimento delle emozioni in ambito lavorativo. Nel web significa che nessuna funzionalità deve indurre l’utente a fare qualcosa che non vuole, sfruttando debolezze legate all’età o a condizioni psicologiche. Le sanzioni per queste violazioni sono le più dure dell’intero regolamento: fino a 35 milioni di euro o al 7% del fatturato mondiale.</p>
+<h3>Alto rischio: quando l’IA tocca diritti e vita quotidiana</h3>
+<p>Sono i sistemi che influenzano aspetti delicati della vita delle persone: valutazione del merito di credito, selezione e promozione del personale, istruzione, accesso ai servizi essenziali e alle prestazioni pubbliche, gestione di frontiere e migrazioni, attività giudiziarie. Per questi sistemi gli obblighi più profondi — valutazione della conformità, registrazione, controllo nel ciclo di vita — partono dal 2 dicembre 2027, con una parte delle categorie armonizzate rinviata all’agosto 2028.</p>
+<h3>Rischio limitato o minimo: dove sta la trasparenza</h3>
+<p>È la categoria in cui rientra la maggior parte dei siti web e dei servizi digitali. Niente registrazioni o audit preliminari, ma obblighi di trasparenza precisi e un principio che diventa centrale: rendere riconoscibile quando a parlare o a produrre contenuti è una macchina. Proprio quest’area è quella che dal 2 agosto 2026 interessa più da vicino chi gestisce attività online.</p>
+
+<h2>Trasparenza: ciò che gli utenti devono capire (articolo 50)</h2>
+<p>La trasparenza è il cuore di questa fase del regolamento. Le regole dell’articolo 50, in applicazione dal 2 agosto 2026, si concentrano su un principio semplice: le persone devono sapere quando stanno interagendo con un’intelligenza artificiale. Le linee guida pubblicate dalla Commissione europea il 20 luglio 2026 lo chiariscono: non si tratta di apporre un’etichetta su tutto, ma di rendere riconoscibile il ruolo della macchina nei punti in cui potrebbe ingannare.</p>
+<h3>Chatbot e assistenti: riconoscibili come macchine</h3>
+<p>Se il tuo sito usa un chatbot AI per rispondere ai visitatori, l’utente deve sapere fin dall’inizio che sta parlando con una macchina. Non è un dettaglio di stile: è un obbligo che vale dal momento in cui la conversazione parte e resta valido anche quando la macchina finge di essere un operatore umano. La Commissione ha indicato criteri pratici per rendere l’interazione riconoscibile: la presentazione, i testi, la modalità di avvio della conversazione. Le soluzioni possono essere diverse, purché il messaggio sia effettivo e privo di ambiguità.</p>
+<h3>Riconoscimento delle emozioni e classificazione biometrica</h3>
+<p>Alcuni strumenti analizzano foto, video e segnali fisiologici per rilevare emozioni o classificare le persone in base a tratti biometrici. Se il tuo sito usa funzioni del genere — per esempio per valutare il gradimento dei contenuti o moderare le recensioni video — l’AI Act impone di informare le persone, ottenere i consensi necessari e rispettare limiti severi. Il riconoscimento delle emozioni in contesti lavorativi è tra le pratiche vietate, e la classificazione biometrica è soggetta a regole particolarmente rigide.</p>
+<h3>Deepfake e contenuti generati: l’etichettatura</h3>
+<p>Quando un’immagine, un video o un testo vengono generati o manipolati da un sistema di IA, il regolamento chiede di segnalare la natura sintetica del contenuto. La marcatura riguarda soprattutto i contenuti in cui l’inganno sarebbe facile e dannoso: notizie, immagini realistiche ma false, materiali legati a temi di interesse pubblico come informazione ed elezioni. Su questi temi non basta un’etichetta discreta: deve essere chiara e non facilmente rimovibile. Il codice di buone pratiche e le icone facoltative proposte dalla Commissione aiutano a scegliere come segnalare.</p>
+<h3>Un chiarimento utile: non è un’etichetta universale</h3>
+<p>L’AI Act non impone che ogni contenuto prodotto con l’IA porti un bollino. L’etichettatura scatta quando serve a evitare che qualcuno venga ingannato sulla natura del contenuto. La marcatura tecnica dei file è invece un obbligo che grava sui produttori dei modelli e dei sistemi. Come titolare del sito, la tua responsabilità è che l’utente riceva informazioni veritiere e verificabili — e per la maggior parte delle attività online questo significa una verifica mirata delle zone in cui l’IA viene davvero usata.</p>
+
+<h2>Le aree di un sito web che oggi vanno verificate</h2>
+<p>Il regolamento distingue gli obblighi per categorie: chi sviluppa modelli di uso generale, chi fornisce sistemi ad alto rischio e chi li usa hanno percorsi molto diversi. Ma per la maggior parte delle proprietà digitali esiste un insieme di zone da controllare. Questa non è una guida operativa: è una mappa dei punti in cui gli obblighi di trasparenza si concentrano oggi.</p>
+<ul>
+<li><strong>Chat e assistenti conversazionali</strong>: verificare se l’assistente è riconoscibile come macchina, se spiega funzioni e limiti, e come tratta dati e argomenti sensibili.</li>
+<li><strong>Contenuti del sito</strong>: testi, articoli, immagini e video prodotti o modificati da modelli generativi richiedono valutazioni sull’etichettatura, soprattutto sui temi di interesse pubblico.</li>
+<li><strong>Personalizzazione e classificazione degli utenti</strong>: raccomandazioni di prodotto, moduli di acquisto e segmentazione basati sull’IA mettono in gioco doveri di informazione e, in alcuni casi, il diritto dell’utente a conoscere la logica applicata.</li>
+<li><strong>Riconoscimento biometrico ed emozionale</strong>: ogni uso di foto o video per rilevare emozioni o classificare persone comporta informative specifiche, consensi e, in alcuni casi, divieti reali.</li>
+<li><strong>Dati che alimentano l’IA</strong>: la qualità e la provenienza dei dati usati dalle funzioni AI del sito, incluse le categorie particolari come salute e dati biometrici.</li>
+<li><strong>Governance e documentazione</strong>: registro delle finalità, valutazione dei rischi, tracciabilità delle decisioni automatizzate e, dove previsto, documentazione di conformità.</li>
+</ul>
+<p>Chi è responsabile di decidere? Il titolare del sito e dell’impresa, con il supporto di chi conosce sia la legge sia la tecnologia applicata al web. La domanda che molte aziende si stanno facendo in questi mesi — “il mio sito è in linea?” — richiede oggi una verifica specifica e documentata, non una sensazione generale.</p>
+
+<h2>Cosa cambia per le persone comuni</h2>
+<p>Per chi usa internet da cittadino e consumatore, l’AI Act produce un cambiamento che si percepisce soprattutto come diritti nuovi e protezioni più forti.</p>
+<ul>
+<li><strong>Interazioni più oneste</strong>: quando si parla con un chatbot si può capire di avere davanti una macchina. Niente più ambiguità su chi sta dall’altra parte della chat.</li>
+<li><strong>Meno inganni visivi</strong>: deepfake, immagini e video sintetici usati in notizie, pubblicità o campagne devono essere riconoscibili: meno illusioni, in informazione come nel marketing.</li>
+<li><strong>Diritti concreti sui sistemi che contano</strong>: valutazione del credito, assicurazioni, colloqui di lavoro e prestazioni pubbliche basati sull’IA devono essere spiegabili e contestabili. Le persone hanno il diritto di ricevere informazioni e di far valere le proprie ragioni.</li>
+<li><strong>Protezione di identità e emozioni</strong>: il riconoscimento automatico delle emozioni in ambito lavorativo è vietato, la sorveglianza biometrica negli spazi pubblici è fortemente limitata, e i dati sensibili ricevono tutele più rigorose.</li>
+</ul>
+<p>Per le persone comuni non c’è nulla da “fare”: sono protezioni che scattano da sole, ma conoscerele aiuta a riconoscerle quando si incontrano online.</p>
+
+<h2>Cosa cambia per le grandi aziende</h2>
+<p>Per le imprese di grandi dimensioni lo sforzo è di governance, di categoria dei sistemi e di ciclo di vita dei prodotti. Il discrimine più importante riguarda i modelli di uso generale (GPAI), i modelli sistemici e i sistemi ad alto rischio.</p>
+<ul>
+<li><strong>Modelli GPAI e sistemici</strong>: valutazioni del rischio, audit, misure di cybersicurezza e documentazione sulle fonti dei dati di addestramento. Le aziende che integrano modelli di terzi in un servizio godono di un regime semplificato, ma restano responsabili dell’uso che ne fanno.</li>
+<li><strong>Sistemi ad alto rischio</strong>: registrazione in banche dati europee, controllo dopo l’immissione sul mercato, segnalazione degli incidenti gravi e processi di conformità che proseguono per tutto il ciclo di vita del sistema, con decorrenze a dicembre 2027 e agosto 2028.</li>
+<li><strong>Governance e cultura interna</strong>: l’obbligo di alfabetizzazione sull’IA vale per tutte le organizzazioni, e le procedure di conformità coinvolgono non solo l’IT ma anche legale, marketing e direzione.</li>
+<li><strong>Portata globale</strong>: il regolamento si applica anche ai fornitori con sede fuori dall’Unione, se i loro sistemi arrivano agli utenti europei. Come per il GDPR, conta dove vengono offerti i servizi, non solo dove ha sede l’azienda.</li>
+</ul>
+
+<h2>Come capire se il tuo sito è in linea: il controllo WebNovis</h2>
+<p>La parte più complicata per molte imprese è che la conformità non è una spunta: è una verifica che comincia dal sito e finisce nella documentazione. E qui sta il problema: pochi titolari sanno davvero se il proprio sito usa sistemi di IA nelle zone descritte sopra, e ancora meno sanno quali obblighi questo comporta.</p>
+<p>Per questo WebNovis trasforma l’AI Act in un controllo concreto per il tuo sito, con un esito chiaro e senza giri di parole:</p>
+<ul>
+<li><strong>Verifica</strong>: rileviamo i punti di contatto con l’intelligenza artificiale presenti sul sito: chatbot, contenuti generati, moduli di personalizzazione, tracking comportamentale, media sintetici.</li>
+<li><strong>Giudizio di allineamento</strong>: per ogni area una valutazione semplice e motivata — allineato, parziale, non allineato — con le priorità ordinate per livello di rischio.</li>
+<li><strong>Intervento sul sito</strong>: quando il sito non è in linea, adattiamo direttamente il progetto: chatbot riconoscibili, informazioni mancanti, etichettatura dei contenuti, documentazione del percorso. Non ti muovi tu: si muove il sito.</li>
+</ul>
+<p>Non è una questione di paura: è ordine in un quadro normativo che dal 2026 è diventato concreto. Sapere dove sta il tuo sito, raccogliere le azioni necessarie e organizzare il piano di passaggio è esattamente il lavoro che richiede, insieme, competenza web e attenzione alle regole.</p>
+
+<div class="article-cta">
+<h3>Vuoi sapere se il tuo sito é in linea con l’AI Act?</h3>
+<p>Controlliamo il tuo progetto, ti restituiamo un giudizio di allineamento e, se serve, adattiamo il tuo sito alla nuova trasparenza. Con un esito concreto in mano.</p>
+<p><a href="../servizi/sviluppo-web.html">Scopri il servizio di sviluppo web →</a></p>
+<a href="../contatti.html" class="btn btn-primary btn-large"><span>Richiedi il check AI Act</span></a>
+</div>
+`
+  },  {
     slug: 'gdpr-sito-web-guida',
     title: 'GDPR e Sito Web: Guida alla Conformità per Aziende Italiane nel 2026',
     description: 'Cosa deve avere il tuo sito web per essere conforme al GDPR: privacy policy, cookie banner, Consent Mode v2, form e gestione dati. Checklist completa.',
@@ -7105,6 +7217,524 @@ const stubArticles = [
 
 <h2>Automazione del marketing e strategia digitale</h2>
 <p>L'automazione è un moltiplicatore di efficienza, ma moltiplica anche gli errori: se automatizzi un processo sbagliato, sbagli più velocemente. Prima di automatizzare, assicurati di aver fatto il lavoro strategico a monte — chi è il tuo target, quale messaggio funziona, quali canali portano risultati. Se vuoi costruire una <a href="strategia-digitale-pmi.html">strategia digitale</a> coerente in cui l'automazione sia al servizio degli obiettivi e non il contrario, <a href="../servizi/consulenze.html">le nostre consulenze</a> ti aiutano a mettere in ordine priorità e strumenti. <a href="../preventivo.html">Parliamone →</a></p>`
+  },
+  {
+    slug: 'google-business-profile-ottimizzazione',
+    title: 'Google Business Profile: Come Ottimizzarlo per Ottenere Più Clienti Locali',
+    description: 'Guida completa all\'ottimizzazione di Google Business Profile (ex Google My Business): categorie, foto, recensioni, post e strategie per apparire primi nei risultati locali.',
+    tag: 'SEO',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '10 min',
+    keyword: 'ottimizzare Google Business Profile',
+    faq: [
+      {
+        question: 'Google Business Profile è davvero gratis?',
+        answer: 'Sì, è completamente gratuito. Non esiste una versione a pagamento e Google non vende posizionamenti privilegiati. Chi ti chiede soldi per "attivarlo" o "verificarlo a pagamento" ti sta imbrogliando. L\'unico investimento è il tempo per compilarlo bene e tenerlo aggiornato con foto, post e risposte alle recensioni.'
+      },
+      {
+        question: 'In quanto tempo si vedono i risultati dopo l\'ottimizzazione?',
+        answer: 'I primi miglioramenti nella visibilità locale si vedono dopo 2-4 settimane dall\'ottimizzazione completa. Le recensioni nuove impattano quasi subito. Per posizionarsi stabilmente nel "Local Pack" (i 3 risultati con mappa) servono 2-3 mesi di attività costante: risposte alle recensioni, pubblicazione settimanale di post e aggiornamento delle informazioni.'
+      },
+      {
+        question: 'Cosa succede se non ho ancora una sede fisica?',
+        answer: 'Google Business Profile richiede una sede verificabile con cartolina postale. Se lavori da casa e non vuoi mostrare l\'indirizzo, puoi impostare la tua attività come "servizio a domicilio" nascondendo l\'indirizzo esatto ma indicando l\'area servita. Le attività senza sede fisica fissa (es. consulenti itineranti) possono usare le "aree servite" senza mostrare l\'indirizzo.'
+      }
+    ],
+    content: `
+<p>Quando cerchi "idraulico Milano" o "pasticceria Rho", Google non mostra un elenco di siti web — mostra una mappa con tre attività in evidenza. Quel riquadro si chiama <strong>Local Pack</strong> e genera più clic di tutti i risultati organici messi insieme. Per apparirci, non serve la SEO tradizionale: serve un Google Business Profile ottimizzato. Ecco come farlo, passo dopo passo.</p>
+
+<h2>1. Rivendica e verifica la tua scheda (se non l'hai ancora fatto)</h2>
+<p>Vai su <a href="https://business.google.com/" rel="noopener noreferrer" target="_blank">business.google.com</a>, cerca la tua attività. Se esiste già (molte schede vengono create automaticamente da Google), rivendicala. Se non esiste, creala. Google ti invierà una cartolina con un codice di verifica all'indirizzo che hai dichiarato — ci vogliono 5-12 giorni. Senza verifica, la scheda non appare nelle ricerche.</p>
+
+<h2>2. Scegli la categoria giusta (è più importante del nome)</h2>
+<p>La categoria principale è il fattore di ranking locale più importante dopo la vicinanza geografica. Non mettere una categoria generica — scegli la più specifica possibile. "Ristorante" è peggio di "Ristorante italiano". "Agenzia web" è peggio di "Web designer". Puoi aggiungere fino a 9 categorie secondarie: usale per coprire tutte le sfaccettature della tua attività.</p>
+
+<h2>3. Completa OGNI campo della scheda</h2>
+<p>Google premia le schede complete al 100%. I campi da non trascurare:</p>
+<ul>
+    <li><strong>Orari di apertura</strong>: inserisci anche gli orari festivi e aggiornali per le chiusure straordinarie. Una scheda con orari sbagliati genera clienti arrabbiati.</li>
+    <li><strong>Numero di telefono</strong>: usa un numero locale (prefisso della tua città). I numeri verdi 800 o i cellulari funzionano ma il numero fisso locale è preferito da Google per il ranking di prossimità.</li>
+    <li><strong>Sito web</strong>: linka la homepage del tuo sito. Se hai pagine dedicate a servizi specifici, usa i "link personalizzati" nella sezione prodotti/servizi.</li>
+    <li><strong>Descrizione dell'attività</strong>: 750 caratteri massimo. Scrivi cosa fai, per chi, dove. Inserisci naturalmente le parole chiave per cui vuoi essere trovato, senza elencarle meccanicamente.</li>
+    <li><strong>Servizi e prodotti</strong>: se la tua categoria lo permette, aggiungi ogni servizio con nome, descrizione e prezzo (anche indicativo).</li>
+</ul>
+
+<h2>4. Le foto fanno la differenza (davvero)</h2>
+<p>Le schede con più di 100 foto ricevono il 520% in più di chiamate rispetto alla media. Non servono foto professionali: servono foto vere del tuo lavoro, del tuo team, dei tuoi spazi. Pubblica almeno:</p>
+<ul>
+    <li>3 foto dell'esterno (aiuta i clienti a trovare la sede)</li>
+    <li>5 foto dell'interno (mostra l'ambiente)</li>
+    <li>5 foto del team al lavoro</li>
+    <li>10 foto di progetti/lavori realizzati</li>
+</ul>
+<p>Aggiungi 2-3 nuove foto ogni settimana. Google interpreta l'attività costante come segnale di un'attività reale e attiva.</p>
+
+<h2>5. Le recensioni sono il tuo carburante</h2>
+<p>Più recensioni positive = più visibilità locale. Punto. Ecco come raccoglierle senza violare le policy di Google:</p>
+<ul>
+    <li>Crea un link diretto alle recensioni dal tuo pannello GBP e invialo ai clienti soddisfatti via WhatsApp o email dopo ogni lavoro.</li>
+    <li>Non offrire sconti o omaggi in cambio di recensioni: Google lo vieta e può penalizzarti.</li>
+    <li>Rispondi a TUTTE le recensioni, positive e negative. Una risposta professionale a una recensione negativa vale più di dieci recensioni positive senza risposta.</li>
+    <li>Non usare account falsi per auto-recensirti: Google li rileva e cancella tutte le recensioni della scheda.</li>
+</ul>
+
+<h2>6. Pubblica post settimanali</h2>
+<p>La sezione "Aggiornamenti" di GBP permette di pubblicare post che compaiono direttamente nella scheda. Usali per:</p>
+<ul>
+    <li>Offerte e promozioni a tempo</li>
+    <li>Novità (nuovo servizio, nuovo membro del team)</li>
+    <li>Eventi locali a cui partecipi</li>
+    <li>Consigli pratici legati al tuo settore</li>
+</ul>
+<p>Un post a settimana è sufficiente. Non serve un romanzo: una foto, due frasi e un link al sito. Google vede l'attività regolare e premia la scheda con più visibilità.</p>
+
+<h2>7. Mantieni coerenza assoluta dei dati su tutto il web</h2>
+<p>Il tuo Nome, Indirizzo e Telefono (NAP) devono essere identici ovunque: sito web, Facebook, Instagram, Pagine Gialle, TripAdvisor, qualunque directory. Anche una differenza minima ("Via S. Giorgio 2" vs "Via San Giorgio, 2") confonde Google e abbassa il ranking. Controlla le tue citazioni locali con uno strumento come <a href="https://www.semrush.com/features/local-seo/" rel="noopener noreferrer" target="_blank">Semrush Local</a> e correggi le incoerenze.</p>
+
+<h2>8. Sfrutta la sezione Domande e Risposte</h2>
+<p>Chiunque può fare domande sulla tua scheda. Anticipale: scrivi tu le domande più frequenti (orari, parcheggio, metodi di pagamento, tempi di consegna) e rispondi in modo chiaro. Così quando un potenziale cliente cerca la tua attività, trova subito le risposte senza dover chiamare — e tu risparmi telefonate ripetitive.</p>
+
+<p>Un Google Business Profile ben ottimizzato è il canale di acquisizione con il miglior rapporto costo/risultato per qualsiasi attività locale. Se vuoi una mano a configurarlo al massimo delle potenzialità, <a href="../servizi/seo-milano.html">scopri i nostri servizi SEO locale</a> o <a href="../preventivo.html">chiedi una consulenza →</a></p>`
+  },
+  {
+    slug: 'cosa-scrivere-sito-web-aziendale',
+    title: 'Cosa Scrivere sul Sito della Tua Azienda: Guida ai Contenuti che Convertono',
+    description: 'Non sai cosa scrivere sul sito web? Ecco la guida pratica ai testi per ogni pagina: Home, Chi Siamo, Servizi, Contatti. Con esempi e struttura collaudata.',
+    tag: 'Content Marketing',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '10 min',
+    keyword: 'testi sito web aziendale',
+    faq: [
+      {
+        question: 'Quanto testo serve su ogni pagina del sito?',
+        answer: 'Dipende dalla pagina. Homepage: 150-250 parole bastano se hai headline chiari e CTA evidenti. Pagine servizio: 400-800 parole per descrivere bene il servizio e rispondere alle domande dei clienti. Pagina Chi Siamo: 200-400 parole. Blog post: 800-2000 parole. La regola d\'oro: ogni parola deve servire al visitatore, non a riempire spazio. Contenuti brevi ma densi battono contenuti lunghi ma diluiti.'
+      },
+      {
+        question: 'Posso copiare i testi da un sito concorrente?',
+        answer: 'No, per due motivi. Primo: Google penalizza i contenuti duplicati, il tuo sito non si posizionerà. Secondo: i testi del concorrente sono scritti per la sua attività, non per la tua — i tuoi clienti noteranno la differenza e percepiranno poca autenticità. Meglio scrivere testi semplici ma tuoi, che testi perfetti ma copiati.'
+      },
+      {
+        question: 'Chi deve scrivere i testi del sito? Io o un professionista?',
+        answer: 'Puoi scrivere una prima bozza tu: nessuno conosce la tua attività meglio di te. Poi un copywriter o un\'agenzia web può rielaborare i testi per renderli più persuasivi, ottimizzati per la SEO e allineati al tone of voice del brand. La combinazione migliore è: tu fornisci la sostanza (chi sei, cosa fai, cosa ti rende diverso), un professionista la trasforma in contenuti che convertono.'
+      }
+    ],
+    content: `
+<p>Hai il sito pronto. Il design è bello, la struttura funziona. Ma quando arrivi alla parte "testi", ti blocchi. Cosa scrivere nella homepage? Come descrivere i servizi? La pagina "Chi Siamo" deve raccontare la tua storia o bastano due righe? Ecco una <strong>guida pratica ai contenuti di ogni pagina</strong>, con struttura e consigli validi per qualsiasi attività.</p>
+
+<h2>Homepage: la tua vetrina in 5 secondi</h2>
+<p>La homepage deve rispondere a tre domande in meno di 5 secondi: chi sei, cosa fai, e cosa deve fare il visitatore. Struttura consigliata:</p>
+<ol>
+    <li><strong>Headline principale</strong>: una frase che dica esattamente cosa offri e per chi. Esempio: "Web agency a Milano per PMI che vogliono risultati, non template" — non "Benvenuti nel nostro sito".</li>
+    <li><strong>Sottotitolo</strong>: una riga che aggiunge dettaglio o menziona il beneficio principale. Esempio: "Siti web custom, e-commerce e branding per far crescere il tuo business."</li>
+    <li><strong>CTA primaria</strong>: un pulsante visibile con un verbo d'azione chiaro. "Richiedi un preventivo gratuito" funziona meglio di "Scopri di più".</li>
+    <li><strong>Sezione "Cosa facciamo"</strong>: 3-4 riquadri con i tuoi servizi principali, ciascuno con un titolo, due righe di descrizione e un link alla pagina dedicata.</li>
+    <li><strong>Prova sociale</strong>: loghi dei clienti, numeri (es. "+50 progetti realizzati"), o un carosello di recensioni.</li>
+    <li><strong>CTA finale</strong>: richiama all'azione con un invito più personale. "Raccontaci la tua idea, ti rispondiamo in poche ore."</li>
+</ol>
+
+<h2>Pagina Servizi: descrivi il risultato, non il processo</h2>
+<p>L'errore più comune è descrivere COME fai le cose invece di COSA ottiene il cliente. "Utilizziamo tecnologia XYZ" non interessa a nessuno. "Il tuo sito sarà veloce, visibile su Google e progettato per portarti clienti" sì. Per ogni servizio:</p>
+<ul>
+    <li><strong>Titolo</strong>: nome del servizio + beneficio principale. Es. "Siti Web Professionali — Visibili su Google e Ottimizzati per Mobile"</li>
+    <li><strong>Descrizione</strong>: 3-4 paragrafi che spiegano il problema che risolvi, come lo risolvi, e perché dovrebbero scegliere te.</li>
+    <li><strong>Prezzo</strong>: se puoi, indica un prezzo di partenza. Aiuta il visitatore a capire se rientra nel budget.</li>
+    <li><strong>FAQ</strong>: anticipa le 3-5 domande più frequenti sul servizio.</li>
+    <li><strong>CTA</strong>: invita a contattarti per un approfondimento o un preventivo.</li>
+</ul>
+
+<h2>Chi Siamo: metti la faccia (e la storia)</h2>
+<p>Le persone comprano da persone. Una pagina Chi Siamo efficace contiene:</p>
+<ul>
+    <li><strong>La tua storia</strong>: come e perché hai iniziato. Non serve un romanzo — 3-4 frasi autentiche valgono più di una biografia aziendale piena di "mission" e "vision".</li>
+    <li><strong>Il team</strong>: foto vere, nomi veri, ruoli. Anche se sei da solo, mostra il tuo volto. Un sito senza volti è un sito di cui diffidare.</li>
+    <li><strong>I tuoi valori</strong>: cosa conta per te nel lavoro. Esempio: "Crediamo che un sito web debba essere un investimento che porta risultati misurabili, non una spesa."</li>
+    <li><strong>Numeri e fatti</strong>: anni di esperienza, progetti realizzati, clienti attivi, certificazioni.</li>
+</ul>
+
+<h2>Pagina Contatti: rendila facile (e rassicurante)</h2>
+<p>Deve contenere:</p>
+<ul>
+    <li><strong>Tutti i canali</strong>: telefono cliccabile, email, WhatsApp, form di contatto. Più canali offri, più probabilità hai di essere contattato.</li>
+    <li><strong>Indirizzo e mappa</strong>: se hai una sede fisica, mostrala con Google Maps embeddato.</li>
+    <li><strong>Orari di risposta</strong>: "Ti rispondiamo in poche ore durante i giorni feriali." Comunica quando aspettarsi una risposta.</li>
+    <li><strong>Form semplice</strong>: nome, email, messaggio. Non chiedere il telefono se non è indispensabile.</li>
+    <li><strong>Rassicurazioni</strong>: "Nessun impegno", "Risposta garantita", "I tuoi dati sono al sicuro".</li>
+</ul>
+
+<h2>Errori di copywriting da evitare</h2>
+<ul>
+    <li><strong>Parole vuote</strong>: "leader nel settore", "soluzioni innovative", "qualità superiore". Tutti le usano, nessuno ci crede. Sostituiscile con fatti concreti.</li>
+    <li><strong>Parlare solo di te</strong>: il visitatore non è interessato a te ma a ciò che puoi fare per lui. Ogni "noi" nella pagina dovrebbe essere bilanciato da un "tu".</li>
+    <li><strong>Testi troppo lunghi</strong>: la maggior parte delle persone scansiona, non legge. Paragrafi di 2-3 frasi, elenchi puntati, grassetto sui concetti chiave.</li>
+    <li><strong>Nessuna CTA</strong>: ogni pagina deve dire al visitatore cosa fare dopo. Se arriva in fondo e non sa cosa cliccare, hai sprecato un'opportunità.</li>
+</ul>
+
+<p>Scrivere i testi del sito è faticoso, ma è l'investimento che fa la differenza tra un sito bello e un sito bello che porta clienti. In <a href="../chi-siamo.html">WebNovis</a> integriamo copywriting persuasivo in ogni progetto — perché il design senza contenuti è una cornice vuota. <a href="../servizi/sviluppo-web.html">Scopri come sviluppiamo i siti →</a></p>`
+  },
+  {
+    slug: 'come-aprire-ecommerce-da-zero',
+    title: 'Come Aprire un E-commerce da Zero nel 2026: Guida Completa dalla A alla Z',
+    description: 'Partita IVA, piattaforma, catalogo, pagamenti, logistica, marketing. Ecco tutti i passaggi per aprire un e-commerce di successo partendo da zero.',
+    tag: 'E-Commerce',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '12 min',
+    keyword: 'come aprire ecommerce',
+    faq: [
+      {
+        question: 'Quanto costa aprire un e-commerce da zero?',
+        answer: 'Con una piattaforma come Shopify o WooCommerce puoi partire con €500-1.000 per il primo anno (dominio, hosting, tema, plugin essenziali). Un e-commerce custom sviluppato da un\'agenzia costa €3.000-10.000 ma ti dà controllo totale, design unico e zero commissioni sulle vendite. A questo aggiungi: fotografie prodotti (€200-500), partita IVA e commercialista (€500-1.000/anno), e un budget marketing iniziale di almeno €300-500/mese.'
+      },
+      {
+        question: 'Serve la partita IVA per vendere online?',
+        answer: 'Se vendi in modo abituale e organizzato, sì. L\'attività occasionale (vendita di oggetti usati, mercatini sporadici) non richiede partita IVA. Ma se apri un sito con catalogo prodotti, pagamenti e spedizioni, l\'Agenzia delle Entrate lo considera attività d\'impresa. Puoi iniziare con regime forfettario (tassa agevolata al 5% per i primi 5 anni) se il fatturato previsto è sotto €85.000/anno.'
+      },
+      {
+        question: 'Meglio marketplace (Amazon, eBay) o e-commerce proprio?',
+        answer: 'Non sono alternativi: sono complementari. Il marketplace ti dà visibilità immediata su una base clienti enorme, ma paghi commissioni del 8-15% e non possiedi i dati dei clienti. L\'e-commerce proprio ti dà margini pieni, controllo totale e relazione diretta con i clienti. La strategia vincente: partire col proprio sito e usare i marketplace come canale aggiuntivo, non come unica vetrina.'
+      }
+    ],
+    content: `
+<p>Aprire un e-commerce nel 2026 non è mai stato così accessibile — ma neanche così competitivo. Non basta più mettere quattro prodotti online e aspettare gli ordini: servono metodo, strategia e le scelte giuste fin dall'inizio. Questa guida ti accompagna <strong>passo dopo passo</strong> dalla decisione iniziale fino al primo ordine.</p>
+
+<h2>Fase 1: Scegli cosa vendere (e a chi)</h2>
+<p>Prima di pensare alla piattaforma, rispondi a tre domande fondamentali:</p>
+<ol>
+    <li><strong>Cosa vendi</strong> che non sia già saturo su Amazon? Cerca il tuo prodotto su Google: se i primi 10 risultati sono tutti marketplace, differenziarti sarà difficile ma non impossibile.</li>
+    <li><strong>A chi lo vendi</strong>? Definisci il tuo cliente tipo: età, interessi, dove passa tempo online, quanto è disposto a spendere.</li>
+    <li><strong>Perché dovrebbe comprare da te</strong> invece che da Amazon? La risposta non può essere "prezzo più basso" — Amazon vince sempre sul prezzo. Punta su: selezione curata, esperienza d'acquisto, consulenza, nicchia specifica.</li>
+</ol>
+
+<h2>Fase 2: Metti in regola la parte fiscale</h2>
+<p>In Italia per vendere online in modo abituale serve:</p>
+<ul>
+    <li><strong>Partita IVA</strong>: apribile in pochi giorni con un commercialista. Per l'e-commerce il codice ATECO è 47.91.10 (commercio al dettaglio online).</li>
+    <li><strong>Regime forfettario</strong>: se il tuo fatturato previsto è sotto €85.000 annui, paghi solo il 5% di imposta sostitutiva per i primi 5 anni (poi 15%). Niente IVA sulle fatture, niente studi di settore.</li>
+    <li><strong>Privacy e cookie</strong>: privacy policy, cookie banner, termini e condizioni, diritto di recesso. Non sono optional legali — sono obbligatori e vanno scritti da un legale, non copiati da altri siti.</li>
+</ul>
+
+<h2>Fase 3: Scegli la piattaforma giusta (non quella che ti consiglia il primo tutorial YouTube)</h2>
+<table style="width:100%;border-collapse:collapse;margin:1.5rem 0">
+<thead><tr style="border-bottom:2px solid rgba(255,255,255,.1)">
+<th style="text-align:left;padding:.75rem;color:var(--white)">Piattaforma</th>
+<th style="text-align:left;padding:.75rem;color:var(--white)">Ideale per</th>
+<th style="text-align:left;padding:.75rem;color:var(--white)">Costo iniziale</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Shopify</td><td style="padding:.75rem">Chi vuole partire veloce senza competenze tecniche</td><td style="padding:.75rem">€28-80/mese + commissioni</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">WooCommerce</td><td style="padding:.75rem">Chi ha già un sito WordPress e vuole flessibilità</td><td style="padding:.75rem">€0 (plugin) + hosting</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">E-commerce custom</td><td style="padding:.75rem">Chi cerca massimo controllo, zero commissioni, design unico</td><td style="padding:.75rem">€3.500+ (una tantum)</td></tr>
+<tr><td style="padding:.75rem">Amazon/eBay</td><td style="padding:.75rem">Chi vuole visibilità immediata su un mercato esistente</td><td style="padding:.75rem">Commissione 8-15% a vendita</td></tr>
+</tbody></table>
+
+<h2>Fase 4: Prepara il catalogo prodotti</h2>
+<p>Il catalogo è il cuore dell'e-commerce. Ogni prodotto deve avere:</p>
+<ul>
+    <li><strong>Foto professionali</strong>: almeno 4-5 per prodotto, con zoom, da angolazioni diverse. La foto è la prima cosa che il cliente guarda. Non usare foto del fornitore — falle tue.</li>
+    <li><strong>Titolo chiaro</strong>: includi la categoria e la caratteristica distintiva. Es. "Scarpe running uomo Nike Air Zoom — Ammortizzazione reattiva" non "Nike Air Zoom".</li>
+    <li><strong>Descrizione persuasiva</strong>: non elencare solo caratteristiche tecniche. Spiega perché questo prodotto risolve un problema specifico del cliente.</li>
+    <li><strong>Prezzo trasparente</strong>: mostra chiaramente il prezzo, eventuali sconti, e le spese di spedizione PRIMA del checkout.</li>
+</ul>
+
+<h2>Fase 5: Configura pagamenti e logistica</h2>
+<p>Devi accettare almeno 3 metodi di pagamento: carta di credito/debito (Stripe o simili), PayPal, e bonifico bancario. Aggiungere anche Satispay o Klarna (pagamento rateale) può aumentare le conversioni del 10-20%.</p>
+<p>Per la logistica: se hai pochi ordini, gestisci tu con un corriere. Se cresci, valuta un servizio di fulfillment che immagazzina, impacchetta e spedisce per te. Comunica chiaramente tempi e costi di spedizione: la mancanza di trasparenza è la prima causa di carrelli abbandonati.</p>
+
+<h2>Fase 6: Porta visitatori al negozio (e convertili in clienti)</h2>
+<p>Aprire l'e-commerce è solo metà del lavoro. L'altra metà è farlo conoscere:</p>
+<ul>
+    <li><strong>SEO e-commerce</strong>: ottimizza schede prodotto con keyword specifiche. Scrivi una descrizione unica per ogni prodotto. Aggiungi dati strutturati (Product schema).</li>
+    <li><strong>Google Shopping e Ads</strong>: fondamentale per prodotti fisici. Appari nelle ricerche Google con foto, prezzo e recensioni.</li>
+    <li><strong>Social media</strong>: Instagram e TikTok funzionano per prodotti visivi. Facebook per un pubblico più adulto.</li>
+    <li><strong>Email marketing</strong>: recupera i carrelli abbandonati con un'email automatica dopo 2 ore. Funziona nel 10-15% dei casi.</li>
+</ul>
+
+<p>In <a href="../chi-siamo.html">WebNovis</a> sviluppiamo e-commerce su misura con codice custom: nessuna commissione sulle vendite, design unico e piena proprietà dei dati. <a href="../servizi/ecommerce.html">Scopri i nostri e-commerce →</a></p>`
+  },
+  {
+    slug: 'quanto-costa-pubblicita-google-ads',
+    title: 'Quanto Costa la Pubblicità su Google? Budget, Costi e Strategie nel 2026',
+    description: 'Quanto costa Google Ads in Italia? Costo per click medi per settore, budget consigliati per PMI, e come evitare di sprecare soldi con campagne mal configurate.',
+    tag: 'Advertising',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '9 min',
+    keyword: 'costo pubblicità Google Ads',
+    faq: [
+      {
+        question: 'Qual è il budget minimo per una campagna Google Ads in Italia?',
+        answer: 'Tecnicamente puoi iniziare con €5 al giorno, ma con budget così bassi i dati raccolti sono insufficienti per ottimizzare. Per una campagna locale efficace, il budget minimo realistico è €15-30/giorno (€450-900/mese). Per campagne nazionali o settori competitivi (assicurazioni, finanza, legale), servono almeno €50-100/giorno. Sotto queste soglie, spendi soldi senza imparare nulla di utile.'
+      },
+      {
+        question: 'Quanto costa in media un click su Google Ads in Italia?',
+        answer: 'Il costo per click (CPC) medio in Italia è €0.80-1.50 per la rete Search, con enormi variazioni per settore: attività locali (idraulico, estetista) €0.50-1.50, e-commerce €0.30-0.80, servizi professionali (avvocati, commercialisti) €2-8, assicurazioni e finanza €5-15, settore legale (infortunistica, risarcimenti) €10-30+.'
+      },
+      {
+        question: 'Quanto tempo serve per vedere risultati con Google Ads?',
+        answer: 'I primi click e dati arrivano in ore. Ma per ottimizzare davvero una campagna servono 2-4 settimane: Google ha bisogno di dati per capire quali annunci, keyword e orari funzionano meglio. Il primo mese è quasi sempre in perdita perché stai imparando. Dal secondo-terzo mese, con le ottimizzazioni giuste, il costo per acquisizione cliente scende del 30-50%.'
+      }
+    ],
+    content: `
+<p>"Quanto costa fare pubblicità su Google?" È la domanda che riceviamo più spesso — e la risposta è: dipende. Ma non nel senso vago del termine. Dipende dal settore, dalla concorrenza, dalla qualità degli annunci e, soprattutto, da <strong>quanto bene è configurata la campagna</strong>. Una campagna ben fatta con €500/mese porta più risultati di una fatta male con €2.000. Ecco cosa devi sapere sui costi reali della pubblicità su Google in Italia.</p>
+
+<h2>Come funziona il costo di Google Ads</h2>
+<p>Google Ads funziona a CPC (costo per click): paghi solo quando qualcuno clicca sul tuo annuncio, non quando viene visualizzato. Il costo lo determini tu con un'asta in tempo reale:</p>
+<ol>
+    <li>Scegli le keyword per cui vuoi apparire (es. "idraulico Milano urgente")</li>
+    <li>Imposti un'offerta massima che sei disposto a pagare per click</li>
+    <li>Google confronta la tua offerta con quella dei concorrenti, più un fattore chiamato Quality Score (la qualità del tuo annuncio e della tua landing page)</li>
+    <li>L'annuncio con il miglior rapporto offerta × qualità vince l'asta e appare in cima</li>
+</ol>
+
+<h2>Quanto pagherai realmente — costi medi per settore in Italia</h2>
+<table style="width:100%;border-collapse:collapse;margin:1.5rem 0">
+<thead><tr style="border-bottom:2px solid rgba(255,255,255,.1)">
+<th style="text-align:left;padding:.75rem;color:var(--white)">Settore</th>
+<th style="text-align:left;padding:.75rem;color:var(--white)">CPC medio</th>
+<th style="text-align:left;padding:.75rem;color:var(--white)">Budget mensile consigliato</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Attività locali (idraulico, elettricista, estetista)</td><td style="padding:.75rem">€0.50-1.50</td><td style="padding:.75rem">€300-600</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">E-commerce</td><td style="padding:.75rem">€0.30-0.80</td><td style="padding:.75rem">€500-1.500</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Ristoranti e hospitality</td><td style="padding:.75rem">€0.40-1.00</td><td style="padding:.75rem">€300-800</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Servizi professionali (agenzie, consulenti)</td><td style="padding:.75rem">€1.50-4.00</td><td style="padding:.75rem">€500-1.200</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Settore legale</td><td style="padding:.75rem">€5-30</td><td style="padding:.75rem">€1.000-3.000</td></tr>
+<tr><td style="padding:.75rem">Assicurazioni e finanza</td><td style="padding:.75rem">€3-15</td><td style="padding:.75rem">€1.000-5.000</td></tr>
+</tbody></table>
+<p>Nota: questi sono valori medi nazionali. Nelle grandi città (Milano, Roma) i CPC possono essere superiori del 20-40% per la maggiore concorrenza.</p>
+
+<h2>I 5 errori che fanno lievitare i costi (e come evitarli)</h2>
+<ol>
+    <li><strong>Keyword generiche</strong>: "scarpe" costa molto di più di "scarpe running uomo pronazione". Più la keyword è specifica (long-tail), meno concorrenza ha e più alto è il tasso di conversione.</li>
+    <li><strong>Nessuna keyword negativa</strong>: se vendi occhiali da vista, aggiungi "da sole", "usati", "gratis" come keyword negative, altrimenti paghi click di persone che cercano altro.</li>
+    <li><strong>Landing page generica</strong>: mandare tutti i click alla homepage è il modo più veloce per sprecare budget. Ogni annuncio deve puntare a una pagina specifica che mantiene esattamente la promessa fatta nell'annuncio.</li>
+    <li><strong>Targeting geografico sbagliato</strong>: se servi solo Milano e provincia, assicurati di escludere il resto d'Italia (e il resto del mondo). Google a volte imposta "Italia" di default.</li>
+    <li><strong>Non misurare le conversioni</strong>: senza conversion tracking, Google non sa quali click portano risultati e non può ottimizzare. È come guidare bendati.</li>
+</ol>
+
+<h2>Quanto budget serve per iniziare? La regola pratica</h2>
+<p>Per una PMI italiana media, un budget di partenza ragionevole è €500-800/mese. Con questa cifra:</p>
+<ul>
+    <li>Raccogli abbastanza dati in 3-4 settimane per capire cosa funziona</li>
+    <li>Generi un flusso costante di lead o vendite (10-30 a seconda del settore)</li>
+    <li>Puoi permetterti di testare 2-3 varianti di annuncio</li>
+</ul>
+<p>Sotto i €300/mese, Google Ads è spesso uno spreco: spendi soldi ma non ottieni dati sufficienti per migliorare. Se il tuo budget è limitato, investi prima in <a href="seo-per-piccole-imprese.html">SEO organica</a>, che ha un costo iniziale più alto ma porta risultati duraturi senza costo per click.</p>
+
+<p>In <a href="../chi-siamo.html">WebNovis</a> gestiamo campagne Google Ads per aziende che vogliono risultati misurabili senza sprecare budget. <a href="../servizi/social-media.html">Scopri i nostri servizi advertising →</a></p>`
+  },
+  {
+    slug: 'come-velocizzare-sito-web-lento',
+    title: 'Come Velocizzare un Sito Web Lento: 12 Interventi che Fanno la Differenza',
+    description: 'Il tuo sito è lento? Ecco 12 ottimizzazioni pratiche per migliorare la velocità, dalla compressione delle immagini alla cache, con strumenti gratuiti per misurare i risultati.',
+    tag: 'Performance',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '10 min',
+    keyword: 'velocizzare sito web',
+    faq: [
+      {
+        question: 'Quanto dovrebbe essere veloce un sito web?',
+        answer: 'L\'ideale è un caricamento sotto 2 secondi su mobile e desktop. Tra 2 e 3 secondi inizi a perdere visitatori (circa il 30% abbandona). Oltre i 3 secondi, perdi oltre la metà dei visitatori e Google ti penalizza nel ranking mobile. Verifica con PageSpeed Insights di Google: punta ad almeno 70/100 su mobile e 90/100 su desktop come obiettivo minimo realistico per la maggior parte dei siti.'
+      },
+      {
+        question: 'Posso velocizzare il sito da solo o serve uno sviluppatore?',
+        answer: 'Alcuni interventi li puoi fare da solo: ottimizzare le immagini (TinyPNG, Squoosh), attivare la cache e il CDN dal pannello di hosting, eliminare plugin inutili su WordPress. Altri interventi richiedono uno sviluppatore: minificare CSS e JavaScript, ottimizzare il database, implementare il lazy loading, ridurre i render-blocking resources. La buona notizia: l\'80% del guadagno di velocità viene da interventi che uno sviluppatore può fare in poche ore.'
+      },
+      {
+        question: 'Velocizzare il sito migliora la SEO?',
+        answer: 'Sì, e in due modi. Diretto: Google usa i Core Web Vitals (LCP, INP, CLS) come fattori di ranking ufficiali dal 2021. Un sito veloce si posiziona meglio di uno lento a parità di contenuti. Indiretto: un sito veloce riduce il bounce rate e aumenta il tempo di permanenza — entrambi segnali che Google interpreta come indicatori di qualità.'
+      }
+    ],
+    content: `
+<p>Hai presente quando clicchi su un sito e la pagina resta bianca per secondi che sembrano minuti? Quel sito sta perdendo clienti. Gli studi dicono che il 53% degli utenti abbandona una pagina che impiega più di 3 secondi a caricarsi su mobile. E Google penalizza i siti lenti nel posizionamento. Ecco <strong>12 interventi pratici</strong> per velocizzare il tuo sito, ordinati dal più efficace al più tecnico.</p>
+
+<h2>1. Ottimizza le immagini (il 90% della lentezza dei siti)</h2>
+<p>La causa numero uno dei siti lenti sono le immagini troppo pesanti. Controlla:</p>
+<ul>
+    <li><strong>Dimensioni</strong>: un'immagine non deve mai essere più larga dello spazio che occupa. Se il contenitore è 800px, l'immagine non deve essere 4000px.</li>
+    <li><strong>Formato</strong>: usa WebP invece di JPEG/PNG (riduce il peso del 25-35% a parità di qualità). Includi sempre una versione PNG come fallback con il tag &lt;picture&gt;.</li>
+    <li><strong>Compressione</strong>: usa strumenti come TinyPNG, Squoosh o ImageOptim prima di caricare le immagini.</li>
+    <li><strong>Lazy loading</strong>: carica le immagini solo quando l'utente sta per vederle, non tutte subito. In HTML si fa con loading="lazy".</li>
+</ul>
+
+<h2>2. Attiva la cache del browser</h2>
+<p>La cache salva una copia del sito sul dispositivo del visitatore, così al secondo accesso non deve riscaricare tutto da zero. Si configura dal file .htaccess o dal pannello di hosting. Imposta una durata di almeno 30 giorni per immagini, CSS e JavaScript. Su WordPress, plugin come WP Rocket lo fanno con un click.</p>
+
+<h2>3. Usa una CDN (Content Delivery Network)</h2>
+<p>Una CDN distribuisce il tuo sito su decine di server nel mondo. Quando un visitatore da Milano apre il sito, i file vengono serviti dal server di Milano (o il più vicino), non dal server in Germania o negli USA. Cloudflare ha un piano gratuito che basta per la maggior parte dei siti aziendali. Si configura in 10 minuti cambiando i DNS del dominio.</p>
+
+<h2>4. Minifica CSS, JavaScript e HTML</h2>
+<p>La minificazione rimuove spazi, commenti e caratteri inutili dal codice, riducendo il peso dei file. Su un file CSS tipico, la minificazione riduce il peso del 20-40%. Si fa con strumenti automatici (Webpack, Gulp) o con plugin WordPress (Autoptimize).</p>
+
+<h2>5. Riduci il numero di plugin (WordPress)</h2>
+<p>Ogni plugin aggiunge codice che rallenta il sito. Fai pulizia: elimina i plugin che non usi o che fanno cose che potresti fare con una riga di codice. Un sito WordPress medio ha 20-30 plugin — riducili a 10-15 essenziali.</p>
+
+<h2>6. Scegli un hosting decente</h2>
+<p>L'hosting a €2 al mese ospita il tuo sito sullo stesso server di altre 500 persone. Quando una di queste ha un picco di traffico, il tuo sito rallenta. Investi in un hosting di qualità (€8-20/mese per un sito medio) con risorse dedicate, server in Italia e supporto veloce. L'hosting è una delle poche cose su cui non conviene risparmiare.</p>
+
+<h2>7. Elimina i redirect inutili</h2>
+<p>Ogni redirect (301, 302) aggiunge tempo al caricamento. Controlla con Screaming Frog o Google Search Console se hai catene di redirect o redirect non necessari. Ogni redirect in più è una frazione di secondo persa.</p>
+
+<h2>8. Carica i font in modo intelligente</h2>
+<p>I Google Font aggiungono richieste esterne che rallentano il caricamento. Usa font-display: swap nel CSS per mostrare subito un font di sistema mentre Google Font si carica. Ospita i font sul tuo server invece di caricarli da Google. Usa solo i pesi che ti servono veramente (Regular + Bold bastano, non servono 6 varianti).</p>
+
+<h2>9. Comprimi i file con GZIP o Brotli</h2>
+<p>La compressione riduce il peso dei file HTML, CSS e JavaScript fino al 70% prima di inviarli al browser. La maggior parte degli hosting moderni la attiva di default — verifica che sia attiva sul tuo.</p>
+
+<h2>10. Riduci le richieste HTTP</h2>
+<p>Ogni file (CSS, JS, immagine, font) richiede una richiesta HTTP separata. Combina file CSS e JS in bundle invece di caricarne 10 separati. Elimina script di terze parti che non ti servono più (vecchi pixel di tracciamento, widget social, plugin di chat non utilizzati).</p>
+
+<h2>11. Ottimizza il database</h2>
+<p>Revisioni di articoli, commenti spam, transitori scaduti: il database accumula dati inutili che lo rallentano. Su WordPress, plugin come WP-Optimize puliscono il database in due click. Fallo una volta al mese.</p>
+
+<h2>12. Misura prima e dopo per sapere se hai risolto</h2>
+<p>Prima di toccare niente, misura la velocità attuale con:</p>
+<ul>
+    <li><strong>PageSpeed Insights</strong> (gratuito, Google): ti dà il punteggio Core Web Vitals e suggerimenti specifici.</li>
+    <li><strong>GTmetrix</strong> (gratuito): waterfall completo di tutte le richieste e tempi di caricamento.</li>
+    <li><strong>WebPageTest</strong> (gratuito): test da diverse località e connessioni.</li>
+</ul>
+<p>Misura, intervieni su 2-3 punti, rimisura. Non fare tutto insieme o non saprai cosa ha funzionato.</p>
+
+<p>In <a href="../chi-siamo.html">WebNovis</a> ogni sito che sviluppiamo è ottimizzato per la velocità fin dalla prima riga di codice — non come intervento successivo. <a href="../servizi/sviluppo-web.html">Scopri il nostro approccio →</a></p>`
+  },
+  {
+    slug: 'quanto-costa-mantenere-sito-web',
+    title: 'Quanto Costa Mantenere un Sito Web? La Guida ai Costi Nascosti',
+    description: 'Dominio, hosting, manutenzione, aggiornamenti, SEO: ecco quanto costa davvero mantenere un sito web ogni anno, con tutti i costi fissi e variabili spiegati.',
+    tag: 'Web Development',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '8 min',
+    keyword: 'costo mantenimento sito web',
+    faq: [
+      {
+        question: 'Quali sono i costi fissi annuali di un sito web?',
+        answer: 'I costi fissi minimi sono: dominio €10-30/anno, hosting €50-200/anno, certificato SSL (gratuito con Let\'s Encrypt o €50-100/anno), email professionali (incluse nell\'hosting o €5-15/mese con Google Workspace). Totale minimo: circa €100-300/anno per tenere il sito online. Senza manutenzione, aggiornamenti o interventi di modifica.'
+      },
+      {
+        question: 'Quanto costa la manutenzione di un sito WordPress?',
+        answer: 'WordPress richiede aggiornamenti regolari di core, plugin e tema per evitare vulnerabilità di sicurezza. Un piano di manutenzione base (aggiornamenti mensili, backup, controllo sicurezza) costa €50-100/mese. La manutenzione avanzata (che include modifiche ai contenuti, ottimizzazioni SEO e report) costa €150-400/mese. Senza manutenzione, il sito diventa vulnerabile in media entro 3-6 mesi.'
+      },
+      {
+        question: 'Cosa succede se non faccio manutenzione al sito?',
+        answer: 'Tre rischi principali: 1) Vulnerabilità di sicurezza — plugin obsoleti sono la porta d\'ingresso per gli hacker. Ripulire un sito hackerato costa 5-10 volte più della manutenzione preventiva. 2) Degrado delle performance — il sito diventa più lento nel tempo. 3) Perdita di posizionamento SEO — Google penalizza siti non aggiornati e con problemi tecnici accumulati. In media, un sito senza manutenzione perde il 20-40% del traffico organico in 12 mesi.'
+      }
+    ],
+    content: `
+<p>Tutti parlano di "quanto costa fare un sito web", ma quasi nessuno parla di quanto costa <strong>mantenerlo</strong>. Eppure il mantenimento è la voce di spesa che dura per tutta la vita del sito — anni, non mesi. Ecco una guida trasparente ai costi reali, da quelli obbligatori a quelli opzionali ma consigliati.</p>
+
+<h2>Costi fissi obbligatori (ogni anno)</h2>
+<table style="width:100%;border-collapse:collapse;margin:1.5rem 0">
+<thead><tr style="border-bottom:2px solid rgba(255,255,255,.1)">
+<th style="text-align:left;padding:.75rem;color:var(--white)">Voce di costo</th>
+<th style="text-align:left;padding:.75rem;color:var(--white)">Costo annuale</th>
+<th style="text-align:left;padding:.75rem;color:var(--white)">Note</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Dominio (.it)</td><td style="padding:.75rem">€10-30</td><td style="padding:.75rem">Rinnovo annuale obbligatorio</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Hosting</td><td style="padding:.75rem">€50-300</td><td style="padding:.75rem">Da €4/mese (base) a €25/mese (performance)</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Certificato SSL</td><td style="padding:.75rem">€0-100</td><td style="padding:.75rem">Gratuito con Let's Encrypt sulla maggior parte degli hosting</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Email professionali</td><td style="padding:.75rem">€0-200</td><td style="padding:.75rem">Incluse nell'hosting o €5-15/mese con Google/Microsoft</td></tr>
+<tr><td style="padding:.75rem"><strong>TOTALE MINIMO</strong></td><td style="padding:.75rem"><strong>€60-630</strong></td><td style="padding:.75rem">Per tenere il sito online, senza manutenzione</td></tr>
+</tbody></table>
+
+<h2>Costi di manutenzione (mensili o annuali)</h2>
+<p>Non sono obbligatori per legge, ma saltarli è come non fare il tagliando all'auto: risparmi oggi per pagare molto di più domani.</p>
+<ul>
+    <li><strong>Manutenzione tecnica base</strong>: €50-100/mese. Aggiornamenti di sicurezza, backup automatici, monitoraggio uptime, controllo errori. Il minimo indispensabile per qualsiasi sito aziendale.</li>
+    <li><strong>Manutenzione con modifiche contenuti</strong>: €100-250/mese. Include la manutenzione tecnica più modifiche regolari a testi, immagini, prodotti (es. aggiornamento listino, nuove foto, cambio orari).</li>
+    <li><strong>Manutenzione con SEO continuativa</strong>: €200-500/mese. Include tutto quanto sopra più ottimizzazione SEO mensile, creazione contenuti blog, monitoraggio posizionamento.</li>
+</ul>
+
+<h2>Costi opzionali ma consigliati</h2>
+<ul>
+    <li><strong>Restyling periodico</strong>: €1.000-3.000 ogni 2-3 anni. Un sito invecchia visivamente e tecnologicamente. Dopo 3 anni, un restyling (non un rifacimento totale) mantiene il sito moderno e performante.</li>
+    <li><strong>SEO e content marketing</strong>: €300-1.000/mese. Posizionarsi su Google richiede lavoro costante: articoli blog, link building, ottimizzazioni on-page. È la voce che porta il maggior ritorno sull'investimento nel medio periodo.</li>
+    <li><strong>Advertising (Google/Meta Ads)</strong>: €300-2.000/mese. Porta risultati immediati ma si ferma quando smetti di pagare. La SEO porta risultati più lenti ma duraturi.</li>
+    <li><strong>Fotografia professionale</strong>: €500-1.500 (una tantum). Le foto vere del tuo lavoro valgono più di qualsiasi stock photo. Investici all'inizio e ogni volta che cambi servizi o prodotti.</li>
+</ul>
+
+<h2>Quanto costa NON mantenere il sito (i costi nascosti)</h2>
+<p>Molti pensano "il sito l'ho pagato, ora è gratis". Non è così. Ecco cosa succede senza manutenzione:</p>
+<ul>
+    <li><strong>Sito hackerato</strong>: ripulire un sito compromesso costa €500-2.000. La manutenzione preventiva costa €50-100/mese. Fai i conti.</li>
+    <li><strong>Perdita di posizionamento</strong>: recuperare il ranking perso costa 3-5 volte più che mantenerlo. Un sito fermo da 12 mesi perde in media il 30% del traffico organico.</li>
+    <li><strong>Danno d'immagine</strong>: un sito con informazioni obsolete (orari sbagliati, prezzi vecchi, membri del team che non lavorano più lì) comunica disinteresse e poca professionalità.</li>
+</ul>
+
+<p>In <a href="../chi-siamo.html">WebNovis</a> offriamo <a href="../servizi/manutenzione-sito.html">piani di manutenzione</a> che includono hosting performante (incluso nel prezzo), backup quotidiani, aggiornamenti di sicurezza, monitoraggio e report mensili — così puoi concentrarti sulla tua attività sapendo che il sito è in buone mani. <a href="../preventivo.html">Richiedi informazioni →</a></p>`
+  },
+  {
+    slug: 'come-proteggere-sito-web-hacker',
+    title: 'Come Proteggere il Sito Web dagli Hacker: 10 Misure di Sicurezza Essenziali',
+    description: 'Hacker, malware, phishing, furto dati: ecco 10 misure concrete per mettere in sicurezza il tuo sito aziendale, anche senza competenze tecniche avanzate.',
+    tag: 'Web Development',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '9 min',
+    keyword: 'proteggere sito web hacker',
+    faq: [
+      {
+        question: 'I siti piccoli vengono davvero hackerati?',
+        answer: 'Sì, anzi: i siti di piccole aziende e professionisti sono i bersagli preferiti dagli attacchi automatici. Un hacker non ti prende di mira personalmente — usa bot che scansionano milioni di siti cercando vulnerabilità conosciute. I siti piccoli hanno spesso meno protezioni e sono più facili da violare. Il 43% degli attacchi informatici colpisce piccole imprese, non multinazionali.'
+      },
+      {
+        question: 'Cosa rischia un sito hackerato oltre al danno tecnico?',
+        answer: 'Rischi su tre fronti: 1) Danno economico immediato — il sito offline, i clienti non possono contattarti né comprare. 2) Danno legale — se vengono rubati dati dei clienti (email, password, dati di pagamento), sei responsabile secondo il GDPR e rischi sanzioni fino al 4% del fatturato annuo. 3) Danno reputazionale — Google può segnalare il tuo sito come "pericoloso" e rimuoverlo dall\'indice, e i visitatori vedranno un avviso rosso che li allontanerà per mesi.'
+      },
+      {
+        question: 'Basta installare un plugin di sicurezza su WordPress?',
+        answer: 'No. Un plugin di sicurezza (Wordfence, Sucuri) è un buon primo passo, ma non basta. La sicurezza è fatta di più livelli: password robuste, aggiornamenti tempestivi, backup regolari, HTTPS, permessi file corretti, e un hosting che non ospiti centinaia di altri siti sullo stesso server. Un plugin è un pezzo del puzzle, non l\'intera soluzione.'
+      }
+    ],
+    content: `
+<p>"Il mio sito è piccolo, perché mai dovrebbero hackerarlo?" È il pensiero che ha chiunque prima di subire un attacco. La realtà è che <strong>gli attacchi sono automatici</strong>: bot scansionano milioni di siti cercando vulnerabilità note. Se il tuo sito ne ha una, lo colpiscono — non importa quanto tu sia piccolo. Ecco 10 misure di sicurezza concrete, dalla più semplice alla più avanzata.</p>
+
+<h2>1. Tieni tutto aggiornato (sempre)</h2>
+<p>La causa numero uno di siti hackerati sono software obsoleti. Se usi WordPress, aggiorna core, plugin e tema appena disponibili — non rimandare. Il 90% delle vulnerabilità sfruttate dagli hacker sono già state corrette negli aggiornamenti. Se non aggiorni, stai lasciando la porta aperta con le chiavi nella toppa.</p>
+
+<h2>2. Usa password robuste (e diverse per ogni servizio)</h2>
+<p>"Password123" o "nomeazienda2024" non sono password — sono inviti a entrare. Usa password di almeno 14 caratteri con lettere, numeri e simboli. Usa un password manager (Bitwarden, 1Password) per generarle e ricordarle. E non usare MAI la stessa password per sito, hosting, email e database.</p>
+
+<h2>3. Attiva l'autenticazione a due fattori (2FA)</h2>
+<p>Anche se qualcuno scopre la tua password, con la 2FA non può entrare senza il secondo fattore (un codice temporaneo dal telefono). Attivala su: pannello di amministrazione del sito, hosting, email, dominio. È gratis, si attiva in 2 minuti e blocca il 99% degli accessi non autorizzati.</p>
+
+<h2>4. HTTPS è obbligatorio (e gratuito)</h2>
+<p>Un sito senza HTTPS trasmette i dati in chiaro — login, form, dati dei clienti, tutto intercettabile. HTTPS è gratuito con Let's Encrypt e la maggior parte degli hosting lo attiva con un click. Se il tuo sito non ha il lucchetto nella barra degli indirizzi, fermati e risolvi subito.</p>
+
+<h2>5. Backup automatici quotidiani</h2>
+<p>La sicurezza perfetta non esiste. Quando (non se) qualcosa va storto, l'unica salvezza è un backup. Attiva backup automatici quotidiani e conservali fuori dal server (cloud, servizio esterno). Verifica periodicamente che i backup funzionino: un backup che non si ripristina è come un airbag che non si apre.</p>
+
+<h2>6. Limita i tentativi di login</h2>
+<p>Un bot prova migliaia di combinazioni di password in pochi minuti (attacco brute force). Limita i tentativi di login a 3-5 prima di un blocco temporaneo. Su WordPress, plugin come Wordfence o Limit Login Attempts lo fanno in automatico.</p>
+
+<h2>7. Scegli un hosting sicuro</h2>
+<p>L'hosting a €2/mese infila il tuo sito sullo stesso server di centinaia di altri. Se uno di quei siti viene hackerato, il server è compromesso e anche il tuo sito è a rischio. Scegli hosting con isolamento tra account, firewall a livello server, e protezione DDoS inclusa nel prezzo base.</p>
+
+<h2>8. Rimuovi plugin e temi che non usi</h2>
+<p>Ogni plugin inattivo è una potenziale vulnerabilità. Disinstalla (non solo disattiva) tutto ciò che non usi. Lo stesso vale per i temi — tieni solo quello attivo. Meno codice = meno superficie d'attacco.</p>
+
+<h2>9. Cambia il prefisso del database e l'URL di login</h2>
+<p>Di default, WordPress usa /wp-admin per il login e il prefisso wp_ per il database. I bot lo sanno e attaccano lì per primi. Cambia il prefisso del database in qualcosa di univoco e, se possibile, cambia l'URL di login (plugin WPS Hide Login).</p>
+
+<h2>10. Monitora la sicurezza del sito</h2>
+<p>Non puoi proteggere ciò che non controlli. Servizi come Sucuri o Wordfence monitorano il sito 24/7 e ti avvisano in tempo reale di file modificati, tentativi di accesso sospetti, malware. Per un sito aziendale, il costo di un monitoraggio base (€50-150/anno) è irrisorio rispetto al costo di un attacco.</p>
+
+<h2>Cosa fare subito (checklist 10 minuti)</h2>
+<ol>
+    <li>Aggiorna tutto: CMS, plugin, tema</li>
+    <li>Cambia la password dell'amministratore con una password robusta</li>
+    <li>Attiva 2FA sull'account amministratore</li>
+    <li>Verifica che HTTPS sia attivo e funzionante</li>
+    <li>Controlla che i backup automatici siano attivi e funzionanti</li>
+</ol>
+<p>Fai questi 5 check adesso. Sono gratis e richiedono 10 minuti. Poi pianifica il resto nelle prossime settimane.</p>
+
+<p>In <a href="../chi-siamo.html">WebNovis</a> sviluppiamo siti con sicurezza integrata a ogni livello: HTTPS, backup automatici, codice aggiornato e protetto, permessi file corretti e monitoraggio continuo. <a href="../servizi/sviluppo-web.html">Scopri il nostro approccio alla sicurezza →</a></p>`
   },
 ];
 

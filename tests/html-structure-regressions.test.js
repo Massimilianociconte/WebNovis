@@ -38,7 +38,7 @@ function auditPublicHtml() {
   const failures = [];
   const files = collectExpectedPublicHtml(ROOT);
 
-  assert.equal(files.length, 1158, 'the complete public HTML inventory must remain explicit');
+  assert.equal(files.length, 1165, 'the complete public HTML inventory must remain explicit');
 
   for (const relativePath of files) {
     const html = readText(relativePath);
