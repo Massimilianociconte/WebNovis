@@ -13,7 +13,7 @@ const {
     coreServices,
     buildCatalogOffer
 } = require('./data');
-const { stripHtml } = require('./html-utils');
+const { stripHtml, toCity } = require('./html-utils');
 
 function getAreaServedEntity(city) {
     const normalizedName = String(city.name || '').toLowerCase();
@@ -78,19 +78,19 @@ function generateSchemas(city, pageType, resolvedFaqs) {
     const isAgenziaPage = pageType === 'agenzia';
     const breadcrumbLabel = isAgenziaPage
         ? `Agenzia Web ${city.name}`
-        : `Realizzazione Siti Web a ${city.name}`;
+        : `Realizzazione Siti Web ${toCity(city.name)}`;
     const hubCrumb = isAgenziaPage
         ? { name: 'Agenzia Web', item: `${SITE}/agenzia-web/` }
         : { name: 'Siti Web per Comuni', item: `${SITE}/realizzazione-siti-web/` };
     const webPageDescription = isAgenziaPage
         ? `WebNovis è l'agenzia web per ${city.name} e hinterland milanese. Siti 100% custom, graphic design, social media. Sede a Rho, ${city.distanzaSede} da ${city.name}.`
-        : `Realizzazione siti web a ${city.name} per PMI e professionisti: landing page, siti vetrina ed e-commerce custom con SEO tecnica integrata e gestione diretta da Rho (${city.distanzaSede}).`;
+        : `Realizzazione siti web ${toCity(city.name)} per PMI e professionisti: landing page, siti vetrina ed e-commerce custom con SEO tecnica integrata e gestione diretta da Rho (${city.distanzaSede}).`;
     const offerCatalogName = isAgenziaPage
-        ? `Servizi Web a ${city.name}`
-        : `Servizi di Realizzazione Siti Web a ${city.name}`;
+        ? `Servizi Web ${toCity(city.name)}`
+        : `Servizi di Realizzazione Siti Web ${toCity(city.name)}`;
     const serviceName = isAgenziaPage
-        ? `Sviluppo Siti Web a ${city.name}`
-        : `Realizzazione Siti Web a ${city.name}`;
+        ? `Sviluppo Siti Web ${toCity(city.name)}`
+        : `Realizzazione Siti Web ${toCity(city.name)}`;
     const serviceDescription = isAgenziaPage
         ? `Realizzazione siti web 100% custom per aziende di ${city.name} e comuni limitrofi.`
         : `Realizzazione siti web 100% custom per aziende e professionisti di ${city.name}, con landing page, siti vetrina ed e-commerce orientati ai contatti.`;
@@ -138,7 +138,7 @@ function generateSchemas(city, pageType, resolvedFaqs) {
         {
             "@context": "https://schema.org", "@type": "Service",
             "@id": canonical + "#service",
-            "serviceType": "Web Development",
+            "serviceType": isAgenziaPage ? "Sviluppo Siti Web" : "Realizzazione Siti Web",
             "name": serviceName,
             "description": serviceDescription,
             "provider": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
@@ -150,7 +150,7 @@ function generateSchemas(city, pageType, resolvedFaqs) {
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": service.shortName + " a " + city.name,
+                        "name": `${service.shortName} ${toCity(city.name)}`,
                         "url": SITE + service.url
                     }
                 }))
@@ -162,7 +162,7 @@ function generateSchemas(city, pageType, resolvedFaqs) {
             "@type": "Service",
             "@id": canonical + `#service-${service.slug}`,
             "serviceType": service.name,
-            "name": `${service.shortName} a ${city.name}`,
+            "name": `${service.shortName} ${toCity(city.name)}`,
             "description": `${service.shortDesc} Per aziende e professionisti di ${city.name}, con gestione diretta da Rho (${city.distanzaSede}).`,
             "provider": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
             "areaServed": primaryAreaServed,

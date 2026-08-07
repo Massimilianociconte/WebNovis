@@ -2,6 +2,7 @@
  * Hand-written per-city editorial SEO/body helpers.
  */
 const { getGeoEditorialRecord } = require('../../config/geo-editorial');
+const { toCity } = require('./html-utils');
 
 function escapeEditorialHtml(value) {
     return String(value == null ? '' : value)
@@ -46,7 +47,7 @@ function applyEditorialBody(page, editorial) {
 
     const block = '<section class="service-detail" id="contesto-locale">'
         + '<div class="container">'
-        + `<h2>${escapeEditorialHtml(`${editorial.service} a ${editorial.city}: il contesto locale`)}</h2> `
+        + `<h2>${escapeEditorialHtml(`${editorial.service} ${toCity(editorial.city)}: il contesto locale`)}</h2> `
         + `<p>${escapeEditorialHtml(editorial.intro)}</p> ${body}${closing}`
         + '</div></section>';
 

@@ -25,7 +25,7 @@ const {
     shouldGenerateGeoForService,
     njkEnv
 } = require('./data');
-const { getNearestCities, stripHtml } = require('./html-utils');
+const { getNearestCities, stripHtml, toCity } = require('./html-utils');
 const { getBasePage } = require('./paths');
 const { getGeoEditorialRecord, applyEditorialSeoOverrides } = require('./editorial');
 const { getServiceLocalSeoCopy } = require('./copy');
@@ -54,7 +54,7 @@ function generateServizioCittaPage(service, city) {
         .slice(0, 3)
         .map(nc => ({
             url: `/${service.slug}-${nc.slug}.html`,
-            label: `${service.shortName} a ${nc.name}`,
+            label: `${service.shortName} ${toCity(nc.name)}`,
             distance: nc.distanzaSede
         }));
 
@@ -96,13 +96,13 @@ function generateServizioCittaPage(service, city) {
     // ─── Service-specific FAQ pools (5-7 FAQs per cluster type) ──────────
     const webDevFaqPool = [
         { q: `Usate WordPress per ${service.name.toLowerCase()}?`, a: `No. WebNovis propone sviluppo custom con HTML, CSS e JavaScript, senza dipendere da temi o plugin WordPress. Architettura, requisiti di sicurezza e verifiche SEO vengono definiti per il singolo progetto.` },
-        { q: `Come affrontate la velocità del sito a ${city.name}?`, a: `Progettiamo pagine leggere e verifichiamo i Core Web Vitals su layout e dispositivi rappresentativi. Obiettivi, misure e interventi dipendono dai contenuti e dalle integrazioni concordate: non pubblichiamo un punteggio universale garantito.` },
-        { q: `Il sito sarà ottimizzato per le ricerche locali a ${city.name}?`, a: `Sì. Integriamo SEO tecnica, dati strutturati Schema.org (LocalBusiness, Service), meta tag geo-specifici e contenuti ottimizzati per intercettare ricerche come "${service.shortName.toLowerCase()} ${city.name}" e varianti correlate.` },
+        { q: `Come affrontate la velocità del sito ${toCity(city.name)}?`, a: `Progettiamo pagine leggere e verifichiamo i Core Web Vitals su layout e dispositivi rappresentativi. Obiettivi, misure e interventi dipendono dai contenuti e dalle integrazioni concordate: non pubblichiamo un punteggio universale garantito.` },
+        { q: `Il sito sarà ottimizzato per le ricerche locali ${toCity(city.name)}?`, a: `Sì. Integriamo SEO tecnica, dati strutturati Schema.org (LocalBusiness, Service), meta tag geo-specifici e contenuti ottimizzati per intercettare ricerche come "${service.shortName.toLowerCase()} ${city.name}" e varianti correlate.` },
         { q: `Posso gestire il sito in autonomia dopo il lancio?`, a: `Sì. Forniamo formazione e, dove serve, un pannello di gestione contenuti semplice. Per chi preferisce affidarsi a noi, offriamo piani di manutenzione continuativa da €59/mese.` },
         { q: `Cosa include il supporto post-lancio?`, a: `Perimetro, durata e canali del supporto vengono indicati nella proposta. Se serve continuità operativa, il catalogo prevede anche un servizio di manutenzione da €${serviceBySlug.get('manutenzione-sito').priceFrom}/mese, da confermare nel preventivo.` }
     ];
     const marketingFaqPool = [
-        { q: `Come misurate i risultati di ${service.name.toLowerCase()} a ${city.name}?`, a: `Definiamo KPI specifici prima di partire (lead, conversioni, traffico qualificato) e forniamo report periodici con dati reali. Ogni decisione operativa è guidata dai numeri, non da intuizioni.` },
+        { q: `Come misurate i risultati di ${service.name.toLowerCase()} ${toCity(city.name)}?`, a: `Definiamo KPI specifici prima di partire (lead, conversioni, traffico qualificato) e forniamo report periodici con dati reali. Ogni decisione operativa è guidata dai numeri, non da intuizioni.` },
         { q: `Quanto tempo serve per valutare ${service.shortName.toLowerCase()}?`, a: `La finestra di valutazione dipende da canale, storico, budget, domanda e qualità del tracciamento. Prima di partire definiamo baseline e KPI; tempi e risultati non vengono garantiti in anticipo.` },
         { q: `Lavorate solo con aziende grandi o anche con piccole attività di ${city.name}?`, a: `Lavoriamo con PMI, professionisti e attività locali di ${city.name}. Il nostro approccio è scalabile: partiamo da budget contenuti e cresciamo con i risultati. Investimento da €${service.priceFrom}${service.priceUnit || ''}.` },
         { q: `Come vengono definiti durata e recesso del servizio?`, a: `Durata, rinnovi ed eventuale recesso dipendono dalla proposta accettata. Chiedi che questi elementi, insieme a deliverable e report, siano indicati per iscritto prima dell'avvio.` },
@@ -126,8 +126,8 @@ function generateServizioCittaPage(service, city) {
     const faqs = (editorial && editorial.faqs && editorial.faqs.length)
         ? editorial.faqs.map((faq) => ({ q: faq.question, a: faq.answer }))
         : [
-        { q: `Quanto costa ${service.name.toLowerCase()} a ${city.name}?`, a: `${service.name} a ${city.name}: prezzo di catalogo da <strong>€${service.priceFrom}${service.priceUnit || ''}</strong>. La stima ${service.timeEstimate.toLowerCase()} è indicativa; il preventivo conferma perimetro, prezzo e tempi del caso specifico.` },
-        { q: `WebNovis è vicina a ${city.name}?`, a: `La nostra sede è a Rho, Via S. Giorgio 2 — ${city.distanzaSede} in auto da ${city.name}. Incontriamo i clienti in azienda o in videochiamata.` },
+        { q: `Quanto costa ${service.name.toLowerCase()} ${toCity(city.name)}?`, a: `${service.name} ${toCity(city.name)}: prezzo di catalogo da <strong>€${service.priceFrom}${service.priceUnit || ''}</strong>. La stima ${service.timeEstimate.toLowerCase()} è indicativa; il preventivo conferma perimetro, prezzo e tempi del caso specifico.` },
+        { q: `WebNovis è vicina ${toCity(city.name)}?`, a: `La nostra sede è a Rho, Via S. Giorgio 2 — ${city.distanzaSede} in auto da ${city.name}. Incontriamo i clienti in azienda o in videochiamata.` },
         ...faqPool
     ];
 
@@ -137,7 +137,7 @@ function generateServizioCittaPage(service, city) {
         .slice(0, 6)
         .map(svc => ({
             url: `/${svc.slug}-${city.slug}.html`,
-            label: `${svc.shortName} a ${city.name}`
+            label: `${svc.shortName} ${toCity(city.name)}`
         }));
 
     // Tier classification — drives structural differentiation in the template.
@@ -221,7 +221,7 @@ function generateServizioCittaPage(service, city) {
             "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
                 { "@type": "ListItem", "position": 2, "name": service.shortName, "item": SITE + "/zone-servite/#" + service.slug },
-                { "@type": "ListItem", "position": 3, "name": `${service.shortName} a ${city.name}`, "item": canonical }
+                { "@type": "ListItem", "position": 3, "name": `${service.shortName} ${toCity(city.name)}`, "item": canonical }
             ]
         },
         {
@@ -241,7 +241,7 @@ function generateServizioCittaPage(service, city) {
             "@context": "https://schema.org", "@type": "Service",
             "@id": canonical + "#service",
             "serviceType": service.name,
-            "name": `${service.shortName} a ${city.name}`,
+            "name": `${service.shortName} ${toCity(city.name)}`,
             "description": seo.schemaDescription,
             "provider": { "@id": SINGLETON_LOCAL_BUSINESS_ID },
             "areaServed": getAreaServedEntity(city),
@@ -254,7 +254,7 @@ function generateServizioCittaPage(service, city) {
                         "@type": "Offer",
                         "itemOffered": {
                             "@type": "Service",
-                            "name": `${service.shortName} a ${city.name}`,
+                            "name": `${service.shortName} ${toCity(city.name)}`,
                             "url": SITE + service.url
                         }
                     }]

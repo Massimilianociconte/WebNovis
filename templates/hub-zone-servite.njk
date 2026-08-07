@@ -89,7 +89,7 @@
         {% for city in agenziaCities %}
         <a href="/agenzia-web-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="Agenzia Web {{ city.name }}">
           {% if city.avatarSrc %}
-          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="Agenzia web a {{ city.name }} ({{ city.province }})" width="40" height="40" loading="lazy" decoding="async"></span>
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="Agenzia web {{ city.name | toCity }} ({{ city.province }})" width="40" height="40" loading="lazy" decoding="async"></span>
           {% else %}
           <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
           {% endif %}
@@ -112,7 +112,7 @@
         {% for city in realizzazioneCities %}
         <a href="/realizzazione-siti-web-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="Siti Web {{ city.name }}">
           {% if city.avatarSrc %}
-          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="Realizzazione siti web a {{ city.name }} ({{ city.province }})" width="40" height="40" loading="lazy" decoding="async"></span>
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="Realizzazione siti web {{ city.name | toCity }} ({{ city.province }})" width="40" height="40" loading="lazy" decoding="async"></span>
           {% else %}
           <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
           {% endif %}
@@ -134,9 +134,9 @@
       <p>{{ service.shortDesc }} Da €{{ service.priceFrom }}{{ service.priceUnit if service.priceUnit }}. Scegli il comune per vedere come lavoriamo su quel territorio.</p>
       <div class="hub-city-grid hub-city-grid--compact">
         {% for city in serviceCities[service.slug] %}
-        <a href="/{{ service.slug }}-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="{{ service.shortName }} a {{ city.name }}">
+        <a href="/{{ service.slug }}-{{ city.slug }}.html" class="hub-city-card hub-city-card--sm" title="{{ service.shortName }} {{ city.name | toCity }}">
           {% if city.avatarSrc %}
-          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="{{ service.shortName }} a {{ city.name }} ({{ city.province }})" width="40" height="40" loading="lazy" decoding="async"></span>
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="{{ service.shortName }} {{ city.name | toCity }} ({{ city.province }})" width="40" height="40" loading="lazy" decoding="async"></span>
           {% else %}
           <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
           {% endif %}

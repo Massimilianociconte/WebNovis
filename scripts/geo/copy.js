@@ -8,7 +8,7 @@ const {
     getServicePrimaryLabel,
     getGeoSearchModifier
 } = require('./data');
-const { truncateText, formatSectorList } = require('./html-utils');
+const { truncateText, formatSectorList, toCity, toCityCap } = require('./html-utils');
 
 function isContinuousService(service) {
     return new Set([
@@ -27,20 +27,20 @@ function getServiceLocalSeoCopy(service, city) {
     const primaryLabel = getServicePrimaryLabel(service);
 
     const fallback = {
-        title: `${service.shortName} a ${city.name}: da ${price} | WebNovis`,
-        description: `${service.shortDesc} A ${city.name}, da ${price}. Gestione diretta da Rho (${city.distanzaSede}) e richiesta di preventivo gratuita.`,
-        ogDescription: `${service.shortDesc} A ${city.name}, da ${price}.`,
+        title: `${service.shortName} ${toCity(city.name)}: da ${price} | WebNovis`,
+        description: `${service.shortDesc} ${toCityCap(city.name)}, da ${price}. Gestione diretta da Rho (${city.distanzaSede}) e richiesta di preventivo gratuita.`,
+        ogDescription: `${service.shortDesc} ${toCityCap(city.name)}, da ${price}.`,
         heroTag: `${service.shortName} per ${city.name} · ${price}`,
-        heroH1: `${service.shortName} a ${city.name} per aziende e professionisti`,
-        heroCapsule: `<strong>WebNovis</strong> offre ${service.shortName.toLowerCase()} a ${city.name} con un approccio su misura, tempi chiari e gestione diretta da Rho (${city.distanzaSede}). Investimento da <strong>${price}</strong> e richiesta di preventivo gratuita.`,
+        heroH1: `${service.shortName} ${toCity(city.name)} per aziende e professionisti`,
+        heroCapsule: `<strong>WebNovis</strong> offre ${service.shortName.toLowerCase()} ${toCity(city.name)} con un approccio su misura, tempi chiari e gestione diretta da Rho (${city.distanzaSede}). Investimento da <strong>${price}</strong> e richiesta di preventivo gratuita.`,
         heroHighlights: [
             { label: 'Investimento', value: `Da ${price}` },
             { label: 'Tempi', value: service.timeEstimate },
             { label: 'Focus', value: service.idealFor }
         ],
-        sectionTitle: `${service.shortName} a ${city.name}: cosa serve per ottenere risultati`,
+        sectionTitle: `${service.shortName} ${toCity(city.name)}: cosa serve per ottenere risultati`,
         sectionIntro: `${service.description} Lavoriamo con obiettivi chiari, deliverable definiti e una priorità costante: trasformare il servizio in richieste, appuntamenti o vendite.`,
-        whyTitle: `Perché scegliere WebNovis per ${service.shortName.toLowerCase()} a ${city.name}?`,
+        whyTitle: `Perché scegliere WebNovis per ${service.shortName.toLowerCase()} ${toCity(city.name)}?`,
         whyCards: isContinuousService(service)
             ? [
                 {
@@ -70,7 +70,7 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Ogni pagina o asset nasce per rendere più chiara l'offerta e facilitare il contatto o la vendita.`
                 }
             ],
-        processTitle: `Come lavoriamo su ${service.shortName.toLowerCase()} a ${city.name}`,
+        processTitle: `Come lavoriamo su ${service.shortName.toLowerCase()} ${toCity(city.name)}`,
         processIntro: isContinuousService(service)
             ? `Partiamo da audit e priorità, poi impostiamo il piano operativo e monitoriamo i risultati mese dopo mese.`
             : `Partiamo da obiettivo, contesto competitivo e materiali disponibili, poi progettiamo e rilasciamo una soluzione pronta a lavorare.`,
@@ -92,7 +92,7 @@ function getServiceLocalSeoCopy(service, city) {
             : [
                 {
                     title: '1. Analisi e brief',
-                    text: `Raccogliamo obiettivi, offerta, competitor e priorità commerciali per il tuo progetto a ${city.name}.`
+                    text: `Raccogliamo obiettivi, offerta, competitor e priorità commerciali per il tuo progetto ${toCity(city.name)}.`
                 },
                 {
                     title: '2. Struttura e proposta',
@@ -112,7 +112,7 @@ function getServiceLocalSeoCopy(service, city) {
         intentQueriesTitle: '',
         intentQueriesIntro: '',
         intentQueries: [],
-        ctaTitle: `${service.shortName} per la tua attività a ${city.name}?`,
+        ctaTitle: `${service.shortName} per la tua attività ${toCity(city.name)}?`,
         ctaCopy: `Scrivici obiettivo, settore e tempistiche: riceverai un primo riscontro con i passaggi utili per definire il preventivo.`,
         primaryPageUrl: primaryUrl,
         primaryPageLabel: primaryLabel,
@@ -121,18 +121,18 @@ function getServiceLocalSeoCopy(service, city) {
 
     const overrides = {
         'landing-page': {
-            title: `Landing Page a ${city.name}: lead generation da ${price} | WebNovis`,
-            description: `Landing page a ${city.name} per Google Ads, Meta Ads ed eventi: copy, design e tracking orientati ai lead. Da ${price}. Richiedi una valutazione.`,
-            ogDescription: `Landing page a ${city.name} pensate per aumentare richieste e conversioni. Da ${price}.`,
+            title: `Landing Page ${toCity(city.name)}: lead generation da ${price} | WebNovis`,
+            description: `Landing page ${toCity(city.name)} per Google Ads, Meta Ads ed eventi: copy, design e tracking orientati ai lead. Da ${price}. Richiedi una valutazione.`,
+            ogDescription: `Landing page ${toCity(city.name)} pensate per aumentare richieste e conversioni. Da ${price}.`,
             heroTag: `Landing Page · ${city.name} · ${price}`,
-            heroH1: `Landing Page a ${city.name} per campagne che portano contatti`,
-            heroCapsule: `<strong>WebNovis</strong> crea landing page a ${city.name} con copy, design e tracking pensati per aumentare richieste e conversioni. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroH1: `Landing Page ${toCity(city.name)} per campagne che portano contatti`,
+            heroCapsule: `<strong>WebNovis</strong> crea landing page ${toCity(city.name)} con copy, design e tracking pensati per aumentare richieste e conversioni. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'Lead generation' }
             ],
-            sectionTitle: `Landing page a ${city.name} per non sprecare budget ads`,
+            sectionTitle: `Landing page ${toCity(city.name)} per non sprecare budget ads`,
             sectionIntro: `Se investi in Google Ads, Meta Ads o campagne locali, la pagina conta quanto l'annuncio. Progettiamo strutture snelle, messaggi chiari e CTA pensate per trasformare clic in contatti.`,
             whyCards: [
                 {
@@ -149,41 +149,41 @@ function getServiceLocalSeoCopy(service, city) {
                 }
             ],
             processIntro: `Partiamo da offerta, pubblico e canale di traffico. Poi costruiamo una landing che renda la conversione più semplice e misurabile.`,
-            ctaTitle: `Vuoi una landing page che trasformi clic in contatti a ${city.name}?`,
+            ctaTitle: `Vuoi una landing page che trasformi clic in contatti ${toCity(city.name)}?`,
             ctaCopy: `Mandaci obiettivo, canale e offerta: riceverai un primo riscontro per definire struttura e preventivo.`,
-            schemaDescription: `Landing page a ${city.name} per campagne Google Ads, Meta Ads ed eventi, con copy, design e tracking orientati ai lead.`
+            schemaDescription: `Landing page ${toCity(city.name)} per campagne Google Ads, Meta Ads ed eventi, con copy, design e tracking orientati ai lead.`
         },
         'sito-vetrina': {
-            title: `Sito Vetrina a ${city.name}: sito professionale da ${price} | WebNovis`,
-            description: `Sito vetrina a ${city.name} con design custom, SEO integrata e struttura orientata ai contatti. Da ${price}. Richiedi un preventivo gratuito.`,
-            ogDescription: `Sito vetrina a ${city.name} con design custom e SEO integrata. Da ${price}.`,
+            title: `Sito Vetrina ${toCity(city.name)}: sito professionale da ${price} | WebNovis`,
+            description: `Sito vetrina ${toCity(city.name)} con design custom, SEO integrata e struttura orientata ai contatti. Da ${price}. Richiedi un preventivo gratuito.`,
+            ogDescription: `Sito vetrina ${toCity(city.name)} con design custom e SEO integrata. Da ${price}.`,
             heroTag: `Sito Vetrina · ${city.name} · ${price}`,
-            heroH1: `Sito Vetrina a ${city.name} per aziende che vogliono più richieste`,
-            heroCapsule: `<strong>WebNovis</strong> realizza siti vetrina a ${city.name} con design su misura, SEO tecnica integrata e struttura pensata per facilitare il contatto. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroH1: `Sito Vetrina ${toCity(city.name)} per aziende che vogliono più richieste`,
+            heroCapsule: `<strong>WebNovis</strong> realizza siti vetrina ${toCity(city.name)} con design su misura, SEO tecnica integrata e struttura pensata per facilitare il contatto. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'Contatti qualificati' }
             ],
-            sectionTitle: `Siti vetrina a ${city.name} per presentare bene l'offerta e farsi scegliere`,
+            sectionTitle: `Siti vetrina ${toCity(city.name)} per presentare bene l'offerta e farsi scegliere`,
             sectionIntro: `Un sito vetrina funziona quando rende chiari posizionamento, servizi e differenze rispetto ai competitor. Strutturiamo pagine, contenuti e CTA per aiutare le aziende di ${city.name} a generare richieste più qualificate.`,
-            ctaTitle: `Vuoi un sito vetrina che faccia percepire meglio il tuo valore a ${city.name}?`,
+            ctaTitle: `Vuoi un sito vetrina che faccia percepire meglio il tuo valore ${toCity(city.name)}?`,
             ctaCopy: `Possiamo aiutarti con struttura, copy e UX orientati ai contatti: richiedi un preventivo gratuito.`,
-            schemaDescription: `Sito vetrina a ${city.name} con design personalizzato, SEO integrata e architettura orientata ai contatti.`
+            schemaDescription: `Sito vetrina ${toCity(city.name)} con design personalizzato, SEO integrata e architettura orientata ai contatti.`
         },
         ecommerce: {
-            title: `E-Commerce a ${city.name}: shop online da ${price} | WebNovis`,
-            description: `E-commerce custom a ${city.name}: catalogo, pagamenti, checkout e SEO tecnica per vendere online senza commissioni piattaforma. Da ${price}.`,
-            ogDescription: `E-commerce custom a ${city.name} per vendere online con catalogo, checkout e SEO tecnica. Da ${price}.`,
+            title: `E-Commerce ${toCity(city.name)}: shop online da ${price} | WebNovis`,
+            description: `E-commerce custom ${toCity(city.name)}: catalogo, pagamenti, checkout e SEO tecnica per vendere online senza commissioni piattaforma. Da ${price}.`,
+            ogDescription: `E-commerce custom ${toCity(city.name)} per vendere online con catalogo, checkout e SEO tecnica. Da ${price}.`,
             heroTag: `E-Commerce · ${city.name} · ${price}`,
-            heroH1: `E-Commerce a ${city.name} per vendere online senza vincoli`,
-            heroCapsule: `<strong>WebNovis</strong> sviluppa e-commerce a ${city.name} con catalogo, checkout, pagamenti e SEO tecnica pensati per la vendita online. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroH1: `E-Commerce ${toCity(city.name)} per vendere online senza vincoli`,
+            heroCapsule: `<strong>WebNovis</strong> sviluppa e-commerce ${toCity(city.name)} con catalogo, checkout, pagamenti e SEO tecnica pensati per la vendita online. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'Vendite online' }
             ],
-            sectionTitle: `E-commerce a ${city.name} per trasformare catalogo e traffico in ordini`,
+            sectionTitle: `E-commerce ${toCity(city.name)} per trasformare catalogo e traffico in ordini`,
             sectionIntro: `Un negozio online deve essere facile da gestire, veloce da usare e solido lato SEO e checkout. Progettiamo e-commerce pensati per margini, conversione e crescita nel tempo.`,
             whyCards: [
                 {
@@ -214,7 +214,7 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Configuriamo pagamenti, spedizioni, tracking, email essenziali e handoff operativo per arrivare online con una base già usabile e misurabile.`
                 }
             ],
-            decisionFrameworkTitle: `Cosa deve avere un e-commerce a ${city.name} per vendere davvero`,
+            decisionFrameworkTitle: `Cosa deve avere un e-commerce ${toCity(city.name)} per vendere davvero`,
             decisionFrameworkIntro: `Nelle SERP locali molti competitor presidiano la query “realizzazione e-commerce” con landing molto verticali. Per reggere davvero il confronto non basta pubblicare uno shop: servono fondamenta commerciali e operative chiare.`,
             decisionFrameworkCards: [
                 {
@@ -234,7 +234,7 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Misurare funnel, ordini, carrelli abbandonati e performance per categoria permette di migliorare margini e processi, non solo il numero di visite.`
                 }
             ],
-            deliverablesTitle: `Cosa include un progetto e-commerce WebNovis a ${city.name}`,
+            deliverablesTitle: `Cosa include un progetto e-commerce WebNovis ${toCity(city.name)}`,
             deliverablesIntro: `Il perimetro viene adattato al progetto, ma ci concentriamo sui blocchi che spostano davvero conversione, gestione e scalabilità.`,
             deliverablesCards: [
                 {
@@ -254,7 +254,7 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Ti lasciamo una base che il team può gestire nel quotidiano: prodotti, ordini, promozioni e controlli ricorrenti senza dipendere sempre da noi.`
                 }
             ],
-            intentQueriesTitle: `Ricerche e-commerce che presidiamo a ${city.name}`,
+            intentQueriesTitle: `Ricerche e-commerce che presidiamo ${toCity(city.name)}`,
             intentQueriesIntro: `Lavoriamo per intercettare query locali con intento commerciale reale, non solo keyword generiche senza probabilità di acquisto.`,
             intentQueries: [
                 `realizzazione ecommerce ${city.name}`,
@@ -263,41 +263,41 @@ function getServiceLocalSeoCopy(service, city) {
                 `sito ecommerce ${city.name}`,
                 `creazione shop online ${city.name}`
             ],
-            ctaTitle: `Vuoi un e-commerce più credibile e più facile da far crescere a ${city.name}?`,
+            ctaTitle: `Vuoi un e-commerce più credibile e più facile da far crescere ${toCity(city.name)}?`,
             ctaCopy: `Scrivici catalogo, obiettivi e complessità operativa: riceverai un primo riscontro per definire perimetro e preventivo.`,
-            schemaDescription: `E-commerce custom a ${city.name} con catalogo, checkout, pagamenti e SEO tecnica per aziende che vogliono vendere online.`
+            schemaDescription: `E-commerce custom ${toCity(city.name)} con catalogo, checkout, pagamenti e SEO tecnica per aziende che vogliono vendere online.`
         },
         'social-media': {
-            title: `Social Media a ${city.name}: gestione da ${price} | WebNovis`,
-            description: `Gestione social a ${city.name}: piano editoriale, contenuti e campagne Meta per aumentare visibilità, lead e richieste. Da ${price}.`,
-            ogDescription: `Gestione social a ${city.name} con piano editoriale, creatività e campagne Meta. Da ${price}.`,
+            title: `Social Media ${toCity(city.name)}: gestione da ${price} | WebNovis`,
+            description: `Gestione social ${toCity(city.name)}: piano editoriale, contenuti e campagne Meta per aumentare visibilità, lead e richieste. Da ${price}.`,
+            ogDescription: `Gestione social ${toCity(city.name)} con piano editoriale, creatività e campagne Meta. Da ${price}.`,
             heroTag: `Social Media · ${city.name} · ${price}`,
-            heroH1: `Social Media a ${city.name} per visibilità, contenuti e lead`,
-            heroCapsule: `<strong>WebNovis</strong> segue la gestione social a ${city.name} con piano editoriale, creatività e campagne Meta orientate a risultati misurabili. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroH1: `Social Media ${toCity(city.name)} per visibilità, contenuti e lead`,
+            heroCapsule: `<strong>WebNovis</strong> segue la gestione social ${toCity(city.name)} con piano editoriale, creatività e campagne Meta orientate a risultati misurabili. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Formato', value: 'Contenuti + ads' },
                 { label: 'Metodo', value: 'Report mensili' }
             ],
-            sectionTitle: `Social media a ${city.name} per smettere di pubblicare senza obiettivo`,
+            sectionTitle: `Social media ${toCity(city.name)} per smettere di pubblicare senza obiettivo`,
             sectionIntro: `Costruiamo un piano che collega rubriche, creatività, advertising e KPI commerciali, così i social smettono di essere solo presenza e iniziano a diventare un canale utile.`,
-            ctaTitle: `Vuoi una gestione social più misurabile a ${city.name}?`,
+            ctaTitle: `Vuoi una gestione social più misurabile ${toCity(city.name)}?`,
             ctaCopy: `Possiamo aiutarti a definire format, KPI e frequenza di pubblicazione con un piano operativo chiaro.`,
-            schemaDescription: `Gestione social media a ${city.name} con contenuti, creatività e campagne Meta orientate a visibilità e lead.`
+            schemaDescription: `Gestione social media ${toCity(city.name)} con contenuti, creatività e campagne Meta orientate a visibilità e lead.`
         },
         accessibilita: {
-            title: `Accessibilità Web a ${city.name}: audit EAA da ${price} | WebNovis`,
-            description: `Accessibilità web a ${city.name}: audit WCAG, adeguamento EAA e supporto operativo per siti aziendali. Da ${price}. Richiedi una valutazione.`,
-            ogDescription: `Audit accessibilità e adeguamento EAA/WCAG a ${city.name}. Da ${price}.`,
+            title: `Accessibilità Web ${toCity(city.name)}: audit EAA da ${price} | WebNovis`,
+            description: `Accessibilità web ${toCity(city.name)}: audit WCAG, adeguamento EAA e supporto operativo per siti aziendali. Da ${price}. Richiedi una valutazione.`,
+            ogDescription: `Audit accessibilità e adeguamento EAA/WCAG ${toCity(city.name)}. Da ${price}.`,
             heroTag: `Accessibilità Web · ${city.name} · ${price}`,
-            heroH1: `Accessibilità Web a ${city.name}: audit WCAG e adeguamento EAA`,
+            heroH1: `Accessibilità Web ${toCity(city.name)}: audit WCAG e adeguamento EAA`,
             heroCapsule: `<strong>WebNovis</strong> aiuta aziende e professionisti di ${city.name} con audit accessibilità, remediation tecnica e supporto sull'adeguamento EAA. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'WCAG + EAA' }
             ],
-            sectionTitle: `Accessibilità web a ${city.name} per ridurre rischi e blocchi operativi`,
+            sectionTitle: `Accessibilità web ${toCity(city.name)} per ridurre rischi e blocchi operativi`,
             sectionIntro: `Lavoriamo su audit, priorità tecniche e adeguamenti concreti. L'obiettivo non è solo la checklist: è rendere il sito più usabile, più chiaro e più allineato alle richieste normative.`,
             whyCards: [
                 {
@@ -313,23 +313,23 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Ti accompagniamo tra verifiche, adeguamento e monitoraggio, senza lasciarti con un report non eseguibile.`
                 }
             ],
-            ctaTitle: `Hai bisogno di capire se il tuo sito è davvero conforme a ${city.name}?`,
+            ctaTitle: `Hai bisogno di capire se il tuo sito è davvero conforme ${toCity(city.name)}?`,
             ctaCopy: `Mandaci URL e contesto: ti aiutiamo a definire priorità tecniche e perimetro di adeguamento.`,
-            schemaDescription: `Audit accessibilità e adeguamento EAA/WCAG a ${city.name} per siti aziendali e professionali.`
+            schemaDescription: `Audit accessibilità e adeguamento EAA/WCAG ${toCity(city.name)} per siti aziendali e professionali.`
         },
         'seo-locale': {
-            title: `SEO Locale a ${city.name}: Google Maps da ${price} | WebNovis`,
-            description: `SEO locale a ${city.name}: Google Business Profile, pagine locali e ottimizzazione on-page per farti trovare su Maps e ricerche ad alta intenzione. Da ${price}.`,
-            ogDescription: `SEO locale a ${city.name} per Google Maps e ricerche ad alta intenzione. Da ${price}.`,
+            title: `SEO Locale ${toCity(city.name)}: Google Maps da ${price} | WebNovis`,
+            description: `SEO locale ${toCity(city.name)}: Google Business Profile, pagine locali e ottimizzazione on-page per farti trovare su Maps e ricerche ad alta intenzione. Da ${price}.`,
+            ogDescription: `SEO locale ${toCity(city.name)} per Google Maps e ricerche ad alta intenzione. Da ${price}.`,
             heroTag: `SEO Locale · ${city.name} · ${price}`,
-            heroH1: `SEO Locale a ${city.name} per farti trovare su Google Maps`,
+            heroH1: `SEO Locale ${toCity(city.name)} per farti trovare su Google Maps`,
             heroCapsule: `<strong>WebNovis</strong> aiuta attività e professionisti di ${city.name} a comparire meglio su Google Maps e nelle ricerche locali che portano chiamate, richieste e visite in sede. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Leve', value: 'Maps + on-page' },
                 { label: 'Metodo', value: 'Report mensili' }
             ],
-            sectionTitle: `SEO locale a ${city.name} per intercettare ricerche con intento di contatto`,
+            sectionTitle: `SEO locale ${toCity(city.name)} per intercettare ricerche con intento di contatto`,
             sectionIntro: `Lavoriamo su Google Business Profile, struttura locale delle pagine e ottimizzazione on-page per aumentare la visibilità sulle ricerche che contano davvero per chi opera sul territorio.`,
             whyCards: [
                 {
@@ -360,7 +360,7 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Controlliamo segnali, richieste, andamento delle query e punti deboli ancora aperti per consolidare nel tempo Maps e organico locale.`
                 }
             ],
-            decisionFrameworkTitle: `Le leve che fanno muovere la SEO locale a ${city.name}`,
+            decisionFrameworkTitle: `Le leve che fanno muovere la SEO locale ${toCity(city.name)}`,
             decisionFrameworkIntro: `I competitor che presidiano meglio le query locali non vincono sempre con il contenuto più lungo: spesso vincono perché rendono chiarissimi i segnali locali fondamentali e li collegano bene tra profilo, sito e reputazione.`,
             decisionFrameworkCards: [
                 {
@@ -380,7 +380,7 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Coerenza di contatti, dati di sede, richieste e query presidiate serve per capire cosa sta migliorando davvero e cosa no.`
                 }
             ],
-            deliverablesTitle: `Cosa include un lavoro SEO locale serio a ${city.name}`,
+            deliverablesTitle: `Cosa include un lavoro SEO locale serio ${toCity(city.name)}`,
             deliverablesIntro: `Il lavoro cambia in base al punto di partenza, ma le aree che muoviamo più spesso sono queste.`,
             deliverablesCards: [
                 {
@@ -400,7 +400,7 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Ti lasciamo dati leggibili su query locali, richieste e attività eseguite per capire se il lavoro sta davvero portando visibilità utile.`
                 }
             ],
-            intentQueriesTitle: `Ricerche locali che presidiamo a ${city.name}`,
+            intentQueriesTitle: `Ricerche locali che presidiamo ${toCity(city.name)}`,
             intentQueriesIntro: `L'obiettivo è comparire meglio dove l'intento è vicino al contatto o alla visita, non inseguire keyword lontane dal bisogno reale.`,
             intentQueries: [
                 `seo locale ${city.name}`,
@@ -409,41 +409,41 @@ function getServiceLocalSeoCopy(service, city) {
                 `posizionamento locale ${city.name}`,
                 `google business profile ${city.name}`
             ],
-            ctaTitle: `Vuoi più richieste da Google Maps a ${city.name}?`,
+            ctaTitle: `Vuoi più richieste da Google Maps ${toCity(city.name)}?`,
             ctaCopy: `Possiamo partire con un audit locale e un piano operativo chiaro per query, pagine e profilo aziendale.`,
-            schemaDescription: `SEO locale a ${city.name} con ottimizzazione Google Business Profile, pagine locali e attività on-page per ricerche ad alta intenzione.`
+            schemaDescription: `SEO locale ${toCity(city.name)} con ottimizzazione Google Business Profile, pagine locali e attività on-page per ricerche ad alta intenzione.`
         },
         'email-marketing': {
-            title: `Email Marketing a ${city.name}: automazioni da ${price} | WebNovis`,
-            description: `Email marketing a ${city.name} per newsletter, automazioni e recupero clienti. Strategia, copy e setup operativo da ${price}.`,
-            ogDescription: `Email marketing a ${city.name} con newsletter e automazioni per fidelizzazione e vendita. Da ${price}.`,
+            title: `Email Marketing ${toCity(city.name)}: automazioni da ${price} | WebNovis`,
+            description: `Email marketing ${toCity(city.name)} per newsletter, automazioni e recupero clienti. Strategia, copy e setup operativo da ${price}.`,
+            ogDescription: `Email marketing ${toCity(city.name)} con newsletter e automazioni per fidelizzazione e vendita. Da ${price}.`,
             heroTag: `Email Marketing · ${city.name} · ${price}`,
-            heroH1: `Email Marketing a ${city.name} per newsletter e automazioni che vendono`,
-            heroCapsule: `<strong>WebNovis</strong> imposta email marketing a ${city.name} con newsletter, automazioni e flussi di recupero pensati per aumentare riacquisti e richieste. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroH1: `Email Marketing ${toCity(city.name)} per newsletter e automazioni che vendono`,
+            heroCapsule: `<strong>WebNovis</strong> imposta email marketing ${toCity(city.name)} con newsletter, automazioni e flussi di recupero pensati per aumentare riacquisti e richieste. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Leve', value: 'Newsletter + flow' },
                 { label: 'Focus', value: 'Fidelizzazione' }
             ],
-            sectionTitle: `Email marketing a ${city.name} per non lasciare clienti e lead inattivi`,
+            sectionTitle: `Email marketing ${toCity(city.name)} per non lasciare clienti e lead inattivi`,
             sectionIntro: `Newsletter e automazioni funzionano quando segmentazione, offerta e frequenza sono coerenti. Ti aiutiamo a trasformare liste dormienti in un canale che riattiva clienti e opportunità.`,
-            ctaTitle: `Vuoi usare newsletter e automazioni in modo più strategico a ${city.name}?`,
+            ctaTitle: `Vuoi usare newsletter e automazioni in modo più strategico ${toCity(city.name)}?`,
             ctaCopy: `Raccontaci database, obiettivi e stack attuale: ti proponiamo il setup più utile da cui partire.`,
-            schemaDescription: `Email marketing a ${city.name} con newsletter, automazioni e flussi di recupero per fidelizzazione e vendita.`
+            schemaDescription: `Email marketing ${toCity(city.name)} con newsletter, automazioni e flussi di recupero per fidelizzazione e vendita.`
         },
         'restyling-sito-web': {
-            title: `Restyling Sito Web a ${city.name}: redesign con migrazione SEO da ${price} | WebNovis`,
-            description: `Restyling sito web a ${city.name}: redesign, revisione contenuti, performance UX e migrazione SEO senza perdere visibilità. Da ${price}.`,
-            ogDescription: `Restyling sito web a ${city.name} con redesign, UX e migrazione SEO. Da ${price}.`,
+            title: `Restyling Sito Web ${toCity(city.name)}: redesign con migrazione SEO da ${price} | WebNovis`,
+            description: `Restyling sito web ${toCity(city.name)}: redesign, revisione contenuti, performance UX e migrazione SEO senza perdere visibilità. Da ${price}.`,
+            ogDescription: `Restyling sito web ${toCity(city.name)} con redesign, UX e migrazione SEO. Da ${price}.`,
             heroTag: `Restyling Sito Web · ${city.name} · ${price}`,
-            heroH1: `Restyling sito web a ${city.name} per aggiornare immagine e risultati`,
-            heroCapsule: `<strong>WebNovis</strong> gestisce restyling siti web a ${city.name} quando serve migliorare percezione, usabilità e performance senza disperdere il lavoro SEO già fatto. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroH1: `Restyling sito web ${toCity(city.name)} per aggiornare immagine e risultati`,
+            heroCapsule: `<strong>WebNovis</strong> gestisce restyling siti web ${toCity(city.name)} quando serve migliorare percezione, usabilità e performance senza disperdere il lavoro SEO già fatto. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'Redesign + migrazione SEO' }
             ],
-            sectionTitle: `Restyling siti web a ${city.name} per uscire da layout vecchi e poco credibili`,
+            sectionTitle: `Restyling siti web ${toCity(city.name)} per uscire da layout vecchi e poco credibili`,
             sectionIntro: `Quando il sito appare datato o dispersivo, spesso il problema non è solo estetico: cala la fiducia, peggiora la navigazione e diventa più difficile convertire. Ridisegniamo struttura, contenuti e UI mantenendo sotto controllo redirect, SEO e continuità operativa.`,
             whyCards: [
                 {
@@ -474,23 +474,23 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Gestiamo redirect, QA, messa online e supporto iniziale per ridurre rischi, errori e perdite di visibilità dopo il lancio.`
                 }
             ],
-            ctaTitle: `Hai un sito da aggiornare seriamente a ${city.name}?`,
+            ctaTitle: `Hai un sito da aggiornare seriamente ${toCity(city.name)}?`,
             ctaCopy: `Mandaci URL, obiettivo e urgenze: ti diciamo come impostare un restyling utile e non solo cosmetico.`,
-            schemaDescription: `Restyling sito web a ${city.name} con redesign, revisione UX e migrazione SEO per siti obsoleti o poco efficaci.`
+            schemaDescription: `Restyling sito web ${toCity(city.name)} con redesign, revisione UX e migrazione SEO per siti obsoleti o poco efficaci.`
         },
         'web-app': {
-            title: `Web App a ${city.name}: portali e gestionali custom da ${price} | WebNovis`,
-            description: `Web app a ${city.name} per portali B2B, dashboard e gestionali su misura con integrazioni API e aree riservate. Da ${price}.`,
-            ogDescription: `Web app custom a ${city.name} per portali, dashboard e workflow aziendali. Da ${price}.`,
+            title: `Web App ${toCity(city.name)}: portali e gestionali custom da ${price} | WebNovis`,
+            description: `Web app ${toCity(city.name)} per portali B2B, dashboard e gestionali su misura con integrazioni API e aree riservate. Da ${price}.`,
+            ogDescription: `Web app custom ${toCity(city.name)} per portali, dashboard e workflow aziendali. Da ${price}.`,
             heroTag: `Web App · ${city.name} · ${price}`,
-            heroH1: `Web app a ${city.name} per processi, portali e strumenti interni`,
-            heroCapsule: `<strong>WebNovis</strong> sviluppa web app a ${city.name} per dashboard operative, aree riservate, portali clienti e workflow custom. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, sviluppo diretto da Rho (${city.distanzaSede}).`,
+            heroH1: `Web app ${toCity(city.name)} per processi, portali e strumenti interni`,
+            heroCapsule: `<strong>WebNovis</strong> sviluppa web app ${toCity(city.name)} per dashboard operative, aree riservate, portali clienti e workflow custom. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, sviluppo diretto da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'Portali e workflow' }
             ],
-            sectionTitle: `Web app a ${city.name} quando il gestionale standard non basta`,
+            sectionTitle: `Web app ${toCity(city.name)} quando il gestionale standard non basta`,
             sectionIntro: `Realizziamo applicazioni web su misura quando fogli condivisi, strumenti generici o flussi manuali non reggono più. L'obiettivo è costruire un ambiente operativo più ordinato, con permessi, dati e automazioni modellati sul tuo processo reale.`,
             whyCards: [
                 {
@@ -521,23 +521,23 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Procediamo per milestone, QA e confronto continuo fino alla consegna dell'applicazione pronta all'uso e manutenibile.`
                 }
             ],
-            ctaTitle: `Vuoi capire se una web app custom ha senso per la tua azienda a ${city.name}?`,
+            ctaTitle: `Vuoi capire se una web app custom ha senso per la tua azienda ${toCity(city.name)}?`,
             ctaCopy: `Descrivici processo, utenti e strumenti attuali: ti aiutiamo a stimare perimetro, priorità e investimento.`,
-            schemaDescription: `Web app custom a ${city.name} per portali, dashboard, aree riservate e gestionali con integrazioni API.`
+            schemaDescription: `Web app custom ${toCity(city.name)} per portali, dashboard, aree riservate e gestionali con integrazioni API.`
         },
         'fotografia-aziendale': {
-            title: `Fotografia Aziendale a ${city.name}: shooting per brand e siti da ${price} | WebNovis`,
-            description: `Fotografia aziendale a ${city.name} per team, prodotti, spazi e contenuti web/social. Shooting, selezione e post-produzione da ${price}.`,
-            ogDescription: `Fotografia aziendale a ${city.name} per sito, social e materiali di brand. Da ${price}.`,
+            title: `Fotografia Aziendale ${toCity(city.name)}: shooting per brand e siti da ${price} | WebNovis`,
+            description: `Fotografia aziendale ${toCity(city.name)} per team, prodotti, spazi e contenuti web/social. Shooting, selezione e post-produzione da ${price}.`,
+            ogDescription: `Fotografia aziendale ${toCity(city.name)} per sito, social e materiali di brand. Da ${price}.`,
             heroTag: `Fotografia Aziendale · ${city.name} · ${price}`,
-            heroH1: `Fotografia aziendale a ${city.name} per siti, social e materiali credibili`,
-            heroCapsule: `<strong>WebNovis</strong> organizza shooting di fotografia aziendale a ${city.name} per ritratti team, ambienti, prodotti e contenuti digitali coerenti con il brand. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, coordinamento diretto da Rho (${city.distanzaSede}).`,
+            heroH1: `Fotografia aziendale ${toCity(city.name)} per siti, social e materiali credibili`,
+            heroCapsule: `<strong>WebNovis</strong> organizza shooting di fotografia aziendale ${toCity(city.name)} per ritratti team, ambienti, prodotti e contenuti digitali coerenti con il brand. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, coordinamento diretto da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'Sito + social + brand' }
             ],
-            sectionTitle: `Fotografia aziendale a ${city.name} per non appoggiarsi a immagini deboli o anonime`,
+            sectionTitle: `Fotografia aziendale ${toCity(city.name)} per non appoggiarsi a immagini deboli o anonime`,
             sectionIntro: `Molti siti e profili aziendali perdono fiducia perché mostrano foto generiche, stock incoerenti o scatti improvvisati. Costruiamo shooting utili davvero: materiali che migliorano sito, social, brochure e presentazioni con una direzione visiva coerente.`,
             whyCards: [
                 {
@@ -567,23 +567,23 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Consegniamo scatti ottimizzati, coerenti tra loro e pronti per sito, social, campagne o documenti commerciali.`
                 }
             ],
-            ctaTitle: `Ti servono foto aziendali davvero utili a ${city.name}?`,
+            ctaTitle: `Ti servono foto aziendali davvero utili ${toCity(city.name)}?`,
             ctaCopy: `Scrivici che tipo di immagini ti mancano e dove le userai: impostiamo una produzione mirata, non uno shooting generico.`,
-            schemaDescription: `Fotografia aziendale a ${city.name} per team, prodotti, spazi e contenuti digitali destinati a sito, social e materiali di brand.`
+            schemaDescription: `Fotografia aziendale ${toCity(city.name)} per team, prodotti, spazi e contenuti digitali destinati a sito, social e materiali di brand.`
         },
         copywriting: {
-            title: `Copywriting a ${city.name}: testi per siti e campagne da ${price} | WebNovis`,
-            description: `Copywriting a ${city.name} per siti web, landing page e campagne: messaggi chiari, tono coerente e testi orientati alla conversione. Da ${price}.`,
-            ogDescription: `Copywriting a ${city.name} per siti, landing e campagne con tono di voce e conversione. Da ${price}.`,
+            title: `Copywriting ${toCity(city.name)}: testi per siti e campagne da ${price} | WebNovis`,
+            description: `Copywriting ${toCity(city.name)} per siti web, landing page e campagne: messaggi chiari, tono coerente e testi orientati alla conversione. Da ${price}.`,
+            ogDescription: `Copywriting ${toCity(city.name)} per siti, landing e campagne con tono di voce e conversione. Da ${price}.`,
             heroTag: `Copywriting · ${city.name} · ${price}`,
-            heroH1: `Copywriting a ${city.name} per farti capire e farti scegliere`,
+            heroH1: `Copywriting ${toCity(city.name)} per farti capire e farti scegliere`,
             heroCapsule: `<strong>WebNovis</strong> scrive copy per aziende e professionisti di ${city.name} quando serve chiarire posizionamento, migliorare pagine e trasformare visite in richieste. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'Messaggio + conversione' }
             ],
-            sectionTitle: `Copywriting a ${city.name} per smettere di dire tutto e non dire nulla`,
+            sectionTitle: `Copywriting ${toCity(city.name)} per smettere di dire tutto e non dire nulla`,
             sectionIntro: `I testi sono spesso il collo di bottiglia: prodotti complessi spiegati male, servizi indistinti, CTA deboli e tono di voce incoerente. Lavoriamo per rendere più chiaro il valore dell'offerta e guidare il visitatore verso la scelta giusta.`,
             whyCards: [
                 {
@@ -614,23 +614,23 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Consegniamo testi pronti per sito o campagna, con revisioni mirate e attenzione a chiarezza, ritmo e conversione.`
                 }
             ],
-            ctaTitle: `Hai pagine che non spiegano bene il tuo valore a ${city.name}?`,
+            ctaTitle: `Hai pagine che non spiegano bene il tuo valore ${toCity(city.name)}?`,
             ctaCopy: `Mandaci URL o bozza: ti aiutiamo a capire cosa riscrivere, con quale tono e con quale priorità.`,
-            schemaDescription: `Copywriting a ${city.name} per siti web, landing page e campagne con attenzione a tono di voce, chiarezza e conversione.`
+            schemaDescription: `Copywriting ${toCity(city.name)} per siti web, landing page e campagne con attenzione a tono di voce, chiarezza e conversione.`
         },
         'google-ads': {
-            title: `Google Ads a ${city.name}: campagne search e lead da ${price} | WebNovis`,
-            description: `Google Ads a ${city.name} per lead generation, e-commerce e servizi locali: struttura campagne, tracking e ottimizzazione continua. Da ${price}.`,
-            ogDescription: `Google Ads a ${city.name} con campagne Search, tracking e ottimizzazione lead. Da ${price}.`,
+            title: `Google Ads ${toCity(city.name)}: campagne search e lead da ${price} | WebNovis`,
+            description: `Google Ads ${toCity(city.name)} per lead generation, e-commerce e servizi locali: struttura campagne, tracking e ottimizzazione continua. Da ${price}.`,
+            ogDescription: `Google Ads ${toCity(city.name)} con campagne Search, tracking e ottimizzazione lead. Da ${price}.`,
             heroTag: `Google Ads · ${city.name} · ${price}`,
-            heroH1: `Google Ads a ${city.name} per intercettare ricerche con intento reale`,
-            heroCapsule: `<strong>WebNovis</strong> segue campagne Google Ads a ${city.name} per aziende, professionisti ed e-commerce che vogliono generare richieste o vendite da query già attive. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroH1: `Google Ads ${toCity(city.name)} per intercettare ricerche con intento reale`,
+            heroCapsule: `<strong>WebNovis</strong> segue campagne Google Ads ${toCity(city.name)} per aziende, professionisti ed e-commerce che vogliono generare richieste o vendite da query già attive. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Formato', value: 'Search + tracking' },
                 { label: 'Metodo', value: 'Ottimizzazione continua' }
             ],
-            sectionTitle: `Google Ads a ${city.name} per trasformare domanda esistente in lead o ordini`,
+            sectionTitle: `Google Ads ${toCity(city.name)} per trasformare domanda esistente in lead o ordini`,
             sectionIntro: `Google Ads funziona bene quando struttura campagne, query, annunci e pagina di arrivo lavorano insieme. Gestiamo setup, misurazione e ottimizzazione per ridurre dispersione e concentrarci sulle ricerche che hanno più probabilità di convertire.`,
             whyCards: [
                 {
@@ -661,23 +661,23 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Aggiorniamo keyword, esclusioni, annunci, offerte e landing per migliorare qualità dei lead e sostenibilità del budget.`
                 }
             ],
-            ctaTitle: `Vuoi capire se Google Ads può funzionare meglio a ${city.name}?`,
+            ctaTitle: `Vuoi capire se Google Ads può funzionare meglio ${toCity(city.name)}?`,
             ctaCopy: `Scrivici settore, obiettivo e budget indicativo: ti aiutiamo a capire se hai margine per migliorare setup e rendimento.`,
-            schemaDescription: `Google Ads a ${city.name} per lead generation, servizi locali ed e-commerce con tracking e ottimizzazione continua.`
+            schemaDescription: `Google Ads ${toCity(city.name)} per lead generation, servizi locali ed e-commerce con tracking e ottimizzazione continua.`
         },
         'consulenza-digitale': {
-            title: `Consulenza Digitale a ${city.name}: audit e roadmap da ${price} | WebNovis`,
-            description: `Consulenza digitale a ${city.name} per audit della presenza online, priorità operative e roadmap di crescita. Da ${price}.`,
-            ogDescription: `Consulenza digitale a ${city.name} con audit e piano d'azione operativo. Da ${price}.`,
+            title: `Consulenza Digitale ${toCity(city.name)}: audit e roadmap da ${price} | WebNovis`,
+            description: `Consulenza digitale ${toCity(city.name)} per audit della presenza online, priorità operative e roadmap di crescita. Da ${price}.`,
+            ogDescription: `Consulenza digitale ${toCity(city.name)} con audit e piano d'azione operativo. Da ${price}.`,
             heroTag: `Consulenza Digitale · ${city.name} · ${price}`,
-            heroH1: `Consulenza digitale a ${city.name} per capire cosa fare prima`,
-            heroCapsule: `<strong>WebNovis</strong> offre consulenza digitale a ${city.name} quando servono audit, priorità e una roadmap realistica tra sito, contenuti, acquisizione e strumenti. Investimento da <strong>${price}</strong>, sessioni e supporto diretto da Rho (${city.distanzaSede}).`,
+            heroH1: `Consulenza digitale ${toCity(city.name)} per capire cosa fare prima`,
+            heroCapsule: `<strong>WebNovis</strong> offre consulenza digitale ${toCity(city.name)} quando servono audit, priorità e una roadmap realistica tra sito, contenuti, acquisizione e strumenti. Investimento da <strong>${price}</strong>, sessioni e supporto diretto da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Formato', value: service.timeEstimate },
                 { label: 'Focus', value: 'Audit + roadmap' }
             ],
-            sectionTitle: `Consulenza digitale a ${city.name} per uscire da decisioni confuse o scollegate`,
+            sectionTitle: `Consulenza digitale ${toCity(city.name)} per uscire da decisioni confuse o scollegate`,
             sectionIntro: `Se il problema non è solo eseguire ma capire priorità, canali e sequenza giusta, lavoriamo su audit e direzione. L'obiettivo è arrivare a una vista più chiara su cosa migliorare, in che ordine e con quali metriche.`,
             whyCards: [
                 {
@@ -708,23 +708,23 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Chiudiamo con linee guida, azioni consigliate e, se serve, un percorso di supporto sull'esecuzione successiva.`
                 }
             ],
-            ctaTitle: `Ti serve più chiarezza strategica sul digitale a ${city.name}?`,
+            ctaTitle: `Ti serve più chiarezza strategica sul digitale ${toCity(city.name)}?`,
             ctaCopy: `Raccontaci dove sei bloccato: possiamo aiutarti a ordinare decisioni, budget e priorità con un audit mirato.`,
-            schemaDescription: `Consulenza digitale a ${city.name} con audit della presenza online, definizione priorità e roadmap operativa.`
+            schemaDescription: `Consulenza digitale ${toCity(city.name)} con audit della presenza online, definizione priorità e roadmap operativa.`
         },
         'manutenzione-sito': {
-            title: `Manutenzione Sito a ${city.name}: supporto tecnico continuativo da ${price} | WebNovis`,
-            description: `Manutenzione sito a ${city.name} con backup, aggiornamenti, monitoraggio e interventi prioritari per siti aziendali ed e-commerce. Da ${price}.`,
-            ogDescription: `Manutenzione sito a ${city.name} con backup, update e monitoraggio. Da ${price}.`,
+            title: `Manutenzione Sito ${toCity(city.name)}: supporto tecnico continuativo da ${price} | WebNovis`,
+            description: `Manutenzione sito ${toCity(city.name)} con backup, aggiornamenti, monitoraggio e interventi prioritari per siti aziendali ed e-commerce. Da ${price}.`,
+            ogDescription: `Manutenzione sito ${toCity(city.name)} con backup, update e monitoraggio. Da ${price}.`,
             heroTag: `Manutenzione Sito · ${city.name} · ${price}`,
-            heroH1: `Manutenzione sito a ${city.name} per lavorare con più tranquillità`,
-            heroCapsule: `<strong>WebNovis</strong> segue la manutenzione siti web a ${city.name} con controlli tecnici, backup, aggiornamenti e interventi prioritari quando qualcosa si rompe o rallenta. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
+            heroH1: `Manutenzione sito ${toCity(city.name)} per lavorare con più tranquillità`,
+            heroCapsule: `<strong>WebNovis</strong> segue la manutenzione siti web ${toCity(city.name)} con controlli tecnici, backup, aggiornamenti e interventi prioritari quando qualcosa si rompe o rallenta. Investimento da <strong>${price}</strong>, gestione diretta da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Formato', value: 'Continuativo' },
                 { label: 'Focus', value: 'Stabilità e supporto' }
             ],
-            sectionTitle: `Manutenzione siti a ${city.name} per evitare problemi silenziosi che diventano costosi`,
+            sectionTitle: `Manutenzione siti ${toCity(city.name)} per evitare problemi silenziosi che diventano costosi`,
             sectionIntro: `Aggiornamenti trascurati, errori nascosti, rallentamenti e backup mancanti spesso emergono solo quando c'è già un danno. La manutenzione serve a presidiare stabilità, sicurezza e continuità del sito con un referente unico e tempi chiari.`,
             whyCards: [
                 {
@@ -755,23 +755,23 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `In caso di errori, rallentamenti o anomalie interveniamo con una lettura tecnica più rapida grazie al presidio continuativo.`
                 }
             ],
-            ctaTitle: `Hai un sito da tenere sotto controllo a ${city.name}?`,
+            ctaTitle: `Hai un sito da tenere sotto controllo ${toCity(city.name)}?`,
             ctaCopy: `Se vuoi evitare emergenze e perdite di tempo, possiamo aiutarti a impostare una manutenzione più ordinata e affidabile.`,
-            schemaDescription: `Manutenzione sito a ${city.name} con backup, aggiornamenti, monitoraggio e supporto tecnico continuativo.`
+            schemaDescription: `Manutenzione sito ${toCity(city.name)} con backup, aggiornamenti, monitoraggio e supporto tecnico continuativo.`
         },
         'sviluppo-app-mobile': {
-            title: `App Mobile a ${city.name}: sviluppo iOS e Android da ${price} | WebNovis`,
-            description: `Sviluppo app mobile a ${city.name} per iOS e Android: progettazione prodotto, UX mobile e sviluppo custom da ${price}.`,
-            ogDescription: `Sviluppo app mobile a ${city.name} per iOS e Android con UX e logica prodotto. Da ${price}.`,
+            title: `App Mobile ${toCity(city.name)}: sviluppo iOS e Android da ${price} | WebNovis`,
+            description: `Sviluppo app mobile ${toCity(city.name)} per iOS e Android: progettazione prodotto, UX mobile e sviluppo custom da ${price}.`,
+            ogDescription: `Sviluppo app mobile ${toCity(city.name)} per iOS e Android con UX e logica prodotto. Da ${price}.`,
             heroTag: `App Mobile · ${city.name} · ${price}`,
-            heroH1: `Sviluppo app mobile a ${city.name} per prodotti davvero usabili`,
-            heroCapsule: `<strong>WebNovis</strong> sviluppa app mobile a ${city.name} per progetti che richiedono un'esperienza pensata per smartphone, flussi chiari e una base tecnica sostenibile. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, coordinamento diretto da Rho (${city.distanzaSede}).`,
+            heroH1: `Sviluppo app mobile ${toCity(city.name)} per prodotti davvero usabili`,
+            heroCapsule: `<strong>WebNovis</strong> sviluppa app mobile ${toCity(city.name)} per progetti che richiedono un'esperienza pensata per smartphone, flussi chiari e una base tecnica sostenibile. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, coordinamento diretto da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'UX mobile + prodotto' }
             ],
-            sectionTitle: `App mobile a ${city.name} per loyalty, booking e servizi digitali`,
+            sectionTitle: `App mobile ${toCity(city.name)} per loyalty, booking e servizi digitali`,
             sectionIntro: `Un app ha senso quando semplifica un flusso ricorrente e offre un vantaggio reale rispetto al sito mobile. Lavoriamo su concept, UX, logica prodotto e roadmap per costruire un'esperienza utile e non un duplicato superfluo del web.`,
             whyCards: [
                 {
@@ -802,28 +802,28 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Procediamo per milestone, test e affinamenti fino a una consegna pronta per raccolta feedback e crescita successiva.`
                 }
             ],
-            ctaTitle: `Stai valutando un app mobile per il tuo business a ${city.name}?`,
+            ctaTitle: `Stai valutando un app mobile per il tuo business ${toCity(city.name)}?`,
             ctaCopy: `Raccontaci uso previsto, utenti e obiettivo: possiamo aiutarti a capire se conviene davvero e da dove partire.`,
-            schemaDescription: `Sviluppo app mobile a ${city.name} per iOS e Android con attenzione a UX, MVP e logica prodotto.`
+            schemaDescription: `Sviluppo app mobile ${toCity(city.name)} per iOS e Android con attenzione a UX, MVP e logica prodotto.`
         },
         'automazione-business': {
-            title: `Automazione Business a ${city.name}: workflow e integrazioni da ${price} | WebNovis`,
-            description: `Automazione business a ${city.name} per CRM, email, processi interni e passaggi ripetitivi con workflow e integrazioni su misura. Da ${price}.`,
-            ogDescription: `Automazione business a ${city.name} per workflow, CRM ed email. Da ${price}.`,
+            title: `Automazione Business ${toCity(city.name)}: workflow e integrazioni da ${price} | WebNovis`,
+            description: `Automazione business ${toCity(city.name)} per CRM, email, processi interni e passaggi ripetitivi con workflow e integrazioni su misura. Da ${price}.`,
+            ogDescription: `Automazione business ${toCity(city.name)} per workflow, CRM ed email. Da ${price}.`,
             heroTag: `Automazione Business · ${city.name} · ${price}`,
-            heroH1: `Automazione business a ${city.name} per eliminare lavoro ripetitivo e colli di bottiglia`,
-            heroCapsule: `<strong>WebNovis</strong> progetta automazioni business a ${city.name} quando CRM, email, richieste e passaggi interni generano perdita di tempo o errori evitabili. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, setup diretto da Rho (${city.distanzaSede}).`,
+            heroH1: `Automazione business ${toCity(city.name)} per eliminare lavoro ripetitivo e colli di bottiglia`,
+            heroCapsule: `<strong>WebNovis</strong> progetta automazioni business ${toCity(city.name)} quando CRM, email, richieste e passaggi interni generano perdita di tempo o errori evitabili. Investimento da <strong>${price}</strong>, tempi <strong>${service.timeEstimate}</strong>, setup diretto da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Tempi', value: service.timeEstimate },
                 { label: 'Focus', value: 'Workflow e integrazioni' }
             ],
-            sectionTitle: `Automazione business a ${city.name} per far scorrere meglio il lavoro operativo`,
+            sectionTitle: `Automazione business ${toCity(city.name)} per far scorrere meglio il lavoro operativo`,
             sectionIntro: `Automatizziamo i punti in cui il processo si inceppa: passaggi manuali, doppie compilazioni, notifiche assenti, lead senza follow-up o dati che non circolano tra strumenti. L'obiettivo è liberare tempo utile e ridurre errori ripetitivi.`,
             whyCards: [
                 {
                     title: `${city.distanzaSede} dalla tua sede`,
-                    text: `Operiamo da Rho e possiamo allinearci rapidamente con chi gestisce commerciale, operations o amministrazione a ${city.name}.`
+                    text: `Operiamo da Rho e possiamo allinearci rapidamente con chi gestisce commerciale, operations o amministrazione ${toCity(city.name)}.`
                 },
                 {
                     title: 'Automazioni costruite sul processo reale',
@@ -849,23 +849,23 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Verifichiamo casi reali, sistemiamo eccezioni e ti lasciamo un flusso più robusto, leggibile e facile da usare.`
                 }
             ],
-            ctaTitle: `Hai processi manuali che ti fanno perdere tempo a ${city.name}?`,
+            ctaTitle: `Hai processi manuali che ti fanno perdere tempo ${toCity(city.name)}?`,
             ctaCopy: `Descrivici dove si inceppa il lavoro: valutiamo insieme quali automazioni possono creare impatto subito.`,
-            schemaDescription: `Automazione business a ${city.name} per workflow, CRM, email e processi interni con integrazioni su misura.`
+            schemaDescription: `Automazione business ${toCity(city.name)} per workflow, CRM, email e processi interni con integrazioni su misura.`
         },
         consulenze: {
-            title: `Consulenze a ${city.name}: sessioni mirate su web, SEO e brand da ${price} | WebNovis`,
-            description: `Consulenze a ${city.name} per siti web, SEO/GEO, branding e scelte digitali da chiarire con una seconda opinione operativa. Da ${price}.`,
-            ogDescription: `Consulenze a ${city.name} per web, SEO, brand e decisioni digitali. Da ${price}.`,
+            title: `Consulenze ${toCity(city.name)}: sessioni mirate su web, SEO e brand da ${price} | WebNovis`,
+            description: `Consulenze ${toCity(city.name)} per siti web, SEO/GEO, branding e scelte digitali da chiarire con una seconda opinione operativa. Da ${price}.`,
+            ogDescription: `Consulenze ${toCity(city.name)} per web, SEO, brand e decisioni digitali. Da ${price}.`,
             heroTag: `Consulenze · ${city.name} · ${price}`,
-            heroH1: `Consulenze a ${city.name} per sbloccare una decisione digitale precisa`,
-            heroCapsule: `<strong>WebNovis</strong> offre consulenze a ${city.name} quando hai bisogno di un confronto mirato su un sito, una pagina, una scelta SEO/GEO, un preventivo o un dubbio di posizionamento. Investimento da <strong>${price}</strong>, sessioni rapide da Rho (${city.distanzaSede}).`,
+            heroH1: `Consulenze ${toCity(city.name)} per sbloccare una decisione digitale precisa`,
+            heroCapsule: `<strong>WebNovis</strong> offre consulenze ${toCity(city.name)} quando hai bisogno di un confronto mirato su un sito, una pagina, una scelta SEO/GEO, un preventivo o un dubbio di posizionamento. Investimento da <strong>${price}</strong>, sessioni rapide da Rho (${city.distanzaSede}).`,
             heroHighlights: [
                 { label: 'Investimento', value: `Da ${price}` },
                 { label: 'Formato', value: service.timeEstimate },
                 { label: 'Focus', value: 'Second opinion operativa' }
             ],
-            sectionTitle: `Consulenze a ${city.name} quando non ti serve un progetto intero ma una risposta buona adesso`,
+            sectionTitle: `Consulenze ${toCity(city.name)} quando non ti serve un progetto intero ma una risposta buona adesso`,
             sectionIntro: `Ci sono momenti in cui non serve attivare subito un servizio completo: serve capire se un preventivo è sensato, se una pagina sta sbagliando direzione, se un rebrand ha senso o se una scelta SEO vale il budget. Qui lavoriamo come seconda opinione, molto concreta.`,
             whyCards: [
                 {
@@ -896,9 +896,9 @@ function getServiceLocalSeoCopy(service, city) {
                     text: `Ti lasciamo un riepilogo con priorità, rischi da evitare e passi successivi consigliati in base al tema affrontato.`
                 }
             ],
-            ctaTitle: `Hai una scelta digitale da chiarire a ${city.name}?`,
+            ctaTitle: `Hai una scelta digitale da chiarire ${toCity(city.name)}?`,
             ctaCopy: `Mandaci la domanda specifica e i materiali utili: impostiamo una consulenza breve ma davvero orientata alla decisione.`,
-            schemaDescription: `Consulenze a ${city.name} su siti web, SEO/GEO, brand e decisioni digitali che richiedono una seconda opinione operativa.`
+            schemaDescription: `Consulenze ${toCity(city.name)} su siti web, SEO/GEO, brand e decisioni digitali che richiedono una seconda opinione operativa.`
         }
     };
 
@@ -910,13 +910,13 @@ function getRealizzazioneSeoCopy(city) {
     const websitePrice = formatCatalogPrice('sito-vetrina');
     const ecommercePrice = formatCatalogPrice('ecommerce');
     return {
-        title: `Siti Web a ${city.name}: da ${websitePrice}, SEO integrata | WebNovis`,
-        description: `Realizzazione siti web a ${city.name} per PMI e professionisti: landing da ${landingPrice}, siti vetrina da ${websitePrice}, e-commerce da ${ecommercePrice}. Richiedi un preventivo gratuito.`,
-        ogTitle: `Realizzazione Siti Web a ${city.name}: richiedi un preventivo | WebNovis`,
-        ogDescription: `Siti web custom a ${city.name} con SEO tecnica integrata, design orientato ai contatti e gestione diretta da Rho (${city.distanzaSede}).`,
+        title: `Siti Web ${toCity(city.name)}: da ${websitePrice}, SEO integrata | WebNovis`,
+        description: `Realizzazione siti web ${toCity(city.name)} per PMI e professionisti: landing da ${landingPrice}, siti vetrina da ${websitePrice}, e-commerce da ${ecommercePrice}. Richiedi un preventivo gratuito.`,
+        ogTitle: `Realizzazione Siti Web ${toCity(city.name)}: richiedi un preventivo | WebNovis`,
+        ogDescription: `Siti web custom ${toCity(city.name)} con SEO tecnica integrata, design orientato ai contatti e gestione diretta da Rho (${city.distanzaSede}).`,
         heroTag: `Siti Web ${city.name} · preventivo personalizzato`,
-        heroH1: `Realizzazione Siti Web a ${city.name} per PMI e professionisti`,
-        heroCapsule: `Cerchi una <strong>web agency a ${city.name}</strong> per creare un sito che trasmetta valore e porti richieste concrete? WebNovis realizza landing page da <strong>${landingPrice}</strong>, siti vetrina da <strong>${websitePrice}</strong> ed e-commerce da <strong>${ecommercePrice}</strong>, con <strong>codice 100% custom</strong>, SEO tecnica integrata e gestione diretta da Rho (${city.distanzaSede}).`
+        heroH1: `Realizzazione Siti Web ${toCity(city.name)} per PMI e professionisti`,
+        heroCapsule: `Cerchi una <strong>web agency ${toCity(city.name)}</strong> per creare un sito che trasmetta valore e porti richieste concrete? WebNovis realizza landing page da <strong>${landingPrice}</strong>, siti vetrina da <strong>${websitePrice}</strong> ed e-commerce da <strong>${ecommercePrice}</strong>, con <strong>codice 100% custom</strong>, SEO tecnica integrata e gestione diretta da Rho (${city.distanzaSede}).`
     };
 }
 
@@ -937,18 +937,18 @@ function getAgenziaSeoCopy(city) {
 
     if (city.isSede) {
         return {
-            title: `Agenzia Web a ${city.name} (Milano) — WebNovis | Siti Web Custom, Grafica e Social`,
+            title: `Agenzia Web ${toCity(city.name)} (Milano) — WebNovis | Siti Web Custom, Grafica e Social`,
             description: `WebNovis è l'agenzia web con sede a Rho: siti custom per PMI tra Fiera Milano, servizi B2B e hinterland. Richiedi un preventivo gratuito.`,
-            ogTitle: `Agenzia Web a ${city.name} — WebNovis | Siti Web Custom e Digital Marketing`,
+            ogTitle: `Agenzia Web ${toCity(city.name)} — WebNovis | Siti Web Custom e Digital Marketing`,
             ogDescription: `WebNovis è l'agenzia web con sede a Rho per PMI, professionisti e attività dell'hinterland. Siti custom, grafica e social con gestione diretta.`,
             keywords: `agenzia web ${city.name}, web agency ${city.name} ${searchModifier}, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}`
         };
     }
 
     return {
-        title: `Agenzia Web a ${city.name} (${city.province || 'MI'}) — WebNovis | Siti Web Custom, Grafica e Social`,
+        title: `Agenzia Web ${toCity(city.name)} (${city.province || 'MI'}) — WebNovis | Siti Web Custom, Grafica e Social`,
         description: `Agenzia web per ${city.name}: siti custom per ${differentiator}. Sede a Rho, ${city.distanzaSede}. Richiedi un preventivo gratuito.`,
-        ogTitle: `Agenzia Web a ${city.name} — WebNovis | Siti Web Custom e Digital Marketing`,
+        ogTitle: `Agenzia Web ${toCity(city.name)} — WebNovis | Siti Web Custom e Digital Marketing`,
         ogDescription: `WebNovis è l'agenzia web per ${city.name}: siti custom, grafica e social per realtà locali legate a ${differentiator}. Sede a Rho, ${city.distanzaSede}.`,
         keywords: `agenzia web ${city.name}, web agency ${city.name} ${searchModifier}, sviluppo siti web ${city.name}, web designer ${city.name}, agenzia digitale ${city.name}, WebNovis ${city.name}`
     };

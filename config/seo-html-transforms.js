@@ -1,6 +1,7 @@
 const prioritySnippets = require('./priority-snippets');
 const { getClusterStrategicLinks } = require('./blog-cluster-links');
 const { getIndexationDirectivesForPath } = require('./pseo-governance');
+const { resolveBuildInstant, resolveRomeCalendarDate } = require('./build-date');
 
 const BASE_URL = 'https://www.webnovis.com';
 const INDEX_ROBOTS = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
@@ -1994,6 +1995,17 @@ function alignHomepageGeoPromotions(html, relativePath) {
   return updated;
 }
 
+function alignHomepageWebPageFreshness(html, relativePath) {
+  if (normalizeRelativePath(relativePath) !== 'index.html') return html;
+  const buildDateIso = resolveRomeCalendarDate(resolveBuildInstant()).iso;
+  // The homepage WebPage schema is the only dateModified on this page; keep it
+  // aligned with the actual build date instead of a frozen value.
+  return html.replace(
+    /("dateModified"\s*:\s*")[^"]*(")/i,
+    (match, prefix, suffix) => `${prefix}${buildDateIso}${suffix}`
+  );
+}
+
 function normalizeInternalAttributionLinks(html) {
   const attributionMap = new Map([
     ['utm_source', 'data-analytics-source'],
@@ -2256,6 +2268,7 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = alignLegalNavbar(updated, relativePath);
   updated = alignPortfolioExperience(updated, relativePath);
   updated = alignHomepageGeoPromotions(updated, relativePath);
+  updated = alignHomepageWebPageFreshness(updated, relativePath);
   updated = alignMoneyPageInternalLinks(updated, relativePath);
   updated = alignEditorialContextLinks(updated, relativePath);
   updated = alignClusterStrategicLinks(updated, relativePath);
@@ -2301,6 +2314,7 @@ module.exports = {
   alignLegalNavbar,
   alignPortfolioExperience,
   alignHomepageGeoPromotions,
+  alignHomepageWebPageFreshness,
   alignMoneyPageInternalLinks,
   alignEditorialContextLinks,
   alignClusterStrategicLinks,

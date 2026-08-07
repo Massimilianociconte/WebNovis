@@ -2394,155 +2394,6 @@ const articles = [
     ]
   },
   {
-    slug: 'strategia-digitale-pmi',
-    title: 'Strategia Digitale per PMI: Da Dove Iniziare nel 2026',
-    description: 'Come costruire una strategia digitale efficace per piccole e medie imprese: priorità, canali, budget e roadmap pratica per i primi 6 mesi.',
-    tag: 'Strategia',
-    date: '20 Febbraio 2026',
-    isoDate: '2026-02-20',
-    readTime: '9 min',
-    faq: [
-      { question: 'Da dove deve iniziare una PMI con la strategia digitale?', answer: 'Il primo passo è avere un sito web professionale ottimizzato per Google e mobile. Poi Google Business Profile, contenuti SEO, e infine social media e ads. L\'errore più comune è partire dai social senza avere un sito che converte.' },
-      { question: 'Quanto budget serve per una strategia digitale base?', answer: 'Una PMI può iniziare con €2.000-5.000 per il sito web + €300-500/mese per SEO e contenuti. Con €500-1.000/mese aggiuntivi per ads si copre una strategia completa.' },
-      { question: 'Quanto tempo serve per vedere risultati?', answer: 'I primi risultati dalla SEO arrivano in 3-6 mesi. Le ads portano risultati immediati. Il content marketing mostra ROI solido dopo 6-12 mesi. Chi investe 12 mesi consecutivi ottiene risultati esponenzialmente migliori.' }
-    ],
-    content: `
-<p>La maggior parte delle PMI italiane sa che "dovrebbe fare qualcosa online" ma non sa da dove iniziare. Il risultato? Budget sprecato in azioni isolate senza strategia. Ecco una <strong>roadmap pratica</strong> per costruire una presenza digitale che funziona.</p>
-
-<h2>La Piramide della Strategia Digitale per PMI</h2>
-<ol>
-    <li><strong>Base — Sito Web</strong>: il tuo hub digitale (senza questo, tutto il resto è inutile)</li>
-    <li><strong>Livello 2 — SEO e Google Business</strong>: farti trovare da chi ti cerca</li>
-    <li><strong>Livello 3 — Contenuti</strong>: blog, guide, FAQ (attraire traffico organico)</li>
-    <li><strong>Livello 4 — Social Media</strong>: awareness e community</li>
-    <li><strong>Livello 5 — Advertising</strong>: accelerare i risultati con budget ads</li>
-    <li><strong>Vertice — Analytics e CRO</strong>: misurare e ottimizzare tutto</li>
-</ol>
-
-<h2>Roadmap Operativa: I Primi 6 Mesi</h2>
-
-<h3>Mese 1-2: Le Fondamenta</h3>
-<ul>
-    <li>Sito web professionale con SEO integrata</li>
-    <li>Google Business Profile ottimizzato</li>
-    <li>Google Analytics 4 + Search Console configurati</li>
-    <li>Privacy policy e cookie banner conformi GDPR</li>
-</ul>
-
-<h3>Mese 3-4: Visibilità Organica</h3>
-<ul>
-    <li>3-5 articoli blog su keyword strategiche del settore</li>
-    <li>Ottimizzazione SEO delle pagine servizio</li>
-    <li>Richiesta recensioni Google ai clienti soddisfatti</li>
-    <li>Profili social aziendali attivi</li>
-</ul>
-
-<h3>Mese 5-6: Accelerazione</h3>
-<ul>
-    <li>Prime campagne ads (Meta o Google)</li>
-    <li>Email marketing: newsletter mensile</li>
-    <li>Analisi dati e ottimizzazione conversioni</li>
-    <li>Piano contenuti per i 6 mesi successivi</li>
-</ul>
-
-<h2>Budget Indicativo per PMI</h2>
-<table style="width:100%;border-collapse:collapse;margin:1.5rem 0">
-<thead><tr style="border-bottom:2px solid rgba(255,255,255,.1)">
-<th style="text-align:left;padding:.75rem;color:var(--white)">Investimento</th>
-<th style="text-align:left;padding:.75rem;color:var(--white)">Una Tantum</th>
-<th style="text-align:left;padding:.75rem;color:var(--white)">Mensile</th>
-</tr></thead>
-<tbody>
-<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Sito web professionale</td><td style="padding:.75rem">€2.000-5.000</td><td style="padding:.75rem">-</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">SEO e contenuti</td><td style="padding:.75rem">-</td><td style="padding:.75rem">€300-600</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Social media</td><td style="padding:.75rem">-</td><td style="padding:.75rem">€300-600</td></tr>
-<tr><td style="padding:.75rem">Advertising</td><td style="padding:.75rem">-</td><td style="padding:.75rem">€300-1.000</td></tr>
-</tbody></table>
-
-<h2>5 Errori Strategici da Evitare</h2>
-<ol>
-    <li><strong>Fare tutto contemporaneamente</strong>: meglio fare 2 cose bene che 5 male</li>
-    <li><strong>Nessuna misurazione</strong>: senza analytics non sai cosa funziona</li>
-    <li><strong>Aspettarsi risultati immediati</strong>: la strategia digitale è un investimento a medio termine</li>
-    <li><strong>Copiare i competitor grandi</strong>: le PMI devono giocare una partita diversa</li>
-    <li><strong>Fermarsi dopo 3 mesi</strong>: la costanza è il fattore #1 di successo</li>
-</ol>
-
-<p>In <a href="../chi-siamo.html">WebNovis</a> aiutiamo PMI a costruire strategie digitali complete: dal <a href="../servizi/sviluppo-web.html">sito web</a> alla <a href="../servizi/social-media.html">gestione social</a>. <a href="../preventivo.html">Parliamo della tua strategia →</a></p>`,
-    relatedArticles: [
-      { slug: 'seo-per-piccole-imprese', title: 'SEO per Piccole Imprese', desc: 'Come farsi trovare su Google.' },
-      { slug: 'serve-ancora-un-sito-web', title: 'Serve Ancora un Sito Web?', desc: 'Perché il sito resta fondamentale.' },
-      { slug: 'content-marketing-per-pmi', title: 'Content Marketing per PMI', desc: 'Come attrarre clienti con i contenuti.' }
-    ]
-  },
-  {
-    slug: 'ux-design-best-practice',
-    title: 'UX Design: 10 Best Practice per un Sito che Funziona e Converte',
-    description: 'Le regole fondamentali di UX design per siti web aziendali: navigazione, velocità, form, mobile, accessibilità. Come migliorare l\'esperienza utente.',
-    tag: 'Best Practice',
-    date: '20 Febbraio 2026',
-    isoDate: '2026-02-20',
-    readTime: '8 min',
-    faq: [
-      { question: 'Cos\'è la UX design e perché è importante?', answer: 'La UX (User Experience) design è la progettazione dell\'esperienza che l\'utente vive sul tuo sito. Una buona UX significa che il visitatore trova facilmente ciò che cerca e compie l\'azione desiderata. Un sito con buona UX converte 2-3 volte di più.' },
-      { question: 'Come capisco se il mio sito ha problemi di UX?', answer: 'Segnali: bounce rate sopra 70%, tempo medio sotto 30 secondi, tasso di conversione sotto 1%, feedback negativi. Strumenti come Hotjar e Microsoft Clarity mostrano dove gli utenti hanno difficoltà.' },
-      { question: 'Quanto costa migliorare la UX del sito?', answer: 'Un audit UX costa €500-2.000. Modifiche semplici (CTA, layout, form) €500-1.500; redesign completo con focus UX €3.000-8.000. Spesso piccoli interventi mirati producono grandi miglioramenti.' }
-    ],
-    content: `
-<p>Un sito web bello ma difficile da usare è un sito che non converte. La <strong>UX design</strong> è ciò che trasforma visitatori confusi in clienti soddisfatti. Ecco 10 regole fondamentali.</p>
-
-<h2>1. La Regola dei 3 Secondi</h2>
-<p>Il visitatore decide se restare in 3 secondi. Deve capire: chi sei, cosa offri e cosa fare. Se la homepage non comunica questo subito, hai perso.</p>
-
-<h2>2. Navigazione Intuitiva</h2>
-<p>Max 6-7 voci nel menu. Etichette chiare ("Servizi", "Prezzi", "Contatti"), non creative. L\'utente non deve pensare per navigare.</p>
-
-<h2>3. Gerarchia Visiva Chiara</h2>
-<p>L\'occhio segue: titolo → sottotitolo → immagine → CTA. Usa dimensioni, colori e spaziatura per guidare l\'attenzione.</p>
-
-<h2>4. Mobile First</h2>
-<p>Il 70% del traffico è mobile. Bottoni 44×44px minimo, testo leggibile senza zoom, form compilabili col pollice.</p>
-
-<h2>5. Velocità come Feature</h2>
-<p>LCP sotto 2.5 secondi, INP sotto 200ms. Ogni secondo in più = 7% conversioni perse.</p>
-
-<h2>6. Form Semplici e Guidati</h2>
-<ul>
-    <li>Meno campi possibile (3-4 massimo)</li>
-    <li>Label sempre visibili</li>
-    <li>Messaggi di errore chiari e contestuali</li>
-    <li>Pulsante con testo descrittivo</li>
-    <li>Feedback di conferma dopo l\'invio</li>
-</ul>
-
-<h2>7. Consistenza in Tutto il Sito</h2>
-<p>Stessi colori, font, stile dei bottoni in ogni pagina. L\'inconsistenza riduce la fiducia.</p>
-
-<h2>8. Contenuto Scannerizzabile</h2>
-<p>Il 79% degli utenti scansiona le pagine. Paragrafi brevi, heading descrittivi, elenchi, grassetto per i concetti chiave, spazio bianco generoso.</p>
-
-<h2>9. Feedback Immediato</h2>
-<p>Ogni azione deve avere feedback visivo: hover sui bottoni, conferma dopo l\'invio, indicatore di caricamento.</p>
-
-<h2>10. Accessibilità = Buona UX per Tutti</h2>
-<p>Contrasto sufficiente, navigazione da tastiera, alt text, form con label: sono <strong>buona UX per tutti gli utenti</strong>.</p>
-
-<h2>Come Misurare la UX</h2>
-<ul>
-    <li><strong>Bounce rate</strong>: sopra 70%? Prima impressione non funziona</li>
-    <li><strong>Tempo sulla pagina</strong>: sotto 30s? Il contenuto non ingaggia</li>
-    <li><strong>Tasso di conversione</strong>: sotto 1%? La UX non guida all\'azione</li>
-    <li><strong>Heatmap</strong>: Clarity/Hotjar mostrano dove gli utenti si bloccano</li>
-</ul>
-
-<p>In <a href="../chi-siamo.html">WebNovis</a> ogni sito è progettato con <a href="../servizi/sviluppo-web.html">UX al centro</a>: navigazione intuitiva, performance eccellenti e conversioni ottimizzate. <a href="../preventivo.html">Migliora la UX del tuo sito →</a></p>`,
-    relatedArticles: [
-      { slug: 'ottimizzazione-tasso-conversione', title: 'CRO: Ottimizzare le Conversioni', desc: 'Trasformare più visitatori in clienti.' },
-      { slug: 'core-web-vitals-guida', title: 'Core Web Vitals', desc: 'Le metriche Google per il tuo sito.' },
-      { slug: 'errori-comuni-siti-web', title: 'Errori Comuni nei Siti Web', desc: 'Gli errori che fanno perdere clienti.' }
-    ]
-  },
-  {
     slug: 'portare-attivita-online',
     title: 'Come Portare la Tua Attività Online: Guida Step-by-Step per PMI',
     description: 'Da negozio fisico a presenza digitale: sito web, Google Business, social media, e-commerce. Guida pratica per PMI che vogliono iniziare.',
@@ -2685,85 +2536,6 @@ const articles = [
       { slug: 'seo-per-piccole-imprese', title: 'SEO per Piccole Imprese', desc: 'Come farsi trovare su Google.' },
       { slug: 'strategia-digitale-pmi', title: 'Strategia Digitale per PMI', desc: 'Da dove iniziare nel 2026.' },
       { slug: 'portare-attivita-online', title: 'Portare l\'Attività Online', desc: 'Guida step-by-step per PMI.' }
-    ]
-  },
-  {
-    slug: 'sito-web-professionale-checklist',
-    title: 'Come Deve Essere un Sito Web Professionale: Checklist Completa 2026',
-    description: 'I 15 requisiti essenziali di un sito web aziendale professionale: design, performance, SEO, sicurezza, accessibilità, conversioni.',
-    tag: 'Web Development',
-    date: '20 Febbraio 2026',
-    isoDate: '2026-02-20',
-    readTime: '8 min',
-    faq: [
-      { question: 'Quali sono i requisiti minimi di un sito professionale?', answer: 'Design responsive mobile-first, velocità sotto 2.5s LCP, HTTPS attivo, SEO on-page corretta, privacy policy e cookie banner GDPR compliant, form di contatto funzionante, e contenuti aggiornati.' },
-      { question: 'Come verifico se il mio sito è professionale?', answer: 'Testa con Lighthouse (punteggio sopra 85 in Performance, Accessibility, SEO), verifica su mobile, controlla title e meta description unici, e chiedi a 5 persone di trovare il numero di telefono — se ci mettono più di 10 secondi, c\'è un problema.' },
-      { question: 'Quanto costa un sito che rispetta tutti i requisiti?', answer: 'Un sito che rispetta tutti i 15 requisiti costa €2.000-5.000. Siti sotto €1.000 raramente soddisfano tutti i criteri. L\'investimento si ripaga in credibilità, posizionamento e conversioni.' }
-    ],
-    content: `
-<p>Cos\'ha un sito professionale che uno amatoriale non ha? Non è solo il design — è un insieme di <strong>15 requisiti</strong> che fanno la differenza.</p>
-
-<h2>I 15 Requisiti di un Sito Professionale</h2>
-
-<h3>Design e UX</h3>
-<ol>
-    <li><strong>Design responsive mobile-first</strong></li>
-    <li><strong>Gerarchia visiva chiara</strong>: chi sei e cosa fai in 3 secondi</li>
-    <li><strong>Navigazione intuitiva</strong>: max 6-7 voci, CTA sempre visibile</li>
-    <li><strong>Consistenza visiva</strong>: stessi colori, font e stili ovunque</li>
-</ol>
-
-<h3>Performance</h3>
-<ol start="5">
-    <li><strong>LCP sotto 2.5 secondi</strong></li>
-    <li><strong>INP sotto 200ms</strong></li>
-    <li><strong>CLS sotto 0.1</strong></li>
-    <li><strong>Lighthouse Performance sopra 85</strong> su mobile</li>
-</ol>
-
-<h3>SEO</h3>
-<ol start="9">
-    <li><strong>Title e meta description unici</strong> per ogni pagina</li>
-    <li><strong>Struttura heading corretta</strong>: un solo H1, gerarchia logica</li>
-    <li><strong>Schema markup</strong>: Organization, LocalBusiness, BreadcrumbList</li>
-    <li><strong>Sitemap XML e robots.txt</strong></li>
-</ol>
-
-<h3>Sicurezza e Conformità</h3>
-<ol start="13">
-    <li><strong>HTTPS con certificato SSL valido</strong></li>
-    <li><strong>Privacy policy e cookie banner GDPR</strong> con Consent Mode v2</li>
-    <li><strong>Form sicuri</strong> con protezione anti-spam</li>
-</ol>
-
-<h2>Come Verificare</h2>
-<table style="width:100%;border-collapse:collapse;margin:1.5rem 0">
-<thead><tr style="border-bottom:2px solid rgba(255,255,255,.1)">
-<th style="text-align:left;padding:.75rem;color:var(--white)">Requisito</th>
-<th style="text-align:left;padding:.75rem;color:var(--white)">Strumento</th>
-</tr></thead>
-<tbody>
-<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Performance</td><td style="padding:.75rem">PageSpeed Insights / Lighthouse</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Mobile</td><td style="padding:.75rem">Chrome DevTools / Mobile Friendly Test</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">SEO</td><td style="padding:.75rem">Google Search Console / Screaming Frog</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Schema</td><td style="padding:.75rem">Schema Markup Validator</td></tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Accessibilità</td><td style="padding:.75rem">WAVE / Lighthouse Accessibility</td></tr>
-<tr><td style="padding:.75rem">Sicurezza</td><td style="padding:.75rem">SSL Labs / Security Headers</td></tr>
-</tbody></table>
-
-<h2>Cosa Succede Se il Sito Non È Professionale</h2>
-<ul>
-    <li><strong>Perdi credibilità</strong>: il 75% giudica l\'azienda dal sito</li>
-    <li><strong>Perdi posizionamento</strong>: Google penalizza siti lenti e non mobile</li>
-    <li><strong>Perdi clienti</strong>: un sito confuso non converte</li>
-    <li><strong>Rischi sanzioni</strong>: GDPR non conforme = multe fino a €20M</li>
-</ul>
-
-<p>In <a href="../chi-siamo.html">WebNovis</a> ogni sito rispetta tutti i 15 requisiti. <a href="../servizi/sviluppo-web.html">Scopri come lavoriamo</a> o <a href="../preventivo.html">richiedi un audit gratuito →</a></p>`,
-    relatedArticles: [
-      { slug: 'errori-comuni-siti-web', title: 'Errori Comuni nei Siti Web', desc: 'Gli errori che fanno perdere clienti.' },
-      { slug: 'core-web-vitals-guida', title: 'Core Web Vitals', desc: 'Le metriche Google per il tuo sito.' },
-      { slug: 'ux-design-best-practice', title: 'UX Design Best Practice', desc: '10 regole per un sito che converte.' }
     ]
   },
   {
@@ -6983,6 +6755,356 @@ const stubArticles = [
 
 <h2>Il passo successivo</h2>
 <p>Se GA4 è installato ma non hai mai configurato gli eventi chiave, il tuo prossimo passo è quello: mezz'ora di lavoro che trasforma le statistiche in uno strumento di decisione. Se preferisci che configurazione e lettura periodica le faccia qualcuno per te — con un report comprensibile invece di quaranta grafici — <a href="../servizi/consulenze.html">guarda le nostre consulenze</a> o <a href="../preventivo.html">scrivici</a>.</p>`
+  },
+  {
+    slug: 'sito-web-che-non-converte',
+    title: 'Sito Web che Non Converte: 15 Cause e Come Risolverle',
+    description: 'Hai traffico ma zero contatti? Ecco le 15 cause più comuni per cui un sito non converte e le soluzioni pratiche per trasformare i visitatori in clienti.',
+    tag: 'Conversioni',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '11 min',
+    keyword: 'sito web che non converte',
+    faq: [
+      {
+        question: 'Perché il mio sito ha visite ma non ricevo richieste?',
+        answer: 'Le cause più frequenti sono: CTA poco visibili o generiche, form troppo lunghi, contenuti che non rispondono all\'intento di chi cerca, mancanza di fiducia (nessuna recensione, nessun portfolio), velocità di caricamento scarsa, e design non mobile-friendly. Spesso il problema non è uno solo ma una combinazione di più fattori che insieme spingono il visitatore ad andarsene senza agire.'
+      },
+      {
+        question: 'Qual è il tasso di conversione medio di un sito aziendale?',
+        answer: 'Un sito di servizi professionale converte in media tra il 2% e il 5% dei visitatori in contatti, ma il dato varia molto per settore: un e-commerce può accontentarsi dell\'1-2%, un sito di un professionista locale dovrebbe puntare al 3-8%. Sotto l\'1% c\'è quasi sempre un problema risolvibile, sopra il 5% stai facendo un ottimo lavoro.'
+      },
+      {
+        question: 'Quanto costa sistemare un sito che non converte?',
+        answer: 'Dipende dalla causa. Interventi semplici come riscrivere le CTA, accorciare i form o aggiungere recensioni costano poche centinaia di euro. Problemi strutturali come rifare l\'architettura delle pagine o il copy richiedono un investimento di €1.000-3.000. In ogni caso, sistemare le conversioni ha un ROI immediato: se passi dall\'1% al 3% con lo stesso traffico, triplichi i contatti senza spendere un euro in più in pubblicità.'
+      }
+    ],
+    content: `
+<p>Hai investito tempo e denaro nel sito web. Le visite arrivano — Google Analytics lo conferma. Ma il telefono non squilla, i form restano vuoti, le richieste non arrivano. Il problema non è il traffico: è la <strong>conversione</strong>. Ecco le 15 cause più comuni per cui un sito non trasforma i visitatori in clienti, e cosa fare per ognuna.</p>
+
+<h2>1. Call-to-action invisibili o generiche</h2>
+<p>La CTA è il momento in cui il visitatore decide se agire o andarsene. "Invia", "Clicca qui", "Scopri di più" non comunicano alcun beneficio. Una CTA efficace dice esattamente cosa ottieni: "Richiedi il preventivo gratuito", "Prenota una consulenza senza impegno", "Scarica la guida". Deve anche <strong>essere visibile senza scrollare</strong> e avere un colore che contrasta con il resto della pagina.</p>
+
+<h2>2. Form troppo lunghi o invasivi</h2>
+<p>Ogni campo in più nel form riduce le compilazioni. Chiedere il numero di telefono quando basterebbe un'email, oppure obbligare a registrarsi prima di vedere un prezzo sono barriere che allontanano. Regola pratica: per un primo contatto bastano nome, email e un campo messaggio. I dettagli si raccolgono dopo, quando la relazione è già iniziata.</p>
+
+<h2>3. Nessuna prova sociale</h2>
+<p>Il visitatore non ti conosce e cerca segnali di affidabilità: recensioni Google, testimonianze di clienti reali con nome e cognome, loghi di aziende con cui hai lavorato, numeri concreti (progetti realizzati, anni di attività). Un sito senza social proof è come un negozio senza vetrina: passa la voglia di entrare.</p>
+
+<h2>4. Contenuti che non rispondono alle domande dell'utente</h2>
+<p>Se nella pagina parli di quanto sei bravo invece di rispondere a "questo servizio risolve il mio problema? quanto costa? come funziona?", stai parlando la lingua sbagliata. Il visitatore è entrato con un bisogno specifico: se non trova subito la risposta, esce e cerca altrove. Ogni pagina deve essere costruita attorno all'intento di ricerca, non attorno alla tua presentazione aziendale.</p>
+
+<h2>5. Velocità di caricamento insufficiente</h2>
+<p>Il 53% dei visitatori abbandona una pagina che impiega più di 3 secondi a caricarsi su mobile. Non importa quanto sia bello il design o convincente il copy: se il sito è lento, la maggior parte delle persone non lo vedrà mai. La velocità non è un dettaglio tecnico — è il primo ostacolo alla conversione.</p>
+
+<h2>6. Design non ottimizzato per smartphone</h2>
+<p>Oltre il 60% del traffico web arriva da mobile. Pulsanti troppo piccoli per essere premuti col pollice, testi che richiedono lo zoom, form impossibili da compilare da telefono sono conversioni perse. Il sito deve essere progettato partendo dallo schermo piccolo, come spieghiamo nella guida sul <a href="sito-web-mobile-first.html">mobile-first design</a>.</p>
+
+<h2>7. Mancanza di urgenza o scarsità</h2>
+<p>Senza un motivo per agire ora, il visitatore rimanda a un "dopo" che non arriva mai. Non serve inventare urgenze artificiali: bastano elementi reali come "disponibilità limitata questo mese", "offerta valida fino al...", o semplicemente comunicare che rispondi entro poche ore, non giorni.</p>
+
+<h2>8. Informazioni di contatto nascoste</h2>
+<p>Telefono, email, indirizzo, orari devono essere trovabili in meno di 3 secondi da qualsiasi pagina. Il 40% dei visitatori cerca solo un numero da chiamare: se deve scavare nel menu "Contatti", hai già perso quel potenziale cliente.</p>
+
+<h2>9. Nessuna pagina dedicata ai prezzi o ai costi</h2>
+<p>Il visitatore vuole sapere se può permettersi il servizio prima di contattarti. Non serve esporre il listino al centesimo: bastano fasce di prezzo indicative, esempi di progetti con budget reale, o una pagina "<a href="../quanto-costa-un-sito-web/">quanto costa</a>" che spiega cosa determina il costo. Senza trasparenza sui prezzi, molti non si prendono nemmeno la briga di chiedere.</p>
+
+<h2>10. Popup e distrazioni che interrompono la lettura</h2>
+<p>Il visitatore sta leggendo i tuoi contenuti — sta già valutando se sei la persona giusta. Un popup che compare dopo 10 secondi chiedendo "Iscriviti alla newsletter!" interrompe quel processo e nella maggior parte dei casi lo fa scappare. I popup funzionano solo se sono contestuali e offrono valore immediato, non se interrompono.</p>
+
+<h2>11. Immagini generiche o foto stock irriconoscibili</h2>
+<p>Le foto stock di persone che sorridono in ufficio comunicano esattamente zero su di te. Il visitatore riconosce l'immagine generica e associa il sito a un'azienda generica. Mostra foto vere del tuo lavoro, del tuo team, del tuo spazio — anche se imperfette — e la fiducia sale immediatamente. La <a href="brand-identity-guida-completa.html">brand identity</a> passa anche da qui.</p>
+
+<h2>12. Messaggi rassicuranti assenti</h2>
+<p>"Preventivo gratuito e senza impegno", "Pagamento a risultati", "Soddisfatti o rimborsati", "Prima consulenza gratuita" — questi messaggi rimuovono l'ultima barriera psicologica prima dell'azione. Se il visitatore percepisce un rischio (anche solo il fastidio di essere ricontattato con insistenza), non agisce.</p>
+
+<h2>13. Processo di contatto non chiaro</h2>
+<p>"Cosa succede dopo che clicco su Invia? Mi chiamate? Quando? Quanto costa la consulenza?" — Se il visitatore si fa queste domande e non trova risposta, il form resta vuoto. Descrivi esattamente i passaggi successivi: "Ricevi una mail di conferma immediata. Fissiamo insieme una call di 20 minuti gratuita per capire le tue esigenze. Poi ti prepariamo un preventivo dettagliato."</p>
+
+<h2>14. Navigazione confusa o menu sovraccarico</h2>
+<p>Dieci voci di menu, sottomenu a tendina, pagine che non si capisce cosa contengano. Il visitatore si perde e abbandona. Un menu aziendale efficace ha al massimo 6-7 voci con etichette chiare: "Servizi", "Portfolio", "Prezzi", "Chi Siamo", "Contatti". Se un'informazione è importante, deve essere raggiungibile in massimo 2 click.</p>
+
+<h2>15. Nessun follow-up dopo il contatto</h2>
+<p>Questa è la causa più frustrante: il form funziona, le richieste arrivano, ma nessuno risponde in tempi utili. Se un potenziale cliente ti scrive e non riceve risposta entro poche ore — non giorni, ore — nella maggior parte dei casi ha già contattato un concorrente. Automatizza almeno l'email di conferma: "Abbiamo ricevuto la tua richiesta, ti rispondiamo entro X ore".</p>
+
+<h2>Come diagnosticare il tuo sito in 10 minuti</h2>
+<p>Apri il sito da telefono e prova a fare esattamente quello che farebbe un cliente: cerca un servizio, leggi una pagina, clicca su CTA. Riesci a completare l'azione in meno di 30 secondi senza frustrazione? Se la risposta è no, hai già identificato il primo problema. Per un'analisi approfondita, <a href="../servizi/consulenze.html">le nostre consulenze</a> partono proprio dai dati di conversione per capire dove il sito perde clienti e come sistemarlo. <a href="../preventivo.html">Parlaci del tuo progetto →</a></p>`
+  },
+  {
+    slug: 'sanzioni-sito-non-accessibile-2026',
+    title: 'Sanzioni Sito non Accessibile nel 2026: Importi, Rischi e Scadenze',
+    description: 'L\'European Accessibility Act introduce obblighi e sanzioni per i siti web non accessibili. Ecco chi deve adeguarsi, entro quando e cosa rischia chi non lo fa.',
+    tag: 'Web Development',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '8 min',
+    keyword: 'sanzioni sito non accessibile',
+    faq: [
+      {
+        question: 'Quali sono le sanzioni per un sito non accessibile nel 2026?',
+        answer: 'Le sanzioni variano per Paese membro ma il quadro sanzionatorio prevede multe fino al 5% del fatturato annuo per le imprese, con massimali che possono raggiungere diverse centinaia di migliaia di euro. In Italia il Garante e l\'AGID possono imporre anche la sospensione dell\'attività digitale fino all\'adeguamento. Non esiste più la scusa del "non lo sapevo": l\'obbligo è legge.'
+      },
+      {
+        question: 'Chi è obbligato ad avere un sito accessibile?',
+        answer: 'Dal 28 giugno 2025 la direttiva si applica a tutte le imprese con almeno 10 dipendenti o fatturato sopra 2 milioni di euro. Dal 2027 l\'obbligo si estende a micro-imprese e professionisti. Sono coinvolti siti web, e-commerce, app mobile, PDF scaricabili e qualsiasi interfaccia digitale rivolta al pubblico.'
+      },
+      {
+        question: 'Quanto costa rendere accessibile un sito esistente?',
+        answer: 'Un audit di accessibilità costa €500-1.500 per un sito medio. Le correzioni variano da €1.000-3.000 per interventi mirati (contrasti, label, navigazione tastiera) fino a €3.000-10.000 per un restyling strutturale. Se il sito va rifatto, un sito accessibile nativamente costa come uno non accessibile — la differenza la fa la competenza di chi lo sviluppa, non il budget.'
+      }
+    ],
+    content: `
+<p>Se hai un sito web aziendale, nel 2026 esiste un obbligo di legge che non puoi più ignorare: l'<strong>European Accessibility Act</strong> (EAA) è entrato in vigore e con esso le prime sanzioni per chi non si adegua. Non è un problema tecnico per sviluppatori: è un rischio concreto per la tua azienda. Ecco cosa devi sapere.</p>
+
+<h2>La scadenza è già passata</h2>
+<p>Il 28 giugno 2025 è stata la data di recepimento. Significa che da quel giorno i siti web di prodotti e servizi rivolti al pubblico nell'Unione Europea devono rispettare i criteri di accessibilità WCAG 2.1 livello AA. I controlli sono partiti, le prime sanzioni stanno arrivando. Non sei in regola? Ogni giorno di ritardo è un giorno di esposizione.</p>
+
+<h2>Chi deve adeguarsi (la lista potrebbe sorprenderti)</h2>
+<p>L'obbligo riguarda:</p>
+<ul>
+    <li><strong>E-commerce</strong> di qualsiasi dimensione che vendono a consumatori</li>
+    <li><strong>Siti di servizi professionali</strong> (agenzie, studi, consulenti) con più di 10 dipendenti</li>
+    <li><strong>App mobile e web app</strong> che offrono servizi al pubblico</li>
+    <li><strong>Piattaforme di prenotazione</strong> (ristoranti, hotel, servizi)</li>
+    <li><strong>Portali bancari, assicurativi, utility</strong> già dal primo giorno</li>
+    <li><strong>Siti della PA e fornitori</strong> della pubblica amministrazione</li>
+</ul>
+<p>Dal 2027 la platea si allarga ulteriormente alle micro-imprese. In pratica, quasi nessun sito aziendale è escluso.</p>
+
+<h2>Quanto si rischia: multe e conseguenze</h2>
+<table style="width:100%;border-collapse:collapse;margin:1.5rem 0">
+<thead><tr style="border-bottom:2px solid rgba(255,255,255,.1)">
+<th style="text-align:left;padding:.75rem;color:var(--white)">Violazione</th>
+<th style="text-align:left;padding:.75rem;color:var(--white)">Sanzione</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Sito non conforme dopo diffida</td><td style="padding:.75rem">Multa proporzionale al fatturato, fino al 5%</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Mancato adeguamento reiterato</td><td style="padding:.75rem">Sospensione del servizio digitale + sanzione maggiorata</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.06)"><td style="padding:.75rem">Discriminazione documentata</td><td style="padding:.75rem">Risarcimento danni + danno reputazionale pubblico</td></tr>
+<tr><td style="padding:.75rem">Dichiarazione di accessibilità falsa</td><td style="padding:.75rem">Sanzione per falsa attestazione + aggravante</td></tr>
+</tbody></table>
+
+<h2>Ma cosa significa "accessibile"? I 4 pilastri WCAG</h2>
+<p>L'accessibilità non è un interruttore che si accende: è un insieme di requisiti organizzati in quattro principi (POUR):</p>
+<ol>
+    <li><strong>Percepibile</strong>: le informazioni devono essere presentate in modi che tutti possano percepire (testo alternativo per immagini, sottotitoli per video, contrasto sufficiente tra testo e sfondo).</li>
+    <li><strong>Utilizzabile</strong>: l'interfaccia deve funzionare con diversi metodi di input (tastiera, screen reader, comandi vocali), non solo col mouse.</li>
+    <li><strong>Comprensibile</strong>: il contenuto e la navigazione devono essere chiari e prevedibili — form con etichette, messaggi di errore esplicativi, lingua dichiarata nel codice.</li>
+    <li><strong>Robusto</strong>: il codice deve essere semanticamente corretto perché le tecnologie assistive possano interpretarlo oggi e in futuro.</li>
+</ol>
+
+<h2>Le 5 cose che devi controllare subito sul tuo sito</h2>
+<ol>
+    <li><strong>Contrasto colore</strong>: il testo deve avere un rapporto di contrasto minimo di 4.5:1 con lo sfondo. La maggior parte dei siti con design "elegante" (grigio su grigio) non lo supera.</li>
+    <li><strong>Navigazione da tastiera</strong>: prova a usare il sito solo con il tasto Tab. Riesci a raggiungere tutti i link, i pulsanti e i campi del form? Vedi un indicatore visivo di dove ti trovi?</li>
+    <li><strong>Testo alternativo delle immagini</strong>: ogni immagine che comunica informazione deve avere un testo alternativo descrittivo. Le immagini decorative devono averlo vuoto (non assente).</li>
+    <li><strong>Etichette dei form</strong>: ogni campo deve avere un'etichetta associata nel codice. "Placeholder" dentro il campo non basta.</li>
+    <li><strong>Dichiarazione di accessibilità</strong>: il sito deve pubblicare una dichiarazione di accessibilità, anche se parziale, indicando lo stato di conformità e i recapiti per segnalare problemi.</li>
+</ol>
+
+<h2>Il rischio reputazionale è peggiore della multa</h2>
+<p>Oltre alle sanzioni economiche, c'è un costo nascosto: la segnalazione pubblica. Le associazioni per i diritti delle persone con disabilità monitorano attivamente i siti non conformi e pubblicano report nominativi. Un'azienda segnalata per discriminazione digitale subisce un danno reputazionale che nessuna campagna marketing può riparare rapidamente.</p>
+
+<h2>Accessibilità conviene (anche senza obbligo)</h2>
+<p>Un sito accessibile è più usabile per tutti: testi leggibili, navigazione chiara, form ben progettati. Migliora la SEO (Google premia i siti ben strutturati), raggiunge il 15% della popolazione che ha una qualche forma di disabilità, e protegge l'azienda da rischi legali. L'accessibilità non è un costo: è un investimento in qualità e sicurezza. In <a href="../chi-siamo.html">WebNovis</a> sviluppiamo siti nativamente accessibili secondo WCAG 2.1 AA — non come aggiunta, ma come standard di progetto. <a href="../servizi/accessibilita.html">Scopri il nostro approccio all'accessibilità →</a></p>`
+  },
+  {
+    slug: 'dominio-hosting-guida-non-tecnico',
+    title: 'Dominio e Hosting per Siti Aziendali: Guida per Chi Non È Tecnico',
+    description: 'Dominio, hosting, DNS, spazio web, SSL: cosa significano davvero e come sceglierli senza farsi fregare. Guida in italiano semplice per PMI e professionisti.',
+    tag: 'Web Development',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '9 min',
+    keyword: 'dominio hosting aziendale',
+    faq: [
+      {
+        question: 'Qual è la differenza tra dominio e hosting?',
+        answer: 'Il dominio è l\'indirizzo del tuo sito (es. tuoazienda.it), come il numero civico di una casa. L\'hosting è lo spazio fisico su un server dove risiedono i file del sito, come l\'appartamento vero e proprio. Servono entrambi: compri il dominio (€10-30/anno) e affitti lo spazio hosting (€50-300/anno a seconda delle esigenze).'
+      },
+      {
+        question: 'Quale hosting scegliere per un sito aziendale?',
+        answer: 'Per un sito vetrina o un piccolo e-commerce bastano 1 GB di spazio e 10 GB di traffico mensile, che qualsiasi hosting base offre. Più importanti dello spazio sono: backup automatici, supporto in italiano, certificato SSL incluso, e PHP/MySQL aggiornati. Diffida di offerte "illimitate" a €2/mese: nascondono server lenti e condivisi con migliaia di altri siti.'
+      },
+      {
+        question: 'Posso cambiare hosting senza perdere il sito?',
+        answer: 'Sì, si chiama migrazione. Un professionista trasferisce file, database ed email sul nuovo hosting e aggiorna i DNS (i puntamenti del dominio). Il sito resta online durante il passaggio e il cambio è indolore per i visitatori. Tempo medio: 24-48 ore. Non serve alcuna competenza tecnica da parte tua.'
+      }
+    ],
+    content: `
+<p>Hai deciso di fare un sito web. Bene. Poi arriva la domanda: "Che dominio vuole? E per l'hosting come facciamo?" — e lì parte il panico. Dominio, hosting, DNS, spazio web, certificato SSL: parole che per chi non è del settore suonano come una lingua straniera. Questa guida le traduce <strong>in italiano semplice</strong>, così la prossima volta che ne parli con un fornitore sai esattamente di cosa si tratta e non ti fai fregare.</p>
+
+<h2>Dominio: il tuo indirizzo su internet</h2>
+<p>Il dominio è il nome del tuo sito: <code>tuoazienda.it</code> o <code>tuonome.com</code>. È tuo, lo registri a tuo nome (mai a nome del fornitore!) e lo rinnovi ogni anno. Costa tra 10 e 30 euro all'anno per un .it, un po' di più per estensioni particolari. Alcune regole pratiche:</p>
+<ul>
+    <li><strong>Sceglilo corto e memorabile</strong>: meglio un nome di 8-12 lettere facile da scrivere e da dettare al telefono.</li>
+    <li><strong>Il .it ispira fiducia</strong> in Italia più del .com, soprattutto per attività locali. Se il .it è libero, prendilo.</li>
+    <li><strong>Evita trattini e numeri</strong>: studio-legale-milano.it è difficile da ricordare e sembra un dominio di seconda scelta.</li>
+    <li><strong>Registralo a nome tuo</strong>, non del webmaster o dell'agenzia. È un asset aziendale, come la partita IVA.</li>
+    <li><strong>Controlla i social</strong>: prima di registrare il dominio, verifica che il nome sia libero anche su Instagram e Facebook.</li>
+</ul>
+
+<h2>Hosting: dove "vive" il tuo sito</h2>
+<p>Il dominio è l'indirizzo, l'hosting è la casa. È un computer sempre acceso e connesso a internet (un server) che ospita i file del tuo sito e li mostra ai visitatori. Non serve comprare un server fisico — si affitta una porzione di spazio, come affittare un appartamento invece di comprare il palazzo.</p>
+
+<h2>Quanto hosting ti serve davvero</h2>
+<p>Un sito aziendale medio (testi, foto, qualche form, una ventina di pagine) occupa meno di 100 MB. Per darti un'idea, qualsiasi hosting entry-level offre almeno 1 GB — dieci volte quello che ti serve. Non farti abbagliare dai numeroni dello spazio: la differenza tra un hosting buono e uno scarso non sta nei GB ma in tre cose:</p>
+
+<h3>1. Prestazioni del server</h3>
+<p>Un server lento rende lento il tuo sito — indipendentemente da quanto sia ben fatto. I pacchetti hosting ultra-economici (€2-3/mese) stipano centinaia di siti sullo stesso server, e quando un vicino di server ha un picco di traffico, il tuo sito rallenta. Cerca hosting con risorse dedicate (CPU e RAM garantite) o WordPress hosting ottimizzato se usi WordPress.</p>
+
+<h3>2. Backup automatici</h3>
+<p>Se il sito si rompe per un aggiornamento sbagliato o un attacco, l'unica ancora di salvezza è un backup recente. L'hosting deve fare backup automatici giornalieri o settimanali e permetterti di ripristinarli con un click. Senza backup, un problema tecnico può cancellare mesi di lavoro.</p>
+
+<h3>3. Supporto vero, in italiano</h3>
+<p>Quando il sito non va — e prima o poi succede — hai bisogno di qualcuno che risponda in tempi umani e nella tua lingua. Il supporto 24/7 in inglese via chat non serve a niente se non capisci la risposta o se ti rispondono dopo 48 ore. Verifica le recensioni sul supporto prima di scegliere.</p>
+
+<h2>Il certificato SSL è obbligatorio (e gratuito)</h2>
+<p>Quel lucchetto verde nella barra degli indirizzi non è un optional. Google penalizza i siti senza HTTPS e i browser mostrano un avviso "Non sicuro" che spaventa i visitatori. Oggi qualsiasi hosting serio include un certificato SSL gratuito (Let's Encrypt) che si rinnova automaticamente. Se il tuo hosting te lo fa pagare come extra, cambia hosting.</p>
+
+<h2>Dominio, hosting ed email: come stanno insieme</h2>
+<p>Molti hosting includono caselle email professionali (nome@tuoazienda.it) nel prezzo. Questo ti permette di avere email con il tuo dominio invece di usare Gmail o Libero — un dettaglio che fa la differenza nella percezione di professionalità. Le email possono stare sullo stesso hosting del sito o su un servizio separato (Google Workspace, Microsoft 365): la scelta dipende da quante caselle ti servono e quanto spazio occupano.</p>
+
+<h2>La domanda finale: chi se ne occupa?</h2>
+<p>Registrare un dominio e attivare un hosting sono operazioni tecnicamente semplici, ma configurare tutto correttamente (DNS, SSL, email, redirect, backup) richiede attenzione. Un errore di configurazione può lasciare il sito offline o far finire le email nello spam. Se non hai dimestichezza tecnica, la scelta più saggia è far gestire dominio e hosting a chi sviluppa il sito — con l'intesa che tutto resti intestato a te. In <a href="../chi-siamo.html">WebNovis</a> accompagniamo i clienti nella scelta e nella configurazione iniziale, e offriamo <a href="../servizi/manutenzione-sito.html">piani di manutenzione</a> che includono hosting, backup e monitoraggio — così non devi pensarci tu. <a href="../preventivo.html">Parlaci del tuo progetto →</a></p>`
+  },
+  {
+    slug: 'test-ab-sito-web-guida',
+    title: 'Test A/B sul Sito Web: Come Migliorare le Conversioni con i Dati',
+    description: 'I test A/B trasformano le opinioni in dati: cosa testare, come farlo senza rompere la SEO e quali strumenti usare. Guida pratica per siti aziendali.',
+    tag: 'Conversioni',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '9 min',
+    keyword: 'test A/B sito web',
+    faq: [
+      {
+        question: 'Cos\'è un test A/B e come funziona su un sito web?',
+        answer: 'Un test A/B mostra due versioni diverse della stessa pagina a due gruppi casuali di visitatori, misurando quale versione genera più conversioni (clic, form compilati, acquisti). Il traffico viene diviso 50/50 e dopo un periodo di test (di solito 2-4 settimane) i dati dicono quale versione funziona meglio. Non si tratta di opinioni: si tratta di numeri.'
+      },
+      {
+        question: 'I test A/B danneggiano la SEO?',
+        answer: 'No, se fatti correttamente. La regola d\'oro è: non mostrare a Google una versione e agli utenti un\'altra (cloaking). I test A/B legittimi usano JavaScript lato client per variare l\'esperienza, mentre Google vede la versione originale. Inoltre i test devono essere temporanei: una volta conclusi, si implementa la versione vincente in modo permanente.'
+      },
+      {
+        question: 'Quanto traffico serve per un test A/B valido?',
+        answer: 'Per risultati statisticamente significativi servono almeno 100-200 conversioni per variante. Questo si traduce in circa 2.000-5.000 visitatori unici per test, che per un sito aziendale medio si raggiungono in 2-4 settimane. Siti con meno di 1.000 visite/mese possono comunque testare cambiamenti radicali (CTA, headline) ma su periodi più lunghi.'
+      }
+    ],
+    content: `
+<p>"Secondo me il pulsante dovrebbe essere rosso." "No, il verde converte di più." "Mettiamolo arancione e non se ne parli più." Questo è il modo in cui la maggior parte delle aziende prende decisioni sul proprio sito web: a sensazione. I <strong>test A/B</strong> sostituiscono le opinioni con i dati. Ecco come funzionano e come iniziare senza essere un data scientist.</p>
+
+<h2>Perché le opinioni non bastano</h2>
+<p>Anche il marketer più esperto non può prevedere con certezza cosa funzionerà per il tuo pubblico specifico. Esempi classici di risultati controintuitivi: un form più lungo ha aumentato le conversioni del 40% (perché percepito come più professionale); un pulsante arancione ha battuto il verde del 21% su un sito che usava verde ovunque; togliere il carosello in homepage ha fatto salire i click del 35%. La lezione è sempre la stessa: non indovinare — misura.</p>
+
+<h2>Cosa puoi testare (in ordine di impatto)</h2>
+<ol>
+    <li><strong>Headline</strong>: il testo principale che il visitatore legge per primo. Una headline chiara sul beneficio vs una generica sull'azienda può cambiare tutto.</li>
+    <li><strong>CTA (testo, colore, posizione)</strong>: "Richiedi il preventivo gratuito" vs "Contattaci" — le parole esatte del pulsante sono il punto di più alto impatto misurabile.</li>
+    <li><strong>Form: numero di campi</strong>: 3 campi vs 5 campi, con o senza telefono obbligatorio.</li>
+    <li><strong>Immagini hero</strong>: foto del team reale vs foto stock professionale.</li>
+    <li><strong>Prova sociale</strong>: con o senza recensioni in homepage, loghi clienti visibili o nascosti.</li>
+    <li><strong>Layout della pagina</strong>: contenuto sopra la piega vs scroll necessario.</li>
+</ol>
+<p>Testa una cosa alla volta. Se cambi headline, CTA e colori tutti insieme e le conversioni salgono, non saprai mai cosa ha fatto la differenza — e non potrai applicare la lezione alle altre pagine.</p>
+
+<h2>Quanto deve durare un test A/B</h2>
+<p>La durata minima è dettata da due vincoli: il volume di traffico e i cicli di acquisto. Aspetta di avere almeno 100 conversioni per variante (non 100 visite — 100 azioni completate: form inviati, telefonate, acquisti). Per un sito che converte al 3% con 3.000 visite/mese, significa circa 3-4 settimane di test. Non fermare il test dopo 3 giorni perché una variante è in vantaggio: i primi dati oscillano molto e spesso la variante in svantaggio iniziale vince sul lungo periodo.</p>
+
+<h2>Strumenti per iniziare (anche gratis)</h2>
+<ul>
+    <li><strong>Google Optimize</strong> (gratuito, integrato con GA4): ideale per chi inizia, test semplici su pagine singole. Non serve installare nulla oltre a GA4.</li>
+    <li><strong>VWO (Visual Website Optimizer)</strong>: editor visuale, test multivariati, heatmap inclusi. Da €200/mese, più potente ma con curva di apprendimento.</li>
+    <li><strong>Optimizely</strong>: standard enterprise, usato da aziende grandi. Da €50.000/anno — per ora probabilmente non ti serve.</li>
+</ul>
+<p>Per la maggior parte dei siti aziendali italiani, Google Optimize è più che sufficiente per iniziare. L'importante è iniziare, non lo strumento.</p>
+
+<h2>SEO e test A/B: le regole per non farsi male</h2>
+<p>Google non penalizza i test A/B legittimi. Le tre regole da rispettare:</p>
+<ol>
+    <li><strong>No cloaking</strong>: non mostrare a Googlebot una versione diversa da quella che vedono gli utenti. I test devono avvenire lato client (JavaScript) sulla stessa URL.</li>
+    <li><strong>Canonical corretta</strong>: se crei una variante su URL diversa (es. /pagina?var=b), quella pagina deve avere il tag canonical che punta all'URL originale.</li>
+    <li><strong>Test temporanei</strong>: concluso il test, rimuovi la variante perdente e implementa la vincente nel codice. Non lasciare test infiniti attivi.</li>
+</ol>
+
+<h2>Esempi concreti di test sul sito di un'azienda di servizi</h2>
+<h3>Esempio 1: form di contatto</h3>
+<p><strong>Variante A</strong>: 5 campi (nome, email, telefono, servizio, messaggio).<br>
+<strong>Variante B</strong>: 3 campi (nome, email, messaggio).<br>
+<strong>Risultato tipico</strong>: la variante B produce il 30-50% di invii in più, ma a volte la qualità dei lead è inferiore. Il test ti dice qual è il trade-off giusto per te.</p>
+
+<h3>Esempio 2: CTA in homepage</h3>
+<p><strong>Variante A</strong>: "Richiedi un preventivo" (pulsante classico).<br>
+<strong>Variante B</strong>: "Scopri quanto costa il tuo sito" (pulsante con beneficio).<br>
+<strong>Risultato tipico</strong>: la variante B converte il 10-25% in più perché comunica un vantaggio immediato invece di una richiesta generica.</p>
+
+<h2>Da dove iniziare</h2>
+<p>Scegli la pagina con più traffico del tuo sito (di solito la homepage) e l'azione che vuoi aumentare (di solito i click sulla CTA). Definisci una variante, attiva il test con Google Optimize, e aspetta. I primi dati significativi arrivano dopo 2-4 settimane. Nel frattempo, non guardare ogni giorno: l'ossessione da dashboard è il nemico numero uno dei buoni test. Se non hai tempo o risorse per configurare e leggere i test, <a href="../servizi/consulenze.html">le nostre consulenze CRO</a> includono audit delle conversioni e impostazione dei primi esperimenti. <a href="../preventivo.html">Chiedi un audit del tuo sito →</a></p>`
+  },
+  {
+    slug: 'automazione-marketing-pmi-strumenti',
+    title: 'Automazione del Marketing per PMI: 7 Strumenti che Fanno Risparmiare Ore',
+    description: 'Dalle email automatiche ai report pronti: 7 strumenti di marketing automation pensati per piccole imprese, con costi reali e suggerimenti pratici.',
+    tag: 'Strategia',
+    date: '7 Agosto 2026',
+    isoDate: '2026-08-07',
+    readTime: '9 min',
+    keyword: 'automazione marketing PMI',
+    faq: [
+      {
+        question: 'Cos\'è l\'automazione del marketing in parole semplici?',
+        answer: 'Significa impostare una serie di azioni che il software esegue da solo, senza che tu debba fare niente ogni volta. Esempi concreti: quando qualcuno compila un form sul tuo sito, riceve automaticamente un\'email di benvenuto; quando è il compleanno di un cliente, parte un messaggio augurale; quando un carrello viene abbandonato, il sistema invia un promemoria dopo 2 ore. Lavori una volta per configurare il flusso, poi va da solo.'
+      },
+      {
+        question: 'Quanto costa l\'automazione del marketing per una PMI?',
+        answer: 'Esistono strumenti gratuiti per iniziare (Mailchimp gratis fino a 500 contatti, Brevo fino a 300 email/giorno, Make per 1.000 operazioni/mese). I piani a pagamento partono da €20-50/mese per funzionalità avanzate. Per una PMI media, con un investimento di €50-150/mese si coprono email marketing, CRM base, automazione social e report automatici.'
+      },
+      {
+        question: 'Serve un consulente per impostare l\'automazione?',
+        answer: 'Per flussi semplici (email di benvenuto, auguri automatici, notifiche form) puoi configurarli da solo con strumenti come Brevo o Mailchimp in un paio d\'ore. Per automazioni complesse che coinvolgono più strumenti (sito + CRM + email + ads), una consulenza iniziale di 2-4 ore (€200-500) ti fa risparmiare settimane di tentativi e ti lascia un sistema funzionante.'
+      }
+    ],
+    content: `
+<p>C'è un momento nella vita di ogni imprenditore in cui si rende conto che sta passando le ore a fare cose che un computer potrebbe fare in secondi. Inviare la stessa email a ogni nuovo contatto, ricordarsi di fare gli auguri ai clienti, preparare report a mano copiando dati da tre piattaforme diverse. L'<strong>automazione del marketing</strong> non è roba da multinazionali con budget milionari: oggi esistono strumenti pensati per PMI che costano meno di una cena fuori. Ecco quelli che funzionano davvero.</p>
+
+<h2>1. Email marketing automatico — Brevo</h2>
+<p>La prima automazione che ogni PMI dovrebbe attivare. Quando qualcuno compila il form del tuo sito:</p>
+<ul>
+    <li>Riceve subito un'email di conferma personalizzata ("Grazie Marco, abbiamo ricevuto la tua richiesta")</li>
+    <li>Tu ricevi una notifica interna</li>
+    <li>Il contatto finisce automaticamente in una lista segmentata</li>
+</ul>
+<p>Questo flusso base si configura in 30 minuti e manda il messaggio giusto anche mentre dormi. <a href="https://www.brevo.com/it/" rel="noopener noreferrer" target="_blank">Brevo</a> (ex Sendinblue) ha un piano gratuito fino a 300 email/giorno e un'interfaccia in italiano, due cose che lo rendono perfetto per iniziare.</p>
+
+<h2>2. Automazione social — Meta Business Suite</h2>
+<p>Programmare i post di Facebook e Instagram per tutta la settimana in una sessione di due ore: è gratis, si fa dalla <a href="https://business.facebook.com/" rel="noopener noreferrer" target="_blank">Meta Business Suite</a> e ti libera dalla schiavitù del "devo pubblicare qualcosa oggi". Scrivi e carichi tutto il lunedì mattina e la piattaforma pubblica da sola nei giorni e orari che hai scelto. Esistono tool più avanzati (Hootsuite, Buffer) ma per una PMI la soluzione nativa di Meta è più che sufficiente.</p>
+
+<h2>3. Chatbot di primo contatto — Tidio</h2>
+<p>Un chatbot non sostituisce la conversazione umana, ma risponde alle tre domande che ricevi sempre uguali ("quanto costa?", "quali sono gli orari?", "fate preventivi gratuiti?") 24 ore su 24, anche alle 23 di domenica. <a href="https://www.tidio.com/it/" rel="noopener noreferrer" target="_blank">Tidio</a> ha un piano gratuito generoso e si integra col sito in 10 minuti. Quando la domanda è complessa, passa la conversazione a te via WhatsApp o email. Risultato: i visitatori che hanno fretta ottengono risposta subito; tu filtri solo le richieste che meritano la tua attenzione.</p>
+
+<h2>4. CRM per non perdere contatti — HubSpot</h2>
+<p>Il CRM (Customer Relationship Management) è la rubrica intelligente che ricorda tutto al posto tuo. Ogni volta che qualcuno ti scrive, il CRM registra automaticamente: chi è, cosa ha chiesto, quando l'hai sentito l'ultima volta, cosa avevi promesso di fare. <a href="https://www.hubspot.it/" rel="noopener noreferrer" target="_blank">HubSpot CRM</a> è gratuito e sufficiente per la maggior parte delle PMI. Dopo un mese di utilizzo ti chiederai come facevi prima a tenere tutto a mente (spoiler: perdevi contatti).</p>
+
+<h2>5. Automazioni trasversali — Make (ex Integromat)</h2>
+<p>Questo è il coltellino svizzero: collega due o più strumenti e crea un flusso automatico senza scrivere codice. Esempi reali:</p>
+<ul>
+    <li>Quando qualcuno compila il form del sito (che usa Modulo X) → i dati finiscono automaticamente nel CRM e parte un'email di benvenuto.</li>
+    <li>Quando un cliente lascia una recensione su Google → ricevi una notifica su Slack o Telegram.</li>
+    <li>Quando si avvicina una scadenza nel tuo gestionale → parte un promemoria via email a te e al cliente.</li>
+</ul>
+<p><a href="https://www.make.com/" rel="noopener noreferrer" target="_blank">Make</a> ha un piano gratuito con 1.000 operazioni al mese. Per la maggior parte delle PMI basta e avanza.</p>
+
+<h2>6. Report automatici — Looker Studio</h2>
+<p>Smetti di copiare dati a mano da Google Analytics, Meta Ads e Search Console. <a href="https://lookerstudio.google.com/" rel="noopener noreferrer" target="_blank">Looker Studio</a> (gratuito) si collega a tutte le tue fonti dati e genera un report aggiornato in tempo reale che puoi consultare quando vuoi — o ricevere via email ogni lunedì mattina. Una volta configurato (2-3 ore di lavoro iniziale), non lo tocchi più.</p>
+
+<h2>7. Firma email e modelli — Gmail/Outlook + template</h2>
+<p>Non serve uno strumento dedicato: se usi Gmail o Outlook, puoi creare modelli di email per le risposte che invii più spesso (preventivi, follow-up, informazioni servizi). Scrivi la risposta una volta, la salvi come modello, e la riusi con due click personalizzando il nome del destinatario. Tempo risparmiato in un anno: ore.</p>
+
+<h2>Come iniziare senza farsi male</h2>
+<p>Non attivare sette strumenti insieme. Scegline uno — il più urgente, quello che ti ruba più tempo ogni settimana — e integralo nel tuo flusso di lavoro. Usalo per un mese, prendi confidenza, poi aggiungi il successivo. L'obiettivo non è usare tanti strumenti: è usarne pochi, bene, e dimenticarsi che esistono perché funzionano da soli.</p>
+
+<h2>Automazione del marketing e strategia digitale</h2>
+<p>L'automazione è un moltiplicatore di efficienza, ma moltiplica anche gli errori: se automatizzi un processo sbagliato, sbagli più velocemente. Prima di automatizzare, assicurati di aver fatto il lavoro strategico a monte — chi è il tuo target, quale messaggio funziona, quali canali portano risultati. Se vuoi costruire una <a href="strategia-digitale-pmi.html">strategia digitale</a> coerente in cui l'automazione sia al servizio degli obiettivi e non il contrario, <a href="../servizi/consulenze.html">le nostre consulenze</a> ti aiutano a mettere in ordine priorità e strumenti. <a href="../preventivo.html">Parliamone →</a></p>`
   },
 ];
 

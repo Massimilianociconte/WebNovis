@@ -67,9 +67,9 @@
       <p>Per questi comuni abbiamo una pagina dedicata con il contesto locale e i tempi di raggiungimento dalla sede. Lavoriamo anche negli altri comuni della zona: in quel caso scrivici direttamente e ti rispondiamo sul tuo caso specifico.</p>
       <div class="hub-city-grid">
         {% for city in cities %}
-        <a href="/agenzia-web-{{ city.slug }}.html" class="hub-city-card" title="Agenzia Web a {{ city.name }}">
+        <a href="/agenzia-web-{{ city.slug }}.html" class="hub-city-card" title="Agenzia Web {{ city.name | toCity }}">
           {% if city.avatarSrc %}
-          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="Agenzia web a {{ city.name }} ({{ city.province }}) — {{ city.distanzaSede }} dalla sede di Rho" width="52" height="52" loading="lazy" decoding="async"></span>
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="Agenzia web {{ city.name | toCity }} ({{ city.province }}) — {{ city.distanzaSede }} dalla sede di Rho" width="52" height="52" loading="lazy" decoding="async"></span>
           {% else %}
           <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
           {% endif %}

@@ -67,9 +67,9 @@
       <p>Per questi comuni trovi una pagina dedicata con contesto locale, distanza dalla sede e riferimenti al tessuto produttivo della zona. Realizziamo siti anche fuori da questo elenco: in quel caso il modo più rapido è scriverci del progetto.</p>
       <div class="hub-city-grid">
         {% for city in cities %}
-        <a href="/realizzazione-siti-web-{{ city.slug }}.html" class="hub-city-card" title="Realizzazione Siti Web a {{ city.name }}">
+        <a href="/realizzazione-siti-web-{{ city.slug }}.html" class="hub-city-card" title="Realizzazione Siti Web {{ city.name | toCity }}">
           {% if city.avatarSrc %}
-          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="Realizzazione siti web a {{ city.name }} ({{ city.province }}) — {{ city.distanzaSede }} dalla sede di Rho" width="52" height="52" loading="lazy" decoding="async"></span>
+          <span class="hub-city-avatar"><img src="{{ city.avatarSrc }}" alt="Realizzazione siti web {{ city.name | toCity }} ({{ city.province }}) — {{ city.distanzaSede }} dalla sede di Rho" width="52" height="52" loading="lazy" decoding="async"></span>
           {% else %}
           <span class="hub-city-avatar hub-city-avatar--fallback" data-initials="{{ city.name | replace(' ', '') | upper | truncate(2, true, '') }}"></span>
           {% endif %}

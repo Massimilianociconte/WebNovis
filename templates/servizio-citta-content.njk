@@ -24,7 +24,7 @@
     <span class="separator">/</span>
     <a href="/zone-servite/#{{ service.slug }}">{{ service.shortName }}</a>
     <span class="separator">/</span>
-    <span class="current-page">{{ service.shortName }} a {{ city.name }}</span>
+    <span class="current-page">{{ service.shortName }} {{ city.name | toCity }}</span>
   </div>
 
   {# ═══ HERO — Answer capsule (GEO: first 60 words = direct answer) ═══ #}
@@ -58,7 +58,7 @@
 {% if editorial %}
   <section class="service-detail" id="contesto-locale">
     <div class="container">
-      <h2>{{ editorial.service }} a {{ editorial.city }}: il contesto locale</h2>
+      <h2>{{ editorial.service }} {{ editorial.city | toCity }}: il contesto locale</h2>
       <p>{{ editorial.intro }}</p>
       {% for block in editorial.sections %}
       <h3>{{ block.heading }}</h3>
@@ -75,7 +75,7 @@
       <p>{{ seo.sectionIntro }}{% if city.distanzaSedeKm <= 10 %} La nostra sede è a soli {{ city.distanzaSede }} da {{ city.name }}, quindi possiamo confrontarci rapidamente anche di persona.{% endif %}</p>
       <p>Questa pagina è il focus locale su {{ city.name }}. Per deliverable completi, impostazione del servizio e panoramica più ampia puoi vedere <a href="{{ seo.primaryPageUrl }}" style="color:var(--primary-light)">{{ seo.primaryPageLabel }}</a>.</p>
       {% if city.localContext and city.localContext.settoriChiave %}
-      <p>A {{ city.name }}{% if city.population %} ({{ city.population | localeNumber }} abitanti){% endif %} i settori che beneficiano maggiormente di {{ service.name | lower }} includono: <strong>{{ city.localContext.settoriChiave | join('</strong>, <strong>') }}</strong>.</p>
+      <p>{{ city.name | toCityCap }}{% if city.population %} ({{ city.population | localeNumber }} abitanti){% endif %} i settori che beneficiano maggiormente di {{ service.name | lower }} includono: <strong>{{ city.localContext.settoriChiave | join('</strong>, <strong>') }}</strong>.</p>
       {% endif %}
       <div class="service-grid">
         <div class="service-card-mini">
@@ -123,7 +123,7 @@
         {% endfor %}
       </div>
       {% if city.localContext and city.localContext.settoriChiave %}
-      <p style="margin-top:1.5rem">A {{ city.name }}{% if city.population %} ({{ city.population | localeNumber }} abitanti){% endif %}, {{ service.name | lower }} è particolarmente rilevante per i settori: <strong>{{ city.localContext.settoriChiave | join('</strong>, <strong>') }}</strong>.</p>
+      <p style="margin-top:1.5rem">{{ city.name | toCityCap }}{% if city.population %} ({{ city.population | localeNumber }} abitanti){% endif %}, {{ service.name | lower }} è particolarmente rilevante per i settori: <strong>{{ city.localContext.settoriChiave | join('</strong>, <strong>') }}</strong>.</p>
       {% endif %}
     </div>
   </section>
@@ -187,13 +187,13 @@
   {% if dataPoints or competitiveInsight %}
   <section class="service-detail" style="background:rgba(255,255,255,.01)">
     <div class="container">
-      <h2>{{ service.shortName }} a {{ city.name }}: il contesto competitivo locale</h2>
+      <h2>{{ service.shortName }} {{ city.name | toCity }}: il contesto competitivo locale</h2>
       {% if dataPoints %}
       <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1.5rem">
         {% if dataPoints.estimatedLocalBusinesses %}
         <div style="min-width:160px;padding:.85rem 1rem;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
           <strong style="display:block;color:var(--white);font-size:1.1rem">{{ dataPoints.estimatedLocalBusinesses | localeNumber }}+</strong>
-          <span style="display:block;color:var(--gray-light);font-size:.82rem;opacity:.85;margin-top:.15rem">Attività a {{ city.name }}</span>
+          <span style="display:block;color:var(--gray-light);font-size:.82rem;opacity:.85;margin-top:.15rem">Attività {{ city.name | toCity }}</span>
         </div>
         {% endif %}
         {% if dataPoints.competitionLevel %}
@@ -314,7 +314,7 @@
   {% if faqs | length > 0 %}
   <section class="service-detail">
     <div class="container">
-      <h2>Domande Frequenti — {{ service.shortName }} a {{ city.name }}</h2>
+      <h2>Domande Frequenti — {{ service.shortName }} {{ city.name | toCity }}</h2>
       {% for faq in faqs %}
       <details class="faq-item">
         <summary>{{ faq.q }}</summary>
@@ -331,7 +331,7 @@
   {% if tier >= 1 and relatedCityPages | length > 0 %}
   <section class="service-detail" style="background:rgba(255,255,255,.01)">
     <div class="container">
-      <h2>{{ service.shortName }} nei comuni vicini a {{ city.name }}</h2>
+      <h2>{{ service.shortName }} nei comuni vicini {{ city.name | toCity }}</h2>
       <p>
         {% for rp in relatedCityPages %}{% if loop.index <= 3 %}
         <a href="{{ rp.url }}" style="color:var(--primary-light)">{{ rp.label }}</a> ({{ rp.distance }}){% if loop.index < 3 and relatedCityPages | length > loop.index %},{% endif %}
@@ -348,12 +348,12 @@
   {% set maxRelated = 6 if tier >= 1 else 3 %}
   <section class="service-detail">
     <div class="container">
-      <h2>Altri servizi WebNovis a {{ city.name }}</h2>
+      <h2>Altri servizi WebNovis {{ city.name | toCity }}</h2>
       <p>
         {% for rp in relatedServicePages %}{% if loop.index <= maxRelated %}
         <a href="{{ rp.url }}" style="color:var(--primary-light)">{{ rp.label }}</a>{% if loop.index < maxRelated and relatedServicePages | length > loop.index %},{% endif %}
         {% endif %}{% endfor %}
-        {% if tier >= 1 and agencyCityPageUrl %}— <a href="{{ agencyCityPageUrl }}" style="color:var(--primary-light)">Agenzia Web a {{ city.name }}</a>{% endif %}
+        {% if tier >= 1 and agencyCityPageUrl %}— <a href="{{ agencyCityPageUrl }}" style="color:var(--primary-light)">Agenzia Web {{ city.name | toCity }}</a>{% endif %}
       </p>
     </div>
   </section>

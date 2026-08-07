@@ -61,6 +61,22 @@ function formatSectorList(sectors = []) {
     return `${cleaned[0]}, ${cleaned[1]} e ${cleaned[2]}`;
 }
 
+/**
+ * Italian preposition "a" becomes "ad" before vowel-initial names
+ * (e.g. Arese, Arluno, Origgio, Assago).
+ */
+function prepA(name) {
+    return /^[aeiouàèéìòù]/i.test(String(name || '').trim()) ? 'ad' : 'a';
+}
+
+function toCity(name) {
+    return `${prepA(name)} ${name}`;
+}
+
+function toCityCap(name) {
+    return `${prepA(name) === 'ad' ? 'Ad' : 'A'} ${name}`;
+}
+
 module.exports = {
     stripHtml,
     countWords,
@@ -70,5 +86,8 @@ module.exports = {
     truncateText,
     formatSectorList,
     haversineKm,
-    getNearestCities
+    getNearestCities,
+    prepA,
+    toCity,
+    toCityCap
 };

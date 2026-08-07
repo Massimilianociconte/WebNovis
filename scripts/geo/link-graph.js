@@ -8,7 +8,7 @@ const {
     isIndexableGeoPath
 } = require('./config');
 const { cities } = require('./data');
-const { getNearestCities } = require('./html-utils');
+const { getNearestCities, toCity } = require('./html-utils');
 const { resolvePublishPath, resolveInternalPathname } = require('./paths');
 
 function buildGeoLinksSection(city, pageType) {
@@ -23,10 +23,10 @@ function buildGeoLinksSection(city, pageType) {
     if (validNearest.length === 0) return '';
 
     let html = `\n<section class="service-detail" style="background:rgba(255,255,255,.01)"><div class="container">`;
-    html += `<h2>Serviamo anche i comuni vicini a ${city.name}</h2>`;
+    html += `<h2>Serviamo anche i comuni vicini ${toCity(city.name)}</h2>`;
     html += `<p>Scopri i nostri servizi nelle città vicine: `;
     const links = validNearest.map(nc =>
-        `<a href="/${prefix}${nc.slug}.html" style="color:var(--primary-light)">${label} a ${nc.name}</a> (${nc.distanzaSede})`
+        `<a href="/${prefix}${nc.slug}.html" style="color:var(--primary-light)">${label} ${toCity(nc.name)}</a> (${nc.distanzaSede})`
     );
     html += links.join(', ') + '.</p>';
     html += `</div></section>\n`;

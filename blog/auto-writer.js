@@ -808,7 +808,7 @@ function updateBlogIndex(allArticlesMeta) {
 
   // Replace blog grid content using regex
   // Pattern: <div class="blog-grid" id="blogGrid">...cards...</div>\n</div>\n</section>
-  const gridRegex = /(<div class="blog-grid" id="blogGrid">)([\s\S]*?)(\s*<\/div>\s*<\/div>\s*<\/section>)/;
+  const gridRegex = /(<div class="blog-grid" id="blogGrid">)([\s\S]*?)(\s*<\/div>\s*<p class="blog-ai-media-note")/;
   const match = html.match(gridRegex);
 
   if (!match) {

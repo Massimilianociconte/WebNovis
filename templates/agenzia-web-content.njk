@@ -43,7 +43,7 @@
 {% if editorial %}
   <section class="service-detail" id="contesto-locale">
     <div class="container">
-      <h2>{{ editorial.service }} a {{ editorial.city }}: il contesto locale</h2>
+      <h2>{{ editorial.service }} {{ editorial.city | toCity }}: il contesto locale</h2>
       <p>{{ editorial.intro }}</p>
       {% for block in editorial.sections %}
       <h3>{{ block.heading }}</h3>
@@ -189,7 +189,7 @@
       <div class="service-grid">
         <div class="service-card-mini">
           <h3>1. Brief e Analisi</h3>
-          <p>Incontro gratuito{% if not city.isSede %} presso la tua sede a {{ city.name }}{% endif %} o in videochiamata. Analizziamo obiettivi, competitor locali e target di riferimento.</p>
+          <p>Incontro gratuito{% if not city.isSede %} presso la tua sede {{ city.name | toCity }}{% endif %} o in videochiamata. Analizziamo obiettivi, competitor locali e target di riferimento.</p>
         </div>
         <div class="service-card-mini">
           <h3>2. Wireframe e Architettura</h3>
@@ -219,13 +219,13 @@
   {% if city.localContext and city.localContext.settoriChiave %}
   <section class="service-detail">
     <div class="container">
-      <h2>Settori che serviamo a {{ city.name }} e nell'hinterland milanese</h2>
+      <h2>Settori che serviamo {{ city.name | toCity }} e nell'hinterland milanese</h2>
       <p>WebNovis realizza siti web e soluzioni digitali per aziende di diversi settori. Ogni progetto è personalizzato in base al mercato di riferimento e alle esigenze specifiche del settore.</p>
       <div class="service-grid">
         {% for sector in city.localContext.settoriChiave %}
         <div class="service-card-mini">
           <h3 style="text-transform:capitalize">{{ sector }}</h3>
-          <p style="font-size:.9rem">Siti web professionali per il settore {{ sector }} a {{ city.name }}. Codice custom, SEO locale, design su misura per il tuo target.</p>
+          <p style="font-size:.9rem">Siti web professionali per il settore {{ sector }} {{ city.name | toCity }}. Codice custom, SEO locale, design su misura per il tuo target.</p>
         </div>
         {% endfor %}
       </div>

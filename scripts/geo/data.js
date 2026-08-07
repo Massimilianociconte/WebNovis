@@ -11,6 +11,7 @@ const {
     CITY_AVATAR_PUBLIC_DIR
 } = require('./config');
 const { resolvePublishPath } = require('./paths-core');
+const { toCity, toCityCap } = require('./html-utils');
 
 const citiesData = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'cities.json'), 'utf8'));
 const servicesData = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'services.json'), 'utf8'));
@@ -117,6 +118,8 @@ const njkEnv = nunjucks.configure(path.join(ROOT, 'templates'), {
     lstripBlocks: true
 });
 njkEnv.addFilter('localeNumber', (num) => num ? Number(num).toLocaleString('it-IT') : '');
+njkEnv.addFilter('toCity', (name) => toCity(name));
+njkEnv.addFilter('toCityCap', (name) => toCityCap(name));
 
 function getRelevantBlogLinks(city, limit = 3) {
     const relevantKeywords = ['seo', 'sito web', 'ecommerce', 'web agency', 'preventivo', 'quanto costa'];

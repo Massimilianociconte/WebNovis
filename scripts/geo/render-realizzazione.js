@@ -16,7 +16,7 @@ const {
     cityMap,
     getProvinceDisplay
 } = require('./data');
-const { escapeHtmlAttr } = require('./html-utils');
+const { escapeHtmlAttr, toCity } = require('./html-utils');
 const { getBasePage } = require('./paths');
 const { resolvePageFaqs, renderFaqSection } = require('./faq');
 const {
@@ -64,13 +64,13 @@ function generateRealizzazionePage(city) {
         page = updatedHead + page.substring(headEnd);
     }
 
-    page = page.replace(/realizzazione siti web a Rho/gi, `realizzazione siti web a ${city.name}`);
-    page = page.replace(/creazione di siti web a Rho/gi, `creazione di siti web a ${city.name}`);
+    page = page.replace(/realizzazione siti web a Rho/gi, `realizzazione siti web ${toCity(city.name)}`);
+    page = page.replace(/creazione di siti web a Rho/gi, `creazione di siti web ${toCity(city.name)}`);
     page = page.replace(/realizzazione-siti-web-rho\.html/g, `realizzazione-siti-web-${city.slug}.html`);
 
     // Breadcrumb
-    page = page.replace(/Realizzazione Siti Web a Rho<\/span>/g, `Realizzazione Siti Web a ${city.name}</span>`);
-    page = page.replace(/"name": "Realizzazione Siti Web a Rho"/g, `"name": "Realizzazione Siti Web a ${city.name}"`);
+    page = page.replace(/Realizzazione Siti Web a Rho<\/span>/g, `Realizzazione Siti Web ${toCity(city.name)}</span>`);
+    page = page.replace(/"name": "Realizzazione Siti Web a Rho"/g, `"name": "Realizzazione Siti Web ${toCity(city.name)}"`);
 
     // Hero
     page = page.replace(/<span class="section-tag">[\s\S]*?<\/span>/, `<span class="section-tag">${realizzazioneSeo.heroTag}</span>`);
@@ -87,35 +87,35 @@ function generateRealizzazionePage(city) {
     // Schema LocalBusiness
     page = page.replace(/"WebNovis — Web Agency Rho"/g, `"WebNovis — Web Agency ${city.name}"`);
     page = page.replace(/"Web Novis Rho"/g, `"Web Novis ${city.name}"`);
-    page = page.replace(/Web agency a Rho specializzata/g, `Web agency a ${city.name} specializzata`);
+    page = page.replace(/Web agency a Rho specializzata/g, `Web agency ${toCity(city.name)} specializzata`);
     page = page.replace(/"postalCode": "20017"/g, `"postalCode": "${city.cap}"`);
     page = page.replace(/"latitude": "45\.5299"/g, `"latitude": "${city.lat}"`);
     page = page.replace(/"longitude": "9\.0393"/g, `"longitude": "${city.lng}"`);
     page = page.replace(/Via\+S\.\+Giorgio\+2%2C\+20017\+Rho\+MI/g,
         `Via+S.+Giorgio+2%2C+${city.cap}+${city.name.replace(/ /g, '+')}+${city.province || 'MI'}`);
     page = page.replace(/"Servizi Realizzazione Siti Web Rho"/, `"Servizi Realizzazione Siti Web ${city.name}"`);
-    page = page.replace(/Sito Web Vetrina a Rho/g, `Sito Web Vetrina a ${city.name}`);
-    page = page.replace(/E-Commerce a Rho/g, `E-Commerce a ${city.name}`);
-    page = page.replace(/Landing Page a Rho/g, `Landing Page a ${city.name}`);
+    page = page.replace(/Sito Web Vetrina a Rho/g, `Sito Web Vetrina ${toCity(city.name)}`);
+    page = page.replace(/E-Commerce a Rho/g, `E-Commerce ${toCity(city.name)}`);
+    page = page.replace(/Landing Page a Rho/g, `Landing Page ${toCity(city.name)}`);
     page = page.replace(/Graphic Design Rho/g, `Graphic Design ${city.name}`);
     page = page.replace(/Social Media Marketing Rho/g, `Social Media Marketing ${city.name}`);
 
     // Content sections
-    page = page.replace(/Perché la tua azienda a Rho/g, `Perché la tua azienda a ${city.name}`);
+    page = page.replace(/Perché la tua azienda a Rho/g, `Perché la tua azienda ${toCity(city.name)}`);
     page = page.replace(/per aziende di Rho/g, `per aziende di ${city.name}`);
-    page = page.replace(/I nostri servizi di creazione siti web a Rho/g, `I nostri servizi di creazione siti web a ${city.name}`);
-    page = page.replace(/della tua azienda a Rho/g, `della tua azienda a ${city.name}`);
-    page = page.replace(/Perché scegliere WebNovis come web agency a Rho/g, `Perché scegliere WebNovis come web agency a ${city.name}`);
+    page = page.replace(/I nostri servizi di creazione siti web a Rho/g, `I nostri servizi di creazione siti web ${toCity(city.name)}`);
+    page = page.replace(/della tua azienda a Rho/g, `della tua azienda ${toCity(city.name)}`);
+    page = page.replace(/Perché scegliere WebNovis come web agency a Rho/g, `Perché scegliere WebNovis come web agency ${toCity(city.name)}`);
     page = page.replace(/studio del mercato di Rho/g, `studio del mercato di ${city.name}`);
     page = page.replace(/mercato di Rho/g, `mercato di ${city.name}`);
     page = page.replace(/Realizziamo siti web per aziende di Rho e dell'hinterland/g, `Realizziamo siti web per aziende di ${city.name} e dell'hinterland`);
-    page = page.replace(/Quanto costa realizzare un sito web a Rho/g, `Quanto costa realizzare un sito web a ${city.name}`);
-    page = page.replace(/Domande Frequenti — Realizzazione Siti Web a Rho/g, `Domande Frequenti — Realizzazione Siti Web a ${city.name}`);
-    page = page.replace(/il sito web che la tua azienda a Rho merita/g, `il sito web che la tua azienda a ${city.name} merita`);
-    page = page.replace(/la tua azienda a Rho o in videochiamata/g, `la tua azienda a ${city.name} o in videochiamata`);
+    page = page.replace(/Quanto costa realizzare un sito web a Rho/g, `Quanto costa realizzare un sito web ${toCity(city.name)}`);
+    page = page.replace(/Domande Frequenti — Realizzazione Siti Web a Rho/g, `Domande Frequenti — Realizzazione Siti Web ${toCity(city.name)}`);
+    page = page.replace(/il sito web che la tua azienda a Rho merita/g, `il sito web che la tua azienda ${toCity(city.name)} merita`);
+    page = page.replace(/la tua azienda a Rho o in videochiamata/g, `la tua azienda ${toCity(city.name)} o in videochiamata`);
     page = page.replace(/ricerche locali di Rho/g, `ricerche locali di ${city.name}`);
     page = page.replace(/del territorio rhodense/g, `del territorio di ${city.name}`);
-    page = page.replace(/Ogni progetto di realizzazione siti web a Rho/g, `Ogni progetto di realizzazione siti web a ${city.name}`);
+    page = page.replace(/Ogni progetto di realizzazione siti web a Rho/g, `Ogni progetto di realizzazione siti web ${toCity(city.name)}`);
     page = page.replace(/per un'azienda di Rho"/g, `per un'azienda di ${city.name}"`);
 
     // Images
@@ -170,8 +170,8 @@ function generateRealizzazionePage(city) {
 
     // Visible FAQs and FAQPage JSON-LD consume the same resolved array.
     page = page.replace(
-        /<section class="service-detail">\s*<div class="container">\s*<h2>Domande Frequenti — Realizzazione Siti Web a [^<]+<\/h2>[\s\S]*?<\/div>\s*<\/section>/i,
-        renderFaqSection(`Domande Frequenti — Realizzazione Siti Web a ${city.name}`, resolvedFaqs)
+        /<section class="service-detail">\s*<div class="container">\s*<h2>Domande Frequenti — Realizzazione Siti Web ad? [^<]+<\/h2>[\s\S]*?<\/div>\s*<\/section>/i,
+        renderFaqSection(`Domande Frequenti — Realizzazione Siti Web ${toCity(city.name)}`, resolvedFaqs)
     );
 
     // Inject geo internal links + AI FAQ before </main>
