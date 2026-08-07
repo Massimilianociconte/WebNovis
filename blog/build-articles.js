@@ -22,8 +22,8 @@ const SEARCH_CSS_VERSION = '2.1';
 // normalizza al nodo Organization `#organization`.
 const VISIBLE_AUTHOR_NAME = ENTITY_FACTS.name;
 const SKIP_LINK_HTML = '<a href="#main-content" class="skip-link" style="position:absolute;top:-100%;left:0;z-index:100000;padding:.8rem 1.5rem;background:#7b8cc9;color:#fff;font-size:.9rem;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s">Vai al contenuto</a><style>.skip-link:focus{top:0}</style>';
-const GLOBAL_CONTENT_REFRESH_DATE_ISO = '2026-02-17';
-const GLOBAL_CONTENT_REFRESH_DATE_HUMAN = '17 Febbraio 2026';
+const GLOBAL_CONTENT_REFRESH_DATE_ISO = '2026-08-07';
+const GLOBAL_CONTENT_REFRESH_DATE_HUMAN = '7 Agosto 2026';
 
 const IT_MONTHS = [
   'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
