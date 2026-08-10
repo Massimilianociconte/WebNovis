@@ -1,0 +1,1 @@
+Hand-authored HTML pages and centralized build-time configuration that define WebNovis's marketing site content, SEO metadata, JSON-LD entity facts, security headers, and cross-cutting build rules.

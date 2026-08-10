@@ -174,6 +174,7 @@ Tier 1 (priorità editoriale interna): ${tier1Count} URL — elenco completo in 
 - **Sito**: ${SITE}
 - **Instagram**: https://www.instagram.com/web.novis
 - **Facebook**: https://www.facebook.com/share/1C7hNnkqEU/
+- **YouTube**: https://www.youtube.com/@WebNovis
 - **Trustpilot**: https://it.trustpilot.com/review/webnovis.com
 - **Google Business Profile**: esistenza confermata dal proprietario; rating, conteggio, categoria e orari non verificati
 - **Azione recensione Google**: ${ENTITY_FACTS.reviewActionUrl}

@@ -36,6 +36,7 @@ I prezzi sono valori iniziali presenti in data/services.json. Non sono preventiv
 
 - https://www.instagram.com/web.novis
 - https://www.facebook.com/share/1C7hNnkqEU/
+- https://www.youtube.com/@WebNovis
 - https://it.trustpilot.com/review/webnovis.com
 - https://www.designrush.com/agency/profile/web-novis
 - https://www.goodfirms.co/company/web-novis

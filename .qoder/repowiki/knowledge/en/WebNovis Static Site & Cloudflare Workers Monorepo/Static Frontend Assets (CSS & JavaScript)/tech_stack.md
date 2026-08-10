@@ -1,1 +1,0 @@
-Vanilla ES5/ES6 browser JavaScript with no bundler or framework dependencies; uses IntersectionObserver, requestAnimationFrame, matchMedia, Canvas API, and fetch; Cloudflare Turnstile integration via dynamically injected script; form submission supports both direct Web3Forms posting and a proxy Worker endpoint configured through `WEBNOVIS_SITE_CONFIG`.

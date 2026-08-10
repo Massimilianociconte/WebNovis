@@ -1,1 +1,0 @@
-Compiled and minified CSS/JS assets powering the WebNovis website's styles, interactive effects, chat shell, search, analytics, and non-critical feature loaders.

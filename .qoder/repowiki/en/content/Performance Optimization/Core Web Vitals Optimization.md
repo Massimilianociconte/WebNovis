@@ -4,6 +4,7 @@
 **Referenced Files in This Document**
 - [src/html/index.html](file://src/html/index.html)
 - [css/style.css](file://css/style.css)
+- [css/revolution.css](file://css/revolution.css)
 - [js/web-vitals-reporter.js](file://js/web-vitals-reporter.js)
 - [lighthouserc.js](file://lighthouserc.js)
 - [js/noncritical-loader.js](file://js/noncritical-loader.js)
@@ -14,6 +15,14 @@
 - [tests/public-html-regressions.test.js](file://tests/public-html-regressions.test.js)
 - [package.json](file://package.json)
 </cite>
+
+## Update Summary
+**Changes Made**
+- Updated LCP optimization section with new hero performance improvements
+- Added documentation for removed entrance animations (fadeInUp, heroStaggerIn)
+- Enhanced CLS prevention strategies with backdrop filter optimizations
+- Updated mobile-specific optimizations with simplified gradient animations
+- Added regression testing information for LCP hero elements
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -114,6 +123,7 @@ W-->>A : Send CLS/LCP/FCP/TTFB/INP events
 - Media-split preloads: Separate preloads for mobile and desktop images reduce unnecessary downloads.
 - Critical CSS inlining: Inline styles set body background and hero text opacity to prevent FOUC and ensure immediate paint.
 - Build-time promotion: Scripts promote the first content image to eager/high priority where appropriate and defer fonts to avoid blocking.
+- **Updated**: Removed entrance animations that caused opacity:0 on first paint, eliminating mobile Lighthouse NO_LCP issues.
 
 ```mermaid
 flowchart TD
@@ -169,6 +179,7 @@ S-->>M : Execute after paint/idle
 - Font loading optimization: Google Fonts links use media="print" onload to avoid render-blocking; preconnect hints reduce connection latency; noscript blocks provide fallbacks when JS is disabled.
 - Stable hero text: Inline critical CSS forces hero title/content to be visible immediately, avoiding opacity transitions that can delay LCP and cause shifts.
 - Mobile fixes: Dedicated mobile stylesheet ensures chat popup and UI elements do not shift unexpectedly on small screens.
+- **Updated**: Simplified backdrop filter usage and reduced shadow complexity to prevent layout recalculations.
 
 ```mermaid
 flowchart TD
@@ -194,6 +205,7 @@ F --> G
 - Real User Monitoring: The web-vitals reporter dynamically loads the web-vitals library and sends CLS, INP, LCP, FCP, and TTFB to GA4 after consent is granted.
 - Lighthouse CI: A configuration file defines target URLs, number of runs, and assertion thresholds for performance, SEO, and accessibility categories.
 - Regression tests: Automated checks enforce LCP-safe hero rules and ensure non-critical scripts are loaded progressively.
+- **Updated**: New LCP hero regression tests added to prevent future performance regressions by ensuring no fadeInUp animations or opacity:0 states on hero elements.
 
 ```mermaid
 sequenceDiagram
@@ -222,6 +234,7 @@ R->>G : Send events (CLS/LCP/FCP/TTFB/INP)
 - Deferred enhancements: Chat shell and runtime are loaded after window load or on first pointerdown, with longer delays on mobile to prioritize interactivity.
 - Mobile UX fixes: Dedicated stylesheet adjusts chat popup sizing and positioning to avoid layout shifts on narrow screens.
 - Progressive activation: Decorative features (cursor, text effects, globe) are loaded only when hover/pointer capabilities exist or when near viewport.
+- **Updated**: Disabled heroStaggerIn animation on mobile to prevent NO_LCP issues; simplified gradient animations and reduced backdrop filter complexity for better mobile performance.
 
 **Section sources**
 - [src/html/index.html:25-30](file://src/html/index.html#L25-L30)
@@ -272,14 +285,16 @@ PKG["package.json"] --> WEBV["web-vitals dependency"]
 - Use passive event listeners and rAF gating for scroll-heavy interactions.
 - Prefer modern image formats (WebP) and size descriptors to reduce payload and improve decoding.
 - Monitor CLS carefully when injecting dynamic content; reserve space for banners and late-loaded widgets.
-
-[No sources needed since this section provides general guidance]
+- **Updated**: Avoid entrance animations (fadeInUp, heroStaggerIn) on hero elements as they cause opacity:0 on first paint, leading to mobile Lighthouse NO_LCP issues.
+- **Updated**: Simplify backdrop filter usage and reduce shadow complexity to prevent layout recalculations and maintain smooth scrolling performance.
 
 ## Troubleshooting Guide
 - LCP not detected on mobile: Verify hero uses a real <img> with dimensions and fetchpriority=high; ensure no animation hides hero content on first paint.
 - Excessive CLS: Check for missing width/height on images/videos; confirm fonts are async-loaded and fallbacks are stable; ensure dynamic panels reserve space.
 - Slow interactions: Audit heavy scripts; ensure they are loaded only on intent or near viewport; verify passive listeners and idle scheduling.
 - Missing noscript fallbacks: Confirm async CSS has corresponding noscript blocks mirroring hrefs and versions.
+- **Updated**: If experiencing NO_LCP on mobile, check for any remaining fadeInUp or heroStaggerIn animations that might be causing opacity:0 on first paint.
+- **Updated**: Review backdrop filter usage - excessive blur effects can cause performance issues on mobile devices.
 
 **Section sources**
 - [tests/lcp-hero-regressions.test.js:24-68](file://tests/lcp-hero-regressions.test.js#L24-L68)
@@ -288,10 +303,8 @@ PKG["package.json"] --> WEBV["web-vitals dependency"]
 
 ## Conclusion
 WebNovis applies a comprehensive Core Web Vitals strategy:
-- LCP: Hero image prioritization, critical CSS inlining, and media-split preloads.
+- LCP: Hero image prioritization, critical CSS inlining, and media-split preloads with removal of entrance animations that caused opacity:0 states.
 - FID/INP: Deferred heavy scripts, passive listeners, and idle scheduling to keep the main thread responsive.
-- CLS: Explicit dimensions, async fonts, and stable hero text to prevent layout shifts.
-- Measurement and CI: RUM reporting to GA4 and Lighthouse CI assertions to maintain quality over time.
+- CLS: Explicit dimensions, async fonts, and stable hero text to prevent layout shifts, plus optimized backdrop filter usage.
+- Measurement and CI: RUM reporting to GA4 and Lighthouse CI assertions to maintain quality over time, enhanced with new LCP hero regression tests.
 These practices, combined with mobile-specific tweaks and progressive enhancement, deliver fast, stable, and interactive experiences across devices.
-
-[No sources needed since this section summarizes without analyzing specific files]

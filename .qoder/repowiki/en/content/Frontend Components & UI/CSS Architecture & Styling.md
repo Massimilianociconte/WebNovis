@@ -13,6 +13,13 @@
 - [index.html](file://src/html/index.html)
 </cite>
 
+## Update Summary
+**Changes Made**
+- Updated Design Tokens section with comprehensive custom properties including radius tokens, height tokens, easing functions, and focus ring system
+- Enhanced Button System documentation with unified gradient backgrounds and consistent transition timings
+- Added detailed component token specifications for better maintainability
+- Updated architecture overview to reflect the new semantic layer approach
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Project Structure](#project-structure)
@@ -26,7 +33,7 @@
 10. [Appendices](#appendices)
 
 ## Introduction
-This document explains the CSS architecture and styling system used across the project. It covers modular organization, theme tokens, component-based styles, responsive strategy (mobile-first), utility classes, naming conventions, and how to create new themes or override existing styles. It also addresses browser compatibility, performance optimization, and maintainability practices grounded in the actual codebase.
+This document explains the CSS architecture and styling system used across the project. It covers modular organization, theme tokens, component-based styles, responsive strategy (mobile-first), utility classes, naming conventions, and how to create new themes or override existing styles. The system implements a comprehensive design system with semantic custom properties for consistent theming across all components.
 
 ## Project Structure
 The CSS is organized into a core design system plus feature/theme-specific modules:
@@ -53,10 +60,10 @@ A --> H["search.min.css<br/>Feature Module"]
 - [index.html:26-31](file://src/html/index.html#L26-L31)
 
 ## Core Components
-- Design tokens and base layer: color palette, typography, spacing, radius, shadows, animations, and global resets are centralized in :root variables and base rules.
-- Layout primitives: container, grid/flex patterns, hero section, navigation, cards, sections, and footer.
-- Feature components: intelligent search UI with dropdown/modal, Instagram-style social feed mockup, mobile chat popup fixes.
-- Theme variants: distinct visual treatments for hero, buttons, cards, and sections that can be layered on top of the base.
+- **Design tokens and base layer**: Comprehensive color palette, typography, spacing, radius tokens, shadows, animations, and global resets centralized in :root variables and base rules.
+- **Layout primitives**: container, grid/flex patterns, hero section, navigation, cards, sections, and footer.
+- **Feature components**: intelligent search UI with dropdown/modal, Instagram-style social feed mockup, mobile chat popup fixes.
+- **Theme variants**: distinct visual treatments for hero, buttons, cards, and sections that can be layered on top of the base.
 
 Key responsibilities by file:
 - style.css: Base tokens, reset, utilities, layout, navigation, hero, cookie banner, accessibility helpers, and global animations.
@@ -79,8 +86,8 @@ Key responsibilities by file:
 - [portfolio-premium.css:1-120](file://css/portfolio-premium.css#L1-L120)
 
 ## Architecture Overview
-The architecture follows a layered approach:
-- Layer 1: Tokens and base (style.css)
+The architecture follows a layered approach with a comprehensive design system:
+- Layer 1: Tokens and base (style.css) - includes semantic component tokens
 - Layer 2: Feature modules (search.css, social-feed-modern.css, weby-mobile-fix.css)
 - Layer 3: Theme variants (revolution.css, leviathan-inspired.css, nicole-inspired.css, portfolio-premium.css)
 - Layer 4: Page composition (HTML includes inline critical CSS and loads deferred styles)
@@ -115,12 +122,37 @@ HTML --> TH4
 ## Detailed Component Analysis
 
 ### Design Tokens and Theming
-- Centralized tokens in :root include colors, gradients, typography, spacing, radii, shadows, durations, and easings. These provide consistent theming across all modules.
-- Theme variants reuse these tokens to produce different visual identities without duplicating logic.
+The design system implements a comprehensive set of custom properties organized into logical categories:
+
+**Color Tokens**: Brand colors (primary, secondary, accent), dark mode base, grayscales, and text colors provide consistent theming across all components.
+
+**Gradient Tokens**: Multiple gradient definitions including brand gradients, deep gradients, dark gradients, glass effects, and text gradients enable rich visual experiences.
+
+**Typography Tokens**: Font families, fluid typography scales using clamp() functions, line heights, and letter spacing ensure responsive and accessible text rendering.
+
+**Spacing Tokens**: 8px grid system with semantic spacing values from space-0 to space-32, plus section spacing variables for consistent layout rhythm.
+
+**Border Radius Tokens**: Complete radius scale from none to full, plus semantic component tokens for specific use cases.
+
+**Component Tokens (Semantic Layer)**:
+- `--radius-control`: 0.625rem for form controls and inputs
+- `--radius-btn`: 0.75rem for buttons and interactive elements  
+- `--radius-card`: 1rem for card containers and panels
+- `--radius-chip`: Full rounded (9999px) for pill-shaped elements and filters
+- `--btn-height`: 3.25rem for standard button height (WCAG compliant)
+- `--btn-height-lg`: 3.5rem for large button variants
+- `--ease-standard`: cubic-bezier(0.22, 0.61, 0.36, 1) for consistent motion
+- `--focus-ring`: 0 0 0 3px rgba(59, 130, 246, 0.4) for unified focus states
+- Control surface tokens for backgrounds and borders
+
+**Shadow Tokens**: Comprehensive shadow scale from subtle to dramatic, including brand-specific glow effects.
+
+**Animation Tokens**: Duration scale and easing functions for consistent motion design.
 
 Practical implications:
-- Changing a token updates the entire site consistently.
-- New themes should extend or override tokens where necessary, keeping shared tokens intact.
+- Changing a token updates the entire site consistently
+- New themes should extend or override tokens where necessary
+- Semantic tokens provide clear intent and maintainable component styling
 
 **Section sources**
 - [style.css:168-334](file://css/style.css#L168-L334)
@@ -169,6 +201,35 @@ Guidelines:
 - [style.css:422-456](file://css/style.css#L422-L456)
 - [portfolio-premium.css:73-245](file://css/portfolio-premium.css#L73-L245)
 - [social-feed-modern.css:53-209](file://css/social-feed-modern.css#L53-L209)
+
+### Unified Button System
+The button system has been completely unified across both revolution.css and style.css with consistent design principles:
+
+**Base Button Properties**:
+- Uses semantic `--btn-height` and `--btn-height-lg` tokens for consistent sizing
+- Implements `--radius-btn` for standardized corner radii
+- Applies `--ease-standard` for uniform transition timing
+- Features gradient backgrounds with consistent color schemes
+- Includes unified focus states using `--focus-ring` token
+
+**Button Variants**:
+- `.btn-primary`: Gradient blue background with shimmer effect and arrow nudge animation
+- `.btn-secondary`: Glass-morphism effect with backdrop blur and subtle borders
+- Both variants share consistent hover states, active states, and accessibility features
+
+**Transition Consistency**:
+- All button transitions use 0.22s duration with `--ease-standard` easing
+- Transform, background-color, border-color, box-shadow, filter, and color transitions are synchronized
+- Active states include scale transformation for tactile feedback
+
+**Accessibility Features**:
+- WCAG-compliant minimum touch target sizes (≥52px height)
+- Consistent focus-visible outlines using the unified focus ring system
+- Proper contrast ratios and keyboard navigation support
+
+**Section sources**
+- [style.css:918-1034](file://css/style.css#L918-L1034)
+- [revolution.css:236-344](file://css/revolution.css#L236-L344)
 
 ### Creating New Themes
 To add a new theme:
@@ -301,11 +362,13 @@ I --> WMF
 - Images use preload with media queries to optimize LCP per viewport.
 - Animations and transforms are used judiciously; backdrop-filter and blur are applied where appropriate but balanced against performance.
 - Font fallbacks and swap strategies reduce CLS during font loading.
+- **New optimization**: Unified button system reduces CSS duplication and improves caching efficiency.
 
 Recommendations:
 - Keep deferred styles scoped and minimal.
 - Avoid heavy animations on low-power devices; respect prefers-reduced-motion where implemented.
 - Monitor Lighthouse metrics for LCP, CLS, and TBT; adjust preload priorities and animation usage accordingly.
+- Leverage semantic tokens to minimize redundant CSS declarations.
 
 **Section sources**
 - [index.html:26-31](file://src/html/index.html#L26-L31)
@@ -318,11 +381,13 @@ Common issues and resolutions:
 - Chat popup overlapping on small screens: Check weby-mobile-fix.css overrides for bottom/right positioning and height constraints.
 - Horizontal scroll caused by large orbs: Adjust orb sizes and positions in theme variants at smaller breakpoints.
 - Focus states missing: Add focus-visible outlines for interactive elements; leverage existing focus ring tokens.
+- Button inconsistencies: Verify that button components are using the unified system tokens (--btn-height, --radius-btn, --ease-standard).
 
 Debugging tips:
 - Inspect computed styles in DevTools to confirm token values and cascade order.
 - Temporarily disable deferred styles to isolate rendering issues.
 - Use media query debugging to verify breakpoint behavior.
+- Check browser console for CSS parsing errors related to custom properties.
 
 **Section sources**
 - [search.css:549-787](file://css/search.css#L549-L787)
@@ -330,7 +395,7 @@ Debugging tips:
 - [revolution.css:623-677](file://css/revolution.css#L623-L677)
 
 ## Conclusion
-The CSS architecture is modular, token-driven, and performance-conscious. The base design system provides a robust foundation, while feature modules and theme variants enable flexible customization. The mobile-first approach ensures usability across devices, and the deferred loading strategy optimizes performance. Following the established naming conventions and token usage will keep the codebase maintainable and scalable.
+The CSS architecture is modular, token-driven, and performance-conscious. The comprehensive design system provides a robust foundation with semantic custom properties for consistent theming across all components. The unified button system ensures visual consistency while maintaining flexibility for customization. The mobile-first approach ensures usability across devices, and the deferred loading strategy optimizes performance. Following the established naming conventions and token usage will keep the codebase maintainable and scalable.
 
 ## Appendices
 
@@ -338,14 +403,37 @@ The CSS architecture is modular, token-driven, and performance-conscious. The ba
 - Backdrop-filter and advanced gradients are widely supported; vendor prefixes are included where necessary.
 - Modern layout features (grid, flex) are broadly supported; fallbacks are implicit through progressive enhancement.
 - Respect user preferences (e.g., reduced motion) where implemented.
-
-[No sources needed since this section provides general guidance]
+- Custom properties are supported in all modern browsers with appropriate fallbacks.
 
 ### Accessibility Practices
 - Screen reader-only text via .sr-only.
 - Keyboard shortcuts and focus management in search.
 - Semantic HTML combined with accessible attributes (aria-label, role).
+- WCAG-compliant touch targets and focus indicators using the unified focus ring system.
 
 **Section sources**
 - [style.css:409-420](file://css/style.css#L409-L420)
 - [search.css:1-120](file://css/search.css#L1-L120)
+
+### Custom Property Reference
+**Radius Tokens:**
+- `--radius-control`: 0.625rem (form controls)
+- `--radius-btn`: 0.75rem (buttons)
+- `--radius-card`: 1rem (cards)
+- `--radius-chip`: 9999px (pills/filters)
+
+**Height Tokens:**
+- `--btn-height`: 3.25rem (standard buttons)
+- `--btn-height-lg`: 3.5rem (large buttons)
+
+**Motion Tokens:**
+- `--ease-standard`: cubic-bezier(0.22, 0.61, 0.36, 1)
+
+**Focus Token:**
+- `--focus-ring`: 0 0 0 3px rgba(59, 130, 246, 0.4)
+
+**Control Surface Tokens:**
+- `--control-bg`, `--control-bg-hover`, `--control-border`, `--control-border-hover`
+
+**Section sources**
+- [style.css:290-308](file://css/style.css#L290-L308)

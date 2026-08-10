@@ -1,0 +1,1 @@
+Node.js CommonJS modules used as build-time configuration; JSON-LD schema.org markup embedded directly in HTML; CSP with per-request nonce support; Cloudflare Pages/Workers deployment targets configured alongside the site.

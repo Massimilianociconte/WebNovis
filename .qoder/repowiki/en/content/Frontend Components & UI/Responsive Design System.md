@@ -12,6 +12,14 @@
 - [design-system.md](file://.kiro/steering/design-system.md)
 </cite>
 
+## Update Summary
+**Changes Made**
+- Enhanced hero title typography scaling for improved readability at 320px viewport widths
+- Implemented WCAG-compliant form input minimum heights of 52px on mobile devices
+- Added iOS zoom behavior prevention with 16px minimum font sizes for form inputs
+- Redesigned hero section core links as chip-style elements with pill borders and grid layout
+- Updated mobile-specific responsive behaviors for better touch interaction
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Project Structure](#project-structure)
@@ -122,6 +130,67 @@ Guidelines:
 - [style.css:3081-3140](file://css/style.css#L3081-L3140)
 - [weby-mobile-fix.css:3-66](file://css/weby-mobile-fix.css#L3-L66)
 
+### Enhanced Hero Title Typography Scaling
+**Updated** Enhanced mobile responsiveness with improved typography scaling for hero titles at 320px viewport widths.
+
+The hero title now features optimized typography scaling specifically designed for small mobile devices:
+- Base font size uses `clamp(2rem, 4.5vw, 3.5rem)` for desktop
+- Mobile-specific override at 768px uses `clamp(1.6rem, 5vw, 2.5rem)` 
+- Ultra-small screens (≤380px) receive additional optimization with `clamp(2rem, 7.2vw, 2.7rem)`
+- Improved line-height of 1.18 for better text density on mobile
+- Enhanced text-shadow for better readability against background images
+
+Best practices:
+- Use clamp() functions for smooth scaling across all viewport sizes
+- Implement mobile-specific overrides for optimal readability on small screens
+- Maintain proper contrast ratios with text shadows for background images
+
+**Section sources**
+- [style.css:797-809](file://css/style.css#L797-L809)
+- [style.css:6525-6533](file://css/style.css#L6525-L6533)
+- [style.css:6656-6665](file://css/style.css#L6656-L6665)
+
+### WCAG-Compliant Form Inputs with Minimum Heights
+**Updated** Form inputs now maintain minimum heights of 52px on mobile devices for WCAG compliance.
+
+Form accessibility improvements include:
+- Minimum height of `var(--btn-height)` (3.25rem ≈ 52px) for all form inputs on mobile
+- Consistent touch target sizing across all interactive elements
+- iOS zoom behavior prevention with 16px minimum font sizes for select elements
+- Proper focus states and visual feedback for accessibility
+
+Implementation details:
+- Media query at 768px applies minimum heights to inputs and selects
+- Uses CSS custom property `--btn-height` for consistent sizing
+- Maintains 16px font size on select elements to prevent iOS zoom
+- Ensures adequate touch targets for WCAG 2.1 AA compliance
+
+**Section sources**
+- [style.css:2212-2218](file://css/style.css#L2212-L2218)
+- [style.css:2166-2177](file://css/style.css#L2166-L2177)
+- [style.css:297-302](file://css/style.css#L297-L302)
+
+### Chip-Style Hero Section Core Links
+**Updated** Hero section core links redesigned as chip-style elements with pill borders and grid layout.
+
+The hero navigation links have been transformed into modern chip-style elements:
+- Grid-based layout with 2-column structure on mobile devices
+- Pill-shaped borders using `var(--radius-chip)` for consistent rounded appearance
+- Glass-morphism effect with backdrop blur and subtle borders
+- Touch-friendly sizing with minimum 48px height for mobile interactions
+- Gradient overlay effects and hover states for enhanced interactivity
+
+Design features:
+- Responsive grid layout adapts from flex to grid at mobile breakpoints
+- Backdrop filter effects create depth and visual hierarchy
+- Consistent spacing and alignment across all link chips
+- Optimized for touch interaction with appropriate sizing and spacing
+
+**Section sources**
+- [style.css:862-885](file://css/style.css#L862-L885)
+- [style.css:6671-6730](file://css/style.css#L6671-L6730)
+- [index.html:74](file://src/html/index.html#L74)
+
 ### Fluid Typography Scaling
 - Fluid type tokens use clamp() to interpolate font sizes based on viewport width, ensuring readable text from small phones to large desktops.
 - Section titles, hero titles, and body text leverage these tokens to maintain visual hierarchy across devices.
@@ -207,9 +276,10 @@ Impact:
 - Search inputs declare type="search" and proper ARIA roles/attributes.
 - Reduced motion support disables or slows animations for users who prefer it.
 - Contrast checks are enforced via tests to meet WCAG AA thresholds.
+- **Updated** Form inputs now meet WCAG 2.1 AA requirements with minimum 52px touch targets on mobile devices.
 
 **Section sources**
-- [index.html:32-34](file://src/html/index.html#L32-L34)
+- [index.html:32-34](file://src/html/index.html#L32-34)
 - [index.html:40-61](file://src/html/index.html#L40-L61)
 - [main.js:3-8](file://js/main.js#L3-L8)
 - [text-effects.js:175-195](file://js/text-effects.js#L175-L195)
@@ -219,6 +289,7 @@ Impact:
 - Service sections: Two-column grid collapses to single column on smaller screens.
 - Social section: Visual and content stack vertically on mobile with reordered order.
 - Chat popup: Adjusts positioning and sizing for mobile viewports.
+- **Updated** Hero core links: Redesigned as chip-style elements with grid layout and pill borders.
 
 **Section sources**
 - [index.html:63-75](file://src/html/index.html#L63-L75)
@@ -265,6 +336,7 @@ CSS_MOBILE --> JS_RUNTIME
 - Gate heavy animations behind device capability and reduced motion preferences.
 - Throttle scroll events and use passive listeners to keep main thread responsive.
 - Reduce particle counts and connection distances on mobile to lower CPU usage.
+- **Updated** Optimize hero title rendering for small viewports to improve perceived performance.
 
 [No sources needed since this section provides general guidance]
 
@@ -274,6 +346,8 @@ Common issues and resolutions:
 - Lighthouse NO_LCP on mobile: Verify hero title/content do not start with opacity:0 and that a real LCP image is present with high priority.
 - Excessive animations on mobile: Confirm reduced motion and touch detection paths disable or throttle effects.
 - Chat popup misalignment: Check mobile-specific media queries for positioning and sizing.
+- **Updated** Form input zoom on iOS: Ensure form inputs maintain 16px minimum font size to prevent automatic zoom behavior.
+- **Updated** Hero link responsiveness: Verify chip-style links maintain proper grid layout and touch targets on mobile devices.
 
 **Section sources**
 - [main.js:61-121](file://js/main.js#L61-L121)
@@ -281,7 +355,7 @@ Common issues and resolutions:
 - [weby-mobile-fix.css:3-66](file://css/weby-mobile-fix.css#L3-L66)
 
 ## Conclusion
-WebNovis implements a robust, mobile-first responsive design system grounded in CSS custom properties, fluid typography, and well-organized media queries. The system balances visual richness with performance and accessibility by gating animations, optimizing images, and respecting user preferences. Extending the system involves following the documented breakpoint strategy, leveraging existing tokens, and keeping component-level media queries focused and minimal.
+WebNovis implements a robust, mobile-first responsive design system grounded in CSS custom properties, fluid typography, and well-organized media queries. The system balances visual richness with performance and accessibility by gating animations, optimizing images, and respecting user preferences. Recent enhancements include improved hero title typography scaling for small viewports, WCAG-compliant form inputs with proper touch targets, and modern chip-style navigation elements. Extending the system involves following the documented breakpoint strategy, leveraging existing tokens, and keeping component-level media queries focused and minimal.
 
 [No sources needed since this section summarizes without analyzing specific files]
 
@@ -293,6 +367,8 @@ WebNovis implements a robust, mobile-first responsive design system grounded in 
 - Place component-specific rules in feature stylesheets to avoid cluttering the core file.
 - Test fluid typography and adaptive images across devices to ensure readability and performance.
 - Validate accessibility with reduced motion and contrast checks.
+- **Updated** Ensure all interactive elements meet WCAG 2.1 AA requirements with minimum 52px touch targets on mobile.
+- **Updated** Follow the chip-style design pattern for secondary navigation elements to maintain visual consistency.
 
 **Section sources**
 - [design-system.md:286-306](file://.kiro/steering/design-system.md#L286-L306)

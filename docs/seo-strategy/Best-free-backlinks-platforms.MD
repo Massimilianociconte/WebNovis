@@ -45,6 +45,7 @@ These require a bit more detail but still complete fast. Several offer **dofollo
 | 22 | **Digital Agency Network** ★ | digitalagencynetwork.com/join-free-listing/ | **Dofollow** | **High** (DA 50) | Submit agency details → verification review (~2 days) → profile goes live with website link. Curated directory, 3,300+ agencies. **Free dofollow link.** |
 | 23 | **Pinterest Business** | business.pinterest.com | Nofollow | **Very High** (DA 94) | Create account → convert to Business (free) → claim website → create boards for portfolio. Pin images with direct links. |
 | 24 | **Instagram Business** | instagram.com | Nofollow | **Very High** (DA 93) | Create account → switch to Professional → add webnovis.com in bio. Post portfolio work and design process content. |
+| 24b | **YouTube Channel** | youtube.com/@WebNovis | Nofollow | **Critical** (DA 100) | Create channel → customize @WebNovis handle → add webnovis.com in channel links & about section → publish video content. High GEO/AI visibility. |
 | 25 | **Cylex Italy** | cylex.it | Nofollow | **Medium** (DA 40) | Click "Add your company" → create account → enter business details, categories, photos → submit for review. |
 | 26 | **HotFrog Italy** | hotfrog.it | Nofollow | **Medium** (DA 40) | Add business → register account → verify email → enter details with keyword-rich services. Decline paid upgrade. |
 | 27 | **MisterImprese** | misterimprese.it | Citation/nofollow | **Medium-Low** (DA 30) | Enter Partita IVA → business details → submit. 100% Italian directory organized by geography. |

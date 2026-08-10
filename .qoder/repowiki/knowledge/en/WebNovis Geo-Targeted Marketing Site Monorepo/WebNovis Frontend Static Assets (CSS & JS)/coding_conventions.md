@@ -1,0 +1,6 @@
+- Every source asset is committed alongside a parallel `.min.js` / `.min.css` build artifact kept in sync by an external minification pipeline.
+- Runtime configuration is centralized in `site-config.js` as a `window.WEBNOVIS_SITE_CONFIG` object merged via `Object.assign` defaults so consumers can override values without editing the file.
+- Feature scripts are self-contained IIFEs or top-level scripts that locate elements by ID/class at load time rather than using imports or a module system.
+- Heavy or optional features (particles, hero effects, chat shell) are gated behind capability checks (`isTouchDevice`, `prefersReducedMotion`, `IntersectionObserver` presence) and deferred via `requestIdleCallback` or `setTimeout` to avoid blocking initial paint.
+- Scroll- and mouse-driven animations are throttled through a per-handler `requestAnimationFrame` tick flag (e.g. `scrollTicking`, `parallaxTicking`) to prevent layout thrashing.
+- Remote endpoints are selected at runtime by checking `window.location.hostname` against `localhost`/`127.0.0.1` and switching between a local dev URL and the production Cloudflare Worker base URL.

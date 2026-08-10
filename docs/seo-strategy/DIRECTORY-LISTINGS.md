@@ -14,6 +14,8 @@ Questo documento contiene tutti i dati necessari per registrare WebNovis sulle p
 | **Email** | hello@webnovis.com |
 | **WhatsApp** | +39 380 264 7367 |
 | **Instagram** | https://www.instagram.com/web.novis |
+| **Facebook** | https://www.facebook.com/share/1C7hNnkqEU/ |
+| **YouTube** | https://www.youtube.com/@WebNovis |
 | **Lingua** | Italiano |
 | **Paese** | Italia |
 | **Categorie** | Agenzia digitale, Web agency, Graphic design, Social media management |

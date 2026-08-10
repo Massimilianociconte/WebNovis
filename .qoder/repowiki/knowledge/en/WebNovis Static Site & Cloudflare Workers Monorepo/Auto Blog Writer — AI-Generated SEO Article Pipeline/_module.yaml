@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: blog
-title: Auto Blog Writer — AI-Generated SEO Article Pipeline
-scope:
-    - blog/
-source_files: []
-depends_on: []
-related_to:
-    - path: content_data

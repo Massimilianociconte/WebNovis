@@ -27,6 +27,7 @@ const ENTITY_FACTS = Object.freeze({
   publicProfiles: Object.freeze([
     'https://www.instagram.com/web.novis',
     'https://www.facebook.com/share/1C7hNnkqEU/',
+    'https://www.youtube.com/@WebNovis',
     'https://it.trustpilot.com/review/webnovis.com',
     'https://www.designrush.com/agency/profile/web-novis',
     'https://www.goodfirms.co/company/web-novis'

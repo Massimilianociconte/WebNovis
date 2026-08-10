@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: ""
-title: WebNovis Static Site & Cloudflare Workers Monorepo
+title: WebNovis Geo-Targeted Marketing Site Monorepo
 scope:
     - README.md
     - CONTRIBUTING.md

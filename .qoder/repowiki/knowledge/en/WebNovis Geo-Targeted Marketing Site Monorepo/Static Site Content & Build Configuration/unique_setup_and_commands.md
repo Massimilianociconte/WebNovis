@@ -1,0 +1,1 @@
+Configuration changes are applied through npm-driven build steps rather than runtime: run `npm run sync:headers` to regenerate `_headers` from `config/security-headers.js`, `npm run build:geo` to expand city/zone pages using `geo-editorial.js`, and `npm run normalize:public-html` to run JSON-LD/entity normalization over built output before publishing.

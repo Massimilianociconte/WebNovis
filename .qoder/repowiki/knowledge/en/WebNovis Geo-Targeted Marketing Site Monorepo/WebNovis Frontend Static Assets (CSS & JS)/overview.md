@@ -1,0 +1,1 @@
+Browser-side CSS themes and vanilla JavaScript modules powering the WebNovis website's layout, animations, AI chat shell, search, analytics, and non-critical feature loaders.

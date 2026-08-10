@@ -11,6 +11,13 @@
 - [chat-config.json](file://chat-config.json)
 </cite>
 
+## Update Summary
+**Changes Made**
+- Added documentation for new tertiary link style 'link-arrow' with animated underline effects and accessibility focus states
+- Enhanced Hero section documentation with microcopy support through .hero-microcopy class
+- Updated CSS architecture section to include new link styling patterns
+- Added examples for using the new link-arrow component
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Project Structure](#project-structure)
@@ -67,10 +74,14 @@ D --> G["Site Runtime Config<br/>js/site-config.js"]
 - Chatbot: persistent widget with message history, typing indicators, fallback offline mode, and lead intent detection.
 - Animations: Intersection Observer-based reveals, parallax orbs, particle canvas, magnetic/tilt effects, counters, and smooth scrolling.
 - Forms and configuration: site-wide form submission settings via site-config.js; chat behavior via chat-config.json.
+- **New**: Tertiary link style 'link-arrow' with animated underline effects and proper focus states for accessibility.
+- **Enhanced**: Hero section with microcopy support through .hero-microcopy class positioned below main CTA buttons.
 
 **Section sources**
 - [index.html:35-62](file://src/html/index.html#L35-L62)
 - [style.css:464-599](file://css/style.css#L464-L599)
+- [style.css:979-1004](file://css/style.css#L979-L1004)
+- [style.css:851-860](file://css/style.css#L851-L860)
 - [search.css:1-120](file://css/search.css#L1-L120)
 - [main.js:56-156](file://js/main.js#L56-L156)
 - [chat.js:35-145](file://js/chat.js#L35-L145)
@@ -119,11 +130,13 @@ Examples:
 - Custom properties for colors, typography, spacing, shadows, and animation durations are centralized in :root.
 - Hero uses flex centering and a responsive background image strategy to optimize LCP.
 - Service sections switch from stacked to side-by-side layouts at larger widths.
+- **Updated**: New tertiary link style 'link-arrow' provides elegant text links with animated underline effects using CSS gradients and proper focus states for accessibility.
 
 **Section sources**
 - [style.css:168-315](file://css/style.css#L168-L315)
 - [style.css:439-454](file://css/style.css#L439-L454)
 - [style.css:612-731](file://css/style.css#L612-L731)
+- [style.css:979-1004](file://css/style.css#L979-L1004)
 - [index.html:63-76](file://src/html/index.html#L63-L76)
 
 ### Interactive JavaScript Components
@@ -169,7 +182,7 @@ ChatFlow --> End
 **Section sources**
 - [main.js:44-176](file://js/main.js#L44-L176)
 - [main.js:178-284](file://js/main.js#L178-L284)
-- [main.js:430-550](file://js/main.js#L430-L550)
+- [main.js:430-550](file://js/main.js#L430-550)
 - [main.js:552-598](file://js/main.js#L552-L598)
 - [main.js:600-731](file://js/main.js#L600-L731)
 - [search.css:142-180](file://css/search.css#L142-L180)
@@ -189,10 +202,14 @@ Examples:
 - Theme tokens in :root enable easy customization of brand colors and gradients.
 - Search modal switches to full-screen overlay on small screens with safe-area padding.
 - Hero avoids opacity:0 initial state to ensure LCP is measurable and paint-ready.
+- **Updated**: New tertiary link style 'link-arrow' uses CSS gradients for animated underline effects with proper focus-visible states for accessibility compliance.
+- **Enhanced**: Hero microcopy support through .hero-microcopy class provides subtle positioning below main CTA buttons with appropriate spacing and visual hierarchy.
 
 **Section sources**
 - [style.css:168-315](file://css/style.css#L168-L315)
 - [style.css:439-454](file://css/style.css#L439-L454)
+- [style.css:851-860](file://css/style.css#L851-L860)
+- [style.css:979-1004](file://css/style.css#L979-L1004)
 - [search.css:549-787](file://css/search.css#L549-L787)
 - [index.html:27-31](file://src/html/index.html#L27-L31)
 
@@ -206,10 +223,12 @@ Examples:
   - Input focus after opening chat; modal close button available.
 - Motion preferences:
   - Reduced motion respected for heavy animations; particles disabled when preferred.
+- **Enhanced**: Link arrow component includes proper focus-visible states with outline and border-radius for keyboard navigation accessibility.
 
 **Section sources**
 - [index.html:32-35](file://src/html/index.html#L32-L35)
 - [index.html:40-62](file://src/html/index.html#L40-L62)
+- [style.css:1000-1004](file://css/style.css#L1000-L1004)
 - [search.css:142-180](file://css/search.css#L142-L180)
 - [chat.js:112-145](file://js/chat.js#L112-L145)
 - [chat.js:168-228](file://js/chat.js#L168-L228)
@@ -253,6 +272,7 @@ Examples:
 - Follow component patterns:
   - Cards and sections use consistent spacing, borders, and hover states.
   - Buttons follow primary/secondary patterns with gradient backgrounds and subtle transforms.
+  - **New**: Use link-arrow class for tertiary links requiring subtle interaction feedback with animated underline effects.
 - Add new components:
   - Keep mobile-first; enhance with media queries for larger screens.
   - Ensure accessibility: semantic elements, roles, labels, and focus management.
@@ -264,6 +284,7 @@ Examples:
 **Section sources**
 - [style.css:168-315](file://css/style.css#L168-L315)
 - [style.css:403-454](file://css/style.css#L403-L454)
+- [style.css:979-1004](file://css/style.css#L979-L1004)
 - [main.js:178-284](file://js/main.js#L178-L284)
 - [main.js:430-550](file://js/main.js#L430-L550)
 
@@ -335,16 +356,20 @@ J --> SC["site-config.js"]
   - Use rAF-throttled handlers and avoid layout thrashing in scroll events.
 - Form submission issues:
   - Confirm FORM_SUBMIT_MODE and TURNSTILE_SITEKEY in site-config.js; verify proxy URL if using server-side verification.
+- Link arrow styling issues:
+  - Ensure proper CSS gradient implementation and focus-visible states are applied correctly.
+  - Check that color variables are properly defined in custom properties.
 
 **Section sources**
 - [chat.js:481-580](file://js/chat.js#L481-L580)
 - [chat.js:504-531](file://js/chat.js#L504-L531)
 - [search.css:549-787](file://css/search.css#L549-L787)
 - [main.js:430-550](file://js/main.js#L430-L550)
+- [style.css:979-1004](file://css/style.css#L979-L1004)
 - [site-config.js:10-18](file://js/site-config.js#L10-L18)
 
 ## Conclusion
-WebNovis’s frontend combines a robust design system, responsive layouts, and performant interactions. The architecture emphasizes accessibility, progressive enhancement, and cross-browser compatibility. By leveraging custom properties, media queries, and efficient JavaScript patterns, the UI remains scalable and maintainable. Following the guidelines above ensures consistent extensions and reliable user experiences across devices.
+WebNovis's frontend combines a robust design system, responsive layouts, and performant interactions. The architecture emphasizes accessibility, progressive enhancement, and cross-browser compatibility. By leveraging custom properties, media queries, and efficient JavaScript patterns, the UI remains scalable and maintainable. Following the guidelines above ensures consistent extensions and reliable user experiences across devices.
 
 ## Appendices
 
@@ -379,3 +404,22 @@ WebNovis’s frontend combines a robust design system, responsive layouts, and p
 **Section sources**
 - [main.js:178-284](file://js/main.js#L178-L284)
 - [main.js:430-550](file://js/main.js#L430-L550)
+
+### Example Usage: Implementing Link Arrow Component
+- **Markup**: Use the link-arrow class for tertiary links that need subtle interaction feedback
+- **Styling**: The component automatically provides animated underline effects using CSS gradients
+- **Accessibility**: Includes proper focus-visible states for keyboard navigation
+- **Usage**: Apply to any anchor element requiring tertiary link styling
+
+**Section sources**
+- [style.css:979-1004](file://css/style.css#L979-L1004)
+
+### Example Usage: Adding Hero Microcopy
+- **Placement**: Position .hero-microcopy element below main CTA buttons in hero section
+- **Styling**: Automatically receives appropriate spacing, typography, and visual hierarchy
+- **Responsive**: Adapts to mobile viewports with adjusted padding and font sizes
+- **Purpose**: Provides supplementary information about CTAs without overwhelming primary actions
+
+**Section sources**
+- [style.css:851-860](file://css/style.css#L851-L860)
+- [index.html:70-76](file://src/html/index.html#L70-L76)

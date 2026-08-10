@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: static_assets
-title: Static Frontend Assets (CSS & JavaScript)
+title: WebNovis Frontend Static Assets (CSS & JS)
 scope:
     - css/
     - js/

@@ -1,1 +1,0 @@
-Node.js script that generates daily batches of Italian, SEO/GEO-optimized blog articles by prompting Gemini (with Groq fallback), then writes HTML pages and updates the blog index and sitemap.

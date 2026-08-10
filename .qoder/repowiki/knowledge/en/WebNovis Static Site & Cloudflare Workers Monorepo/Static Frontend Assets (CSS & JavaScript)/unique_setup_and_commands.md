@@ -1,1 +1,0 @@
-Each source file has a paired `.min.js` / `.min.css` counterpart (e.g. `main.js` ↔ `main.min.js`), implying an external minification pipeline runs during build; `site-config.js` must be edited to set `TURNSTILE_SITEKEY`, `FORM_SUBMIT_MODE`, and `FORM_PROXY_URL` before deployment to enable CAPTCHA and form routing.

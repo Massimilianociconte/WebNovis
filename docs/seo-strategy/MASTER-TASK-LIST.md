@@ -419,6 +419,7 @@ Azioni che richiedono intervento umano, accesso a piattaforme esterne o decision
 | Cronoshare IT | /croner-... | ✅ | In sameAs |
 | Instagram | @web.novis | ✅ | Social primario attivo |
 | Facebook | /share/1C7hNnkqEU/ | ✅ | In sameAs |
+| YouTube | @WebNovis | ✅ | Canale ufficiale in sameAs, footer e AI/LLM exports |
 | HARO | helpareporter.com | N/A | ✅ Iscritto — monitorare query settimanali |
 | Source of Sources | sourceofsources.com | N/A | ✅ Iscritto |
 | Help a B2B Writer | helpab2bwriter.com | N/A | ✅ Iscritto |

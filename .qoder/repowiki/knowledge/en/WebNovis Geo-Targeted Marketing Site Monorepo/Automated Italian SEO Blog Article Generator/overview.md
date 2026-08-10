@@ -1,0 +1,1 @@
+Node.js pipeline that generates daily batches of Italian, SEO/GEO-optimized blog articles by prompting Gemini (with Groq fallback), rendering HTML pages, and updating the blog index and sitemap.

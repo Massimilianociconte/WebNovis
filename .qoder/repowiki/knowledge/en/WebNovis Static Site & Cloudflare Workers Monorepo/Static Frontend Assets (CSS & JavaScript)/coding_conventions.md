@@ -1,5 +1,0 @@
-- Every source asset ships alongside a parallel `.min.*` build artifact (both JS and CSS) kept in sync by an external minifier.
-- Runtime configuration is centralized in `site-config.js` as a `window.WEBNOVIS_SITE_CONFIG` object that other scripts read via `Object.assign` defaults.
-- Feature scripts are self-contained IIFEs or top-level scripts that attach behavior by querying the DOM at load time rather than using a module system.
-- Heavy or optional features (particles, hero effects, chat shell) are gated behind device capability checks (`isTouchDevice`, `prefersReducedMotion`, `IntersectionObserver` presence) and deferred via `requestIdleCallback` or `setTimeout` to avoid blocking initial paint.
-- Scroll- and mouse-driven animations are throttled through a single `requestAnimationFrame` tick flag per handler to prevent layout thrashing.

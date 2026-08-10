@@ -3,11 +3,11 @@ schema_version: 1
 locale: en-US
 branch: main
 nodes_managed: true
-exported_at: "2026-08-06T14:58:23Z"
+exported_at: "2026-08-06T19:23:25Z"
 modules:
     "":
-        dir_name: WebNovis Static Site & Cloudflare Workers Monorepo
-        title: WebNovis Static Site & Cloudflare Workers Monorepo
+        dir_name: WebNovis Geo-Targeted Marketing Site Monorepo
+        title: WebNovis Geo-Targeted Marketing Site Monorepo
         scope:
             - README.md
             - CONTRIBUTING.md
@@ -947,26 +947,24 @@ modules:
         depends_on: []
         related_to: []
     blog:
-        dir_name: Auto Blog Writer — AI-Generated SEO Article Pipeline
-        title: Auto Blog Writer — AI-Generated SEO Article Pipeline
+        dir_name: Automated Italian SEO Blog Article Generator
+        title: Automated Italian SEO Blog Article Generator
         scope:
             - blog/
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: content_data
+        related_to: []
     build_system:
-        dir_name: WebNovis Static Site & Build Pipeline
-        title: WebNovis Static Site & Build Pipeline
+        dir_name: Static Site Content & Build Configuration
+        title: Static Site Content & Build Configuration
         scope:
             - config/
             - src/html/
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: workers
+        related_to: []
     content_data:
         dir_name: Geo-Targeted Content Data & pSEO Manifests
         title: Geo-Targeted Content Data & pSEO Manifests
@@ -976,7 +974,6 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: blog
             - path: scripts/geo_generators
     scripts:
         dir_name: WebNovis Site Generation & Maintenance Scripts
@@ -1019,8 +1016,8 @@ modules:
         depends_on: []
         related_to: []
     static_assets:
-        dir_name: Static Frontend Assets (CSS & JavaScript)
-        title: Static Frontend Assets (CSS & JavaScript)
+        dir_name: WebNovis Frontend Static Assets (CSS & JS)
+        title: WebNovis Frontend Static Assets (CSS & JS)
         scope:
             - css/
             - js/
@@ -1038,5 +1035,4 @@ modules:
         children: []
         depends_on: []
         related_to:
-            - path: build_system
             - path: static_assets

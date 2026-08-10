@@ -4,7 +4,8 @@ const {
   getBlogFooterHtml,
   normalizeFooterAssetMarkup,
   normalizePhoneCtaMarkup,
-  normalizeReviewActionMarkup
+  normalizeReviewActionMarkup,
+  normalizeSocialLinksMarkup
 } = require('../config/site-footer');
 const { normalizeEntityJsonLd } = require('../config/entity-facts');
 const { normalizeImageLoadingInHtml } = require('../config/image-policy');
@@ -205,6 +206,7 @@ for (const filePath of walk(ROOT)) {
   }
   const original = fs.readFileSync(filePath, 'utf8');
   let updated = normalizeBlogFooter(original, relativePath);
+  updated = normalizeSocialLinksMarkup(updated);
   updated = normalizeFooterAssetMarkup(updated);
   updated = normalizePhoneCtaMarkup(updated);
   updated = normalizeReviewActionMarkup(updated);

@@ -106,6 +106,7 @@ Tier 1 (priorità editoriale interna): 24 URL — elenco completo in https://www
 - **Sito**: https://www.webnovis.com
 - **Instagram**: https://www.instagram.com/web.novis
 - **Facebook**: https://www.facebook.com/share/1C7hNnkqEU/
+- **YouTube**: https://www.youtube.com/@WebNovis
 - **Trustpilot**: https://it.trustpilot.com/review/webnovis.com
 - **Google Business Profile**: esistenza confermata dal proprietario; rating, conteggio, categoria e orari non verificati
 - **Azione recensione Google**: https://g.page/r/CRblKdK0GGO_EBM/review
@@ -128,4 +129,4 @@ I prezzi sono valori iniziali presenti in data/services.json, non preventivi né
 
 - [ai.txt](https://www.webnovis.com/ai.txt): export editoriale sintetico; nessun beneficio di ranking o citazione è dichiarato.
 - [Dati JSON AI](https://www.webnovis.com/webnovis-ai-data.json): gli stessi fatti e prezzi di catalogo in JSON, con campi non verificati esplicitamente esclusi.
-- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa del sito con 360 URL indicizzabili (allineata a meta robots index).
+- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa del sito con 368 URL indicizzabili (allineata a meta robots index).
