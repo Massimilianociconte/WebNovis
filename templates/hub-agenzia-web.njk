@@ -15,8 +15,8 @@
   <section class="service-page-hero">
     <div class="container">
       <span class="section-tag">{{ networkCoverageCount }} comuni serviti da WebNovis</span>
-      <h1>Agenzia Web nei Comuni della Provincia di Milano</h1>
-      <p class="answer-capsule"><strong>WebNovis</strong> è l'agenzia web con sede a Rho che segue PMI e professionisti in {{ networkCoverageCount }} comuni dell'hinterland milanese. Siti custom senza WordPress, identità visiva, e-commerce e presenza locale: scegli il tuo comune per vedere come lavoriamo su quel territorio, con quali tempi e con quale referente.</p>
+      <h1>Web Agency in Lombardia: Agenzia Web a Milano e Rho</h1>
+      <p class="answer-capsule"><strong>WebNovis</strong> è una web agency in Lombardia con sede a Rho: segue PMI e professionisti con siti custom, e-commerce, brand identity, graphic design, social media e SEO locale. Le pagine comunali aiutano a trovare il riferimento territoriale corretto; attività, tempi e prezzo vengono confermati nella proposta.</p>
       <a href="/contatti.html" class="btn btn-large btn-primary">
         <span>Richiedi Preventivo Gratuito</span>
         <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
@@ -25,6 +25,26 @@
         <time datetime="{{ today }}">{{ todayFormatted }}</time>
         &nbsp;·&nbsp; Sede: Via S. Giorgio 2, 20017 Rho MI
       </p>
+    </div>
+  </section>
+
+  <section class="service-detail">
+    <div class="container">
+      <h2>Cosa può gestire WebNovis per una PMI in Lombardia</h2>
+      <div class="service-grid">
+        <div class="service-card-mini">
+          <h3>Sito, landing ed e-commerce</h3>
+          <p>Architettura, design, sviluppo custom, contenuti e basi SEO per costruire pagine riconoscibili e orientate alle richieste. <a href="/realizzazione-siti-web/">Realizzazione siti web in Lombardia</a></p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Brand e materiali visivi</h3>
+          <p>Logo, brand identity, coordinato e visual digitali collegati al sito e ai punti di contatto commerciali. <a href="/servizi/brand-identity.html">Brand identity e pacchetti</a></p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Visibilità e acquisizione</h3>
+          <p>SEO locale, contenuti, social media e campagne vengono selezionati in base al pubblico, al territorio e alla capacità di gestire i contatti generati.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -86,6 +106,26 @@
 
   <section class="service-detail" style="background:rgba(255,255,255,.01)">
     <div class="container">
+      <h2>Metodo di lavoro: dal problema alla priorità misurabile</h2>
+      <div class="service-grid">
+        <div class="service-card-mini">
+          <h3>1. Contesto</h3>
+          <p>Territorio, offerta, concorrenti, risorse interne e obiettivo vengono chiariti prima di proporre canali o tecnologie.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>2. Perimetro</h3>
+          <p>Deliverable, responsabilità, prezzi indicativi e tempi vengono tradotti in una proposta verificabile, senza promettere posizioni o risultati garantiti.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>3. Misurazione</h3>
+          <p>Traffico qualificato, richieste e passaggi di conversione vengono letti per decidere gli interventi successivi e non accumulare attività scollegate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
       <h2>Perché scegliere un'agenzia web locale?</h2>
       <div class="service-grid">
         <div class="service-card-mini">
@@ -131,10 +171,24 @@
     </div>
   </section>
 
+  <section class="service-detail">
+    <div class="container">
+      <h2>Domande frequenti sulla web agency in Lombardia</h2>
+      <div class="hub-faq">
+        {% for faq in faqs %}
+        <details class="faq-item">
+          <summary>{{ faq.question }}</summary>
+          <p>{{ faq.answer }}</p>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
   <section class="cta-inline">
     <div class="container">
       <h2>Non trovi il tuo comune?</h2>
-      <p>Serviamo tutta la Città Metropolitana di Milano e oltre. Contattaci per un preventivo gratuito.</p>
+      <p>La sede è a Rho, ma i progetti possono essere gestiti anche nel resto della Lombardia e da remoto. Indica territorio, servizio e obiettivo per ricevere una proposta pertinente.</p>
       <a href="/contatti.html" class="btn btn-large btn-primary">
         <span>Contattaci Ora</span>
         <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>

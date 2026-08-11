@@ -10,6 +10,7 @@ const {
   preserveGovernedCustomBlocks,
   stripUnapprovedTier1EditorialBlocks
 } = require(path.join(ROOT, 'config', 'content-claim-governance.js'));
+const { applySeoHtmlTransforms } = require(path.join(ROOT, 'config', 'seo-html-transforms.js'));
 
 function readText(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
@@ -138,6 +139,31 @@ function main() {
     accessibilityArticle.includes('https://digital-strategy.ec.europa.eu/en/policies/web-accessibility'),
     'blog/obblighi-legge-accessibilita-siti.html must cite the European Commission accessibility policy page'
   );
+
+  for (const file of ['src/html/servizi/accessibilita.html', 'servizi/accessibilita.html']) {
+    const accessibilityService = readText(file);
+    const publishedAccessibilityService = file.startsWith('src/')
+      ? applySeoHtmlTransforms(accessibilityService, 'servizi/accessibilita.html')
+      : accessibilityService;
+    assert.ok(
+      accessibilityService.includes('https://eur-lex.europa.eu/eli/dir/2019/882/oj') &&
+        accessibilityService.includes('https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2022-05-27;82') &&
+        accessibilityService.includes('https://www.w3.org/TR/WCAG22/'),
+      `${file} must cite the official EAA, Italian transposition and WCAG sources`
+    );
+    for (const unsupportedClaim of [
+      'Tutti i siti e-commerce e servizi digitali devono',
+      'sanzioni da €5.000 a €40.000',
+      '+12% traffico organico medio',
+      'catturano solo il 30-40%',
+      'Correzione tutte le violazioni WCAG'
+    ]) {
+      assert.ok(
+        !publishedAccessibilityService.includes(unsupportedClaim),
+        `${file} must not publish the unsupported accessibility claim: ${unsupportedClaim}`
+      );
+    }
+  }
 
   const gscGuideArticle = readText('blog/google-search-console-guida.html');
   assert.ok(

@@ -214,6 +214,41 @@ const EDITORIAL_CONTEXT_LINKS = {
     href: '/portfolio/case-study/comeleapi.html',
     title: 'Case study: presenza digitale locale per comeleapi',
     text: 'Un esempio concreto di sito mobile-first, identità editoriale, SEO locale e contatto diretto per un servizio sul territorio.'
+  },
+  'blog/internal-linking-strategia.html': {
+    href: '/blog/pillar-page-strategia.html',
+    title: 'Pillar page e topic cluster: la struttura centrale',
+    text: 'Come progettare la guida principale che organizza gli approfondimenti, distribuisce autorevolezza e rende leggibile il cluster a utenti e motori di ricerca.'
+  },
+  'blog/seo-blog-aziendale.html': {
+    href: '/blog/pillar-page-strategia.html',
+    title: 'Dagli articoli isolati a una pillar page',
+    text: 'La guida per collegare i contenuti del blog a una pagina centrale, ridurre la dispersione tematica e coprire meglio le domande correlate.'
+  },
+  'blog/social-media-strategy-2026.html': {
+    href: '/blog/community-management-guida.html',
+    title: 'Community management: attività e KPI',
+    text: 'Il livello operativo che trasforma il piano editoriale in ascolto, moderazione, risposte, relazioni e segnali misurabili per il business.'
+  },
+  'blog/tendenze-social-media-2026.html': {
+    href: '/blog/community-management-guida.html',
+    title: 'Dai trend alla gestione quotidiana della community',
+    text: 'Un metodo per tradurre formati e tendenze in conversazioni utili, tempi di risposta, membri attivi, click e richieste.'
+  },
+  'blog/data-driven-marketing.html': {
+    href: '/blog/analisi-competitiva-online.html',
+    title: 'Analisi competitor online: dati, strumenti e checklist',
+    text: 'Un confronto strutturato tra SERP, offerte, contenuti, autorevolezza e conversione per trasformare i dati sui concorrenti in priorità operative.'
+  },
+  'blog/marketing-plan-modello.html': {
+    href: '/blog/competitor-analysis-metodo.html',
+    title: 'Analisi competitor in 7 passi',
+    text: 'Il metodo sequenziale per selezionare i concorrenti, normalizzare il benchmark, individuare i gap e inserirli nel piano marketing.'
+  },
+  'blog/strategia-digitale-pmi.html': {
+    href: '/blog/competitor-analysis-metodo.html',
+    title: 'Prima della strategia: costruire il benchmark competitivo',
+    text: 'Sette passaggi per distinguere concorrenti commerciali e concorrenti di ricerca, assegnare priorità e programmare il monitoraggio.'
   }
 };
 const HOMEPAGE_GEO_CARD_REPLACEMENTS = [
@@ -1276,6 +1311,22 @@ function replaceQuickAnswer(html, content) {
   );
 }
 
+function upsertArticleDirectAnswer(html, content) {
+  const withoutGenerated = String(html || '').replace(
+    /\s*<p\b[^>]*data-webnovis-gsc-answer=["']true["'][^>]*>[\s\S]*?<\/p>/gi,
+    ''
+  );
+  if (/<p><strong>Risposta rapida:<\/strong>/i.test(withoutGenerated)) {
+    return replaceQuickAnswer(withoutGenerated, content);
+  }
+
+  const answer = `<p data-webnovis-gsc-answer="true"><strong>Risposta rapida:</strong> ${content}</p>`;
+  return withoutGenerated.replace(
+    /(<div class="article-summary">[\s\S]*?<\/div>)/i,
+    `$1 ${answer}`
+  );
+}
+
 function replaceSectionTag(html, content) {
   return html.replace(/<span class="section-tag">[\s\S]*?<\/span>/i, `<span class="section-tag">${content}</span>`);
 }
@@ -1383,6 +1434,75 @@ function alignHomepageBrandExperience(html, relativePath) {
 
 function alignPriorityContentTransforms(html, relativePath) {
   const normalizedPath = normalizeRelativePath(relativePath);
+
+  if (normalizedPath === 'blog/quanto-costa-brand-identity.html') {
+    let updated = replaceFirstH1(html, 'Costo Brand Identity 2026: Prezzi e Pacchetti');
+    updated = replaceArticleSummaryLead(
+      updated,
+      'Quanto costa una brand identity nel 2026, cosa includono i diversi pacchetti e quali deliverable servono davvero a una PMI o startup.'
+    );
+    return upsertArticleDirectAnswer(
+      updated,
+      'Una brand identity professionale per una PMI parte indicativamente da €1.500-3.000 per logo, palette, tipografia e linee guida essenziali; un sistema completo con tone of voice, applicazioni e template può richiedere €3.000-6.000 o più. Il prezzo dipende da ricerca, numero di output e profondità del brand manual.'
+    );
+  }
+
+  if (normalizedPath === 'blog/pillar-page-strategia.html') {
+    let updated = replaceFirstH1(html, 'Pillar Page: Cos’è, Esempi e Come Crearla');
+    updated = replaceArticleSummaryLead(
+      updated,
+      'Definizione di pillar page, esempi di architettura, differenza rispetto a un normale articolo e passaggi per collegarla a topic cluster coerenti.'
+    );
+    return upsertArticleDirectAnswer(
+      updated,
+      'Una pillar page è una guida centrale e ampia su un tema strategico, collegata a contenuti più specifici chiamati cluster. Per crearla servono un intento principale, sezioni che coprano le domande essenziali, link bidirezionali con gli approfondimenti e aggiornamenti periodici basati sulle query reali.'
+    );
+  }
+
+  if (normalizedPath === 'blog/community-management-guida.html') {
+    let updated = replaceFirstH1(html, 'Community Management: Cos’è, Attività e KPI');
+    updated = replaceArticleSummaryLead(
+      updated,
+      'Cosa significa fare community management, quali attività svolgere ogni giorno e quali KPI usare per distinguere interazioni superficiali da relazioni utili al business.'
+    );
+    return upsertArticleDirectAnswer(
+      updated,
+      'Il community management comprende ascolto, moderazione, risposte, attivazione delle conversazioni, raccolta dei feedback e gestione delle criticità. I KPI vanno scelti per obiettivo: tempi di risposta e sentiment per il supporto, membri attivi e conversazioni per la partecipazione, click e richieste per il contributo commerciale.'
+    );
+  }
+
+  if (normalizedPath === 'blog/analisi-competitiva-online.html') {
+    let updated = replaceFirstH1(html, 'Analisi Competitor Online: Strumenti, Template e Checklist');
+    updated = replaceArticleSummaryLead(
+      updated,
+      'Una guida operativa agli strumenti e ai campi da confrontare per leggere concorrenti, SERP, contenuti, offerte, canali e segnali di autorevolezza online.'
+    );
+    return upsertArticleDirectAnswer(
+      updated,
+      'Un’analisi competitor online efficace confronta concorrenti reali e concorrenti presenti in SERP su cinque aree: offerta, keyword, contenuti, autorevolezza e conversione. Si parte con strumenti gratuiti e osservazione manuale, poi si organizza tutto in un template con gap, evidenze, priorità e prossima azione. Per la sequenza operativa, segui il <a href="/blog/competitor-analysis-metodo.html">metodo di analisi competitor in 7 passi</a>.'
+    );
+  }
+
+  if (normalizedPath === 'blog/competitor-analysis-metodo.html') {
+    let updated = replaceFirstH1(html, 'Come Fare un’Analisi Competitor: Metodo in 7 Passi');
+    updated = replaceArticleSummaryLead(
+      updated,
+      'Il metodo sequenziale per trasformare dati sparsi sui concorrenti in un benchmark, una lista di gap e un piano di priorità verificabili.'
+    );
+    return upsertArticleDirectAnswer(
+      updated,
+      'Per fare un’analisi competitor definisci obiettivo e mercato, seleziona concorrenti diretti e concorrenti di ricerca, raccogli gli stessi dati per tutti, normalizza il confronto, individua gap, assegna le priorità e programma il monitoraggio. Questa pagina tratta il metodo; per tool, campi e template consulta la guida all’<a href="/blog/analisi-competitiva-online.html">analisi competitor online</a>.'
+    );
+  }
+
+  if (normalizedPath === 'servizi/accessibilita.html') {
+    let updated = replaceSectionTag(html, 'Audit accessibilità digitale · verifiche WCAG · piano di correzione');
+    updated = replaceFirstH1(updated, 'Audit Accessibilità Digitale per Siti Web: WCAG ed EAA');
+    return replaceAnswerCapsule(
+      updated,
+      '<strong>WebNovis</strong> svolge audit di accessibilità digitale con verifiche automatiche e manuali sui flussi concordati, mappatura dei criteri WCAG, priorità di correzione e supporto tecnico per i requisiti applicabili. L’audit parte da <strong>€350</strong> e non sostituisce una certificazione o un parere legale.'
+    );
+  }
 
   if (normalizedPath === 'blog/partita-iva-ecommerce.html') {
     return replaceArticleSummaryLead(
@@ -1995,6 +2115,80 @@ function alignHomepageGeoPromotions(html, relativePath) {
   return updated;
 }
 
+const PRIORITY_STRUCTURED_DATA_PATHS = new Set([
+  'blog/quanto-costa-brand-identity.html',
+  'blog/pillar-page-strategia.html',
+  'blog/community-management-guida.html',
+  'blog/analisi-competitiva-online.html',
+  'blog/competitor-analysis-metodo.html',
+  'servizi/accessibilita.html',
+  'contatti.html'
+]);
+
+function alignPriorityStructuredData(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  if (!PRIORITY_STRUCTURED_DATA_PATHS.has(normalizedPath)) return html;
+
+  const snippet = prioritySnippets[normalizedPath];
+  const h1 = faqPlainText(String(html).match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || '');
+
+  return String(html).replace(
+    /<script\b([^>]*type=["']application\/ld\+json["'][^>]*)>([\s\S]*?)<\/script>/gi,
+    (block, attributes, jsonText) => {
+      let parsed;
+      try {
+        parsed = JSON.parse(jsonText);
+      } catch (_) {
+        return block;
+      }
+
+      let touched = false;
+      const visit = (node) => {
+        if (Array.isArray(node)) {
+          node.forEach(visit);
+          return;
+        }
+        if (!node || typeof node !== 'object') return;
+
+        const types = Array.isArray(node['@type']) ? node['@type'] : [node['@type']];
+        if (normalizedPath.startsWith('blog/') && types.some((type) => ['Article', 'BlogPosting'].includes(type))) {
+          if (h1) node.headline = h1;
+          if (snippet?.description) node.description = snippet.description;
+          touched = true;
+        }
+        if (normalizedPath === 'servizi/accessibilita.html' && types.includes('Service')) {
+          node.name = h1 || 'Audit Accessibilità Digitale per Siti Web';
+          if (snippet?.description) node.description = snippet.description;
+          const offers = node.hasOfferCatalog?.itemListElement;
+          if (Array.isArray(offers) && offers.length >= 3) {
+            Object.assign(offers[0], {
+              name: 'Audit accessibilità digitale',
+              description: 'Verifiche automatiche e manuali con report delle evidenze e priorità di intervento'
+            });
+            Object.assign(offers[1], {
+              name: 'Piano di adeguamento tecnico',
+              description: 'Correzione dei problemi inclusi nel perimetro concordato; il prezzo varia in base a pagine e componenti'
+            });
+            Object.assign(offers[2], {
+              name: 'Monitoraggio accessibilità',
+              description: 'Scansione mensile, verifica trimestrale e report dei controlli eseguiti'
+            });
+          }
+          touched = true;
+        }
+        if (normalizedPath === 'contatti.html' && types.includes('ContactPage')) {
+          node.name = 'Contatti WebNovis a Rho';
+          if (snippet?.description) node.description = snippet.description;
+          touched = true;
+        }
+        Object.values(node).forEach(visit);
+      };
+      visit(parsed);
+      return touched ? `<script${attributes}>${JSON.stringify(parsed)}</script>` : block;
+    }
+  );
+}
+
 function alignHomepageWebPageFreshness(html, relativePath) {
   if (normalizeRelativePath(relativePath) !== 'index.html') return html;
   const buildDateIso = resolveRomeCalendarDate(resolveBuildInstant()).iso;
@@ -2262,6 +2456,7 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = removeUnverifiedTwitterSiteMeta(updated);
   updated = alignPrioritySnippet(updated, relativePath);
   updated = alignPriorityContentTransforms(updated, relativePath);
+  updated = alignPriorityStructuredData(updated, relativePath);
   updated = alignLocalPageOpportunityTransforms(updated, relativePath);
   updated = alignLocalAuthorityProof(updated, relativePath);
   updated = alignContactPageInfoCards(updated, relativePath);
@@ -2306,6 +2501,7 @@ module.exports = {
   ensureSelfHreflang,
   alignPrioritySnippet,
   alignPriorityContentTransforms,
+  alignPriorityStructuredData,
   alignLocalPageOpportunityTransforms,
   alignLocalAuthorityProof,
   normalizeLocalMetricPlaceholders,

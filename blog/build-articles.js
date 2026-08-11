@@ -1031,8 +1031,8 @@ const articles = [
   },
   {
     slug: 'quanto-costa-brand-identity',
-    title: 'Quanto Costa una Brand Identity nel 2026? Prezzi per PMI e Startup',
-    description: 'Costi reali per creare una brand identity completa: logo, palette, tipografia, brand manual. Prezzi per PMI italiane, cosa è incluso e quando investire.',
+    title: 'Costo Brand Identity 2026: Prezzi e Pacchetti',
+    description: 'Costo brand identity 2026: da €1.500 per il pacchetto base, cosa include logo, palette, font e brand manual, fasce di prezzo e criteri per scegliere.',
     tag: 'Branding',
     date: '20 Febbraio 2026',
     isoDate: '2026-02-20',
@@ -1052,7 +1052,7 @@ const articles = [
       }
     ],
     content: `
-<p>La brand identity è il sistema visivo e comunicativo che rende il tuo brand riconoscibile. Ma <strong>quanto costa crearla da zero nel 2026?</strong> Non si tratta solo del logo: una brand identity professionale include palette colori, tipografia, tone of voice, regole d\'uso e applicazioni. Ecco i prezzi reali per il mercato italiano.</p>
+<p><strong>Una brand identity professionale per una PMI parte indicativamente da €1.500-3.000</strong> per logo, palette, tipografia e linee guida essenziali; un sistema completo con tone of voice, applicazioni e template può richiedere €3.000-6.000 o più. Il prezzo dipende da ricerca, numero di output e profondità del brand manual.</p>
 
 <h2>Prezzi della Brand Identity nel 2026</h2>
 
@@ -5024,7 +5024,7 @@ const articles = [
 <p>In <a href="../chi-siamo.html">WebNovis</a> la scelta dei colori è parte del nostro servizio di <a href="../servizi/graphic-design.html">Graphic Design e Branding</a>, basato su posizionamento strategico e best practice di percezione. <a href="../preventivo.html">Parlaci del tuo brand →</a></p>`,
     relatedArticles: [
       { slug: 'brand-identity-guida-completa', title: 'Brand Identity Guida Completa', desc: 'Come creare un\'identità di marca.' },
-      { slug: 'quanto-costa-brand-identity', title: 'Quanto Costa una Brand Identity?', desc: 'Prezzi per PMI e startup.' },
+      { slug: 'quanto-costa-brand-identity', title: 'Costo Brand Identity: Prezzi e Pacchetti', desc: 'Fasce di prezzo e deliverable per PMI e startup.' },
       { slug: 'logo-design-processo-creativo', title: 'Processo Creativo del Logo', desc: 'Dal brief al design finale.' }
     ]
   },
@@ -5897,7 +5897,7 @@ const articles = [
     relatedArticles: [
       { slug: 'brand-identity-guida-completa', title: 'Brand Identity Guida', desc: 'Come creare un\'identità di marca.' },
       { slug: 'colori-brand-psicologia', title: 'Psicologia dei Colori', desc: 'Come i colori influenzano il brand.' },
-      { slug: 'quanto-costa-brand-identity', title: 'Quanto Costa una Brand Identity?', desc: 'Prezzi per PMI e startup.' }
+      { slug: 'quanto-costa-brand-identity', title: 'Costo Brand Identity: Prezzi e Pacchetti', desc: 'Fasce di prezzo e deliverable per PMI e startup.' }
     ]
   },
   {

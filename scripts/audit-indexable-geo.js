@@ -109,22 +109,26 @@ function stripTags(html) {
     .trim();
 }
 
+function extractTagAttribute(tag, attributeName) {
+  if (!tag) return '';
+  const pattern = new RegExp(`\\b${attributeName}\\s*=\\s*(["'])([\\s\\S]*?)\\1`, 'i');
+  return (String(tag).match(pattern) || [])[2] || '';
+}
+
+function findTagByAttribute(html, tagName, attributeName, expectedValue) {
+  const tagPattern = new RegExp(`<${tagName}\\b[^>]*>`, 'gi');
+  return [...String(html).matchAll(tagPattern)]
+    .map((match) => match[0])
+    .find((tag) => extractTagAttribute(tag, attributeName).toLowerCase() === expectedValue.toLowerCase()) || '';
+}
+
 function extract(html, pathname) {
   const headEnd = html.search(/<\/head>/i);
   const head = headEnd >= 0 ? html.slice(0, headEnd) : html.slice(0, 12000);
   const title = (head.match(/<title>([^<]*)<\/title>/i) || [])[1] || '';
-  const robots =
-    (head.match(/name=["']robots["'][^>]*content=["']([^"']+)/i) ||
-      head.match(/content=["']([^"']+)["'][^>]*name=["']robots["']/i) ||
-      [])[1] || '';
-  const canonical =
-    (head.match(/rel=["']canonical["'][^>]*href=["']([^"']+)/i) ||
-      head.match(/href=["']([^"']+)["'][^>]*rel=["']canonical["']/i) ||
-      [])[1] || '';
-  const desc =
-    (head.match(/name=["']description["'][^>]*content=["']([^"']*)/i) ||
-      head.match(/content=["']([^"']*)["'][^>]*name=["']description["']/i) ||
-      [])[1] || '';
+  const robots = extractTagAttribute(findTagByAttribute(head, 'meta', 'name', 'robots'), 'content');
+  const canonical = extractTagAttribute(findTagByAttribute(head, 'link', 'rel', 'canonical'), 'href');
+  const desc = extractTagAttribute(findTagByAttribute(head, 'meta', 'name', 'description'), 'content');
   const h1 = ((html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1] || '')
     .replace(/<[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
@@ -259,8 +263,9 @@ function extract(html, pathname) {
   if (!hasAnswerCapsule) issues.push('manca answer-capsule (GEO)');
   else wins.push('answer-capsule');
 
-  if (!hasSpeakable && tierOf(pathname) === 'T1') issues.push('Tier1 senza Speakable');
-  else if (hasSpeakable) wins.push('Speakable');
+  // Speakable is recorded when present but is not treated as a generic GEO
+  // requirement for commercial local pages.
+  if (hasSpeakable) wins.push('Speakable');
 
   if (!hasNap) issues.push('NAP/sede poco espliciti');
   else wins.push('NAP');
@@ -353,8 +358,8 @@ function recommendations(row) {
   if (row.issues.some((i) => /LocalBusiness/.test(i))) {
     recs.push('Schema: una sola entità LocalBusiness (Rho); sulle altre città usare Service + areaServed City.');
   }
-  if (row.issues.some((i) => /answer-capsule|Speakable/.test(i))) {
-    recs.push('Aggiungere answer-capsule (40–60 parole) + SpeakableSpecification per GEO/LLM.');
+  if (row.issues.some((i) => /answer-capsule/.test(i))) {
+    recs.push('Aggiungere una answer-capsule visibile di 40–60 parole, coerente con la query e il contenuto della pagina.');
   }
   if (row.issues.some((i) => /proof|social proof/.test(i))) {
     recs.push('Inserire blocco local proof: distanze da sede, settori serviti, recensione o case study.');
@@ -510,7 +515,7 @@ function main() {
   md.push('1. Sistemare tutte le P0 (file mancanti / noindex accidentali / canonical rotti).');
   md.push('2. Upgrade contenuto su tutte le **Tier 1** sotto score 85.');
   md.push('3. Per città dense (Milano, Rho, e multi-service): definire 1 primary URL per intent e far linkare le secondarie verso di essa.');
-  md.push('4. Estendere answer-capsule + Speakable a tutto il T1 e alle DV con impression GSC.');
+  md.push('4. Estendere le answer-capsule visibili alle pagine T1 e DV che ricevono impression GSC.');
   md.push('5. Rimuovere o non spingere AggregateRating fuori da review verificabili.');
   md.push('');
 
@@ -536,4 +541,10 @@ function main() {
   }
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = {
+  extract,
+  extractTagAttribute,
+  findTagByAttribute
+};

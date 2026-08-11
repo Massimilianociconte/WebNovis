@@ -343,7 +343,9 @@ function main() {
     'agenzia-web-rho.html',
     'agenzia-web-arese.html',
     'realizzazione-siti-web-arese.html',
-    'ecommerce-milano.html'
+    'ecommerce-milano.html',
+    'agenzia-web/index.html',
+    'realizzazione-siti-web/index.html'
   ]) {
     const html = readText(file);
     const schemas = parseJsonLd(html, file);
@@ -380,6 +382,58 @@ function main() {
       !communityArticle.includes('href="engagement-community.html"') &&
       !communityArticle.includes('href="gestire-community-social.html"'),
     'community-management-guida.html still contains self-referential broken links'
+  );
+
+  const gscOpportunityPages = {
+    'blog/quanto-costa-brand-identity.html': {
+      h1: 'Costo Brand Identity 2026: Prezzi e Pacchetti',
+      answer: 'Una brand identity professionale per una PMI'
+    },
+    'blog/pillar-page-strategia.html': {
+      h1: 'Pillar Page: Cos’è, Esempi e Come Crearla',
+      answer: 'Una pillar page è una guida centrale'
+    },
+    'blog/community-management-guida.html': {
+      h1: 'Community Management: Cos’è, Attività e KPI',
+      answer: 'Il community management comprende'
+    },
+    'blog/analisi-competitiva-online.html': {
+      h1: 'Analisi Competitor Online: Strumenti, Template e Checklist',
+      answer: 'Un’analisi competitor online efficace confronta'
+    },
+    'blog/competitor-analysis-metodo.html': {
+      h1: 'Come Fare un’Analisi Competitor: Metodo in 7 Passi',
+      answer: 'Per fare un’analisi competitor'
+    },
+    'servizi/accessibilita.html': {
+      h1: 'Audit Accessibilità Digitale per Siti Web: WCAG ed EAA',
+      answer: 'svolge audit di accessibilità digitale'
+    }
+  };
+
+  for (const [file, expected] of Object.entries(gscOpportunityPages)) {
+    const html = readText(file);
+    const snippet = prioritySnippets[file];
+    assert.ok(snippet, `${file} must have a GSC-derived priority snippet`);
+    assert.equal(extractTitle(html, file), snippet.title, `${file} must publish its canonical GSC title`);
+    assert.ok(html.includes(`<h1>${expected.h1}</h1>`), `${file} must own its intended search intent in the H1`);
+    assert.ok(html.includes(expected.answer), `${file} must expose a concise answer suitable for search and AI extraction`);
+    assert.equal(
+      applySeoHtmlTransforms(html, file),
+      html,
+      `${file} GSC opportunity transforms must be idempotent after normalization`
+    );
+  }
+
+  const contacts = readText('contatti.html');
+  assert.equal(extractTitle(contacts, 'contatti.html'), prioritySnippets['contatti.html'].title);
+  assert.ok(
+    contacts.includes('Contatti, sede a Rho e richiesta di preventivo'),
+    'contatti.html must focus on contact intent instead of competing with agenzia-web-rho.html'
+  );
+  assert.ok(
+    contacts.includes('href="/agenzia-web-rho.html"') && contacts.includes('web agency a Rho'),
+    'contatti.html must pass local relevance to the dedicated Rho landing page with a contextual link'
   );
 
   const logAnalysis = readText('blog/log-analysis-seo.html');

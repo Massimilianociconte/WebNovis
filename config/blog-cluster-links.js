@@ -41,8 +41,8 @@ const PAGE_CARDS = {
   },
   "blog/pillar-page-strategia.html": {
     label: "Strategia",
-    title: "Pillar Page e Topic Cluster: la Strategia SEO",
-    desc: "Scopri come le pillar page e i topic cluster rivoluzionano la tua SEO, organizzando i contenuti per dominare la SERP e attrarre lead qualifi"
+    title: "Pillar Page: cos’è, esempi e come crearla",
+    desc: "Definizione, struttura, esempi e collegamenti con i topic cluster per progettare una pillar page utile e riconoscibile."
   },
   "blog/seo-blog-aziendale.html": {
     label: "SEO",
@@ -246,8 +246,8 @@ const PAGE_CARDS = {
   },
   "blog/community-management-guida.html": {
     label: "Approfondimento",
-    title: "Community Management: Far Crescere la Tua Community",
-    desc: "Scopri come il community management strategico può trasformare i tuoi clienti in ambassador. Questa guida pratica offre tattiche concrete pe"
+    title: "Community management: attività e KPI",
+    desc: "Cosa significa gestire una community, quali attività svolgere e come misurare partecipazione, supporto e impatto commerciale."
   },
   "blog/user-generated-content.html": {
     label: "Content",
@@ -611,8 +611,8 @@ const PAGE_CARDS = {
   },
   "blog/quanto-costa-brand-identity.html": {
     label: "Prezzi",
-    title: "Quanto Costa una Brand Identity nel 2026? Prezzi per PMI e Startup",
-    desc: "Costi reali per creare una brand identity completa: logo, palette, tipografia, brand manual. Prezzi per PMI italiane, cosa è incluso e quand"
+    title: "Costo brand identity 2026: prezzi e pacchetti",
+    desc: "Fasce di prezzo, deliverable e differenze tra identità base e sistema di marca completo per PMI e startup."
   },
   "blog/quanto-costa-un-logo.html": {
     label: "Prezzi",
@@ -1115,14 +1115,14 @@ const PAGE_CARDS = {
     desc: "Scopri il segreto per massimizzare il tuo ROI nel marketing digitale. Impara a calcolarlo e migliorarlo con strategie concrete e dati reali."
   },
   "blog/analisi-competitiva-online.html": {
-    label: "Approfondimento",
-    title: "Analisi Competitiva Online: Strumenti e Metodi",
-    desc: "Scopri come l'analisi competitiva online può trasformare la tua PMI. Dagli strumenti ai metodi pratici, impara a studiare i concorrenti per"
+    label: "Strumenti e template",
+    title: "Analisi competitor online: strumenti e checklist",
+    desc: "Tool, campi di confronto e checklist per studiare SERP, contenuti, offerte e autorevolezza dei concorrenti digitali."
   },
   "blog/competitor-analysis-metodo.html": {
-    label: "Approfondimento",
-    title: "Analisi competitor: il metodo per trovare vantaggi",
-    desc: "Scopri il metodo WebNovis per un'analisi competitor profonda. Identifica punti di forza e debolezza, trasformando i dati in strategie concre"
+    label: "Metodo operativo",
+    title: "Come fare un’analisi competitor in 7 passi",
+    desc: "Un processo ordinato per definire il perimetro, normalizzare i dati, individuare gap e trasformarli in priorità verificabili."
   },
   "blog/strategia-digitale-pmi.html": {
     label: "Strategia",

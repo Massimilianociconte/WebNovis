@@ -326,7 +326,9 @@ function main() {
     'agenzia-web-rho.html',
     'agenzia-web-arese.html',
     'realizzazione-siti-web-arese.html',
-    'ecommerce-milano.html'
+    'ecommerce-milano.html',
+    'agenzia-web/index.html',
+    'realizzazione-siti-web/index.html'
   ]) {
     const schemas = parseJsonLd(file);
     assert.ok(
@@ -340,9 +342,12 @@ function main() {
     const serviceSchemas = schemas.filter((schema) => schema['@type'] === 'Service');
     assert.ok(serviceSchemas.length > 0, `${file} must expose at least one Service schema`);
     for (const schema of serviceSchemas) {
+      const expectedProviderId = file.endsWith('/index.html')
+        ? 'https://www.webnovis.com/#organization'
+        : 'https://www.webnovis.com/#localbusiness';
       assert.equal(
         schema.provider?.['@id'],
-        'https://www.webnovis.com/#localbusiness',
+        expectedProviderId,
         `${file} Service.provider must reference the canonical singleton WebNovis entity`
       );
     }

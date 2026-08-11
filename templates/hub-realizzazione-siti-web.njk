@@ -15,8 +15,8 @@
   <section class="service-page-hero">
     <div class="container">
       <span class="section-tag">{{ networkCoverageCount }} comuni serviti da WebNovis</span>
-      <h1>Realizzazione Siti Web a Milano e in Lombardia</h1>
-      <p class="answer-capsule"><strong>WebNovis</strong> realizza siti web su misura per aziende e professionisti a Milano, in provincia e in Lombardia, con sede a Rho e {{ networkCoverageCount }} comuni serviti. Codice scritto da zero, nessun WordPress e nessun template: struttura SEO, velocità e design nascono insieme al progetto.</p>
+      <h1>Realizzazione Siti Web in Lombardia per Aziende e Professionisti</h1>
+      <p class="answer-capsule"><strong>WebNovis</strong> realizza e crea siti web in Lombardia per PMI e professionisti: landing page da <strong>€500</strong>, siti aziendali da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>. La sede è a Rho; codice custom, struttura SEO e design vengono definiti nello stesso progetto, con prezzo e perimetro confermati nella proposta.</p>
       <a href="/contatti.html" class="btn btn-large btn-primary">
         <span>Richiedi Preventivo Gratuito</span>
         <svg height="20" viewBox="0 0 20 20" width="20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
@@ -25,6 +25,24 @@
         <time datetime="{{ today }}">{{ todayFormatted }}</time>
         &nbsp;·&nbsp; Sede: Via S. Giorgio 2, 20017 Rho MI
       </p>
+    </div>
+  </section>
+
+  <section class="service-detail">
+    <div class="container">
+      <h2>Creazione siti web in Lombardia: soluzione, prezzo di partenza e obiettivo</h2>
+      <p>La query “sito web” può indicare esigenze molto diverse. Questa tabella aiuta a scegliere il percorso corretto prima di entrare nella pagina del proprio comune o richiedere un preventivo.</p>
+      <div class="hub-table-wrap">
+        <table class="hub-table">
+          <thead><tr><th scope="col">Esigenza</th><th scope="col">Soluzione indicativa</th><th scope="col">Da</th><th scope="col">Approfondimento</th></tr></thead>
+          <tbody>
+            <tr><td>Validare un’offerta o raccogliere contatti da una campagna</td><td>Landing page focalizzata su un solo obiettivo</td><td>€500</td><td><a href="/landing-page-milano.html">Landing page a Milano</a></td></tr>
+            <tr><td>Presentare azienda, servizi, casi e contatti</td><td>Sito aziendale o sito vetrina custom</td><td>€1.200</td><td><a href="/servizi/sviluppo-web.html">Sviluppo web custom</a></td></tr>
+            <tr><td>Vendere prodotti, gestire catalogo, pagamenti e ordini</td><td>Sito e-commerce con checkout e SEO tecnica</td><td>€3.500</td><td><a href="/servizi/ecommerce.html">Realizzazione e-commerce</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="service-scope-note">Le cifre sono prezzi di partenza pubblicati da WebNovis, IVA esclusa. Contenuti, integrazioni, lingue, catalogo e funzioni possono cambiare il preventivo.</p>
     </div>
   </section>
 
@@ -94,12 +112,46 @@
         </div>
         <div class="service-card-mini">
           <h3>SEO integrata</h3>
-          <p>Ogni sito nasce ottimizzato per Google: struttura semantica, Core Web Vitals, dati strutturati JSON-LD e velocità di caricamento sotto i 2 secondi.</p>
+          <p>Ogni sito nasce con struttura semantica, metadata, dati strutturati pertinenti e attenzione ai Core Web Vitals. Le prestazioni vengono misurate sul progetto reale e non promesse con una soglia universale.</p>
         </div>
         <div class="service-card-mini">
           <h3>Design su misura</h3>
           <p>Layout e identità visiva progettati intorno al tuo brand e al tuo mercato locale. Nessun compromesso sulla qualità.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-detail">
+    <div class="container">
+      <h2>Come nasce un sito pensato per ricerca, utenti e sistemi AI</h2>
+      <div class="service-grid">
+        <div class="service-card-mini">
+          <h3>Intento e architettura</h3>
+          <p>Servizi, territori, domande e percorsi di conversione vengono separati in pagine riconoscibili, evitando che più URL competano per la stessa ricerca.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Contenuti verificabili</h3>
+          <p>Prezzi di partenza, sede, perimetro e risposte operative sono esposti in modo leggibile, così utenti e motori possono capire cosa offre davvero WebNovis.</p>
+        </div>
+        <div class="service-card-mini">
+          <h3>Misurazione dopo il lancio</h3>
+          <p>Search Console, analytics e richieste ricevute aiutano a decidere quali query ampliare. Il ranking non viene garantito: si migliora con dati e revisioni successive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-detail" style="background:rgba(255,255,255,.01)">
+    <div class="container">
+      <h2>Domande frequenti sulla realizzazione di siti web in Lombardia</h2>
+      <div class="hub-faq">
+        {% for faq in faqs %}
+        <details class="faq-item">
+          <summary>{{ faq.question }}</summary>
+          <p>{{ faq.answer }}</p>
+        </details>
+        {% endfor %}
       </div>
     </div>
   </section>

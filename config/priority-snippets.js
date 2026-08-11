@@ -42,6 +42,36 @@ module.exports = {
     title: 'Quanto costa un logo professionale? | WebNovis',
     description: 'Prezzi reali per la creazione di un logo: dal freelance all\'agenzia, dal logo base alla brand identity completa. Fasce di costo e come scegliere.'
   },
+  'blog/quanto-costa-brand-identity.html': {
+    // GSC 2026-08-11: query di costo a pagina 1-2, presenza nelle sintesi AI e CTR ancora debole.
+    title: 'Costo Brand Identity 2026: Prezzi e Pacchetti | WebNovis',
+    description: 'Costo brand identity 2026: da €1.500 per il pacchetto base, cosa include logo, palette, font e brand manual, fasce di prezzo e criteri per scegliere.'
+  },
+  'blog/pillar-page-strategia.html': {
+    // GSC 2026-08-11: "pillar page" raccoglie impressioni a posizione media 18,9.
+    title: 'Pillar Page: Cos’è, Esempi e Come Crearla | WebNovis',
+    description: 'Cos’è una pillar page, come si collega ai topic cluster ed esempi di struttura. Guida passo passo per progettare contenuti e internal linking SEO.'
+  },
+  'blog/community-management-guida.html': {
+    // GSC 2026-08-11: query generica a posizione media 15,2, senza clic.
+    title: 'Community Management: Cos’è, Attività e KPI | WebNovis',
+    description: 'Community management: significato, attività quotidiane, strumenti, KPI ed errori. Guida pratica per gestire community social e online per una PMI.'
+  },
+  'blog/analisi-competitiva-online.html': {
+    // GSC 2026-08-11: 246 impressioni su "analisi competitor online", posizione media 58,43.
+    title: 'Analisi Competitor Online: Strumenti e Checklist | WebNovis',
+    description: 'Analisi competitor online: cosa confrontare, strumenti gratuiti e professionali, template e checklist per studiare SEO, contenuti, offerte e canali.'
+  },
+  'blog/competitor-analysis-metodo.html': {
+    // Intento distinto dalla guida ai tool: processo operativo e sequenza di lavoro.
+    title: 'Come Fare un’Analisi Competitor: 7 Passi | WebNovis',
+    description: 'Come fare un’analisi competitor in 7 passi: perimetro, concorrenti, dati, benchmark, gap, priorità e monitoraggio. Metodo pratico per PMI.'
+  },
+  'servizi/accessibilita.html': {
+    // GSC 2026-08-11: domanda esplicita per "audit accessibilità digitale".
+    title: 'Audit Accessibilità Digitale: WCAG ed EAA | WebNovis',
+    description: 'Audit accessibilità digitale per siti web: verifiche automatiche e manuali, criteri WCAG, priorità di correzione e supporto EAA. Servizio da €350.'
+  },
   'blog/instagram-algoritmo-2026.html': {
     title: 'Algoritmo Instagram 2026: cosa premia davvero | WebNovis',
     description: 'Segnali che contano davvero nel 2026: reach, salvataggi, caroselli, reel e frequenza. Guida pratica per PMI e professionisti che vogliono più risultati.'
@@ -118,9 +148,14 @@ module.exports = {
     title: 'Chi Siamo | WebNovis, Agenzia Web tra Milano e Rho',
     description: 'Scopri il team, il metodo e l’approccio di WebNovis: agenzia web tra Milano e Rho specializzata in siti custom, design e crescita digitale.'
   },
+  'contatti.html': {
+    // Evita la cannibalizzazione con /agenzia-web-rho.html, che deve possedere l'intento commerciale locale.
+    title: 'Contatti WebNovis a Rho: Sede e Preventivi',
+    description: 'Contatta WebNovis a Rho: sede, email, telefono, WhatsApp e modulo per richiedere un preventivo su siti web, e-commerce, branding, SEO e social media.'
+  },
   'sito-vetrina-bollate.html': {
     title: 'Sito vetrina a Bollate: da €1.200 e SEO integrata | WebNovis',
-    description: 'Sito vetrina a Bollate con design custom, SEO tecnica integrata e struttura orientata ai contatti. Prezzo indicativo da €1.200; dettagli confermati nella proposta.'
+    description: 'Sito vetrina a Bollate con design custom, SEO tecnica e struttura orientata ai contatti. Prezzo da €1.200, confermato nella proposta.'
   },
   'graphic-design-bareggio.html': {
     title: 'Graphic design a Bareggio: logo e brand identity | WebNovis',
@@ -128,16 +163,16 @@ module.exports = {
   },
   'realizzazione-siti-web-garbagnate.html': {
     title: 'Realizzazione siti web a Garbagnate: da €1.200 | WebNovis',
-    description: 'Realizzazione siti web a Garbagnate Milanese per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e proposta personalizzata.'
+    description: 'Siti web a Garbagnate Milanese per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata e proposta personalizzata.'
   },
   'realizzazione-siti-web-bresso.html': {
     title: 'Realizzazione siti web a Bresso: da €1.200 e SEO | WebNovis',
     description: 'Realizzazione siti web a Bresso per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e proposta personalizzata.'
   },
   'agenzia-web-rho.html': {
-    // GSC: "web agency rho" = 324 impr a pos 13.3 con 0 clic → il title ora include la query esatta
+    // GSC 13 lug–9 ago 2026: "web agency rho" = 53 impression, posizione 15,51, 0 clic.
     title: 'Web Agency Rho: siti web custom, SEO e branding | WebNovis',
-    description: 'WebNovis è la web agency di Rho (Via S. Giorgio 2): siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Richiesta di preventivo senza impegno.'
+    description: 'Web agency a Rho con sede in Via S. Giorgio 2: siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Preventivo su richiesta.'
   },
   'realizzazione-siti-web-rho.html': {
     title: 'Realizzazione siti web a Rho: da €1.200 e SEO | WebNovis',
@@ -153,7 +188,7 @@ module.exports = {
   },
   'landing-page-milano.html': {
     title: 'Landing page a Milano: da €500 | WebNovis',
-    description: 'Landing page a Milano per Google Ads, Meta Ads ed eventi: copy, design e tracking orientati ai lead. Da €500, con struttura pensata per campagne che devono convertire.'
+    description: 'Landing page a Milano per Google Ads, Meta Ads ed eventi: copy, design e tracking orientati ai lead. Da €500, con struttura pensata per convertire.'
   },
   'ecommerce-milano.html': {
     title: 'E-commerce a Milano: da €3.500 e SEO integrata | WebNovis',

@@ -279,11 +279,6 @@ function validatePage(filePath) {
         issues.push({ level: 'INFO', msg: 'Missing answer-capsule class (GEO optimization)' });
     }
 
-    // Speakable
-    if (!hasSpeakable(html)) {
-        issues.push({ level: 'INFO', msg: 'Missing SpeakableSpecification (GEO optimization)' });
-    }
-
     return {
         file: filePath,
         title: title.slice(0, 60),

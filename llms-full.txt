@@ -240,7 +240,7 @@ Lavoriamo con imprese che vogliono una presenza online più credibile, più perf
 Guarda i progetti →
 
 ### Dove operiamo?
-Seguiamo progetti tra Rho, Milano e hinterland, con supporto operativo anche in tutta Italia da remoto quando il progetto lo richiede.
+Seguiamo progetti tra Rho, Milano e hinterland: la pagina dedicata alla nostra web agency in Lombardia raccoglie servizi, metodo e aree principali. Lavoriamo anche da remoto in altre zone d’Italia quando il progetto lo richiede.
 Zone servite →
 
 ## La Nostra Storia
@@ -315,7 +315,6 @@ Come parte un nuovo progetto con voi? Partiamo da obiettivi, contesto competitiv
 In quanto tempo rispondete a una richiesta? Per le richieste commerciali valutiamo obiettivi, perimetro e materiali disponibili. Tempi e modalità del primo riscontro vengono comunicati attraverso i canali indicati.
 
 ## Vuoi Lavorare con Noi?
-Raccontaci il tuo progetto: valuteremo le informazioni per preparare una proposta personalizzata.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -707,8 +706,8 @@ Web Novis — Agenzia Web a Rho (MI) · Area metropolitana Milano · Hinterland 
 
 ----------------------------------------
 URL: https://www.webnovis.com/contatti.html
-TITOLO: Contatti — Web Novis | Agenzia Web Milano, Rho
-DESCRIZIONE: Contatta Web Novis per un preventivo gratuito. Agenzia web a Milano (Rho): sviluppo siti, grafica e social media. Email, telefono e form di contatto.
+TITOLO: Contatti WebNovis a Rho: Sede e Preventivi
+DESCRIZIONE: Contatta WebNovis a Rho: sede, email, telefono, WhatsApp e modulo per richiedere un preventivo su siti web, e-commerce, branding, SEO e social media.
 
 Home / Contatti
 Contatti
@@ -722,7 +721,7 @@ hello@webnovis.com
 
 ## Telefono
 
-Chiama WebNovis Scrivici su WhatsApp → Canale YouTube @WebNovis →
+Chiama WebNovis Scrivici su WhatsApp →
 
 ## Sede
 
@@ -763,36 +762,36 @@ Accetto i Termini e Condizioni e l' Informativa sulla Privacy * Desidero iscrive
 
 Invia Richiesta
 
-## Agenzia Web a Milano e Rho: Parliamo del Tuo Progetto Digitale
-Web Novis è un' agenzia web con sede a Rho , nell'area metropolitana di Milano. Ci occupiamo di sviluppo siti web, e-commerce, grafica professionale, SEO e gestione dei social media per attività locali, PMI e professionisti in tutta la Lombardia.
-Compila il modulo oppure usa email, telefono o WhatsApp per descrivere il progetto. Tempi e modalità del riscontro dipendono dalla richiesta e vengono definiti al contatto.
-Lavoriamo con clienti a Milano, Rho, Lainate, Arese, Garbagnate Milanese, Bollate, Pregnana Milanese e in tutta la provincia di Milano. Ogni progetto parte dall'ascolto delle tue esigenze per costruire una soluzione digitale su misura, performante e orientata ai risultati.
-Che tu abbia bisogno di un sito web professionale, di un restyling grafico, di una strategia SEO locale o di una presenza efficace sui social media, il nostro team è pronto ad affiancarti in ogni fase del percorso. Contattaci oggi stesso per iniziare.
+## Contatti, sede a Rho e richiesta di preventivo
+WebNovis ha sede a Rho, nell'area metropolitana di Milano. Per conoscere servizi, metodo e presenza locale consulta la pagina dedicata alla web agency a Rho ; questa pagina serve invece per trovare i canali di contatto e descrivere il progetto.
+Compila il modulo oppure usa email, telefono o WhatsApp per indicare servizio, obiettivo, territorio ed eventuale budget. Tempi e modalità del riscontro dipendono dalla richiesta e vengono definiti al contatto.
+Seguiamo siti web, e-commerce, grafica professionale, SEO e social media per attività locali, PMI e professionisti a Rho, Milano e in Lombardia.
+Una descrizione concreta del problema, delle scadenze e del risultato atteso ci aiuta a preparare una proposta più pertinente.
 
 ----------------------------------------
 URL: https://www.webnovis.com/servizi/accessibilita.html
-TITOLO: Accessibilità Web e Compliance EAA — Web Novis | Audit WCAG
-DESCRIZIONE: Sito web accessibile e conforme all'European Accessibility Act (EAA). Audit WCAG 2.1 AA da €350, adeguamento da €990 e monitoraggio €69/mese. WebNovis, Milano.
+TITOLO: Audit Accessibilità Digitale: WCAG ed EAA | WebNovis
+DESCRIZIONE: Audit accessibilità digitale per siti web: verifiche automatiche e manuali, criteri WCAG, priorità di correzione e supporto EAA. Servizio da €350.
 
 Home / Servizi / Accessibilità Web
-EAA — European Accessibility Act
+Audit accessibilità digitale · verifiche WCAG · piano di correzione
 
-# Accessibilità Web e Compliance EAA: Rendi il Tuo Sito a Norma
-L'European Accessibility Act è in vigore dal giugno 2025 . Tutti i siti e-commerce e servizi digitali devono rispettare lo standard WCAG 2.1 AA. Web Novis offre audit di accessibilità, adeguamento completo e monitoraggio continuo — per evitare sanzioni e migliorare l'esperienza di tutti gli utenti.
+# Audit Accessibilità Digitale per Siti Web: WCAG ed EAA
+WebNovis svolge audit di accessibilità digitale con verifiche automatiche e manuali sui flussi concordati, mappatura dei criteri WCAG, priorità di correzione e supporto tecnico per i requisiti applicabili. L’audit parte da €350 e non sostituisce una certificazione o un parere legale.
 Richiedi Audit Accessibilità
 
-## Cos'è l'European Accessibility Act e perché riguarda il tuo sito web?
-L' European Accessibility Act (EAA) , recepito in Italia con il D.Lgs. 82/2022 , impone che tutti i prodotti e servizi digitali — inclusi siti web, e-commerce e app — siano accessibili alle persone con disabilità. Lo standard di riferimento è il WCAG 2.1 livello AA .
-L'Italia ha uno dei punteggi di compliance più bassi in Europa ( 3.0/10 secondo WebAIM 2025). Le sanzioni per non conformità vanno da €5.000 a €40.000 per violazione accertata da AgID, con possibilità di ordine di rimozione del servizio.
-Nota per micro-imprese (<10 dipendenti e fatturato <€2M): esistono esoneri parziali. Tuttavia, l'accessibilità migliora la SEO (+12% traffico organico medio, studio Deque Systems 2024) e l'usabilità per tutti gli utenti.
+## European Accessibility Act: perimetro, non una regola uguale per ogni sito
+La Direttiva (UE) 2019/882 , recepita in Italia dal D.Lgs. 82/2022 , introduce requisiti di accessibilità per categorie specifiche di prodotti e servizi, tra cui i servizi di commercio elettronico. I requisiti si applicano dal 28 giugno 2025 ai casi che rientrano nel perimetro normativo.
+Non tutti i siti hanno gli stessi obblighi. Settore, servizio offerto, dimensione dell'impresa, data del contratto ed eventuali esenzioni possono cambiare la valutazione. La direttiva prevede, tra l'altro, un'esenzione per le microimprese che forniscono servizi; possono però esistere altri obblighi applicabili.
+Le WCAG del W3C sono il riferimento tecnico usato per verificare molti aspetti del web, ma un audit tecnico non sostituisce l'inquadramento legale. Prima di dichiarare conformità o pubblicare importi sanzionatori è opportuno verificare il caso con la fonte istituzionale e, quando serve, con un professionista legale.
 
 ## I nostri servizi di accessibilità web
 
 ### Audit Accessibilità WCAG
-Analisi completa con strumenti automatici (axe DevTools, Lighthouse, WAVE) e verifica manuale con screen reader e navigazione da tastiera. Report dettagliato con priorità e score di conformità.
+Verifiche automatiche e manuali sui flussi concordati, inclusi navigazione da tastiera, struttura semantica, form, contrasto e tecnologie assistive. Il report distingue evidenze, criterio verificato, impatto e priorità di correzione.
 
-### Adeguamento Completo
-Correzione di tutte le violazioni WCAG 2.1 AA: contrasto colori, alt text, struttura semantica HTML, navigazione tastiera, label form, focus management, ARIA roles e media accessibili.
+### Piano di Adeguamento
+Correzione dei problemi inclusi nel perimetro concordato: contrasto, alternative testuali, struttura HTML, navigazione da tastiera, label dei form, gestione del focus, ARIA e contenuti multimediali.
 
 ### Monitoraggio Continuo
 Scansione automatica mensile + verifica manuale trimestrale. Report di conformità aggiornato, alert su nuove violazioni, assistenza prioritaria.
@@ -804,13 +803,13 @@ Prezzi trasparenti, nessun costo nascosto.
 da €350 Report completo WCAG 2.1 AA con checklist degli interventi prioritari. Stima indicativa: 5-7 giorni, da confermare nella proposta.
 
 ### Adeguamento
-Da €990 Correzione completa di tutte le violazioni. Il prezzo varia in base a numero di pagine e complessità, con fascia indicativa fino a €2.500+.
+Da €990 Correzione dei problemi inclusi nel perimetro concordato. Il prezzo varia in base a numero di pagine, componenti e complessità, con fascia indicativa fino a €2.500+.
 
 ### Monitoraggio
 €69/mese Scansione mensile + verifica trimestrale + report + assistenza prioritaria.
 
-## Cosa controlliamo nell'audit WCAG 2.1 AA
-Il nostro audit copre tutti i 50 criteri di successo del livello AA, nei 4 principi POUR:
+## Cosa controlliamo nell'audit di accessibilità digitale
+Il perimetro dell'audit indica versione WCAG, livello, pagine, componenti e flussi campionati. I controlli vengono organizzati secondo i quattro principi WCAG:
 
 ### Percepibile
 Testo alternativo per immagini, sottotitoli video, contrasto colori (≥4.5:1 testo normale, ≥3:1 testo grande), ridimensionamento testo fino al 200%.
@@ -826,26 +825,21 @@ HTML valido e semantico, compatibilità con NVDA/VoiceOver/JAWS, stati e ruoli A
 
 ## Perché scegliere Web Novis per l'accessibilità?
 
-### Codice Custom = Controllo Totale
-Siti in codice proprietario HTML5/CSS3/JS — nessun plugin WordPress che introduce violazioni. Ogni elemento è sotto controllo diretto.
+### Controllo sul codice
+Il codice custom permette di intervenire direttamente su semantica, focus, componenti e interazioni, senza dipendere soltanto dalle impostazioni di un tema o di un plugin.
 
-### Audit Manuale + Automatico
-Gli strumenti automatici catturano solo il 30-40% delle violazioni (GovA11y 2025). Integriamo test manuali con screen reader reali.
+### Audit manuale e automatico
+I tool automatici sono utili per alcuni errori ripetibili, ma non valutano da soli tutti i criteri o la qualità dei flussi. Per questo vengono affiancati da controlli manuali.
 
-### SEO Benefit Integrato
-Struttura semantica, alt text, heading gerarchici e performance sono fattori che Google premia. Un sito accessibile è meglio posizionato.
+### Fondamenta condivise con la SEO
+Semantica, testi alternativi, heading e navigazione chiara aiutano accessibilità e comprensione dei contenuti. Non garantiscono però un miglior posizionamento, che dipende anche da intento, qualità e autorevolezza.
 
 ## Domande Frequenti — Accessibilità Web e EAA
-Cos'è l'European Accessibility Act (EAA)? L'EAA è una direttiva europea (2019/882) recepita in Italia con il D.Lgs. 82/2022, che obbliga i fornitori di prodotti e servizi digitali a garantire l'accessibilità secondo lo standard WCAG 2.1 livello AA. È in vigore dal 28 giugno 2025.
-Il mio sito è obbligato a essere accessibile? Se vendi prodotti o servizi online (e-commerce, SaaS, servizi digitali), sì. Le micro-imprese con meno di 10 dipendenti e fatturato inferiore a €2 milioni hanno esoneri parziali, ma l'accessibilità resta una best practice SEO e UX.
-Quali sono le sanzioni per un sito non accessibile? In Italia, AgID può comminare sanzioni da €5.000 a €40.000 per violazione accertata. Nei casi più gravi può ordinare la rimozione del servizio digitale.
-Quanto tempo serve per rendere accessibile un sito esistente? Stime indicative: sito vetrina di 5-10 pagine, 1-2 settimane; e-commerce con centinaia di prodotti, 4-8 settimane; audit iniziale, 5-7 giorni. La proposta conferma tempi e perimetro.
-L'accessibilità penalizza il design del sito? No. Accessibilità significa design che funziona per tutti: contrasto leggibile, navigazione chiara, interazioni prevedibili. Apple e Gov.uk sono tra i siti più accessibili e belli al mondo.
-Cosa sono le WCAG 2.1 AA? Le Web Content Accessibility Guidelines sono lo standard internazionale W3C per l'accessibilità web. Il livello AA è il riferimento normativo dell'EAA con 50 criteri nei 4 principi: Percepibile, Utilizzabile, Comprensibile e Robusto.
-Qual è la differenza tra WCAG 2.1 e WCAG 2.2? Le WCAG 2.2 (ottobre 2023) aggiungono 9 nuovi criteri per disabilità cognitive e mobile. L'EAA richiede 2.1 AA come baseline, ma Web Novis adotta già le 2.2 per future-proofing.
-Posso verificare da solo se il mio sito è accessibile? Primo controllo con WAVE, Lighthouse o axe DevTools. Ma gli strumenti automatici catturano solo il 30-40% dei problemi — serve verifica manuale professionale.
-L'accessibilità migliora la SEO? Sì. Google premia struttura semantica, alt text, heading gerarchici, performance e mobile-friendliness — tutti migliorano con l'accessibilità. Studio Deque Systems 2024: +12% traffico organico medio.
-WebNovis sviluppa siti accessibili nativamente? Sì.
+Cos'è l'European Accessibility Act (EAA)? È la Direttiva (UE) 2019/882 sui requisiti di accessibilità di specifici prodotti e servizi. In Italia è stata recepita dal D.Lgs. 82/2022 e i requisiti previsti si applicano dal 28 giugno 2025 ai soggetti, prodotti e servizi che rientrano nel suo perimetro.
+Il mio sito è obbligato a essere accessibile? Dipende dal soggetto, dal servizio e dalla normativa applicabile. L'EAA include categorie come i servizi di commercio elettronico e prevede un'esenzione per le microimprese che forniscono servizi, ma altri obblighi possono restare applicabili. L'audit tecnico aiuta a mappare i problemi; l'inquadramento legale va verificato sul caso concreto.
+Quali sono le sanzioni per un sito non accessibile? Autorità competente, procedura e sanzione dipendono dalla norma e dal soggetto a cui si applica. Per evitare numeri fuori contesto, WebNovis non usa l'audit come parere sanzionatorio: il caso va verificato sulle fonti istituzionali e, quando necessario, con un professionista legale.
+Quanto tempo serve per rendere accessibile un sito esistente? Dipende da numero e tipo di template, componenti interattivi, documenti, contenuti e processi editoriali. Dopo il campionamento iniziale, la proposta separa audit, correzioni prioritarie, nuovo test e attività continuative.
+L'accessibilità penalizza il design del sito? No: richiede che contrasto, gerarchie, focus, target interattivi e stati dei componenti siano progettati in modo comprensibile. Questi vincoli possono essere integrati nel design system senza uniformare l'identità visiva.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -1697,9 +1691,6 @@ Le piattaforme principali per il visual marketing e l'advertising targetizzato. 
 ### LinkedIn
 Il canale B2B per eccellenza. Progettiamo contenuti visual professionali e gestiamo campagne LinkedIn Ads per generare lead qualificati. Ideale per aziende B2B, consulenti e startup che vogliono posizionarsi come esperti nel proprio settore.
 
-### YouTube
-Il canale principale per la video strategia, l'autorità di brand e la ricerca visuale. Creiamo grafiche di copertina per i video (thumbnail ad alto CTR), banner per il canale e strategie di posizionamento SEO YouTube per far scoprire i tuoi video sia sulla ricerca YouTube che su Google. Scopri i nostri contenuti sul nostro canale ufficiale YouTube @WebNovis .
-
 ### TikTok
 Creiamo grafiche e template visual ottimizzati per il formato verticale di TikTok. Per le campagne advertising su TikTok Ads, forniamo le creatività e la strategia di targeting per raggiungere un pubblico più giovane e ampliare la brand awareness.
 
@@ -1751,7 +1742,14 @@ Risparmi €1.000 all'anno
 - Report performance settimanale
 Attiva il Piano
 
-I prezzi indicati sono puramente orientativi e rappresentano il costo di partenza per le casistiche più semplici.
+I prezzi indicati sono puramente orientativi e rappresentano il costo di partenza per le casistiche più semplici. Gli accordi definitivi verranno stabiliti con il cliente in fase di preventivo, a seguito di una call o un incontro conoscitivo. Tutti i piani sono senza vincoli. Budget advertising escluso.
+
+## Servizi Aggiuntivi Una Tantum
+Servizi singoli per esigenze specifiche, combinabili con qualsiasi pacchetto mensile.
+
+Ricerca di Mercato Social
+da €200
+Analisi approfondita del tuo mercato sui social: competitor, trend, audience insights, piattaforme consigliate.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -1765,7 +1763,7 @@ Sviluppo Web
 
 # Sviluppo Siti Web Professionali su Misura
 Realizziamo siti web che non sono solo belli da vedere, ma che convertono visitatori in clienti. Ogni progetto parte dalle tue esigenze e diventa una piattaforma digitale performante, sicura e ottimizzata per i motori di ricerca.
-Web Novis è un'agenzia web di Rho (Milano) specializzata in sviluppo siti web 100% custom, senza WordPress né template. Ogni sito viene costruito da zero in HTML, CSS e JavaScript con attenzione a Core Web Vitals, sicurezza e SEO tecnica. Il preventivo gratuito viene preparato in base al progetto. Per orientarti sulle fasce di prezzo, leggi quanto costa un sito web .
+Web Novis è un'agenzia web di Rho (Milano) specializzata in sviluppo siti web 100% custom, senza WordPress né template. Ogni sito viene costruito da zero in HTML, CSS e JavaScript con attenzione a Core Web Vitals, sicurezza e SEO tecnica. Il preventivo gratuito viene preparato in base al progetto. Per orientarti sulle fasce di prezzo, leggi quanto costa un sito web . Per comuni, copertura e percorsi locali consulta la realizzazione siti web in Lombardia .
 Richiedi Preventivo Gratuito
 
 ## Cosa Realizziamo per Te
@@ -1821,7 +1819,6 @@ Trasformiamo il design in codice. Sviluppiamo con approccio mobile-first, testia
 Test approfonditi su: responsività, velocità, SEO tecnica, accessibilità, funzionalità form/e-commerce, cross-browser compatibility. Correggiamo ogni dettaglio finché non sei soddisfatto al 100%.
 
 ### 5. Lancio & Supporto
-Pubblicazione del sito con configurazione DNS, SSL, redirect e sitemap.
 […contenuto completo sulla pagina…]
 
 ----------------------------------------
@@ -1834,7 +1831,7 @@ Arese — Milano (MI) 20044
 
 # Agenzia Web ad Arese: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Arese. Sede a Rho (10 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web ad Arese: il contesto locale
@@ -1935,7 +1932,7 @@ Bollate — Milano (MI) 20021
 
 # Agenzia Web a Bollate: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Bollate. Sede a Rho (10 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Bollate: il contesto locale
@@ -2036,7 +2033,7 @@ Cinisello Balsamo — Milano (MI) 20092
 
 # Agenzia Web a Cinisello Balsamo: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Cinisello Balsamo. Sede a Rho (30 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Cinisello Balsamo: il contesto locale
@@ -2137,7 +2134,7 @@ Garbagnate Milanese — Milano (MI) 20024
 
 # Agenzia Web a Garbagnate Milanese: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Garbagnate Milanese. Sede a Rho (12 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Garbagnate Milanese: il contesto locale
@@ -2237,7 +2234,7 @@ Lainate — Milano (MI) 20045
 
 # Agenzia Web a Lainate: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Lainate. Sede a Rho (8 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Lainate: il contesto locale
@@ -2338,7 +2335,7 @@ Legnano — Milano (MI) 20025
 
 # Agenzia Web a Legnano: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Legnano. Sede a Rho (27 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Legnano: il contesto locale
@@ -2438,7 +2435,7 @@ Milano Nord — Milano (MI) 20161
 
 # Agenzia Web a Milano Nord: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Milano Nord. Sede a Rho (25 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Milano Nord: il contesto locale
@@ -2539,7 +2536,7 @@ Milano Ovest — Milano (MI) 20151
 
 # Agenzia Web a Milano Ovest: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Milano Ovest. Sede a Rho (21 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Milano Ovest: il contesto locale
@@ -2640,7 +2637,7 @@ Monza — Monza e Brianza (MB) 20900
 
 # Agenzia Web a Monza: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Monza. Sede a Rho (42 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Monza: il contesto locale
@@ -2741,7 +2738,7 @@ Parabiago — Milano (MI) 20015
 
 # Agenzia Web a Parabiago: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Parabiago. Sede a Rho (17 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Parabiago: il contesto locale
@@ -2835,7 +2832,7 @@ Con 28.000 abitanti e una posizione strategica nell'hinterland milanese, Parabia
 ----------------------------------------
 URL: https://www.webnovis.com/agenzia-web-rho.html
 TITOLO: Web Agency Rho: siti web custom, SEO e branding | WebNovis
-DESCRIZIONE: WebNovis è la web agency di Rho (Via S. Giorgio 2): siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Richiesta di preventivo senza impegno.
+DESCRIZIONE: Web agency a Rho con sede in Via S. Giorgio 2: siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Preventivo su richiesta.
 
 Home / Agenzia Web Rho
 Agenzia web a Rho · siti, SEO, branding e crescita locale
@@ -2911,7 +2908,7 @@ Saronno — Varese (VA) 21047
 
 # Agenzia Web a Saronno: Siti Professionali per Imprese e Professionisti
 WebNovis è l'agenzia web di riferimento per PMI e professionisti di Saronno. Sede a Rho (23 min in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Saronno: il contesto locale
@@ -3012,7 +3009,7 @@ Agenzia web a Sesto San Giovanni · siti, SEO e campagne
 
 # Agenzia web a Sesto San Giovanni per PMI e professionisti
 WebNovis supporta imprese e professionisti di Sesto San Giovanni con siti custom, branding, social media e campagne locali. La sede è a Rho, con gestione diretta e una proposta personalizzata sul perimetro del progetto.
-Richiedi Preventivo Gratuito 7 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI · Google Maps
 
 ## Agenzia web a Sesto San Giovanni: il contesto locale
@@ -3112,7 +3109,7 @@ Realizzazione siti web a Bollate · siti vetrina e SEO
 
 # Realizzazione siti web a Bollate per attività locali e PMI
 WebNovis crea siti web a Bollate per aziende, studi e attività locali che vogliono più richieste da Google. Siti vetrina da €1.200 , landing da €500 ed e-commerce da €3.500 .
-Richiedi Preventivo Gratuito 7 agosto 2026 · Bollate, Milano (MI) 20021 · Tempo di lettura: 8 min
+Richiedi Preventivo Gratuito 11 agosto 2026 · Bollate, Milano (MI) 20021 · Tempo di lettura: 8 min
 
 ## Realizzazione siti web a Bollate: il contesto locale
 Bollate è un comune del quadrante nord-ovest fatto in gran parte di piccola impresa, artigianato e commercio di prossimità, con il Parco delle Groane a segnarne il confine naturale. Chi lavora qui raramente compete su scala nazionale: compete nel raggio di pochi chilometri, contro concorrenti che il cliente può raggiungere altrettanto facilmente. In questo scenario il sito serve a due cose molto concrete: farsi trovare quando qualcuno cerca il servizio nella zona, e dare abbastanza elementi per essere scelto rispetto a chi sta due paesi più in là.
@@ -3191,7 +3188,7 @@ Realizzazione siti web a Legnano · da €1.200 · SEO integrata
 
 # Realizzazione siti web a Legnano per PMI, artigiani e professionisti
 WebNovis realizza siti web a Legnano con codice custom, SEO tecnica e percorsi di contatto chiari. Landing da €500 , siti vetrina da €1.200 ed e-commerce da €3.500 ; la proposta conferma perimetro, prezzo e tempistiche.
-Richiedi Preventivo Gratuito 7 agosto 2026 · Legnano, Milano (MI) 20025 · Tempo di lettura: 8 min
+Richiedi Preventivo Gratuito 11 agosto 2026 · Legnano, Milano (MI) 20025 · Tempo di lettura: 8 min
 
 ## Realizzazione siti web a Legnano: il contesto locale
 Legnano è il cuore dell'Alto Milanese e porta con sé una storia industriale precisa: tessile prima, meccanica e subfornitura poi, lungo la valle dell'Olona. Oggi convivono aziende manifatturiere strutturate, piccole officine specializzate e un centro commerciale urbano vivace, con oltre sessantamila abitanti. Sono pubblici diversi che chiedono siti diversi: chi vende lavorazioni conto terzi ha bisogno di credibilità tecnica e di un canale di richiesta preventivo efficiente, chi vende al pubblico ha bisogno di farsi trovare e convincere in pochi secondi.
@@ -3269,7 +3266,7 @@ Siti Web Milano Ovest · preventivo personalizzato
 
 # Realizzazione siti web a Milano Ovest
 WebNovis realizza siti web su misura per aziende, studi professionali e attività della zona ovest di Milano, dall'area di San Siro e Lampugnano fino a Bisceglie e Baggio. Codice scritto da zero, nessun template: landing da €500, siti vetrina da €1.200, e-commerce da €3.500. La sede operativa è a Rho, a ridosso di questo quadrante.
-Richiedi Preventivo Gratuito 7 agosto 2026 · Milano Ovest, Milano (MI) 20151 · Tempo di lettura: 8 min
+Richiedi Preventivo Gratuito 11 agosto 2026 · Milano Ovest, Milano (MI) 20151 · Tempo di lettura: 8 min
 
 ## Realizzazione siti web a Milano Ovest: il contesto locale
 Il quadrante ovest di Milano è una fascia densa e molto varia: uffici e studi professionali, servizi alle imprese, commercio di quartiere e strutture che generano flussi importanti come lo stadio e i grandi parcheggi di interscambio. La linea M1 e la M5 lo attraversano, e molte attività qui lavorano sia con clienti milanesi sia con l'hinterland che arriva dalla tangenziale. Significa che il sito deve reggere due pubblici insieme: chi cerca un servizio in città e chi arriva da fuori e decide in base a quello che legge prima di muoversi.
@@ -3348,7 +3345,7 @@ Realizzazione siti web a Rho · sede locale · SEO integrata
 
 # Realizzazione siti web a Rho per aziende che vogliono più richieste
 WebNovis realizza siti web a Rho con codice custom, SEO tecnica integrata e struttura orientata ai contatti. Landing page da €500 , siti vetrina da €1.200 ed e-commerce da €3.500 , con gestione diretta dalla nostra sede.
-Richiedi Preventivo Gratuito 7 agosto 2026 · Rho, Milano (MI) 20017 · Tempo di lettura: 8 min
+Richiedi Preventivo Gratuito 11 agosto 2026 · Rho, Milano (MI) 20017 · Tempo di lettura: 8 min
 
 ## Realizzazione siti web a Rho: il contesto locale
 Rho vive di due economie che si intrecciano: il tessuto storico di piccola e media impresa lungo l'asse del Sempione e l'indotto che ruota attorno al polo espositivo di Fiera Milano, con la fermata metropolitana Rho Fiera e i collegamenti ferroviari che portano qui visitatori da tutta Europa. Per un'azienda che lavora in questo contesto il sito non è una vetrina istituzionale: è lo strumento che regge il confronto quando un buyer arriva da fuori e cerca conferme prima di un appuntamento. Progettiamo partendo da questo, con la sede a pochi minuti da chi ci contatta.
@@ -3426,7 +3423,7 @@ Da €400/mese Investimento
 Maps + on-page Leve
 Report mensili Metodo
 
-Richiedi Preventivo Gratuito 6 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale ad Arese: il contesto locale
@@ -3502,7 +3499,7 @@ Da €400/mese Investimento
 Maps + on-page Leve
 Report mensili Metodo
 
-Richiedi Preventivo Gratuito 6 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Cinisello Balsamo: il contesto locale
@@ -3579,7 +3576,7 @@ Da €400/mese Investimento
 Maps + on-page Leve
 Report mensili Metodo
 
-Richiedi Preventivo Gratuito 6 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Garbagnate Milanese: il contesto locale
@@ -3655,7 +3652,7 @@ Da €400/mese Investimento
 Maps + on-page Leve
 Report mensili Metodo
 
-Richiedi Preventivo Gratuito 6 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Lainate: il contesto locale
@@ -3731,7 +3728,7 @@ Da €400/mese Investimento
 Maps + on-page Leve
 Report mensili Metodo
 
-Richiedi Preventivo Gratuito 6 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Parabiago: il contesto locale
@@ -3808,7 +3805,7 @@ Da €400/mese Investimento
 Maps + on-page Leve
 Report mensili Metodo
 
-Richiedi Preventivo Gratuito 6 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## SEO locale a Rho: il contesto locale
@@ -3884,7 +3881,7 @@ Da €1200 Investimento
 2-3 settimane Tempi
 Contatti qualificati Focus
 
-Richiedi Preventivo Gratuito 6 agosto 2026
+Richiedi Preventivo Gratuito 11 agosto 2026
 · Sede: Via S. Giorgio 2, 20017 Rho MI
 
 ## Sito vetrina ad Arese: il contesto locale

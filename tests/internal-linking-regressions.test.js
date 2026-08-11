@@ -192,11 +192,35 @@ function main() {
     ['blog/web-design-trends-2026.html', '/blog/importanza-del-design-siti-web.html'],
     ['blog/obblighi-legge-accessibilita-siti.html', '/blog/sanzioni-sito-non-accessibile-2026.html'],
     ['blog/ottimizzazione-tasso-conversione.html', '/blog/sito-web-che-non-converte.html'],
-    ['blog/portare-attivita-online.html', '/portfolio/case-study/comeleapi.html']
+    ['blog/portare-attivita-online.html', '/portfolio/case-study/comeleapi.html'],
+    ['blog/internal-linking-strategia.html', '/blog/pillar-page-strategia.html'],
+    ['blog/seo-blog-aziendale.html', '/blog/pillar-page-strategia.html'],
+    ['blog/social-media-strategy-2026.html', '/blog/community-management-guida.html'],
+    ['blog/tendenze-social-media-2026.html', '/blog/community-management-guida.html'],
+    ['blog/data-driven-marketing.html', '/blog/analisi-competitiva-online.html'],
+    ['blog/marketing-plan-modello.html', '/blog/competitor-analysis-metodo.html'],
+    ['blog/strategia-digitale-pmi.html', '/blog/competitor-analysis-metodo.html']
   ];
   for (const [source, target] of editorialInlinks) {
     assert.ok(readText(source).includes(`href="${target}"`), `${source} must provide a contextual inlink to ${target}`);
   }
+
+  assert.ok(
+    readText('blog/analisi-competitiva-online.html').includes('href="/blog/competitor-analysis-metodo.html"'),
+    'the tools/checklist competitor guide must link to the seven-step method'
+  );
+  assert.ok(
+    readText('blog/competitor-analysis-metodo.html').includes('href="/blog/analisi-competitiva-online.html"'),
+    'the seven-step competitor method must link to the tools/checklist guide'
+  );
+  assert.ok(
+    readText('servizi/sviluppo-web.html').includes('href="/realizzazione-siti-web/"'),
+    'the main web-development service must pass contextual authority to the Lombardia realization hub'
+  );
+  assert.ok(
+    readText('chi-siamo.html').includes('href="/agenzia-web/"'),
+    'the about page must pass contextual entity authority to the Lombardia agency hub'
+  );
 
   const blogDir = path.join(ROOT, 'blog');
   const utmOffenders = [];

@@ -44,6 +44,17 @@ const HUB_CSS = `
 .hub-atlas-header{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
 .hub-atlas-header p{max-width:740px;margin:0;color:var(--gray-light)}
 .service-scope-note{margin-top:.9rem;font-size:.88rem;color:var(--gray-light);opacity:.82}
+.hub-table-wrap{overflow-x:auto;margin-top:1.5rem;border:1px solid rgba(255,255,255,.08);border-radius:16px}
+.hub-table{width:100%;border-collapse:collapse;min-width:680px}
+.hub-table th,.hub-table td{padding:1rem 1.1rem;text-align:left;vertical-align:top;border-bottom:1px solid rgba(255,255,255,.07)}
+.hub-table th{color:var(--white);background:rgba(91,106,174,.1);font-size:.86rem;letter-spacing:.02em}
+.hub-table td{color:var(--gray-light);line-height:1.55}
+.hub-table tr:last-child td{border-bottom:0}
+.hub-table a{color:var(--primary-light);font-weight:700}
+.hub-faq{max-width:900px;margin:1.5rem auto 0}
+.hub-faq .faq-item{border-bottom:1px solid rgba(255,255,255,.08);padding:1rem 0}
+.hub-faq .faq-item summary{cursor:pointer;color:var(--white);font-family:Syne,sans-serif;font-weight:700}
+.hub-faq .faq-item p{margin:.8rem 0 0;color:var(--gray-light);line-height:1.7}
 @media(max-width:900px){.hub-intro-grid{grid-template-columns:1fr}.hub-atlas-header{align-items:flex-start}}
 @media(max-width:640px){.hub-city-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.hub-city-card{padding:.85rem;gap:.7rem}.hub-city-avatar{width:46px;height:46px}}
 </style>`;
@@ -59,6 +70,16 @@ function generateHubPages() {
     const indexableGeoPaths = new Set(getIndexableGeoPaths());
     const isApprovedHubTarget = (serviceSlug, citySlug) =>
         indexableGeoPaths.has(`/${serviceSlug}-${citySlug}.html`);
+    const buildFaqSchema = (url, faqs) => ({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": `${url}#faq`,
+        "mainEntity": faqs.map((faq) => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+        }))
+    });
 
     // ── Shared page assembly helpers ──
     function buildHubPage(hubSlug, title, description, keywords, contentHtml, schemaObjects) {
@@ -128,9 +149,28 @@ function generateHubPages() {
     const networkCities = cities.filter(c => c.generate.agenzia);
     const agenziaCities = networkCities.filter(c => isApprovedHubTarget('agenzia-web', c.slug));
     const agenziaCitiesUi = withCityUiMeta(agenziaCities);
+    const agenziaFaqs = [
+        {
+            question: 'Quali servizi offre una web agency in Lombardia?',
+            answer: 'WebNovis segue siti web custom, e-commerce, brand identity, graphic design, social media, SEO locale e consulenza digitale. Il perimetro viene definito in base agli obiettivi e alle risorse interne dell’azienda.'
+        },
+        {
+            question: 'WebNovis lavora solo con aziende di Milano e Rho?',
+            answer: 'No. La sede è a Rho e gli incontri in presenza sono più semplici nell’area metropolitana di Milano, ma i progetti possono essere gestiti anche per aziende nel resto della Lombardia e da remoto.'
+        },
+        {
+            question: 'Quanto costa affidarsi a una web agency?',
+            answer: 'Il prezzo dipende dal servizio: le indicazioni pubblicate partono da €250 per il graphic design, €500 per una landing page, €1.200 per un sito vetrina e €3.500 per un e-commerce. La proposta finale conferma attività, tempi e prezzo.'
+        },
+        {
+            question: 'Come si sceglie la pagina locale corretta?',
+            answer: 'Scegli la pagina del comune in cui ha sede o opera soprattutto la tua attività. Se il comune non è presente, usa la pagina Lombardia o contatta WebNovis indicando territorio, pubblico e servizio richiesto.'
+        }
+    ];
     const agenziaData = {
         cities: agenziaCitiesUi,
         coreServices: coreServices,
+        faqs: agenziaFaqs,
         networkCoverageCount: networkCities.length,
         totalCities: agenziaCities.length,
         today: PAGE_DATE_ISO_TOKEN,
@@ -159,12 +199,23 @@ function generateHubPages() {
                 "name": `Agenzia Web ${c.name}`,
                 "url": `${SITE}/agenzia-web-${c.slug}.html`
             }))
-        }
+        },
+        {
+            "@context": "https://schema.org", "@type": "Service",
+            "@id": SITE + "/agenzia-web/#service",
+            "name": "Servizi di agenzia web in Lombardia",
+            "serviceType": "Agenzia web",
+            "description": "Siti web custom, e-commerce, branding, social media e SEO locale per PMI e professionisti in Lombardia.",
+            "url": SITE + "/agenzia-web/",
+            "provider": { "@type": "Organization", "@id": SITE + "/#organization" },
+            "areaServed": { "@type": "AdministrativeArea", "name": "Lombardia" }
+        },
+        buildFaqSchema(SITE + "/agenzia-web/", agenziaFaqs)
     ];
     const agenziaHtml = buildHubPage(
         'agenzia-web',
-        'Agenzia Web nei Comuni di Milano — WebNovis | Web Agency Hinterland',
-        `Agenzia web per PMI e professionisti in ${networkCities.length} comuni dell'hinterland milanese: siti custom senza WordPress, grafica, e-commerce e presenza locale. Sede a Rho.`,
+        'Web Agency Lombardia: Agenzia Web a Milano e Rho | WebNovis',
+        `Web agency in Lombardia per PMI e professionisti: siti custom, e-commerce, branding, social media e SEO locale. Sede a Rho, ${networkCities.length} comuni serviti.`,
         'agenzia web Milano, web agency hinterland milanese, agenzia web comuni Milano, WebNovis',
         agenziaContent,
         agenziaSchemas
@@ -176,8 +227,27 @@ function generateHubPages() {
         c.generate.realizzazione && isApprovedHubTarget('realizzazione-siti-web', c.slug)
     );
     const realizzazioneCitiesUi = withCityUiMeta(realizzazioneCities);
+    const realizzazioneFaqs = [
+        {
+            question: 'Quanto costa realizzare un sito web in Lombardia?',
+            answer: 'Le fasce indicative WebNovis partono da €500 per una landing page, €1.200 per un sito vetrina e €3.500 per un e-commerce. Funzioni, contenuti, integrazioni e numero di pagine determinano il preventivo finale.'
+        },
+        {
+            question: 'Realizzate siti web anche fuori dalla provincia di Milano?',
+            answer: 'Sì. WebNovis ha sede a Rho e segue direttamente l’area metropolitana di Milano, ma realizza siti per aziende nel resto della Lombardia e può gestire briefing, revisioni e consegne anche da remoto.'
+        },
+        {
+            question: 'La SEO è inclusa nella realizzazione del sito?',
+            answer: 'Il progetto include le basi tecniche concordate, come struttura semantica, metadata, performance, indicizzabilità e dati strutturati pertinenti. Il posizionamento dipende anche da contenuti, concorrenza e autorevolezza e non viene garantito.'
+        },
+        {
+            question: 'WebNovis usa WordPress o template preconfezionati?',
+            answer: 'L’offerta WebNovis descritta in questa pagina usa codice custom senza WordPress e senza template preconfezionati. Tecnologie, funzioni e modalità di gestione vengono confermate nel perimetro del progetto.'
+        }
+    ];
     const realizzazioneData = {
         cities: realizzazioneCitiesUi,
+        faqs: realizzazioneFaqs,
         networkCoverageCount: networkCities.length,
         totalCities: realizzazioneCities.length,
         today: PAGE_DATE_ISO_TOKEN,
@@ -206,14 +276,24 @@ function generateHubPages() {
                 "name": `Realizzazione Siti Web ${c.name}`,
                 "url": `${SITE}/realizzazione-siti-web-${c.slug}.html`
             }))
-        }
+        },
+        {
+            "@context": "https://schema.org", "@type": "Service",
+            "@id": SITE + "/realizzazione-siti-web/#service",
+            "name": "Realizzazione siti web in Lombardia",
+            "serviceType": "Realizzazione e creazione siti web",
+            "description": "Landing page, siti aziendali ed e-commerce custom per PMI e professionisti in Lombardia.",
+            "url": SITE + "/realizzazione-siti-web/",
+            "provider": { "@type": "Organization", "@id": SITE + "/#organization" },
+            "areaServed": { "@type": "AdministrativeArea", "name": "Lombardia" }
+        },
+        buildFaqSchema(SITE + "/realizzazione-siti-web/", realizzazioneFaqs)
     ];
     const realizzazioneHtml = buildHubPage(
         'realizzazione-siti-web',
-        // GSC: query "realizzazione/creazione siti web lombardia" (370+ impr a pos 76-84)
-        // → l'hub ora copre esplicitamente Milano e Lombardia
-        'Realizzazione Siti Web a Milano e in Lombardia — WebNovis',
-        `Realizzazione siti web a Milano e in Lombardia per PMI e professionisti: codice custom senza WordPress, SEO integrata e design su misura. Sede a Rho, ${networkCities.length} comuni serviti.`,
+        // GSC 2026-08-11: il cluster Lombardia raccoglie molte impressioni ma resta lontano dalla prima pagina.
+        'Realizzazione Siti Web Lombardia: Prezzi e Comuni | WebNovis',
+        `Realizzazione siti web in Lombardia per PMI: landing da €500, siti aziendali da €1.200 ed e-commerce da €3.500. Codice custom, SEO tecnica e sede a Rho.`,
         'realizzazione siti web Milano, realizzazione siti web Lombardia, creazione siti web Lombardia, siti web hinterland milanese, WebNovis',
         realizzazioneContent,
         realizzazioneSchemas

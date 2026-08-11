@@ -412,8 +412,8 @@
     "url": "/agenzia-web-rho.html",
     "type": "locale",
     "title": "Web Agency Rho: siti web custom, SEO e branding",
-    "description": "WebNovis è la web agency di Rho (Via S. Giorgio 2): siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Richiesta di preventivo senza impegno.",
-    "keywords": "agency, rho, siti, custom, seo, branding, via, giorgio, ecommerce, locale, pmi, professionisti, richiesta, preventivo, senza, impegno, agenzia, identita, digitale, perche, scegliere, sede, territorio, presidiamo, focus, keyword, commerciali, locali",
+    "description": "Web agency a Rho con sede in Via S. Giorgio 2: siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Preventivo su richiesta.",
+    "keywords": "agency, rho, siti, custom, seo, branding, sede, via, giorgio, ecommerce, locale, pmi, professionisti, preventivo, richiesta, agenzia, identita, digitale, perche, scegliere, territorio, presidiamo, focus, keyword, commerciali, locali, code, template",
     "headings": [
       "Agenzia web a Rho per siti custom, SEO locale e identità digitale",
       "Perché scegliere un'agenzia web locale a Rho?",
@@ -507,24 +507,24 @@
     "id": "/agenzia-web/",
     "url": "/agenzia-web/",
     "type": "locale",
-    "title": "Agenzia Web nei Comuni di Milano",
-    "description": "WebNovis è l'agenzia web con sede a Rho che segue PMI e professionisti in 46 comuni dell'hinterland milanese. Siti custom senza WordPress, identità visiva, e-commerce e presenza locale: scegli il tuo comune per vedere",
-    "keywords": "agenzia, nei, comuni, milano, sede, rho, segue, pmi, professionisti, dell, hinterland, milanese, siti, custom, senza, wordpress, identita, visiva, ecommerce, presenza, locale, scegli, tuo, comune, vedere, provincia, territori, dove",
+    "title": "Web Agency Lombardia: Agenzia Web a Milano e Rho",
+    "description": "Web agency in Lombardia per PMI e professionisti: siti custom, e-commerce, branding, social media e SEO locale. Sede a Rho, 46 comuni serviti.",
+    "keywords": "agency, lombardia, agenzia, milano, rho, pmi, professionisti, siti, custom, ecommerce, branding, social, media, seo, locale, sede, comuni, serviti, cosa, gestire, sito, landing, brand, materiali, visivi, visibilita, acquisizione, territori",
     "headings": [
-      "Agenzia Web nei Comuni della Provincia di Milano",
+      "Web Agency in Lombardia: Agenzia Web a Milano e Rho",
+      "Cosa può gestire WebNovis per una PMI in Lombardia",
+      "Sito, landing ed e-commerce",
+      "Brand e materiali visivi",
+      "Visibilità e acquisizione",
       "I territori dove lavoriamo più spesso",
       "Rho",
       "Milano",
       "Sesto San Giovanni",
       "Bollate",
       "Monza",
-      "Saronno",
-      "Scegli il tuo comune",
-      "Perché scegliere un'agenzia web locale?",
-      "Vicinanza geografica",
-      "Conoscenza del territorio"
+      "Saronno"
     ],
-    "content": "WebNovis è l'agenzia web con sede a Rho che segue PMI e professionisti in 46 comuni dell'hinterland milanese. Siti custom senza WordPress, identità visiva, e-commerce e presenza locale: scegli il tuo comune per vedere come lavoriamo su quel territorio, con",
+    "content": "WebNovis è una web agency in Lombardia con sede a Rho: segue PMI e professionisti con siti custom, e-commerce, brand identity, graphic design, social media e SEO locale. Le pagine comunali aiutano a trovare il riferimento territoriale corretto; attività,",
     "indexable": true
   },
   {
@@ -699,11 +699,11 @@
     "id": "/blog/analisi-competitiva-online.html",
     "url": "/blog/analisi-competitiva-online.html",
     "type": "articolo",
-    "title": "Analisi Competitiva Online: Strumenti e Metodi",
-    "description": "Di WebNovis · 9 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 In breve: Scopri come l'analisi competitiva online può trasformare la tua PMI. Dagli strumenti ai metodi pratici, impara a studiare i",
-    "keywords": "analisi, competitiva, online, strumenti, metodi, marzo, 2026, min, lettura, aggiornato, luglio, breve, scopri, come, trasformare, tua, pmi, dagli, pratici, impara, studiare, superare, concorrenti, perche, cruciale, identificare, tuoi, veri",
+    "title": "Analisi Competitor Online: Strumenti e Checklist",
+    "description": "Analisi competitor online: cosa confrontare, strumenti gratuiti e professionali, template e checklist per studiare SEO, contenuti, offerte e canali.",
+    "keywords": "analisi, competitor, online, strumenti, checklist, cosa, confrontare, gratuiti, professionali, template, studiare, seo, contenuti, offerte, canali, perche, competitiva, cruciale, tua, pmi, come, identificare, tuoi, veri, concorrenti, digitali, quali, metodi",
     "headings": [
-      "Analisi Competitiva Online: Strumenti e Metodi per Superare i Concorrenti",
+      "Analisi Competitor Online: Strumenti, Template e Checklist",
       "Perché l'analisi competitiva online è cruciale per la tua PMI?",
       "Come identificare i tuoi veri concorrenti digitali?",
       "Quali metodi adottare per studiare la concorrenza online?",
@@ -716,7 +716,7 @@
       "Checklist Operativa per la Tua Analisi Competitiva Online",
       "Articoli Correlati"
     ],
-    "content": "Di WebNovis · 9 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 In breve: Scopri come l'analisi competitiva online può trasformare la tua PMI. Dagli strumenti ai metodi pratici, impara a studiare i concorrenti per trovare nuove opportunità e",
+    "content": "Di WebNovis · 9 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 In breve: Una guida operativa agli strumenti e ai campi da confrontare per leggere concorrenti, SERP, contenuti, offerte, canali e segnali di autorevolezza online.",
     "indexable": true
   },
   {
@@ -1515,11 +1515,11 @@
     "id": "/blog/community-management-guida.html",
     "url": "/blog/community-management-guida.html",
     "type": "articolo",
-    "title": "Community Management: Far Crescere la Tua Community",
-    "description": "Scopri come il community management strategico può trasformare i tuoi clienti in ambassador. Questa guida pratica offre tattiche concrete per gestire community.",
-    "keywords": "community, management, far, crescere, tua, scopri, come, strategico, trasformare, tuoi, clienti, ambassador, questa, guida, pratica, offre, tattiche, concrete, gestire, perche, cruciale, pmi, b2b, costruire, online, solida, zero, strategie",
+    "title": "Community Management: Cos’è, Attività e KPI",
+    "description": "Community management: significato, attività quotidiane, strumenti, KPI ed errori. Guida pratica per gestire community social e online per una PMI.",
+    "keywords": "community, management, cos, attivita, kpi, significato, quotidiane, strumenti, errori, guida, pratica, gestire, social, online, pmi, perche, cruciale, b2b, come, costruire, solida, zero, strategie, efficaci, aumentare, engagement, tua, ruolo",
     "headings": [
-      "Community Management: Guida Pratica per Far Crescere la Tua Community",
+      "Community Management: Cos’è, Attività e KPI",
       "Perché il Community Management è Cruciale per le PMI B2B?",
       "Come Costruire una Community Online Solida da Zero?",
       "Strategie Efficaci per Aumentare l'Engagement nella Tua Community?",
@@ -1532,18 +1532,18 @@
       "Social Media Strategy 2026: Cosa Funziona Davvero per le Aziende",
       "Piano Editoriale Social: Come Creare un Piano in 5 Step con Template"
     ],
-    "content": "Di WebNovis · 5 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 In breve: Scopri come il community management strategico può trasformare i tuoi clienti in ambassador. Questa guida pratica offre tattiche concrete per gestire community social e",
+    "content": "Di WebNovis · 5 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 In breve: Cosa significa fare community management, quali attività svolgere ogni giorno e quali KPI usare per distinguere interazioni superficiali da relazioni utili al business.",
     "indexable": true
   },
   {
     "id": "/blog/competitor-analysis-metodo.html",
     "url": "/blog/competitor-analysis-metodo.html",
     "type": "articolo",
-    "title": "Analisi competitor: il metodo per trovare vantaggi",
-    "description": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 In breve: Scopri il metodo WebNovis per un'analisi competitor profonda. Identifica punti di forza e debolezza, trasformando i dati in strategie",
-    "keywords": "analisi, competitor, metodo, trovare, vantaggi, marzo, 2026, min, lettura, aggiornato, luglio, breve, scopri, profonda, identifica, punti, forza, debolezza, trasformando, dati, strategie, sistematico, competitivi, perche, cruciale, tua, pmi, quali",
+    "title": "Come Fare un’Analisi Competitor: 7 Passi",
+    "description": "Come fare un’analisi competitor in 7 passi: perimetro, concorrenti, dati, benchmark, gap, priorità e monitoraggio. Metodo pratico per PMI.",
+    "keywords": "come, fare, analisi, competitor, passi, perimetro, concorrenti, dati, benchmark, gap, priorita, monitoraggio, metodo, pratico, pmi, perche, cruciale, tua, quali, sono, passaggi, chiave, efficace, identificazione, diretti, indiretti, posizionamento, online",
     "headings": [
-      "Analisi Competitor: Il Metodo Sistematico per Vantaggi Competitivi",
+      "Come Fare un’Analisi Competitor: Metodo in 7 Passi",
       "Perché l'analisi dei competitor è cruciale per la tua PMI?",
       "Quali sono i passaggi chiave di un'analisi competitor efficace?",
       "Identificazione dei competitor diretti e indiretti",
@@ -1556,7 +1556,7 @@
       "Matrice di Analisi Competitiva Semplificata",
       "Articoli Correlati"
     ],
-    "content": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 In breve: Scopri il metodo WebNovis per un'analisi competitor profonda. Identifica punti di forza e debolezza, trasformando i dati in strategie concrete per la tua PMI. Richiedi una",
+    "content": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 In breve: Il metodo sequenziale per trasformare dati sparsi sui concorrenti in un benchmark, una lista di gap e un piano di priorità verificabili.",
     "indexable": true
   },
   {
@@ -4443,11 +4443,11 @@
     "id": "/blog/pillar-page-strategia.html",
     "url": "/blog/pillar-page-strategia.html",
     "type": "articolo",
-    "title": "Pillar Page e Topic Cluster: la Strategia SEO",
-    "description": "Scopri come le pillar page e i topic cluster rivoluzionano la tua SEO, organizzando i contenuti per dominare la SERP e attrarre lead qualificati.",
-    "keywords": "pillar, page, topic, cluster, strategia, seo, scopri, come, rivoluzionano, tua, organizzando, contenuti, dominare, serp, attrarre, lead, qualificati, vincenti, cos, perche, cruciale, integra, quali, vantaggi, offre, approccio, hub, and",
+    "title": "Pillar Page: Cos’è, Esempi e Come Crearla",
+    "description": "Cos’è una pillar page, come si collega ai topic cluster ed esempi di struttura. Guida passo passo per progettare contenuti e internal linking SEO.",
+    "keywords": "pillar, page, cos, esempi, come, crearla, collega, topic, cluster, struttura, guida, passo, progettare, contenuti, internal, linking, seo, perche, cruciale, integra, quali, vantaggi, offre, approccio, hub, and, spoke, tua",
     "headings": [
-      "Pillar Page e Topic Cluster: la Strategia SEO per Contenuti Vincenti",
+      "Pillar Page: Cos’è, Esempi e Come Crearla",
       "Cos'è una Pillar Page e perché è cruciale per la SEO?",
       "Come si integra il Topic Cluster con la Pillar Page?",
       "Quali vantaggi offre l'approccio Hub and Spoke per la tua strategia di contenuti?",
@@ -4460,7 +4460,7 @@
       "Blog Aziendale: Perché è Ancora il Miglior Investimento di Marketing per PMI",
       "Domande frequenti su Content Marketing"
     ],
-    "content": "Di WebNovis · 8 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 In breve: Scopri come le pillar page e i topic cluster rivoluzionano la tua SEO, organizzando i contenuti per dominare la SERP e attrarre lead qualificati. Ottimizza la tua strategia",
+    "content": "Di WebNovis · 8 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 In breve: Definizione di pillar page, esempi di architettura, differenza rispetto a un normale articolo e passaggi per collegarla a topic cluster coerenti.",
     "indexable": true
   },
   {
@@ -4611,11 +4611,11 @@
     "id": "/blog/quanto-costa-brand-identity.html",
     "url": "/blog/quanto-costa-brand-identity.html",
     "type": "articolo",
-    "title": "Quanto Costa una Brand Identity nel 2026? Prezzi per PMI e Startup",
-    "description": "Costi reali per creare una brand identity completa: logo, palette, tipografia, brand manual. Prezzi per PMI italiane, cosa è incluso e quando investire.",
-    "keywords": "quanto, costa, brand, identity, 2026, prezzi, pmi, startup, costi, reali, creare, completa, logo, palette, tipografia, manual, italiane, cosa, incluso, quando, investire, include, professionale, varianti, colori, tone, voice, applicazioni",
+    "title": "Costo Brand Identity 2026: Prezzi e Pacchetti",
+    "description": "Costo brand identity 2026: da €1.500 per il pacchetto base, cosa include logo, palette, font e brand manual, fasce di prezzo e criteri per scegliere.",
+    "keywords": "costo, brand, identity, 2026, prezzi, pacchetti, 500, pacchetto, base, cosa, include, logo, palette, font, manual, fasce, prezzo, criteri, scegliere, professionale, varianti, colori, tipografia, tone, voice, applicazioni, nei, completi",
     "headings": [
-      "Quanto Costa una Brand Identity nel 2026? Prezzi per PMI e Startup",
+      "Costo Brand Identity 2026: Prezzi e Pacchetti",
       "Prezzi della Brand Identity nel 2026",
       "Cosa Include una Brand Identity Professionale",
       "1. Logo e Varianti",
@@ -4628,7 +4628,7 @@
       "Brand Identity: Il Percorso Ideale per una PMI",
       "Errori Comuni nella Creazione della Brand Identity"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Agosto 2026 In breve: Costi reali per creare una brand identity completa: logo, palette, tipografia, brand manual. Prezzi per PMI italiane, cosa è incluso e quando investire.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Agosto 2026 In breve: Quanto costa una brand identity nel 2026, cosa includono i diversi pacchetti e quali deliverable servono davvero a una PMI o startup.",
     "indexable": true
   },
   {
@@ -6531,9 +6531,9 @@
     "id": "/contatti.html",
     "url": "/contatti.html",
     "type": "page",
-    "title": "Contatti",
-    "description": "Contatta Web Novis per un preventivo gratuito. Agenzia web a Milano (Rho): sviluppo siti, grafica e social media. Email, telefono e form di contatto.",
-    "keywords": "contatti, contatta, novis, preventivo, gratuito, agenzia, milano, rho, sviluppo, siti, grafica, social, media, email, telefono, form, contatto, parliamo, tuo, progetto, sede, richiedi, digitale, html",
+    "title": "Contatti WebNovis a Rho: Sede e Preventivi",
+    "description": "Contatta WebNovis a Rho: sede, email, telefono, WhatsApp e modulo per richiedere un preventivo su siti web, e-commerce, branding, SEO e social media.",
+    "keywords": "contatti, rho, sede, preventivi, contatta, email, telefono, whatsapp, modulo, richiedere, preventivo, siti, ecommerce, branding, seo, social, media, parliamo, tuo, progetto, richiedi, gratuito, richiesta, html",
     "headings": [
       "Parliamo del Tuo Progetto",
       "Email",
@@ -6541,7 +6541,7 @@
       "Sede",
       "Contatti",
       "Richiedi un Preventivo Gratuito",
-      "Agenzia Web a Milano e Rho: Parliamo del Tuo Progetto Digitale"
+      "Contatti, sede a Rho e richiesta di preventivo"
     ],
     "content": "Raccontaci la tua idea attraverso i canali indicati. Tempi e modalità del confronto vengono definiti al contatto in base alla richiesta. Usa i canali indicati. Tempi e modalità vengono definiti al contatto.",
     "indexable": true
@@ -7055,8 +7055,8 @@
     "url": "/landing-page-milano.html",
     "type": "locale",
     "title": "Landing page a Milano: da €500",
-    "description": "Landing page a Milano per Google Ads, Meta Ads ed eventi: copy, design e tracking orientati ai lead. Da €500, con struttura pensata per campagne che devono convertire.",
-    "keywords": "landing, page, milano, 500, google, ads, meta, eventi, copy, design, tracking, orientati, lead, struttura, pensata, campagne, devono, convertire, portare, contatti, contesto, locale, coerenza, annuncio, pagina, quartiere, quando, serve",
+    "description": "Landing page a Milano per Google Ads, Meta Ads ed eventi: copy, design e tracking orientati ai lead. Da €500, con struttura pensata per convertire.",
+    "keywords": "landing, page, milano, 500, google, ads, meta, eventi, copy, design, tracking, orientati, lead, struttura, pensata, convertire, campagne, devono, portare, contatti, contesto, locale, coerenza, annuncio, pagina, quartiere, quando, serve",
     "headings": [
       "Landing page a Milano per campagne che devono portare contatti",
       "Landing page a Milano: il contesto locale",
@@ -7721,8 +7721,8 @@
     "url": "/realizzazione-siti-web-garbagnate.html",
     "type": "locale",
     "title": "Realizzazione siti web a Garbagnate: da €1.200",
-    "description": "Realizzazione siti web a Garbagnate Milanese per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata, codice custom e proposta personalizzata.",
-    "keywords": "realizzazione, siti, garbagnate, 200, milanese, pmi, professionisti, landing, vetrina, ecommerce, seo, integrata, codice, custom, proposta, personalizzata, contesto, locale, servizi, persona, chiarezza, prima, tutto, farsi, trovare, dai, comuni, confinanti",
+    "description": "Siti web a Garbagnate Milanese per PMI e professionisti: landing, siti vetrina ed e-commerce con SEO integrata e proposta personalizzata.",
+    "keywords": "realizzazione, siti, garbagnate, 200, milanese, pmi, professionisti, landing, vetrina, ecommerce, seo, integrata, proposta, personalizzata, contesto, locale, servizi, persona, chiarezza, prima, tutto, farsi, trovare, dai, comuni, confinanti, sito, resta",
     "headings": [
       "Realizzazione siti web a Garbagnate Milanese per PMI e professionisti",
       "Realizzazione siti web a Garbagnate Milanese: il contesto locale",
@@ -7960,11 +7960,12 @@
     "id": "/realizzazione-siti-web/",
     "url": "/realizzazione-siti-web/",
     "type": "locale",
-    "title": "Realizzazione Siti Web a Milano e in Lombardia",
-    "description": "Realizzazione siti web a Milano e in Lombardia per PMI e professionisti: codice custom senza WordPress, SEO integrata e design su misura. Sede a Rho, 46 comuni serviti.",
-    "keywords": "realizzazione, siti, milano, lombardia, pmi, professionisti, codice, custom, senza, wordpress, seo, integrata, design, misura, sede, rho, comuni, serviti, dove, partire, cerchi, sito, tua, zona, arese, legnano, bollate, senago",
+    "title": "Realizzazione Siti Web Lombardia: Prezzi e Comuni",
+    "description": "Realizzazione siti web in Lombardia per PMI: landing da €500, siti aziendali da €1.200 ed e-commerce da €3.500. Codice custom, SEO tecnica e sede a Rho.",
+    "keywords": "realizzazione, siti, lombardia, prezzi, comuni, pmi, landing, 500, aziendali, 200, ecommerce, codice, custom, seo, tecnica, sede, rho, aziende, professionisti, creazione, soluzione, prezzo, partenza, obiettivo, dove, partire, cerchi, sito",
     "headings": [
-      "Realizzazione Siti Web a Milano e in Lombardia",
+      "Realizzazione Siti Web in Lombardia per Aziende e Professionisti",
+      "Creazione siti web in Lombardia: soluzione, prezzo di partenza e obiettivo",
       "Da dove partire se cerchi un sito web nella tua zona",
       "Rho",
       "Arese",
@@ -7974,10 +7975,9 @@
       "Caronno Pertusella",
       "Scegli il tuo comune",
       "Perché un sito web custom per la tua azienda?",
-      "Zero WordPress",
-      "SEO integrata"
+      "Zero WordPress"
     ],
-    "content": "WebNovis realizza siti web su misura per aziende e professionisti a Milano, in provincia e in Lombardia, con sede a Rho e 46 comuni serviti. Codice scritto da zero, nessun WordPress e nessun template: struttura SEO, velocità e design nascono insieme al",
+    "content": "WebNovis realizza e crea siti web in Lombardia per PMI e professionisti: landing page da €500 , siti aziendali da €1.200 ed e-commerce da €3.500 . La sede è a Rho; codice custom, struttura SEO e design vengono definiti nello stesso progetto, con prezzo e",
     "indexable": true
   },
   {
@@ -8288,24 +8288,24 @@
     "id": "/servizi/accessibilita.html",
     "url": "/servizi/accessibilita.html",
     "type": "servizio",
-    "title": "Accessibilità Web e Compliance EAA",
-    "description": "L'European Accessibility Act è in vigore dal giugno 2025 . Tutti i siti e-commerce e servizi digitali devono rispettare lo standard WCAG 2.1 AA. Web Novis offre audit di accessibilità, adeguamento completo e",
-    "keywords": "accessibilita, compliance, eaa, european, accessibility, act, vigore, giugno, 2025, tutti, siti, ecommerce, servizi, digitali, devono, rispettare, standard, wcag, novis, offre, audit, adeguamento, completo, rendi, tuo, sito, norma, cos",
+    "title": "Audit Accessibilità Digitale: WCAG ed EAA",
+    "description": "Audit accessibilità digitale per siti web: verifiche automatiche e manuali, criteri WCAG, priorità di correzione e supporto EAA. Servizio da €350.",
+    "keywords": "audit, accessibilita, digitale, wcag, eaa, siti, verifiche, automatiche, manuali, criteri, priorita, correzione, supporto, servizio, 350, european, accessibility, act, perimetro, regola, uguale, ogni, sito, nostri, servizi, piano, adeguamento, monitoraggio",
     "headings": [
-      "Accessibilità Web e Compliance EAA: Rendi il Tuo Sito a Norma",
-      "Cos'è l'European Accessibility Act e perché riguarda il tuo sito web?",
+      "Audit Accessibilità Digitale per Siti Web: WCAG ed EAA",
+      "European Accessibility Act: perimetro, non una regola uguale per ogni sito",
       "I nostri servizi di accessibilità web",
       "Audit Accessibilità WCAG",
-      "Adeguamento Completo",
+      "Piano di Adeguamento",
       "Monitoraggio Continuo",
       "Quanto costa rendere il sito accessibile?",
       "Audit Iniziale",
       "Adeguamento",
       "Monitoraggio",
-      "Cosa controlliamo nell'audit WCAG 2.1 AA",
+      "Cosa controlliamo nell'audit di accessibilità digitale",
       "Percepibile"
     ],
-    "content": "L'European Accessibility Act è in vigore dal giugno 2025 . Tutti i siti e-commerce e servizi digitali devono rispettare lo standard WCAG 2.1 AA. Web Novis offre audit di accessibilità, adeguamento completo e monitoraggio continuo — per evitare sanzioni e",
+    "content": "WebNovis svolge audit di accessibilità digitale con verifiche automatiche e manuali sui flussi concordati, mappatura dei criteri WCAG, priorità di correzione e supporto tecnico per i requisiti applicabili. L’audit parte da €350 e non sostituisce una",
     "indexable": true
   },
   {
@@ -8573,8 +8573,8 @@
     "url": "/sito-vetrina-bollate.html",
     "type": "locale",
     "title": "Sito vetrina a Bollate: da €1.200 e SEO integrata",
-    "description": "Sito vetrina a Bollate con design custom, SEO tecnica integrata e struttura orientata ai contatti. Prezzo indicativo da €1.200; dettagli confermati nella proposta.",
-    "keywords": "sito, vetrina, bollate, 200, seo, integrata, design, custom, tecnica, struttura, orientata, contatti, prezzo, indicativo, dettagli, confermati, proposta, aziende, vogliono, contesto, locale, tre, risposte, cima, pagina, vantaggio, vicinato, scritto",
+    "description": "Sito vetrina a Bollate con design custom, SEO tecnica e struttura orientata ai contatti. Prezzo da €1.200, confermato nella proposta.",
+    "keywords": "sito, vetrina, bollate, 200, seo, integrata, design, custom, tecnica, struttura, orientata, contatti, prezzo, confermato, proposta, aziende, vogliono, contesto, locale, tre, risposte, cima, pagina, vantaggio, vicinato, scritto, chiaro, puoi",
     "headings": [
       "Sito vetrina a Bollate per aziende che vogliono più contatti",
       "Sito vetrina a Bollate: il contesto locale",

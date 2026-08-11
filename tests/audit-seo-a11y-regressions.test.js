@@ -4,6 +4,8 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
+const { extract: extractGeoAudit } = require('../scripts/audit-indexable-geo');
+const { ALL_INDEXABLE_GEO_PATHS } = require('../config/pseo-governance');
 
 const SRC_PAGES = [
   'index.html', 'chi-siamo.html', 'come-lavoriamo.html', 'contatti.html',
@@ -12,6 +14,38 @@ const SRC_PAGES = [
 
 function main() {
   const failures = [];
+
+  // GEO audit metadata parsing must preserve apostrophes inside double-quoted
+  // attributes and must not score Speakable as a universal commercial-page requirement.
+  {
+    const description = "Agenzia web a Legnano per PMI e commercio dell'Alto Milanese";
+    const sample = `<html><head><title>Agenzia web a Legnano | WebNovis</title><meta content="${description}" name="description"><meta name="robots" content="index, follow"><link href="https://www.webnovis.com/agenzia-web-legnano.html" rel="canonical"></head><body><h1>Agenzia web a Legnano</h1></body></html>`;
+    assert.equal(
+      extractGeoAudit(sample, '/agenzia-web-legnano.html').description,
+      description,
+      'GEO audit must not truncate a double-quoted meta description at an apostrophe'
+    );
+    assert.doesNotMatch(
+      read('scripts/audit-indexable-geo.js'),
+      /Tier1 senza Speakable|Estendere answer-capsule \+ Speakable/,
+      'commercial GEO audit must not prescribe Speakable as a universal ranking requirement'
+    );
+    assert.doesNotMatch(
+      read('scripts/validate-pages.js'),
+      /Missing SpeakableSpecification/,
+      'page validator must not report missing Speakable as a generic GEO defect'
+    );
+    const rhoAudit = extractGeoAudit(read('agenzia-web-rho.html'), '/agenzia-web-rho.html');
+    assert.ok(rhoAudit.description.length <= 160, 'web agency Rho meta description must remain within 160 characters');
+    for (const publicPath of ALL_INDEXABLE_GEO_PATHS) {
+      const relativePath = publicPath.replace(/^\//, '');
+      const pageAudit = extractGeoAudit(read(relativePath), publicPath);
+      assert.ok(
+        pageAudit.description.length <= 160,
+        `${publicPath} meta description must remain within 160 characters (found ${pageAudit.description.length})`
+      );
+    }
+  }
 
   // C1: no inline Clarity/Meta Pixel snippets in any HTML source or built page
   // (the consent-gated loader lives only in js/main.js)
