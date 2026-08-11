@@ -48,6 +48,8 @@ desktop.ini
 # Test files
 test-*.html
 test-*.js
+# This is a published editorial article, not a test fixture.
+!blog/test-ab-sito-web-guida.html
 
 # Batch files (Windows scripts)
 *.bat

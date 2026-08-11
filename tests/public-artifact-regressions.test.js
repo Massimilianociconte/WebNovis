@@ -1,4 +1,5 @@
 const assert = require('node:assert/strict');
+const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -17,6 +18,26 @@ function main() {
   assert.ok(fs.existsSync(artifactModulePath), 'public artifact policy module must exist');
   assert.ok(fs.existsSync(prepareScriptPath), 'staging-first public artifact builder must exist');
   assert.ok(fs.existsSync(verifyScriptPath), 'public artifact verifier must exist');
+
+  const trackedFiles = new Set(
+    execFileSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' })
+      .split('\0')
+      .filter(Boolean)
+  );
+  const sourceSitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
+  const sitemapLocations = [...sourceSitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  for (const location of sitemapLocations) {
+    const pathname = decodeURIComponent(new URL(location).pathname);
+    const relativePath = pathname === '/'
+      ? 'index.html'
+      : pathname.endsWith('/')
+        ? `${pathname.slice(1)}index.html`
+        : pathname.slice(1);
+    assert.ok(
+      trackedFiles.has(relativePath),
+      `every source sitemap URL must resolve to a tracked HTML file: ${relativePath}`
+    );
+  }
 
   const {
     DIST_ASSETS_IGNORE,
