@@ -19,7 +19,7 @@ const NON_PUBLIC_ARTIFACT_PATTERNS = [
 const NON_INDEXABLE_STATIC_PATHS = new Set(['/404.html', '/grazie.html']);
 const HOMEPAGE_HERO_OLD = '<h1 class="hero-title"> <span class="glitch gradient-text" data-text="Agenzia Digitale">Agenzia Digitale</span> che <span class="highlight-gold">Accende</span><br> la tua <span class="sr-only">visibilità, crescita, identità e presenza online</span><span class="hero-rotating-wrapper" aria-hidden="true"> <span class="hero-rotating-word active">visibilità</span> <span class="hero-rotating-word">crescita</span> <span class="hero-rotating-word">identità</span> <span class="hero-rotating-word">presenza</span> </span> </h1> <p class="hero-subtitle"> La tua agenzia digitale a Milano per sviluppo web,<br> grafica e crescita della tua visibilità online </p> <div class="hero-cta"> <a href="contatti.html" title="Contattaci per iniziare il tuo progetto" class="btn btn-primary"> <span>Scopri Come</span> <svg viewBox="0 0 20 20" fill="none" height="20" width="20"> <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/> </svg> </a> <a href="#servizi" title="Scopri i nostri servizi" class="btn btn-secondary">I Nostri Servizi</a> </div>';
 const HOMEPAGE_CORE_LINKS_PATTERN = /\s*<(?:p|nav) class="hero-core-links"[^>]*>[\s\S]*?<\/(?:p|nav)>\s*/i;
-const HOMEPAGE_CORE_LINKS_HTML = '<nav class="hero-core-links" aria-label="Percorsi principali"> <a href="/servizi/sviluppo-web.html">Sviluppo Web</a> <a href="/servizi/graphic-design.html">Graphic Design</a> <a href="/servizi/social-media.html">Social Media</a> </nav>';
+const HOMEPAGE_CORE_LINKS_HTML = '<nav class="hero-core-links" aria-label="Percorsi principali"> <a href="/servizi/sviluppo-web.html">Sviluppo Web</a> <a href="/servizi/graphic-design.html">Graphic Design</a> <a href="/servizi/social-media.html">Social Media</a> <a href="/agenzia-web-milano.html">Agenzia web a Milano</a> <a href="/zone-servite/">Zone servite</a> </nav>';
 const HOMEPAGE_HERO_NEW = `<h1 class="hero-title"> <span class="glitch gradient-text" data-text="WebNovis">WebNovis</span><br> agenzia web a Rho e Milano che <span class="highlight-gold">accende</span><br> la tua <span class="sr-only">visibilità, crescita, identità e presenza online</span><span class="hero-rotating-wrapper" aria-hidden="true"> <span class="hero-rotating-word active">visibilità</span> <span class="hero-rotating-word">crescita</span> <span class="hero-rotating-word">identità</span> <span class="hero-rotating-word">presenza</span> </span> </h1> <p class="hero-subtitle"> Siti web custom, e-commerce, branding e SEO locale<br> per PMI e professionisti tra Rho, Milano e hinterland </p> <div class="hero-cta"> <a href="contatti.html" title="Contattaci per iniziare il tuo progetto" class="btn btn-primary"> <span>Scopri Come</span> <svg viewBox="0 0 20 20" fill="none" height="20" width="20"> <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/> </svg> </a> <a href="#servizi" title="Scopri i nostri servizi" class="btn btn-secondary">I Nostri Servizi</a> </div> ${HOMEPAGE_CORE_LINKS_HTML}`;
 const HOMEPAGE_MOBILE_PRELOAD_OLD = '<link href="Img/sfondo-mobile.webp" rel="preload" media="(max-width: 768px)" as="image" fetchpriority="high" type="image/webp">';
 const HOMEPAGE_MOBILE_PRELOAD_NEW = '<link href="Img/sfondo-mobile-hq.webp" rel="preload" media="(max-width: 768px)" as="image" fetchpriority="high" type="image/webp">';
@@ -314,7 +314,7 @@ const LOCAL_PAGES_ALREADY_OPTIMIZED = new Set([
   'realizzazione-siti-web-arese.html'
 ]);
 const CONTACT_INFO_CARDS_PATTERN = /<div class="contatti-info-cards">[\s\S]*?<div class="contatti-map">[\s\S]*?<\/div>\s*<\/div>/i;
-const CONTACT_INFO_CARDS_REPLACEMENT = `<div class="contatti-info-cards"> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M3 8L10.89 13.26C11.54 13.67 12.46 13.67 13.11 13.26L21 8M5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19Z"/></svg> <h2>Email</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <a href="mailto:hello@webnovis.com" class="contatti-card-link">hello@webnovis.com</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <h2>Telefono</h2> </div> <div class="contatti-card-body contatti-card-body--offset contatti-card-stack"> <a href="tel:+393802647367" title="Chiama Web Novis" class="phone-cta" aria-label="Chiama WebNovis al numero +39 380 264 7367" data-contact-phone="+393802647367"><span class="phone-cta-label">Chiama WebNovis</span></a> <a href="https://wa.me/393802647367?text=Ciao%20Web%20Novis%2C%20vorrei%20maggiori%20informazioni" target="_blank" rel="noopener noreferrer" class="contatti-card-link">Scrivici su WhatsApp →</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> <h2>Sede</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Via S. Giorgio, 2<br>20017 Rho (MI), Italia</p> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <h2>Contatti</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Usa i canali indicati.<br>Tempi e modalità vengono definiti al contatto.</p> </div> </article> <div class="contatti-map"> <iframe allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.5!2d9.0393!3d45.5299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c1237f2e291d%3A0x7e38e24c285e5a0!2sVia%20S.%20Giorgio%2C%202%2C%2020017%20Rho%20MI!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" title="Sede Web Novis — Via S. Giorgio 2, Rho (MI)"></iframe> </div> </div>`;
+const CONTACT_INFO_CARDS_REPLACEMENT = `<div class="contatti-info-cards"> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M3 8L10.89 13.26C11.54 13.67 12.46 13.67 13.11 13.26L21 8M5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19Z"/></svg> <h2>Email</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <a href="mailto:hello@webnovis.com" class="contatti-card-link">hello@webnovis.com</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <h2>Telefono</h2> </div> <div class="contatti-card-body contatti-card-body--offset contatti-card-stack"> <a href="tel:+393802647367" title="Chiama Web Novis" class="phone-cta" aria-label="Chiama WebNovis al numero +39 380 264 7367" data-contact-phone="+393802647367"><span class="phone-cta-label">Chiama WebNovis</span></a> <a href="https://wa.me/393802647367?text=Ciao%20Web%20Novis%2C%20vorrei%20maggiori%20informazioni" target="_blank" rel="noopener noreferrer" class="contatti-card-link">Scrivici su WhatsApp →</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> <h2>Dove operiamo</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Rho (MI) e hinterland ovest di Milano<br>Lavoriamo da remoto e presso il cliente</p> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <h2>Contatti</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Usa i canali indicati.<br>Tempi e modalità vengono definiti al contatto.</p> </div> </article> <div class="contatti-map"> <p class="contatti-card-body">Per parlare del progetto usiamo videochiamata, telefono o un incontro presso la tua sede. Non abbiamo uno showroom aperto al pubblico.</p> </div> </div>`;
 const LEGAL_NAV_MENU = '<ul class="nav-menu" id="navMenu"> <li><a href="servizi/" class="nav-link">Servizi</a></li> <li><a href="portfolio.html" class="nav-link">Portfolio</a></li> <li><a href="chi-siamo.html" class="nav-link">Chi Siamo</a></li> <li><a href="blog/" class="nav-link">Blog</a></li> <li><a href="contatti.html" class="nav-link">Contatti</a></li> <li><a href="preventivo.html" class="nav-link nav-cta">Inizia Ora</a></li> </ul>';
 const PORTFOLIO_GRAPHIC_SECTION_PATTERN = /<section class="portfolio-section" style="padding:4rem 0" id="portfolio-grafico">[\s\S]*?<\/section>/i;
 const PORTFOLIO_SOCIAL_SECTION_PATTERN = /<section class="portfolio-section" style="padding:4rem 0;background:rgba\(255,255,255,.01\)" id="portfolio-social">[\s\S]*?<\/section>/i;
@@ -485,8 +485,8 @@ const LOCAL_AUTHORITY_PROOF_BLOCKS = {
     lead: 'A Rho lavoriamo con una presenza locale verificabile, contatti diretti e un ecosistema di servizi collegati: sito, SEO, branding, contenuti e campagne devono rafforzarsi a vicenda.',
     cards: [
       {
-        title: 'Sede e NAP coerenti',
-        text: 'Via S. Giorgio 2, Rho (MI), telefono e canali di contatto sono ripetuti in modo coerente tra sito, footer, contatti e dati strutturati.'
+        title: 'Base a Rho e canali diretti',
+        text: 'Operiamo da Rho e dall’hinterland ovest di Milano. Telefono, email e WhatsApp sono gli stessi su sito, footer, contatti e dati strutturati.'
       },
       {
         title: 'Intento ampio, non generico',
@@ -501,7 +501,7 @@ const LOCAL_AUTHORITY_PROOF_BLOCKS = {
   },
   'realizzazione-siti-web-rho.html': {
     title: 'Come trasformiamo un sito locale in uno strumento commerciale',
-    lead: 'Per competere con fornitori locali e agenzie milanesi non basta un bel layout: servono prezzo chiaro, metodo, performance, sede riconoscibile e una proposta capace di generare contatti.',
+    lead: 'Per competere con fornitori locali e agenzie milanesi non basta un bel layout: servono prezzo chiaro, metodo, performance e una proposta capace di generare contatti.',
     cards: [
       {
         title: 'Offerta leggibile subito',
@@ -1820,17 +1820,17 @@ function alignPriorityContentTransforms(html, relativePath) {
     updated = replaceFirstH1(updated, 'Agenzia web a Rho per siti custom, SEO locale e identità digitale');
     updated = replaceAnswerCapsule(
       updated,
-      '<strong>WebNovis</strong> è un’agenzia web a Rho con sede in Via S. Giorgio 2: realizziamo siti custom, e-commerce, branding e SEO locale per PMI e professionisti che vogliono più visibilità, fiducia e richieste misurabili.'
+      '<strong>WebNovis</strong> è un’agenzia web con base a Rho: realizziamo siti custom, e-commerce, branding e SEO locale per PMI e professionisti che vogliono più visibilità, fiducia e richieste misurabili. Lavoriamo da remoto e presso il cliente.'
     );
     return updated;
   }
 
   if (normalizedPath === 'realizzazione-siti-web-rho.html') {
-    let updated = replaceSectionTag(html, 'Realizzazione siti web a Rho · sede locale · SEO integrata');
+    let updated = replaceSectionTag(html, 'Realizzazione siti web a Rho · base locale · SEO integrata');
     updated = replaceFirstH1(updated, 'Realizzazione siti web a Rho per aziende che vogliono più richieste');
     updated = replaceAnswerCapsule(
       updated,
-      '<strong>WebNovis</strong> realizza siti web a Rho con codice custom, SEO tecnica integrata e struttura orientata ai contatti. Landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con gestione diretta dalla nostra sede.'
+      '<strong>WebNovis</strong> realizza siti web a Rho con codice custom, SEO tecnica integrata e struttura orientata ai contatti. Landing page da <strong>€500</strong>, siti vetrina da <strong>€1.200</strong> ed e-commerce da <strong>€3.500</strong>, con gestione diretta da Rho.'
     );
     return updated;
   }
@@ -2451,6 +2451,141 @@ function injectOgImageDimensions(html) {
   return html;
 }
 
+const { stripStreetFromText } = require('./presence-policy');
+
+const SERVICE_GUIDE_BLOCKS = {
+  'servizi/sviluppo-web.html': {
+    title: 'Guide del cluster sviluppo web',
+    links: [
+      { href: '/quanto-costa-un-sito-web/', label: 'Prezzi di catalogo per un sito web' },
+      { href: '/blog/quanto-costa-un-sito-web.html', label: 'Guida 2026: da cosa dipende il prezzo' },
+      { href: '/blog/come-scegliere-web-agency.html', label: 'Come scegliere una web agency' }
+    ]
+  },
+  'servizi/ecommerce.html': {
+    title: 'Guide del cluster e-commerce',
+    links: [
+      { href: '/blog/quanto-costa-un-ecommerce.html', label: 'Quanto costa un e-commerce' },
+      { href: '/blog/shopify-vs-sito-ecommerce-custom.html', label: 'Shopify o e-commerce custom' },
+      { href: '/servizi/ecommerce.html', label: 'Servizio e-commerce WebNovis' }
+    ]
+  },
+  'servizi/brand-identity.html': {
+    title: 'Guide del cluster brand',
+    links: [
+      { href: '/blog/quanto-costa-brand-identity.html', label: 'Costo brand identity 2026' },
+      { href: '/blog/quanto-costa-un-logo.html', label: 'Quanto costa un logo' },
+      { href: '/servizi/graphic-design.html', label: 'Graphic design WebNovis' }
+    ]
+  },
+  'servizi/accessibilita.html': {
+    title: 'Guide del cluster accessibilità',
+    links: [
+      { href: '/blog/obblighi-legge-accessibilita-siti.html', label: 'Obblighi accessibilità siti' },
+      { href: '/servizi/accessibilita.html', label: 'Audit accessibilità WebNovis' }
+    ]
+  },
+  'servizi/seo-milano.html': {
+    title: 'Approfondimenti SEO',
+    links: [
+      { href: '/seo-locale-milano.html', label: 'SEO locale a Milano: Maps e quartieri' },
+      { href: '/blog/seo-locale-google-maps.html', label: 'Guida SEO locale e Google Maps' },
+      { href: '/quanto-costa-un-sito-web/', label: 'Prezzi di un sito web' }
+    ]
+  },
+  'servizi/social-media.html': {
+    title: 'Guide del cluster social',
+    links: [
+      { href: '/blog/quanto-costa-gestione-social-media.html', label: 'Costo gestione social media' },
+      { href: '/blog/community-management-guida.html', label: 'Community management' }
+    ]
+  }
+};
+
+function sanitizePublicPresenceMarkup(html) {
+  let updated = stripStreetFromText(String(html || ''));
+  updated = updated.replace(/\bMassimiliano\b/g, 'WebNovis');
+  updated = updated.replace(/#person-massimiliano/g, '#organization');
+  updated = updated.replace(/\bincontri in sede\b/gi, 'incontri presso il cliente o in videochiamata');
+  updated = updated.replace(/\bpresso la nostra sede\b/gi, 'presso il cliente o in videochiamata');
+  updated = updated.replace(/\bsede aperta al pubblico\b/gi, 'punto di contatto remoto');
+  updated = updated.replace(/<iframe\b[^>]*(?:Via%20S\.%20Giorgio|Via\+S\.\+Giorgio)[^>]*>\s*<\/iframe>/gi, '');
+  updated = updated.replace(/<a\b[^>]*maps\.google\.com\/\?q=Via[^>]*>[\s\S]*?<\/a>/gi, '');
+  return updated;
+}
+
+function alignPreventivoCtas(html) {
+  return String(html || '')
+    .replace(
+      /(<a\b[^>]*href=")[^"]*contatti\.html("[^>]*>)\s*(?:<span>)?(?:Richiedi\s+)?Preventivo(?:\s+Gratuito)?(?:<\/span>)?/gi,
+      '$1/preventivo.html$2<span>Richiedi Preventivo</span>'
+    );
+}
+
+function alignHomepageRankingFixes(html, relativePath) {
+  if (normalizeRelativePath(relativePath) !== 'index.html') return html;
+  let updated = html.replace(
+    /<span class="counter-suffix">h<\/span><\/div>\s*<div class="counter-label">Risposta al preventivo<\/div>/i,
+    '</div> <div class="counter-label">Preventivo su richiesta</div>'
+  );
+  updated = updated.replace(
+    /(<span class="counter-value">)24(<\/span>)/i,
+    '$1—$2'
+  );
+  updated = updated.replace(
+    /\s*<link href="css\/(?:revolution|nicole-inspired|social-feed-modern|leviathan-inspired|search)[^"]*" rel="preload" as="style"[^>]*>/gi,
+    ' '
+  );
+  return updated;
+}
+
+function alignServiceGuideLinks(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  const block = SERVICE_GUIDE_BLOCKS[normalizedPath];
+  if (!block) return html;
+
+  const links = block.links.map((link) =>
+    `<a href="${link.href}">${link.label}</a>`
+  ).join(' · ');
+  const blockHtml = ` <aside data-webnovis-service-guides="true" class="service-detail"><div class="container"><h2>${block.title}</h2><p>${links}</p></div></aside> `;
+  let updated = String(html).replace(/\s*<aside\b[^>]*data-webnovis-service-guides=["']true["'][\s\S]*?<\/aside>/gi, '');
+  if (/<section class="cta-inline"/i.test(updated)) {
+    return updated.replace(/<section class="cta-inline"/i, `${blockHtml} <section class="cta-inline"`);
+  }
+  return updated.replace(/<\/main>/i, `${blockHtml} </main>`);
+}
+
+function alignPricingIntent(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  if (normalizedPath !== 'blog/quanto-costa-un-sito-web.html') return html;
+  let updated = html;
+  if (!/quanto-costa-un-sito-web\//.test(updated)) {
+    updated = updated.replace(
+      /(<h1\b[^>]*>[\s\S]*?<\/h1>)/i,
+      '$1 <p class="answer-capsule">Questa è la guida di mercato. I prezzi di catalogo WebNovis sono su <a href="/quanto-costa-un-sito-web/">quanto costa un sito web</a>.</p>'
+    );
+  }
+  return updated;
+}
+
+function alignSeoMilanoDisambiguation(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  if (normalizedPath !== 'servizi/seo-milano.html') return html;
+  if (/seo-locale-milano\.html/.test(html)) return html;
+  return html.replace(
+    /(<h1\b[^>]*>[\s\S]*?<\/h1>)/i,
+    '$1 <p>Questa pagina è il servizio SEO per PMI a Milano (metodo, prezzi, reporting). Per Maps, quartieri e scheda Google vedi <a href="/seo-locale-milano.html">SEO locale a Milano</a>.</p>'
+  );
+}
+
+function alignRhoInternalLinks(html, relativePath) {
+  if (normalizeRelativePath(relativePath) !== 'agenzia-web-rho.html') return html;
+  if (/seo-locale-rho\.html/.test(html) && /realizzazione-siti-web-rho\.html/.test(html)) return html;
+  const block = ` <aside data-webnovis-rho-links="true" class="service-detail"><div class="container"><h2>Percorsi locali da Rho</h2><p><a href="/seo-locale-rho.html">SEO locale a Rho</a> · <a href="/realizzazione-siti-web-rho.html">Realizzazione siti web a Rho</a> · <a href="/ecommerce-rho.html">E-commerce a Rho</a> · <a href="/preventivo.html">Preventivo</a></p></div></aside> `;
+  let updated = html.replace(/\s*<aside\b[^>]*data-webnovis-rho-links=["']true["'][\s\S]*?<\/aside>/gi, '');
+  return updated.replace(/<\/main>/i, `${block} </main>`);
+}
+
 function applySeoHtmlTransforms(html, relativePath) {
   let updated = normalizeHtmlDocumentStructure(html, relativePath);
   updated = removeUnverifiedTwitterSiteMeta(updated);
@@ -2463,15 +2598,22 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = alignLegalNavbar(updated, relativePath);
   updated = alignPortfolioExperience(updated, relativePath);
   updated = alignHomepageGeoPromotions(updated, relativePath);
+  updated = alignHomepageRankingFixes(updated, relativePath);
   updated = alignHomepageWebPageFreshness(updated, relativePath);
   updated = alignMoneyPageInternalLinks(updated, relativePath);
   updated = alignEditorialContextLinks(updated, relativePath);
   updated = alignClusterStrategicLinks(updated, relativePath);
+  updated = alignServiceGuideLinks(updated, relativePath);
+  updated = alignPricingIntent(updated, relativePath);
+  updated = alignSeoMilanoDisambiguation(updated, relativePath);
+  updated = alignRhoInternalLinks(updated, relativePath);
   updated = alignCanvaPartnerCredit(updated, relativePath);
   updated = normalizeLocalMetricPlaceholders(updated);
   updated = alignRobotsDirectives(updated, relativePath);
   updated = ensureSelfHreflang(updated, relativePath);
   updated = alignHomepageBrandExperience(updated, relativePath);
+  updated = sanitizePublicPresenceMarkup(updated);
+  updated = alignPreventivoCtas(updated);
   updated = normalizeInternalAttributionLinks(updated);
   updated = ensureSkipLinkTargets(updated);
   updated = ensureFaqPageSchema(updated, relativePath);

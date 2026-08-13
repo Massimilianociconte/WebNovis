@@ -127,7 +127,7 @@ function generateServizioCittaPage(service, city) {
         ? editorial.faqs.map((faq) => ({ q: faq.question, a: faq.answer }))
         : [
         { q: `Quanto costa ${service.name.toLowerCase()} ${toCity(city.name)}?`, a: `${service.name} ${toCity(city.name)}: prezzo di catalogo da <strong>€${service.priceFrom}${service.priceUnit || ''}</strong>. La stima ${service.timeEstimate.toLowerCase()} è indicativa; il preventivo conferma perimetro, prezzo e tempi del caso specifico.` },
-        { q: `WebNovis è vicina ${toCity(city.name)}?`, a: `La nostra sede è a Rho, Via S. Giorgio 2 — ${city.distanzaSede} in auto da ${city.name}. Incontriamo i clienti in azienda o in videochiamata.` },
+        { q: `WebNovis è vicina ${toCity(city.name)}?`, a: `Operiamo da Rho — ${city.distanzaSede} in auto da ${city.name}. ${city.name} è un'area servita, non una sede WebNovis. Incontriamo i clienti in azienda o in videochiamata.` },
         ...faqPool
     ];
 

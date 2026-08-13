@@ -6,19 +6,17 @@ const ENTITY_FACTS = Object.freeze({
   localBusinessId: 'https://www.webnovis.com/#localbusiness',
   editorialTeamId: 'https://www.webnovis.com/#author-webnovis-editorial-team',
   editorialTeamName: 'WebNovis Editorial Team',
-  // Named editor already declared on /chi-siamo.html. Used as the article
-  // author so expertise is attributable to a person rather than to an abstract
-  // "editorial team"; the organisation stays the publisher.
-  personAuthorId: 'https://www.webnovis.com/#person-massimiliano',
-  personAuthorName: 'Massimiliano',
-  personAuthorJobTitle: 'Co-Founder & Web Developer',
+  // Articles stay attributed to the organisation. Personal names are not
+  // published until a legal/fiscal framing exists.
+  personAuthorId: '',
+  personAuthorName: '',
+  personAuthorJobTitle: '',
   personAuthorUrl: 'https://www.webnovis.com/chi-siamo.html',
   email: 'hello@webnovis.com',
   phoneDisplay: '+39 380 264 7367',
   phoneE164: '+393802647367',
   reviewActionUrl: 'https://g.page/r/CRblKdK0GGO_EBM/review',
   address: Object.freeze({
-    streetAddress: 'Via S. Giorgio, 2',
     postalCode: '20017',
     addressLocality: 'Rho',
     addressRegion: 'MI',
@@ -72,20 +70,27 @@ function isWebNovisEntity(entity) {
     (isBusinessType && compactName.startsWith('webnovis'));
 }
 
+function isHttpProfileUrl(value) {
+  return typeof value === 'string' && /^https?:\/\//i.test(value);
+}
+
 function normalizeSameAs(value) {
   if (Array.isArray(value)) {
-    return value.filter((entry) =>
-      typeof entry !== 'string' ||
-      (!FORBIDDEN_ENTITY_URL_SET.has(entry) &&
-        entry !== ENTITY_FACTS.organizationId &&
-        entry !== ENTITY_FACTS.localBusinessId)
+    const urls = value.filter((entry) =>
+      isHttpProfileUrl(entry) &&
+      !FORBIDDEN_ENTITY_URL_SET.has(entry) &&
+      entry !== ENTITY_FACTS.organizationId &&
+      entry !== ENTITY_FACTS.localBusinessId
     );
+    return urls.length > 0 ? urls : undefined;
   }
-  if (typeof value === 'string' &&
-      (FORBIDDEN_ENTITY_URL_SET.has(value) ||
-        value === ENTITY_FACTS.organizationId ||
-        value === ENTITY_FACTS.localBusinessId)) return undefined;
-  return value;
+  if (isHttpProfileUrl(value) &&
+      !FORBIDDEN_ENTITY_URL_SET.has(value) &&
+      value !== ENTITY_FACTS.organizationId &&
+      value !== ENTITY_FACTS.localBusinessId) {
+    return [value];
+  }
+  return undefined;
 }
 
 function normalizeEntityObject(value) {
@@ -117,17 +122,44 @@ function normalizeEntityObject(value) {
     delete value.worksFor;
   }
 
+  if (types.includes('Person') && /massimiliano/i.test(String(value.name || ''))) {
+    value['@type'] = 'Organization';
+    value['@id'] = ENTITY_FACTS.organizationId;
+    value.name = ENTITY_FACTS.name;
+    delete value.jobTitle;
+    delete value.familyName;
+    delete value.givenName;
+    delete value.image;
+    delete value.worksFor;
+    delete value.memberOf;
+  }
+
+  if (value['@type'] === 'PostalAddress' || types.includes('PostalAddress')) {
+    delete value.streetAddress;
+    if (!value.addressLocality) value.addressLocality = ENTITY_FACTS.address.addressLocality;
+    if (!value.addressRegion) value.addressRegion = ENTITY_FACTS.address.addressRegion;
+    if (!value.addressCountry) value.addressCountry = ENTITY_FACTS.address.addressCountry;
+  }
+
   if (isWebNovisEntity(value) && !isBareEntityReference(value)) {
-    const types = normalizeTypes(value['@type']);
-    if (types.some((type) => ['LocalBusiness', 'ProfessionalService'].includes(type))) {
+    const entityTypes = normalizeTypes(value['@type']);
+    if (entityTypes.some((type) => ['LocalBusiness', 'ProfessionalService'].includes(type))) {
       value['@id'] = ENTITY_FACTS.localBusinessId;
-    } else if (types.includes('Organization')) {
+    } else if (entityTypes.includes('Organization')) {
       value['@id'] = ENTITY_FACTS.organizationId;
     }
     value.name = ENTITY_FACTS.name;
     if (!value.alternateName) value.alternateName = ENTITY_FACTS.alternateName;
     delete value.openingHours;
     delete value.openingHoursSpecification;
+    delete value.geo;
+    delete value.hasMap;
+    if (!Array.isArray(value.sameAs) || value.sameAs.length === 0) {
+      value.sameAs = [...ENTITY_FACTS.publicProfiles];
+    }
+    if (value.address && typeof value.address === 'object') {
+      delete value.address.streetAddress;
+    }
   }
 
   return value;

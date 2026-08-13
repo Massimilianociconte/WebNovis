@@ -18,6 +18,7 @@ const {
   TIER1_INDEXABLE_GEO_PATHS
 } = require('../config/pseo-governance');
 const { ENTITY_FACTS } = require('../config/entity-facts');
+const { formatPublicLocality } = require('../config/presence-policy');
 const servicesCatalog = require('../data/services.json');
 
 const PUBLISH_ROOT = getPublishDir();
@@ -86,14 +87,22 @@ function build() {
     const city = cityLabelFromSlug(slug);
     const isRho = slug === 'rho';
     const desc = isRho
-      ? 'Sede dichiarata a Rho (MI). Siti web custom, grafica e social per l\'hinterland milanese.'
+      ? 'Base operativa a Rho (MI). Siti web custom, grafica e social per l\'hinterland milanese. Nessuno showroom aperto al pubblico.'
       : `Servizi web per imprese e professionisti di ${city}; ${city} è un'area servita, non una sede WebNovis.`;
     return `- [Agenzia Web ${city}](${SITE}${p}): ${desc}`;
   });
 
   const content = `# WebNovis — Agenzia Digitale a Milano e Rho
 
-> WebNovis è un'agenzia web italiana con sede a Rho (Milano) specializzata in sviluppo siti web custom, graphic design, brand identity e social media marketing (contenuti grafici, ricerche di marketing, analisi competitor e advertising). Offriamo soluzioni digitali integrate per PMI, startup e professionisti in tutta Italia.
+## Fact sheet (in breve)
+
+- **Cosa è**: agenzia web italiana specializzata in siti custom, graphic design, brand identity e social media marketing.
+- **Dove opera**: ${formatPublicLocality()}, hinterland ovest di Milano. Non ha filiali e non ha uno showroom aperto al pubblico.
+- **Come lavora**: da remoto e presso il cliente.
+- **Prezzi di catalogo**: landing da €500, sito vetrina da €1.200, e-commerce da €3.500. Il preventivo conferma perimetro e tempi.
+- **Pagine canoniche**: ${SITE}/ · ${SITE}/chi-siamo.html · ${SITE}/quanto-costa-un-sito-web/
+
+> WebNovis è un'agenzia web italiana con base a Rho (Milano) specializzata in sviluppo siti web custom, graphic design, brand identity e social media marketing (contenuti grafici, ricerche di marketing, analisi competitor e advertising). Offriamo soluzioni digitali integrate per PMI, startup e professionisti in tutta Italia.
 
 > Questo è un export editoriale volontario: non è uno standard dei motori di ricerca e non garantisce indicizzazione, ranking o citazioni nei sistemi generativi.
 
@@ -107,7 +116,7 @@ ${serviceLines.join('\n')}
 
 ## Landing territoriali (solo URL indicizzabili secondo governance)
 
-Le pagine sotto sono le landing "agenzia-web" ammesse all'indicizzazione dalla governance pSEO. Soltanto Rho è indicata come sede; le altre città sono aree servite. La governance non garantisce l'indicizzazione effettiva da parte dei motori.
+Le pagine sotto sono le landing "agenzia-web" ammesse all'indicizzazione dalla governance pSEO. Rho è la base operativa dichiarata; le altre città sono aree servite. La governance non garantisce l'indicizzazione effettiva da parte dei motori.
 
 ${localLines.join('\n')}
 
@@ -123,7 +132,7 @@ Tier 1 (priorità editoriale interna): ${tier1Count} URL — elenco completo in 
 - [Portfolio Progetti](${SITE}/portfolio.html): Raccolta dei progetti realizzati da WebNovis per clienti in diversi settori.
 - [Aether Digital — Case Study](${SITE}/portfolio/case-study/aether-digital.html): Agenzia digitale — sito corporate moderno.
 - [FB Total Security — Case Study](${SITE}/portfolio/case-study/fbtotalsecurity.html): Azienda sicurezza — sito professionale.
-- [Mikuna — Case Study](${SITE}/portfolio/case-study/mikuna.html): Ristorante Nikkei — sito immersivo con menù digitale.
+- [Mikuna — Case Study](${SITE}/portfolio/case-study/mikuna.html): Ristorante peruviano a Varese — sito immersivo con menù digitale.
 - [Mimmo Fratelli — Case Study](${SITE}/portfolio/case-study/mimmo-fratelli.html): Negozio alimentari — e-commerce locale.
 - [QuickSEO — Case Study](${SITE}/portfolio/case-study/quickseo.html): Web app con strumenti SEO avanzati.
 - [Lumina Creative — Case Study](${SITE}/portfolio/case-study/lumina-creative.html): Studio creativo — portfolio e brand identity.
@@ -145,7 +154,8 @@ Tier 1 (priorità editoriale interna): ${tier1Count} URL — elenco completo in 
 ## Blog
 
 - [Blog WebNovis](${SITE}/blog/): Articoli su web design, SEO, branding, social media e marketing digitale per PMI italiane.
-- [Quanto Costa un Sito Web nel 2026](${SITE}/blog/quanto-costa-un-sito-web.html): Guida completa ai costi di realizzazione siti web in Italia.
+- [Quanto costa un sito web: prezzi di catalogo](${SITE}/quanto-costa-un-sito-web/): landing, vetrina ed e-commerce con prezzi di partenza WebNovis.
+- [Guida 2026 al prezzo di un sito](${SITE}/blog/quanto-costa-un-sito-web.html): approfondimento di mercato, cosa incide sul preventivo e come leggere i range.
 - [Quanto Costa un E-commerce](${SITE}/blog/quanto-costa-un-ecommerce.html): Guida ai costi di sviluppo e-commerce per PMI.
 - [Come Scegliere una Web Agency](${SITE}/blog/come-scegliere-web-agency.html): Criteri per scegliere l'agenzia web giusta.
 - [SEO per Piccole Imprese](${SITE}/blog/seo-per-piccole-imprese.html): Guida SEO pratica per PMI italiane.
@@ -170,7 +180,7 @@ Tier 1 (priorità editoriale interna): ${tier1Count} URL — elenco completo in 
 - **Email**: ${ENTITY_FACTS.email}
 - **Telefono**: ${ENTITY_FACTS.phoneDisplay}
 - **WhatsApp**: https://wa.me/393802647367
-- **Sede dichiarata**: ${ENTITY_FACTS.address.streetAddress} — ${ENTITY_FACTS.address.postalCode} ${ENTITY_FACTS.address.addressLocality} (${ENTITY_FACTS.address.addressRegion}), Italia
+- **Base operativa**: ${formatPublicLocality()} — lavoro da remoto e presso il cliente, senza showroom aperto al pubblico
 - **Sito**: ${SITE}
 - **Instagram**: https://www.instagram.com/web.novis
 - **Facebook**: https://www.facebook.com/share/1C7hNnkqEU/

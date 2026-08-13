@@ -133,8 +133,8 @@ module.exports = {
     description: 'Come usare Google Ads locali per attirare clienti nella tua zona: campagne search, maps, budget, estensioni, landing page e KPI per PMI e professionisti.'
   },
   'blog/quanto-costa-un-sito-web.html': {
-    title: 'Quanto Costa un Sito Web nel 2026? Prezzi Reali | WebNovis',
-    description: 'Scopri i prezzi reali 2026 di landing page, siti vetrina ed e-commerce: range di costo, cosa incide sul preventivo e come evitare spese inutili.'
+    title: 'Guida 2026: da cosa dipende il prezzo di un sito | WebNovis',
+    description: 'Cosa fa salire o scendere il prezzo di un sito nel 2026: perimetro, contenuti, integrazioni e differenze tra listino di mercato e catalogo WebNovis.'
   },
   'blog/caffe-sempione-caso-studio-locale.html': {
     title: 'Caso Studio Caffè Sempione: Strategia Locale | WebNovis',
@@ -172,7 +172,7 @@ module.exports = {
   'agenzia-web-rho.html': {
     // GSC 13 lug–9 ago 2026: "web agency rho" = 53 impression, posizione 15,51, 0 clic.
     title: 'Web Agency Rho: siti web custom, SEO e branding | WebNovis',
-    description: 'Web agency a Rho con sede in Via S. Giorgio 2: siti custom, e-commerce, branding e SEO locale per PMI e professionisti. Preventivo su richiesta.'
+    description: 'Web agency a Rho: siti custom, e-commerce, branding e SEO locale per PMI. Operiamo da remoto e presso il cliente. Preventivo su richiesta.'
   },
   'realizzazione-siti-web-rho.html': {
     title: 'Realizzazione siti web a Rho: da €1.200 e SEO | WebNovis',

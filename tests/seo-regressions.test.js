@@ -206,9 +206,13 @@ function main() {
     'Homepage chat input must expose an accessible label'
   );
   assert.ok(
-    !indexHtml.includes('/agenzia-web-rho.html') &&
-      !indexHtml.includes('/agenzia-web-milano.html'),
-    'Homepage must not keep direct city footer links after the geo de-amplification pass'
+    !/realizzazione-siti-web-(?:pero|lainate|cornaredo|settimo-milanese)\.html/.test(indexHtml),
+    'Homepage must not promote de-amplified city landings'
+  );
+  assert.match(
+    indexHtml,
+    /href="(?:\/)?agenzia-web-milano\.html"/,
+    'Homepage must pass Milano commercial intent to the dedicated hinterland landing'
   );
   assert.ok(
     indexHtml.includes('/zone-servite/') &&

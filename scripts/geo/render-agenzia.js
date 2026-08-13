@@ -100,18 +100,18 @@ function generateAgenziaPage(city) {
                 ? `Agenzia Web ${toCity(city.name)}: Siti Custom, Grafica e Social per l'Hinterland Milanese`
                 : `Agenzia Web ${toCity(city.name)}: Siti Professionali per Imprese e Professionisti`,
             heroCapsule: city.isSede
-                ? `<strong>WebNovis</strong> è l'agenzia web con sede a Rho per PMI e professionisti dell'hinterland milanese. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.`
-                : `<strong>WebNovis</strong> è l'agenzia web di riferimento per PMI e professionisti di ${city.name}. Sede a Rho (${city.distanzaSede} in auto), incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.`,
+                ? `<strong>WebNovis</strong> è l'agenzia web con base a Rho per PMI e professionisti dell'hinterland milanese. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.`
+                : `<strong>WebNovis</strong> è l'agenzia web di riferimento per PMI e professionisti di ${city.name}. Operiamo da Rho (${city.distanzaSede} in auto); ${city.name} è un'area servita, non una sede WebNovis. Incontri presso i clienti o in videochiamata. Codice 100% custom — zero WordPress, zero template. Richiesta di preventivo gratuita.`,
             section1Title: ctx.highlights
                 ? `Perché un'agenzia web vicina è un vantaggio per le imprese di ${city.name}?`
                 : `Perché scegliere un'agenzia web locale ${toCity(city.name)}?`,
             section1Intro: section1Intro,
             cards1: [
                 {
-                    h3: city.isSede ? 'Sede operativa qui' : `${city.distanzaSede} dalla nostra sede`,
+                    h3: city.isSede ? 'Base operativa a Rho' : `${city.distanzaSede} da Rho`,
                     p: city.isSede
-                        ? `WebNovis ha sede a Rho, in Via S. Giorgio 2. Incontri rapidi in azienda, comunicazione diretta.`
-                        : `WebNovis ha sede a Rho, a ${city.distanzaSede} in auto da ${city.name}. Incontri rapidi in azienda, senza traffico milanese.`
+                        ? `WebNovis opera da Rho. Incontri presso il cliente o in videochiamata, comunicazione diretta.`
+                        : `WebNovis opera da Rho, a ${city.distanzaSede} in auto da ${city.name}. ${city.name} è un'area servita, non una sede WebNovis. Incontri presso il cliente o in videochiamata.`
                 },
                 {
                     h3: 'Conoscenza del territorio',

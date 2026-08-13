@@ -2671,7 +2671,7 @@ const articles = [
 <pre style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:1rem;overflow-x:auto;font-size:.85rem"><code>{
   "@type": "LocalBusiness",
   "name": "Web Novis",
-  "address": "Via S. Giorgio 2, Rho MI",
+  "address": "Rho (MI)",
   "telephone": "+39 380 264 7367"
 }</code></pre>
 
@@ -7290,7 +7290,7 @@ const stubArticles = [
 <p>Un post a settimana è sufficiente. Non serve un romanzo: una foto, due frasi e un link al sito. Google vede l'attività regolare e premia la scheda con più visibilità.</p>
 
 <h2>7. Mantieni coerenza assoluta dei dati su tutto il web</h2>
-<p>Il tuo Nome, Indirizzo e Telefono (NAP) devono essere identici ovunque: sito web, Facebook, Instagram, Pagine Gialle, TripAdvisor, qualunque directory. Anche una differenza minima ("Via S. Giorgio 2" vs "Via San Giorgio, 2") confonde Google e abbassa il ranking. Controlla le tue citazioni locali con uno strumento come <a href="https://www.semrush.com/features/local-seo/" rel="noopener noreferrer" target="_blank">Semrush Local</a> e correggi le incoerenze.</p>
+<p>Il tuo Nome, Indirizzo e Telefono (NAP) devono essere identici ovunque: sito web, Facebook, Instagram, Pagine Gialle, TripAdvisor, qualunque directory. Anche una differenza minima ("Via Roma 1" vs "Via Roma, 1") confonde Google e abbassa il ranking. Controlla le tue citazioni locali con uno strumento come <a href="https://www.semrush.com/features/local-seo/" rel="noopener noreferrer" target="_blank">Semrush Local</a> e correggi le incoerenze.</p>
 
 <h2>8. Sfrutta la sezione Domande e Risposte</h2>
 <p>Chiunque può fare domande sulla tua scheda. Anticipale: scrivi tu le domande più frequenti (orari, parcheggio, metodi di pagamento, tempi di consegna) e rispondi in modo chiaro. Così quando un potenziale cliente cerca la tua attività, trova subito le risposte senza dover chiamare — e tu risparmi telefonate ripetitive.</p>

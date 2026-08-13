@@ -7,7 +7,7 @@
 - Nome principale: WebNovis
 - Variante leggibile: Web Novis
 - Sito canonico: https://www.webnovis.com
-- Sede dichiarata: Via S. Giorgio, 2, 20017 Rho (MI), Italia
+- Base operativa: Rho (MI), Italia — lavoro da remoto e presso il cliente, senza showroom
 - Email: hello@webnovis.com
 - Telefono: +39 380 264 7367
 - Google Business Profile: esistenza confermata dal proprietario; [azione per lasciare una recensione](https://g.page/r/CRblKdK0GGO_EBM/review)
@@ -27,7 +27,7 @@ I prezzi sono valori iniziali presenti in data/services.json. Non sono preventiv
 
 ## Copertura geografica
 
-- Rho è la località della sede dichiarata.
+- Rho è la località della base operativa dichiarata. Non è uno showroom aperto al pubblico.
 - Le altre città citate nelle landing sono aree servite, non filiali o sedi aggiuntive.
 - Le landing GEO ammesse all'indicizzazione dalla governance corrente sono 80.
 - L'indicizzazione effettiva e la visibilità per query locali dipendono dai motori di ricerca e non sono garantite da questo file.

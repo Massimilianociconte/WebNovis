@@ -133,7 +133,7 @@ function main() {
             faqs: {
                 agenzia: [
                     { q: `Quanto costa un sito web a ${nc.name}?`, a: `Prezzi indicativi: Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. La proposta conferma perimetro, prezzo e tempistiche.` },
-                    { q: `Dove si trova WebNovis rispetto a ${nc.name}?`, a: `La nostra sede è a Rho, Via S. Giorgio 2 — ${driveMin} minuti in auto da ${nc.name}. Incontriamo i clienti in azienda o in videochiamata.` },
+                    { q: `Dove si trova WebNovis rispetto a ${nc.name}?`, a: `Operiamo da Rho — ${driveMin} minuti in auto da ${nc.name}. ${nc.name} è un'area servita, non una sede WebNovis. Incontriamo i clienti in azienda o in videochiamata.` },
                     { q: `Servite anche i comuni vicini a ${nc.name}?`, a: `Sì. Serviamo ${nc.name} e tutti i comuni dell'hinterland milanese, inclusa la Città Metropolitana di Milano.` },
                     { q: `Usate WordPress?`, a: `No. Solo codice 100% custom — HTML5, CSS3, JavaScript. Performance, sicurezza e SEO nativi.` },
                     { q: `Quanto tempo per un sito?`, a: `Stime indicative, da confermare nella proposta: Landing Page 5-7 giorni, Sito Vetrina 2-3 settimane, E-Commerce 4-8 settimane.` },

@@ -83,7 +83,7 @@ function generateSchemas(city, pageType, resolvedFaqs) {
         ? { name: 'Agenzia Web', item: `${SITE}/agenzia-web/` }
         : { name: 'Siti Web per Comuni', item: `${SITE}/realizzazione-siti-web/` };
     const webPageDescription = isAgenziaPage
-        ? `WebNovis è l'agenzia web per ${city.name} e hinterland milanese. Siti 100% custom, graphic design, social media. Sede a Rho, ${city.distanzaSede} da ${city.name}.`
+        ? `WebNovis è l'agenzia web per ${city.name} e hinterland milanese. Siti 100% custom, graphic design, social media. Base a Rho, ${city.distanzaSede} da ${city.name}.`
         : `Realizzazione siti web ${toCity(city.name)} per PMI e professionisti: landing page, siti vetrina ed e-commerce custom con SEO tecnica integrata e gestione diretta da Rho (${city.distanzaSede}).`;
     const offerCatalogName = isAgenziaPage
         ? `Servizi Web ${toCity(city.name)}`

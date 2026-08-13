@@ -10,8 +10,11 @@ const { preserveGovernedCustomBlocks } = require('../../config/content-claim-gov
 const {
     BASE_PAGE_DIR,
     SITE,
+    ROOT,
+    PUBLISH_DIR,
     isIndexableGeoPath,
-    isGeoPath
+    isGeoPath,
+    isDeAmplifiedPath
 } = require('./config');
 const { applyEditorialDate } = require('./dates');
 const {
@@ -99,8 +102,12 @@ function finalizePublishedHtml(relativePath, html) {
 }
 
 function writePublishedFile(relativePath, html) {
+    const publicPath = toPublicPath(relativePath);
+    if (isDeAmplifiedPath(publicPath) && path.resolve(PUBLISH_DIR) !== path.resolve(ROOT)) {
+        return;
+    }
     const targetPath = resolvePublishPath(relativePath);
-    const resolved = applyEditorialDate(toPublicPath(relativePath), html);
+    const resolved = applyEditorialDate(publicPath, html);
     fs.mkdirSync(path.dirname(targetPath), { recursive: true });
     fs.writeFileSync(targetPath, resolved, 'utf8');
 }

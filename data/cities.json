@@ -8,7 +8,7 @@
       "cap": "20017",
       "lat": 45.5299,
       "lng": 9.0393,
-      "address": "Via S. Giorgio, 2"
+      "note": "Base operativa a Rho; no walk-in office or public street address."
     }
   },
   "cities": [
@@ -69,8 +69,8 @@
             "a": "I prezzi partono da <strong>€500</strong> per una Landing Page, da <strong>€1.200</strong> per un Sito Vetrina e da <strong>€3.500</strong> per un E-Commerce custom. Prezzi indicativi; la proposta personalizzata conferma perimetro, prezzo e tempistiche."
           },
           {
-            "q": "Dove si trova WebNovis?",
-            "a": "La nostra sede è a Rho, in Via S. Giorgio 2 (20017 MI). Incontriamo i clienti in sede, presso le loro aziende o in videochiamata."
+            "q": "Dove operate?",
+            "a": "Operiamo da Rho (20017 MI). Incontriamo i clienti presso le loro aziende o in videochiamata."
           },
           {
             "q": "Servite solo Rho o anche comuni vicini?",
@@ -170,7 +170,7 @@
           },
           {
             "q": "Dove siete rispetto a Lainate?",
-            "a": "La nostra sede è a Rho, in Via S. Giorgio 2 — a 8 minuti in auto da Lainate via SP ex-SS33. Incontriamo i clienti presso le loro aziende o in videochiamata."
+            "a": "Operiamo da Rho — a 8 minuti in auto da Lainate via SP ex-SS33. Incontriamo i clienti presso le loro aziende o in videochiamata."
           },
           {
             "q": "Servite solo Lainate o anche comuni vicini?",
@@ -275,7 +275,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto ad Arese?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 10 minuti in auto da Arese. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 10 minuti in auto da Arese. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Potete creare un e-commerce per un negozio di Arese?",
@@ -380,7 +380,7 @@
           },
           {
             "q": "Dove siete rispetto a Garbagnate?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 12 minuti in auto via SP527. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 12 minuti in auto via SP527. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini?",
@@ -485,7 +485,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Pero?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — a soli 5 minuti in auto da Pero. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — a soli 5 minuti in auto da Pero. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Fate siti per attività legate alla Fiera?",
@@ -590,7 +590,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Cornaredo?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 12 minuti in auto. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 12 minuti in auto. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini?",
@@ -693,8 +693,8 @@
             "a": "Landing Page da <strong>€500</strong>, Sito Vetrina da <strong>€1.200</strong>, E-Commerce da <strong>€3.500</strong>. Prezzi indicativi; la proposta personalizzata conferma perimetro, prezzo e tempistiche."
           },
           {
-            "q": "Dove si trova WebNovis?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 14 minuti in auto da Settimo Milanese. Incontriamo i clienti in azienda o in videochiamata."
+            "q": "Dove operate?",
+            "a": "Operiamo da Rho — 14 minuti in auto da Settimo Milanese. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini?",
@@ -885,7 +885,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Bollate?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 10 minuti in auto da Bollate. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 10 minuti in auto da Bollate. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Bollate?",
@@ -990,7 +990,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Nerviano?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 10 minuti in auto da Nerviano. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 10 minuti in auto da Nerviano. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini?",
@@ -1090,7 +1090,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Pregnana?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 8 minuti in auto da Pregnana Milanese."
+            "a": "Operiamo da Rho — 8 minuti in auto da Pregnana Milanese."
           },
           {
             "q": "Servite anche i comuni vicini?",
@@ -1190,7 +1190,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Vanzago?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 10 minuti in auto."
+            "a": "Operiamo da Rho — 10 minuti in auto."
           },
           {
             "q": "Servite anche i comuni vicini?",
@@ -1291,7 +1291,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Baranzate?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 8 minuti in auto."
+            "a": "Operiamo da Rho — 8 minuti in auto."
           },
           {
             "q": "Servite anche i comuni vicini?",
@@ -1390,7 +1390,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Pogliano Milanese?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 8 minuti in auto da Pogliano Milanese. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 8 minuti in auto da Pogliano Milanese. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Pogliano Milanese?",
@@ -1489,7 +1489,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Cesate?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 17 minuti in auto da Cesate. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 17 minuti in auto da Cesate. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Cesate?",
@@ -1589,7 +1589,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Senago?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 19 minuti in auto da Senago. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 19 minuti in auto da Senago. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Senago?",
@@ -1689,7 +1689,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Novate Milanese?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 17 minuti in auto da Novate Milanese. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 17 minuti in auto da Novate Milanese. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Novate Milanese?",
@@ -1789,7 +1789,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Paderno Dugnano?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 24 minuti in auto da Paderno Dugnano. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 24 minuti in auto da Paderno Dugnano. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Paderno Dugnano?",
@@ -1889,7 +1889,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto ad Arluno?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 17 minuti in auto da Arluno. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 17 minuti in auto da Arluno. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini ad Arluno?",
@@ -1989,7 +1989,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Parabiago?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 17 minuti in auto da Parabiago. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 17 minuti in auto da Parabiago. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Parabiago?",
@@ -2089,7 +2089,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Bareggio?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 15 minuti in auto da Bareggio. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 15 minuti in auto da Bareggio. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Bareggio?",
@@ -2188,7 +2188,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Cusago?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 20 minuti in auto da Cusago. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 20 minuti in auto da Cusago. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Cusago?",
@@ -2288,7 +2288,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Trezzano sul Naviglio?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 27 minuti in auto da Trezzano sul Naviglio. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 27 minuti in auto da Trezzano sul Naviglio. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Trezzano sul Naviglio?",
@@ -2388,7 +2388,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Cesano Boscone?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 26 minuti in auto da Cesano Boscone. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 26 minuti in auto da Cesano Boscone. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Cesano Boscone?",
@@ -2488,7 +2488,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Buccinasco?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 29 minuti in auto da Buccinasco. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 29 minuti in auto da Buccinasco. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Buccinasco?",
@@ -2586,7 +2586,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Cormano?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 22 minuti in auto da Cormano. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 22 minuti in auto da Cormano. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Cormano?",
@@ -2686,7 +2686,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Bresso?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 25 minuti in auto da Bresso. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 25 minuti in auto da Bresso. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Bresso?",
@@ -2786,7 +2786,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Cinisello Balsamo?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 30 minuti in auto da Cinisello Balsamo. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 30 minuti in auto da Cinisello Balsamo. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Cinisello Balsamo?",
@@ -2887,7 +2887,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Sesto San Giovanni?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 33 minuti in auto da Sesto San Giovanni. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 33 minuti in auto da Sesto San Giovanni. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Sesto San Giovanni?",
@@ -2987,7 +2987,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Magenta?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 31 minuti in auto da Magenta. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 31 minuti in auto da Magenta. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Magenta?",
@@ -3088,7 +3088,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Legnano?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 27 minuti in auto da Legnano. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 27 minuti in auto da Legnano. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Legnano?",
@@ -3188,7 +3188,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Castellanza?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 31 minuti in auto da Castellanza. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 31 minuti in auto da Castellanza. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Castellanza?",
@@ -3289,7 +3289,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Saronno?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 23 minuti in auto da Saronno. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 23 minuti in auto da Saronno. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Saronno?",
@@ -3391,7 +3391,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Milano Ovest?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 21 minuti in auto da Milano Ovest. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 21 minuti in auto da Milano Ovest. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Milano Ovest?",
@@ -3493,7 +3493,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Milano Nord?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 25 minuti in auto da Milano Nord. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 25 minuti in auto da Milano Nord. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Milano Nord?",
@@ -3592,7 +3592,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Solaro?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 22 minuti in auto da Solaro. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 22 minuti in auto da Solaro. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Solaro?",
@@ -3691,7 +3691,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Cerro Maggiore?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 21 minuti in auto da Cerro Maggiore. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 21 minuti in auto da Cerro Maggiore. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Cerro Maggiore?",
@@ -3789,7 +3789,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Rescaldina?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 27 minuti in auto da Rescaldina. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 27 minuti in auto da Rescaldina. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Rescaldina?",
@@ -3888,7 +3888,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto ad Origgio?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 16 minuti in auto da Origgio. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 16 minuti in auto da Origgio. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini ad Origgio?",
@@ -3988,7 +3988,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Caronno Pertusella?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 16 minuti in auto da Caronno Pertusella. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 16 minuti in auto da Caronno Pertusella. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Caronno Pertusella?",
@@ -4088,7 +4088,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Limbiate?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 22 minuti in auto da Limbiate. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 22 minuti in auto da Limbiate. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Limbiate?",
@@ -4188,7 +4188,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Corsico?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 27 minuti in auto da Corsico. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 27 minuti in auto da Corsico. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Corsico?",
@@ -4288,7 +4288,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto ad Assago?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 35 minuti in auto da Assago. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 35 minuti in auto da Assago. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini ad Assago?",
@@ -4388,7 +4388,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Rozzano?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 41 minuti in auto da Rozzano. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 41 minuti in auto da Rozzano. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Rozzano?",
@@ -4489,7 +4489,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Monza?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 42 minuti in auto da Monza. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 42 minuti in auto da Monza. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Monza?",
@@ -4589,7 +4589,7 @@
           },
           {
             "q": "Dove si trova WebNovis rispetto a Cologno Monzese?",
-            "a": "La nostra sede è a Rho, Via S. Giorgio 2 — 41 minuti in auto da Cologno Monzese. Incontriamo i clienti in azienda o in videochiamata."
+            "a": "Operiamo da Rho — 41 minuti in auto da Cologno Monzese. Incontriamo i clienti in azienda o in videochiamata."
           },
           {
             "q": "Servite anche i comuni vicini a Cologno Monzese?",

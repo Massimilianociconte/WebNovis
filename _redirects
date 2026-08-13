@@ -26,6 +26,17 @@
 /social-media-rho.html /servizi/social-media.html 301
 /chiedere-recensioni-clienti /blog/chiedere-recensioni-clienti.html 301
 
+# --- 301 GEO de-amplificati (famiglie intere, nessuna URL indexable) ---
+/accessibilita-* /servizi/accessibilita.html 301
+/copywriting-* /servizi/consulenze.html 301
+/fotografia-aziendale-* /servizi/graphic-design.html 301
+/web-app-* /servizi/sviluppo-web.html 301
+/automazione-business-* /servizi/consulenze.html 301
+/restyling-sito-web-* /servizi/sviluppo-web.html 301
+/manutenzione-sito-* /servizi/sviluppo-web.html 301
+/sviluppo-app-mobile-* /servizi/sviluppo-web.html 301
+/consulenze-* /servizi/consulenze.html 301
+
 # --- 301 legacy dinamici (con splat: tenere dopo le regole statiche) ---
 /consulenza-digitale-* /consulenze-:splat 301
 /public/* /:splat 301

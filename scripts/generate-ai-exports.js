@@ -40,7 +40,7 @@ function buildAiText() {
 - Nome principale: ${ENTITY_FACTS.name}
 - Variante leggibile: ${ENTITY_FACTS.alternateName}
 - Sito canonico: ${ENTITY_FACTS.siteUrl}
-- Sede dichiarata: ${ENTITY_FACTS.address.streetAddress}, ${ENTITY_FACTS.address.postalCode} ${ENTITY_FACTS.address.addressLocality} (${ENTITY_FACTS.address.addressRegion}), Italia
+- Base operativa: ${ENTITY_FACTS.address.addressLocality} (${ENTITY_FACTS.address.addressRegion}), Italia — lavoro da remoto e presso il cliente, senza showroom
 - Email: ${ENTITY_FACTS.email}
 - Telefono: ${ENTITY_FACTS.phoneDisplay}
 - Google Business Profile: esistenza confermata dal proprietario; [azione per lasciare una recensione](${ENTITY_FACTS.reviewActionUrl})
@@ -54,7 +54,7 @@ I prezzi sono valori iniziali presenti in data/services.json. Non sono preventiv
 
 ## Copertura geografica
 
-- Rho è la località della sede dichiarata.
+- Rho è la località della base operativa dichiarata. Non è uno showroom aperto al pubblico.
 - Le altre città citate nelle landing sono aree servite, non filiali o sedi aggiuntive.
 - Le landing GEO ammesse all'indicizzazione dalla governance corrente sono ${ALL_INDEXABLE_GEO_PATHS.size}.
 - L'indicizzazione effettiva e la visibilità per query locali dipendono dai motori di ricerca e non sono garantite da questo file.
