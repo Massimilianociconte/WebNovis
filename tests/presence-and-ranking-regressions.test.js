@@ -151,8 +151,12 @@ const sviluppo = applySeoHtmlTransforms(read('servizi/sviluppo-web.html'), 'serv
 assert.match(sviluppo, /\/blog\/quanto-costa-un-sito-web\.html/);
 
 const robots = read('robots.txt');
-assert.match(robots, /Disallow:\s*\/accessibilita-/);
-assert.match(robots, /Disallow:\s*\/sviluppo-app-mobile-/);
+// Policy 2026-08: le famiglie GEO de-amplificate NON vengono bloccate da
+// robots.txt. Il loro `noindex, follow` deve restare leggibile dai crawler:
+// bloccarle in robots.txt impedirebbe di vedere il noindex e rischia il
+// stato "Indexed, though blocked by robots.txt" su URL linkati esternamente.
+assert.doesNotMatch(robots, /Disallow:\s*\/accessibilita-/);
+assert.doesNotMatch(robots, /Disallow:\s*\/sviluppo-app-mobile-/);
 assert.match(robots, /User-agent:\s*GPTBot/i);
 
 const redirects = read('_redirects');

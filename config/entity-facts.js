@@ -36,7 +36,12 @@ const FORBIDDEN_ENTITY_URLS = Object.freeze([
   'https://www.wikidata.org/wiki/Q138340285',
   'https://www.linkedin.com/company/webnovis',
   'https://www.cylex-italia.it/rho/web-novis-16332263.html',
-  'https://www.cylex-italia.it/rho/web-novis-16332431.html'
+  'https://www.cylex-italia.it/rho/web-novis-16332431.html',
+  // Profili morti o non verificabili (audit 2026-08): mai più usati come sameAs.
+  'https://www.tupalo.net/en/rho/web-novis',
+  'https://www.startus.cc/company/web-novis',
+  'https://www.behance.net/web-novis',
+  'https://gravatar.com/totallycowboy36ee3bef4c'
 ]);
 
 const FORBIDDEN_ENTITY_URL_SET = new Set(FORBIDDEN_ENTITY_URLS);

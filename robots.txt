@@ -30,6 +30,7 @@ Disallow: /data/
 Disallow: /dist/
 Disallow: /docs/
 Disallow: /node_modules/
+Disallow: /assets-src/
 Disallow: /reports/
 Disallow: /scripts/
 Disallow: /src/
@@ -51,16 +52,9 @@ Disallow: /*.md$
 Disallow: /test-*.html
 Disallow: /*?s=
 Disallow: /search-ai-index.json
-# Famiglie GEO de-amplificate (nessuna URL indexable). I prefissi non toccano /servizi/*.
-Disallow: /accessibilita-
-Disallow: /copywriting-
-Disallow: /fotografia-aziendale-
-Disallow: /web-app-
-Disallow: /automazione-business-
-Disallow: /restyling-sito-web-
-Disallow: /manutenzione-sito-
-Disallow: /sviluppo-app-mobile-
-Disallow: /consulenze-
+# Famiglie GEO de-amplificate: gestite con <meta name="robots" content="noindex, follow">
+# nelle pagine (NON bloccate qui) così i crawler possono leggere il noindex e
+# non si crea il conflitto "indicizzata ma bloccata da robots.txt".
 
 # Crawler AI legittimi: stessi confini tecnici del gruppo generico.
 User-agent: GPTBot
@@ -97,6 +91,7 @@ Disallow: /data/
 Disallow: /dist/
 Disallow: /docs/
 Disallow: /node_modules/
+Disallow: /assets-src/
 Disallow: /reports/
 Disallow: /scripts/
 Disallow: /src/
@@ -118,16 +113,6 @@ Disallow: /*.md$
 Disallow: /test-*.html
 Disallow: /*?s=
 Disallow: /search-ai-index.json
-# Famiglie GEO de-amplificate (nessuna URL indexable). I prefissi non toccano /servizi/*.
-Disallow: /accessibilita-
-Disallow: /copywriting-
-Disallow: /fotografia-aziendale-
-Disallow: /web-app-
-Disallow: /automazione-business-
-Disallow: /restyling-sito-web-
-Disallow: /manutenzione-sito-
-Disallow: /sviluppo-app-mobile-
-Disallow: /consulenze-
 
 # Scraper aggressivi.
 User-agent: MJ12bot
