@@ -1,28 +1,19 @@
 /* ===== WEBNOVIS REVOLUTION DESIGN ===== */
 /* Ultra-Modern Web Agency Style - Awwwards Inspired */
 
-/* ========== HERO REVOLUTION ========== */
+/* ========== HERO REVOLUTION ==========
+   Layout hero governato da style.css (hero redesign 2026).
+   Qui restano solo: base .hero, noise overlay, bottoni globali. */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
     position: relative;
     overflow: hidden;
 }
 
 .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(ellipse 100% 80% at 50% 20%, rgba(91, 106, 174, 0.12), transparent 60%),
-        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(58, 71, 133, 0.08), transparent 50%),
-        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(123, 140, 201, 0.06), transparent 50%);
-    pointer-events: none;
+    content: none;
 }
 
 /* Noise texture overlay per effetto premium */
@@ -34,213 +25,10 @@
     opacity: 0.025;
     pointer-events: none;
     mix-blend-mode: overlay;
+    z-index: 1;
 }
-
-.hero-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-}
-
-/* Animated Gradient Orbs - Più grandi e fluidi */
-.gradient-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.6;
-    animation: orbFloat 20s ease-in-out infinite;
-}
-
-.orb-1 {
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(91, 106, 174, 0.4) 0%, transparent 70%);
-    top: -200px;
-    right: -100px;
-    animation-delay: 0s;
-}
-
-.orb-2 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(58, 71, 133, 0.35) 0%, transparent 70%);
-    bottom: -150px;
-    left: -100px;
-    animation-delay: -7s;
-}
-
-.orb-3 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(123, 140, 201, 0.3) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation-delay: -14s;
-}
-
-@keyframes orbFloat {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(30px, -30px) scale(1.05); }
-    50% { transform: translate(-20px, 20px) scale(0.95); }
-    75% { transform: translate(20px, 10px) scale(1.02); }
-}
-
-/* Grid Overlay - Più sottile e moderno */
-.grid-overlay {
-    position: absolute;
-    inset: 0;
-    background-image: 
-        linear-gradient(rgba(91, 106, 174, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(91, 106, 174, 0.03) 1px, transparent 1px);
-    background-size: 80px 80px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
-}
-
-/* Hero Content - Centrato */
-.hero-container {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-content {
-    max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Badge - Più elegante */
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 24px;
-    background: rgba(91, 106, 174, 0.1);
-    border: 1px solid rgba(91, 106, 174, 0.3);
-    border-radius: 100px;
-    margin-bottom: 2rem;
-    /* No entrance animation: hero content must be opaque on first paint (LCP) */
-}
-
-.badge-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--primary);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.2); }
-}
-
-.hero-badge span:last-child {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--primary-light);
-    letter-spacing: 0.02em;
-}
-
-/* Hero Title - Typography Revolution */
-.hero-title {
-    font-family: 'Syne', 'Space Grotesk', sans-serif;
-    font-size: clamp(2rem, 4.5vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    margin-bottom: 1.5rem;
-    /* No fadeInUp: opacity:0 first paint breaks mobile LCP (guarded by lcp-hero tests) */
-}
-
-.hero-title .gradient-text {
-    background: none;
-    -webkit-background-clip: unset;
-    background-clip: unset;
-    -webkit-text-fill-color: #fff;
-    color: #fff;
-    animation: none;
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Glitch Effect - Più sottile */
-.glitch {
-    position: relative;
-}
-
-.glitch::before,
-.glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-}
-
-.glitch::before {
-    left: 2px;
-    text-shadow: -2px 0 rgba(58, 71, 133, 0.5);
-    clip-path: inset(0 0 0 0);
-    animation: glitch-1 4s infinite linear alternate-reverse;
-}
-
-.glitch::after {
-    left: -2px;
-    text-shadow: 2px 0 rgba(91, 106, 174, 0.5);
-    clip-path: inset(0 0 0 0);
-    animation: glitch-2 4s infinite linear alternate-reverse;
-}
-
-@keyframes glitch-1 {
-    0%, 90%, 100% { clip-path: inset(0 0 100% 0); }
-    92% { clip-path: inset(30% 0 40% 0); }
-    94% { clip-path: inset(70% 0 10% 0); }
-    96% { clip-path: inset(10% 0 60% 0); }
-    98% { clip-path: inset(50% 0 30% 0); }
-}
-
-@keyframes glitch-2 {
-    0%, 90%, 100% { clip-path: inset(100% 0 0 0); }
-    91% { clip-path: inset(20% 0 50% 0); }
-    93% { clip-path: inset(60% 0 20% 0); }
-    95% { clip-path: inset(40% 0 40% 0); }
-    97% { clip-path: inset(80% 0 5% 0); }
-}
-
-/* Hero Subtitle */
-.hero-subtitle {
-    font-size: clamp(1.05rem, 2vw, 1.3rem);
-    color: rgba(255, 255, 255, 0.92);
-    line-height: 1.65;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    text-align: center;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-}
-
-/* Hero Visual Elements rimossi - design pulito e centrato */
 
 /* CTA Buttons - Premium Style 2026 */
-.hero-cta {
-    display: flex;
-    gap: 1.15rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 .btn {
     display: inline-flex;
     align-items: center;
@@ -580,22 +368,6 @@ body:hover .cursor-glow {
    Tipografia hero e layout CTA mobile governati da style.css
    (design system unico: niente override duplicati qui). */
 @media (max-width: 768px) {
-    .hero {
-        padding: 80px 0 2rem;
-        min-height: 100vh;
-        min-height: 100svh;
-    }
-
-    /* Ensure Revolution Orbs do not break mobile layout or cause horizontal scroll */
-    .orb-1, .orb-2, .orb-3 {
-        transform: scale(0.6);
-        opacity: 0.3;
-    }
-
-    .orb-1 { top: -10%; right: -20%; }
-    .orb-2 { bottom: -10%; left: -20%; }
-    .orb-3 { top: 40%; left: 50%; }
-
     .btn {
         width: 100%;
         justify-content: center;
@@ -604,45 +376,10 @@ body:hover .cursor-glow {
     .section-title {
         font-size: clamp(1.75rem, 5vw, 2.5rem);
     }
-
-    .gradient-orb {
-        opacity: 0.3;
-    }
-
-    .orb-1 { width: 300px; height: 300px; }
-    .orb-2 { width: 250px; height: 250px; }
-    .orb-3 { width: 200px; height: 200px; }
 }
 
-/* ========== SMOOTH SCROLL INDICATOR ========== */
-.scroll-indicator {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    animation: fadeInUp 1s ease-out 1s both;
-}
-
-.scroll-indicator::after {
-    content: '';
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--primary), transparent);
-    animation: scrollLine 2s ease-in-out infinite;
-}
-
-@keyframes scrollLine {
-    0% { transform: scaleY(0); transform-origin: top; }
-    50% { transform: scaleY(1); transform-origin: top; }
-    50.1% { transform: scaleY(1); transform-origin: bottom; }
-    100% { transform: scaleY(0); transform-origin: bottom; }
-}
+/* ========== SCROLL INDICATOR ==========
+   (Nessun elemento .scroll-indicator nel DOM: regole rimosse con il redesign hero) */
 
 
 /* ========== DESIGN SHOWCASE IMAGE ========== */

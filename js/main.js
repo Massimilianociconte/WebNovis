@@ -817,6 +817,40 @@ const orbsParallax = document.querySelectorAll('.gradient-orb');
     }, { passive: true });
 })();
 
+// Hero Showcase pointer parallax — scoped su .hero-showcase, via CSS vars (--px/--py),
+// GPU-friendly, solo pointer fine, disattivato con prefers-reduced-motion
+(function() {
+    var showcase = document.querySelector('.hero-showcase');
+    var heroEl = document.querySelector('.hero');
+    if (!showcase || !heroEl) return;
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!finePointer.matches || reducedMotion.matches) return;
+    var frame = 0, tx = 0, ty = 0, cx = 0, cy = 0;
+
+    function step() {
+        frame = 0;
+        cx += (tx - cx) * 0.08;
+        cy += (ty - cy) * 0.08;
+        showcase.style.setProperty('--px', cx.toFixed(3));
+        showcase.style.setProperty('--py', cy.toFixed(3));
+        if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) frame = requestAnimationFrame(step);
+    }
+
+    heroEl.addEventListener('mousemove', function(e) {
+        if (!finePointer.matches || reducedMotion.matches) return;
+        var r = heroEl.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        if (!frame) frame = requestAnimationFrame(step);
+    }, { passive: true });
+
+    heroEl.addEventListener('mouseleave', function() {
+        tx = 0; ty = 0;
+        if (!frame) frame = requestAnimationFrame(step);
+    }, { passive: true });
+})();
+
 // Smooth Reveal for Sections
 const revealSections = document.querySelectorAll('.service-section, .testimonials-section, .tech-stack-section');
 
