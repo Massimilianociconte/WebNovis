@@ -3,40 +3,34 @@ const { SECURITY_HEADERS } = require('../config/security-headers');
 const DEFAULT_PRODUCTION_SITE_URL = 'https://www.webnovis.com';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Produzione attuale: GitHub Pages (root del repository) dietro proxy Cloudflare.
-// Pages ignora il file _headers (formato Cloudflare Workers/Pages custom),
-// quindi gli header osservabili sono quelli dell'edge Pages + zona Cloudflare.
-// I valori identici alla policy condivisa vengono derivati da SECURITY_HEADERS;
-// gli override sono i valori effettivamente osservati dall'edge.
-// TODO(infra): al completamento della migrazione su Workers Assets (dist/
-// sanitizzato via prepare-public-artifact.js), usare di nuovo SECURITY_HEADERS
-// come attesa per pagine e 404, e i 404 strict per le sorgenti interne
-// (vedi docs/deploy-header-matrix.md).
+// Produzione (dal 2026-08-25): Workers Assets (dist/ sanitizzato) su route
+// www.webnovis.com/*, dietro proxy Cloudflare. Le _headers del repository sono
+// attive: le attese tornano SECURITY_HEADERS (strict).
+// Drift edge noto: Transform Rules di zona (bridge pre-migrazione) sovrascrivono
+// X-Frame-Options (SAMEORIGIN), Referrer-Policy (same-origin) e X-XSS-Protection
+// (1; mode=block): finché non vengono rimosse dal dashboard, questi header sono
+// trattati come edge-managed (warning, non failure).
 // ─────────────────────────────────────────────────────────────────────────────
-const PAGES_EDGE_HEADERS = {
-  'X-Content-Type-Options': SECURITY_HEADERS['X-Content-Type-Options'],
-  'Strict-Transport-Security': SECURITY_HEADERS['Strict-Transport-Security'],
-  'X-Frame-Options': 'SAMEORIGIN',
-  'Referrer-Policy': 'same-origin',
-  'X-XSS-Protection': '1; mode=block',
-  // Edge-managed (severity warn): Pages non inietta la CSP del repository.
-  // Il drift viene riportato come warning senza bloccare il gate.
-  'Content-Security-Policy': SECURITY_HEADERS['Content-Security-Policy']
-};
 
 const edgeManagedHeaders = new Set([
   'Strict-Transport-Security',
-  'Content-Security-Policy'
+  'Content-Security-Policy',
+  // Edge override attivo (Transform Rules di zona): rimuovere le regole e
+  // tornare a 'error' per ripristinare l'applicazione strict dei valori repo.
+  'X-Frame-Options',
+  'Referrer-Policy',
+  'X-XSS-Protection'
 ]);
 
 const headerSeverity = new Map([
   ['X-Content-Type-Options', 'error'],
-  ['X-Frame-Options', 'error'],
-  ['Referrer-Policy', 'error'],
+  ['X-Frame-Options', 'warn'],
+  ['Referrer-Policy', 'warn'],
   ['Permissions-Policy', 'error'],
   ['X-Robots-Tag', 'error'],
   ['Strict-Transport-Security', 'warn'],
-  ['Content-Security-Policy', 'warn']
+  ['Content-Security-Policy', 'warn'],
+  ['X-XSS-Protection', 'warn']
 ]);
 
 function normalizeHeaderValue(value) {
@@ -55,19 +49,25 @@ function buildMismatch(headerName, expectedValue, actualValue) {
 
 function buildTargets(env = process.env) {
   const siteTargets = [
-    { path: '/', expectedStatuses: [200], expectedHeaders: PAGES_EDGE_HEADERS },
-    { path: '/blog/', expectedStatuses: [200], expectedHeaders: PAGES_EDGE_HEADERS },
-    { path: '/accessibilita-assago.html', expectedStatuses: [200], expectedHeaders: PAGES_EDGE_HEADERS },
-    { path: '/css/style.min.css', expectedStatuses: [200], expectedHeaders: PAGES_EDGE_HEADERS },
+    { path: '/', expectedStatuses: [200], expectedHeaders: SECURITY_HEADERS },
+    { path: '/blog/', expectedStatuses: [200], expectedHeaders: SECURITY_HEADERS },
+    // Pagina GEO indicizzabile (Tier 1): deve restare 200 con header strict.
+    { path: '/agenzia-web-rho.html', expectedStatuses: [200], expectedHeaders: SECURITY_HEADERS },
+    { path: '/css/style.min.css', expectedStatuses: [200], expectedHeaders: SECURITY_HEADERS },
     { path: '/agenzie-web-rho.html', expectedStatuses: [301, 308], expectedLocation: '/agenzia-web-rho.html' },
-    { path: '/__webnovis-artifact-404__', expectedStatuses: [404], expectedHeaders: PAGES_EDGE_HEADERS },
-    // Sorgenti interne: con Pages la root del repository è servita; l'edge
-    // blocca alcuni path con 403 (regole Cloudflare di zona). Accettiamo
-    // 403/404; il 200 è tollerato solo per search-ai-index.json (già pubblico
-    // nella repo GitHub) finché la produzione non migra su Workers Assets.
+    // Pagina GEO de-amplificata: la regola nativa _redirects deve servire 301
+    // verso il servizio di riferimento (mai 200, mai 404).
+    {
+      path: '/accessibilita-assago.html',
+      expectedStatuses: [301, 308],
+      expectedLocation: '/servizi/accessibilita.html'
+    },
+    { path: '/__webnovis-artifact-404__', expectedStatuses: [404], expectedHeaders: SECURITY_HEADERS },
+    // Sorgenti interne: fuori dall'artifact (404). L'edge WAF può bloccare
+    // alcuni path con 403 prima che la richiesta raggiunga il Worker.
     { path: '/package.json', expectedStatuses: [403, 404] },
     { path: '/config/pseo-governance.js', expectedStatuses: [403, 404] },
-    { path: '/search-ai-index.json', expectedStatuses: [200, 403, 404] }
+    { path: '/search-ai-index.json', expectedStatuses: [404] }
   ];
 
   const apiBaseUrl = String(env.API_BASE_URL || '').trim();

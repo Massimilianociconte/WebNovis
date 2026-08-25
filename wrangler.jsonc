@@ -21,6 +21,12 @@
   // gestiti con rewrite 200 nel file _redirects (dentro dist/).
   "name": "webnovis",
   "compatibility_date": "2026-06-09",
+  // Route su www: il Worker intercetta il traffico PRIMA dell'origine DNS
+  // (GitHub Pages). Nessuna modifica DNS necessaria; rollback = rimuovere la
+  // route e ridistribuire. Il DNS di www può restare puntato a Pages.
+  "routes": [
+    { "pattern": "www.webnovis.com/*", "zone_name": "webnovis.com" }
+  ],
   "assets": {
     "directory": "dist",
     "html_handling": "none",

@@ -21,19 +21,22 @@ This matrix defines which layer owns each production header so repository checks
 - `Hard fail`: CI or manual verification must block deployment if the value differs.
 - `Warning`: verification must report drift, but drift can be tolerated if the effective policy is intentionally managed at the edge.
 
-## Production Reality (2026-08)
+## Production Reality (2026-08-25: migrazione Workers completata)
 
-`www.webnovis.com` è servito da **GitHub Pages** (root del repository) dietro proxy Cloudflare.
-Pages ignora il file `_headers` (formato Cloudflare), quindi in produzione valgono gli header
-dell'edge Pages/Cloudflare (`X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: same-origin`,
-`X-XSS-Protection: 1; mode=block`, `X-Content-Type-Options: nosniff`, HSTS preload).
-`scripts/verify-prod-headers.js` modella queste attese (`PAGES_EDGE_HEADERS`) e tollera
-403/404 sui path delle sorgenti interne bloccati dall'edge (`package.json`, `config/*`);
-`search-ai-index.json` è attualmente raggiungibile (200) perché incluso nella repo.
+`www.webnovis.com` è servito da **Workers Assets** (`dist/` sanitizzato, route
+`www.webnovis.com/*` su zona `webnovis.com`): le `_headers` del repository sono
+attive e le attese del verifier tornano `SECURITY_HEADERS` (strict).
+Il DNS di `www` resta puntato a GitHub Pages (irrilevante: il Worker intercetta
+prima dell'origine) — rollback = rimuovere la route da `wrangler.jsonc` e
+ridistribuire.
 
-**TODO(infra)**: al passaggio effettivo del dominio su Workers Assets (`dist/` sanitizzato),
-ripristinare `SECURITY_HEADERS` come attesa per pagine e 404, e i 404 strict per
-`package.json`, `config/*` e `search-ai-index.json`.
+**Drift edge noto**: Transform Rules di zona (bridge pre-migrazione) sovrascrivono
+`X-Frame-Options` (SAMEORIGIN), `Referrer-Policy` (same-origin) e
+`X-XSS-Protection` (1; mode=block). Finché non vengono rimosse
+(Dashboard → Regole → Transform Rules), questi tre header sono trattati come
+edge-managed (warning). Dopo la rimozione, riportarli a `error` in
+`scripts/verify-prod-headers.js` (`headerSeverity` + `edgeManagedHeaders`).
+L'apex `webnovis.com` → `www` resta gestito da Single Redirects di zona.
 
 ## Review Checklist
 
