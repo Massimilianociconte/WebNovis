@@ -21,6 +21,20 @@ This matrix defines which layer owns each production header so repository checks
 - `Hard fail`: CI or manual verification must block deployment if the value differs.
 - `Warning`: verification must report drift, but drift can be tolerated if the effective policy is intentionally managed at the edge.
 
+## Production Reality (2026-08)
+
+`www.webnovis.com` è servito da **GitHub Pages** (root del repository) dietro proxy Cloudflare.
+Pages ignora il file `_headers` (formato Cloudflare), quindi in produzione valgono gli header
+dell'edge Pages/Cloudflare (`X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: same-origin`,
+`X-XSS-Protection: 1; mode=block`, `X-Content-Type-Options: nosniff`, HSTS preload).
+`scripts/verify-prod-headers.js` modella queste attese (`PAGES_EDGE_HEADERS`) e tollera
+403/404 sui path delle sorgenti interne bloccati dall'edge (`package.json`, `config/*`);
+`search-ai-index.json` è attualmente raggiungibile (200) perché incluso nella repo.
+
+**TODO(infra)**: al passaggio effettivo del dominio su Workers Assets (`dist/` sanitizzato),
+ripristinare `SECURITY_HEADERS` come attesa per pagine e 404, e i 404 strict per
+`package.json`, `config/*` e `search-ai-index.json`.
+
 ## Review Checklist
 
 - When changing `config/security-headers.js`, regenerate `_headers` via `npm run sync:headers`.
