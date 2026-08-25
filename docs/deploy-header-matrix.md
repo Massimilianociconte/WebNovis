@@ -25,17 +25,15 @@ This matrix defines which layer owns each production header so repository checks
 
 `www.webnovis.com` è servito da **Workers Assets** (`dist/` sanitizzato, route
 `www.webnovis.com/*` su zona `webnovis.com`): le `_headers` del repository sono
-attive e le attese del verifier tornano `SECURITY_HEADERS` (strict).
+attive e le attese del verifier sono `SECURITY_HEADERS` (strict).
 Il DNS di `www` resta puntato a GitHub Pages (irrilevante: il Worker intercetta
 prima dell'origine) — rollback = rimuovere la route da `wrangler.jsonc` e
 ridistribuire.
 
-**Drift edge noto**: Transform Rules di zona (bridge pre-migrazione) sovrascrivono
-`X-Frame-Options` (SAMEORIGIN), `Referrer-Policy` (same-origin) e
-`X-XSS-Protection` (1; mode=block). Finché non vengono rimosse
-(Dashboard → Regole → Transform Rules), questi tre header sono trattati come
-edge-managed (warning). Dopo la rimozione, riportarli a `error` in
-`scripts/verify-prod-headers.js` (`headerSeverity` + `edgeManagedHeaders`).
+**Nota storica**: la Trasformazione gestita "Aggiungi intestazioni di sicurezza"
+sovrascriveva `X-Frame-Options` (SAMEORIGIN), `Referrer-Policy` (same-origin) e
+`X-XSS-Protection` (1; mode=block); è stata disattivata il 2026-08-25 e la
+produzione ora rispecchia i valori strict del repository.
 L'apex `webnovis.com` → `www` resta gestito da Single Redirects di zona.
 
 ## Review Checklist

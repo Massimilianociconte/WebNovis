@@ -5,32 +5,25 @@ const DEFAULT_PRODUCTION_SITE_URL = 'https://www.webnovis.com';
 // ─────────────────────────────────────────────────────────────────────────────
 // Produzione (dal 2026-08-25): Workers Assets (dist/ sanitizzato) su route
 // www.webnovis.com/*, dietro proxy Cloudflare. Le _headers del repository sono
-// attive: le attese tornano SECURITY_HEADERS (strict).
-// Drift edge noto: Transform Rules di zona (bridge pre-migrazione) sovrascrivono
-// X-Frame-Options (SAMEORIGIN), Referrer-Policy (same-origin) e X-XSS-Protection
-// (1; mode=block): finché non vengono rimosse dal dashboard, questi header sono
-// trattati come edge-managed (warning, non failure).
+// attive e le attese sono SECURITY_HEADERS (strict).
+// 2026-08-25: disattivata la Trasformazione gestita "Aggiungi intestazioni di
+// sicurezza" che sovrascriveva X-Frame-Options/Referrer-Policy/X-XSS-Protection;
+// la produzione ora rispecchia i valori del repository.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const edgeManagedHeaders = new Set([
   'Strict-Transport-Security',
-  'Content-Security-Policy',
-  // Edge override attivo (Transform Rules di zona): rimuovere le regole e
-  // tornare a 'error' per ripristinare l'applicazione strict dei valori repo.
-  'X-Frame-Options',
-  'Referrer-Policy',
-  'X-XSS-Protection'
+  'Content-Security-Policy'
 ]);
 
 const headerSeverity = new Map([
   ['X-Content-Type-Options', 'error'],
-  ['X-Frame-Options', 'warn'],
-  ['Referrer-Policy', 'warn'],
+  ['X-Frame-Options', 'error'],
+  ['Referrer-Policy', 'error'],
   ['Permissions-Policy', 'error'],
   ['X-Robots-Tag', 'error'],
   ['Strict-Transport-Security', 'warn'],
-  ['Content-Security-Policy', 'warn'],
-  ['X-XSS-Protection', 'warn']
+  ['Content-Security-Policy', 'warn']
 ]);
 
 function normalizeHeaderValue(value) {
