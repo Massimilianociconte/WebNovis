@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const { buildStaticHeadersFile } = require('../config/security-headers');
+const { isDeAmplifiedPath } = require('../config/pseo-governance');
 const { ROOT_DIR, getPublishDir, getReportDir } = require('../config/publish-targets');
 const {
   DYNAMIC_RUNTIME_DEPENDENCIES,
@@ -249,7 +250,12 @@ function assertArtifact(options = {}) {
     errors.push(`Forbidden public paths: ${forbidden.join(', ')}`);
   }
 
-  const expectedHtml = collectExpectedPublicHtml(sourceRoot);
+  // La governance pSEO (config/pseo-governance.js) esclude dall'artifact pubblico
+  // le pagine GEO de-amplified: scripts/geo/paths.js#writePublishedFile non le scrive
+  // quando PUBLISH_DIR è lo staging. L'atteso deve rispecchiare la stessa policy,
+  // altrimenti ogni build dichiarerebbe "missing" pagine escluse volontariamente.
+  const expectedHtml = collectExpectedPublicHtml(sourceRoot)
+    .filter((relativePath) => !isDeAmplifiedPath(`/${normalizePath(relativePath)}`));
   const actualHtml = listHtmlFiles(publishRoot);
   const missingHtml = setDifference(expectedHtml, actualHtml);
   const extraHtml = setDifference(actualHtml, expectedHtml);

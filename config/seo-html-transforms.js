@@ -2191,6 +2191,12 @@ function alignPriorityStructuredData(html, relativePath) {
 
 function alignHomepageWebPageFreshness(html, relativePath) {
   if (normalizeRelativePath(relativePath) !== 'index.html') return html;
+  // Il bump di freschezza è una concern di build: va applicato solo quando è
+  // presente un build instant pinnato (SOURCE_DATE_EPOCH/BUILD_DATE, impostati
+  // dalla pipeline dell'artifact pubblico). Le normalizzazioni dei sorgenti
+  // (locali o nel check di idempotenza in CI) non devono mutare la data dello
+  // schema committato, altrimenti la pipeline non è più idempotente tra giorni.
+  if (!process.env.SOURCE_DATE_EPOCH && !process.env.BUILD_DATE) return html;
   const buildDateIso = resolveRomeCalendarDate(resolveBuildInstant()).iso;
   // The homepage WebPage schema is the only dateModified on this page; keep it
   // aligned with the actual build date instead of a frozen value.
