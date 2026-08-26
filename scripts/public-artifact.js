@@ -75,6 +75,7 @@ const DYNAMIC_RUNTIME_DEPENDENCIES = Object.freeze({
     'js/globe.min.js',
     'js/text-effects.min.js'
   ],
+  'js/globe.min.js': ['js/cobe.min.js'],
   'js/search.min.js': ['search-index.json'],
   'js/web-vitals-reporter.min.js': ['js/web-vitals.iife.js']
 });
@@ -115,6 +116,7 @@ const PUBLIC_SENTINELS = [
   'grazie.html',
   'index.html',
   'js/chat.min.js',
+  'js/cobe.min.js',
   'js/cursor.min.js',
   'js/footer-widgets-loader.min.js',
   'js/globe.min.js',

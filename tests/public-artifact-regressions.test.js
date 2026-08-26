@@ -64,6 +64,11 @@ function main() {
     'the progressive loader dependency closure must be explicit'
   );
   assert.deepEqual(
+    DYNAMIC_RUNTIME_DEPENDENCIES['js/globe.min.js'],
+    ['js/cobe.min.js'],
+    'the globe dynamic runtime dependency must be explicit'
+  );
+  assert.deepEqual(
     DYNAMIC_RUNTIME_DEPENDENCIES['js/web-vitals-reporter.min.js'],
     ['js/web-vitals.iife.js'],
     'the field-metric reporter dependency must be explicit'

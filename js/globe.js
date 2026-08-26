@@ -34,12 +34,17 @@
 
         let createGlobe;
         try {
-            const module = await import('https://esm.sh/cobe@0.6.3');
+            const module = await import('/js/cobe.min.js');
             createGlobe = module.default;
-        } catch (e) {
-            hasStarted = false;
-            console.warn('Globe: cobe library failed to load', e);
-            return;
+        } catch (localErr) {
+            try {
+                const module = await import('https://esm.sh/cobe@0.6.3');
+                createGlobe = module.default;
+            } catch (e) {
+                hasStarted = false;
+                console.warn('Globe: cobe library failed to load', e);
+                return;
+            }
         }
 
         const deviceRatio = isMobileGlobe ? 1.5 : 2;
