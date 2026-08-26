@@ -2997,6 +2997,25 @@ section {
     contain: layout paint;
 }
 
+.footer-badges .maidensail-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.footer-badges .maidensail-badge:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+
+.footer-badges .maidensail-badge img {
+    display: block;
+    height: 44px;
+    width: auto;
+    max-height: 44px;
+}
+
 /* --- Footer bottom bar --- */
 .footer-bottom {
     text-align: center;
@@ -7254,11 +7273,13 @@ img {
 
     .footer-badges .trustpilot-widget,
     .footer-badges [data-designrush-widget],
-    .footer-badges>span {
+    .footer-badges>span,
+    .footer-badges .maidensail-badge {
         width: 100%;
     }
 
-    .footer-badges>span {
+    .footer-badges>span,
+    .footer-badges .maidensail-badge {
         display: inline-flex !important;
         align-items: center;
         justify-content: center;
