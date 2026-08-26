@@ -26,10 +26,34 @@
         document.body.appendChild(script);
     }
 
+    function populateDesignRushContainers() {
+        var containers = document.querySelectorAll('div[data-designrush-widget]');
+        if (!containers.length) return;
+        containers.forEach(function (container) {
+            if (container.dataset.loaded === 'true') return;
+            var style = container.dataset.style || 'light';
+            var agencyId = container.dataset.agencyId || '110524';
+            var url = 'https://www.designrush.com/api/widgets/agency-reviews?agency_id=' + encodeURIComponent(agencyId) + '&style=' + encodeURIComponent(style);
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    container.innerHTML = this.responseText;
+                    container.dataset.loaded = 'true';
+                }
+            };
+            xhr.send();
+            container.dataset.loaded = 'pending';
+        });
+    }
+
     function loadDesignRush() {
         if (loadedDesignRush || !document.querySelector('[data-designrush-widget]')) return;
         loadedDesignRush = true;
-        loadScript(designRushSrc);
+        loadScript(designRushSrc, function () {
+            populateDesignRushContainers();
+        });
+        populateDesignRushContainers();
     }
 
     function loadTrustpilot() {
@@ -38,7 +62,9 @@
         loadScript(trustpilotSrc, function () {
             if (window.Trustpilot && typeof window.Trustpilot.loadFromElement === 'function') {
                 document.querySelectorAll('.trustpilot-widget').forEach(function (element) {
-                    window.Trustpilot.loadFromElement(element, true);
+                    if (!element.querySelector('iframe')) {
+                        window.Trustpilot.loadFromElement(element, false);
+                    }
                 });
             }
         });
