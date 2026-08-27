@@ -105,6 +105,11 @@ function materializeStaticSources(stagingRoot) {
     path.join(stagingRoot, 'fonts'),
     (sourcePath) => PUBLIC_FONT_EXTENSIONS.has(path.extname(sourcePath).toLowerCase())
   );
+  copyTreeFiltered(
+    path.join(ROOT_DIR, '.well-known'),
+    path.join(stagingRoot, '.well-known'),
+    () => true
+  );
 
   for (const filename of PUBLIC_HTML_ROOT_FILES) {
     copyFile(path.join(ROOT_DIR, filename), path.join(stagingRoot, filename));

@@ -498,6 +498,7 @@ app.use('/realizzazione-siti-web', express.static(path.join(__dirname, 'realizza
 app.use('/zone-servite', express.static(path.join(__dirname, 'zone-servite'), htmlCacheOptions));
 app.use('/servizi', express.static(path.join(__dirname, 'servizi'), htmlCacheOptions));
 app.use('/portfolio', express.static(path.join(__dirname, 'portfolio'), htmlCacheOptions));
+app.use('/.well-known', express.static(path.join(__dirname, '.well-known'), htmlCacheOptions));
 // AI-discoverable files: open CORS so any AI crawler/tool can fetch them regardless of Origin
 const aiOpenFiles = new Set(['robots.txt', 'sitemap.xml', 'ai.txt', 'llms.txt', 'llms-full.txt', 'webnovis-ai-data.json']);
 
