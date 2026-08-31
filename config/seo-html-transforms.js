@@ -2627,16 +2627,9 @@ function alignServiceGuideLinks(html, relativePath) {
 }
 
 function alignPricingIntent(html, relativePath) {
-  const normalizedPath = normalizeRelativePath(relativePath);
-  if (normalizedPath !== 'blog/quanto-costa-un-sito-web.html') return html;
-  let updated = html;
-  if (!/quanto-costa-un-sito-web\//.test(updated)) {
-    updated = updated.replace(
-      /(<h1\b[^>]*>[\s\S]*?<\/h1>)/i,
-      '$1 <p class="answer-capsule">Questa è la guida di mercato. I prezzi di catalogo WebNovis sono su <a href="/quanto-costa-un-sito-web/">quanto costa un sito web</a>.</p>'
-    );
-  }
-  return updated;
+  // 31/08/2026: la guida prezzi del blog è autorevole e la directory è stata
+  // consolidata (301 verso il blog): niente più capsule iniettate.
+  return html;
 }
 
 function alignSeoMilanoDisambiguation(html, relativePath) {

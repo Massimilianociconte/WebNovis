@@ -118,7 +118,7 @@
         style.textContent = [
             '.wn-preferred-source{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);max-width:320px}',
             '.wn-ps-label{margin:0 0 10px;font-size:.8rem;line-height:1.45;color:rgba(255,255,255,.62)}',
-            '.wn-ps-fallback{display:inline-block;margin-top:8px;font-size:.8rem;color:#8b8fff;text-decoration:underline}',
+            '.wn-ps-fallback{display:inline-block;margin-top:8px;font-size:.8rem;color:var(--primary-light);text-decoration:underline}',
             '.wn-ps-fallback:hover{color:#b0b3ff}',
             '.wn-preferred-source iframe,.wn-preferred-source [google-add-preferred-source-btn]{max-width:100%}'
         ].join('');
