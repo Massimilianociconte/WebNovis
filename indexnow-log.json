@@ -368,5 +368,34 @@
     "statusCode": 200,
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2026-08-31T21:01:02.521Z",
+    "urlCount": 367,
+    "urls": [
+      "https://www.webnovis.com/",
+      "https://www.webnovis.com/agenzia-web-arese.html",
+      "https://www.webnovis.com/agenzia-web-baranzate.html",
+      "https://www.webnovis.com/agenzia-web-bollate.html",
+      "https://www.webnovis.com/agenzia-web-castellanza.html",
+      "https://www.webnovis.com/agenzia-web-cinisello-balsamo.html",
+      "https://www.webnovis.com/agenzia-web-cornaredo.html",
+      "https://www.webnovis.com/agenzia-web-garbagnate.html",
+      "https://www.webnovis.com/agenzia-web-lainate.html",
+      "https://www.webnovis.com/agenzia-web-legnano.html",
+      "https://www.webnovis.com/agenzia-web-milano-nord.html",
+      "https://www.webnovis.com/agenzia-web-milano-ovest.html",
+      "https://www.webnovis.com/agenzia-web-milano.html",
+      "https://www.webnovis.com/agenzia-web-monza.html",
+      "https://www.webnovis.com/agenzia-web-novate-milanese.html",
+      "https://www.webnovis.com/agenzia-web-parabiago.html",
+      "https://www.webnovis.com/agenzia-web-pero.html",
+      "https://www.webnovis.com/agenzia-web-rho.html",
+      "https://www.webnovis.com/agenzia-web-saronno.html",
+      "https://www.webnovis.com/agenzia-web-sesto-san-giovanni.html"
+    ],
+    "statusCode": 200,
+    "success": true,
+    "error": null
   }
 ]
