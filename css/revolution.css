@@ -102,7 +102,7 @@
 }
 
 @keyframes btnShimmer {
-    to { left: 150%; }
+    to { transform: translateX(416.6667%); }
 }
 
 .btn-primary:hover {

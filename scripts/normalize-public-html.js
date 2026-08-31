@@ -28,16 +28,16 @@ const EXCLUDED_DIRS = new Set(['node_modules', '.git', '.claude', 'docs', 'scrip
 const BLOG_FOOTER_PATTERN = /<footer class="footer">\s*<div class="container">\s*<div class="footer-content">[\s\S]*?<\/footer>/;
 const DESIGNRUSH_SCRIPT_PATTERN = /<script\b[^>]*src="https:\/\/www\.designrush\.com\/topbest\/js\/widgets\/agency-reviews\.js"[^>]*><\/script>/gi;
 const DESIGNRUSH_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/designrush-loader\.js"[^>]*><\/script>/gi;
-const FOOTER_WIDGET_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader(?:\.min)?\.js"[^>]*><\/script>/i;
-const FOOTER_WIDGET_LOADER_GLOBAL_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader(?:\.min)?\.js"[^>]*><\/script>/gi;
+const FOOTER_WIDGET_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader(?:\.min)?\.js(\?[^"]*)?"[^>]*><\/script>/i;
+const FOOTER_WIDGET_LOADER_GLOBAL_PATTERN = /\s*<script\b[^>]*src="(?:[^"]*?)js\/footer-widgets-loader(?:\.min)?\.js(?:\?[^"]*)?"[^>]*><\/script>\s*/gi;
 // Il pattern deve tollerare il cache-busting `?v=...`: senza `[^"]*` prima
 // della virgoletta la variante versionata non veniva riconosciuta, quindi
 // normalizeNonCriticalLoader ne rimuoveva una e ne aggiungeva un'altra,
 // lasciando DUE <script> del loader sulla stessa pagina.
 const NONCRITICAL_LOADER_PATTERN = /\s*<script\b[^>]*src="([^"]*?)js\/noncritical-loader(?:\.min)?\.js(\?[^"]*)?"[^>]*><\/script>\s*/i;
 const NONCRITICAL_LOADER_GLOBAL_PATTERN = /\s*<script\b[^>]*src="(?:[^"]*?)js\/noncritical-loader(?:\.min)?\.js(?:\?[^"]*)?"[^>]*><\/script>\s*/gi;
-const WEB_VITALS_REPORTER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/web-vitals-reporter(?:\.min)?\.js"[^>]*><\/script>/gi;
-const MAIN_MIN_SCRIPT_PATTERN = /<script\b[^>]*src="([^"]*?)js\/main\.min\.js"[^>]*><\/script>/i;
+const WEB_VITALS_REPORTER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/web-vitals-reporter(?:\.min)?\.js(\?[^"]*)?"[^>]*><\/script>/gi;
+const MAIN_MIN_SCRIPT_PATTERN = /<script\b[^>]*src="([^"]*?)js\/main\.min\.js(\?[^"]*)?"[^>]*><\/script>/i;
 const NONCRITICAL_SCRIPT_PATTERNS = [
   /<script\b[^>]*src="([^"]*?)js\/chat(?:\.min)?\.js"[^>]*><\/script>\s*/gi,
   /<script\b[^>]*src="([^"]*?)js\/cursor(?:\.min)?\.js"[^>]*><\/script>\s*/gi,
@@ -98,27 +98,44 @@ function normalizeBlogFooter(html, relativePath) {
   return html.replace(BLOG_FOOTER_PATTERN, getBlogFooterHtml(getBlogPrefix(relativePath)));
 }
 
+function getFooterWidgetLoaderVersion(html) {
+  const versionedMatch = /src="[^"]*js\/footer-widgets-loader(?:\.min)?\.js(\?[^"]*)"/i.exec(html);
+  return versionedMatch ? versionedMatch[1] : '';
+}
+
+function getFooterWidgetLoaderTag(html, relativePath) {
+  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.min.js${getFooterWidgetLoaderVersion(html)}`;
+  return `<script defer src="${loaderPath}"></script>`;
+}
+
 function normalizeDesignRushLoader(html, relativePath) {
-  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.min.js`;
-  let updated = html.replace(DESIGNRUSH_SCRIPT_PATTERN, `<script defer src="${loaderPath}"></script>`);
-  updated = updated.replace(DESIGNRUSH_LOADER_PATTERN, `<script defer src="${loaderPath}"></script>`);
+  const loaderTag = getFooterWidgetLoaderTag(html, relativePath);
+  let updated = html.replace(DESIGNRUSH_SCRIPT_PATTERN, loaderTag);
+  updated = updated.replace(DESIGNRUSH_LOADER_PATTERN, loaderTag);
   return updated;
 }
 
 function normalizeFooterWidgetLoaderRefs(html, relativePath) {
-  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.min.js`;
-  return html.replace(FOOTER_WIDGET_LOADER_GLOBAL_PATTERN, `<script defer src="${loaderPath}"></script>`);
+  if (!FOOTER_WIDGET_LOADER_GLOBAL_PATTERN.test(html)) return html;
+  FOOTER_WIDGET_LOADER_GLOBAL_PATTERN.lastIndex = 0;
+  const loaderTag = getFooterWidgetLoaderTag(html, relativePath);
+  let updated = html.replace(FOOTER_WIDGET_LOADER_GLOBAL_PATTERN, ' ');
+
+  if (MAIN_MIN_SCRIPT_PATTERN.test(updated)) {
+    return updated.replace(MAIN_MIN_SCRIPT_PATTERN, (match) => `${match} ${loaderTag} `);
+  }
+
+  return updated.replace(/<\/body>/i, `${loaderTag} </body>`);
 }
 
 function ensureFooterWidgetLoader(html, relativePath) {
   const hasWidgets = /trustpilot-widget|data-designrush-widget/i.test(html);
   if (!hasWidgets || FOOTER_WIDGET_LOADER_PATTERN.test(html)) return html;
 
-  const loaderPath = `${getRootPrefix(relativePath)}js/footer-widgets-loader.min.js`;
-  const loaderTag = `<script defer src="${loaderPath}"></script>`;
+  const loaderTag = getFooterWidgetLoaderTag(html, relativePath);
 
-  if (/<script\b[^>]*src="([^"]*?)js\/main\.min\.js"[^>]*><\/script>/i.test(html)) {
-    return html.replace(/<script\b[^>]*src="([^"]*?)js\/main\.min\.js"[^>]*><\/script>/i, `${loaderTag} <script defer src="$1js/main.min.js"></script>`);
+  if (MAIN_MIN_SCRIPT_PATTERN.test(html)) {
+    return html.replace(MAIN_MIN_SCRIPT_PATTERN, (match) => `${loaderTag} ${match}`);
   }
 
   return html.replace(/<\/body>/i, `${loaderTag} </body>`);
@@ -163,8 +180,7 @@ function normalizeNonCriticalLoader(html, relativePath) {
 }
 
 function normalizeWebVitalsReporterRefs(html, relativePath) {
-  const reporterPath = `${getRootPrefix(relativePath)}js/web-vitals-reporter.min.js`;
-  return html.replace(WEB_VITALS_REPORTER_PATTERN, `<script defer src="${reporterPath}"></script>`);
+  return html.replace(WEB_VITALS_REPORTER_PATTERN, (match, prefix, version) => `<script defer src="${prefix}js/web-vitals-reporter.min.js${version || ''}"></script>`);
 }
 
 function normalizeFooterLogoLoading(html) {

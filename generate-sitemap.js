@@ -30,6 +30,7 @@ const EXCLUDE_PATTERNS = [
     /^blog\/build-articles/,
     /agenzie-web-rho\.html$/,
     /^consulenza-digitale-[a-z0-9-]+\.html$/, // deprecated cluster (redirected 301 → /consulenze-*)
+    /^quanto-costa-un-sito-web\//,
     /^portfolio\/(Aether-Digital|Ember-Oak|Lumina-Creative|Muse-Editorial|PopBlock-Studio|Structure-Arch)\.html$/i,
     /404\.html$/,
     /grazie\.html$/,

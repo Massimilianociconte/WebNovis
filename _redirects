@@ -37,8 +37,15 @@
 /sviluppo-app-mobile-* /servizi/sviluppo-web.html 301
 /consulenze-* /servizi/consulenze.html 301
 
+# --- 301 P0 audit 31/08 ---
+/quanto-costa-un-sito-web/ /blog/quanto-costa-un-sito-web.html 301
+/quanto-costa-un-sito-web/index.html /blog/quanto-costa-un-sito-web.html 301
+/servizi/fotografia-aziendale.html /servizi/graphic-design.html 301
+/blog/ottimizzazione-immagini-web /blog/ottimizzazione-immagini-web.html 301
+/blog/mockup-grafici-guida /blog/mockup-grafici-guida.html 301
+
 # --- 301 legacy dinamici (con splat: tenere dopo le regole statiche) ---
-/consulenza-digitale-* /consulenze-:splat 301
+/consulenza-digitale-* /servizi/consulenze.html 301
 /public/* /:splat 301
 /dist/* /:splat 301
 

@@ -371,12 +371,11 @@ function main() {
   }
 
   const rhoTailWhitespace = readText('agenzia-web-rho.html').match(
-    /<script defer src="js\/noncritical-loader\.min\.js"><\/script>(\s*)<script type="speculationrules">/i
+    /<script defer src="js\/main\.min\.js(\?[^"]*)?"><\/script> <script defer src="js\/noncritical-loader\.min\.js(\?[^"]*)?"><\/script>(?: <script defer src="js\/footer-widgets-loader\.min\.js(\?[^"]*)?"><\/script>)? <script type="speculationrules">/i
   );
   assert.ok(rhoTailWhitespace, 'agenzia-web-rho.html must retain the canonical noncritical/speculation script tail');
-  assert.equal(
-    rhoTailWhitespace[1],
-    ' ',
+  assert.ok(
+    !/\s{2,}/.test(rhoTailWhitespace[0]),
     'Repeated handcrafted Rho regeneration must not accumulate whitespace across the canonical pipeline'
   );
 

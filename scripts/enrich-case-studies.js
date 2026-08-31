@@ -1,196 +1,275 @@
+#!/usr/bin/env node
 /**
- * Enrich case studies with forensic performance metrics
- * Adds a "Risultati Misurabili" section before the CTA in each case study
- * Run: node scripts/enrich-case-studies.js
+ * Arricchisce i case study di portfolio/case-study con:
+ *  - sezione "Servizi WebNovis coinvolti" (link editoriali descrittivi ai servizi realmente usati)
+ *  - FAQ visibili (<details>) basate sui dati già pubblicati (prezzi di catalogo, tempi, zona)
+ *  - la FAQPage corrispondente viene generata dal build (config/seo-html-transforms.js)
+ *
+ * Uso:
+ *   node scripts/enrich-case-studies.js            # scrittura
+ *   node scripts/enrich-case-studies.js --dry-run  # solo report
+ *
+ * Idempotente: il blocco `data-webnovis-case-extra` viene sostituito, non duplicato.
  */
+
 const fs = require('fs');
 const path = require('path');
 
-const CASE_DIR = path.join(__dirname, '..', 'portfolio', 'case-study');
+const ROOT = path.resolve(__dirname, '..');
+const DIR = path.join(ROOT, 'portfolio', 'case-study');
+const DRY_RUN = process.argv.includes('--dry-run');
 
-// Realistic forensic metrics per project (based on typical web development benchmarks)
-const metrics = {
-    'aether-digital': {
-        name: 'Aether Digital',
-        type: 'Sito Web Agenzia Digitale',
-        results: [
-            { label: 'PageSpeed Mobile', before: '38/100', after: '96/100', delta: '+152%' },
-            { label: 'LCP (Largest Contentful Paint)', before: '4.8s', after: '1.1s', delta: '-77%' },
-            { label: 'Tempo medio di sessione', before: '0:42', after: '2:18', delta: '+228%' },
-            { label: 'Bounce rate', before: '78%', after: '34%', delta: '-56%' },
-            { label: 'Richieste di preventivo/mese', before: '2-3', after: '12-15', delta: '+400%' }
-        ],
-        note: 'Dati misurati nei primi 90 giorni post-lancio tramite Google Analytics 4 e Google PageSpeed Insights.'
-    },
-    'arconti31': {
-        name: 'Arconti 31',
-        type: 'Sito Web Immobiliare',
-        results: [
-            { label: 'PageSpeed Mobile', before: '41/100', after: '94/100', delta: '+129%' },
-            { label: 'LCP', before: '5.2s', after: '1.3s', delta: '-75%' },
-            { label: 'CLS (Layout Shift)', before: '0.32', after: '0.02', delta: '-94%' },
-            { label: 'Visite organiche/mese', before: '120', after: '890', delta: '+642%' },
-            { label: 'Contatti generati/mese', before: '1-2', after: '8-10', delta: '+450%' }
-        ],
-        note: 'Confronto tra il precedente sito WordPress e il nuovo sito custom, dati raccolti con GA4 nel trimestre successivo al lancio.'
-    },
-    'ember-oak': {
-        name: 'Ember & Oak',
-        type: 'E-Commerce Arredamento',
-        results: [
-            { label: 'PageSpeed Mobile', before: '29/100', after: '92/100', delta: '+217%' },
-            { label: 'Tempo caricamento pagina prodotto', before: '6.1s', after: '1.4s', delta: '-77%' },
-            { label: 'Tasso di conversione', before: '0.8%', after: '2.4%', delta: '+200%' },
-            { label: 'Carrelli abbandonati', before: '82%', after: '61%', delta: '-26%' },
-            { label: 'Ordini/mese (media)', before: '15', after: '47', delta: '+213%' }
-        ],
-        note: 'Dati e-commerce misurati con GA4 Enhanced E-commerce nei 90 giorni post-lancio. Il tasso di conversione include solo acquisti completati.'
-    },
-    'fbtotalsecurity': {
-        name: 'FB Total Security',
-        type: 'Sito Web Sicurezza',
-        results: [
-            { label: 'PageSpeed Mobile', before: '33/100', after: '95/100', delta: '+188%' },
-            { label: 'LCP', before: '5.8s', after: '1.2s', delta: '-79%' },
-            { label: 'Posizionamento keyword principale', before: 'Non in top 100', after: 'Posizione 8', delta: 'Top 10' },
-            { label: 'Visite organiche/mese', before: '45', after: '520', delta: '+1056%' },
-            { label: 'Richieste sopralluogo/mese', before: '3', after: '18', delta: '+500%' }
-        ],
-        note: 'Dati SEO da Google Search Console, performance da PageSpeed Insights, lead da GA4. Misurati a 90 giorni dal lancio.'
-    },
-    'lumina-creative': {
-        name: 'Lumina Creative',
-        type: 'Portfolio Fotografico',
-        results: [
-            { label: 'PageSpeed Mobile', before: '22/100', after: '91/100', delta: '+314%' },
-            { label: 'Peso pagina homepage', before: '8.2 MB', after: '1.1 MB', delta: '-87%' },
-            { label: 'LCP', before: '7.3s', after: '1.6s', delta: '-78%' },
-            { label: 'Tempo medio di sessione', before: '0:28', after: '3:45', delta: '+703%' },
-            { label: 'Contatti da portfolio/mese', before: '1', after: '7', delta: '+600%' }
-        ],
-        note: 'Ottimizzazione immagini con WebP/AVIF e lazy loading. Dati GA4 e PageSpeed a 60 giorni dal lancio.'
-    },
-    'mikuna': {
-        name: 'Mikuna',
-        type: 'E-Commerce Food',
-        results: [
-            { label: 'PageSpeed Mobile', before: '35/100', after: '93/100', delta: '+166%' },
-            { label: 'Tempo checkout completo', before: '4 step (3:20)', after: '2 step (1:15)', delta: '-62%' },
-            { label: 'Tasso di conversione', before: '1.1%', after: '3.2%', delta: '+191%' },
-            { label: 'Valore medio ordine', before: '€28', after: '€42', delta: '+50%' },
-            { label: 'Ordini ricorrenti (%)', before: '12%', after: '31%', delta: '+158%' }
-        ],
-        note: 'Metriche e-commerce da GA4 Enhanced E-commerce. Checkout ottimizzato con UX research pre-lancio.'
-    },
-    'mimmo-fratelli': {
-        name: 'Mimmo & Fratelli',
-        type: 'Sito Web Ristorazione',
-        results: [
-            { label: 'PageSpeed Mobile', before: '42/100', after: '97/100', delta: '+131%' },
-            { label: 'LCP', before: '4.2s', after: '0.9s', delta: '-79%' },
-            { label: 'Posizione "ristorante" + zona', before: 'Posizione 23', after: 'Posizione 3', delta: '+20 posizioni' },
-            { label: 'Click da Google Maps/mese', before: '85', after: '340', delta: '+300%' },
-            { label: 'Prenotazioni online/mese', before: '0 (solo telefono)', after: '65', delta: 'Nuovo canale' }
-        ],
-        note: 'Dati da Google Business Profile Insights e GA4. Integrazione prenotazioni online prima inesistente.'
-    },
-    'muse-editorial': {
-        name: 'Muse Editorial',
-        type: 'Rivista Digitale',
-        results: [
-            { label: 'PageSpeed Mobile', before: '31/100', after: '94/100', delta: '+203%' },
-            { label: 'Tempo caricamento articolo', before: '5.4s', after: '1.2s', delta: '-78%' },
-            { label: 'Pagine/sessione', before: '1.4', after: '4.8', delta: '+243%' },
-            { label: 'Iscritti newsletter/mese', before: '12', after: '89', delta: '+642%' },
-            { label: 'Tempo medio lettura', before: '0:55', after: '4:12', delta: '+359%' }
-        ],
-        note: 'Architettura di contenuti riprogettata con lazy loading e prefetch. Dati GA4 a 90 giorni.'
-    },
-    'popblock-studio': {
-        name: 'PopBlock Studio',
-        type: 'Sito Web Studio Creativo',
-        results: [
-            { label: 'PageSpeed Mobile', before: '44/100', after: '96/100', delta: '+118%' },
-            { label: 'LCP', before: '3.9s', after: '1.0s', delta: '-74%' },
-            { label: 'FID (Interattività)', before: '280ms', after: '12ms', delta: '-96%' },
-            { label: 'Bounce rate', before: '72%', after: '29%', delta: '-60%' },
-            { label: 'Brief ricevuti/mese', before: '4', after: '16', delta: '+300%' }
-        ],
-        note: 'Animazioni CSS-only (zero librerie JS esterne). Performance misurate con PageSpeed e GA4.'
-    },
-    'quickseo': {
-        name: 'QuickSEO',
-        type: 'SaaS / Tool SEO',
-        results: [
-            { label: 'PageSpeed Mobile', before: '51/100', after: '98/100', delta: '+92%' },
-            { label: 'LCP', before: '3.1s', after: '0.8s', delta: '-74%' },
-            { label: 'Tasso di conversione trial', before: '2.1%', after: '5.8%', delta: '+176%' },
-            { label: 'Posizionamento "SEO tool"', before: 'Non in top 50', after: 'Posizione 12', delta: 'Top 15' },
-            { label: 'Utenti attivi mensili', before: '230', after: '1.400', delta: '+509%' }
-        ],
-        note: 'Landing page e funnel ottimizzati con A/B testing. Dati da GA4 e pannello interno SaaS a 120 giorni.'
-    },
-    'structure-arch': {
-        name: 'Structure Architecture',
-        type: 'Sito Web Studio Architettura',
-        results: [
-            { label: 'PageSpeed Mobile', before: '36/100', after: '95/100', delta: '+164%' },
-            { label: 'Peso pagina portfolio', before: '12.4 MB', after: '1.8 MB', delta: '-85%' },
-            { label: 'LCP', before: '6.8s', after: '1.3s', delta: '-81%' },
-            { label: 'Richieste di progetto/mese', before: '2', after: '11', delta: '+450%' },
-            { label: 'Visite da Google Immagini/mese', before: '15', after: '210', delta: '+1300%' }
-        ],
-        note: 'Portfolio con immagini architettoniche ottimizzate (WebP, srcset, lazy loading). Dati GA4 e GSC a 90 giorni.'
-    }
+const SERVICE_LINKS = {
+  'sviluppo-web': {
+    href: '/servizi/sviluppo-web.html',
+    label: 'Sviluppo web su misura',
+    desc: 'Progettazione e sviluppo completo, dal design al codice proprietario senza template.'
+  },
+  'seo-milano': {
+    href: '/servizi/seo-milano.html',
+    label: 'SEO per farsi trovare',
+    desc: 'Ottimizzazione tecnica e locale per aumentare la visibilità su Google.'
+  },
+  'ecommerce': {
+    href: '/servizi/ecommerce.html',
+    label: 'E-commerce custom',
+    desc: 'Catalogo, pagamenti e spedizioni sotto controllo, senza vincoli di piattaforma.'
+  },
+  'brand-identity': {
+    href: '/servizi/brand-identity.html',
+    label: 'Brand identity',
+    desc: 'Logo, colori e linee guida per un’identità riconoscibile e coerente.'
+  },
+  'graphic-design': {
+    href: '/servizi/graphic-design.html',
+    label: 'Graphic design',
+    desc: 'Materiali visivi coordinati con l’identità del progetto.'
+  },
+  'landing-page': {
+    href: '/servizi/landing-page.html',
+    label: 'Landing page',
+    desc: 'Pagine concentrate su un solo obiettivo: la conversione.'
+  },
+  'audit-gratuito': {
+    href: '/servizi/audit-gratuito.html',
+    label: 'Audit gratuito',
+    desc: 'Analisi tecnica, contenuti e visibilità del sito attuale.'
+  }
 };
 
-// HTML block to inject
-function buildMetricsBlock(data) {
-    const rows = data.results.map(r => 
-        `<tr><td style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--gray-light);font-size:.95rem">${r.label}</td><td style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);color:#ef4444;font-size:.95rem;text-align:center">${r.before}</td><td style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);color:#22c55e;font-size:.95rem;font-weight:600;text-align:center">${r.after}</td><td style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--primary-light);font-weight:700;text-align:center;font-size:.95rem">${r.delta}</td></tr>`
-    ).join('');
+const FAQ = {
+  sito: [
+    {
+      q: 'Quanto costa realizzare un sito simile?',
+      a: 'I prezzi di catalogo WebNovis partono da 500 € per una landing page, 1.200 € per un sito vetrina e 3.500 € per un e-commerce completo. Ogni progetto viene quotato sul perimetro reale con un preventivo gratuito.'
+    },
+    {
+      q: 'Quanto tempo richiede un progetto come questo?',
+      a: 'Le stime indicative sono 1-2 settimane per una landing page, 2-3 settimane per un sito vetrina e 4-6 settimane per un e-commerce. Dipendenze, revisioni e integrazioni possono modificare il calendario: i tempi confermati arrivano con la proposta.'
+    },
+    {
+      q: 'Lavorate anche nella zona della mia attività?',
+      a: 'Sì. La base operativa è a Rho, nell’hinterland ovest di Milano, e il lavoro viene gestito da remoto con clienti in tutta Italia: dal preventivo alla consegna, tutto il processo si svolge online.'
+    }
+  ],
+  custom: [
+    {
+      q: 'Quanto costa sviluppare una piattaforma o un’app di questo tipo?',
+      a: 'Ogni prodotto digitale viene quotato sul perimetro reale: funzionalità, piattaforme coinvolte e integrazioni. Il preventivo gratuito definisce costi e tempistiche prima dell’avvio, senza costi nascosti in corso d’opera.'
+    },
+    {
+      q: 'Come parte il progetto?',
+      a: 'Il processo in 5 fasi parte dall’analisi dei requisiti: scoperta, proposta con milestone condivise, sviluppo con revisioni periodiche, lancio e supporto post-lancio.'
+    },
+    {
+      q: 'Il prodotto resta di proprietà del cliente?',
+      a: 'Sì. Il codice è scritto su misura e consegnato al cliente, senza vincoli verso template o piattaforme di terze parti.'
+    }
+  ]
+};
 
-    return `<section class="service-detail" style="background:rgba(255,255,255,.01)"><div class="container"><h2>Risultati Misurabili — ${data.name}</h2><p style="margin-bottom:2rem">Confronto performance e business metrics prima e dopo il lancio del nuovo sito.</p><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden"><thead><tr style="background:rgba(91,106,174,.1)"><th style="padding:14px 16px;text-align:left;color:var(--white);font-weight:600;font-size:.9rem">Metrica</th><th style="padding:14px 16px;text-align:center;color:#ef4444;font-weight:600;font-size:.9rem">Prima</th><th style="padding:14px 16px;text-align:center;color:#22c55e;font-weight:600;font-size:.9rem">Dopo</th><th style="padding:14px 16px;text-align:center;color:var(--primary-light);font-weight:600;font-size:.9rem">Variazione</th></tr></thead><tbody>${rows}</tbody></table></div><p style="margin-top:1.5rem;font-size:.85rem;color:var(--gray-medium);font-style:italic">${data.note}</p></div></section>`;
+const CASE_EXTRA = {
+  'aether-digital.html': {
+    services: ['brand-identity', 'sviluppo-web'],
+    intro: 'L’identità visiva e il sito di Aether Digital nascono insieme: design e codice sono stati progettati come un unico progetto.',
+    faqType: 'custom'
+  },
+  'arconti31.html': {
+    services: ['sviluppo-web', 'seo-milano'],
+    intro: 'Il sito di Arconti 31 unisce sviluppo web e visibilità locale per portare online la storia di un pub storico di Gallarate.',
+    faqType: 'sito'
+  },
+  'comeleapi.html': {
+    services: ['sviluppo-web', 'seo-milano'],
+    intro: 'Il progetto unisce un’esperienza mobile-first alla SEO locale, per far trovare un’attività di benessere tra Bresso e Cusano Milanino.',
+    faqType: 'sito'
+  },
+  'ember-oak.html': {
+    services: ['sviluppo-web'],
+    intro: 'Il sito di Ember & Oak è stato sviluppato su misura per tradurre online l’esperienza del fine dining.',
+    faqType: 'sito'
+  },
+  'fbtotalsecurity.html': {
+    services: ['sviluppo-web', 'seo-milano'],
+    intro: 'Il sito corporate di FB Total Security combina sviluppo professionale e SEO tecnica per generare contatti qualificati.',
+    faqType: 'sito'
+  },
+  'lumina-creative.html': {
+    services: ['graphic-design', 'sviluppo-web'],
+    intro: 'Per Lumina Creative il design e lo sviluppo sono proceduti di pari passo, con un’esperienza immersiva costruita sull’identità dello studio.',
+    faqType: 'sito'
+  },
+  'mikuna.html': {
+    services: ['sviluppo-web', 'seo-milano'],
+    intro: 'Il sito di Mikuna porta online il ristorante peruviano con menu interattivo e SEO locale per Varese.',
+    faqType: 'sito'
+  },
+  'mimmo-fratelli.html': {
+    services: ['ecommerce'],
+    intro: 'L’e-commerce di Mimmo Fratelli porta online trent’anni di attività con catalogo, offerte settimanali e consegna a domicilio.',
+    faqType: 'sito'
+  },
+  'momentum.html': {
+    services: ['landing-page', 'sviluppo-web'],
+    intro: 'Oltre all’app, il progetto Momentum include landing page e blog dedicati per presentare il prodotto e supportarne la crescita.',
+    faqType: 'custom'
+  },
+  'muse-editorial.html': {
+    services: ['graphic-design', 'sviluppo-web'],
+    intro: 'Il layout editoriale di Muse nasce dal graphic design e diventa un’esperienza di navigazione su misura.',
+    faqType: 'sito'
+  },
+  'popblock-studio.html': {
+    services: ['brand-identity', 'graphic-design'],
+    intro: 'Il branding neo-brutalista di PopBlock Studio dimostra come un’identità audace possa restare coerente su ogni superficie.',
+    faqType: 'sito'
+  },
+  'quickseo.html': {
+    services: ['sviluppo-web', 'audit-gratuito'],
+    intro: 'QuickSEO è un prodotto WebNovis: una web app SaaS per analisi SEO tecnica, performance, sicurezza e accessibilità.',
+    faqType: 'custom'
+  },
+  'structure-arch.html': {
+    services: ['sviluppo-web', 'graphic-design'],
+    intro: 'Il portfolio di Structure traduce la narrazione spaziale dello studio di architettura in un layout orizzontale tecnico.',
+    faqType: 'sito'
+  },
+  'unimidoc.html': {
+    services: ['sviluppo-web'],
+    intro: 'UnimiDoc è una piattaforma custom per appunti verificati: ricerca per corso, anteprime protette e sistema a crediti.',
+    faqType: 'custom'
+  }
+};
+
+const STYLE_BLOCK =
+  '<style data-webnovis-case-extra-style>.case-extra{padding-top:1rem}.case-extra h2{font-size:1.5rem;margin-bottom:.6rem}.case-extra-intro{color:var(--text-muted,rgba(255,255,255,.7));max-width:62ch}.case-extra-list{list-style:none;margin:1.2rem 0 0;padding:0;display:grid;gap:.8rem}.case-extra-list li{border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem 1.2rem;background:rgba(255,255,255,.03)}.case-extra-list a{font-weight:600;color:#8b8fff;text-decoration:none}.case-extra-list a:hover{text-decoration:underline}.case-extra-list span{display:block;margin-top:.25rem;font-size:.9rem;color:var(--text-muted,rgba(255,255,255,.7))}.case-faq{margin-top:1.6rem;display:grid;gap:.7rem}.case-faq details{border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.9rem 1.1rem;background:rgba(255,255,255,.03)}.case-faq summary{cursor:pointer;font-weight:600;color:var(--white,#fff)}.case-faq details p{margin:.7rem 0 0;color:var(--text-muted,rgba(255,255,255,.75));line-height:1.65}.case-extra-cta{margin-top:1.4rem;font-weight:600}.case-extra-cta a{color:#8b8fff;text-decoration:none}.case-extra-cta a:hover{text-decoration:underline}</style>';
+
+function buildFaqSchema(file, caseData) {
+  const canonical = `https://www.webnovis.com/portfolio/case-study/${file}`;
+  const mainEntity = FAQ[caseData.faqType]
+    .map(
+      (f) =>
+        `{"@type":"Question","name":${JSON.stringify(f.q)},"acceptedAnswer":{"@type":"Answer","text":${JSON.stringify(f.a)}}}`
+    )
+    .join(',');
+  return `{"@context":"https://schema.org","@type":"FAQPage","@id":"${canonical}#faq-case-extra","mainEntity":[${mainEntity}]}`;
 }
 
-let enriched = 0;
+function buildBlock(caseData) {
+  const items = caseData.services
+    .map((key) => SERVICE_LINKS[key])
+    .filter(Boolean)
+    .map(
+      (s) =>
+        `<li><a href="${s.href}">${s.label}</a><span>${s.desc}</span></li>`
+    )
+    .join('');
 
-for (const [slug, data] of Object.entries(metrics)) {
-    const filePath = path.join(CASE_DIR, slug + '.html');
-    
-    if (!fs.existsSync(filePath)) {
-        console.log(`⚠️ File not found: ${slug}.html`);
-        continue;
+  const faqItems = FAQ[caseData.faqType]
+    .map((f) => `<details><summary>${f.q}</summary><p>${f.a}</p></details>`)
+    .join('');
+
+  return `<section class="case-section" data-webnovis-case-extra aria-labelledby="case-extra-title"> <div class="container case-shell"> ${STYLE_BLOCK} <div class="case-extra"> <h2 id="case-extra-title">Servizi WebNovis coinvolti nel progetto</h2> <p class="case-extra-intro">${caseData.intro}</p> <ul class="case-extra-list"> ${items} </ul> <h2 id="case-faq-title" class="case-faq-heading">Domande frequenti su un progetto simile</h2> <div class="case-faq"> ${faqItems} </div> <p class="case-extra-cta">Vuoi un risultato simile per la tua attività? <a href="/preventivo.html">Richiedi un preventivo gratuito</a>.</p> </div> </div> </section>`;
+}
+
+function main() {
+  const files = fs
+    .readdirSync(DIR)
+    .filter((name) => name.endsWith('.html'))
+    .sort();
+
+  let updated = 0;
+  const problems = [];
+
+  for (const file of files) {
+    const caseData = CASE_EXTRA[file];
+    if (!caseData) {
+      problems.push(`${file}: nessuna configurazione CASE_EXTRA (saltato)`);
+      continue;
     }
-    
-    let content = fs.readFileSync(filePath, 'utf8');
-    
-    // Check if already enriched
-    if (content.includes('Risultati Misurabili')) {
-        console.log(`⏭️ Already enriched: ${slug}.html`);
-        continue;
+
+    const filePath = path.join(DIR, file);
+    const html = fs.readFileSync(filePath, 'utf8');
+
+    if (!/<section class="cta-inline"/i.test(html)) {
+      problems.push(`${file}: sezione cta-inline non trovata (saltato)`);
+      continue;
     }
-    
-    // Find the CTA section (last section before </main> or before footer)
-    // Insert metrics block before the CTA inline section
-    const ctaPattern = '<section class="cta-inline">';
-    const ctaIndex = content.lastIndexOf(ctaPattern);
-    
-    if (ctaIndex === -1) {
-        // Try before </main>
-        const mainEnd = content.lastIndexOf('</main>');
-        if (mainEnd === -1) {
-            console.log(`⚠️ Could not find insertion point in: ${slug}.html`);
-            continue;
-        }
-        content = content.substring(0, mainEnd) + buildMetricsBlock(data) + ' ' + content.substring(mainEnd);
+
+    const missing = caseData.services.filter((key) => !SERVICE_LINKS[key]);
+    if (missing.length) {
+      problems.push(`${file}: service key sconosciute: ${missing.join(', ')} (saltato)`);
+      continue;
+    }
+
+    if (DRY_RUN) {
+      updated++;
+      continue;
+    }
+
+    const block = buildBlock(caseData);
+    const faqScript = `<script type="application/ld+json" data-webnovis-case-faq>${buildFaqSchema(file, caseData)}</script>`;
+    let next;
+    if (/data-webnovis-case-extra/i.test(html)) {
+      next = html.replace(
+        /<section class="case-section" data-webnovis-case-extra[\s\S]*?<\/section>/i,
+        block
+      );
+      next = next.replace(
+        /\s*<script type="application\/ld\+json" data-webnovis-case-faq>[\s\S]*?<\/script>/i,
+        ''
+      );
+      next = next.replace('</body>', ` ${faqScript}</body>`);
     } else {
-        content = content.substring(0, ctaIndex) + buildMetricsBlock(data) + ' ' + content.substring(ctaIndex);
+      next = html.replace(
+        /<section class="cta-inline"/i,
+        `${block} <section class="cta-inline"`
+      );
+      next = next.replace('</body>', ` ${faqScript}</body>`);
     }
-    
-    fs.writeFileSync(filePath, content, 'utf8');
-    enriched++;
-    console.log(`✅ Enriched: ${slug}.html`);
+
+    if (next !== html) {
+      fs.writeFileSync(filePath, next, 'utf8');
+      updated++;
+    }
+  }
+
+  console.log(
+    `Case study arricchiti: ${updated}/${files.length}${DRY_RUN ? ' (dry-run)' : ''}`
+  );
+  problems.forEach((p) => console.log(`  ⚠ ${p}`));
+
+  if (!DRY_RUN) {
+    const unsynced = files.filter((file) => {
+      if (!CASE_EXTRA[file]) return false;
+      const html = fs.readFileSync(path.join(DIR, file), 'utf8');
+      return !/data-webnovis-case-extra/i.test(html);
+    });
+    if (unsynced.length) {
+      console.error(`FAIL-CLOSED: blocchi mancanti in: ${unsynced.join(', ')}`);
+      process.exit(1);
+    }
+  }
 }
 
-console.log(`\n✅ Case study enrichment complete: ${enriched} files updated`);
+main();

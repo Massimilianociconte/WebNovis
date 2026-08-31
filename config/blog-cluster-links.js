@@ -1313,13 +1313,82 @@ const HUB_CARDS = {
   }
 };
 
+const CASE_CARDS = {
+  fbtotalsecurity: {
+    href: "/portfolio/case-study/fbtotalsecurity.html",
+    label: "Case study",
+    title: "FB Total Security: contatti qualificati dal sito corporate",
+    desc: "SEO tecnica e siti professionale per un’azienda di sicurezza a Milano: dal posizionamento alle richieste reali."
+  },
+  quickseo: {
+    href: "/portfolio/case-study/quickseo.html",
+    label: "Case study",
+    title: "QuickSEO: la web app che analizza siti in automatico",
+    desc: "Prodotto WebNovis per audit di SEO tecnica, performance, sicurezza e accessibilità."
+  },
+  mimmoFratelli: {
+    href: "/portfolio/case-study/mimmo-fratelli.html",
+    label: "Case study",
+    title: "Mimmo Fratelli: dall’orto all’e-commerce",
+    desc: "Catalogo, offerte settimanali e consegna a domicilio per un negozio ortofrutta con 30 anni di esperienza."
+  },
+  arconti31: {
+    href: "/portfolio/case-study/arconti31.html",
+    label: "Case study",
+    title: "Arconti 31: il pub di Gallarate con menu sempre aggiornato",
+    desc: "Sito web per la ristorazione con gestione menu autonoma e visibilità locale."
+  },
+  momentum: {
+    href: "/portfolio/case-study/momentum.html",
+    label: "Case study",
+    title: "Momentum: landing page e blog per un’app di padel",
+    desc: "Come una landing e un blog supportano il lancio di un prodotto digitale offline-first."
+  },
+  comeleapi: {
+    href: "/portfolio/case-study/comeleapi.html",
+    label: "Case study",
+    title: "comeleapi: SEO locale per il benessere a domicilio",
+    desc: "Esperienza mobile-first e visibilità locale tra Bresso e Cusano Milanino."
+  },
+  popblockStudio: {
+    href: "/portfolio/case-study/popblock-studio.html",
+    label: "Case study",
+    title: "PopBlock: branding neo-brutalista senza compromessi",
+    desc: "Un’identità audace resa coerente su ogni superficie digitale e stampa."
+  },
+  unimidoc: {
+    href: "/portfolio/case-study/unimidoc.html",
+    label: "Case study",
+    title: "UnimiDoc: piattaforma custom per appunti verificati",
+    desc: "Ricerca per corso ed esame, anteprime protette e sistema a crediti per la Statale di Milano."
+  },
+  museEditorial: {
+    href: "/portfolio/case-study/muse-editorial.html",
+    label: "Case study",
+    title: "Muse: meno rumore, più segnale",
+    desc: "Layout tipografico editoriale e navigazione immersiva per un collettivo di artisti visivi."
+  },
+  emberOak: {
+    href: "/portfolio/case-study/ember-oak.html",
+    label: "Case study",
+    title: "Ember & Oak: il fine dining raccontato online",
+    desc: "Menu interattivo, prenotazioni e storytelling culinario su misura."
+  },
+  mikuna: {
+    href: "/portfolio/case-study/mikuna.html",
+    label: "Case study",
+    title: "Mikuna: un ristorante peruviano online",
+    desc: "Menu interattivo, SEO locale e sito completo per un ristorante peruviano a Varese."
+  }
+};
+
 const CLUSTERS = [
   {
     id: "seo-updates",
     title: "Percorsi consigliati nel cluster SEO",
     pillar: "blog/aggiornamenti-algoritmo-google-2026.html",
     serviceCard: "webdev",
-    hubCard: "webdev",
+    hubCard: "webdev",    caseCard: "fbtotalsecurity",
     pages: [
       "blog/aggiornamenti-algoritmo-google-2026.html",
       "blog/seo-per-ai-overviews.html",
@@ -1342,7 +1411,7 @@ const CLUSTERS = [
     title: "Percorsi consigliati nel cluster Search Console",
     pillar: "blog/google-search-console-guida.html",
     serviceCard: "webdev",
-    hubCard: "webdev",
+    hubCard: "webdev",    caseCard: "quickseo",
     pages: [
       "blog/google-search-console-guida.html",
       "blog/google-search-console-avanzato.html",
@@ -1458,7 +1527,7 @@ const CLUSTERS = [
     title: "Percorsi consigliati nel cluster E-Commerce",
     pillar: "blog/quanto-costa-un-ecommerce.html",
     serviceCard: "ecommerce",
-    hubCard: "ecommerce",
+    hubCard: "ecommerce",    caseCard: "mimmoFratelli",
     pages: [
       "blog/quanto-costa-un-ecommerce.html",
       "blog/partita-iva-ecommerce.html",
@@ -1486,7 +1555,7 @@ const CLUSTERS = [
     title: "Percorsi consigliati nel cluster Prezzi e scelta partner",
     pillar: "blog/quanto-costa-un-sito-web.html",
     serviceCard: "preventivo",
-    hubCard: "webdev",
+    hubCard: "webdev",    caseCard: "arconti31",
     pages: [
       "blog/quanto-costa-un-sito-web.html",
       "blog/quanto-costa-una-landing-page.html",
@@ -1504,7 +1573,7 @@ const CLUSTERS = [
     title: "Percorsi consigliati nel cluster Landing e conversioni",
     pillar: "blog/landing-page-efficace.html",
     serviceCard: "landing",
-    hubCard: "socialLocal",
+    hubCard: "socialLocal",    caseCard: "momentum",
     pages: [
       "blog/landing-page-efficace.html",
       "blog/call-to-action-efficaci.html",
@@ -1548,7 +1617,7 @@ const CLUSTERS = [
     title: "Percorsi consigliati nel cluster SEO locale",
     pillar: "blog/seo-locale-google-maps.html",
     serviceCard: "webdev",
-    hubCard: "webdev",
+    hubCard: "webdev",    caseCard: "comeleapi",
     pages: [
       "blog/seo-locale-google-maps.html",
       "blog/marketing-digitale-attivita-locali.html",
@@ -1567,7 +1636,7 @@ const CLUSTERS = [
     title: "Percorsi consigliati nel cluster Brand e design",
     pillar: "blog/brand-identity-guida-completa.html",
     serviceCard: "brand",
-    hubCard: "brand",
+    hubCard: "brand",    caseCard: "popblockStudio",
     pages: [
       "blog/brand-identity-guida-completa.html",
       "blog/quanto-costa-brand-identity.html",
@@ -1607,7 +1676,7 @@ const CLUSTERS = [
     title: "Percorsi consigliati nel cluster Performance e hosting",
     pillar: "blog/velocita-sito-web-guida.html",
     serviceCard: "webdev",
-    hubCard: "webdev",
+    hubCard: "webdev",    caseCard: "unimidoc",
     pages: [
       "blog/velocita-sito-web-guida.html",
       "blog/caching-sito-web.html",
@@ -1633,7 +1702,7 @@ const CLUSTERS = [
     title: "Percorsi consigliati nel cluster Content Marketing",
     pillar: "blog/content-marketing-per-pmi.html",
     serviceCard: "consulenze",
-    hubCard: "webdev",
+    hubCard: "webdev",    caseCard: "mikuna",
     pages: [
       "blog/content-marketing-per-pmi.html",
       "blog/blog-aziendale-perche.html",
@@ -1656,7 +1725,7 @@ const CLUSTERS = [
     title: "Percorsi consigliati nel cluster UX e conversione",
     pillar: "blog/ux-design-best-practice.html",
     serviceCard: "webdev",
-    hubCard: "webdev",
+    hubCard: "webdev",    caseCard: "museEditorial",
     pages: [
       "blog/ux-design-best-practice.html",
       "blog/architettura-informazioni-sito.html",
@@ -1676,7 +1745,7 @@ const CLUSTERS = [
     title: "Percorsi consigliati nel cluster Siti web professionali",
     pillar: "blog/importanza-sito-web-attivita.html",
     serviceCard: "webdev",
-    hubCard: "webdev",
+    hubCard: "webdev",    caseCard: "emberOak",
     pages: [
       "blog/importanza-sito-web-attivita.html",
       "blog/serve-ancora-un-sito-web.html",
@@ -1825,9 +1894,14 @@ function getClusterStrategicLinks(identifier) {
   const cards = [];
   const serviceCard = SERVICE_CARDS[cluster.serviceCard];
   const hubCard = HUB_CARDS[cluster.hubCard];
+  const caseCard = CASE_CARDS[cluster.caseCard];
 
   if (serviceCard) {
     cards.push(serviceCard);
+  }
+
+  if (caseCard) {
+    cards.push(caseCard);
   }
 
   if (normalized !== cluster.pillar) {

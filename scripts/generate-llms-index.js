@@ -100,7 +100,7 @@ function build() {
 - **Dove opera**: ${formatPublicLocality()}, hinterland ovest di Milano. Non ha filiali e non ha uno showroom aperto al pubblico.
 - **Come lavora**: da remoto e presso il cliente.
 - **Prezzi di catalogo**: landing da €500, sito vetrina da €1.200, e-commerce da €3.500. Il preventivo conferma perimetro e tempi.
-- **Pagine canoniche**: ${SITE}/ · ${SITE}/chi-siamo.html · ${SITE}/quanto-costa-un-sito-web/
+- **Pagine canoniche**: ${SITE}/ · ${SITE}/chi-siamo.html · ${SITE}/blog/quanto-costa-un-sito-web.html
 
 > WebNovis è un'agenzia web italiana con base a Rho (Milano) specializzata in sviluppo siti web custom, graphic design, brand identity e social media marketing (contenuti grafici, ricerche di marketing, analisi competitor e advertising). Offriamo soluzioni digitali integrate per PMI, startup e professionisti in tutta Italia.
 
@@ -154,7 +154,7 @@ Tier 1 (priorità editoriale interna): ${tier1Count} URL — elenco completo in 
 ## Blog
 
 - [Blog WebNovis](${SITE}/blog/): Articoli su web design, SEO, branding, social media e marketing digitale per PMI italiane.
-- [Quanto costa un sito web: prezzi di catalogo](${SITE}/quanto-costa-un-sito-web/): landing, vetrina ed e-commerce con prezzi di partenza WebNovis.
+- [Quanto costa un sito web: prezzi di catalogo](${SITE}/blog/quanto-costa-un-sito-web.html): landing, vetrina ed e-commerce con prezzi di partenza WebNovis.
 - [Guida 2026 al prezzo di un sito](${SITE}/blog/quanto-costa-un-sito-web.html): approfondimento di mercato, cosa incide sul preventivo e come leggere i range.
 - [Quanto Costa un E-commerce](${SITE}/blog/quanto-costa-un-ecommerce.html): Guida ai costi di sviluppo e-commerce per PMI.
 - [Come Scegliere una Web Agency](${SITE}/blog/come-scegliere-web-agency.html): Criteri per scegliere l'agenzia web giusta.

@@ -2508,6 +2508,55 @@ const SERVICE_GUIDE_BLOCKS = {
   }
 };
 
+const SERVICE_CASE_BLOCKS = {
+  'servizi/sviluppo-web.html': {
+    title: 'Casi studio di sviluppo web',
+    links: [
+      { href: '/portfolio/case-study/unimidoc.html', label: 'UnimiDoc: piattaforma custom per appunti verificati' },
+      { href: '/portfolio/case-study/ember-oak.html', label: 'Ember & Oak: il fine dining raccontato online' }
+    ]
+  },
+  'servizi/sito-vetrina.html': {
+    title: 'Casi studio di siti vetrina',
+    links: [
+      { href: '/portfolio/case-study/arconti31.html', label: 'Arconti 31: il pub di Gallarate con menu sempre aggiornato' },
+      { href: '/portfolio/case-study/comeleapi.html', label: 'comeleapi: benessere a domicilio, esperienza mobile-first' }
+    ]
+  },
+  'servizi/ecommerce.html': {
+    title: 'Caso studio e-commerce',
+    links: [
+      { href: '/portfolio/case-study/mimmo-fratelli.html', label: 'Mimmo Fratelli: dall’orto all’e-commerce' }
+    ]
+  },
+  'servizi/seo-milano.html': {
+    title: 'Casi studio con SEO',
+    links: [
+      { href: '/portfolio/case-study/fbtotalsecurity.html', label: 'FB Total Security: contatti qualificati dal sito corporate' },
+      { href: '/portfolio/case-study/comeleapi.html', label: 'comeleapi: SEO locale tra Bresso e Cusano Milanino' }
+    ]
+  },
+  'servizi/brand-identity.html': {
+    title: 'Caso studio di brand identity',
+    links: [
+      { href: '/portfolio/case-study/popblock-studio.html', label: 'PopBlock: branding neo-brutalista senza compromessi' }
+    ]
+  },
+  'servizi/graphic-design.html': {
+    title: 'Casi studio di graphic design',
+    links: [
+      { href: '/portfolio/case-study/muse-editorial.html', label: 'Muse: layout editoriale per un collettivo di artisti' },
+      { href: '/portfolio/case-study/lumina-creative.html', label: 'Lumina Creative: design immersivo per uno studio creativo' }
+    ]
+  },
+  'servizi/landing-page.html': {
+    title: 'Caso studio landing page',
+    links: [
+      { href: '/portfolio/case-study/momentum.html', label: 'Momentum: landing page e blog per il lancio di un’app' }
+    ]
+  }
+};
+
 function sanitizePublicPresenceMarkup(html) {
   let updated = stripStreetFromText(String(html || ''));
   updated = updated.replace(/\bMassimiliano\b/g, 'WebNovis');
@@ -2542,6 +2591,22 @@ function alignHomepageRankingFixes(html, relativePath) {
     /\s*<link href="css\/(?:revolution|nicole-inspired|social-feed-modern|leviathan-inspired|search)[^"]*" rel="preload" as="style"[^>]*>/gi,
     ' '
   );
+  return updated;
+}
+
+function alignServiceCaseLinks(html, relativePath) {
+  const normalizedPath = normalizeRelativePath(relativePath);
+  const block = SERVICE_CASE_BLOCKS[normalizedPath];
+  if (!block) return html;
+
+  const links = block.links.map((link) =>
+    `<a href="${link.href}">${link.label}</a>`
+  ).join(' · ');
+  const blockHtml = ` <aside data-webnovis-case-links="true" class="service-detail"><div class="container"><h2>${block.title}</h2><p>${links}</p></div></aside> `;
+  let updated = String(html).replace(/\s*<aside\b[^>]*data-webnovis-case-links=["']true["'][\s\S]*?<\/aside>/gi, '');
+  if (/<section class="cta-inline"/i.test(updated)) {
+    return updated.replace(/<section class="cta-inline"/i, `${blockHtml} <section class="cta-inline"`);
+  }
   return updated;
 }
 
@@ -2610,6 +2675,7 @@ function applySeoHtmlTransforms(html, relativePath) {
   updated = alignEditorialContextLinks(updated, relativePath);
   updated = alignClusterStrategicLinks(updated, relativePath);
   updated = alignServiceGuideLinks(updated, relativePath);
+  updated = alignServiceCaseLinks(updated, relativePath);
   updated = alignPricingIntent(updated, relativePath);
   updated = alignSeoMilanoDisambiguation(updated, relativePath);
   updated = alignRhoInternalLinks(updated, relativePath);
