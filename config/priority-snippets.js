@@ -133,7 +133,7 @@ module.exports = {
     description: 'Come usare Google Ads locali per attirare clienti nella tua zona: campagne search, maps, budget, estensioni, landing page e KPI per PMI e professionisti.'
   },
   'blog/quanto-costa-un-sito-web.html': {
-    title: 'Guida 2026: da cosa dipende il prezzo di un sito | WebNovis',
+    title: 'Quanto Costa un Sito Web: Prezzi e Costi Annuali 2026 | WebNovis',
     description: 'Cosa fa salire o scendere il prezzo di un sito nel 2026: perimetro, contenuti, integrazioni e differenze tra listino di mercato e catalogo WebNovis.'
   },
   'blog/caffe-sempione-caso-studio-locale.html': {
