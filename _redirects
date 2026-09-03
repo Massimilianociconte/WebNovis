@@ -40,13 +40,14 @@
 /blog/mockup-grafici-guida /blog/mockup-grafici-guida.html 301
 
 # --- 301 legacy dinamici (con splat: tenere dopo le regole statiche) ---
-# 2026-09-03: mapping per-city (era: tutto -> /servizi/consulenze.html).
-# Allineato a server.js §2.3.1 + docs/deploy/CLOUDFLARE-ZONE-REDIRECTS.md §3:
-# il cluster deprecato consulenza-digitale-* duplica consulenze-* (file vivi
-# noindex,follow); :splat preserva lo slug città. Il collapse sul generico
-# perdeva rilevanza locale e contraddiceva il comportamento live di zona.
-# Mantenere la stessa regola anche come Single Redirect di zona (regex).
-/consulenza-digitale-* /consulenze-:splat 301
+# 2026-09-03: collapse sul generico MANTENUTO di proposito su questo layer.
+# Il cluster consulenze-* (46 file vivi noindex,follow, duplicato deprecato di
+# consulenza-digitale-*) NON è incluso in dist/ (prepare-public-artifact.js
+# pubblica solo contenuti indicizzabili): un mapping per-city qui darebbe 404.
+# Il per-city vive solo dove i file esistono: server.js §2.3.1 (dev).
+# Anche il Single Redirect di zona (docs/.../CLOUDFLARE-ZONE-REDIRECTS.md §3)
+# deve puntare al generico finché il cluster non è distribuito sul Worker.
+/consulenza-digitale-* /servizi/consulenze.html 301
 /public/* /:splat 301
 /dist/* /:splat 301
 

@@ -53,6 +53,11 @@ starts_with(http.request.uri.path, "/dist/")
 | Allora | Dinamico: `concat("https://www.webnovis.com/consulenze-", regex_replace(http.request.uri.path, "^/consulenza-digitale-", ""))` |
 | Codice | **301** |
 
+> ⚠️ 2026-09-03 — Il per-city funziona SOLO se `consulenze-*` è distribuito
+> sul Worker. Oggi `dist/` esclude il cluster (solo contenuti indicizzabili):
+> finché è così, puntare questa regola a `https://www.webnovis.com/servizi/consulenze.html`
+> (collapse sul generico, coerente con `_redirects`), altrimenti ogni città dà 404.
+
 ### 4. Prefisso legacy `/public/*`
 
 | Campo | Valore |
