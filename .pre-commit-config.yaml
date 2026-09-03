@@ -1,0 +1,16 @@
+# Pre-commit — igiene secret SENZA rotazione.
+# Install: pip install pre-commit && pre-commit install
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.2
+    hooks:
+      # Entry di default dell'hook upstream = `gitleaks protect --verbose --staged`.
+      # Niente args custom: gitleaks carica da solo ./.gitleaks.toml.
+      - id: gitleaks
+  - repo: local
+    hooks:
+      - id: no-env-files
+        name: Blocca file .env reali
+        entry: bash -c 'git diff --cached --name-only | grep -Eq "(^|/)\.env(\.|$)" && { echo "BLOCCATO: non committare file .env reali (solo .env.example)"; exit 1; } || exit 0'
+        language: system
+        pass_filenames: false

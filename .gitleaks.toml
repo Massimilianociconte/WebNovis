@@ -1,0 +1,13 @@
+# Gitleaks — blocca secret reali prima del commit (solo nomi qui, nessun valore).
+# Uso: gitleaks detect --source . --config .gitleaks.toml
+# Vedi anche .pre-commit-config.yaml e .git/hooks/pre-commit.
+
+title = "WebNovis gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "placeholder .env.example"
+paths = ["\\.env\\.example$"]
+regexes = ["your-.*-here", "sender@example\\.com", "notify@example\\.com", "change-this-to-.*", "mainEntityOfPage", "test-secret-", "ae6e8799-e395-4ec7-88fa-4d532286cc7d"]

@@ -10,15 +10,23 @@
  * IndexNow instantly notifies Bing, Yandex, Seznam, Naver of new/updated content.
  * Google doesn't support IndexNow yet but may in the future.
  * 
- * Key: fcba07953b913918408db7ab2f9331dc
- * Key file: https://www.webnovis.com/fcba07953b913918408db7ab2f9331dc.txt
+ * Key: pubblica by-design (file {KEY}.txt servito sul dominio).
+ * Configurazione: variabile INDEXNOW_KEY (CI: GitHub Secret, locale: .env).
  */
 
 const fs = require('fs');
 const path = require('path');
+try { require('dotenv').config(); } catch { /* dotenv opzionale in CI */ }
 
 const HOST = 'www.webnovis.com';
-const KEY = 'fcba07953b913918408db7ab2f9331dc';
+// IndexNow key: pubblica by-design (file {KEY}.txt servito sul dominio),
+// ma letta da env per permettere rotazione senza toccare il codice.
+// CI: GitHub Secret INDEXNOW_KEY. Locale: riga INDEXNOW_KEY=... in .env (mai commit).
+const KEY = process.env.INDEXNOW_KEY;
+if (!KEY) {
+  console.error('ERRORE: INDEXNOW_KEY non impostata (CI secret o .env locale). Esco senza inviare.');
+  process.exit(1);
+}
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/IndexNow';
 

@@ -8075,6 +8075,10 @@ function buildArticleHTML(a, contentHTML, options = {}) {
       '@type': 'Blog',
       name: 'Blog WebNovis',
       url: `${SITE_URL}/blog/`
+    },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.article-hero h1', '.article-summary']
     }
   };
 
@@ -8249,7 +8253,8 @@ function buildArticleHTML(a, contentHTML, options = {}) {
     <script src="../js/footer-widgets-loader.js" defer></script>
     <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
     <script type="application/ld+json">${JSON.stringify(authorOrganizationSchema)}</script>
-    <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
+    <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>${faqSchema ? `
+    <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>` : ''}
 </body>
 </html>`;
 }
