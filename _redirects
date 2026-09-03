@@ -23,14 +23,28 @@
 # --- 301 legacy espliciti (da server.js legacyPathRedirects) ---
 # MANTENUTO: alias plurale -> singolare (il file plurale e noindex con canonical al singolare).
 /agenzie-web-rho.html /agenzia-web-rho.html 301
-# RIMOSSI 2026-09-03: /accessibilita-rho.html e /social-media-rho.html sono file VIVI
-# noindex,follow — il 301 su Cloudflare li oscurava e spezzava equity follow.
-# La de-amplificazione resta via meta noindex, NON via redirect.
+# 2026-09-03 (rettifica): i 301 sotto sono LOAD-BEARING su questo layer.
+# dist/ pubblica solo contenuti indicizzabili (prepare-public-artifact.js):
+# le famiglie GEO deprecate non esistono sul Worker, quindi senza 301
+# darebbero 404. Su server.js (dev) i file esistono e vengono serviti.
+# Non rimuovere finché le famiglie non tornano in dist/.
+/accessibilita-rho.html /servizi/accessibilita.html 301
+/social-media-rho.html /servizi/social-media.html 301
 /chiedere-recensioni-clienti /blog/chiedere-recensioni-clienti.html 301
 
-# RIMOSSO 2026-09-03: blocco wildcard GEO (oscurava 9x46 pagine vive noindex,follow
-# su Cloudflare, dove _redirects ha precedenza sui file statici).
-# Resta solo /consulenza-digitale-* (0 file su disco) nel blocco dinamici sotto.
+# 2026-09-03 (rettifica): blocco wildcard GEO RIPRISTINATO sullo stesso
+# principio — sul Worker queste famiglie non esistono (v. sopra): il wildcard
+# preserva equity verso le pagine servizio invece di 404. De-amplificazione
+# resta via meta noindex dove i file sono serviti (dev/origin).
+/accessibilita-* /servizi/accessibilita.html 301
+/copywriting-* /servizi/consulenze.html 301
+/fotografia-aziendale-* /servizi/graphic-design.html 301
+/web-app-* /servizi/sviluppo-web.html 301
+/automazione-business-* /servizi/consulenze.html 301
+/restyling-sito-web-* /servizi/sviluppo-web.html 301
+/manutenzione-sito-* /servizi/sviluppo-web.html 301
+/sviluppo-app-mobile-* /servizi/sviluppo-web.html 301
+/consulenze-* /servizi/consulenze.html 301
 
 # --- 301 P0 audit 31/08 ---
 /quanto-costa-un-sito-web/ /blog/quanto-costa-un-sito-web.html 301

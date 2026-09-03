@@ -333,7 +333,8 @@ app.use((req, res, next) => {
 
 // 2.4 Legacy build-artifact redirects — collapse stale /dist/ URLs to canonical public paths
 // 2026-09-03: /accessibilita-rho.html e /social-media-rho.html sono file VIVI
-// noindex,follow — rimossi dal 301 (cfr. _redirects). De-amplificazione via meta noindex.
+// noindex,follow e vengono serviti qui (dev). Su Worker (_redirects) e zona
+// restano i 301 perché dist/ non include le famiglie GEO deprecate.
 const legacyPathRedirects = new Map([
     ['/chiedere-recensioni-clienti', '/blog/chiedere-recensioni-clienti.html'],
     ['/blog/*', '/blog/']
