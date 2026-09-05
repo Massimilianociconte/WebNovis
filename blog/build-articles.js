@@ -7986,6 +7986,14 @@ const SOCIAL_CATEGORY_COVER = {
   'case-study': 'blog-cat-case-study'
 };
 function resolveSocialCover(a) {
+  const customPng = path.join(__dirname, '..', 'Img', 'blog', `blog-${a.slug}.png`);
+  if (fs.existsSync(customPng)) {
+    return `${SITE_URL}/Img/blog/blog-${a.slug}.png`;
+  }
+  const customWebp = path.join(__dirname, '..', 'Img', 'blog', `blog-${a.slug}.webp`);
+  if (fs.existsSync(customWebp)) {
+    return `${SITE_URL}/Img/blog/blog-${a.slug}.webp`;
+  }
   const category = SOCIAL_TAG_TO_CATEGORY[a.tag] || 'marketing';
   const base = SOCIAL_CATEGORY_COVER[category] || 'blog-cat-web';
   return `${SITE_URL}/Img/${base}.png`;
