@@ -1433,7 +1433,7 @@
 
     /* WhatsApp button compact */
     .whatsapp-float {
-        bottom: 1rem;
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
         left: 1rem;
     }
 

@@ -4803,49 +4803,158 @@ body.home .breadcrumb [aria-current="page"] {
     }
 }
 
-/* Sticky call globale: colonna sinistra, SOPRA il bottone WhatsApp
-   (56px) con gap fisso; il back-to-top si impila sopra la CTA. Cosi
-   il FAB chat resta solo a destra (insieme alla sua bubble) e nessun
-   float collide su alcun viewport. Quando la chat e aperta la CTA si
-   nasconde (il pannello offre gia i contatti, su mobile e a tutto
-   schermo). */
-.sticky-call {
+/* ========== FLOATING CALL BUTTON (MATCHING WHATSAPP FLOAT) ==========
+   Posizionato a sinistra, impilato SOPRA il bottone WhatsApp (56px)
+   con perfetta coerenza visiva: stesso diametro circolare, stesse
+   coordinate orizzontali (left), animazione pulse ed elegante tooltip.
+   Su tablet (<=768px: 50px) e mobile (<=480px: 46px) scala in modo
+   identico a WhatsApp. Quando la chat Weby è aperta si nasconde. */
+.call-float {
     position: fixed;
+    bottom: calc(2rem + 56px + 0.75rem);
     left: 2rem;
-    right: auto;
-    bottom: calc(2rem + 3.5rem + 0.75rem);
-    z-index: 60;
-    display: inline-flex;
+    z-index: 1001;
+    display: flex;
+    flex-direction: row-reverse;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.15rem;
-    border-radius: 999px;
-    background: linear-gradient(160deg, #2563eb, #60a5fa);
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.9rem;
+    gap: 0.75rem;
+}
+
+.call-float-btn,
+.sticky-call {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    cursor: pointer;
     text-decoration: none;
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    position: relative;
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
 }
-body.chat-open .sticky-call {
+
+.call-float-btn:hover,
+.sticky-call:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+}
+
+.call-float-btn:focus-visible,
+.sticky-call:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+.call-float-btn svg,
+.sticky-call svg {
+    width: 24px;
+    height: 24px;
+    stroke: #ffffff;
+    fill: none;
+    stroke-width: 2.2;
+    transition: transform 0.3s ease;
+}
+
+.call-float-btn:hover svg,
+.sticky-call:hover svg {
+    transform: rotate(12deg) scale(1.06);
+}
+
+.call-float-btn::before,
+.sticky-call::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.3);
+    animation: callPulse 2s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes callPulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.3); opacity: 0; }
+}
+
+.call-tooltip {
+    background: var(--dark-surface, #0f1422);
+    color: var(--white, #ffffff);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
     opacity: 0;
-    visibility: hidden;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
-    transform: translateY(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+.call-float:hover .call-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Scomparsa sincronizzata quando la chat Weby è aperta */
+body.chat-open .call-float,
+body.chat-open .sticky-call,
+body.chat-open .whatsapp-float {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(8px) !important;
+}
+
 @media (max-width: 768px) {
+    .call-float {
+        bottom: calc(1.5rem + 50px + 0.6rem);
+        left: 1.5rem;
+        z-index: 999;
+    }
+    .call-tooltip {
+        display: none;
+    }
+    .call-float-btn,
     .sticky-call {
-        left: 1rem;
-        bottom: calc(1.5rem + 3.125rem + 0.6rem);
-        padding: 0.7rem 1rem;
-        font-size: 0.85rem;
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        min-height: 50px;
+    }
+    .call-float-btn svg,
+    .sticky-call svg {
+        width: 22px;
+        height: 22px;
     }
 }
+
 @media (max-width: 480px) {
-    .sticky-call {
+    .call-float {
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px) + 46px + 0.5rem);
         left: 1rem;
-        bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px) + 3.125rem + 0.6rem);
+    }
+    .call-float-btn,
+    .sticky-call {
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+        min-height: 46px;
+    }
+    .call-float-btn svg,
+    .sticky-call svg {
+        width: 20px;
+        height: 20px;
     }
 }
 

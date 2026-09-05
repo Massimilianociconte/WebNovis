@@ -195,6 +195,7 @@ const isHomepage = !document.querySelector('.portfolio-hero');
 const backToTopButton = document.getElementById('backToTop');
 const scrollProgressBar = document.querySelector('.scroll-progress');
 const whatsappFloatButton = document.getElementById('whatsappFloat');
+const callFloatButton = document.getElementById('callFloat');
 
 // Cache homepage section ranges used for background swaps to avoid per-frame reflow
 var homepageBackgroundCache = [];
@@ -270,7 +271,16 @@ function getHomepageBackground(scrollY) {
             scrollProgressBar.style.transform = 'scaleX(' + (scrollY / docH) + ')';
         }
 
-        // 6. WhatsApp float
+        // 6. Floating action buttons (Phone & WhatsApp)
+        if (callFloatButton) {
+            if (scrollY > 300) {
+                callFloatButton.style.opacity = '1';
+                callFloatButton.style.transform = 'translateY(0)';
+            } else {
+                callFloatButton.style.opacity = '0';
+                callFloatButton.style.transform = 'translateY(20px)';
+            }
+        }
         if (whatsappFloatButton) {
             if (scrollY > 300) {
                 whatsappFloatButton.style.opacity = '1';
@@ -1940,13 +1950,19 @@ if (newsletterForm) {
     });
 }
 
-// 6. WhatsApp Button — visibility handled by unified scroll controller
+// 6. Floating Contact Buttons — visibility handled by unified scroll controller
 const whatsappFloat = document.getElementById('whatsappFloat');
-
 if (whatsappFloat) {
     whatsappFloat.style.opacity = '0';
     whatsappFloat.style.transform = 'translateY(20px)';
     whatsappFloat.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+}
+
+const callFloat = document.getElementById('callFloat');
+if (callFloat) {
+    callFloat.style.opacity = '0';
+    callFloat.style.transform = 'translateY(20px)';
+    callFloat.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
 }
 
 // 7. Observe new sections for reveal animations
