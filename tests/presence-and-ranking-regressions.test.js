@@ -3,22 +3,30 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
-const { ENTITY_FACTS, normalizeEntityObject, normalizeEntityJsonLd } = require(path.join(ROOT, 'config/entity-facts.js'));
+const { ENTITY_FACTS, normalizeEntityObject, normalizeEntityJsonLd } = require('../config/entity-facts.js');
 const {
   PRESENCE_POLICY,
   containsForbiddenStreet,
   containsForbiddenPersonName,
   formatPublicLocality
-} = require(path.join(ROOT, 'config/presence-policy.js'));
-const { applySeoHtmlTransforms } = require(path.join(ROOT, 'config/seo-html-transforms.js'));
-const { isDeAmplifiedPath, isIndexableGeoPath } = require(path.join(ROOT, 'config/pseo-governance.js'));
+} = require('../config/presence-policy.js');
+const { applySeoHtmlTransforms } = require('../config/seo-html-transforms.js');
+const { isDeAmplifiedPath, isIndexableGeoPath } = require('../config/pseo-governance.js');
+
+function resolveInsideRoot(relativePath) {
+  const target = path.resolve(ROOT, relativePath);
+  if (target !== ROOT && !target.startsWith(ROOT + path.sep)) {
+    throw new Error(`Path escapes project root: ${relativePath}`);
+  }
+  return target;
+}
 
 function read(relativePath) {
-  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  return fs.readFileSync(resolveInsideRoot(relativePath), 'utf8');
 }
 
 function walkHtml(relativeDirectory) {
-  const absoluteDirectory = path.join(ROOT, relativeDirectory);
+  const absoluteDirectory = resolveInsideRoot(relativeDirectory);
   if (!fs.existsSync(absoluteDirectory)) return [];
   const results = [];
   for (const entry of fs.readdirSync(absoluteDirectory, { withFileTypes: true })) {
@@ -136,13 +144,14 @@ assert.ok(!containsForbiddenStreet(contacts));
 assert.doesNotMatch(contacts, /maps\/embed|Via\s+S\.?\s*Giorgio/i);
 assert.match(contacts, /href="\/agenzia-web-rho\.html"/);
 
-const moneyPage = read('quanto-costa-un-sito-web/index.html');
-const blogPricing = applySeoHtmlTransforms(
-  read('blog/quanto-costa-un-sito-web.html'),
-  'blog/quanto-costa-un-sito-web.html'
+// Consolidamento money-page (c8d7a5f0): la directory
+// /quanto-costa-un-sito-web/ non esiste piu come pagina e rediretta 301
+// all'articolo blog canonico, che ne eredita l'intento commerciale.
+const moneyRedirects = read('_redirects');
+assert.match(
+  moneyRedirects,
+  /\/quanto-costa-un-sito-web\/\s+\/blog\/quanto-costa-un-sito-web\.html\s+301/
 );
-assert.notEqual(extractTitle(moneyPage), extractTitle(blogPricing));
-assert.match(blogPricing, /quanto-costa-un-sito-web\//);
 
 const seoMilano = applySeoHtmlTransforms(read('servizi/seo-milano.html'), 'servizi/seo-milano.html');
 assert.match(seoMilano, /seo-locale-milano\.html/);
@@ -168,6 +177,6 @@ const llms = read('llms.txt');
 assert.match(llms, /Fact sheet|In breve|operiamo da Rho/i);
 assert.doesNotMatch(llms, /Via\s+S\.?\s*Giorgio/i);
 assert.doesNotMatch(llms, /Ristorante Nikkei/i);
-assert.match(llms, /quanto-costa-un-sito-web\//);
+assert.match(llms, /\/blog\/quanto-costa-un-sito-web\.html/);
 
 console.log(`Presence and ranking regressions passed (${publicHtml.length} public HTML scanned).`);

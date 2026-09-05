@@ -98,3 +98,7 @@ custom-options-css.txt
 .dev.vars
 .dev.vars.*
 !.dev.vars.example
+
+# Analisi locali (traffico di rete) e cronache scan
+*.har
+.mimosa/

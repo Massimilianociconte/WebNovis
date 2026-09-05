@@ -11,18 +11,18 @@ const SEARCH_INDEX_PATH = path.join(ROOT, 'search-index.json');
 const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
 const LINK_GRAPH_PATH = path.join(ROOT, 'data', 'link-graph.json');
 const HIERARCHY_PATH = path.join(ROOT, 'docs', 'seo-strategy', 'seo_webnovis_hierarchy.json');
-const servicesData = require(path.join(ROOT, 'data', 'services.json'));
-const citiesData = require(path.join(ROOT, 'data', 'cities.json'));
+const servicesData = require('../data/services.json');
+const citiesData = require('../data/cities.json');
 const {
   normalizePathname,
   isDeAmplifiedPath,
   DATA_VALIDATED_INDEXABLE_GEO_PATHS,
   PHASE1_DEAMPLIFIED_PATHS
-} = require(path.join(ROOT, 'config', 'pseo-governance.js'));
+} = require('../config/pseo-governance.js');
 const {
   CLUSTERS,
   normalizeBlogIdentifier
-} = require(path.join(ROOT, 'config', 'blog-cluster-links.js'));
+} = require('../config/blog-cluster-links.js');
 
 const args = process.argv.slice(2);
 const JSON_ONLY = args.includes('--json');

@@ -386,7 +386,10 @@ function main() {
   const rows = [];
   for (const pathname of [...ALL_INDEXABLE_GEO_PATHS].sort()) {
     const file = pathname.replace(/^\//, '');
-    const abs = path.join(ROOT, file);
+    const abs = path.resolve(ROOT, file);
+    if (!abs.startsWith(ROOT + path.sep)) {
+      throw new Error(`Path escapes project root: ${file}`);
+    }
     if (!fs.existsSync(abs)) {
       rows.push({
         path: pathname,

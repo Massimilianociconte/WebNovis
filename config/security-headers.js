@@ -11,7 +11,7 @@ const CONTENT_SECURITY_POLICY_DIRECTIVES = [
   "img-src 'self' data: https: blob:",
   "font-src 'self' https://fonts.gstatic.com https://www.designrush.com",
   "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://widget.trustpilot.com https://webnovis-ai.nexify-api.workers.dev https://*.workers.dev https://challenges.cloudflare.com https://news.google.com",
-  "frame-src https://widget.trustpilot.com https://www.facebook.com https://www.google.com https://maps.google.com https://challenges.cloudflare.com https://news.google.com",
+  "frame-src 'self' https://widget.trustpilot.com https://www.facebook.com https://www.google.com https://maps.google.com https://challenges.cloudflare.com https://news.google.com https://arconti31.com https://unimidoc.netlify.app https://www.fbtotalsecurity.com https://www.mikunaitalia.it https://www.mimmofratelli.com https://www.playmomentum.it https://www.quickseo.online",
   "frame-ancestors 'none'",
   "object-src 'none'",
   "base-uri 'self'",
@@ -47,6 +47,26 @@ const SECURITY_HEADERS = {
   'X-XSS-Protection': '0'
 };
 
+// Le demo portfolio (/portfolio/*.html) sono incorporate via <iframe>
+// same-origin nei casi studio: per permettere l'embedding legittimo,
+// su questo path il framing resta vietato ai terzi ma consentito
+// alla stessa origine. Difesa invariata contro il clickjacking esterno.
+const PORTFOLIO_CSP = CONTENT_SECURITY_POLICY_DIRECTIVES.map((directive) =>
+  directive === "frame-ancestors 'none'" ? "frame-ancestors 'self'" : directive
+).join('; ');
+
+const PORTFOLIO_FRAMING_HEADERS = {
+  'X-Frame-Options': 'SAMEORIGIN',
+  'Content-Security-Policy': PORTFOLIO_CSP
+};
+
+function getSecurityHeadersForPath(pathname = '/') {
+  if (String(pathname).startsWith('/portfolio/')) {
+    return { ...SECURITY_HEADERS, ...PORTFOLIO_FRAMING_HEADERS };
+  }
+  return SECURITY_HEADERS;
+}
+
 function parseCorsOrigins(rawOrigins) {
   return String(rawOrigins || '')
     .split(',')
@@ -75,22 +95,44 @@ function buildStaticHeadersFile() {
 
   lines.push(
     '',
+    '/portfolio/*',
+    `  X-Frame-Options: ${PORTFOLIO_FRAMING_HEADERS['X-Frame-Options']}`,
+    `  Content-Security-Policy: ${PORTFOLIO_FRAMING_HEADERS['Content-Security-Policy']}`,
+    '',
     '/css/*',
-    '  Cache-Control: public, max-age=31536000',
+    '  Cache-Control: public, max-age=3600, stale-while-revalidate=86400',
     '',
     '/js/*',
-    '  Cache-Control: public, max-age=31536000',
+    '  Cache-Control: public, max-age=3600, stale-while-revalidate=86400',
     '',
     '/Img/*',
     '  Cache-Control: public, max-age=86400, stale-while-revalidate=604800',
     '',
     '/fonts/*',
-    '  Cache-Control: public, max-age=31536000',
+    '  Cache-Control: public, max-age=604800, stale-while-revalidate=2592000',
     '',
     '/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
     '',
     '/*.html',
+    '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    '',
+    // Gli indici di directory (riscritti 200 da _redirects) non matchano
+    // /*.html: senza regola esplicita restano senza Cache-Control e il
+    // browser puo servirli stanti per euristiche su Last-Modified.
+    '/blog/',
+    '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    '',
+    '/servizi/',
+    '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    '',
+    '/zone-servite/',
+    '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    '',
+    '/agenzia-web/',
+    '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    '',
+    '/realizzazione-siti-web/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
     '',
     '/api/*',
@@ -105,8 +147,10 @@ module.exports = {
   CONTENT_SECURITY_POLICY_DIRECTIVES,
   DEFAULT_CORS_ORIGINS,
   SECURITY_HEADERS,
+  PORTFOLIO_FRAMING_HEADERS,
   buildCspWithNonce,
   buildStaticHeadersFile,
   getAllowedCorsOrigins,
+  getSecurityHeadersForPath,
   parseCorsOrigins
 };

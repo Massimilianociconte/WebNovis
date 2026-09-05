@@ -44,6 +44,15 @@ body::before {
     background: linear-gradient(180deg, rgba(25, 30, 70, 0.6) 0%, rgba(10, 12, 30, 0.4) 60%, transparent 100%);
 }
 
+/* Centratura reale del contenuto hero (label "Selected Works 2025–26"
+   inclusa): il contenitore e flex, text-align da solo non basta. */
+.portfolio-hero .hero-content {
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .portfolio-hero::before {
     content: '';
     position: absolute;

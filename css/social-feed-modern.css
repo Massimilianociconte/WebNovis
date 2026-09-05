@@ -249,14 +249,14 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        order: 1;
+        order: 2;
     }
     
     .social-section .service-content {
         width: 100%;
         max-width: 100%;
         padding: 0 1rem;
-        order: 2;
+        order: 1;
         text-align: center;
     }
     

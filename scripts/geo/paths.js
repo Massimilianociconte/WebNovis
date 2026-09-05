@@ -65,6 +65,9 @@ function normalizeGeneratedRuntimeScripts(html, relativePath) {
     } else {
         updated = updated.replace(/<\/body>/i, `${nonCriticalTag} </body>`);
     }
+    // La rimozione + reinserzione qui sopra lascia doppi spazi tra i tag:
+    // collassali per mantenere l'output idempotente sotto i transform SEO.
+    updated = updated.replace(/<\/script>\s{2,}<script/g, '</script> <script');
     return updated;
 }
 

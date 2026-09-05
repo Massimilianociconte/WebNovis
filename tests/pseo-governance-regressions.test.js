@@ -5,7 +5,11 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 
 function readText(relativePath) {
-  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  const target = path.resolve(ROOT, relativePath);
+  if (target !== ROOT && !target.startsWith(ROOT + path.sep)) {
+    throw new Error(`Path escapes project root: ${relativePath}`);
+  }
+  return fs.readFileSync(target, 'utf8');
 }
 
 function parseJsonLd(relativePath) {
@@ -83,7 +87,7 @@ function assertHubScriptPaths(relativePath) {
 }
 
 function main() {
-  const governance = require(path.join(ROOT, 'config', 'pseo-governance.js'));
+  const governance = require('../config/pseo-governance.js');
 
   assert.equal(
     governance.getIndexationDirectivesForPath('/google-ads-milano.html'),

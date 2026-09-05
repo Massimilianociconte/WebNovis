@@ -289,7 +289,12 @@ async function cli() {
     console.log('\nResult:', JSON.stringify(result, null, 2));
   } else if (fileIdx !== -1 && args[fileIdx + 1]) {
     // Submit URLs from file
-    const filePath = path.resolve(args[fileIdx + 1]);
+    const projectRoot = path.resolve(__dirname);
+    const filePath = path.resolve(projectRoot, args[fileIdx + 1]);
+    if (filePath !== projectRoot && !filePath.startsWith(projectRoot + path.sep)) {
+      logError('Il file URL deve trovarsi dentro la directory del progetto.');
+      process.exit(1);
+    }
     if (!fs.existsSync(filePath)) {
       logError(`File not found: ${filePath}`);
       process.exit(1);

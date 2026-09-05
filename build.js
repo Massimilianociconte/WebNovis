@@ -43,7 +43,10 @@ const config = {
             'js/noncritical-loader.js',
             'js/search.js',
             'js/text-effects.js',
-            'js/web-vitals-reporter.js'
+            'js/web-vitals-reporter.js',
+            // Iniettato da noncritical-loader nelle pagine senza widget
+            // chat incorporato (mancava: 404 su tutte le pagine non-home).
+            'js/weby-shell.js'
         ],
         suffix: '.min.js',
         skip: [],
@@ -208,6 +211,9 @@ function resolveLocalAsset(assetRef, htmlDirRel) {
 
 function discoverAssetsFromHtml(htmlPathRel) {
     const absHtmlPath = path.resolve(PUBLISH_ROOT, htmlPathRel);
+    if (absHtmlPath !== PUBLISH_ROOT && !absHtmlPath.startsWith(PUBLISH_ROOT + path.sep)) {
+        throw new Error(`Path escapes publish root: ${htmlPathRel}`);
+    }
     if (!fs.existsSync(absHtmlPath)) return { js: [], css: [] };
 
     const html = fs.readFileSync(absHtmlPath, 'utf8');

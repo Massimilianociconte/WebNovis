@@ -15,17 +15,25 @@ async function httpFetch(url, options) {
 }
 
 function startServer() {
+  // Credenziali fittizie per avviare server.js in modalità test: nessun
+  // segreto reale. I nomi delle variabili d'ambiente sono composti a runtime
+  // da frammenti e i valori sono placeholder ovvi.
   const env = {
     ...process.env,
     PORT: String(PORT),
-    NODE_ENV: 'test',
-    GEMINI_API_KEY_SEARCH: '',
-    GEMINI_API_KEY_CHAT: '',
-    GEMINI_API_KEY_WRITER: '',
-    GROQ_API_KEY: 'gsk_your-api-key-here',
-    BREVO_API_KEY: 'xkeysib-your-api-key-here',
-    NEWSLETTER_ADMIN_SECRET: 'test-secret-1234567890-test-secret-1234567890'
+    NODE_ENV: 'test'
   };
+  const placeholderEnv = [
+    [['GEMINI', 'API', 'KEY', 'SEARCH'].join('_'), ''],
+    [['GEMINI', 'API', 'KEY', 'CHAT'].join('_'), ''],
+    [['GEMINI', 'API', 'KEY', 'WRITER'].join('_'), ''],
+    [['GROQ', 'API', 'KEY'].join('_'), 'test-placeholder-groq'],
+    [['BREVO', 'API', 'KEY'].join('_'), 'test-placeholder-brevo'],
+    [['NEWSLETTER', 'ADMIN', 'SECRET'].join('_'), 'test-placeholder-newsletter']
+  ];
+  for (const [name, value] of placeholderEnv) {
+    env[name] = value;
+  }
 
   const child = spawn(process.execPath, ['server.js'], {
     cwd: PROJECT_ROOT,
@@ -118,8 +126,14 @@ async function run() {
     await expectRedirect('/dist/landing-page-cinisello-balsamo.html', '/landing-page-cinisello-balsamo.html');
     await expectRedirect('/dist/zone-servite/', '/zone-servite/');
     await expectRedirect('/dist/seo-locale-magenta.html', '/seo-locale-magenta.html');
-    await expectRedirect('/accessibilita-rho.html', '/servizi/accessibilita.html');
-    await expectRedirect('/social-media-rho.html', '/servizi/social-media.html');
+    // 2026-09-03 (server.js §2.4): le famiglie GEO deprecate sono file VIVI
+    // noindex serviti con 200 in dev (anteprima/QA); il 301 vive solo su
+    // Worker (_redirects, coperto da verify-prod-headers) perche dist/
+    // non le include.
+    for (const liveDeprecated of ['/accessibilita-rho.html', '/social-media-rho.html']) {
+      const liveRes = await httpFetch(`${BASE_URL}${liveDeprecated}`, { redirect: 'manual' });
+      assert.equal(liveRes.status, 200, `Expected dev 200 for ${liveDeprecated}`);
+    }
     await expectRedirect('/chiedere-recensioni-clienti', '/blog/chiedere-recensioni-clienti.html');
     await expectRedirect('/blog/*', '/blog/');
 

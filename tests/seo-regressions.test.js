@@ -1,15 +1,22 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { getBlogFooterHtml } = require(path.join(process.cwd(), 'config', 'site-footer.js'));
-const prioritySnippets = require(path.join(process.cwd(), 'config', 'priority-snippets.js'));
-const { applySeoHtmlTransforms } = require(path.join(process.cwd(), 'config', 'seo-html-transforms.js'));
-const servicesCatalog = require(path.join(process.cwd(), 'data', 'services.json'));
+const ROOT = path.resolve(__dirname, '..');
+const { getBlogFooterHtml } = require('../config/site-footer.js');
+const prioritySnippets = require('../config/priority-snippets.js');
+const { applySeoHtmlTransforms } = require('../config/seo-html-transforms.js');
+const servicesCatalog = require('../data/services.json');
 
-const ROOT = process.cwd();
+function resolveInsideRoot(relativePath) {
+  const target = path.resolve(ROOT, relativePath);
+  if (target !== ROOT && !target.startsWith(ROOT + path.sep)) {
+    throw new Error(`Path escapes project root: ${relativePath}`);
+  }
+  return target;
+}
 
 function readText(relativePath) {
-  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  return fs.readFileSync(resolveInsideRoot(relativePath), 'utf8');
 }
 
 function extractTitle(html, file) {
@@ -91,8 +98,8 @@ function main() {
   for (const match of sitemap.matchAll(/<loc>https:\/\/www\.webnovis\.com([^<]*)<\/loc>/g)) {
     let file = match[1] === '/' || match[1] === '' ? 'index.html' : match[1].replace(/^\//, '');
     if (file.endsWith('/')) file += 'index.html';
-    if (!fs.existsSync(path.join(ROOT, file))) continue;
-    const head = fs.readFileSync(path.join(ROOT, file), 'utf8').slice(0, 8000);
+    if (!fs.existsSync(resolveInsideRoot(file))) continue;
+    const head = fs.readFileSync(resolveInsideRoot(file), 'utf8').slice(0, 8000);
     const robots =
       (head.match(/name=["']robots["'][^>]*content=["']([^"']+)/i) ||
         head.match(/content=["']([^"']+)["'][^>]*name=["']robots["']/i) ||
@@ -489,11 +496,11 @@ function main() {
 
   const socialMetaPages = [
     'servizi/seo-milano.html',
-    'quanto-costa-un-sito-web/index.html'
+    'blog/quanto-costa-un-sito-web.html'
   ];
   const claimAuditPages = [
     'servizi/seo-milano.html',
-    'quanto-costa-un-sito-web/index.html',
+    'blog/quanto-costa-un-sito-web.html',
     'servizi/sito-vetrina.html'
   ];
 
@@ -528,7 +535,7 @@ function main() {
   }
 
   const estimatePages = [
-    { file: 'quanto-costa-un-sito-web/index.html', slug: 'sito-vetrina' },
+    { file: 'blog/quanto-costa-un-sito-web.html', slug: 'sito-vetrina' },
     { file: 'servizi/sito-vetrina.html', slug: 'sito-vetrina' }
   ];
   for (const { file, slug } of estimatePages) {

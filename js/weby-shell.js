@@ -7,18 +7,13 @@
     return;
   }
 
-  var base = '';
-  try {
-    var path = window.location.pathname || '/';
-    if (path.indexOf('/blog/') === 0 || path.indexOf('/servizi/') === 0 || path.indexOf('/portfolio/') === 0) {
-      base = '..';
-    }
-  } catch (e) {}
-
-  var prefix = base ? base + '/' : '';
-  var privacyHref = prefix + 'privacy-policy.html#sistemi-ai';
-  var robot = prefix + 'Img/robot-112.webp';
-  var robotPng = prefix + 'Img/robot-112.webp';
+  // Path assoluti: il sito e' sempre servito dalla radice del dominio, ma le
+  // pagine vivono a profondita' diverse (blog/, servizi/, portfolio/case-study/).
+  // Il prefix relativo "../" copriva solo la profondita' 1: nelle case study
+  // l'avatar diventava /portfolio/Img/robot-112.webp -> 404 (HAR 2026-09-05).
+  var privacyHref = '/privacy-policy.html#sistemi-ai';
+  var robot = '/Img/robot-112.webp';
+  var robotPng = '/Img/robot-112.webp';
 
   var aside = document.createElement('aside');
   aside.className = 'weby-chat-container';
@@ -65,7 +60,7 @@
         '<span class="chat-ai-notice-sep" aria-hidden="true">·</span>' +
         '<a href="https://wa.me/393802647367" rel="noopener noreferrer" target="_blank" title="Contatta il team su WhatsApp">Team umano</a>' +
         '</span></p>' +
-      '<div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-atomic="false" aria-label="Conversazione con l'assistente Weby">' +
+      '<div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-atomic="false" aria-label="Conversazione con l\'assistente Weby">' +
         '<div class="bot-message chat-message">' +
           '<div class="message-avatar">' +
             '<picture>' +

@@ -22,7 +22,7 @@
   <div class="container breadcrumb">
     <a href="/">Home</a>
     <span class="separator">/</span>
-    <a href="/zone-servite/#{{ service.slug }}">{{ service.shortName }}</a>
+    <a href="{{ servicePrimaryUrl }}">{{ service.shortName }}</a>
     <span class="separator">/</span>
     <span class="current-page">{{ service.shortName }} {{ city.name | toCity }}</span>
   </div>

@@ -9,11 +9,19 @@ const {
   findUnsupportedGeneratedClaims,
   preserveGovernedCustomBlocks,
   stripUnapprovedTier1EditorialBlocks
-} = require(path.join(ROOT, 'config', 'content-claim-governance.js'));
-const { applySeoHtmlTransforms } = require(path.join(ROOT, 'config', 'seo-html-transforms.js'));
+} = require('../config/content-claim-governance.js');
+const { applySeoHtmlTransforms } = require('../config/seo-html-transforms.js');
+
+function resolveInsideRoot(relativePath) {
+  const target = path.resolve(ROOT, relativePath);
+  if (target !== ROOT && !target.startsWith(ROOT + path.sep)) {
+    throw new Error(`Path escapes project root: ${relativePath}`);
+  }
+  return target;
+}
 
 function readText(relativePath) {
-  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  return fs.readFileSync(resolveInsideRoot(relativePath), 'utf8');
 }
 
 function main() {

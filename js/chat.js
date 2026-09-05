@@ -296,6 +296,8 @@ function initWebyChatbot() {
     function toggleChat() {
         state.isOpen = !state.isOpen;
         elements.popup.classList.toggle('active', state.isOpen);
+        // Sincronizza gli elementi flottanti globali (es. .sticky-call)
+        document.body.classList.toggle('chat-open', state.isOpen);
 
         if (state.isOpen) {
             // Hide notification bubble
@@ -325,6 +327,7 @@ function initWebyChatbot() {
     function closeChat() {
         state.isOpen = false;
         elements.popup.classList.remove('active');
+        document.body.classList.remove('chat-open');
 
         // Restore mobile scroll
         if (isMobileChat) {

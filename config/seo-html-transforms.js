@@ -1,5 +1,6 @@
 const prioritySnippets = require('./priority-snippets');
 const { getClusterStrategicLinks } = require('./blog-cluster-links');
+const { getNavMenuHtml } = require('./site-header');
 const { getIndexationDirectivesForPath } = require('./pseo-governance');
 const { resolveBuildInstant, resolveRomeCalendarDate } = require('./build-date');
 
@@ -43,7 +44,7 @@ const MONEY_PAGE_INTERNAL_LINK_BLOCKS = {
       { href: '../servizi/ecommerce.html', label: 'E-commerce custom da €3.500' },
       { href: '/ecommerce-milano.html', label: 'E-commerce a Milano' },
       { href: '/ecommerce-bresso.html', label: 'E-commerce a Bresso' },
-      { href: '../quanto-costa-un-sito-web/index.html', label: 'Costi di un sito web professionale' }
+      { href: '/blog/quanto-costa-un-sito-web.html', label: 'Costi di un sito web professionale' }
     ]
   },
   'blog/pagamenti-online-ecommerce.html': {
@@ -121,7 +122,7 @@ const MONEY_PAGE_INTERNAL_LINK_BLOCKS = {
     text: 'I tool automatici aiutano a scoprire errori, ma per adeguare davvero un sito servono priorita, correzioni WCAG e verifica manuale sui flussi importanti.',
     links: [
       { href: '../servizi/accessibilita.html', label: 'Audit accessibilità web' },
-      { href: '/accessibilita-cinisello-balsamo.html', label: 'Accessibilità a Cinisello Balsamo' }
+      { href: '/agenzia-web-cinisello-balsamo.html', label: 'Siti web accessibili a Cinisello Balsamo' }
     ]
   },
   'blog/digital-transformation-pmi.html': {
@@ -315,7 +316,6 @@ const LOCAL_PAGES_ALREADY_OPTIMIZED = new Set([
 ]);
 const CONTACT_INFO_CARDS_PATTERN = /<div class="contatti-info-cards">[\s\S]*?<div class="contatti-map">[\s\S]*?<\/div>\s*<\/div>/i;
 const CONTACT_INFO_CARDS_REPLACEMENT = `<div class="contatti-info-cards"> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M3 8L10.89 13.26C11.54 13.67 12.46 13.67 13.11 13.26L21 8M5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19Z"/></svg> <h2>Email</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <a href="mailto:hello@webnovis.com" class="contatti-card-link">hello@webnovis.com</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <h2>Telefono</h2> </div> <div class="contatti-card-body contatti-card-body--offset contatti-card-stack"> <a href="tel:+393802647367" title="Chiama Web Novis" class="phone-cta" aria-label="Chiama WebNovis al numero +39 380 264 7367" data-contact-phone="+393802647367"><span class="phone-cta-label">Chiama WebNovis</span></a> <a href="https://wa.me/393802647367?text=Ciao%20Web%20Novis%2C%20vorrei%20maggiori%20informazioni" target="_blank" rel="noopener noreferrer" class="contatti-card-link">Scrivici su WhatsApp →</a> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> <h2>Dove operiamo</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Rho (MI) e hinterland ovest di Milano<br>Lavoriamo da remoto e presso il cliente</p> </div> </article> <article class="contatti-card"> <div class="contatti-card-head"> <svg viewBox="0 0 24 24" fill="none" height="22" width="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <h2>Contatti</h2> </div> <div class="contatti-card-body contatti-card-body--offset"> <p>Usa i canali indicati.<br>Tempi e modalità vengono definiti al contatto.</p> </div> </article> <div class="contatti-map"> <p class="contatti-card-body">Per parlare del progetto usiamo videochiamata, telefono o un incontro presso la tua sede. Non abbiamo uno showroom aperto al pubblico.</p> </div> </div>`;
-const LEGAL_NAV_MENU = '<ul class="nav-menu" id="navMenu"> <li><a href="servizi/" class="nav-link">Servizi</a></li> <li><a href="portfolio.html" class="nav-link">Portfolio</a></li> <li><a href="chi-siamo.html" class="nav-link">Chi Siamo</a></li> <li><a href="blog/" class="nav-link">Blog</a></li> <li><a href="contatti.html" class="nav-link">Contatti</a></li> <li><a href="preventivo.html" class="nav-link nav-cta">Inizia Ora</a></li> </ul>';
 const PORTFOLIO_GRAPHIC_SECTION_PATTERN = /<section class="portfolio-section" style="padding:4rem 0" id="portfolio-grafico">[\s\S]*?<\/section>/i;
 const PORTFOLIO_SOCIAL_SECTION_PATTERN = /<section class="portfolio-section" style="padding:4rem 0;background:rgba\(255,255,255,.01\)" id="portfolio-social">[\s\S]*?<\/section>/i;
 const PORTFOLIO_GRAPHIC_SECTION_REPLACEMENT = `<section class="portfolio-section portfolio-capability-section" id="portfolio-grafico"> <div class="container"> <div class="portfolio-capability-shell"> <div class="portfolio-capability-header"> <span class="portfolio-capability-kicker">Graphic Design</span> <h2>Identità visive, sistemi grafici e materiali che danno spessore al brand</h2> <p class="portfolio-section-lead">Nel portfolio grafico inseriamo ciò che realizziamo davvero per i clienti: logo, brand system, coordinato, packaging leggero e supporti digitali. Quando un progetto completo non è pubblico o è coperto da NDA, mostriamo comunque il tipo di output e il livello di profondità del lavoro.</p> </div> <div class="portfolio-capability-grid"> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Logo & brand mark</span> <h3>Identità visive memorabili</h3> <p>Marchi originali, versioni responsive, palette, tipografia e regole d’uso pensate per rendere il brand riconoscibile sia sul web sia nei materiali stampati.</p> <ul class="portfolio-capability-list"> <li>Logo principale e versioni secondarie</li> <li>Palette, tipografia e tono visivo</li> <li>Linee guida d’uso essenziali</li> </ul> </article> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Brand system</span> <h3>Coordinato coerente e riutilizzabile</h3> <p>Sistemi visivi che non si fermano al logo: pattern, iconografia, layout ricorrenti e materiali coerenti per sito, presentazioni, social e supporti offline.</p> <ul class="portfolio-capability-list"> <li>Biglietti da visita e supporti corporate</li> <li>Presentazioni, brochure e mini kit stampa</li> <li>Template digitali coordinati</li> </ul> </article> <article class="portfolio-capability-card"> <span class="portfolio-capability-tag">Packaging & visual</span> <h3>Elementi grafici pensati per vendere meglio</h3> <p>Visual per campagne, packaging leggero, etichette, menu e materiali promozionali progettati per aumentare qualità percepita e chiarezza del messaggio.</p> <ul class="portfolio-capability-list"> <li>Packaging essenziale e label design</li> <li>Menu, leaflet e materiali promozionali</li> <li>Creative per campagne e annunci</li> </ul> </article> </div> <p class="portfolio-capability-note">Alcuni lavori grafici vengono mostrati integralmente solo in call o su richiesta, perché spesso nascono dentro progetti più ampi di branding, sito o advertising.</p> <div class="portfolio-capability-cta"> <a href="contatti.html?servizio=graphic-design" class="pf-btn pf-btn-primary">Richiedi un progetto grafico <svg viewBox="0 0 24 24" fill="none" height="14" width="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a> </div> </div> </div> </section>`;
@@ -2303,7 +2303,13 @@ function alignContactPageInfoCards(html, relativePath) {
 function alignLegalNavbar(html, relativePath) {
   const normalizedPath = normalizeRelativePath(relativePath);
   if (!LEGAL_PAGES.has(normalizedPath)) return html;
-  return html.replace(/<ul class="nav-menu" id="navMenu">[\s\S]*?<\/ul>/i, LEGAL_NAV_MENU);
+  // Le pagine legali usano lo STESSO menu canonico delle altre pagine
+  // (7 voci, con "Come Lavoriamo"): la variante ridotta a 6 voci divergeva
+  // dallo standard globale e veniva segnalata dal test nav-canonical.
+  return html.replace(
+    /<ul class="nav-menu" id="navMenu">[\s\S]*?<\/ul>/i,
+    getNavMenuHtml('')
+  );
 }
 
 function alignPortfolioExperience(html, relativePath) {
@@ -2463,7 +2469,7 @@ const SERVICE_GUIDE_BLOCKS = {
   'servizi/sviluppo-web.html': {
     title: 'Guide del cluster sviluppo web',
     links: [
-      { href: '/quanto-costa-un-sito-web/', label: 'Prezzi di catalogo per un sito web' },
+      { href: '/blog/quanto-costa-un-sito-web.html', label: 'Prezzi di catalogo per un sito web' },
       { href: '/blog/quanto-costa-un-sito-web.html', label: 'Guida 2026: da cosa dipende il prezzo' },
       { href: '/blog/come-scegliere-web-agency.html', label: 'Come scegliere una web agency' }
     ]
@@ -2496,7 +2502,7 @@ const SERVICE_GUIDE_BLOCKS = {
     links: [
       { href: '/seo-locale-milano.html', label: 'SEO locale a Milano: Maps e quartieri' },
       { href: '/blog/seo-locale-google-maps.html', label: 'Guida SEO locale e Google Maps' },
-      { href: '/quanto-costa-un-sito-web/', label: 'Prezzi di un sito web' }
+      { href: '/blog/quanto-costa-un-sito-web.html', label: 'Prezzi di un sito web' }
     ]
   },
   'servizi/social-media.html': {

@@ -268,7 +268,10 @@ function classifyType(url) {
 }
 
 function buildEntry(relativePath) {
-  const filePath = path.join(PROJECT_ROOT, relativePath);
+  const filePath = path.resolve(PROJECT_ROOT, relativePath);
+  if (filePath !== PROJECT_ROOT && !filePath.startsWith(PROJECT_ROOT + path.sep)) {
+    throw new Error(`Path escapes project root: ${relativePath}`);
+  }
   const html = fs.readFileSync(filePath, 'utf8');
   const url = toUrl(relativePath);
   const extracted = extractFromHTML(html, url);

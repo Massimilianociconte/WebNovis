@@ -21,7 +21,13 @@ const fileGroups = [
   { files: findHtmlFiles(path.join(ROOT, 'servizi'), 'servizi/'), prefix: '../' },
   { files: findHtmlFiles(path.join(ROOT, 'portfolio'), 'portfolio/'), prefix: '../' },
   { files: findHtmlFiles(path.join(ROOT, 'portfolio', 'case-study'), 'portfolio/case-study/'), prefix: '../../' },
-  { files: findHtmlFiles(path.join(ROOT, 'blog'), 'blog/'), prefix: '../' }
+  { files: findHtmlFiles(path.join(ROOT, 'blog'), 'blog/'), prefix: '../' },
+  { files: findHtmlFiles(path.join(ROOT, 'agenzia-web'), 'agenzia-web/'), prefix: '../' },
+  { files: findHtmlFiles(path.join(ROOT, 'realizzazione-siti-web'), 'realizzazione-siti-web/'), prefix: '../' },
+  { files: findHtmlFiles(path.join(ROOT, 'zone-servite'), 'zone-servite/'), prefix: '../' },
+  // Editable sources: prefixes mirror the build output paths.
+  { files: findHtmlFiles(path.join(ROOT, 'src', 'html'), 'src/html/'), prefix: '' },
+  { files: findHtmlFiles(path.join(ROOT, 'src', 'html', 'servizi'), 'src/html/servizi/'), prefix: '../' }
 ];
 
 const FAQ_FIXES = [
@@ -52,18 +58,8 @@ const FAQ_FIXES = [
   }
 ];
 
-const NEW_PAGES = new Set([
-  'servizi/accessibilita.html',
-  'agenzia-web-lainate.html',
-  'agenzia-web-arese.html',
-  'agenzia-web-garbagnate.html',
-  'blog/sito-web-che-non-converte.html',
-  'blog/sanzioni-sito-non-accessibile-2026.html'
-]);
-
 let footerUpdated = 0;
 let faqFixed = 0;
-let cursorAdded = 0;
 
 for (const group of fileGroups) {
   const canonicalFooter = getBlogFooterHtml(group.prefix);
@@ -121,11 +117,10 @@ for (const group of fileGroups) {
       if (content !== beforePrices) changed = true;
     }
 
-    if (NEW_PAGES.has(file.rel) && !content.includes('cursor.min.js')) {
-      content = content.replace('</body>', `<script src="${group.prefix}js/cursor.min.js" defer></script></body>`);
-      changed = true;
-      cursorAdded += 1;
-    }
+    // NOTE: niente iniezione diretta di cursor.min.js: il loader
+    // progressivo noncritical-loader.js lo carica al primo mousemove/idle
+    // e public-html-regressions vieta il <script> diretto (blocco
+    // NEW_PAGES rimosso il 2026-09-05 perche violava il test).
 
     if (changed) fs.writeFileSync(file.path, content, 'utf8');
   }
@@ -133,5 +128,5 @@ for (const group of fileGroups) {
 
 console.log(`✅ Footers standardized: ${footerUpdated} files`);
 console.log(`✅ FAQ answers fixed: ${faqFixed} instances`);
-console.log(`✅ Cursor.min.js added: ${cursorAdded} files`);
+console.log('✅ Cursor injection disabled (noncritical-loader owns cursor.min.js)');
 console.log('\n✅ Standardization complete!');

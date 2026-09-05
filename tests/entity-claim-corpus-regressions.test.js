@@ -4,20 +4,28 @@ const os = require('node:os');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
-const { cities } = require(path.join(ROOT, 'data', 'cities.json'));
-const { services } = require(path.join(ROOT, 'data', 'services.json'));
+const { cities } = require('../data/cities.json');
+const { services } = require('../data/services.json');
 const {
   findUnsupportedPublishedClaims,
   readApprovedContentBlock
-} = require(path.join(ROOT, 'config', 'content-claim-governance.js'));
+} = require('../config/content-claim-governance.js');
+
+function resolveInsideRoot(relativePath) {
+  const target = path.resolve(ROOT, relativePath);
+  if (target !== ROOT && !target.startsWith(ROOT + path.sep)) {
+    throw new Error(`Path escapes project root: ${relativePath}`);
+  }
+  return target;
+}
 
 function read(relativePath) {
-  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  return fs.readFileSync(resolveInsideRoot(relativePath), 'utf8');
 }
 
 function readGeoGeneratorSources() {
   const entry = read('scripts/generate-all-geo.js');
-  const geoDir = path.join(ROOT, 'scripts', 'geo');
+  const geoDir = resolveInsideRoot(path.join('scripts', 'geo'));
   const modules = fs.readdirSync(geoDir)
     .filter((name) => name.endsWith('.js') && !name.startsWith('_'))
     .sort()
@@ -26,7 +34,7 @@ function readGeoGeneratorSources() {
 }
 
 function walkHtml(relativeDirectory) {
-  const absoluteDirectory = path.join(ROOT, relativeDirectory);
+  const absoluteDirectory = resolveInsideRoot(relativeDirectory);
   if (!fs.existsSync(absoluteDirectory)) return [];
   const results = [];
   for (const entry of fs.readdirSync(absoluteDirectory, { withFileTypes: true })) {
@@ -187,7 +195,7 @@ function main() {
     );
   }
 
-  const dormantContentBlocks = fs.readdirSync(path.join(ROOT, 'data', 'content-blocks'))
+  const dormantContentBlocks = fs.readdirSync(resolveInsideRoot(path.join('data', 'content-blocks')))
     .filter((entry) => entry.endsWith('.json'))
     .sort();
   const temporaryBlockDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'webnovis-claim-blocks-'));

@@ -77,6 +77,8 @@ if (navMenu && navToggle) {
 
     openMobileMenu = function() {
         scrollPosition = window.pageYOffset;
+        var sw = window.innerWidth - document.documentElement.clientWidth;
+        if (sw > 0) document.body.style.paddingRight = sw + 'px';
         // Set top BEFORE position:fixed to prevent scroll-to-top flash
         document.body.style.top = `-${scrollPosition}px`;
         document.body.classList.add('menu-open');
@@ -85,21 +87,22 @@ if (navMenu && navToggle) {
         navToggle.setAttribute('aria-expanded', 'true');
     };
 
-    closeMobileMenu = function() {
+    closeMobileMenu = function(skipRestore) {
+        var wasActive = navMenu.classList.contains('active');
         navMenu.classList.remove('active');
         navToggle.classList.remove('active');
         navToggle.setAttribute('aria-expanded', 'false');
+        if (!document.body.classList.contains('menu-open')) return;
         document.documentElement.style.scrollBehavior = 'auto';
+        document.body.classList.remove('menu-open');
         document.body.style.top = '';
-        window.scrollTo(0, scrollPosition);
+        document.body.style.paddingRight = '';
+        if (skipRestore !== true && wasActive) {
+            window.scrollTo(0, scrollPosition);
+        }
         requestAnimationFrame(function() {
             document.documentElement.style.scrollBehavior = '';
         });
-        // Delay removing menu-open so scroll stays locked while
-        // the nav-menu slides out (0.5s transform).
-        setTimeout(function() {
-            document.body.classList.remove('menu-open');
-        }, 500);
     };
 
     navToggle.addEventListener('click', () => {
@@ -112,10 +115,11 @@ if (navMenu && navToggle) {
 
     closeButton.addEventListener('click', closeMobileMenu);
 
-    // Close mobile menu when clicking on a link
+    // Close mobile menu when clicking on a link (anchor: nessuno restore, evita doppio scroll)
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            closeMobileMenu();
+            var href = link.getAttribute('href') || '';
+            closeMobileMenu(href.charAt(0) === '#');
         });
     });
 }
@@ -130,8 +134,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
         const target = document.querySelector(targetId);
         if (target) {
-            // Close mobile menu if open
-            closeMobileMenu();
+            // Close mobile menu if open senza ripristinare lo scroll precedente
+            closeMobileMenu(true);
 
             // Use scrollIntoView for better mobile support
             const navHeight = 80;
@@ -142,16 +146,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: isMobile ? 'auto' : 'smooth'
             });
 
-            // On mobile, use instant scroll then slight delay for visual feedback
-            if (isMobile) {
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'auto'
-                    });
-                }, 50);
-            }
+            // Singolo scroll: nessun secondo scrollTo, nessuna animazione doppia
         }
+    });
+});
+
+// Case-study live preview: toggle desktop/mobile (i pulsanti
+// .preview-toggle erano privi di handler: click senza effetto)
+document.querySelectorAll('.preview-toggle').forEach(toggle => {
+    const scope = toggle.closest('.site-preview') || toggle.parentElement;
+    const frame = scope ? scope.querySelector('.preview-frame') : null;
+    if (!frame) return;
+    toggle.querySelectorAll('button[data-view]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            toggle.querySelectorAll('button[data-view]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            frame.classList.remove('desktop', 'mobile');
+            frame.classList.add(btn.getAttribute('data-view'));
+        });
     });
 });
 

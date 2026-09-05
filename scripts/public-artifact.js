@@ -73,7 +73,8 @@ const DYNAMIC_RUNTIME_DEPENDENCIES = Object.freeze({
     'js/chat.min.js',
     'js/cursor.min.js',
     'js/globe.min.js',
-    'js/text-effects.min.js'
+    'js/text-effects.min.js',
+    'js/weby-shell.min.js'
   ],
   'js/globe.min.js': ['js/cobe.min.js'],
   'js/search.min.js': ['search-index.json'],

@@ -31,10 +31,20 @@ function main() {
     /designrush/i,
     'js/footer-widgets-loader.js must own DesignRush lazy loading'
   );
-  assert.match(
+  assert.doesNotMatch(
     loaderSource,
-    /trustpilot/i,
-    'js/footer-widgets-loader.js must own Trustpilot lazy loading'
+    /widget\.trustpilot\.com/i,
+    'Trustpilot bootstrap must NOT be loaded externally: the badge is static (config/site-footer.js) because the external widget kept failing (HAR 2026-09-05: 8x status 0)'
+  );
+
+  const siteFooterSource = fs.readFileSync(
+    path.join(ROOT, 'config', 'site-footer.js'),
+    'utf8'
+  );
+  assert.match(
+    siteFooterSource,
+    /trustpilot-badge/i,
+    'config/site-footer.js must build the static Trustpilot badge (stars + wordmark, zero JS)'
   );
 
   const htmlFiles = walk(ROOT);
@@ -42,7 +52,7 @@ function main() {
 
   for (const filePath of htmlFiles) {
     const html = fs.readFileSync(filePath, 'utf8');
-    const hasReviewWidgets = /trustpilot-widget|data-designrush-widget/i.test(html);
+    const hasReviewWidgets = /data-designrush-widget/i.test(html);
     if (!hasReviewWidgets) continue;
 
     if (!/footer-widgets-loader(?:\.min)?\.js/i.test(html)) {

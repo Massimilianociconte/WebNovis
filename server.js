@@ -8,6 +8,7 @@ const crypto = require('crypto'); // Per timing-safe auth
 const aiConfig = require('./ai-config'); // Configurazione AI
 const { createSearchAiEngine, normalizePath: normalizeSearchPath } = require('./search-ai-engine');
 const { SECURITY_HEADERS, getAllowedCorsOrigins } = require('./config/security-headers');
+const { PORTFOLIO_FRAMING_HEADERS } = require('./config/security-headers');
 const { getIndexationDirectivesForPath } = require('./config/pseo-governance');
 
 // Global fetch instance — eagerly imported at boot to avoid cold-start latency
@@ -224,6 +225,8 @@ console.log('🔧 AI Config loaded:', aiConfig);
 const app = express();
 const PORT = process.env.PORT || 3000;
 const isProd = process.env.NODE_ENV === 'production';
+// Endpoint SMTP Brevo (costante fissa, nessuna URL derivata da input utente).
+const BREVO_SMTP_ENDPOINT = 'https://api.brevo.com/v3/smtp/email';
 
 // F1-06: Startup check — warn if newsletter secret is still placeholder
 const adminSecret = process.env.NEWSLETTER_ADMIN_SECRET;
@@ -302,6 +305,9 @@ app.use((req, res, next) => {
 // the same nonce into every executable inline and external script.
 app.use((req, res, next) => {
     res.set(SECURITY_HEADERS);
+    // Demo portfolio incorporate via iframe same-origin nei casi studio:
+    // framing consentito solo alla stessa origine (difesa invariata).
+    if (req.path.startsWith('/portfolio/')) res.set(PORTFOLIO_FRAMING_HEADERS);
     next();
 });
 
@@ -986,7 +992,7 @@ app.post('/api/lead', leadLimiter, async (req, res) => {
                         <p style="color:#666;font-size:13px;margin-top:24px;">Lead catturato dalla pagina 404 di webnovis.com — gestire secondo la priorità concordata.</p>
                     </div>`;
 
-                const brevoMailRes = await fetch('https://api.brevo.com/v3/smtp/email', {
+                const brevoMailRes = await fetch(BREVO_SMTP_ENDPOINT, {
                     method: 'POST',
                     headers: {
                         'accept': 'application/json',
@@ -1074,7 +1080,7 @@ app.post('/api/chat-lead', chatLimiter, async (req, res) => {
                     <p style="color:#666;font-size:13px;margin-top:24px;">Lead ad alto intento rilevato dal chatbot Weby — considera di ricontattarlo proattivamente.</p>
                 </div>`;
 
-            fetch('https://api.brevo.com/v3/smtp/email', {
+            fetch(BREVO_SMTP_ENDPOINT, {
                 method: 'POST',
                 headers: { 'accept': 'application/json', 'content-type': 'application/json', 'api-key': BREVO_API_KEY },
                 body: JSON.stringify({

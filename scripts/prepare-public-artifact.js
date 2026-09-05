@@ -230,8 +230,15 @@ function main(env = process.env) {
       path.join(ROOT_DIR, 'js', 'cobe.min.js'),
       path.join(stagingRoot, 'js', 'cobe.min.js')
     );
+    // Fallback non-minificato per noncritical-loader (prova .min.js prima).
+    copyFile(
+      path.join(ROOT_DIR, 'js', 'weby-shell.js'),
+      path.join(stagingRoot, 'js', 'weby-shell.js')
+    );
 
     runNode('scripts/normalize-public-html.js', [`--out-dir=${stagingRoot}`], buildEnv);
+    runNode('scripts/inject-preferred-source.js', [`--out-dir=${stagingRoot}`], buildEnv);
+    runNode('scripts/fix-cache-busting.js', [`--out-dir=${stagingRoot}`], buildEnv);
     runNode('scripts/update-footer.js', [`--out-dir=${stagingRoot}`], buildEnv);
     runNode('build-search-index.js', [`--out-dir=${stagingRoot}`, '--public-only'], buildEnv);
     runNode('generate-sitemap.js', [`--out-dir=${stagingRoot}`], buildEnv);

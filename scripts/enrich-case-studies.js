@@ -208,7 +208,10 @@ function main() {
       continue;
     }
 
-    const filePath = path.join(DIR, file);
+    const filePath = path.resolve(DIR, file);
+    if (!filePath.startsWith(DIR + path.sep)) {
+      throw new Error(`Path escapes case-study dir: ${file}`);
+    }
     const html = fs.readFileSync(filePath, 'utf8');
 
     if (!/<section class="cta-inline"/i.test(html)) {
@@ -262,7 +265,9 @@ function main() {
   if (!DRY_RUN) {
     const unsynced = files.filter((file) => {
       if (!CASE_EXTRA[file]) return false;
-      const html = fs.readFileSync(path.join(DIR, file), 'utf8');
+      const target = path.resolve(DIR, file);
+      if (!target.startsWith(DIR + path.sep)) return false;
+      const html = fs.readFileSync(target, 'utf8');
       return !/data-webnovis-case-extra/i.test(html);
     });
     if (unsynced.length) {

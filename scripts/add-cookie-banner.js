@@ -1,8 +1,17 @@
 const fs = require('fs');
 const path = require('path');
 
+const projectRoot = path.resolve(__dirname, '..');
+function resolveInsideRoot(relativePath) {
+    const target = path.resolve(projectRoot, relativePath);
+    if (target !== projectRoot && !target.startsWith(projectRoot + path.sep)) {
+        throw new Error(`Path escapes project root: ${relativePath}`);
+    }
+    return target;
+}
+
 // Get cookie banner markup from index.html
-const indexContent = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+const indexContent = fs.readFileSync(resolveInsideRoot('index.html'), 'utf8');
 const bannerStart = indexContent.indexOf('<div id="cookie-banner"');
 const bannerEnd = indexContent.indexOf('</div>', bannerStart) + 6;
 
@@ -17,7 +26,7 @@ const cookieBanner = indexContent.substring(bannerStart, bannerEnd);
 const pages = ['preventivo.html', 'come-lavoriamo.html', 'grazie.html'];
 
 for (const page of pages) {
-    const filePath = path.join(__dirname, '..', page);
+    const filePath = resolveInsideRoot(page);
     let content = fs.readFileSync(filePath, 'utf8');
     
     // Insert cookie banner right after <body>

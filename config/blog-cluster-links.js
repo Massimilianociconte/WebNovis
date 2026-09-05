@@ -1264,10 +1264,10 @@ const HUB_CARDS = {
     desc: "Il nodo locale che raccoglie le pagine commerciali più vicine a sviluppo web e lead generation."
   },
   accessibilita: {
-    href: "/zone-servite/#accessibilita",
+    href: "/zone-servite/",
     label: "Hub locale",
-    title: "Accessibilità Web per Comune",
-    desc: "Le pagine territoriali per audit, adeguamento EAA e supporto WCAG rivolto alle imprese locali."
+    title: "Zone servite WebNovis",
+    desc: "I comuni dell'hinterland in cui operiamo e i servizi digitali disponibili per le imprese locali."
   },
   social: {
     href: "/zone-servite/#social-media",

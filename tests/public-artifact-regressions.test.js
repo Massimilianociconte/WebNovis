@@ -19,6 +19,9 @@ function main() {
   assert.ok(fs.existsSync(prepareScriptPath), 'staging-first public artifact builder must exist');
   assert.ok(fs.existsSync(verifyScriptPath), 'public artifact verifier must exist');
 
+  const publicArtifact = require('../scripts/public-artifact.js');
+  const verifyPublicArtifact = require('../scripts/verify-public-artifact.js');
+
   const trackedFiles = new Set(
     execFileSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' })
       .split('\0')
@@ -46,12 +49,12 @@ function main() {
     FORBIDDEN_PUBLIC_PREFIXES,
     assertSafePublishTarget,
     normalizePath
-  } = require(artifactModulePath);
+  } = publicArtifact;
   const {
     collectJsRuntimeReferences,
     scanSecretLikeContent,
     verifyManifestRuntimeClosure
-  } = require(verifyScriptPath);
+  } = verifyPublicArtifact;
 
   assert.ok(FORBIDDEN_PUBLIC_PREFIXES.includes('config/'), 'config/ must be forbidden in public artifacts');
   assert.ok(FORBIDDEN_PUBLIC_PREFIXES.includes('tests/'), 'tests/ must be forbidden in public artifacts');
@@ -60,7 +63,7 @@ function main() {
   assert.ok(FORBIDDEN_PUBLIC_BASENAMES.has('newsletter-template.html'), 'email source templates must not be public');
   assert.deepEqual(
     DYNAMIC_RUNTIME_DEPENDENCIES['js/noncritical-loader.min.js'],
-    ['js/chat.min.js', 'js/cursor.min.js', 'js/globe.min.js', 'js/text-effects.min.js'],
+    ['js/chat.min.js', 'js/cursor.min.js', 'js/globe.min.js', 'js/text-effects.min.js', 'js/weby-shell.min.js'],
     'the progressive loader dependency closure must be explicit'
   );
   assert.deepEqual(

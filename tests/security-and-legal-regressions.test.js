@@ -3,10 +3,18 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
-const { buildStaticHeadersFile } = require(path.join(ROOT, 'config', 'security-headers.js'));
+const { buildStaticHeadersFile } = require('../config/security-headers.js');
+
+function resolveInsideRoot(relativePath) {
+  const target = path.resolve(ROOT, relativePath);
+  if (target !== ROOT && !target.startsWith(ROOT + path.sep)) {
+    throw new Error(`Path escapes project root: ${relativePath}`);
+  }
+  return target;
+}
 
 function readText(relativePath) {
-  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  return fs.readFileSync(resolveInsideRoot(relativePath), 'utf8');
 }
 
 

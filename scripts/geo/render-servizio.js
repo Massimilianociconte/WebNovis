@@ -23,6 +23,7 @@ const {
     serviceBySlug,
     serviceCoverageCitySlugs,
     shouldGenerateGeoForService,
+    getServicePrimaryUrl,
     njkEnv
 } = require('./data');
 const { getNearestCities, stripHtml, toCity } = require('./html-utils');
@@ -160,6 +161,7 @@ function generateServizioCittaPage(service, city) {
         // sintetiche Milano Nord/Ovest che non hanno un CAP univoco.
         cityCap: (city.slug === 'milano-nord' || city.slug === 'milano-ovest') ? null : city.cap,
         service: service,
+        servicePrimaryUrl: getServicePrimaryUrl(service),
         seo: seo,
         nearCitiesData: (city.nearCities || []).slice(0, 5).map(ncSlug => {
             const nc = cityMap.get(ncSlug);
@@ -220,7 +222,7 @@ function generateServizioCittaPage(service, city) {
         {
             "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
-                { "@type": "ListItem", "position": 2, "name": service.shortName, "item": SITE + "/zone-servite/#" + service.slug },
+                { "@type": "ListItem", "position": 2, "name": service.shortName, "item": SITE + getServicePrimaryUrl(service) },
                 { "@type": "ListItem", "position": 3, "name": `${service.shortName} ${toCity(city.name)}`, "item": canonical }
             ]
         },

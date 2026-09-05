@@ -26,6 +26,8 @@ const ENTITY_FACTS = Object.freeze({
     'https://www.instagram.com/web.novis',
     'https://www.facebook.com/share/1C7hNnkqEU/',
     'https://www.youtube.com/@WebNovis',
+    'https://www.linkedin.com/company/web-novis/',
+    'https://x.com/Webnovis',
     'https://it.trustpilot.com/review/webnovis.com',
     'https://www.designrush.com/agency/profile/web-novis',
     'https://www.goodfirms.co/company/web-novis'

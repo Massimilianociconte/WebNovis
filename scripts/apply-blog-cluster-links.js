@@ -143,7 +143,10 @@ function main() {
   const changedFiles = [];
 
   for (const file of articles) {
-    const filePath = path.join(BLOG_DIR, file);
+    const filePath = path.resolve(BLOG_DIR, file);
+    if (!filePath.startsWith(BLOG_DIR + path.sep)) {
+      throw new Error(`Path escapes blog dir: ${file}`);
+    }
     const relativePath = `blog/${file}`;
     const original = fs.readFileSync(filePath, 'utf8');
     const beforeState = analyzeHtml(original);

@@ -28,7 +28,7 @@ const MOCKUPS = {
   'aether-digital': 'aether-digital-mockup',
   arconti31: 'arconti31-mockup',
   comeleapi: 'comeleapi-mockup',
-  'ember-oak': 'ember-&-oak-mockup',
+  'ember-oak': 'ember-and-oak-mockup',
   fbtotalsecurity: 'fbtotalsecurity-mockup',
   'lumina-creative': 'lumina-creative-mockup',
   mikuna: 'mikuna-mockup',

@@ -639,13 +639,13 @@ body {
 /* Layout asimmetrico: copy a sinistra, composizione di progetti reali a destra.
    Nessuna foto decorativa: il visual È il prodotto (LCP = mockup Momentum). */
 .hero {
-    min-height: 100vh;
-    min-height: 100svh;
+    min-height: 92vh;
+    min-height: 92svh;
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding: 6.5rem 0 3rem;
+    padding: calc(var(--nav-clearance, 80px) + 1rem) 0 2.5rem;
     background-color: #0a0a0a;
     background-image:
         radial-gradient(ellipse 55% 48% at 76% 28%, rgba(43, 99, 240, 0.13), transparent 66%),
@@ -800,50 +800,87 @@ body {
     color: rgba(255, 255, 255, 0.55);
 }
 
-/* Link terziari hero: pillole badge uniformate con il design system */
+/* Link terziari hero: scorciatoie pill "glass" allineate al design system.
+   Solo CSS (zero JS/immagini): stessi weight dell'originale, look curato. */
 .hero-core-links {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem 0.55rem;
-    margin-top: 1.25rem;
-    padding-top: 1.1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 0.55rem 0.6rem;
+    margin-top: 1.4rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.14);
     width: 100%;
+}
+/* Etichetta micro sopra le scorciatoie: testo spaziato + hairline accent. */
+.hero-core-links::before {
+    content: 'Esplora';
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(203, 213, 225, 0.6);
+    background: linear-gradient(90deg, rgba(96, 165, 250, 0.55), transparent) no-repeat left bottom / 2.5rem 1px;
 }
 
 .hero-core-links a {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.36rem 0.82rem;
-    border-radius: 10px;
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    color: rgba(255, 255, 255, 0.85);
+    gap: 0.45rem;
+    min-height: 44px;
+    padding: 0.55rem 1.05rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    color: rgba(255, 255, 255, 0.92);
     text-decoration: none;
-    font-size: 0.84rem;
+    font-size: 0.88rem;
     font-weight: 600;
     letter-spacing: 0.01em;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%),
+        rgba(10, 15, 30, 0.35);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 3px 12px rgba(2, 6, 23, 0.35);
     transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Dot accent interno: conferma "elemento attivo/cliccabile" senza icone esterne. */
+.hero-core-links a::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #60a5fa;
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.7);
+    flex: 0 0 auto;
 }
 
 .hero-core-links a::after {
     content: '↗';
-    font-size: 0.85em;
-    opacity: 0.55;
+    font-size: 0.82em;
+    opacity: 0.5;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .hero-core-links a:hover {
     color: #fff;
-    border-color: rgba(91, 106, 174, 0.45);
-    background: rgba(91, 106, 174, 0.15);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 0 12px rgba(91, 106, 174, 0.2);
-    transform: translateY(-1px);
+    border-color: rgba(96, 165, 250, 0.55);
+    background:
+        linear-gradient(180deg, rgba(96, 165, 250, 0.16) 0%, rgba(91, 106, 174, 0.08) 100%),
+        rgba(10, 15, 30, 0.35);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 6px 18px rgba(2, 6, 23, 0.4),
+        0 0 16px rgba(96, 165, 250, 0.22);
+    transform: translateY(-2px);
 }
 
 .hero-core-links a:hover::after {
@@ -854,7 +891,7 @@ body {
 .hero-core-links a:focus-visible {
     outline: 2px solid var(--primary-light);
     outline-offset: 3px;
-    border-radius: 10px;
+    border-radius: 999px;
 }
 
 .hero-cta {
@@ -2814,6 +2851,35 @@ section {
 .contact-quick-item a.phone-cta {
     margin-top: 0;
 }
+/* Card "Preferisci Contattarci Direttamente?" (preventivo) e card
+   contatti: ogni riga icona+azione resta su UNA riga, icona centrata
+   verticalmente e pill allineata a sinistra come le altre voci. */
+.contact-quick .contact-quick-item {
+    flex-wrap: nowrap;
+    align-items: center;
+    row-gap: 0.5rem;
+}
+.contact-quick .contact-quick-item > svg {
+    align-self: center;
+    margin-top: 0;
+    flex: 0 0 auto;
+}
+.contact-quick .contact-quick-item a.phone-cta {
+    white-space: normal;
+    text-align: left;
+    max-width: 100%;
+    line-height: 1.35;
+    margin-left: 0;
+}
+.contact-quick .contact-quick-item > span:last-child {
+    flex: 1 1 12rem;
+    min-width: 0;
+}
+.contatti-card .contatti-card-body a.phone-cta {
+    white-space: normal;
+    max-width: 100%;
+    line-height: 1.35;
+}
 
 .contatti-card-head {
     display: flex;
@@ -3284,6 +3350,10 @@ section {
         transition-delay: 0.28s;
     }
 
+    .nav-menu.active li:nth-child(7) {
+        transition-delay: 0.32s;
+    }
+
     .nav-link {
         display: block;
         padding: 0.8rem 0;
@@ -3406,13 +3476,13 @@ section {
         width: 100%;
         display: flex;
         justify-content: center;
-        order: 1;
+        order: 2;
     }
 
     .social-section .service-content {
         width: 100%;
         text-align: center;
-        order: 2;
+        order: 1;
     }
 
     .social-section .service-features {
@@ -4481,18 +4551,51 @@ section {
     color: var(--gray-light);
 }
 
-/* ===== BREADCRUMB NAVIGATION - PREMIUM GLASS UI ===== */
+/* ===== BREADCRUMB NAVIGATION - PREMIUM GLASS UI (canonico globale) ===== */
+:root {
+    --nav-clearance: 80px;
+}
 .breadcrumb {
     --breadcrumb-pill-padding-y: 0.55rem;
     --breadcrumb-pill-padding-x: 1.15rem;
-    padding: 100px 0 20px;
-    font-size: 0.85rem;
+    padding: calc(var(--nav-clearance) + 14px) 0 12px;
+    font-size: 1rem;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     flex-wrap: wrap;
+}
+/* Il breadcrumb assorbe gia lo spazio della nav fissa: la sezione hero
+   che lo segue NON deve aggiungere una seconda clearance, ne' forzare
+   100vh con contenuto centrato (revolution.css): su desktop il centro
+   verticale creava ~80px di vuoto sotto il breadcrumb. Con min-height:0
+   il copy torna adiacente al breadcrumb su ogni tipo di pagina. Selettore
+   a fratello generale (~): tra breadcrumb e hero puo esserci la CTA
+   sticky-call (homepage) o altri elementi non visivi. */
+.breadcrumb ~ .hero,
+.breadcrumb ~ .case-hero,
+.breadcrumb ~ .about-hero,
+.breadcrumb ~ .service-page-hero,
+.breadcrumb ~ .portfolio-hero,
+.breadcrumb ~ .preventivo-hero,
+.breadcrumb ~ .blog-hero,
+main .breadcrumb ~ section[class*="hero"] {
+    padding-top: 1.25rem;
+    min-height: 0;
+}
+@media (max-width: 768px) {
+    .breadcrumb ~ .hero,
+    .breadcrumb ~ .case-hero,
+    .breadcrumb ~ .about-hero,
+    .breadcrumb ~ .service-page-hero,
+    .breadcrumb ~ .portfolio-hero,
+    .breadcrumb ~ .preventivo-hero,
+    .breadcrumb ~ .blog-hero,
+    main .breadcrumb ~ section[class*="hero"] {
+        padding-top: 1rem;
+    }
 }
 
 .breadcrumb a {
@@ -4506,7 +4609,7 @@ section {
     color: var(--primary-light);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     letter-spacing: 0.3px;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     backdrop-filter: blur(8px);
@@ -4539,7 +4642,11 @@ section {
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-.breadcrumb .current-page {
+/* La pagina corrente è marcata con classe .current-page oppure con
+   aria-current="page" (es. homepage: <span aria-current="page">Home</span>):
+entrambe le forme devono ricevere la pill. */
+.breadcrumb .current-page,
+.breadcrumb [aria-current="page"] {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -4549,14 +4656,15 @@ section {
     border-radius: 50px;
     color: var(--white);
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     letter-spacing: 0.3px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     line-height: 1;
 }
 
-.breadcrumb .current-page::before {
+.breadcrumb .current-page::before,
+.breadcrumb [aria-current="page"]::before {
     content: '';
     width: 6px;
     height: 6px;
@@ -4566,10 +4674,23 @@ section {
 }
 
 .breadcrumb .separator {
-    color: var(--primary-light);
-    opacity: 0.4;
-    font-weight: 300;
+    color: #C3CDEB;
+    opacity: 0.95;
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+
+/* Homepage: breadcrumb compatto ma leggibile, contorno rinforzato */
+body.home .breadcrumb {
+    padding: calc(var(--nav-clearance) + 10px) 0 8px;
     font-size: 0.9rem;
+}
+body.home .breadcrumb a,
+body.home .breadcrumb .current-page,
+body.home .breadcrumb [aria-current="page"] {
+    font-size: 0.9rem;
+    border-color: rgba(123, 140, 201, 0.45);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* Responsive breadcrumb */
@@ -4577,13 +4698,293 @@ section {
     .breadcrumb {
         --breadcrumb-pill-padding-y: 0.4rem;
         --breadcrumb-pill-padding-x: 0.75rem;
-        padding: 90px 1rem 0;
+        padding: calc(var(--nav-clearance) + 4px) 1rem 0;
         gap: 0.35rem;
     }
 
     .breadcrumb a,
-    .breadcrumb .current-page {
-        font-size: 0.75rem;
+    .breadcrumb .current-page,
+    .breadcrumb [aria-current="page"] {
+        font-size: 0.85rem;
+    }
+}
+
+/* Guardia anti-regressione: .container.breadcrumb porta ENTRAMBE le classi
+   e le regole .container{padding:0 X} dei breakpoint mobile (stessa
+   specificita ma successive nel file) azzeravano il padding-top,
+   nascondendo il breadcrumb sotto la nav fissa. Specificita (0,2,0):
+   vince su ogni .container a qualsiasi breakpoint. */
+.container.breadcrumb {
+    padding-top: calc(var(--nav-clearance) + 14px);
+    padding-bottom: 12px;
+}
+@media (max-width: 480px) {
+    .container.breadcrumb {
+        padding-top: calc(var(--nav-clearance) + 4px);
+        padding-bottom: 0;
+    }
+}
+
+/* CTA leggera fonti preferite Google: visibile anche senza JS, nessun bundle */
+.wn-preferred-source {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    max-width: 340px;
+}
+.wn-ps-label {
+    margin: 0 0 10px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.72);
+}
+.wn-ps-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(123, 140, 201, 0.45);
+    background: rgba(91, 106, 174, 0.14);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+.wn-ps-link:hover {
+    background: rgba(91, 106, 174, 0.28);
+    border-color: rgba(123, 140, 201, 0.7);
+}
+.wn-ps-fallback {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--primary-light);
+    text-decoration: underline;
+}
+/* Variante compatta per la parte alta degli articoli e la pagina Blog:
+   striscia orizzontale discreta, singola CTA, zero JS. */
+.wn-ps-article {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    max-width: 800px;
+    margin: 1.25rem auto 0;
+    padding: 0.7rem 1.25rem;
+    border: 1px solid rgba(123, 140, 201, 0.25);
+    border-top: 1px solid rgba(123, 140, 201, 0.25);
+    border-radius: 14px;
+    background: rgba(91, 106, 174, 0.08);
+}
+.wn-ps-article .wn-ps-label {
+    margin: 0;
+    font-size: 0.82rem;
+}
+.wn-ps-article .wn-ps-link {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+.article-hero .wn-ps-article {
+    margin-top: 1rem;
+}
+@media (max-width: 560px) {
+    .wn-ps-article {
+        border-radius: 12px;
+        padding: 0.65rem 1rem;
+    }
+    .wn-ps-article .wn-ps-link {
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+/* Sticky call globale: colonna sinistra, SOPRA il bottone WhatsApp
+   (56px) con gap fisso; il back-to-top si impila sopra la CTA. Cosi
+   il FAB chat resta solo a destra (insieme alla sua bubble) e nessun
+   float collide su alcun viewport. Quando la chat e aperta la CTA si
+   nasconde (il pannello offre gia i contatti, su mobile e a tutto
+   schermo). */
+.sticky-call {
+    position: fixed;
+    left: 2rem;
+    right: auto;
+    bottom: calc(2rem + 3.5rem + 0.75rem);
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.15rem;
+    border-radius: 999px;
+    background: linear-gradient(160deg, #2563eb, #60a5fa);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+body.chat-open .sticky-call {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px);
+}
+@media (max-width: 768px) {
+    .sticky-call {
+        left: 1rem;
+        bottom: calc(1.5rem + 3.125rem + 0.6rem);
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+@media (max-width: 480px) {
+    .sticky-call {
+        left: 1rem;
+        bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px) + 3.125rem + 0.6rem);
+    }
+}
+
+/* Link brand negli articoli: mai blu browser-default, usa design system.
+   Copre anche il byline .article-meta (firma "WebNovis") e gli stati
+   :visited, che prima ricadevano sul blu/viola dello user-agent. */
+.blog-article-content a,
+.article-content a,
+.post-content a,
+.blog-post-content a,
+.article-meta a {
+    color: var(--primary-light);
+    text-decoration: underline;
+    text-decoration-color: rgba(123, 140, 201, 0.55);
+    text-underline-offset: 2px;
+}
+.blog-article-content a:visited,
+.article-content a:visited,
+.post-content a:visited,
+.blog-post-content a:visited,
+.article-meta a:visited {
+    color: var(--primary-light);
+}
+.blog-article-content a:hover,
+.article-content a:hover,
+.post-content a:hover,
+.blog-post-content a:hover,
+.article-meta a:hover {
+    color: #AAB6E0;
+}
+
+/* Badge Trustpilot statico (config/site-footer.js): stelle SVG + wordmark,
+   zero JS esterno. Il widget ufficiale falliva spesso al load (HAR 2026-09-05)
+   e lasciava solo il link blu. Look brand: pill bianca, stelle verdi. */
+.trustpilot-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #191919;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(2, 6, 23, 0.28);
+}
+.trustpilot-badge svg {
+    display: block;
+    flex: 0 0 auto;
+}
+.trustpilot-badge .tp-wordmark {
+    font-weight: 700;
+    font-size: 0.98rem;
+    letter-spacing: 0.01em;
+    color: #191919;
+}
+.trustpilot-badge:hover {
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.38);
+    transform: translateY(-1px);
+}
+.trustpilot-badge:hover .tp-wordmark {
+    text-decoration: underline;
+}
+
+/* Link di contenuto senza classe su pagine servizio/hub/form: mai blu
+   user-agent (cluster guide, casi studio, tabelle hub, note privacy).
+   Stesso stile dei link articolo: primary-light + underline discreto. */
+.service-page-hero p a,
+.service-detail p a,
+.service-detail li a,
+.service-detail h2 a,
+.service-card-mini p a,
+.pricing-card a,
+.pricing-nav a,
+.hub-table-wrap a,
+.hub-atlas-header a,
+.checkbox-text a {
+    color: var(--primary-light);
+    text-decoration: underline;
+    text-decoration-color: rgba(123, 140, 201, 0.55);
+    text-underline-offset: 2px;
+}
+.service-page-hero p a:visited,
+.service-detail p a:visited,
+.service-detail li a:visited,
+.service-detail h2 a:visited,
+.service-card-mini p a:visited,
+.pricing-card a:visited,
+.pricing-nav a:visited,
+.hub-table-wrap a:visited,
+.hub-atlas-header a:visited,
+.checkbox-text a:visited {
+    color: var(--primary-light);
+}
+.service-page-hero p a:hover,
+.service-detail p a:hover,
+.service-detail li a:hover,
+.service-detail h2 a:hover,
+.service-card-mini p a:hover,
+.pricing-card a:hover,
+.pricing-nav a:hover,
+.hub-table-wrap a:hover,
+.hub-atlas-header a:hover,
+.checkbox-text a:hover {
+    color: #AAB6E0;
+    text-decoration-color: rgba(170, 182, 224, 0.9);
+}
+
+/* Voci servizi: contrasto e leggibilita */
+.service-tag {
+    color: #AAB6E0;
+}
+/* Sulle sezioni con gradiente blu saturo (web/social) il tag pervinca
+   su #1555c7 non contrasta: pill bianca ad alto contrasto. */
+.web-section .service-tag,
+.social-section .service-tag,
+.design-section .service-tag {
+    display: inline-block;
+    color: #ffffff;
+    background: rgba(10, 18, 48, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+/* Causa reale overflow mobile "Perché scegliere": minmax(280px,1fr) sfora
+   su viewport <=360px con .container padding 2rem. Fix alla fonte
+   (specificita body X per vincere gli <style> per-pagina), mai overflow-x:hidden. */
+body .service-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+}
+body .service-grid > * {
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1.25rem;
     }
 }
 
@@ -5390,7 +5791,7 @@ section {
 /* ===== BACK TO TOP BUTTON ===== */
 .back-to-top {
     position: fixed;
-    bottom: 6rem;
+    bottom: 9.75rem;
     left: 2rem;
     width: 50px;
     height: 50px;
@@ -6207,12 +6608,14 @@ section {
 
 /* ========== MOBILE UX ENHANCEMENTS ========== */
 
-/* Body scroll lock when mobile menu is open */
+/* Body scroll lock when mobile menu is open: stabile, nessun layout shift */
+html {
+    scrollbar-gutter: stable;
+}
 body.menu-open {
     overflow: hidden;
     position: fixed;
     width: 100%;
-    height: 100%;
     touch-action: none;
 }
 
@@ -6844,7 +7247,7 @@ img {
         padding: 0.5rem 0.85rem;
     }
 
-    /* ── Mobile Hero: Core links — chip compatti inline (riga che scorre a capo) ── */
+    /* ── Mobile Hero: Core links — chip pill compatti (riga che scorre a capo) ── */
     .hero-core-links {
         display: flex;
         flex-wrap: wrap;
@@ -6853,7 +7256,7 @@ img {
         width: 100%;
         margin-top: 1.4rem;
         padding-top: 1.2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(148, 163, 184, 0.14);
     }
 
     .hero-core-links a {
@@ -6862,14 +7265,16 @@ img {
         min-height: 2.5rem;
         align-items: center;
         padding: 0.4rem 0.85rem;
-        border-radius: 10px;
-        border: 1px solid rgba(148, 163, 184, 0.16);
-        color: rgba(255, 255, 255, 0.82);
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        color: rgba(255, 255, 255, 0.9);
         font-size: 0.86rem;
         font-weight: 600;
         letter-spacing: 0.01em;
         text-decoration: none;
-        background: rgba(255, 255, 255, 0.035);
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%),
+            rgba(10, 15, 30, 0.35);
         transition: border-color 0.25s ease, background-color 0.25s ease;
     }
 
@@ -6878,9 +7283,40 @@ img {
     }
 
     .hero-core-links a:active {
-        background: rgba(255, 255, 255, 0.07);
+        background: rgba(96, 165, 250, 0.14);
         transform: scale(0.98);
-        border-color: rgba(148, 163, 184, 0.3);
+        border-color: rgba(96, 165, 250, 0.4);
+    }
+
+    /* ── Mobile Homepage: densita e ritmo verticale ──
+       La homepage mobile non deve allungarsi per padding desktop:
+       hero senza min-height fissa, sezioni compattate, showcase
+       ridotto ma visibile (valore conversionale invariato). */
+    body.home .hero {
+        min-height: 0;
+        padding-bottom: 2rem;
+    }
+    body.home .hero-container {
+        gap: 2rem;
+    }
+    body.home .hero-showcase {
+        min-height: 0;
+    }
+    body.home section {
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+    }
+    body.home .service-layout {
+        gap: 2.25rem;
+    }
+    body.home .section-header {
+        margin-bottom: 2.5rem;
+    }
+    body.home .triade-grid {
+        gap: 1.25rem;
+    }
+    body.home .counters-grid {
+        gap: 1.5rem;
     }
 
     .is-mobile:not(.hero-fx-ready) .hero-badge,
@@ -6892,8 +7328,10 @@ img {
     }
 
     /* ── Mobile Service Page Hero Override ── */
+    /* Il padding-top e minimo: il breadcrumb soprastante assorbe gia la
+       clearance della nav fissa (prima 110px = doppia clearance). */
     .service-page-hero {
-        padding: 110px 1.5rem 60px !important;
+        padding: 1.25rem 1.5rem 60px !important;
         background: transparent !important;
         position: relative;
         overflow: hidden;
@@ -8435,4 +8873,46 @@ img {
 }
 .article-ai-note a:hover {
     color: #fff;
+}
+
+/* Case study: anteprima statica per i siti che vietano l'embedding
+   (X-Frame-Options/CSP del cliente). Stessa cornice browser del live
+   preview; l'intera anteprima linka al sito live. */
+.preview-frame .preview-static {
+    position: relative;
+    display: block;
+    height: calc(100% - 37px);
+    overflow: hidden;
+    background: #fff;
+    text-decoration: none;
+}
+.preview-frame .preview-static img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+}
+.preview-static-cta {
+    position: absolute;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.15rem;
+    border-radius: 999px;
+    background: rgba(10, 14, 28, 0.88);
+    border: 1px solid rgba(123, 140, 201, 0.5);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.preview-static:hover .preview-static-cta {
+    background: rgba(43, 99, 240, 0.92);
 }

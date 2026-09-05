@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const nunjucks = require('nunjucks');
 const { loadApprovedContentBlocks } = require('../../config/content-claim-governance');
+const { isIndexableGeoPath } = require('../../config/pseo-governance');
 const {
     ROOT,
     PUBLISH_DIR,
@@ -140,14 +141,46 @@ function formatPrice(service) {
     return `€${service.priceFrom}${service.priceUnit || ''}`;
 }
 
+// Servizi senza pagina propria E senza sezione nell'hub zone-servite:
+// fallback alla pagina servizio esistente piu vicina (stesso mapping
+// dei 301 wildcard in _redirects). Evita anchor /zone-servite/#slug
+// che non esistono e farebbero atterrare l'utente in cima alla pagina.
+const SERVICE_PRIMARY_FALLBACK_URLS = {
+    'manutenzione-sito': '/servizi/sviluppo-web.html',
+    'copywriting': '/servizi/consulenze.html',
+    'sviluppo-app-mobile': '/servizi/sviluppo-web.html',
+    'fotografia-aziendale': '/servizi/graphic-design.html',
+    'automazione-business': '/servizi/consulenze.html',
+    'web-app': '/servizi/sviluppo-web.html',
+    'restyling-sito-web': '/servizi/sviluppo-web.html',
+    'consulenza-digitale': '/servizi/consulenze.html'
+};
+
+function serviceHasHubSection(service) {
+    if (!shouldGenerateGeoForService(service)) return false;
+    return cities.some((city) => isIndexableGeoPath(`/${service.slug}-${city.slug}.html`));
+}
+
+const HUB_SECTION_SERVICE_SLUGS = new Set(
+    services.filter(serviceHasHubSection).map((service) => service.slug)
+);
+
 function getServicePrimaryUrl(service) {
-    return service.hasPage ? service.url : `/zone-servite/#${service.slug}`;
+    if (service.hasPage) return service.url;
+    if (HUB_SECTION_SERVICE_SLUGS.has(service.slug)) return `/zone-servite/#${service.slug}`;
+    return SERVICE_PRIMARY_FALLBACK_URLS[service.slug] || '/servizi/consulenze.html';
 }
 
 function getServicePrimaryLabel(service) {
-    return service.hasPage
-        ? `la pagina servizio ${service.shortName}`
-        : `il riepilogo ${service.shortName} nelle zone servite`;
+    if (service.hasPage) return `la pagina servizio ${service.shortName}`;
+    if (HUB_SECTION_SERVICE_SLUGS.has(service.slug)) {
+        return `il riepilogo ${service.shortName} nelle zone servite`;
+    }
+    const fallbackUrl = SERVICE_PRIMARY_FALLBACK_URLS[service.slug];
+    const target = services.find((candidate) => candidate.url === fallbackUrl);
+    if (target) return `la pagina servizio ${target.shortName}`;
+    const fallbackLabels = { '/servizi/sviluppo-web.html': 'Sviluppo Web' };
+    return fallbackLabels[fallbackUrl] ? `la pagina servizio ${fallbackLabels[fallbackUrl]}` : 'la pagina servizi';
 }
 
 function getCityAvatarPublicPath(city) {
@@ -194,6 +227,8 @@ module.exports = {
     formatPrice,
     getServicePrimaryUrl,
     getServicePrimaryLabel,
+    serviceHasHubSection,
+    HUB_SECTION_SERVICE_SLUGS,
     getCityAvatarPublicPath,
     withCityUiMeta
 };

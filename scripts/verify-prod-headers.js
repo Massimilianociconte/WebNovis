@@ -1,4 +1,4 @@
-const { SECURITY_HEADERS } = require('../config/security-headers');
+const { SECURITY_HEADERS, PORTFOLIO_FRAMING_HEADERS } = require('../config/security-headers');
 
 const DEFAULT_PRODUCTION_SITE_URL = 'https://www.webnovis.com';
 
@@ -54,6 +54,35 @@ function buildTargets(env = process.env) {
       path: '/accessibilita-assago.html',
       expectedStatuses: [301, 308],
       expectedLocation: '/servizi/accessibilita.html'
+    },
+    // Famiglie de-amplificate coperte dai wildcard aggiunti con l'audit
+    // 2026-09 (mai 200, mai 404).
+    {
+      path: '/social-media-bareggio.html',
+      expectedStatuses: [301, 308],
+      expectedLocation: '/servizi/social-media.html'
+    },
+    {
+      path: '/google-ads-rho.html',
+      expectedStatuses: [301, 308],
+      expectedLocation: '/servizi/consulenze.html'
+    },
+    {
+      path: '/agenzia-web-arluno.html',
+      expectedStatuses: [301, 308],
+      expectedLocation: '/agenzia-web/'
+    },
+    {
+      path: '/realizzazione-siti-web-assago.html',
+      expectedStatuses: [301, 308],
+      expectedLocation: '/realizzazione-siti-web/'
+    },
+    // Demo portfolio: stessa origine puo incorporarle via iframe
+    // (casi studio), i terzi no.
+    {
+      path: '/portfolio/Aether-Digital.html',
+      expectedStatuses: [200],
+      expectedHeaders: PORTFOLIO_FRAMING_HEADERS
     },
     { path: '/__webnovis-artifact-404__', expectedStatuses: [404], expectedHeaders: SECURITY_HEADERS },
     // Sorgenti interne: fuori dall'artifact (404). L'edge WAF può bloccare

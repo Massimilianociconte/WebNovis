@@ -44,7 +44,7 @@ const PAGE_IMAGES = {
     // Arconti 31 è un pub storico a Gallarate, non uno studio fotografico.
     '/portfolio/case-study/arconti31.html': [{ loc: '/Img/portfolio/arconti31-mockup-800.webp', title: 'Arconti 31 — sito web pub by Web Novis', caption: 'Mockup sito web Arconti 31 realizzato da Web Novis' }],
     // Ember & Oak è un ristorante fine dining, non un e-commerce.
-    '/portfolio/case-study/ember-oak.html': [{ loc: '/Img/portfolio/ember-&-oak-mockup-800.webp', title: 'Ember & Oak — sito web ristorante by Web Novis', caption: 'Mockup sito web Ember & Oak realizzato da Web Novis' }],
+    '/portfolio/case-study/ember-oak.html': [{ loc: '/Img/portfolio/ember-and-oak-mockup-800.webp', title: 'Ember & Oak — sito web ristorante by Web Novis', caption: 'Mockup sito web Ember & Oak realizzato da Web Novis' }],
     '/portfolio/case-study/fbtotalsecurity.html': [{ loc: '/Img/portfolio/fbtotalsecurity-mockup-800.webp', title: 'FB Total Security — sito web by Web Novis', caption: 'Mockup sito web FB Total Security realizzato da Web Novis' }],
     '/portfolio/case-study/lumina-creative.html': [{ loc: '/Img/portfolio/lumina-creative-mockup-800.webp', title: 'Lumina Creative — sito web by Web Novis', caption: 'Mockup sito web Lumina Creative realizzato da Web Novis' }],
     // Il cliente è "Mikuna", ristorante peruviano a Varese (non "Mikuna Italia").

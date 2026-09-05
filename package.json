@@ -41,9 +41,9 @@
     "update:footer": "node scripts/update-footer.js",
     "test:seo-smoke": "node tests/seo-smoke.test.js",
     "test:api": "node tests/api-endpoints.test.js",
-    "test:regressions": "node tests/image-template-regressions.test.js && node tests/image-loading-policy.test.js && node tests/geo-generator-regressions.test.js && node tests/geo-generator-fail-closed.test.js && node tests/public-html-regressions.test.js && node tests/html-structure-regressions.test.js && node tests/robots-policy-regressions.test.js && node tests/editorial-language-regressions.test.js && node tests/faq-schema-regressions.test.js && node tests/widget-loader-regressions.test.js && node tests/footer-widget-loader-regressions.test.js && node tests/security-and-legal-regressions.test.js && node tests/build-pipeline-regressions.test.js && node tests/public-artifact-regressions.test.js && node tests/security-header-regressions.test.js && node tests/header-verifier-regressions.test.js && node tests/seo-regressions.test.js && node tests/priority-content-regressions.test.js && node tests/entity-claim-corpus-regressions.test.js && node tests/llms-export-regressions.test.js && node tests/internal-linking-regressions.test.js && node tests/pseo-governance-regressions.test.js && node tests/seo-governance-report.test.js && node tests/lcp-hero-regressions.test.js && node tests/audit-seo-a11y-regressions.test.js && node tests/presence-and-ranking-regressions.test.js",
+    "test:regressions": "node tests/image-template-regressions.test.js && node tests/image-loading-policy.test.js && node tests/geo-generator-regressions.test.js && node tests/geo-generator-fail-closed.test.js && node tests/public-html-regressions.test.js && node tests/html-structure-regressions.test.js && node tests/robots-policy-regressions.test.js && node tests/editorial-language-regressions.test.js && node tests/faq-schema-regressions.test.js && node tests/widget-loader-regressions.test.js && node tests/footer-widget-loader-regressions.test.js && node tests/security-and-legal-regressions.test.js && node tests/build-pipeline-regressions.test.js && node tests/public-artifact-regressions.test.js && node tests/security-header-regressions.test.js && node tests/header-verifier-regressions.test.js && node tests/seo-regressions.test.js && node tests/priority-content-regressions.test.js && node tests/entity-claim-corpus-regressions.test.js && node tests/llms-export-regressions.test.js && node tests/internal-linking-regressions.test.js && node tests/pseo-governance-regressions.test.js && node tests/seo-governance-report.test.js && node tests/lcp-hero-regressions.test.js && node tests/audit-seo-a11y-regressions.test.js && node tests/presence-and-ranking-regressions.test.js && node tests/nav-canonical-regressions.test.js",
     "verify:prod-headers": "node scripts/verify-prod-headers.js",
-    "ci:quality": "npm run build:geo && npm run update:footer && npm run build && npm run normalize:public-html && npm run build:search-index && npm run build:sitemap && npm run validate:pages && npm run test:regressions && npm run test:seo-smoke && npm run test:api",
+    "ci:quality": "npm run build:geo && npm run update:footer && npm run build && npm run normalize:public-html && npm run blog:preferred-source && npm run build:search-index && npm run build:sitemap && npm run validate:pages && npm run test:regressions && npm run test:seo-smoke && npm run test:api",
     "ci:quality:dist": "npm run build:site:dist && npm run verify:artifact && npm run test:regressions && npm run test:seo-smoke && npm run test:api",
     "sync:headers": "node scripts/sync-security-headers.js",
     "sync:headers:dist": "node scripts/sync-security-headers.js --out-dir=dist",
@@ -57,7 +57,11 @@
     "ai:tail": "npx wrangler tail webnovis-ai",
     "forms:deploy": "npx wrangler deploy -c workers/webnovis-forms/wrangler.jsonc",
     "forms:dev": "npx wrangler dev -c workers/webnovis-forms/wrangler.jsonc",
-    "blog:apply-clusters": "node scripts/apply-blog-cluster-links.js"
+    "blog:apply-clusters": "node scripts/apply-blog-cluster-links.js",
+    "standardize:header": "node scripts/standardize-header.js",
+    "standardize:all": "node scripts/standardize-all.js",
+    "blog:preferred-source": "node scripts/inject-preferred-source.js",
+    "fix:cache-busting": "node scripts/fix-cache-busting.js"
   },
   "keywords": [
     "chatbot",

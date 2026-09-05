@@ -5,8 +5,10 @@ const {
   normalizeFooterAssetMarkup,
   normalizePhoneCtaMarkup,
   normalizeReviewActionMarkup,
-  normalizeSocialLinksMarkup
+  normalizeSocialLinksMarkup,
+  normalizeTrustpilotBadgeMarkup
 } = require('../config/site-footer');
+const { normalizeNavMenuMarkup } = require('../config/site-header');
 const { normalizeEntityJsonLd } = require('../config/entity-facts');
 const { normalizeImageLoadingInHtml } = require('../config/image-policy');
 const { applySeoHtmlTransforms } = require('../config/seo-html-transforms');
@@ -27,6 +29,9 @@ const ONLY_PATHS = new Set(
 const EXCLUDED_DIRS = new Set(['node_modules', '.git', '.claude', 'docs', 'scripts', 'css', 'js', 'Img', 'fonts', 'data', 'config', 'tests', 'src']);
 const BLOG_FOOTER_PATTERN = /<footer class="footer">\s*<div class="container">\s*<div class="footer-content">[\s\S]*?<\/footer>/;
 const DESIGNRUSH_SCRIPT_PATTERN = /<script\b[^>]*src="https:\/\/www\.designrush\.com\/topbest\/js\/widgets\/agency-reviews\.js"[^>]*><\/script>/gi;
+// Il bootstrap Trustpilot e caricato in lazy da footer-widgets-loader.js:
+// qualsiasi <script> diretto nell'head e un duplicato da rimuovere.
+const TRUSTPILOT_BOOTSTRAP_PATTERN = /\s*<script\b[^>]*src="https:\/\/widget\.trustpilot\.com\/bootstrap\/v5\/tp\.widget\.bootstrap\.min\.js"[^>]*><\/script>/gi;
 const DESIGNRUSH_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/designrush-loader\.js"[^>]*><\/script>/gi;
 const FOOTER_WIDGET_LOADER_PATTERN = /<script\b[^>]*src="([^"]*?)js\/footer-widgets-loader(?:\.min)?\.js(\?[^"]*)?"[^>]*><\/script>/i;
 const FOOTER_WIDGET_LOADER_GLOBAL_PATTERN = /\s*<script\b[^>]*src="(?:[^"]*?)js\/footer-widgets-loader(?:\.min)?\.js(?:\?[^"]*)?"[^>]*><\/script>\s*/gi;
@@ -98,6 +103,20 @@ function normalizeBlogFooter(html, relativePath) {
   return html.replace(BLOG_FOOTER_PATTERN, getBlogFooterHtml(getBlogPrefix(relativePath)));
 }
 
+// Build-time guarantee: EVERY page footer becomes the canonical footer
+// (single source of truth in config/site-footer.js), regardless of which
+// generator or legacy variant produced it. Runs after normalizeBlogFooter.
+const CANONICAL_FOOTER_PATTERN = /<footer class="footer">[\s\S]*?<\/footer>/;
+
+function normalizeFooterCanonical(html, relativePath) {
+  if (!CANONICAL_FOOTER_PATTERN.test(html)) return html;
+  return html.replace(CANONICAL_FOOTER_PATTERN, getBlogFooterHtml(getBlogPrefix(relativePath)));
+}
+
+function normalizeNavMenu(html, relativePath) {
+  return normalizeNavMenuMarkup(html, getRootPrefix(relativePath));
+}
+
 function getFooterWidgetLoaderVersion(html) {
   const versionedMatch = /src="[^"]*js\/footer-widgets-loader(?:\.min)?\.js(\?[^"]*)"/i.exec(html);
   return versionedMatch ? versionedMatch[1] : '';
@@ -112,6 +131,7 @@ function normalizeDesignRushLoader(html, relativePath) {
   const loaderTag = getFooterWidgetLoaderTag(html, relativePath);
   let updated = html.replace(DESIGNRUSH_SCRIPT_PATTERN, loaderTag);
   updated = updated.replace(DESIGNRUSH_LOADER_PATTERN, loaderTag);
+  updated = updated.replace(TRUSTPILOT_BOOTSTRAP_PATTERN, ' ');
   return updated;
 }
 
@@ -143,9 +163,15 @@ function ensureFooterWidgetLoader(html, relativePath) {
 
 /** Inject public site-config (Turnstile sitekey, form mode) before main.min.js once. */
 function ensureSiteConfigScript(html, relativePath) {
+  const prefix = getRootPrefix(relativePath);
+  if (new RegExp(`src="${prefix}js/site-config\\.js"`, 'i').test(html)) return html;
+  // Ripara prefissi di profondita errati ereditati da vecchie generazioni (es. ../../js/ in pagine root).
+  html = html.replace(
+    /src="(?:\.\.\/)+js\/site-config\.js(\?[^"]*)?"/gi,
+    `src="${prefix}js/site-config.js$1"`
+  );
   if (/js\/site-config\.js/i.test(html)) return html;
   if (!/<script\b[^>]*src="[^"]*js\/main\.min\.js/i.test(html)) return html;
-  const prefix = getRootPrefix(relativePath);
   const tag = `<script src="${prefix}js/site-config.js"></script>`;
   return html.replace(
     /<script\b([^>]*src="[^"]*js\/main\.min\.js[^"]*"[^>]*)><\/script>/i,
@@ -222,10 +248,13 @@ for (const filePath of walk(ROOT)) {
   }
   const original = fs.readFileSync(filePath, 'utf8');
   let updated = normalizeBlogFooter(original, relativePath);
+  updated = normalizeFooterCanonical(updated, relativePath);
+  updated = normalizeNavMenu(updated, relativePath);
   updated = normalizeSocialLinksMarkup(updated);
   updated = normalizeFooterAssetMarkup(updated);
   updated = normalizePhoneCtaMarkup(updated);
   updated = normalizeReviewActionMarkup(updated);
+  updated = normalizeTrustpilotBadgeMarkup(updated);
   updated = normalizeEntityJsonLd(updated);
   updated = normalizeImageLoadingInHtml(updated);
   updated = normalizeDesignRushLoader(updated, relativePath);

@@ -68,8 +68,10 @@ function sameSection(urlA, urlB) {
 }
 
 function loadCorpus(rootDir) {
+  const baseDir = path.resolve(rootDir);
   for (const fileName of SEARCH_INDEX_FILES) {
-    const filePath = path.join(rootDir, fileName);
+    const filePath = path.resolve(baseDir, fileName);
+    if (filePath !== baseDir && !filePath.startsWith(baseDir + path.sep)) continue;
     if (!fs.existsSync(filePath)) continue;
 
     try {

@@ -270,8 +270,8 @@ function main() {
     'blog/obblighi-legge-accessibilita-siti.html must point to the dedicated accessibilita service page'
   );
   assert.ok(
-    accessibilityHtml.includes('href="/zone-servite/#accessibilita"'),
-    'blog/obblighi-legge-accessibilita-siti.html must link to the accessibilita local-intent hub section'
+    accessibilityHtml.includes('href="/zone-servite/"'),
+    'blog/obblighi-legge-accessibilita-siti.html must link to the local-intent hub (no #accessibilita section exists under current governance)'
   );
 
   const gscGuideHtml = readText('blog/google-search-console-guida.html');
