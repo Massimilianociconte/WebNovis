@@ -329,6 +329,14 @@ abbr[title] {
     --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
     --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
     --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    /* ========== FLOATING ACTION STACK (whatsapp / telefono / back-to-top) ==========
+       Unica fonte di verità per la pila sinistra: stesso gap tra le 3 icone,
+       stabile su tutte le pagine e breakpoint. */
+    --fab-bottom: 2rem;
+    --fab-side: 2rem;
+    --fab-size: 56px;
+    --fab-gap: 0.9rem;
 }
 
 /* ========== PREMIUM ANIMATIONS ========== */
@@ -4804,15 +4812,13 @@ body.home .breadcrumb [aria-current="page"] {
 }
 
 /* ========== FLOATING CALL BUTTON (MATCHING WHATSAPP FLOAT) ==========
-   Posizionato a sinistra, impilato SOPRA il bottone WhatsApp (56px)
-   con perfetta coerenza visiva: stesso diametro circolare, stesse
-   coordinate orizzontali (left), animazione pulse ed elegante tooltip.
-   Su tablet (<=768px: 50px) e mobile (<=480px: 46px) scala in modo
-   identico a WhatsApp. Quando la chat Weby è aperta si nasconde. */
+   Posizionato a sinistra, impilato SOPRA il bottone WhatsApp con lo
+   stesso gap standardizzato (--fab-gap) usato anche per il back-to-top,
+   così la distanza tra le 3 icone è identica ovunque. */
 .call-float {
     position: fixed;
-    bottom: calc(2rem + 56px + 0.75rem);
-    left: 2rem;
+    bottom: calc(var(--fab-bottom) + var(--fab-size) + var(--fab-gap));
+    left: var(--fab-side);
     z-index: 1001;
     display: flex;
     flex-direction: row-reverse;
@@ -4822,10 +4828,10 @@ body.home .breadcrumb [aria-current="page"] {
 
 .call-float-btn,
 .sticky-call {
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
-    min-height: 56px;
+    width: var(--fab-size);
+    height: var(--fab-size);
+    min-width: var(--fab-size);
+    min-height: var(--fab-size);
     border-radius: 50%;
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     display: flex;
@@ -4917,20 +4923,18 @@ body.chat-open .whatsapp-float {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --fab-bottom: 1.5rem;
+        --fab-side: 1.5rem;
+        --fab-size: 50px;
+        --fab-gap: 0.75rem;
+    }
     .call-float {
-        bottom: calc(1.5rem + 50px + 0.6rem);
-        left: 1.5rem;
+        left: var(--fab-side);
         z-index: 999;
     }
     .call-tooltip {
         display: none;
-    }
-    .call-float-btn,
-    .sticky-call {
-        width: 50px;
-        height: 50px;
-        min-width: 50px;
-        min-height: 50px;
     }
     .call-float-btn svg,
     .sticky-call svg {
@@ -4940,16 +4944,14 @@ body.chat-open .whatsapp-float {
 }
 
 @media (max-width: 480px) {
-    .call-float {
-        bottom: calc(1rem + env(safe-area-inset-bottom, 0px) + 46px + 0.5rem);
-        left: 1rem;
+    :root {
+        --fab-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        --fab-side: 1rem;
+        --fab-size: 46px;
+        --fab-gap: 0.65rem;
     }
-    .call-float-btn,
-    .sticky-call {
-        width: 46px;
-        height: 46px;
-        min-width: 46px;
-        min-height: 46px;
+    .call-float {
+        left: var(--fab-side);
     }
     .call-float-btn svg,
     .sticky-call svg {
@@ -5899,11 +5901,13 @@ body .service-grid > * {
     }
 }
 
-/* ===== BACK TO TOP BUTTON ===== */
+/* ===== BACK TO TOP BUTTON =====
+   Terzo elemento della pila sinistra: stessa distanza standardizzata
+   (--fab-gap) sia da WhatsApp a telefono che da telefono a freccia. */
 .back-to-top {
     position: fixed;
-    bottom: 9.75rem;
-    left: 2rem;
+    bottom: calc(var(--fab-bottom) + var(--fab-size) + var(--fab-gap) + var(--fab-size) + var(--fab-gap));
+    left: var(--fab-side);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -6077,8 +6081,8 @@ body .service-grid > * {
 /* ===== RESPONSIVE ENHANCEMENTS ===== */
 @media (max-width: 768px) {
     .back-to-top {
-        bottom: 5.5rem;
-        left: 1rem;
+        bottom: calc(var(--fab-bottom) + var(--fab-size) + var(--fab-gap) + var(--fab-size) + var(--fab-gap));
+        left: var(--fab-side);
     }
 
     .testimonials-compact-grid {
@@ -8081,7 +8085,9 @@ img {
     .back-to-top {
         left: auto;
         right: 1rem;
-        bottom: calc(5.5rem + env(safe-area-inset-bottom));
+        /* Stesso gap standardizzato anche sul lato destro, sopra Weby
+           (mobile: bottom 1rem + robot 48px + gap). Allineato a Weby. */
+        bottom: calc(1rem + 48px + var(--fab-gap) + env(safe-area-inset-bottom, 0px));
     }
 }
 
@@ -8337,13 +8343,14 @@ img {
         padding: 1rem;
     }
 
-    /* -- Back to top smaller -- */
+    /* -- Back to top smaller, stesso gap standardizzato sopra Weby
+          (phone: bottom 0.75rem + robot 44px + gap). Allineato a Weby. -- */
     .back-to-top {
         width: 42px;
         height: 42px;
-        right: 0.95rem;
+        right: 0.75rem;
         left: auto;
-        bottom: calc(5rem + env(safe-area-inset-bottom));
+        bottom: calc(0.75rem + 44px + var(--fab-gap) + env(safe-area-inset-bottom, 0px));
     }
 
     /* -- Counters section compact -- */

@@ -1,4 +1,28 @@
 /* ===== INSPIRED ELEMENTS ===== */
+/* Stack FAB standardizzato (condiviso con style.css): stesso gap tra
+   whatsapp / telefono / freccia su tutte le pagine e breakpoint. */
+:root {
+    --fab-bottom: 2rem;
+    --fab-side: 2rem;
+    --fab-size: 56px;
+    --fab-gap: 0.9rem;
+}
+@media (max-width: 768px) {
+    :root {
+        --fab-bottom: 1.5rem;
+        --fab-side: 1.5rem;
+        --fab-size: 50px;
+        --fab-gap: 0.75rem;
+    }
+}
+@media (max-width: 480px) {
+    :root {
+        --fab-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        --fab-side: 1rem;
+        --fab-size: 46px;
+        --fab-gap: 0.65rem;
+    }
+}
 /* ========== HIGHLIGHTER / MARKER EFFECT ========== */
 .highlight-gold,
 .highlight-burgundy {
@@ -609,11 +633,13 @@
     font-size: 0.95rem;
 }
 
-/* ========== 8. WHATSAPP FLOATING BUTTON ========== */
+/* ========== 8. WHATSAPP FLOATING BUTTON ==========
+   Base della pila sinistra: telefono e freccia si impilano sopra con
+   lo stesso --fab-gap, distanza identica tra le 3 icone. */
 .whatsapp-float {
     position: fixed;
-    bottom: 2rem;
-    left: 2rem;
+    bottom: var(--fab-bottom);
+    left: var(--fab-side);
     z-index: 1001;
     display: flex;
     flex-direction: row-reverse;
@@ -622,8 +648,8 @@
 }
 
 .whatsapp-float-btn {
-    width: 56px;
-    height: 56px;
+    width: var(--fab-size);
+    height: var(--fab-size);
     border-radius: 50%;
     background: #25D366;
     display: flex;
@@ -1166,8 +1192,8 @@
     }
 
     .whatsapp-float {
-        bottom: 1.5rem;
-        left: 1.5rem;
+        bottom: var(--fab-bottom);
+        left: var(--fab-side);
     }
 
     .whatsapp-tooltip {
@@ -1175,8 +1201,8 @@
     }
 
     .whatsapp-float-btn {
-        width: 50px;
-        height: 50px;
+        width: var(--fab-size);
+        height: var(--fab-size);
     }
 
     .whatsapp-float-btn svg {
@@ -1431,15 +1457,15 @@
         font-size: 0.95rem;
     }
 
-    /* WhatsApp button compact */
+    /* WhatsApp button compact, stessa base standardizzata della pila */
     .whatsapp-float {
-        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
-        left: 1rem;
+        bottom: var(--fab-bottom);
+        left: var(--fab-side);
     }
 
     .whatsapp-float-btn {
-        width: 46px;
-        height: 46px;
+        width: var(--fab-size);
+        height: var(--fab-size);
     }
 
     .whatsapp-float-btn svg {
