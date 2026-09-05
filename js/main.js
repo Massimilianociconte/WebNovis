@@ -786,12 +786,10 @@ const orbsParallax = document.querySelectorAll('.gradient-orb');
 (function() {
     var mouseParallaxActive = false;
     var parallaxTicking = false;
-    // Defer layout reads to rAF to avoid forced reflow after DOM mutations at script init
     var parallaxClientX = 0;
     var parallaxClientY = 0;
-    requestAnimationFrame(function() {
-        parallaxClientX = window.innerWidth * 0.5;
-        parallaxClientY = window.innerHeight * 0.5;
+
+    if (!isMobile) {
         var heroSection = document.querySelector('.hero');
         if (heroSection) {
             var parallaxVisObserver = new IntersectionObserver(function(entries) {
@@ -799,14 +797,25 @@ const orbsParallax = document.querySelectorAll('.gradient-orb');
             }, { threshold: 0 });
             parallaxVisObserver.observe(heroSection);
         }
-    });
+
+        document.addEventListener('mousemove', function(e) {
+            if (!mouseParallaxActive) return;
+            parallaxClientX = e.clientX;
+            parallaxClientY = e.clientY;
+            if (parallaxTicking) return;
+            parallaxTicking = true;
+            requestAnimationFrame(applyMouseParallax);
+        }, { passive: true });
+    }
 
     function applyMouseParallax() {
         parallaxTicking = false;
         if (!mouseParallaxActive || isMobile) return;
 
-        var mx = parallaxClientX / window.innerWidth;
-        var my = parallaxClientY / window.innerHeight;
+        var w = window.innerWidth || 1;
+        var h = window.innerHeight || 1;
+        var mx = parallaxClientX / w;
+        var my = parallaxClientY / h;
 
         for (var i = 0; i < floatingCardsParallax.length; i++) {
             var speed = (i + 1) * 10;
@@ -818,15 +827,6 @@ const orbsParallax = document.querySelectorAll('.gradient-orb');
             orbsParallax[j].style.transform = 'translate(' + ((mx - 0.5) * sp) + 'px,' + ((my - 0.5) * sp) + 'px)';
         }
     }
-
-    document.addEventListener('mousemove', function(e) {
-        if (!mouseParallaxActive || isMobile) return;
-        parallaxClientX = e.clientX;
-        parallaxClientY = e.clientY;
-        if (parallaxTicking) return;
-        parallaxTicking = true;
-        requestAnimationFrame(applyMouseParallax);
-    }, { passive: true });
 })();
 
 // Hero Showcase pointer parallax — scoped su .hero-showcase, via CSS vars (--px/--py),
@@ -878,61 +878,61 @@ revealSections.forEach(section => sectionObserver.observe(section));
 
 // Modern Social Feed with Seamless Infinite Scroll
 const socialFeedScroll = document.getElementById('socialFeedScroll');
-if (socialFeedScroll) {
-
-    // Wait for DOM to be fully loaded before any layout reads
-    setTimeout(() => {
-        // Detect if mobile inside timeout to avoid forced reflow at script init
-        const isMobileDevice = window.innerWidth <= 768 || 'ontouchstart' in window;
-
-        // Clone feed posts to create seamless loop (only on desktop)
+if (socialFeedScroll && !isMobile && !('ontouchstart' in window)) {
+    // Only initialize and measure on desktop when the feed is scrolled into view
+    const initSocialScroll = () => {
         const posts = Array.from(socialFeedScroll.querySelectorAll('.feed-post'));
+        if (!posts.length) return;
 
-        // Single-pass measurement: read height+margin together to minimise reflow triggers
         let originalHeight = 0;
         const postMeasurements = posts.map(function(p) {
             return p.offsetHeight + (parseInt(getComputedStyle(p).marginBottom) || 0);
         });
         for (var hi = 0; hi < postMeasurements.length; hi++) { originalHeight += postMeasurements[hi]; }
 
-        // Only enable auto-scroll on desktop
-        if (!isMobileDevice) {
-            const clonedPosts = posts.map(post => post.cloneNode(true));
-            clonedPosts.forEach(clone => {
-                socialFeedScroll.appendChild(clone);
-            });
+        const clonedPosts = posts.map(post => post.cloneNode(true));
+        clonedPosts.forEach(clone => {
+            socialFeedScroll.appendChild(clone);
+        });
 
-            let scrollPosition = 0;
-            let isScrolling = true;
-            let scrollSpeed = 0.5;
+        let scrollPosition = 0;
+        let isScrolling = true;
+        let scrollSpeed = 0.5;
 
-
-            // Auto scroll function with seamless loop
-            function autoScroll() {
-                if (isScrolling) {
-                    scrollPosition += scrollSpeed;
-                    if (scrollPosition >= originalHeight) {
-                        scrollPosition = 0;
-                    }
-                    socialFeedScroll.scrollTop = scrollPosition;
+        function autoScroll() {
+            if (isScrolling) {
+                scrollPosition += scrollSpeed;
+                if (scrollPosition >= originalHeight) {
+                    scrollPosition = 0;
                 }
-                requestAnimationFrame(autoScroll);
+                socialFeedScroll.scrollTop = scrollPosition;
             }
-
-            autoScroll();
-
-            // Pause on hover (desktop only)
-            socialFeedScroll.addEventListener('mouseenter', () => {
-                isScrolling = false;
-            });
-
-            socialFeedScroll.addEventListener('mouseleave', () => {
-                isScrolling = true;
-            });
-        } else {
-            // Mobile: no auto-scroll, user controls scrolling
+            requestAnimationFrame(autoScroll);
         }
-    }, 100);
+
+        autoScroll();
+
+        socialFeedScroll.addEventListener('mouseenter', () => {
+            isScrolling = false;
+        });
+
+        socialFeedScroll.addEventListener('mouseleave', () => {
+            isScrolling = true;
+        });
+    };
+
+    if ('IntersectionObserver' in window) {
+        const feedScrollObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                feedScrollObserver.disconnect();
+                initSocialScroll();
+            }
+        }, { rootMargin: '200px 0px' });
+        feedScrollObserver.observe(socialFeedScroll);
+    } else {
+        setTimeout(initSocialScroll, 1000);
+    }
+}
 
     // Animate stats counters (with limits to avoid infinite growth)
     const feedStats = document.querySelectorAll('.feed-stats span');
@@ -972,7 +972,6 @@ if (socialFeedScroll) {
             }, 200);
         });
     });
-}
 
 // Interactive Tech Stack Items
 const techItems = document.querySelectorAll('.tech-item');

@@ -3,14 +3,7 @@
 
 /* ========== HERO REVOLUTION ==========
    Layout hero governato da style.css (hero redesign 2026).
-   Qui restano solo: base .hero, noise overlay, bottoni globali. */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-}
+   Qui restano solo: noise overlay, bottoni globali. */
 
 .hero::before {
     content: none;

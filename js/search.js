@@ -967,8 +967,12 @@
     }
 
     // Overlay close (desktop only — mobile handled in initMobile)
-    if (e.overlay && window.innerWidth > 768) {
-      e.overlay.addEventListener('click', closeMobile);
+    if (e.overlay) {
+      e.overlay.addEventListener('click', function () {
+        if (window.innerWidth > 768) {
+          closeMobile();
+        }
+      });
     }
 
     // Ctrl+K / Cmd+K global shortcut

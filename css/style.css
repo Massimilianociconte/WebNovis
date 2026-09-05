@@ -26,10 +26,8 @@ ol.clg-steps {
     list-style: none;
 }
 
-/* Safe page-load transition — body always visible, no FOUC */
+/* Safe page-load transition — body always visible, rock-solid LCP */
 body { opacity: 1; }
-body.page-loaded { animation: pageIn .45s ease both; }
-@keyframes pageIn { from { opacity: .92; } to { opacity: 1; } }
 
 /* Critical search bar anti-FOUC (search.css is deferred) */
 .search-wrapper{position:relative;flex:1;max-width:420px;margin:0 1.5rem}
@@ -632,7 +630,7 @@ body {
     width: 25px;
     height: 2px;
     background: var(--white);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* ===== HERO SECTION — Editorial showcase (2026 redesign, hero-only) ===== */
@@ -1396,7 +1394,7 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 24px;
     padding: 3rem 2rem;
-    transition: all 0.4s ease;
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     position: relative;
     overflow: hidden;
 }
@@ -1430,7 +1428,7 @@ section {
     justify-content: center;
     margin-bottom: 2rem;
     color: var(--primary-light);
-    transition: all 0.4s ease;
+    transition: background 0.4s ease, color 0.4s ease, transform 0.4s ease;
 }
 
 .triade-card:hover .card-icon {
@@ -1888,7 +1886,7 @@ section {
     border-radius: 16px;
     padding: 14px;
     margin-bottom: 12px;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     backdrop-filter: blur(10px);
     scroll-snap-align: start;
     scroll-margin-top: 8px;
@@ -2388,7 +2386,7 @@ section {
     color: var(--white);
     font-family: inherit;
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group select {
@@ -2401,7 +2399,7 @@ section {
     font-family: inherit;
     /* 16px minimo: evita lo zoom automatico di iOS al focus */
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group input:focus,
@@ -2476,7 +2474,7 @@ section {
     border: 1.5px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.04);
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3711,7 +3709,6 @@ section {
             rgba(245, 158, 11, 0.1) 75%,
             rgba(91, 106, 174, 0.1) 100%);
     background-size: 200% 200%;
-    animation: holographicShift 3s ease infinite;
     border-radius: 24px;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -3720,6 +3717,7 @@ section {
 
 .floating-3d:hover .holographic-overlay {
     opacity: 1;
+    animation: holographicShift 3s ease infinite;
 }
 
 @keyframes holographicShift {
@@ -3885,6 +3883,10 @@ section {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.card-link:hover,
+.card-link:focus-visible {
     animation: gradientFlow 3s ease infinite;
 }
 
