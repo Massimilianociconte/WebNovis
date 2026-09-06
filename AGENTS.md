@@ -88,3 +88,7 @@ Vincolo assoluto: **mai perdere qualità visiva, definizione, estetica o fluidit
 ## 8. Merge/consolidamento articoli blog (procedura 2026-09)
 
 Mai cancellare senza: (1) trapianto contenuti unici nel survivor, (2) redirect 301 in `_redirects`, (3) rimozione card da `blog/index.html`, (4) rewrite link interni, (5) rimozione voci ItemList + rinumerazione + `numberOfItems`, (6) validazione JSON-LD **col parser** (non regex), (7) regen sitemap/search-index, (8) update conteggio inventario in `tests/html-structure-regressions.test.js` se cambia il totale.
+
+## 9. ID heading e deep-linking (2026-09)
+
+Gli `id` su h2/h3 devono essere kebab-case, senza apostrofi e SENZA parole della lista UNACCENTED di `tests/editorial-language-regressions.test.js` (può/perché/così/più/città/qualità/ecc. senza accento: il test li intercetta anche dentro gli attributi). Verificare sempre idempotenza `applySeoHtmlTransforms` dopo l'inserimento.

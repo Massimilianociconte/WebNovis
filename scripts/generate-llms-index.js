@@ -174,6 +174,15 @@ Tier 1 (priorità editoriale interna): ${tier1Count} URL — elenco completo in 
 - [UX Design: 10 Best Practice](${SITE}/blog/ux-design-best-practice.html): Regole fondamentali per un sito che converte.
 - [Strategia Digitale per PMI](${SITE}/blog/strategia-digitale-pmi.html): Da dove iniziare e quali canali attivare per primi.
 - [Sito Web Professionale: Checklist 2026](${SITE}/blog/sito-web-professionale-checklist.html): I 20 elementi essenziali di un sito che funziona.
+- [Mockup Grafici: Guida per Committenti](${SITE}/blog/mockup-grafici-guida.html): Cosa sono i mockup, livelli di progettazione e come valutarli prima dello sviluppo.
+- [Problemi di Indicizzazione Google: Cause e Soluzioni](${SITE}/blog/indicizzazione-google-problemi.html): Perché Google non indicizza un sito e come diagnosticarlo con Search Console.
+- [Algoritmo Instagram 2026](${SITE}/blog/instagram-algoritmo-2026.html): Come funziona la reach organica e quali contenuti premia.
+- [Manutenzione Sito Web: Costi e Checklist](${SITE}/blog/manutenzione-sito-web.html): Cosa include la manutenzione, costi 2026 e confronto WordPress vs custom.
+- [Partita IVA per E-commerce: Costi e Regimi](${SITE}/blog/partita-iva-ecommerce.html): Quando serve, costi reali e regime forfettario per vendere online.
+- [API REST per Aziende](${SITE}/blog/api-rest-cosa-sono.html): Cosa sono e come collegano gestionali, CRM ed e-commerce.
+- [Gestione Resi E-commerce](${SITE}/blog/gestione-resi-ecommerce.html): Politiche di reso efficaci e reverse logistics per ridurre costi e reclami.
+- [Quanto Costa un Logo: Fasce di Prezzo](${SITE}/blog/quanto-costa-un-logo.html): Fasce di mercato e cosa distingue un logo economico da uno professionale.
+- [Pagamenti Online per E-commerce](${SITE}/blog/pagamenti-online-ecommerce.html): Metodi di pagamento, commissioni e come sceglierli.
 
 ## Informazioni di Contatto
 
