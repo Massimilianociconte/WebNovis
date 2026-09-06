@@ -94,23 +94,6 @@ body { opacity: 1; }
     color: var(--white);
 }
 
-.ai-summary .phone-cta {
-    display: inline-flex;
-    vertical-align: middle;
-    margin: 0.1rem 0 0.1rem 0.45rem;
-    padding: 0.58rem 0.9rem;
-    gap: 0.58rem;
-    font-size: 0.87rem;
-    color: var(--white);
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.ai-summary .phone-cta .phone-cta-icon {
-    width: 30px;
-    height: 30px;
-    min-width: 30px;
-}
 
 /* Inline content links — blend with dark theme, no default blue/underline */
 .section-header p a,
@@ -679,10 +662,34 @@ body {
     pointer-events: none;
 }
 
+.cosmic-nebula-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity;
+}
+
+.cosmic-nebula-canvas.is-ready {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cosmic-nebula-canvas {
+        transition: none;
+        opacity: 0.85;
+    }
+}
+
 /* Fine technical grid, masked toward the visual side */
 .grid-overlay {
     position: absolute;
     inset: 0;
+    z-index: 1;
     background-image:
         linear-gradient(rgba(123, 140, 201, 0.045) 1px, transparent 1px),
         linear-gradient(90deg, rgba(123, 140, 201, 0.045) 1px, transparent 1px);
@@ -841,20 +848,20 @@ body {
     min-height: 44px;
     padding: 0.55rem 1.05rem;
     border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    color: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(148, 163, 184, 0.32);
+    color: rgba(255, 255, 255, 0.95);
     text-decoration: none;
     font-size: 0.88rem;
     font-weight: 600;
     letter-spacing: 0.01em;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%),
-        rgba(10, 15, 30, 0.35);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%),
+        rgba(8, 14, 28, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        0 3px 12px rgba(2, 6, 23, 0.35);
+        inset 0 1px 0 rgba(255, 255, 255, 0.14),
+        0 4px 14px rgba(2, 6, 23, 0.45);
     transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -878,14 +885,14 @@ body {
 
 .hero-core-links a:hover {
     color: #fff;
-    border-color: rgba(96, 165, 250, 0.55);
+    border-color: rgba(96, 165, 250, 0.65);
     background:
-        linear-gradient(180deg, rgba(96, 165, 250, 0.16) 0%, rgba(91, 106, 174, 0.08) 100%),
-        rgba(10, 15, 30, 0.35);
+        linear-gradient(180deg, rgba(96, 165, 250, 0.22) 0%, rgba(91, 106, 174, 0.10) 100%),
+        rgba(10, 16, 32, 0.78);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 6px 18px rgba(2, 6, 23, 0.4),
-        0 0 16px rgba(96, 165, 250, 0.22);
+        inset 0 1px 0 rgba(255, 255, 255, 0.20),
+        0 6px 20px rgba(2, 6, 23, 0.5),
+        0 0 18px rgba(96, 165, 250, 0.28);
     transform: translateY(-2px);
 }
 
@@ -1245,14 +1252,71 @@ body {
 /* (badge styling unified in the main .hero-badge rule) */
 
 .hero-cta .btn {
-    min-width: clamp(11rem, 15vw, 13rem);
+    min-width: clamp(11rem, 15vw, 13.5rem);
     min-height: var(--btn-height-lg);
     padding: 0.95rem 1.75rem;
     font-size: 0.98rem;
+    border-radius: var(--radius-btn);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: transform 0.22s var(--ease-standard), filter 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.hero-cta .btn-primary {
+    background: linear-gradient(180deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+    color: #ffffff;
+    border: 1px solid rgba(219, 234, 254, 0.35);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.2),
+        0 4px 16px rgba(37, 99, 235, 0.38),
+        0 1px 3px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.hero-cta .btn-primary svg {
+    transition: transform 0.22s var(--ease-standard);
+}
+
+.hero-cta .btn-primary:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.5),
+        0 8px 24px rgba(37, 99, 235, 0.5),
+        0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+.hero-cta .btn-primary:hover svg {
+    transform: translateX(3px);
 }
 
 .hero-cta .btn-secondary {
     min-height: var(--btn-height-lg);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 100%),
+        rgba(10, 16, 32, 0.65);
+    color: #ffffff;
+    border: 1px solid rgba(191, 219, 254, 0.28);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        0 4px 14px rgba(2, 6, 23, 0.4);
+}
+
+.hero-cta .btn-secondary:hover {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.06) 100%),
+        rgba(18, 28, 56, 0.78);
+    border-color: rgba(96, 165, 250, 0.55);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 8px 22px rgba(2, 6, 23, 0.45),
+        0 0 16px rgba(96, 165, 250, 0.2);
 }
 
 .btn-large {
@@ -3238,10 +3302,7 @@ section {
         padding: 0 1.25rem;
     }
 
-    .ai-summary .phone-cta {
-        margin-top: 0.55rem;
-        margin-left: 0;
-    }
+
 
     .section-header p {
         padding: 0 0.75rem;
@@ -4690,9 +4751,19 @@ entrambe le forme devono ricevere la pill. */
     font-size: 0.95rem;
 }
 
-/* Homepage: breadcrumb compatto ma leggibile, contorno rinforzato */
+/* Homepage: estendi la hero e la nebulosa cosmica fino al bordo superiore sotto la navbar */
+body.home #main-content {
+    position: relative;
+}
+
 body.home .breadcrumb {
-    padding: calc(var(--nav-clearance) + 10px) 0 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    padding: calc(var(--nav-clearance, 80px) + 10px) 1rem 0;
+    pointer-events: auto;
     font-size: 0.9rem;
 }
 body.home .breadcrumb a,
@@ -4701,6 +4772,13 @@ body.home .breadcrumb [aria-current="page"] {
     font-size: 0.9rem;
     border-color: rgba(123, 140, 201, 0.45);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+body.home .breadcrumb ~ .hero,
+body.home .hero {
+    min-height: 94vh;
+    min-height: 94svh;
+    padding-top: calc(var(--nav-clearance, 80px) + 3.25rem);
 }
 
 /* Responsive breadcrumb */
@@ -7304,11 +7382,13 @@ img {
         letter-spacing: 0.01em;
     }
 
-    /* ── Mobile Hero: Premium CTA buttons ── */
+    /* ── Mobile Hero: Premium CTA buttons centrati ── */
     .hero-cta {
         width: 100%;
+        max-width: 440px;
+        margin-inline: auto;
         gap: 0.8rem;
-        align-items: stretch;
+        align-items: center;
         display: flex;
         flex-direction: column;
     }
@@ -7316,7 +7396,10 @@ img {
     .hero-cta .btn {
         width: 100%;
         min-height: var(--btn-height);
+        display: inline-flex;
         justify-content: center;
+        align-items: center;
+        text-align: center;
         border-radius: var(--radius-btn);
         padding: 0.85rem 1.4rem;
         font-size: 1rem;
@@ -7327,6 +7410,12 @@ img {
     .hero-cta .btn-primary {
         transform: translateY(0);
         color: #ffffff;
+        background: linear-gradient(180deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+        border: 1px solid rgba(219, 234, 254, 0.35);
+        box-shadow:
+            inset 0 1px 1px rgba(255, 255, 255, 0.35),
+            0 4px 16px rgba(37, 99, 235, 0.38),
+            0 1px 3px rgba(0, 0, 0, 0.3);
     }
 
     .hero-cta .btn-primary svg {
@@ -7336,22 +7425,40 @@ img {
         border-radius: 50%;
         background: transparent;
         stroke-width: 2.5;
+        transition: transform 0.2s ease;
     }
 
     .hero-cta .btn-primary:active {
-        transform: translateY(1px);
+        transform: scale(0.98);
         filter: brightness(0.95);
     }
 
+    .hero-cta .btn-secondary {
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 100%),
+            rgba(10, 16, 32, 0.72);
+        border: 1px solid rgba(191, 219, 254, 0.28);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.18),
+            0 4px 14px rgba(2, 6, 23, 0.4);
+    }
+
     .hero-cta .btn-secondary:active {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(1px);
+        background: rgba(255, 255, 255, 0.12);
+        transform: scale(0.98);
     }
 
     .hero-microcopy {
-        margin-top: 1rem;
-        font-size: 0.78rem;
-        line-height: 1.5;
+        margin-top: 0.95rem;
+        font-size: 0.8rem;
+        line-height: 1.55;
+        text-align: center;
+        width: 100%;
+        max-width: 420px;
+        margin-inline: auto;
+        color: rgba(255, 255, 255, 0.65);
     }
 
     /* Schermi stretti (<=380px): nasconde la freccia per mantenere le CTA
@@ -7399,35 +7506,64 @@ img {
         padding: 0.5rem 0.85rem;
     }
 
-    /* ── Mobile Hero: Core links — chip pill compatti (riga che scorre a capo) ── */
+    /* ── Mobile Hero: Core links centrati in modo estetico ── */
     .hero-core-links {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: 0.5rem 0.55rem;
+        justify-content: center;
+        gap: 0.55rem 0.65rem;
         width: 100%;
-        margin-top: 1.4rem;
-        padding-top: 1.2rem;
+        max-width: 460px;
+        margin-inline: auto;
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
         border-top: 1px solid rgba(148, 163, 184, 0.14);
+        text-align: center;
+    }
+
+    .hero-core-links::before {
+        content: 'Esplora';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        padding-bottom: 0.55rem;
+        margin-bottom: 0.25rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(203, 213, 225, 0.65);
+        background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.6), transparent) no-repeat center bottom / 3.5rem 1px;
     }
 
     .hero-core-links a {
         position: relative;
         overflow: hidden;
         min-height: 2.5rem;
+        display: inline-flex;
         align-items: center;
-        padding: 0.4rem 0.85rem;
+        justify-content: center;
+        text-align: center;
+        padding: 0.45rem 0.95rem;
         border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        color: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.32);
+        color: rgba(255, 255, 255, 0.95);
         font-size: 0.86rem;
         font-weight: 600;
         letter-spacing: 0.01em;
         text-decoration: none;
         background:
-            linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%),
-            rgba(10, 15, 30, 0.35);
-        transition: border-color 0.25s ease, background-color 0.25s ease;
+            linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%),
+            rgba(8, 14, 28, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.12),
+            0 3px 10px rgba(0, 0, 0, 0.35);
+        transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.2s ease;
     }
 
     .hero-core-links a::after {
@@ -7444,9 +7580,14 @@ img {
        La homepage mobile non deve allungarsi per padding desktop:
        hero senza min-height fissa, sezioni compattate, showcase
        ridotto ma visibile (valore conversionale invariato). */
+    body.home .breadcrumb {
+        padding-top: calc(var(--nav-clearance, 80px) + 6px);
+    }
+    body.home .breadcrumb ~ .hero,
     body.home .hero {
         min-height: 0;
-        padding-bottom: 2rem;
+        padding-top: calc(var(--nav-clearance, 80px) + 2.75rem);
+        padding-bottom: 2.25rem;
     }
     body.home .hero-container {
         gap: 2rem;
@@ -8170,34 +8311,20 @@ img {
     }
     
     .hero-cta {
-        padding: 0 0.75rem;
+        padding: 0;
+        max-width: 100%;
     }
     
     .hero-core-links {
-        padding: 0 0.5rem;
-        grid-template-columns: 1fr;
+        padding: 1.25rem 0.25rem 0;
+        justify-content: center;
     }
     
     .hero-core-links a:last-child {
-        width: 100%;
+        width: auto;
     }
 
-    /* -- AI Summary Mobile Fixes -- */
-    .ai-summary .phone-cta {
-        padding: 0.25rem 0.6rem !important;
-        font-size: 0.8rem !important;
-        min-height: auto;
-        vertical-align: middle;
-        margin: 0 0.2rem;
-        background: rgba(37, 99, 235, 0.15) !important;
-        border: 1px solid rgba(59, 130, 246, 0.3) !important;
-        box-shadow: none !important;
-    }
-    
-    .ai-summary .phone-cta-icon {
-        width: 20px;
-        height: 20px;
-    }
+
 
     /* -- Service section small -- */
     .service-title {

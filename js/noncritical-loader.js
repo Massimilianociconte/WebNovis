@@ -162,4 +162,14 @@
     if (!('IntersectionObserver' in window)) {
         scheduleIdle(loadGlobe, 4200);
     }
+
+    var nebulaTarget = document.getElementById('cosmicNebulaCanvas');
+    var loadNebula = runOnce(function () {
+        if (!nebulaTarget) return;
+        loadScript('cosmic-nebula.min.js').catch(function () {});
+    });
+    if (nebulaTarget) {
+        whenElementNearViewport(nebulaTarget, loadNebula, '120px 0px 120px 0px');
+        scheduleIdle(loadNebula, isMobileViewport ? 2000 : 800);
+    }
 })();

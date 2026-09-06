@@ -37,6 +37,7 @@ const config = {
         explicitInputs: [
             'js/main.js',
             'js/chat.js',
+            'js/cosmic-nebula.js',
             'js/cursor.js',
             'js/footer-widgets-loader.js',
             'js/globe.js',

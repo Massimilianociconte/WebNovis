@@ -63,7 +63,7 @@ function main() {
   assert.ok(FORBIDDEN_PUBLIC_BASENAMES.has('newsletter-template.html'), 'email source templates must not be public');
   assert.deepEqual(
     DYNAMIC_RUNTIME_DEPENDENCIES['js/noncritical-loader.min.js'],
-    ['js/chat.min.js', 'js/cursor.min.js', 'js/globe.min.js', 'js/text-effects.min.js', 'js/weby-shell.min.js'],
+    ['js/chat.min.js', 'js/cosmic-nebula.min.js', 'js/cursor.min.js', 'js/globe.min.js', 'js/text-effects.min.js', 'js/weby-shell.min.js'],
     'the progressive loader dependency closure must be explicit'
   );
   assert.deepEqual(

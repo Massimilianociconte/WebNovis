@@ -71,6 +71,7 @@ const FORBIDDEN_PUBLIC_BASENAMES = new Set([
 const DYNAMIC_RUNTIME_DEPENDENCIES = Object.freeze({
   'js/noncritical-loader.min.js': [
     'js/chat.min.js',
+    'js/cosmic-nebula.min.js',
     'js/cursor.min.js',
     'js/globe.min.js',
     'js/text-effects.min.js',
@@ -118,6 +119,7 @@ const PUBLIC_SENTINELS = [
   'index.html',
   'js/chat.min.js',
   'js/cobe.min.js',
+  'js/cosmic-nebula.min.js',
   'js/cursor.min.js',
   'js/footer-widgets-loader.min.js',
   'js/globe.min.js',
