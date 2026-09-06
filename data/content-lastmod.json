@@ -560,8 +560,8 @@
   "lastmod": "2026-09-05"
  },
  "/blog/": {
-  "hash": "cbf094493099a885b539b84ead27e80c",
-  "lastmod": "2026-09-05"
+  "hash": "ff713d27ffa10bbcf5c0ed74dad361fc",
+  "lastmod": "2026-09-06"
  },
  "/blog/ab-testing-sito-web.html": {
   "hash": "024f91e23ef367e84aa5d5d4e703090d",
@@ -592,8 +592,8 @@
   "lastmod": "2026-08-11"
  },
  "/blog/api-rest-cosa-sono.html": {
-  "hash": "726367821e870161d700dd5bcc2c13a4",
-  "lastmod": "2026-08-31"
+  "hash": "4a48907cf9a53f1acc77047dd4979415",
+  "lastmod": "2026-09-06"
  },
  "/blog/architettura-informazioni-sito.html": {
   "hash": "ed2d050dc1b957b763ccb0b7dc21d293",
@@ -608,8 +608,8 @@
   "lastmod": "2026-09-01"
  },
  "/blog/automazione-processi-aziendali.html": {
-  "hash": "ce00dfb803073d22ee2bdf35ec5a867b",
-  "lastmod": "2026-08-31"
+  "hash": "555f04998f9830823aa9270ba0ac6b30",
+  "lastmod": "2026-09-06"
  },
  "/blog/biglietti-visita-design.html": {
   "hash": "5ed8181cbc2e22a5e46fe65232922ee1",
@@ -628,28 +628,28 @@
   "lastmod": "2026-08-31"
  },
  "/blog/brand-awareness-strategie.html": {
-  "hash": "0b8165b8d66da9a8556d6b86b97e5d75",
-  "lastmod": "2026-08-31"
+  "hash": "8695c660925eef345168a33270bdf9ee",
+  "lastmod": "2026-09-06"
  },
  "/blog/brand-consistency-multicanale.html": {
   "hash": "95ab2acf26af9e877c3920eb09fb41e3",
   "lastmod": "2026-08-31"
  },
  "/blog/brand-identity-guida-completa.html": {
-  "hash": "e7ca73d7a27e8743da8d985df7e3b90b",
-  "lastmod": "2026-09-01"
+  "hash": "985ca4ce93f9e5d0a1de323dc4c96ef9",
+  "lastmod": "2026-09-06"
  },
  "/blog/brand-loyalty-strategie.html": {
-  "hash": "6985865c408070306a0afad0b58be96f",
-  "lastmod": "2026-08-31"
+  "hash": "07f29080cc501f1c1cc7b03aa65346c8",
+  "lastmod": "2026-09-06"
  },
  "/blog/brand-positioning-strategia.html": {
   "hash": "5fb695f1963104030a42deb409b0cfb7",
   "lastmod": "2026-08-31"
  },
  "/blog/brand-storytelling.html": {
-  "hash": "eea0a97c24242045d07e9e85fb30c641",
-  "lastmod": "2026-08-31"
+  "hash": "f3185aef16db7f9191689aae5ed036d3",
+  "lastmod": "2026-09-06"
  },
  "/blog/budget-advertising-online.html": {
   "hash": "90a9d2f546613c7dce690afda99e6449",
@@ -691,10 +691,6 @@
   "hash": "6b0cd7ada3537116576b238915a1f057",
   "lastmod": "2026-09-01"
  },
- "/blog/checkout-ottimizzazione.html": {
-  "hash": "5a3a7f143414a5d523135595d8a37bac",
-  "lastmod": "2026-08-31"
- },
  "/blog/chiedere-recensioni-clienti.html": {
   "hash": "97d49989f637dbd5f3b3f80405c27447",
   "lastmod": "2026-09-05"
@@ -708,12 +704,12 @@
   "lastmod": "2026-09-01"
  },
  "/blog/come-aprire-ecommerce-da-zero.html": {
-  "hash": "3058f74f7674fc9940fac97eca3f67de",
-  "lastmod": "2026-09-01"
+  "hash": "d583378f7ab3bfca4f428ec2c06c3943",
+  "lastmod": "2026-09-06"
  },
  "/blog/come-proteggere-sito-web-hacker.html": {
-  "hash": "08b33dc95b6293c3afc4f0bfef0f343c",
-  "lastmod": "2026-09-01"
+  "hash": "0e9ead3ce4ab7d25a8fb64502ba654bf",
+  "lastmod": "2026-09-06"
  },
  "/blog/come-scegliere-web-agency.html": {
   "hash": "1485913019d0302c9a943c92668b2f33",
@@ -728,8 +724,8 @@
   "lastmod": "2026-08-11"
  },
  "/blog/competitor-analysis-metodo.html": {
-  "hash": "5efdb4b5c6f395b7f6192de676569ecb",
-  "lastmod": "2026-08-11"
+  "hash": "efd8a9eb7bb74e1587e790ca0465f309",
+  "lastmod": "2026-09-06"
  },
  "/blog/content-audit-guida.html": {
   "hash": "ff5f968220b4c9d4f8e951202d4f503d",
@@ -800,20 +796,16 @@
   "lastmod": "2026-07-29"
  },
  "/blog/dashboard-marketing-kpi.html": {
-  "hash": "dd1fabf37c5136127f7754b1a1ccc60c",
-  "lastmod": "2026-07-29"
+  "hash": "3bd036fc93805224c728ad980a055c67",
+  "lastmod": "2026-09-06"
  },
  "/blog/data-driven-marketing.html": {
   "hash": "f6691ae4949a25569c368c1be2fb1b3d",
   "lastmod": "2026-08-11"
  },
- "/blog/dati-obbligatori-sito-web-aziendale.html": {
-  "hash": "8ba0f8ee84fc0127b3014a072b81daca",
-  "lastmod": "2026-09-05"
- },
  "/blog/dati-obbligatori-sito-web.html": {
-  "hash": "1ddd7bf113700c9af26735f6e64a0bda",
-  "lastmod": "2026-07-28"
+  "hash": "93881329d55638fcbf24f80fbac8075f",
+  "lastmod": "2026-09-06"
  },
  "/blog/design-system-aziendale.html": {
   "hash": "45ece98195a449d74c5264273a132236",
@@ -828,8 +820,8 @@
   "lastmod": "2026-07-29"
  },
  "/blog/dominio-hosting-guida-non-tecnico.html": {
-  "hash": "c6b61da99ac512b1dfa3f3e1cf00de97",
-  "lastmod": "2026-09-01"
+  "hash": "a877a9738e91ca60eb0b26e975e49bf0",
+  "lastmod": "2026-09-06"
  },
  "/blog/ecommerce-b2b-guida.html": {
   "hash": "2b91c63bdcee21d6aeb37e2cdd15c0f4",
@@ -894,10 +886,6 @@
  "/blog/fotografia-prodotto-ecommerce.html": {
   "hash": "4ab0c4df8d1dd5d6142237be441bb34b",
   "lastmod": "2026-08-31"
- },
- "/blog/funnel-vendita-online.html": {
-  "hash": "e736b661c350580bc34531dc47e30dbb",
-  "lastmod": "2026-09-01"
  },
  "/blog/gdpr-sito-web-conformita.html": {
   "hash": "c357c4780301f1bb1c596c8c91345e15",
@@ -976,12 +964,8 @@
   "lastmod": "2026-08-31"
  },
  "/blog/indicizzazione-google-problemi.html": {
-  "hash": "e710f9a9bbc7db61118428c5735bd3f7",
-  "lastmod": "2026-08-31"
- },
- "/blog/influencer-marketing-pmi.html": {
-  "hash": "0fcaef8483c1e10d4ea8df27441e2d78",
-  "lastmod": "2026-07-29"
+  "hash": "1a40de5404efebf8f8d1f1115a4604f1",
+  "lastmod": "2026-09-06"
  },
  "/blog/infografiche-come-crearle.html": {
   "hash": "6bcacf9c69376b585c12c523095eefec",
@@ -1079,10 +1063,6 @@
   "hash": "c65faa908ed704da57c7fde682d190fb",
   "lastmod": "2026-07-29"
  },
- "/blog/linkedin-personal-branding.html": {
-  "hash": "c7fd060a06bba2eafb53ac898ed5efff",
-  "lastmod": "2026-07-29"
- },
  "/blog/log-analysis-seo.html": {
   "hash": "594fa9362e0c9f35ebcd28321309ac65",
   "lastmod": "2026-08-31"
@@ -1093,10 +1073,6 @@
  },
  "/blog/manutenzione-sito-web.html": {
   "hash": "6c606f1a0f06f9eab9caae4a846cd555",
-  "lastmod": "2026-09-01"
- },
- "/blog/marketing-digitale-attivita-locali-milano.html": {
-  "hash": "dc5a8a72be4fe38b220699b3fbf360b3",
   "lastmod": "2026-09-01"
  },
  "/blog/marketing-digitale-attivita-locali.html": {
@@ -1120,16 +1096,16 @@
   "lastmod": "2026-08-31"
  },
  "/blog/mockup-grafici-guida.html": {
-  "hash": "cf542e9ce707281c7fbede31aeb62e5e",
-  "lastmod": "2026-09-01"
+  "hash": "2d968a277eee0b955395a11c4a017d20",
+  "lastmod": "2026-09-06"
  },
  "/blog/motion-design-marketing.html": {
   "hash": "89e7ba7ba982f43aad9fc6f0e566e4ff",
   "lastmod": "2026-08-31"
  },
  "/blog/naming-aziendale-guida.html": {
-  "hash": "702547e04a0053111c744581505c37d1",
-  "lastmod": "2026-09-01"
+  "hash": "53b10abde92beddf52dc12e08276a54e",
+  "lastmod": "2026-09-06"
  },
  "/blog/navigazione-sito-web-struttura.html": {
   "hash": "3aeb117db75fd3ee2eb332ff80beec97",
@@ -1164,16 +1140,16 @@
   "lastmod": "2026-08-31"
  },
  "/blog/ottimizzazione-tasso-conversione.html": {
-  "hash": "f74e036b21d1eaafb2b090def8605119",
-  "lastmod": "2026-09-05"
+  "hash": "d690800f925371ae55b4b2e28174e202",
+  "lastmod": "2026-09-06"
  },
  "/blog/outsourcing-vs-inhouse-marketing.html": {
   "hash": "7c0f497662a777267211193d0536723c",
   "lastmod": "2026-08-31"
  },
  "/blog/packaging-design-guida.html": {
-  "hash": "9f9a8cfa44c395e4557aaddadd7181c5",
-  "lastmod": "2026-08-31"
+  "hash": "06fab8972aa2b5edfa92d6dbec53a096",
+  "lastmod": "2026-09-06"
  },
  "/blog/pagamenti-online-ecommerce.html": {
   "hash": "9a9d19655440d806d1c5f868cb6aab93",
@@ -1200,8 +1176,8 @@
   "lastmod": "2026-07-29"
  },
  "/blog/personal-branding-online.html": {
-  "hash": "6e34958de14f67366d649a6cc8ec59bf",
-  "lastmod": "2026-09-01"
+  "hash": "28a3d9a64e6558ddf22f6599cf6b4981",
+  "lastmod": "2026-09-06"
  },
  "/blog/piano-editoriale-social.html": {
   "hash": "b06adf6f2b638f5a3c68e18968d39034",
@@ -1240,16 +1216,16 @@
   "lastmod": "2026-08-31"
  },
  "/blog/quanto-costa-brand-identity.html": {
-  "hash": "0554570053bc187c62dd88502f855074",
-  "lastmod": "2026-09-05"
+  "hash": "8a2e73d2d6aa50ceaa048f2ee67b221f",
+  "lastmod": "2026-09-06"
  },
  "/blog/quanto-costa-campagna-facebook-ads.html": {
   "hash": "e942399fce2153f5f1ced7b18c4e15d7",
   "lastmod": "2026-09-05"
  },
  "/blog/quanto-costa-gestione-social-media.html": {
-  "hash": "b3247c69bdf0b02ec8e1eb5125cbe5e3",
-  "lastmod": "2026-09-05"
+  "hash": "22c70f97ce5327895ac020c2f0d70c67",
+  "lastmod": "2026-09-06"
  },
  "/blog/quanto-costa-mantenere-sito-web.html": {
   "hash": "1545f4f20a4303b3f6a14af18bbe3790",
@@ -1268,8 +1244,8 @@
   "lastmod": "2026-09-05"
  },
  "/blog/quanto-costa-un-sito-web.html": {
-  "hash": "4d28d964ca5ed1fdfc3fb13a1d74edba",
-  "lastmod": "2026-09-05"
+  "hash": "b9d052aabe07e5e64aedb114a88a57e3",
+  "lastmod": "2026-09-06"
  },
  "/blog/quanto-costa-una-landing-page.html": {
   "hash": "43326cd802cc3e39d2d77b1b375ccb4a",
@@ -1296,20 +1272,12 @@
   "lastmod": "2026-09-01"
  },
  "/blog/retention-marketing-strategie.html": {
-  "hash": "672e5dd6bc7e8ddb053bff3d93dd58e5",
-  "lastmod": "2026-08-31"
- },
- "/blog/robots-txt-sitemap-xml.html": {
-  "hash": "ccb4e3fda12b92a01e8e62d8d696080b",
-  "lastmod": "2026-08-31"
- },
- "/blog/roi-marketing-digitale.html": {
-  "hash": "8135dad2f17e78b95a2e0c5d4357c49c",
-  "lastmod": "2026-07-29"
+  "hash": "1173cccf4bb220e7d03cf5b0472fbcb9",
+  "lastmod": "2026-09-06"
  },
  "/blog/sanzioni-sito-non-accessibile-2026.html": {
-  "hash": "43a66c9b9bfcf1840f873221c397d219",
-  "lastmod": "2026-09-05"
+  "hash": "c9ab24b487a1ce30d048f671a9cd14fd",
+  "lastmod": "2026-09-06"
  },
  "/blog/scegliere-hosting-sito-web.html": {
   "hash": "0ad7cefc1ad5b26b4e1e23aa262eb728",
@@ -1340,8 +1308,8 @@
   "lastmod": "2026-09-01"
  },
  "/blog/seo-per-ai-overviews.html": {
-  "hash": "84109ad031e4d75b965e69dd90f30841",
-  "lastmod": "2026-09-01"
+  "hash": "d1f35fc170c45cff645c3b94c588726c",
+  "lastmod": "2026-09-06"
  },
  "/blog/seo-per-piccole-imprese.html": {
   "hash": "70c434af4512610d9f59cc91c85aa386",
@@ -1362,18 +1330,6 @@
  "/blog/shopify-vs-sito-ecommerce-custom.html": {
   "hash": "82334a0323a0ab2f00e97d06ad94abfe",
   "lastmod": "2026-09-05"
- },
- "/blog/sicurezza-sito-web-guida.html": {
-  "hash": "b797d992072a11f615f2db7bd9b3e282",
-  "lastmod": "2026-09-01"
- },
- "/blog/sito-intelligenza-artificiale-limiti.html": {
-  "hash": "ca348c87459086b32d1b638db153f136",
-  "lastmod": "2026-08-31"
- },
- "/blog/sito-non-appare-su-google.html": {
-  "hash": "7347c6f6ebe734e22553e3aaccd6a1c7",
-  "lastmod": "2026-08-31"
  },
  "/blog/sito-personale-freelancer.html": {
   "hash": "0e24b91db15ef87b3af4e4f9712df63c",
@@ -1464,8 +1420,8 @@
   "lastmod": "2026-08-31"
  },
  "/blog/tendenze-social-media-2026.html": {
-  "hash": "2e0603fcce11f3bdb9c346af88fc7355",
-  "lastmod": "2026-08-11"
+  "hash": "39bc91162ccf1809d55cdada973ca215",
+  "lastmod": "2026-09-06"
  },
  "/blog/teoria-colore-design-web.html": {
   "hash": "a6c116dafc49ecd0bdd2bb6e9d945a22",
@@ -1508,8 +1464,8 @@
   "lastmod": "2026-08-31"
  },
  "/blog/ui-design-principi.html": {
-  "hash": "82b18a505d14ff094f19fda509d2cf8e",
-  "lastmod": "2026-08-31"
+  "hash": "407d3b2a0eabcdca7442c86d7e8fcfc2",
+  "lastmod": "2026-09-06"
  },
  "/blog/unique-selling-proposition.html": {
   "hash": "afb242c6986e8fffe5db544c0d472cd9",
@@ -3288,8 +3244,8 @@
   "lastmod": "2026-09-05"
  },
  "/preventivo.html": {
-  "hash": "37c3e6579775a5b28d37b4ae9257740c",
-  "lastmod": "2026-09-05"
+  "hash": "aee87cf88e370e497dd8353e5ffe8d2b",
+  "lastmod": "2026-09-06"
  },
  "/privacy-policy.html": {
   "hash": "71a39e8ee7f34d136a091d8889a43ec9",

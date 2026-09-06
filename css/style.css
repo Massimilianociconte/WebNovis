@@ -5080,8 +5080,8 @@ body.chat-open .whatsapp-float {
 .service-detail li a,
 .service-detail h2 a,
 .service-card-mini p a,
-.pricing-card a,
-.pricing-nav a,
+.pricing-card a:not(.btn),
+.pricing-nav a:not(.btn),
 .hub-table-wrap a,
 .hub-atlas-header a,
 .checkbox-text a {
@@ -5095,8 +5095,8 @@ body.chat-open .whatsapp-float {
 .service-detail li a:visited,
 .service-detail h2 a:visited,
 .service-card-mini p a:visited,
-.pricing-card a:visited,
-.pricing-nav a:visited,
+.pricing-card a:not(.btn):visited,
+.pricing-nav a:not(.btn):visited,
 .hub-table-wrap a:visited,
 .hub-atlas-header a:visited,
 .checkbox-text a:visited {
@@ -5107,8 +5107,8 @@ body.chat-open .whatsapp-float {
 .service-detail li a:hover,
 .service-detail h2 a:hover,
 .service-card-mini p a:hover,
-.pricing-card a:hover,
-.pricing-nav a:hover,
+.pricing-card a:not(.btn):hover,
+.pricing-nav a:not(.btn):hover,
 .hub-table-wrap a:hover,
 .hub-atlas-header a:hover,
 .checkbox-text a:hover {
@@ -5119,6 +5119,15 @@ body.chat-open .whatsapp-float {
 /* Voci servizi: contrasto e leggibilita */
 .service-tag {
     color: #AAB6E0;
+}
+/* Bottoni dentro le pricing card: testo sempre bianco pieno, mai underline.
+   Difende dal contrasto 1.58:1 che si aveva quando la regola link
+   `.pricing-card a` (primary-light) sovrascriveva `.btn-primary`. WCAG 4.5:1. */
+.pricing-card .btn,
+.pricing-card .btn:visited,
+.pricing-card .btn:hover {
+    color: #fff;
+    text-decoration: none;
 }
 /* Sulle sezioni con gradiente blu saturo (web/social) il tag pervinca
    su #1555c7 non contrasta: pill bianca ad alto contrasto. */

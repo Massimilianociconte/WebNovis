@@ -176,3 +176,16 @@
 #
 # NB: il redirect apex → www (webnovis.com → www.webnovis.com) NON si può
 # definire qui su Workers: va come Single Redirect di zona.
+
+# --- 301 merge contenuti (audit blog 2026-09-06): gemelli consolidati ---
+/blog/dati-obbligatori-sito-web-aziendale.html /blog/dati-obbligatori-sito-web.html 301
+/blog/sicurezza-sito-web-guida.html /blog/come-proteggere-sito-web-hacker.html 301
+/blog/sito-non-appare-su-google.html /blog/indicizzazione-google-problemi.html 301
+/blog/marketing-digitale-attivita-locali-milano.html /blog/marketing-digitale-attivita-locali.html 301
+/blog/sito-intelligenza-artificiale-limiti.html /blog/creare-sito-con-intelligenza-artificiale.html 301
+/blog/funnel-vendita-online.html /blog/ottimizzazione-tasso-conversione.html 301
+/blog/checkout-ottimizzazione.html /blog/come-aprire-ecommerce-da-zero.html 301
+/blog/roi-marketing-digitale.html /blog/dashboard-marketing-kpi.html 301
+/blog/robots-txt-sitemap-xml.html /blog/canonical-tag-guida.html 301
+/blog/linkedin-personal-branding.html /blog/personal-branding-online.html 301
+/blog/influencer-marketing-pmi.html /blog/tendenze-social-media-2026.html 301

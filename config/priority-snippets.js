@@ -44,8 +44,9 @@ module.exports = {
   },
   'blog/quanto-costa-brand-identity.html': {
     // GSC 2026-08-11: query di costo a pagina 1-2, presenza nelle sintesi AI e CTR ancora debole.
+    // Audit 2026-09-06: prezzo base allineato al listino (da €500) contro media mercato €1.500.
     title: 'Costo Brand Identity 2026: Prezzi e Pacchetti | WebNovis',
-    description: 'Costo brand identity 2026: da €1.500 per il pacchetto base, cosa include logo, palette, font e brand manual, fasce di prezzo e criteri per scegliere.'
+    description: 'Brand identity: il mercato chiede da €1.500, da noi da €500. Cosa include, fasce di prezzo e come scegliere. Preventivo gratuito.'
   },
   'blog/pillar-page-strategia.html': {
     // GSC 2026-08-11: "pillar page" raccoglie impressioni a posizione media 18,9.
