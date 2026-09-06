@@ -115,6 +115,7 @@ function generateSchemas(city, pageType, resolvedFaqs) {
         // BreadcrumbList (3 levels: Home → Hub → City)
         {
             "@context": "https://schema.org", "@type": "BreadcrumbList",
+            "@id": canonical + "#breadcrumb",
             "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
                 { "@type": "ListItem", "position": 2, "name": hubCrumb.name, "item": hubCrumb.item },
@@ -138,6 +139,7 @@ function generateSchemas(city, pageType, resolvedFaqs) {
         {
             "@context": "https://schema.org", "@type": "Service",
             "@id": canonical + "#service",
+            "url": canonical,
             "serviceType": isAgenziaPage ? "Sviluppo Siti Web" : "Realizzazione Siti Web",
             "name": serviceName,
             "description": serviceDescription,
@@ -180,6 +182,7 @@ function generateSchemas(city, pageType, resolvedFaqs) {
     if (resolvedFaqs.length > 0) {
         schemas.push({
             "@context": "https://schema.org", "@type": "FAQPage",
+            "@id": canonical + "#faq",
             "mainEntity": resolvedFaqs.map(f => ({
                 "@type": "Question",
                 "name": f.q,

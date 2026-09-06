@@ -84,6 +84,34 @@ function escapeHtml(str) {
   return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+// Legge w/h da header PNG o WebP (lossy VP8/VP8L/VP8X) senza dipendenze.
+function readImageDims(file) {
+  try {
+    const b = fs.readFileSync(file);
+    if (b.length > 24 && b.toString('ascii', 1, 4) === 'PNG' &&
+        b.readUInt32BE(16) > 0 && b.readUInt32BE(20) > 0) {
+      return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) };
+    }
+    if (b.length > 30 && b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP') {
+      const chunk = b.toString('ascii', 12, 16);
+      if (chunk === 'VP8 ') {
+        return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+      }
+      if (chunk === 'VP8L') {
+        const bits = b.readUInt32LE(21);
+        return { w: (bits & 0x3fff) + 1, h: ((bits >> 14) & 0x3fff) + 1 };
+      }
+      if (chunk === 'VP8X') {
+        return {
+          w: b.readUIntLE(24, 3) + 1,
+          h: b.readUIntLE(27, 3) + 1
+        };
+      }
+    }
+  } catch (e) { /* file mancante: niente dims */ }
+  return null;
+}
+
 // 1. UPDATE blog/index.html
 const blogIndexPath = path.join(__dirname, '..', 'blog', 'index.html');
 let blogIndexHtml = fs.readFileSync(blogIndexPath, 'utf8');
@@ -92,7 +120,7 @@ let indexUpdatedCount = 0;
 for (const item of covers) {
   const slug = item.slug;
   const escapedAlt = escapeHtml(item.alt);
-  const newPicture = `<a href="${slug}.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1"> <picture> <source srcset="../Img/blog/blog-${slug}.webp" type="image/webp"> <img alt="${escapedAlt}" height="450" src="../Img/blog/blog-${slug}.png" width="800" loading="lazy" fetchpriority="auto" decoding="async"> </picture> </a>`;
+  const newPicture = `<a href="${slug}.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1"> <picture> <source srcset="../Img/blog/blog-${slug}.webp" type="image/webp"> <img alt="${escapedAlt}" height="450" src="../Img/blog/blog-${slug}.webp" width="800" loading="lazy" decoding="async"> </picture> </a>`;
 
   const cardLinkRe = new RegExp(`<a\\s+href="${slug}\\.html"\\s+class="blog-card-image"[^>]*>[\\s\\S]*?<\\/a>`);
   if (cardLinkRe.test(blogIndexHtml)) {
@@ -117,8 +145,18 @@ for (const item of covers) {
   }
 
   let html = fs.readFileSync(articleFile, 'utf8');
-  const imageUrl = `https://www.webnovis.com/Img/blog/blog-${slug}.png`;
+  // Usa il file reale: preferisci webp (più leggero), fallback png. Le dimensioni
+  // og: vengono lette dall'header del file (niente valori hardcoded errati).
+  const webpDisk = path.join(__dirname, '..', 'Img', 'blog', `blog-${slug}.webp`);
+  const pngDisk = path.join(__dirname, '..', 'Img', 'blog', `blog-${slug}.png`);
+  const useWebp = fs.existsSync(webpDisk);
+  const diskFile = useWebp ? webpDisk : pngDisk;
+  const imageUrl = `https://www.webnovis.com/Img/blog/blog-${slug}.${useWebp ? 'webp' : 'png'}`;
   const escapedAlt = escapeHtml(item.alt);
+  const dims = readImageDims(diskFile);
+  const dimTags = dims
+    ? `\n    <meta property="og:image:width" content="${dims.w}">\n    <meta property="og:image:height" content="${dims.h}">`
+    : '';
 
   // Remove existing width/height/alt meta if present to avoid duplicates
   html = html.replace(/<meta\s+[^>]*property="og:image:width"[^>]*>/gi, "");
@@ -126,7 +164,7 @@ for (const item of covers) {
   html = html.replace(/<meta\s+[^>]*property="og:image:alt"[^>]*>/gi, "");
 
   // Replace og:image
-  const ogImageReplacement = `<meta property="og:image" content="${imageUrl}">\n    <meta property="og:image:width" content="1200">\n    <meta property="og:image:height" content="675">\n    <meta property="og:image:alt" content="${escapedAlt}">`;
+  const ogImageReplacement = `<meta property="og:image" content="${imageUrl}">${dimTags}\n    <meta property="og:image:alt" content="${escapedAlt}">`;
   if (/<meta\s+[^>]*property="og:image"[^>]*>/i.test(html)) {
     html = html.replace(/<meta\s+[^>]*property="og:image"[^>]*>/i, ogImageReplacement);
   } else {

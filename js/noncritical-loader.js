@@ -6,13 +6,14 @@
     var baseUrl = currentScript && currentScript.src
         ? new URL('.', currentScript.src).href
         : new URL('js/', window.location.href).href;
-    var ASSET_V = '20260728c';
+    var ASSET_V = '20260906a';
     var loadedScripts = new Set();
 
     function resolveAsset(name) {
         var url = new URL(name, baseUrl);
-        // Cache-bust chat/search AI assets so production never sticks to old Render URLs
-        if (/^(chat|weby-shell|search)\.min\.js$/.test(name.split('?')[0])) {
+        // Cache-bust AI/progressive assets so production never sticks to stale
+        // long-cache copies: ogni file caricato dal loader ha max-age=1y.
+        if (/^(chat|weby-shell|search|cursor|globe|text-effects|cosmic-nebula)\.min\.js$/.test(name.split('?')[0])) {
             url.searchParams.set('v', ASSET_V);
         }
         return url.href;
@@ -172,4 +173,30 @@
         whenElementNearViewport(nebulaTarget, loadNebula, '200px 0px 200px 0px');
         scheduleIdle(loadNebula, 500);
     }
+
+    // Search runtime: 24KB che non servono al primo paint. La homepage non lo
+    // include più in eager; le altre pagine lo hanno ancora nel tag defer e in
+    // quel caso non lo ricarichiamo mai (search.js non è idempotente).
+    var hasSearchInputs = function () {
+        return !!(document.getElementById('searchInput') ||
+            document.getElementById('searchInputMobile') ||
+            document.querySelector('.search-input'));
+    };
+    var loadSearch = runOnce(function () {
+        if (!hasSearchInputs()) return Promise.resolve();
+        if (document.querySelector('script[src*="search.min.js"]')) return Promise.resolve();
+        return loadScript('search.min.js').catch(function () {});
+    });
+    afterWindowLoad(function () {
+        scheduleIdle(function () { loadSearch(); }, isMobileViewport ? 14000 : 8000);
+    });
+    window.addEventListener('pointerdown', function () { loadSearch(); }, { passive: true, once: true });
+    document.addEventListener('focusin', function (e) {
+        var t = e.target;
+        if (t && (t.id === 'searchInput' || t.id === 'searchInputMobile' ||
+            (t.classList && t.classList.contains('search-input')))) loadSearch();
+    });
+    document.addEventListener('keydown', function (e) {
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) loadSearch();
+    });
 })();

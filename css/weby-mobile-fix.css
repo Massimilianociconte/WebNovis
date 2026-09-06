@@ -1,14 +1,66 @@
-/* ===== WEBY MOBILE FIX ===== */
+/* ===== WEBY MOBILE FIX v2.0 (stabilizzato) =====
+   File caricato in differita (media=print -> all): per evitare flash e
+   correzioni di layout, ogni valore qui DEVE coincidere con style.css.
+   Il caricamento tardivo diventa quindi un no-op visivo.
+   Geometria: il top resta sempre sotto la navbar floating grazie a
+   max-height calc(100dvh - margine) + bottom con safe-area. */
 
 @media (max-width: 768px) {
     .weby-chat-container {
-        bottom: 1rem;
-        right: 1rem;
-        z-index: 999;
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        right: calc(1rem + env(safe-area-inset-right, 0px));
+        z-index: 1500;
     }
 
     .weby-speech {
         display: none !important;
+    }
+
+    .weby-robot {
+        width: 52px;
+        height: 52px;
+    }
+
+    .chat-popup {
+        right: calc(0.75rem + env(safe-area-inset-right, 0px));
+        left: calc(0.75rem + env(safe-area-inset-left, 0px));
+        bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+        width: auto;
+        max-width: none;
+        height: 65vh;
+        height: 65dvh;
+        max-height: calc(100vh - 170px);
+        max-height: calc(100dvh - 170px);
+        min-height: 320px;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+    }
+
+    .chat-popup::before {
+        display: none;
+    }
+
+    .chat-header {
+        border-radius: 20px 20px 0 0;
+        min-height: 72px;
+    }
+
+    .chat-close {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .chat-input {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .weby-chat-container {
+        bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+        right: calc(0.75rem + env(safe-area-inset-right, 0px));
     }
 
     .weby-robot {
@@ -17,50 +69,35 @@
     }
 
     .chat-popup {
-        right: 0.75rem;
-        left: 0.75rem;
-        bottom: 4.5rem;
-        width: auto;
-        max-width: calc(100vw - 1.5rem);
-        height: 65vh;
-        max-height: 480px;
-        border-radius: 28px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+        right: calc(0.5rem + env(safe-area-inset-right, 0px));
+        left: calc(0.5rem + env(safe-area-inset-left, 0px));
+        bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+        height: calc(100vh - 150px);
+        height: calc(100dvh - 150px);
+        max-height: calc(100vh - 150px);
+        max-height: calc(100dvh - 150px);
+        min-height: 280px;
+        border-radius: 18px;
     }
 
     .chat-header {
-        border-radius: 28px 28px 0 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .weby-chat-container {
-        bottom: 0.75rem;
-        right: 0.75rem;
-    }
-
-    .weby-robot {
-        width: 44px;
-        height: 44px;
-    }
-
-    .chat-popup {
-        right: 0.5rem;
-        left: 0.5rem;
-        bottom: 4rem;
-        height: calc(100vh - 5.5rem);
-        max-height: none;
-        border-radius: 24px;
-    }
-
-    .chat-header {
-        border-radius: 24px 24px 0 0;
+        border-radius: 18px 18px 0 0;
     }
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
     .chat-popup {
-        height: 85vh;
-        max-height: 400px;
+        height: calc(100vh - 130px);
+        height: calc(100dvh - 130px);
+        max-height: 420px;
+        min-height: 220px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chat-popup,
+    .chat-popup.active {
+        transition: opacity 0.01ms linear, visibility 0s linear 0s;
+        transform: none;
     }
 }

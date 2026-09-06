@@ -127,6 +127,44 @@ export default {
       return json({ success: true, message: 'ok' }, 200);
     }
 
+    // Time-trap invisibile: submit <2s dal load = quasi sempre bot.
+    // `ts` assente (no-JS, client vecchi) o orologio futuro = consentito.
+    const tsRaw = formData.get('ts');
+    if (typeof tsRaw === 'string' && tsRaw !== '') {
+      const ts = Number(tsRaw);
+      if (Number.isFinite(ts)) {
+        const age = Date.now() - ts;
+        if ((age >= 0 && age < 2000) || age > 24 * 3600 * 1000) {
+          return json({ success: true, message: 'ok' }, 200);
+        }
+      }
+    }
+
+    // Rate limit best-effort per IP (5 submit / 10 min per isolate).
+    // Senza IP identificabile nessun blocco (mai negare per dati mancanti).
+    const remoteipEarly =
+      request.headers.get('CF-Connecting-IP') ||
+      request.headers.get('X-Forwarded-For')?.split(',')[0]?.trim() ||
+      '';
+    if (remoteipEarly) {
+      const now = Date.now();
+      const store =
+        globalThis.__wnRateLimit || (globalThis.__wnRateLimit = new Map());
+      const hits = (store.get(remoteipEarly) || []).filter(
+        (t) => now - t < 600_000
+      );
+      if (hits.length >= 5) {
+        return json({ success: false, message: 'rate_limited' }, 429);
+      }
+      hits.push(now);
+      store.set(remoteipEarly, hits);
+      if (store.size > 2000) {
+        for (const [k, v] of store) {
+          if (!v.length || now - v[v.length - 1] > 600_000) store.delete(k);
+        }
+      }
+    }
+
     const token =
       formData.get('cf-turnstile-response') ||
       formData.get('turnstile_token') ||

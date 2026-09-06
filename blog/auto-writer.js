@@ -757,7 +757,7 @@ function buildBlogCardHTML(article, customImageMap) {
                         <a href="${article.slug}.html" class="blog-card-image" style="display:block" aria-hidden="true" tabindex="-1">
                             <picture>
                                 <source srcset="../Img/${coverBase}.webp" type="image/webp">
-                                <img alt="${escapeHTML(article.title)}" height="450" src="../Img/${coverBase}.png" width="800" loading="lazy" fetchpriority="auto">
+                                <img alt="${escapeHTML(article.title)}" height="450" src="../Img/${coverBase}.png" width="800" loading="lazy" decoding="async">
                             </picture>
                         </a>
                         <div class="blog-card-body">

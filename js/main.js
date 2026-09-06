@@ -143,7 +143,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
             window.scrollTo({
                 top: targetPosition,
-                behavior: isMobile ? 'auto' : 'smooth'
+                behavior: (isMobile || prefersReducedMotion) ? 'auto' : 'smooth'
             });
 
             // Singolo scroll: nessun secondo scrollTo, nessuna animazione doppia
@@ -385,19 +385,6 @@ const highlightNav = () => {
 window.addEventListener('load', () => {
     document.body.classList.add('page-loaded');
 });
-
-// Performance optimization: Debounce scroll events
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
 
 // highlightNav is now called from the unified scroll controller above
 
@@ -669,20 +656,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Effetto Typing per il Code Window
-const codeLines = document.querySelectorAll('.code-line');
-const codeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'typing 2s steps(30) forwards, blink 0.75s step-end infinite';
-        }
-    });
-}, { threshold: 0.5 });
-
-codeLines.forEach(line => {
-    codeObserver.observe(line);
-});
-
 // Lazy Loading per le immagini (se aggiunte in futuro)
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries) => {
@@ -707,40 +680,6 @@ if ('IntersectionObserver' in window) {
 
 // ===== STUNNING INTERACTIONS =====
 
-// Counter Animation for Numbers
-const numberItems = document.querySelectorAll('.number-item');
-
-const animateCounter = (element) => {
-    const target = parseInt(element.dataset.count);
-    const valueElement = element.querySelector('.number-value');
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    let current = 0;
-
-    const updateCounter = () => {
-        current += increment;
-        if (current < target) {
-            valueElement.textContent = Math.floor(current);
-            requestAnimationFrame(updateCounter);
-        } else {
-            valueElement.textContent = target;
-        }
-    };
-
-    updateCounter();
-};
-
-const numberObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            numberObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-numberItems.forEach(item => numberObserver.observe(item));
-
 // Floating Action Button - Removed (now using chat button)
 
 // Back to Top Button — visibility handled by unified scroll controller
@@ -750,7 +689,7 @@ if (backToTop) {
     backToTop.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
         });
     });
 }
@@ -766,43 +705,6 @@ const createScrollProgress = () => {
 };
 
 createScrollProgress();
-
-// Enhanced Testimonials Slider with Auto-rotate
-const testimonialCards = document.querySelectorAll('.testimonial-card');
-let currentTestimonial = 0;
-
-const rotateTestimonials = () => {
-    testimonialCards.forEach((card, index) => {
-        card.style.transform = index === currentTestimonial
-            ? 'scale(1.05) translateY(-10px)'
-            : 'scale(1) translateY(0)';
-        card.style.opacity = index === currentTestimonial ? '1' : '0.7';
-    });
-
-    currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
-};
-
-// Auto-rotate every 5 seconds (with IntersectionObserver to pause when hidden)
-if (testimonialCards.length > 0) {
-    let testimonialInterval;
-    const testimonialsSection = document.querySelector('.testimonials-section');
-    
-    if (testimonialsSection) {
-        const testimonialObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                if (!testimonialInterval) {
-                    testimonialInterval = setInterval(rotateTestimonials, 5000);
-                }
-            } else {
-                clearInterval(testimonialInterval);
-                testimonialInterval = null;
-            }
-        });
-        testimonialObserver.observe(testimonialsSection);
-    } else {
-        setInterval(rotateTestimonials, 5000);
-    }
-}
 
 // Parallax Effect on Mouse Move — viewport-gated (only active when hero is visible)
 const floatingCardsParallax = document.querySelectorAll('.floating-card');
@@ -1086,45 +988,6 @@ if (socialFeedScroll) {
     }
 }
 
-    // Animate stats counters (with limits to avoid infinite growth)
-    const feedStats = document.querySelectorAll('.feed-stats span');
-    feedStats.forEach((stat, index) => {
-        let iterations = 0;
-        const maxIterations = 100; // Stop after ~5 minutes to prevent absurd numbers
-
-        const statInterval = setInterval(() => {
-            if (iterations++ > maxIterations) {
-                clearInterval(statInterval);
-                return;
-            }
-            
-            const currentText = stat.textContent;
-            const match = currentText.match(/[\d.]+K?/);
-            if (match) {
-                let value = parseFloat(match[0].replace('K', ''));
-                const isK = match[0].includes('K');
-
-                if (isK) {
-                    value += 0.1;
-                    stat.textContent = stat.textContent.replace(/[\d.]+K/, value.toFixed(1) + 'K');
-                } else {
-                    value += Math.floor(Math.random() * 3) + 1;
-                    stat.textContent = stat.textContent.replace(/\d+/, value);
-                }
-            }
-        }, 3000 + (index * 1000));
-    });
-
-    // Add click effect to stats
-    feedStats.forEach(stat => {
-        stat.addEventListener('click', () => {
-            stat.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                stat.style.transform = 'scale(1)';
-            }, 200);
-        });
-    });
-
 // Interactive Tech Stack Items
 const techItems = document.querySelectorAll('.tech-item');
 
@@ -1263,6 +1126,9 @@ function resolveFormSubmitEndpoint() {
 const contactForm = document.querySelector('.contact-form');
 
 if (contactForm) {
+    // Timestamp di load per il time-trap anti-bot lato Worker (fallback:
+    // se assente il submit è comunque accettato).
+    contactForm.dataset.ts = String(Date.now());
     // Sync user email → hidden replyto field so Web3Forms sets correct Reply-To
     const emailInput = contactForm.querySelector('input[name="email"]');
     const replytoInput = contactForm.querySelector('input[name="replyto"]');
@@ -1283,6 +1149,19 @@ if (contactForm) {
     const setFieldState = (field, isValid, showError = true) => {
         const group = field.closest('.form-group');
         if (!group) return;
+
+        // Collega il messaggio di errore al campo per gli screen reader.
+        // L'id è deterministico (niente collisioni tra più form in pagina).
+        const errEl = group.querySelector('.field-error');
+        if (errEl && field.id) {
+            if (!errEl.id) errEl.id = `weby-err-${field.id}`;
+            const described = (field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+            if (!described.includes(errEl.id)) {
+                described.push(errEl.id);
+                field.setAttribute('aria-describedby', described.join(' '));
+            }
+        }
+        field.setAttribute('aria-invalid', isValid ? 'false' : 'true');
 
         if (isValid) {
             group.classList.remove('is-invalid');
@@ -1328,6 +1207,23 @@ if (contactForm) {
                 isValid = false;
             }
         });
+
+        // Custom select servizio (preventivo): l'hidden non ha più `required`
+        // nativo (bloccava il submit in silenzio); validazione custom qui.
+        const serviceHidden = contactForm.querySelector('input#prev-service[type="hidden"]');
+        if (serviceHidden) {
+            const serviceOk = serviceHidden.value.trim() !== '';
+            const serviceGroup = serviceHidden.closest('.form-group');
+            if (serviceGroup) serviceGroup.classList.toggle('is-invalid', !serviceOk && showErrors);
+            const trigger = serviceHidden.parentElement
+                ? serviceHidden.parentElement.querySelector('.custom-select-trigger')
+                : null;
+            if (trigger) trigger.setAttribute('aria-invalid', serviceOk ? 'false' : 'true');
+            if (!serviceOk) {
+                isValid = false;
+                if (showErrors && trigger) trigger.focus();
+            }
+        }
 
         if (!validateTerms(showErrors)) {
             isValid = false;
@@ -1393,7 +1289,7 @@ if (contactForm) {
             if (firstInvalidField) {
                 firstInvalidField.focus();
             } else if (termsLabel) {
-                termsLabel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                termsLabel.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
             }
             updateSubmitState();
             return;
@@ -1409,6 +1305,10 @@ if (contactForm) {
 
         try {
             const formData = new FormData(contactForm);
+
+            // Time-trap invisibile: il Worker scarta submit lampo (<2s dal load,
+            // tipico bot) — assente = no-JS/client vecchi → consentito.
+            if (contactForm.dataset.ts) formData.set('ts', contactForm.dataset.ts);
 
             // Safety-net: ensure replyto mirrors the user's email at submit time
             const emailVal = contactForm.querySelector('input[name="email"]');
@@ -1435,8 +1335,14 @@ if (contactForm) {
 
             const response = await fetch(resolveFormSubmitEndpoint(), {
                 method: 'POST',
-                body: formData
+                body: formData,
+                // Niente attese infinite su rete lenta: 15s poi errore gestito.
+                signal: AbortSignal.timeout(15000)
             });
+
+            if (!response.ok) {
+                throw new Error(`Errore di rete (${response.status}). Riprova o scrivici a hello@webnovis.com`);
+            }
 
             const data = await response.json();
 
@@ -1495,22 +1401,6 @@ if (contactForm) {
         }
     });
 }
-
-// Text Typing Effect for Hero
-const createTypingEffect = (element, text, speed = 100) => {
-    let i = 0;
-    element.textContent = '';
-
-    const type = () => {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    };
-
-    type();
-};
 
 // Magnetic Button Effect
 const buttons = document.querySelectorAll('.btn');
@@ -1660,65 +1550,8 @@ function WebNovis() {
     }
 })();
 
-// Sound Effects (Optional - uncomment to enable)
-/*
-const createSound = (frequency, duration) => {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    oscillator.frequency.value = frequency;
-    oscillator.type = 'sine';
-    
-    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-    
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + duration);
-};
-
-// Add sound to button clicks
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        createSound(800, 0.1);
-    });
-});
-*/
-
-// Performance Monitoring
-let lastFrameTime = performance.now();
-let currentFps = 60;
-
-const monitorPerformance = () => {
-    const currentTime = performance.now();
-    const delta = currentTime - lastFrameTime;
-    currentFps = Math.round(1000 / delta);
-    lastFrameTime = currentTime;
-
-    // Log performance warnings
-    if (currentFps < 30) {
-        console.warn('Low FPS detected:', currentFps);
-    }
-
-    requestAnimationFrame(monitorPerformance);
-};
-
-// monitorPerformance(); // Uncomment to enable performance monitoring
-
 // NOTE: Critical image preloading should be done via <link rel="preload"> in HTML <head>,
 // not at JS runtime (too late). Removed JS-based preloadResources() — use HTML preload hints instead.
-
-// Service Worker Registration (for PWA capabilities)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        // navigator.serviceWorker.register('/sw.js')
-        //     .then(reg => console.log('Service Worker registered'))
-        //     .catch(err => console.log('Service Worker registration failed'));
-    });
-}
 
 const GA_MEASUREMENT_ID = 'G-BPMBY6RTKP';
 
@@ -1732,6 +1565,21 @@ const hasAnalyticsConsent = () => {
 
 const enableAnalyticsTracking = () => {
     window[`ga-disable-${GA_MEASUREMENT_ID}`] = false;
+
+    // Preconnect dinamico: scalda le connessioni solo quando servono davvero
+    // (post-consenso), invece di hint statici in head sprecati col default denied.
+    try {
+        const preconnected = window.__webnovisPreconnected || (window.__webnovisPreconnected = new Set());
+        ['https://www.googletagmanager.com', 'https://connect.facebook.net', 'https://www.clarity.ms'].forEach((origin) => {
+            if (preconnected.has(origin)) return;
+            preconnected.add(origin);
+            const link = document.createElement('link');
+            link.rel = 'preconnect';
+            link.href = origin;
+            link.crossOrigin = 'anonymous';
+            document.head.appendChild(link);
+        });
+    } catch (err) { /* hint best-effort */ }
 
     // GA4: update consent + load script if not yet loaded
     if (typeof window.gtag === 'function') {
@@ -1933,7 +1781,9 @@ if (rotatingWords.length > 0) {
     };
 
     const startWhenReady = () => {
-        if (isMobile || prefersReducedMotion) {
+        // Reduced motion: resta sulla prima parola, nessuna rotazione.
+        if (prefersReducedMotion || rotatingWords.length < 2) return;
+        if (isMobile) {
             setTimeout(startRotation, 1600);
             return;
         }
@@ -1997,7 +1847,6 @@ document.querySelectorAll('.counter-item').forEach(item => {
 });
 
 // 3. Process Timeline Stagger Reveal
-const processSteps = document.querySelectorAll('.process-step');
 const processObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -2046,6 +1895,7 @@ faqItems.forEach(item => {
 const newsletterForm = document.getElementById('newsletterForm');
 
 if (newsletterForm) {
+    newsletterForm.dataset.ts = String(Date.now());
     newsletterForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const emailInput = newsletterForm.querySelector('input[type="email"]');
@@ -2059,10 +1909,15 @@ if (newsletterForm) {
         try {
             // 1. Invia notifica via Web3Forms (email di notifica)
             const formData = new FormData(newsletterForm);
+            if (newsletterForm.dataset.ts) formData.set('ts', newsletterForm.dataset.ts);
             const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                signal: AbortSignal.timeout(15000)
             });
+            if (!response.ok) {
+                throw new Error(`Errore di rete (${response.status})`);
+            }
             const data = await response.json();
 
             if (data.success) {
@@ -2271,7 +2126,7 @@ if (multistepForm) {
         currentStep = stepNum;
 
         // Scroll form into view
-        multistepForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        multistepForm.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'nearest' });
     };
 
     // Step 1: Goal options (multi-select)

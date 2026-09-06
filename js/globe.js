@@ -34,7 +34,9 @@
 
         let createGlobe;
         try {
-            const module = await import('/js/cobe.min.js');
+            // ?v= pinna il bundle nello store immutable 1y (vedi AGENTS.md:
+            // aggiornarlo a ogni modifica di js/cobe.min.js).
+            const module = await import('/js/cobe.min.js?v=1481a3d2');
             createGlobe = module.default;
         } catch (localErr) {
             try {

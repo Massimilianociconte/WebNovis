@@ -114,7 +114,6 @@ const PUBLIC_SENTINELS = [
   'css/search.min.css',
   'css/style.min.css',
   'favicon.ico',
-  'fonts/grift-black.ttf',
   'grazie.html',
   'index.html',
   'js/chat.min.js',

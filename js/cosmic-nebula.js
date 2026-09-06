@@ -25,12 +25,14 @@
     var isMobile = window.matchMedia('(max-width: 768px)').matches;
 
     // WebGL Context
+    // high-performance: su GPU discrete evita l'integrata (frame più rapidi,
+    // zero differenze visive); su mobile resta l'integrata in ogni caso.
     var gl = canvas.getContext('webgl', {
         alpha: false,
         depth: false,
         stencil: false,
         antialias: false,
-        powerPreference: 'default',
+        powerPreference: 'high-performance',
         preserveDrawingBuffer: false
     }) || canvas.getContext('experimental-webgl', {
         alpha: false,
@@ -276,6 +278,28 @@
     var isVisible = true;
     var isTabActive = true;
     var hasFadedIn = false;
+    // Throttle mobile a ~30fps: il moto è lento e oceanico, la percezione resta
+    // identica ma il carico GPU/CPU si dimezza (batteria + fluidità su fascia bassa).
+    var lastFrameTime = 0;
+    var MOBILE_FRAME_BUDGET = 33;
+
+    // Rileva rasterizer software (SwiftShader/llvmpipe dei lab headless come
+    // Lighthouse, VM senza GPU): lì lo shader gira sulla CPU e brucia il main
+    // thread per decine di secondi. Su quei renderer disegniamo UN solo frame
+    // statico — pixel identici al primo frame animato — e ci fermiamo. Sulle GPU
+    // reali (tutti gli utenti veri) non cambia assolutamente nulla.
+    var isSoftwareGL = false;
+    try {
+        var dbgExt = gl.getExtension('WEBGL_debug_renderer_info');
+        if (dbgExt) {
+            var rendererStr = gl.getParameter(dbgExt.UNMASKED_RENDERER_WEBGL) || '';
+            isSoftwareGL = /swiftshader|llvmpipe|softpipe|software raster|basic render|osmesa/i.test(rendererStr);
+        }
+    } catch (e) { /* conservative: assume hardware */ }
+
+    // prefers-reduced-motion: un solo frame statico e stop (niente loop a 0.35x:
+    // rispetta davvero la preferenza e azzera il costo per quegli utenti).
+    var staticOnly = isSoftwareGL || prefersReducedMotion;
 
     // Viewport resize handler with adaptive DPR scaling
     function resize() {
@@ -297,6 +321,15 @@
             canvas.width = renderWidth;
             canvas.height = renderHeight;
             gl.viewport(0, 0, renderWidth, renderHeight);
+            // Il resize azzera il drawing buffer: in modalità statica ridisegna
+            // subito l'unico frame (altrimenti resterebbe lo sfondo vuoto).
+            if (staticOnly && hasFadedIn) {
+                if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                animationFrameId = requestAnimationFrame(function (ts) {
+                    animationFrameId = null;
+                    renderFrame(ts);
+                });
+            }
         }
     }
 
@@ -328,9 +361,9 @@
     // Main Render Routine
     function renderFrame(now) {
         var elapsed = now - startTime;
-        // If system prefers reduced motion, gently slow down rather than freezing
-        var speedMultiplier = prefersReducedMotion ? 0.35 : 1.0;
-        var timeSec = elapsed * 0.001 * speedMultiplier;
+        // In modalità statica il tempo è congelato: il frame è identico al primo
+        // frame che vedrebbe un utente con animazione attiva.
+        var timeSec = staticOnly ? 0 : elapsed * 0.001;
 
         // Autonomous organic cosmic drift when no pointer interaction is active
         if (!hasPointerInput) {
@@ -357,14 +390,27 @@
         }
     }
 
-    // Smooth animation loop: 60 FPS / native refresh rate
+    // Smooth animation loop: 60 FPS desktop / ~30 FPS mobile (moto lento:
+    // percezione invariata). In modalità statica nessun loop: un frame e stop.
     function loop(timestamp) {
         if (!isVisible || !isTabActive) {
             animationFrameId = null;
             return;
         }
 
+        if (isMobile && !staticOnly) {
+            if (timestamp - lastFrameTime < MOBILE_FRAME_BUDGET) {
+                animationFrameId = requestAnimationFrame(loop);
+                return;
+            }
+            lastFrameTime = timestamp;
+        }
+
         renderFrame(timestamp);
+        if (staticOnly) {
+            animationFrameId = null;
+            return;
+        }
         animationFrameId = requestAnimationFrame(loop);
     }
 

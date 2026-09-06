@@ -528,71 +528,13 @@ body::before {
     flex-direction: column;
 }
 
-.portfolio-tag {
-    align-self: flex-start;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 0.4rem 0.8rem;
-    background: rgba(91, 106, 174, 0.15);
-    color: var(--brand-light);
-    border: 1px solid rgba(91, 106, 174, 0.2);
-    border-radius: 4px;
-    margin-bottom: 1.2rem;
-}
 
-.portfolio-title {
-    font-size: 1.75rem;
-    margin-bottom: 0.8rem;
-    color: #fff;
-    font-weight: 600;
-}
 
-.portfolio-desc {
-    font-size: 1rem;
-    color: #aaa;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    flex-grow: 1;
-}
 
 /* Button Refinement */
-.btn-view {
-    background: transparent;
-    border: 1px solid var(--brand-primary);
-    color: var(--brand-primary);
-    padding: 1rem;
-    border-radius: 8px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
 
-.btn-view::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background: var(--brand-primary);
-    transition: width 0.3s ease;
-    z-index: -1;
-}
 
-.btn-view:hover {
-    color: #000;
-    box-shadow: 0 0 20px var(--brand-glow);
-}
 
-.btn-view:hover::before {
-    width: 100%;
-}
 
 /* Animations */
 @keyframes fadeInUpStagger {

@@ -10,7 +10,7 @@ const CONTENT_SECURITY_POLICY_DIRECTIVES = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.designrush.com",
   "img-src 'self' data: https: blob:",
   "font-src 'self' https://fonts.gstatic.com https://www.designrush.com",
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://widget.trustpilot.com https://webnovis-ai.nexify-api.workers.dev https://*.workers.dev https://challenges.cloudflare.com https://news.google.com",
+  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://g.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://widget.trustpilot.com https://webnovis-ai.nexify-api.workers.dev https://*.workers.dev https://challenges.cloudflare.com https://news.google.com",
   "frame-src 'self' https://widget.trustpilot.com https://www.facebook.com https://www.google.com https://maps.google.com https://challenges.cloudflare.com https://news.google.com https://arconti31.com https://unimidoc.netlify.app https://www.fbtotalsecurity.com https://www.mikunaitalia.it https://www.mimmofratelli.com https://www.playmomentum.it https://www.quickseo.online",
   "frame-ancestors 'none'",
   "object-src 'none'",
@@ -110,6 +110,11 @@ function buildStaticHeadersFile() {
     '',
     '/fonts/*',
     '  Cache-Control: public, max-age=31536000, stale-while-revalidate=2592000',
+    '',
+    // Indice di ricerca: rigenerato a ogni build ma tollerante a 1 giorno di
+    // staleness (SWR lo aggiorna in background). Evita revalidate a ogni sessione.
+    '/search-index.json',
+    '  Cache-Control: public, max-age=86400, stale-while-revalidate=604800',
     '',
     '/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',

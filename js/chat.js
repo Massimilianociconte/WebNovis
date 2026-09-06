@@ -29,8 +29,29 @@ const LEAD_INTENT_PATTERNS = [
     /quando possiamo|come si inizia|come faccio a iniziare|mandate un preventivo/i
 ];
 
-// Mobile detection (renamed to avoid conflict with main.js)
-const isMobileChat = window.innerWidth <= 768 || 'ontouchstart' in window;
+// Device/viewport helpers (valutati ogni volta: coprono resize, rotazione e
+// DevTools. La vecchia const isMobileChat restava congelata al load e
+// causava layout diversi dopo una rotazione.)
+function isSmallViewport() {
+    return window.matchMedia('(max-width: 768px)').matches;
+}
+
+function isCoarsePointer() {
+    return window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+}
+
+function isMobileChat() {
+    return isSmallViewport() || (window.matchMedia('(hover: none)').matches && 'ontouchstart' in window);
+}
+
+function shouldAutoFocusInput() {
+    // Mai aprire la tastiera da sola su touch: il resize durante l'animazione
+    // di apertura era una delle cause del flash/correzione layout.
+    if (isCoarsePointer()) return false;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return false;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true;
+    return true;
+}
 
 function initWebyChatbot() {
     if (window.__webnovisChatInitialized) return;
@@ -91,7 +112,7 @@ function initWebyChatbot() {
         window.addEventListener('keydown', startOnIntent, { once: true });
         window.addEventListener('scroll', startOnIntent, { once: true, passive: true });
 
-        const warmupDelay = isMobileChat ? 12000 : 5000;
+        const warmupDelay = isMobileChat() ? 12000 : 5000;
         if ('requestIdleCallback' in window) {
             requestIdleCallback(() => setTimeout(startKeepAlive, warmupDelay), { timeout: 7000 });
         } else {
@@ -106,8 +127,29 @@ function initWebyChatbot() {
     // Char counter element (injected after input is found)
     let charCounter = null;
 
-    // Store original viewport for mobile keyboard handling
-    const originalViewportHeight = window.innerHeight;
+    // Scroll-lock senza salto: position:fixed da solo riporta la pagina in alto.
+    // Salviamo scrollY e lo ripristiniamo alla chiusura (niente flash di layout).
+    let lockedScrollY = 0;
+
+    function lockBodyScroll() {
+        if (state.scrollLocked) return;
+        state.scrollLocked = true;
+        lockedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+        document.body.style.top = `-${lockedScrollY}px`;
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+    }
+
+    function unlockBodyScroll() {
+        if (!state.scrollLocked) return;
+        state.scrollLocked = false;
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        window.scrollTo(0, lockedScrollY);
+    }
 
     function ensureAiTransparencyNotice() {
         if (!elements.popup || elements.popup.querySelector('.chat-ai-notice')) return;
@@ -152,9 +194,13 @@ function initWebyChatbot() {
         toggleChat();
     });
 
-    // Close Chat
+    // Close Chat (la X resta sempre sopra l'header: z-index 3 + 44px touch target)
     if (elements.close) {
-        elements.close.addEventListener('click', () => closeChat());
+        elements.close.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeChat(true);
+        });
     }
 
     // Close Bubble
@@ -165,9 +211,19 @@ function initWebyChatbot() {
         });
     }
 
-    // Input Handling
+    // Input Handling (nessuna mutazione geometrica al focus: il layout resta
+    // stabile e la tastiera viene gestita via CSS dvh + visualViewport)
     if (elements.input) {
         elements.input.setAttribute('maxlength', CHAT_CONFIG.maxMessageLength);
+        if (!elements.input.getAttribute('enterkeyhint')) {
+            elements.input.setAttribute('enterkeyhint', 'send');
+        }
+        if (!elements.input.getAttribute('inputmode')) {
+            elements.input.setAttribute('inputmode', 'text');
+        }
+        if (!elements.input.getAttribute('autocomplete')) {
+            elements.input.setAttribute('autocomplete', 'off');
+        }
 
         // Inject character counter.
         // Il contatore è informazione di stato del campo: va esposto come
@@ -218,32 +274,42 @@ function initWebyChatbot() {
             }
         });
 
-        // Mobile keyboard handling
-        elements.input.addEventListener('focus', handleMobileFocus);
-        elements.input.addEventListener('blur', handleMobileBlur);
+        // Tastiera mobile: non toccare il layout, tieni solo i messaggi in vista.
+        elements.input.addEventListener('focus', () => {
+            setTimeout(scrollToBottom, 250);
+        });
     }
 
     if (elements.send) {
         elements.send.addEventListener('click', sendMessage);
     }
 
-    // Quick Replies
-    document.querySelectorAll('.quick-reply').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const msg = this.dataset.message;
-            if (msg) {
-                elements.input.value = msg;
-                sendMessage();
-                // Fade out quick replies
-                const container = this.parentElement;
-                container.style.opacity = '0';
-                setTimeout(() => container.remove(), 300);
-            }
+    // Quick Replies (limitate al popup: evita collisioni se la pagina ne ha altri)
+    if (elements.popup) {
+        elements.popup.querySelectorAll('.quick-reply').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const msg = this.dataset.message;
+                if (msg && elements.input) {
+                    elements.input.value = msg;
+                    sendMessage();
+                    // Fade out quick replies
+                    const container = this.parentElement;
+                    if (container) {
+                        container.style.opacity = '0';
+                        setTimeout(() => container.remove(), 300);
+                    }
+                }
+            });
         });
-    });
+    }
 
-    // Close on outside click (desktop only)
-    if (!isMobileChat) {
+    // Chiusura perfetta: X, ESC e (solo desktop) click fuori. Su mobile il click
+    // fuori è disabilitato: con la tastiera aperta generava chiusure accidentali.
+    function isDesktopPointer() {
+        return window.matchMedia('(hover: hover) and (pointer: fine)').matches && !isSmallViewport();
+    }
+
+    if (isDesktopPointer()) {
         document.addEventListener('click', (e) => {
             if (state.isOpen &&
                 !elements.popup.contains(e.target) &&
@@ -253,87 +319,89 @@ function initWebyChatbot() {
         });
     }
 
-    // --- MOBILE UX FUNCTIONS ---
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && state.isOpen) {
+            e.preventDefault();
+            closeChat(true);
+        }
+    });
 
-    function handleMobileFocus() {
-        if (!isMobileChat) return;
-
-        state.scrollLocked = true;
-
-        // Wait for keyboard to appear
-        setTimeout(() => {
-            // Scroll chat to bottom
-            scrollToBottom();
-
-            // Ensure popup is fully visible
-            if (elements.popup) {
-                elements.popup.style.bottom = '0';
-                elements.popup.style.height = '100%';
-                elements.popup.style.maxHeight = '100vh';
-                elements.popup.style.borderRadius = '0';
-            }
-        }, 300);
+    // Tastiera mobile moderna: visualViewport si riduce quando la tastiera sale.
+    // Non ridimensioniamo il popup via JS (era la causa del flash): ci limitiamo
+    // a tenere l'ultimo messaggio visibile sopra la tastiera.
+    let viewportTimer = null;
+    function handleViewportChange() {
+        if (!state.isOpen) return;
+        if (viewportTimer) clearTimeout(viewportTimer);
+        viewportTimer = setTimeout(scrollToBottom, 120);
     }
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', handleViewportChange);
+    } else {
+        window.addEventListener('resize', handleViewportChange, { passive: true });
+    }
+    window.addEventListener('orientationchange', () => {
+        if (!state.isOpen) return;
+        setTimeout(scrollToBottom, 250);
+    }, { passive: true });
 
-    function handleMobileBlur() {
-        if (!isMobileChat) return;
-
-        state.scrollLocked = false;
-
-        // Reset popup styles
-        setTimeout(() => {
-            if (elements.popup && state.isOpen) {
-                elements.popup.style.bottom = '';
-                elements.popup.style.height = '';
-                elements.popup.style.maxHeight = '';
-                elements.popup.style.borderRadius = '';
-            }
-        }, 100);
+    function syncAriaExpanded() {
+        if (elements.button) {
+            elements.button.setAttribute('aria-expanded', state.isOpen ? 'true' : 'false');
+        }
+        if (elements.popup) {
+            elements.popup.setAttribute('aria-hidden', state.isOpen ? 'false' : 'true');
+        }
     }
 
     // --- CORE FUNCTIONS ---
 
     function toggleChat() {
-        state.isOpen = !state.isOpen;
-        elements.popup.classList.toggle('active', state.isOpen);
-        // Sincronizza gli elementi flottanti globali (es. .sticky-call)
-        document.body.classList.toggle('chat-open', state.isOpen);
-
         if (state.isOpen) {
-            // Hide notification bubble
-            if (elements.bubble) elements.bubble.classList.add('hidden');
-
-            // Mobile: prevent background scroll
-            if (isMobileChat) {
-                document.body.style.overflow = 'hidden';
-                document.body.style.position = 'fixed';
-                document.body.style.width = '100%';
-            }
-
-            // Focus input (delayed on mobile)
-            setTimeout(() => elements.input?.focus(), isMobileChat ? 300 : 100);
-
-            scrollToBottom();
+            closeChat(true);
         } else {
-            // Restore scroll on mobile
-            if (isMobileChat) {
-                document.body.style.overflow = '';
-                document.body.style.position = '';
-                document.body.style.width = '';
-            }
+            openChat();
         }
     }
 
-    function closeChat() {
+    function openChat() {
+        state.isOpen = true;
+        elements.popup.classList.add('active');
+        // Sincronizza gli elementi flottanti globali (es. .sticky-call)
+        document.body.classList.add('chat-open');
+        syncAriaExpanded();
+
+        // Hide notification bubble
+        if (elements.bubble) elements.bubble.classList.add('hidden');
+
+        // Blocca lo scroll di sfondo preservando la posizione (niente salto in alto)
+        lockBodyScroll();
+
+        // Focus solo su puntatore fine: su touch la tastiera si aprirebbe durante
+        // l'animazione causando resize + flash. L'utente tocca il campo quando vuole.
+        if (shouldAutoFocusInput() && elements.input) {
+            setTimeout(() => elements.input.focus({ preventScroll: true }), 120);
+        }
+
+        scrollToBottom();
+    }
+
+    function closeChat(returnFocus) {
+        if (!state.isOpen && !elements.popup.classList.contains('active')) return;
         state.isOpen = false;
         elements.popup.classList.remove('active');
         document.body.classList.remove('chat-open');
+        syncAriaExpanded();
 
-        // Restore mobile scroll
-        if (isMobileChat) {
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
+        // Toglie il focus dal campo così la tastiera si chiude subito su mobile
+        if (document.activeElement && elements.popup.contains(document.activeElement)) {
+            document.activeElement.blur();
+        }
+
+        unlockBodyScroll();
+
+        if (returnFocus && elements.button) {
+            elements.button.focus({ preventScroll: true });
         }
     }
 
@@ -780,13 +848,14 @@ function initWebyChatbot() {
     }
 
     // --- INITIALIZATION ---
+    syncAriaExpanded();
 
     // Show bubble after delay
     setTimeout(() => {
         if (!state.isOpen && !state.hasInteracted && elements.bubble) {
             elements.bubble.classList.add('visible');
         }
-    }, isMobileChat ? 5000 : 3000); // Longer delay on mobile
+    }, isMobileChat() ? 5000 : 3000); // Longer delay on mobile
 
     // Keep-Alive Heartbeat (production only, delayed)
     setupKeepAlive();

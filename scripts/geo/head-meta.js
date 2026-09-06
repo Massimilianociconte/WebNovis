@@ -110,8 +110,8 @@ function replaceLinkHref(html, attrName, attrValue, href) {
 }
 
 function ensureSelfHreflang(headHtml, canonical) {
-    const hreflangTag = `<link rel="alternate" hreflang="it-IT" href="${canonical}">`;
-    const withoutExisting = headHtml.replace(/\s*<link\b[^>]*\bhreflang=["']it-IT["'][^>]*>/gi, '');
+    const hreflangTag = `<link rel="alternate" hreflang="it-IT" href="${canonical}"> <link rel="alternate" hreflang="x-default" href="${canonical}">`;
+    const withoutExisting = headHtml.replace(/\s*<link\b[^>]*\bhreflang=["'](?:it-IT|x-default)["'][^>]*>/gi, '');
 
     if (/<link\b[^>]*rel=["']canonical["'][^>]*>/i.test(withoutExisting)) {
         return withoutExisting.replace(/(<link\b[^>]*rel=["']canonical["'][^>]*>)/i, `$1 ${hreflangTag}`);

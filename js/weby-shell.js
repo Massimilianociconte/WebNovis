@@ -26,19 +26,19 @@
       '<button class="weby-speech-close" id="webyBubbleClose" aria-label="Chiudi" type="button">✕</button>' +
       '<div class="weby-speech-tail"></div>' +
     '</div>' +
-    '<button class="weby-robot" id="chatButton" aria-label="Apri chat con Weby, assistente AI" type="button">' +
+    '<button class="weby-robot" id="chatButton" aria-label="Apri chat con Weby, assistente AI" aria-expanded="false" aria-controls="chatPopup" type="button">' +
       '<picture>' +
         '<source srcset="' + robot + '" type="image/webp">' +
-        '<img alt="Weby" height="56" src="' + robotPng + '" width="56" decoding="async" loading="lazy" class="weby-robot-img">' +
+        '<img alt="Weby" height="56" src="' + robotPng + '" width="56" decoding="async" loading="lazy" fetchpriority="low" class="weby-robot-img">' +
       '</picture>' +
     '</button>' +
-    '<div class="chat-popup" id="chatPopup">' +
+    '<div class="chat-popup" id="chatPopup" role="dialog" aria-modal="false" aria-label="Chat con Weby, assistente AI" aria-hidden="true">' +
       '<div class="chat-header">' +
         '<div class="chat-header-info">' +
           '<div class="chat-avatar">' +
             '<picture>' +
               '<source srcset="' + robot + '" type="image/webp">' +
-              '<img alt="Weby" height="112" src="' + robotPng + '" width="112" decoding="async" loading="lazy" class="bot-avatar-img">' +
+              '<img alt="Weby" height="112" src="' + robotPng + '" width="112" decoding="async" loading="lazy" fetchpriority="low" class="bot-avatar-img">' +
             '</picture>' +
             '<span class="chat-status"></span>' +
           '</div>' +
@@ -65,7 +65,7 @@
           '<div class="message-avatar">' +
             '<picture>' +
               '<source srcset="' + robot + '" type="image/webp">' +
-              '<img alt="Weby" height="112" src="' + robotPng + '" width="112" decoding="async" loading="lazy" class="bot-avatar-img">' +
+              '<img alt="Weby" height="112" src="' + robotPng + '" width="112" decoding="async" loading="lazy" fetchpriority="low" class="bot-avatar-img">' +
             '</picture>' +
           '</div>' +
           '<div class="message-content">' +
@@ -81,7 +81,7 @@
         '</div>' +
       '</div>' +
       '<div class="chat-input-container">' +
-        '<input id="chatInput" placeholder="Scrivi un messaggio..." aria-label="Scrivi un messaggio a Weby" class="chat-input" autocomplete="off">' +
+        '<input id="chatInput" type="text" placeholder="Scrivi un messaggio..." aria-label="Scrivi un messaggio a Weby" class="chat-input" autocomplete="off" autocapitalize="sentences" enterkeyhint="send" inputmode="text" maxlength="500">' +
         '<button class="chat-send" id="chatSend" aria-label="Invia messaggio" type="button">' +
           '<svg viewBox="0 0 24 24" fill="none" height="20" width="20" aria-hidden="true">' +
             '<path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 8L11 13" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>' +
