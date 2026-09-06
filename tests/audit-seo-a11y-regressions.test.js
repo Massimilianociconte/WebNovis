@@ -147,11 +147,11 @@ function main() {
     }
   }
 
-  // B8: portfolio fonts use display=optional (consistent with index)
+  // B8: fonts use display=swap everywhere (2026-09-06: optional left fallback stuck after hard refresh)
   {
     const html = read('src/html/portfolio.html');
-    if (/fonts\.googleapis\.com\/css2[^"]*display=swap/.test(html)) {
-      failures.push('src/html/portfolio.html: fonts use display=swap (B8)');
+    if (/fonts\.googleapis\.com\/css2[^"]*display=optional/.test(html)) {
+      failures.push('src/html/portfolio.html: fonts still use display=optional (B8)');
     }
   }
 

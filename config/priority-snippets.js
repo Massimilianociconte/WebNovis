@@ -1,12 +1,14 @@
 module.exports = {
   'blog/partita-iva-ecommerce.html': {
     // GSC: 631 impr a pos 5.9 con 0 clic → description con numeri concreti per differenziarsi dai siti fiscali
-    title: 'Partita IVA per e-commerce: quando serve | WebNovis',
+    // Audit 2026-09-06: title con anno + intento costi, description invariata (numeri già efficaci)
+    title: 'Partita IVA E-commerce 2026: Quando Serve e Costi | WebNovis',
     description: 'Quando serve la partita IVA per vendere online: forfettario al 5% i primi 5 anni, INPS ~€4.200, apertura gratuita. Costi reali e checklist prima di partire.'
   },
   'blog/quanto-costa-una-landing-page.html': {
-    title: 'Quanto costa una landing page nel 2026? | WebNovis',
-    description: 'Prezzi reali 2026 per una landing page: range di costo, cosa include, esempi di ROI e quando conviene investire davvero.'
+    // Audit 2026-09-06: title con prezzo d'ingresso listino (da €500), description con range + ROI + CTA
+    title: 'Quanto Costa una Landing Page nel 2026? Da €500 | WebNovis',
+    description: 'Landing €300-3.000+, budget realistico €600-1.500 per le PMI: cosa include, esempio di ROI e quando l\'investimento si ripaga. Preventivo gratuito.'
   },
   'blog/obblighi-legge-accessibilita-siti.html': {
     title: 'Obblighi accessibilità siti 2026: chi si adegua | WebNovis',
@@ -17,8 +19,9 @@ module.exports = {
     description: 'Guida pratica a Google Search Console: come leggere query, impressioni, CTR, pagine indicizzate ed errori per capire cosa migliorare davvero.'
   },
   'blog/dati-obbligatori-sito-web.html': {
-    title: 'Dati obbligatori sul sito web: guida 2026 | WebNovis',
-    description: 'Guida sintetica ai dati obbligatori da esporre su un sito web in Italia: partita IVA, contatti, privacy, cookie e riferimenti societari.'
+    // Audit 2026-09-06: title con intento sanzioni (query "sanzioni siti web" 94 impr), description con sanzioni + checklist
+    title: 'Dati Obbligatori Sito Web 2026: Guida e Sanzioni | WebNovis',
+    description: 'P.IVA, contatti, privacy e cookie: tutti i dati obbligatori sul sito web in Italia nel 2026, sanzioni GDPR fino a €20M e checklist operativa.'
   },
   'blog/quanto-costa-gestione-social-media.html': {
     // GSC: 1.366 impr a pos 5.5 con 0 clic → title riallineato alla query "quanto costa"
@@ -28,14 +31,16 @@ module.exports = {
   },
   'blog/quanto-costa-campagna-facebook-ads.html': {
     // GSC: 751 impr a pos 4.8 con 1 clic → title in forma di domanda
-    title: 'Quanto costa una campagna Facebook Ads? | WebNovis',
-    description: 'Quanto costa una campagna Facebook e Instagram Ads: budget minimo, CPC e CPM reali, costo per lead e fee di gestione. Esempi pratici 2026 per PMI.'
+    // Audit 2026-09-06: title con anno + CPL, description con numeri reali del body (budget/lead/fee)
+    title: 'Quanto Costa Facebook Ads nel 2026? Budget e CPL | WebNovis',
+    description: 'Budget minimo €300-500/mese, costo per lead €2-50 per settore, fee di gestione €300-1.500: i costi reali di Facebook e Instagram Ads nel 2026.'
   },
   'blog/quanto-costa-un-ecommerce.html': {
     // GSC: 460 impr a pos 4.8 con 0 clic → title riallineato alla query "quanto costa"
     // FIX 2026-08-04: title approvato in sessione precedente applicato live
-    title: 'Quanto Costa un E-Commerce nel 2026? Prezzi Reali',
-    description: 'Quanto costa aprire un e-commerce nel 2026: tabella prezzi, Shopify vs custom, commissioni, costi nascosti, tempi e budget realistico per PMI.'
+    // Audit 2026-09-06: title con prezzo d'ingresso listino (da €3.500), description con piattaforme + CTA
+    title: 'Quanto Costa un E-commerce nel 2026? Da €3.500 | WebNovis',
+    description: 'Shopify vs WooCommerce vs custom, commissioni e costi nascosti: budget realistici 2026 per PMI ed e-commerce custom da €3.500. Preventivo gratuito.'
   },
   'blog/quanto-costa-un-logo.html': {
     // GSC: 1.094 impr a pos 11.2 → title accorciato (81→65 caratteri) e in forma di domanda
@@ -86,8 +91,9 @@ module.exports = {
     description: 'Confronto 2026 tra piattaforme e-commerce per PMI italiane: costi reali, commissioni, SEO e quando conviene Shopify, WooCommerce o un progetto custom.'
   },
   'blog/pagamenti-online-ecommerce.html': {
-    title: 'Pagamenti e-commerce 2026: Stripe e PayPal | WebNovis',
-    description: 'Confronto 2026 sui pagamenti online per e-commerce: Stripe, PayPal, Scalapay, commissioni, checkout e criteri per scegliere il gateway giusto.'
+    // Audit 2026-09-06: title con intento costi, description con commissioni reali del body
+    title: 'Pagamenti E-commerce 2026: Stripe, PayPal, Costi | WebNovis',
+    description: 'Stripe ~1,4%+€0,25, PayPal ~2,9%+€0,30: confronto 2026 di commissioni, checkout e criteri per scegliere il gateway giusto per il tuo e-commerce.'
   },
   'blog/gdpr-sito-web-guida.html': {
     title: 'GDPR sito web 2026: obblighi e cookie banner | WebNovis',
@@ -102,7 +108,7 @@ module.exports = {
     description: 'Confronto pratico 2026 tra Shopify e e-commerce custom: costi reali, commissioni, SEO, proprietà del codice e quando conviene ciascuna soluzione.'
   },
   'blog/instagram-insights-guida.html': {
-    title: 'Instagram Insights: le metriche che contano | WebNovis',
+    title: 'Instagram Insights 2026: guida alle metriche che contano | WebNovis',
     description: 'Come leggere Instagram Insights nel 2026: reach, salvataggi, retention, click e KPI utili per PMI e professionisti che vogliono contenuti più efficaci.'
   },
   'blog/instagram-carousel-guida.html': {
@@ -134,8 +140,9 @@ module.exports = {
     description: 'Come usare Google Ads locali per attirare clienti nella tua zona: campagne search, maps, budget, estensioni, landing page e KPI per PMI e professionisti.'
   },
   'blog/quanto-costa-un-sito-web.html': {
-    title: 'Quanto Costa un Sito Web: Prezzi e Costi Annuali 2026 | WebNovis',
-    description: 'Cosa fa salire o scendere il prezzo di un sito nel 2026: perimetro, contenuti, integrazioni e differenze tra listino di mercato e catalogo WebNovis.'
+    // Audit 2026-09-06: title con prezzo d'ingresso listino (da €500), description con listino + CTA preventivo
+    title: 'Quanto Costa un Sito Web nel 2026: Prezzi da €500 | WebNovis',
+    description: 'Landing da €500, vetrina da €1.200, e-commerce da €3.500: range di mercato 2026, cosa fa salire il prezzo e come chiedere un preventivo chiaro.'
   },
   'blog/caffe-sempione-caso-studio-locale.html': {
     title: 'Caso Studio Caffè Sempione: Strategia Locale | WebNovis',

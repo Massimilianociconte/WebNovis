@@ -31,7 +31,7 @@ Vincolo assoluto: **mai perdere qualità visiva, definizione, estetica o fluidit
 - 0 JS render-blocking: solo `defer`. `search.min.js` NON è eager da nessuna parte: va via `noncritical-loader` su idle/intent ovunque (il loader ha guardia anti-doppio-caricamento: non romperla, `search.js` non è idempotente). Se un template/builder lo rimette eager, toglierlo.
 - Hint: `preconnect` font ok; `dns-prefetch` solo verso origini davvero contattate (mai Trustpilot finché non si usa). Preconnect ai tracker SOLO dinamici post-consenso (vedi `enableAnalyticsTracking` in `js/main.js`), mai statici in head col default denied.
 - Speculation Rules: solo `prefetch` (il `prerender` viene rifiutato con 503 `cf-speculation-refused`). Verificare con HAR che non generi errori.
-- Viewport: sempre `viewport-fit=cover`. Font Google: `display=optional` + fallback locali con `size-adjust` (già in `style.css`).
+- Viewport: sempre `viewport-fit=cover`. Font Google: `display=swap` + fallback locali con `size-adjust` (già in `style.css`). MAI `display=optional`: lascia il fallback permanente dopo hard refresh (bug 2026-09-06).
 
 ## 3. JS: caricamento e runtime
 
