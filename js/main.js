@@ -234,9 +234,24 @@ function getHomepageBackground(scrollY) {
 (function() {
     var scrollTicking = false;
 
+    // Altezza documento cachata: leggerla ogni frame forza layout.
+    // Invalidata su resize/load (e al cambio font, che altera le metriche).
+    var docHeightCache = 0;
+    var docHeightCacheDirty = true;
+    var markDocHeightDirty = function() { docHeightCacheDirty = true; };
+    window.addEventListener('resize', markDocHeightDirty, { passive: true });
+    window.addEventListener('load', markDocHeightDirty, { once: true });
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(markDocHeightDirty).catch(function() {});
+    }
+
     function onScrollFrame() {
         var scrollY = window.pageYOffset;
-        var docH = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (docHeightCacheDirty) {
+            docHeightCache = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            docHeightCacheDirty = false;
+        }
+        var docH = docHeightCache;
 
         // 1. Nav scrolled class
         if (nav) {
@@ -886,61 +901,188 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 revealSections.forEach(section => sectionObserver.observe(section));
 
-// Modern Social Feed with Seamless Infinite Scroll
+// Modern Social Feed: real interactions (like/save/share) + efficient auto-scroll.
+// - Event delegation: un solo listener per tutte le interazioni.
+// - Auto-scroll solo desktop con puntatore fine, solo a sezione visibile,
+//   con velocita basata sul tempo (px/s costanti a ogni refresh rate),
+//   in pausa su hover/focus/touch e con prefers-reduced-motion.
 const socialFeedScroll = document.getElementById('socialFeedScroll');
-if (socialFeedScroll && !isMobile && !('ontouchstart' in window)) {
-    // Only initialize and measure on desktop when the feed is scrolled into view
-    const initSocialScroll = () => {
-        const posts = Array.from(socialFeedScroll.querySelectorAll('.feed-post'));
-        if (!posts.length) return;
+if (socialFeedScroll) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        let originalHeight = 0;
-        const postMeasurements = posts.map(function(p) {
-            return p.offsetHeight + (parseInt(getComputedStyle(p).marginBottom) || 0);
-        });
-        for (var hi = 0; hi < postMeasurements.length; hi++) { originalHeight += postMeasurements[hi]; }
+    const formatLikes = (n) => n.toLocaleString('en-US') + ' likes';
 
-        const clonedPosts = posts.map(post => post.cloneNode(true));
-        clonedPosts.forEach(clone => {
-            socialFeedScroll.appendChild(clone);
-        });
-
-        let scrollPosition = 0;
-        let isScrolling = true;
-        let scrollSpeed = 0.5;
-
-        function autoScroll() {
-            if (isScrolling) {
-                scrollPosition += scrollSpeed;
-                if (scrollPosition >= originalHeight) {
-                    scrollPosition = 0;
-                }
-                socialFeedScroll.scrollTop = scrollPosition;
-            }
-            requestAnimationFrame(autoScroll);
+    const setLiked = (post, liked, animate) => {
+        const btn = post.querySelector('[data-action="like"]');
+        const count = post.querySelector('.feed-likes');
+        if (!btn || !count) return;
+        const base = parseInt(count.getAttribute('data-likes') || '0', 10) || 0;
+        btn.classList.toggle('is-liked', liked);
+        btn.setAttribute('aria-pressed', liked ? 'true' : 'false');
+        count.textContent = formatLikes(base + (liked ? 1 : 0));
+        if (animate && liked) {
+            btn.classList.remove('pop');
+            void btn.offsetWidth;
+            btn.classList.add('pop');
         }
-
-        autoScroll();
-
-        socialFeedScroll.addEventListener('mouseenter', () => {
-            isScrolling = false;
-        });
-
-        socialFeedScroll.addEventListener('mouseleave', () => {
-            isScrolling = true;
-        });
     };
 
-    if ('IntersectionObserver' in window) {
-        const feedScrollObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                feedScrollObserver.disconnect();
-                initSocialScroll();
+    const burstAt = (post, x, y) => {
+        const img = post.querySelector('.feed-image');
+        const burst = post.querySelector('.like-burst');
+        if (!img || !burst || reduceMotion) return;
+        const rect = img.getBoundingClientRect();
+        const bx = x !== undefined ? ((x - rect.left) / rect.width) * 100 : 50;
+        const by = y !== undefined ? ((y - rect.top) / rect.height) * 100 : 45;
+        burst.style.setProperty('--bx', Math.min(85, Math.max(15, bx)) + '%');
+        burst.style.setProperty('--by', Math.min(85, Math.max(15, by)) + '%');
+        burst.classList.remove('show');
+        void burst.offsetWidth;
+        burst.classList.add('show');
+    };
+
+    let toastTimer = null;
+    const showToast = (message) => {
+        const screen = socialFeedScroll.closest('.phone-screen') || socialFeedScroll;
+        let toast = screen.querySelector('.feed-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'feed-toast';
+            toast.setAttribute('role', 'status');
+            screen.appendChild(toast);
+        }
+        toast.textContent = message;
+        toast.classList.add('show');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
+    };
+
+    socialFeedScroll.addEventListener('click', (event) => {
+        if (event.target.closest('[inert]')) return;
+        const btn = event.target.closest('[data-action]');
+        if (!btn || !socialFeedScroll.contains(btn)) return;
+        const post = btn.closest('.feed-post');
+        if (!post) return;
+        const action = btn.getAttribute('data-action');
+        if (action === 'like') {
+            setLiked(post, !btn.classList.contains('is-liked'), true);
+        } else if (action === 'save') {
+            const saved = !btn.classList.contains('is-saved');
+            btn.classList.toggle('is-saved', saved);
+            btn.setAttribute('aria-pressed', saved ? 'true' : 'false');
+        } else if (action === 'share') {
+            const shareData = { title: document.title, text: 'Guarda i progetti WebNovis', url: window.location.href };
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => {});
+            } else if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(window.location.href)
+                    .then(() => showToast('Link copiato negli appunti'))
+                    .catch(() => showToast('Copia il link dalla barra del browser'));
+            } else {
+                showToast('Copia il link dalla barra del browser');
             }
-        }, { rootMargin: '200px 0px' });
-        feedScrollObserver.observe(socialFeedScroll);
-    } else {
-        setTimeout(initSocialScroll, 1000);
+        } else if (action === 'comment') {
+            const caption = post.querySelector('.feed-caption');
+            if (caption && !reduceMotion) {
+                caption.classList.remove('flash');
+                void caption.offsetWidth;
+                caption.classList.add('flash');
+            }
+        }
+    });
+
+    socialFeedScroll.addEventListener('dblclick', (event) => {
+        if (event.target.closest('[inert]')) return;
+        const img = event.target.closest('[data-dbltap]');
+        if (!img || !socialFeedScroll.contains(img)) return;
+        const post = img.closest('.feed-post');
+        if (!post) return;
+        const btn = post.querySelector('[data-action="like"]');
+        if (btn && !btn.classList.contains('is-liked')) setLiked(post, true, true);
+        burstAt(post, event.clientX, event.clientY);
+    });
+
+    const canAutoScroll = !isMobile && !('ontouchstart' in window) && !reduceMotion;
+    if (canAutoScroll) {
+        // Only initialize and measure on desktop when the feed is scrolled into view
+        const initSocialScroll = () => {
+            const posts = Array.from(socialFeedScroll.querySelectorAll('.feed-post'));
+            if (!posts.length || socialFeedScroll.dataset.loopReady === '1') return;
+            socialFeedScroll.dataset.loopReady = '1';
+
+            let originalHeight = 0;
+            const postMeasurements = posts.map(function(p) {
+                return p.offsetHeight + (parseInt(getComputedStyle(p).marginBottom) || 0);
+            });
+            for (var hi = 0; hi < postMeasurements.length; hi++) { originalHeight += postMeasurements[hi]; }
+
+            // Cloni per loop continuo: inerti (niente tab-stop duplicati, nascosti agli AT)
+            const clonedPosts = posts.map(post => post.cloneNode(true));
+            clonedPosts.forEach(clone => {
+                clone.setAttribute('inert', '');
+                clone.setAttribute('aria-hidden', 'true');
+                socialFeedScroll.appendChild(clone);
+            });
+
+            let scrollPosition = 0;
+            let autoAllowed = true;   // sezione visibile
+            let userHolding = false;  // hover/focus/touch
+            let rafId = 0;
+            let lastTime = 0;
+            const SPEED_PX_SEC = 26;
+
+            const frame = (time) => {
+                rafId = 0;
+                if (autoAllowed && !userHolding && !document.hidden) {
+                    if (lastTime) {
+                        scrollPosition += (SPEED_PX_SEC * (time - lastTime)) / 1000;
+                        if (scrollPosition >= originalHeight) scrollPosition -= originalHeight;
+                        socialFeedScroll.scrollTop = scrollPosition;
+                    }
+                    lastTime = time;
+                } else {
+                    lastTime = 0;
+                    scrollPosition = socialFeedScroll.scrollTop;
+                }
+                rafId = requestAnimationFrame(frame);
+            };
+
+            const start = () => { if (!rafId) rafId = requestAnimationFrame(frame); };
+
+            // Loop attivo solo mentre la sezione e visibile (risparmio CPU/batteria)
+            if ('IntersectionObserver' in window) {
+                const visibilityObserver = new IntersectionObserver((entries) => {
+                    autoAllowed = entries[0].isIntersecting;
+                    scrollPosition = socialFeedScroll.scrollTop % originalHeight;
+                    start();
+                }, { rootMargin: '100px 0px' });
+                visibilityObserver.observe(socialFeedScroll);
+            }
+            start();
+
+            socialFeedScroll.addEventListener('mouseenter', () => { userHolding = true; });
+            socialFeedScroll.addEventListener('mouseleave', () => { userHolding = false; });
+            socialFeedScroll.addEventListener('focusin', () => { userHolding = true; });
+            socialFeedScroll.addEventListener('focusout', () => { userHolding = false; });
+            socialFeedScroll.addEventListener('touchstart', () => { userHolding = true; }, { passive: true });
+            socialFeedScroll.addEventListener('touchend', () => {
+                setTimeout(() => { userHolding = false; }, 1200);
+            });
+            socialFeedScroll.addEventListener('pointerdown', () => { userHolding = true; });
+            socialFeedScroll.addEventListener('pointerup', () => { userHolding = false; });
+        };
+
+        if ('IntersectionObserver' in window) {
+            const feedScrollObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    feedScrollObserver.disconnect();
+                    initSocialScroll();
+                }
+            }, { rootMargin: '200px 0px' });
+            feedScrollObserver.observe(socialFeedScroll);
+        } else {
+            setTimeout(initSocialScroll, 1000);
+        }
     }
 }
 

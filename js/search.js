@@ -987,15 +987,31 @@
       }
     });
 
-    // Preload Fuse.js on first hover/touch (background)
+    // Preload Fuse.js + indice SOLO su intento di ricerca reale.
+    // Prima era su primo mouseover/touch generico: l'indice pesa ~550KB e
+    // veniva scaricato + parsato a ogni visita anche senza cercare mai
+    // (HAR 2026-09-05: fuse.js + search-index.json su tutte le pagine).
+    // Il caricamento on-demand resta garantito da searchLocal/initFuse.
     var preloaded = false;
     function preload() {
       if (preloaded) return;
       preloaded = true;
       initFuse().catch(function () { /* silent */ });
     }
-    document.addEventListener('mouseover', preload, { once: true });
-    document.addEventListener('touchstart', preload, { once: true });
+    function bindPreload(target, evtName) {
+      if (!target || !target.addEventListener) return;
+      target.addEventListener(evtName, preload, { once: true, passive: true });
+    }
+    bindPreload(e.input, 'focus');
+    bindPreload(e.input, 'pointerenter');
+    bindPreload(e.bar, 'pointerenter');
+    bindPreload(e.wrapper, 'pointerenter');
+    bindPreload(e.mobileBtn, 'pointerdown');
+    bindPreload(e.mobileBtn, 'focus');
+    // Ctrl+K / Cmd+K: precarica prima ancora di aprire la ricerca
+    document.addEventListener('keydown', function (evt) {
+      if ((evt.ctrlKey || evt.metaKey) && (evt.key === 'k' || evt.key === 'K')) preload();
+    }, { capture: true });
 
     initMobile();
   }

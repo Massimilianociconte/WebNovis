@@ -4735,6 +4735,43 @@ body.home .breadcrumb [aria-current="page"] {
     }
 }
 
+/* ===== PAGE HERO SYSTEM (canonico globale) =====
+   Un unico sistema tipografico e ritmico per gli hero di tutte le
+   pagine (Servizi, Portfolio, Chi siamo, Come lavoriamo, Blog,
+   Contatti, Preventivo): stesso font/peso/dimensione/line-height/
+   spaziatura/disposizione. Unica variazione ammessa: il colore
+   (es. .gradient-text nel Portfolio, regola separata e intatta).
+   Selettore main section[class*="-hero"] (0,1,3 su h1): vince sulle
+   regoleinline per-pagina senza toccarle. Homepage (.hero) esclusa. */
+main section[class*="-hero"] {
+    padding-top: 1.25rem;
+    padding-bottom: 5rem;
+    min-height: 0;
+}
+
+main section[class*="-hero"] h1 {
+    font-family: 'Syne', 'Syne-fallback', 'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: normal;
+    text-align: center;
+    margin: 0 0 1.5rem;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    main section[class*="-hero"] {
+        padding-top: 1rem;
+        padding-bottom: 3.5rem;
+    }
+
+    main section[class*="-hero"] h1 {
+        font-size: 2.2rem;
+        line-height: 1.1;
+    }
+}
+
 /* CTA leggera fonti preferite Google: visibile anche senza JS, nessun bundle */
 .wn-preferred-source {
     margin-top: 18px;
@@ -7442,11 +7479,12 @@ img {
         background: rgba(15, 23, 42, 0.85) !important; /* Fallback sincrono più scuro */
     }
 
-    /* ── Mobile Service Page Hero Override ── */
-    /* Il padding-top e minimo: il breadcrumb soprastante assorbe gia la
-       clearance della nav fissa (prima 110px = doppia clearance). */
+    /* ── Mobile Service Page Hero Override ──
+       Il padding-top e minimo: il breadcrumb soprastante assorbe gia la
+       clearance della nav fissa (prima 110px = doppia clearance).
+       Valori identici al sistema hero canonico globale. */
     .service-page-hero {
-        padding: 1.25rem 1.5rem 60px !important;
+        padding: 1rem 0 3.5rem !important;
         background: transparent !important;
         position: relative;
         overflow: hidden;
@@ -7482,9 +7520,9 @@ img {
     }
     
     .service-page-hero h1 {
-        font-size: clamp(2.2rem, 9vw, 3.2rem) !important;
-        line-height: 1.15 !important;
-        letter-spacing: -0.02em !important;
+        font-size: 2.2rem !important;
+        line-height: 1.1 !important;
+        letter-spacing: normal !important;
         text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
         margin-bottom: 1.5rem !important;
     }
