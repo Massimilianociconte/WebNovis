@@ -9,8 +9,8 @@
  */
 window.WEBNOVIS_SITE_CONFIG = Object.assign(
   {
-    TURNSTILE_SITEKEY: '',
-    FORM_SUBMIT_MODE: 'web3forms',
+    TURNSTILE_SITEKEY: '0x4AAAAAAEqkqMBsAfHCu_We',
+    FORM_SUBMIT_MODE: 'proxy',
     FORM_PROXY_URL: 'https://webnovis-forms.nexify-api.workers.dev/submit',
     TURNSTILE_THEME: 'dark'
   },
