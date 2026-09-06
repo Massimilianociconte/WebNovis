@@ -533,9 +533,10 @@
     "type": "hub",
     "title": "Blog WebNovis — Guida al Web Design, SEO e Marketing Digitale",
     "description": "Articoli e guide pratiche su sviluppo siti web, SEO, branding, social media e marketing digitale. Risorse gratuite per il tuo business.",
-    "keywords": "blog, guida, design, seo, marketing, digitale, articoli, guide, pratiche, sviluppo, siti, branding, social, media, risorse, gratuite, tuo, business, act, 2026, cosa, cambia, agosto, sito, converte, cause, come, risolverle",
+    "keywords": "blog, guida, design, seo, marketing, digitale, articoli, guide, pratiche, sviluppo, siti, branding, social, media, risorse, gratuite, tuo, business, piano, editoriale, come, costruirlo, porta, contatti, act, 2026, cosa, cambia",
     "headings": [
       "Blog WebNovis",
+      "Piano Editoriale SEO: Come Costruirlo per un Blog che Porta Contatti",
       "AI Act 2026: Cosa Cambia dal 2 Agosto per il Tuo Sito Web",
       "Sito Web che Non Converte: 15 Cause e Come Risolverle",
       "Sanzioni Sito non Accessibile nel 2026: Importi, Rischi e Scadenze",
@@ -545,8 +546,7 @@
       "Google Business Profile: Come Ottimizzarlo per Ottenere Più Clienti Locali",
       "Cosa Scrivere sul Sito della Tua Azienda: Guida ai Contenuti che Convertono",
       "Come Aprire un E-commerce da Zero nel 2026: Guida Completa dalla A alla Z",
-      "Quanto Costa la Pubblicità su Google? Budget, Costi e Strategie nel 2026",
-      "Come Velocizzare un Sito Web Lento: 12 Interventi che Fanno la Differenza"
+      "Quanto Costa la Pubblicità su Google? Budget, Costi e Strategie nel 2026"
     ],
     "content": "Articoli, guide e consigli pratici per far crescere la tua presenza digitale. Dalla SEO al branding, dal web design al social media marketing. Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
@@ -579,9 +579,9 @@
     "id": "/blog/above-the-fold-ottimizzazione.html",
     "url": "/blog/above-the-fold-ottimizzazione.html",
     "type": "articolo",
-    "title": "Above the Fold: Ottimizzare la Prima Schermata",
-    "description": "Di WebNovis · 1 Marzo 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
-    "keywords": "above, the, fold, ottimizzare, prima, schermata, marzo, 2026, min, lettura, aggiornato, luglio, vedere, spesso, nei, tuoi, risultati, ricerca, convertire, cos, perche, cruciale, tuo, business, quali, elementi, possono, mancare",
+    "title": "Above the Fold 2026: Ottimizzare la Prima Schermata",
+    "description": "Di WebNovis · 1 Marzo 2026 · 7 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "keywords": "above, the, fold, 2026, ottimizzare, prima, schermata, marzo, min, lettura, aggiornato, settembre, vedere, spesso, nei, tuoi, risultati, ricerca, convertire, cos, perche, cruciale, tuo, business, quali, elementi, possono, mancare",
     "headings": [
       "Above the Fold: Ottimizzare la Prima Schermata per Convertire",
       "Cos'è l'Above the Fold e perché è cruciale per il tuo business?",
@@ -596,7 +596,7 @@
       "UX Design: 10 Best Practice per un Sito che Funziona e Converte",
       "Architettura delle Informazioni: Come Strutturare un Sito che Converte"
     ],
-    "content": "Di WebNovis · 1 Marzo 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 1 Marzo 2026 · 7 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -604,8 +604,8 @@
     "url": "/blog/accessibilita-web-guida.html",
     "type": "articolo",
     "title": "Accessibilità Web: Guida Completa per PMI agli Obblighi",
-    "description": "Di WebNovis · 24 Febbraio 2026 · 11 min di lettura · Aggiornato: 24 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
-    "keywords": "accessibilita, guida, completa, pmi, agli, obblighi, febbraio, 2026, min, lettura, aggiornato, vedere, spesso, nei, tuoi, risultati, ricerca, implementazione, cos, perche, cruciale, tua, sito, obbligatoria, ruolo, dell, european, accessibility",
+    "description": "Di WebNovis · 24 Febbraio 2026 · 11 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "keywords": "accessibilita, guida, completa, pmi, agli, obblighi, febbraio, 2026, min, lettura, aggiornato, settembre, vedere, spesso, nei, tuoi, risultati, ricerca, implementazione, cos, perche, cruciale, tua, sito, obbligatoria, ruolo, dell, european",
     "headings": [
       "Accessibilità Web: Guida Completa per PMI agli Obblighi e Implementazione",
       "Cos'è l'Accessibilità Web e perché è Cruciale per la Tua PMI?",
@@ -620,7 +620,7 @@
       "Domande Frequenti sull'Accessibilità Web",
       "Articoli Correlati"
     ],
-    "content": "Di WebNovis · 24 Febbraio 2026 · 11 min di lettura · Aggiornato: 24 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 24 Febbraio 2026 · 11 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -668,7 +668,7 @@
       "Un chiarimento utile: non è un’etichetta universale",
       "Le aree di un sito web che oggi vanno verificate"
     ],
-    "content": "Di WebNovis · 7 Agosto 2026 · 12 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Agosto 2026 · 12 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -725,20 +725,20 @@
     "type": "articolo",
     "title": "API REST: cosa sono e a cosa servono per il business",
     "description": "Di WebNovis · 1 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
-    "keywords": "api, rest, cosa, sono, servono, business, marzo, 2026, min, lettura, aggiornato, luglio, vedere, spesso, nei, tuoi, risultati, ricerca, perche, rivoluzionano, tuo, digitale, esattamente, come, funzionano, fondamentali, quali, principali",
+    "keywords": "api, rest, cosa, sono, servono, business, marzo, 2026, min, lettura, aggiornato, luglio, vedere, spesso, nei, tuoi, risultati, ricerca, perche, rivoluzionano, tuo, digitale, esattamente, come, funzionano, fondamentali, graphql, quale",
     "headings": [
       "API REST: Cosa Sono e Perché Rivoluzionano il Tuo Business Digitale",
       "Cosa sono esattamente le API REST e come funzionano?",
       "Perché le API REST sono fondamentali per il tuo business digitale?",
-      "Quali sono i principali scenari d'uso delle API per aziende?",
-      "Come l'integrazione API può trasformare i processi aziendali?",
       "REST vs GraphQL: Quale architettura API scegliere per la tua strategia?",
-      "Quali errori evitare nell'implementazione e gestione delle API REST?",
       "Checklist operativa: Implementare API REST con successo",
+      "Devi collegare gestionali, CRM o e-commerce al tuo sito?",
       "FAQ",
       "Articoli Correlati",
       "Chatbot per il Sito Web: Quando Serve e Come Implementarlo nel 2026",
-      "GDPR e Sito Web: Guida alla Conformità per Aziende Italiane nel 2026"
+      "GDPR e Sito Web: Guida alla Conformità per Aziende Italiane nel 2026",
+      "Creare un Sito con l'AI: Verità e Limiti nel 2026",
+      "Domande frequenti su Tecnologia"
     ],
     "content": "Di WebNovis · 1 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
@@ -764,7 +764,7 @@
       "Impatto sulla SEO",
       "Errori Comuni"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -812,7 +812,7 @@
       "Articoli Correlati su Strategia",
       "Come Scegliere la Web Agency Giusta: 10 Criteri che Contano"
     ],
-    "content": "Di WebNovis · 7 Agosto 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Agosto 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -867,9 +867,9 @@
     "id": "/blog/blog-aziendale-perche.html",
     "url": "/blog/blog-aziendale-perche.html",
     "type": "articolo",
-    "title": "Blog aziendale: perché conviene ancora alle PMI",
-    "description": "Scopri perché un blog aziendale è fondamentale per generare lead qualificati e costruire autorevolezza online. Analizziamo vantaggi.",
-    "keywords": "blog, aziendale, perche, conviene, ancora, alle, pmi, scopri, fondamentale, generare, lead, qualificati, costruire, autorevolezza, online, analizziamo, vantaggi, miglior, investimento, marketing, cruciale, tua, generazione, posizionamento, come, autorita, settore, content",
+    "title": "Blog Aziendale: Perché Conviene alle PMI",
+    "description": "Blog aziendale per PMI: come genera lead qualificati e autorevolezza. Vantaggi, ROI e strategie concrete: scopri perché conviene ancora.",
+    "keywords": "blog, aziendale, perche, conviene, alle, pmi, come, genera, lead, qualificati, autorevolezza, vantaggi, roi, strategie, concrete, scopri, ancora, miglior, investimento, marketing, cruciale, tua, generazione, posizionamento, autorita, settore, content, alimenta",
     "headings": [
       "Blog Aziendale: Perché è Ancora il Miglior Investimento di Marketing per PMI",
       "Perché un blog aziendale è cruciale per la tua PMI?",
@@ -884,7 +884,7 @@
       "Quali errori evitare nella gestione di un blog aziendale?",
       "La tua checklist per un blog aziendale di successo"
     ],
-    "content": "Di WebNovis · 8 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 8 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -987,9 +987,9 @@
     "id": "/blog/brand-identity-guida-completa.html",
     "url": "/blog/brand-identity-guida-completa.html",
     "type": "articolo",
-    "title": "Brand Identity: Cos'è e Come Crearla",
-    "description": "Guida completa alla brand identity: logo, colori, tipografia, tone of voice. Come creare un",
-    "keywords": "brand, identity, cos, come, crearla, guida, completa, logo, colori, tipografia, tone, voice, creare, perche, serve, zero, cosa, fatta, conviene, farla, bene, costruirla, cinque, passi, errori, vediamo, spesso, dove",
+    "title": "Brand Identity: Cos'è e Come Crearla nel 2026",
+    "description": "Cos",
+    "keywords": "brand, identity, cos, come, crearla, 2026, perche, serve, zero, cosa, fatta, conviene, farla, bene, costruirla, cinque, passi, errori, vediamo, spesso, dove, iniziare, articoli, correlati, branding, costo, prezzi, pacchetti",
     "headings": [
       "Brand Identity: Cos'è, Perché Serve e Come Crearla da Zero",
       "Di cosa è fatta una brand identity",
@@ -1001,10 +1001,10 @@
       "Costo Brand Identity 2026: Prezzi e Pacchetti",
       "Psicologia dei Colori nel Branding: Guida alla Scelta della Palette",
       "Naming Aziendale: Come Scegliere il Nome Perfetto per il Tuo Brand",
-      "Il tuo brand comunica davvero il valore che offri?",
-      "Domande frequenti su Branding"
+      "Canva o graphic designer? Quando serve",
+      "Il tuo brand comunica davvero il valore che offri?"
     ],
-    "content": "Di WebNovis · 8 Febbraio 2026 · 6 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 8 Febbraio 2026 · 6 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1052,31 +1052,31 @@
       "Psicologia dei Colori nel Branding: Guida alla Scelta della Palette",
       "Naming Aziendale: Come Scegliere il Nome Perfetto per il Tuo Brand"
     ],
-    "content": "Di WebNovis · 2 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 2 Marzo 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/brand-storytelling.html",
     "url": "/blog/brand-storytelling.html",
     "type": "articolo",
-    "title": "Brand Storytelling: Come Raccontare il Tuo Brand (Esempi)",
-    "description": "Brand storytelling per PMI: archetipi, struttura narrativa e canali per raccontare il tuo brand e connettere con i clienti. Guida con esempi concreti.",
-    "keywords": "brand, storytelling, come, raccontare, tuo, esempi, pmi, archetipi, struttura, narrativa, canali, connettere, clienti, guida, concreti, storia, marchio, cos, perche, cruciale, tua, costruisce, autentica, coinvolgente, narrativi, strumenti, quali, elementi",
+    "title": "Brand Storytelling per PMI: Guida con Esempi (2026)",
+    "description": "Brand storytelling per PMI: valori, archetipi, struttura narrativa, canali e misurazione. Guida 2026 con esempi concreti per connettere e vendere.",
+    "keywords": "brand, storytelling, pmi, guida, esempi, 2026, valori, archetipi, struttura, narrativa, canali, misurazione, concreti, connettere, vendere, raccontare, storia, marchio, cos, perche, cruciale, tua, come, costruisce, autentica, coinvolgente, narrativi, strumenti",
     "headings": [
       "Brand Storytelling: Guida per PMI a Raccontare la Storia del Marchio",
       "Cos'è il brand storytelling e perché è cruciale per la tua PMI?",
       "Come si costruisce una narrativa brand autentica e coinvolgente?",
       "Gli archetipi narrativi: strumenti per la tua storia",
+      "Le tre storie che ogni PMI ha già",
       "Quali elementi rendono una storia del marchio indimenticabile?",
       "Dove veicolare lo storytelling aziendale per massimizzare l'impatto?",
       "Quali errori evitare nello storytelling aziendale?",
       "Checklist per un Brand Storytelling Efficace",
       "Articoli Correlati",
       "Quanto Costa una Brand Identity nel 2026? Prezzi per PMI e Startup",
-      "Psicologia dei Colori nel Branding: Guida alla Scelta della Palette",
-      "Naming Aziendale: Come Scegliere il Nome Perfetto per il Tuo Brand"
+      "Psicologia dei Colori nel Branding: Guida alla Scelta della Palette"
     ],
-    "content": "Di WebNovis · 2 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 2 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1148,7 +1148,7 @@
       "Percorsi consigliati nel cluster SEO locale",
       "Audit tecnico e sviluppo web"
     ],
-    "content": "Di WebNovis · 22 Febbraio 2026 · 8 min di lettura · Aggiornato: 22 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 22 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1244,7 +1244,7 @@
       "Il Processo di Creazione di un Logo: Dal Brief al Design Finale",
       "Domande frequenti su Design"
     ],
-    "content": "Di WebNovis · 11 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 11 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1388,16 +1388,16 @@
       "Come Costruire la Palette del Tuo Brand",
       "Step 1: Definisci i Valori"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/come-aprire-ecommerce-da-zero.html",
     "url": "/blog/come-aprire-ecommerce-da-zero.html",
     "type": "articolo",
-    "title": "Come Aprire un E-commerce da Zero nel 2026: Guida Completa dalla A alla Z",
-    "description": "Partita IVA, piattaforma, catalogo, pagamenti, logistica, marketing. Ecco tutti i passaggi per aprire un e-commerce di successo partendo da zero.",
-    "keywords": "come, aprire, ecommerce, zero, 2026, guida, completa, partita, iva, piattaforma, catalogo, pagamenti, logistica, marketing, ecco, tutti, passaggi, successo, partendo, fase, scegli, cosa, vendere, metti, regola, parte, fiscale, giusta",
+    "title": "Come Aprire un E-commerce da Zero nel 2026",
+    "description": "Piattaforma da €28/mese o custom da €3.500, P.IVA, catalogo, pagamenti e marketing da €300/mese: tutti i passi per aprire un e-commerce nel 2026.",
+    "keywords": "come, aprire, ecommerce, zero, 2026, piattaforma, mese, custom, 500, iva, catalogo, pagamenti, marketing, 300, tutti, passi, guida, completa, fase, scegli, cosa, vendere, metti, regola, parte, fiscale, giusta, quella",
     "headings": [
       "Come Aprire un E-commerce da Zero nel 2026: Guida Completa dalla A alla Z",
       "Fase 1: Scegli cosa vendere (e a chi)",
@@ -1412,7 +1412,7 @@
       "Partita IVA E-commerce: Costi e Regole in Italia 2026",
       "Vuoi validare il tuo e-commerce prima di investire male il budget?"
     ],
-    "content": "Di WebNovis · 7 Agosto 2026 · 12 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Agosto 2026 · 12 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1443,9 +1443,9 @@
     "id": "/blog/come-scegliere-web-agency.html",
     "url": "/blog/come-scegliere-web-agency.html",
     "type": "articolo",
-    "title": "Come Scegliere la Web Agency Giusta: 10 Criteri che Contano",
-    "description": "Portfolio, trasparenza, tecnologie: una checklist pratica per valutare un",
-    "keywords": "come, scegliere, agency, giusta, criteri, contano, portfolio, trasparenza, tecnologie, checklist, pratica, valutare, reale, progetti, verificabili, preventivo, chiaro, trasparente, competenze, tecniche, dimostrabili, processo, lavoro, strutturato, comunicazione, reattivita, recensioni, reputazione",
+    "title": "Come Scegliere la Web Agency nel 2026: 10 Criteri",
+    "description": "Portfolio, preventivo dettagliato, tecnologie e supporto: i 10 criteri per scegliere la web agency giusta ed evitare migliaia di euro di errori. Guida 2026.",
+    "keywords": "come, scegliere, agency, 2026, criteri, portfolio, preventivo, dettagliato, tecnologie, supporto, giusta, evitare, migliaia, euro, errori, guida, contano, reale, progetti, verificabili, chiaro, trasparente, competenze, tecniche, dimostrabili, processo, lavoro, strutturato",
     "headings": [
       "Come Scegliere la Web Agency Giusta: 10 Criteri che Contano",
       "1. Portfolio Reale con Progetti Verificabili",
@@ -1460,7 +1460,7 @@
       "10. Rapporto Qualità-Prezzo (non il Prezzo più Basso)",
       "Checklist Riassuntiva"
     ],
-    "content": "Di WebNovis · 10 Febbraio 2026 · 7 min di lettura · Aggiornato: 14 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 10 Febbraio 2026 · 7 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1484,7 +1484,7 @@
       "10. Riduci le richieste HTTP",
       "11. Ottimizza il database"
     ],
-    "content": "Di WebNovis · 7 Agosto 2026 · 10 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Agosto 2026 · 10 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1508,7 +1508,7 @@
       "Social Media Strategy 2026: Cosa Funziona Davvero per le Aziende",
       "Piano Editoriale Social: Come Creare un Piano in 5 Step con Template"
     ],
-    "content": "Di WebNovis · 5 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 5 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1587,9 +1587,9 @@
     "id": "/blog/content-marketing-per-pmi.html",
     "url": "/blog/content-marketing-per-pmi.html",
     "type": "articolo",
-    "title": "Content Marketing per PMI: Come Attrarre Clienti con i Contenuti",
-    "description": "Blog, video, newsletter: strategie di content marketing efficaci per piccole e medie imprese.",
-    "keywords": "content, marketing, pmi, come, attrarre, clienti, contenuti, blog, video, newsletter, strategie, efficaci, piccole, medie, imprese, principio, rispondi, alle, domande, gia, ricevi, competenza, tuo, vantaggio, sleale, formati, ordine, praticita",
+    "title": "Content Marketing per PMI: Guida 2026",
+    "description": "Blog, video e newsletter che portano clienti: piano editoriale e format efficaci per PMI. Scopri come partire.",
+    "keywords": "content, marketing, pmi, guida, 2026, blog, video, newsletter, portano, clienti, piano, editoriale, format, efficaci, scopri, come, partire, attrarre, contenuti, principio, rispondi, alle, domande, gia, ricevi, competenza, tuo, vantaggio",
     "headings": [
       "Content Marketing per PMI: Come Attrarre Clienti con i Contenuti",
       "Il principio: rispondi alle domande che già ricevi",
@@ -1604,7 +1604,7 @@
       "Come Scegliere la Web Agency Giusta: 10 Criteri che Contano",
       "Serve una strategia social più misurabile?"
     ],
-    "content": "Di WebNovis · 26 Gennaio 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 26 Gennaio 2026 · 7 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1731,9 +1731,9 @@
     "id": "/blog/core-web-vitals-guida.html",
     "url": "/blog/core-web-vitals-guida.html",
     "type": "articolo",
-    "title": "Core Web Vitals: Cosa Sono e Come Migliorarli per il Tuo Sito",
-    "description": "LCP, INP, CLS: le metriche Google per valutare il tuo sito. Guida pratica per ottimizzarle.",
-    "keywords": "core, vitals, cosa, sono, come, migliorarli, tuo, sito, lcp, inp, cls, metriche, google, valutare, guida, pratica, ottimizzarle, tre, spiegate, semplici, misurarli, senza, spendere, nulla, migliorare, far, arrivare, subito",
+    "title": "Core Web Vitals: Cosa Sono e Come Migliorarli (2026)",
+    "description": "Core Web Vitals 2026: cosa sono LCP, INP e CLS, le soglie Google e come migliorarli. Guida pratica per PMI: misura e ottimizza.",
+    "keywords": "core, vitals, cosa, sono, come, migliorarli, 2026, lcp, inp, cls, soglie, google, guida, pratica, pmi, misura, ottimizza, tuo, sito, tre, metriche, spiegate, semplici, misurarli, senza, spendere, nulla, migliorare",
     "headings": [
       "Core Web Vitals: Cosa Sono e Come Migliorarli per il Tuo Sito",
       "Le tre metriche, spiegate semplici",
@@ -1746,18 +1746,18 @@
       "Schema Markup: Guida ai Dati Strutturati per la SEO nel 2026",
       "Come Scegliere la Web Agency Giusta: 10 Criteri che Contano",
       "Quanto Costa un Sito Web? Prezzi Reali 2026",
-      "Vuoi trasformare questi consigli in risultati concreti?"
+      "Velocità Sito Web: Guida Tecnica 2026"
     ],
-    "content": "Di WebNovis · 2 Febbraio 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 2 Febbraio 2026 · 7 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/cosa-scrivere-sito-web-aziendale.html",
     "url": "/blog/cosa-scrivere-sito-web-aziendale.html",
     "type": "articolo",
-    "title": "Cosa Scrivere sul Sito della Tua Azienda: Guida ai Contenuti che Convertono",
-    "description": "Non sai cosa scrivere sul sito web? Ecco la guida pratica ai testi per ogni pagina: Home, Chi Siamo, Servizi, Contatti. Con esempi e struttura collaudata.",
-    "keywords": "cosa, scrivere, sito, tua, azienda, guida, contenuti, convertono, sai, ecco, pratica, testi, ogni, pagina, home, siamo, servizi, contatti, esempi, struttura, collaudata, homepage, vetrina, secondi, descrivi, risultato, processo, metti",
+    "title": "Cosa Scrivere nel Sito Aziendale: Guida 2026",
+    "description": "Testi per Home, Chi Siamo, Servizi e Contatti: struttura ed esempi pronti per un sito che convince. Leggi la guida.",
+    "keywords": "cosa, scrivere, sito, aziendale, guida, 2026, testi, home, siamo, servizi, contatti, struttura, esempi, pronti, convince, leggi, tua, azienda, contenuti, convertono, homepage, vetrina, secondi, pagina, descrivi, risultato, processo, metti",
     "headings": [
       "Cosa Scrivere sul Sito della Tua Azienda: Guida ai Contenuti che Convertono",
       "Homepage: la tua vetrina in 5 secondi",
@@ -1772,16 +1772,16 @@
       "Serve una strategia social più misurabile?",
       "Domande frequenti su Content Marketing"
     ],
-    "content": "Di WebNovis · 7 Agosto 2026 · 10 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Agosto 2026 · 10 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/costi-progetto-web-guida.html",
     "url": "/blog/costi-progetto-web-guida.html",
     "type": "articolo",
-    "title": "Come Calcolare i Costi di un Progetto Web: Cosa Determina il Prezzo",
-    "description": "Tutti i fattori che influenzano il costo di un sito web: complessità, design, funzionalità, SEO, contenuti. Guida per PMI che vogliono capire cosa pagano.",
-    "keywords": "come, calcolare, costi, progetto, cosa, determina, prezzo, tutti, fattori, influenzano, costo, sito, complessita, design, funzionalita, seo, contenuti, guida, pmi, vogliono, capire, pagano, determinano, numero, pagine, template, custom, tecniche",
+    "title": "Costi Sito Web 2026: Cosa Determina il Prezzo",
+    "description": "Vetrina template €800-1.500, custom €2.000-5.000, e-commerce €3.000-15.000+: tutti i fattori che determinano il costo di un progetto web. Guida 2026.",
+    "keywords": "costi, sito, 2026, cosa, determina, prezzo, vetrina, template, 800, 500, custom, 000, ecommerce, tutti, fattori, determinano, costo, progetto, guida, come, calcolare, complessita, numero, pagine, design, funzionalita, tecniche, contenuti",
     "headings": [
       "Come Calcolare i Costi di un Progetto Web: Cosa Determina il Prezzo",
       "I 7 Fattori che Determinano il Prezzo",
@@ -1796,7 +1796,7 @@
       "Il Calcolo del ROI: Quando il Sito si Ripaga",
       "Come Risparmiare Senza Sacrificare la Qualità"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1827,9 +1827,9 @@
     "id": "/blog/creare-sito-con-intelligenza-artificiale.html",
     "url": "/blog/creare-sito-con-intelligenza-artificiale.html",
     "type": "articolo",
-    "title": "Creare un Sito con l'AI: Verità e Limiti nel 2026",
-    "description": "Wix AI, Framer AI, v0: i site builder AI creano siti professionali? Confronto onesto tra siti generati da AI e siti professionali.",
-    "keywords": "creare, sito, verita, limiti, 2026, wix, framer, site, builder, creano, siti, professionali, confronto, onesto, generati, cosa, possono, fare, design, generico, performance, mediocri, seo, limitata, nessuna, strategia, conversione, personalizzazione",
+    "title": "Creare un Sito con l'AI: Guida Onesta 2026",
+    "description": "Wix AI, Framer AI, v0: quando bastano e quando serve un professionista. Confronto onesto per scegliere senza sprechi.",
+    "keywords": "creare, sito, guida, onesta, 2026, wix, framer, quando, bastano, serve, professionista, confronto, onesto, scegliere, senza, sprechi, verita, limiti, cosa, possono, fare, site, builder, siti, generati, design, generico, performance",
     "headings": [
       "Creare un Sito con l'AI: Verità e Limiti nel 2026",
       "Cosa Possono Fare i Site Builder AI",
@@ -1844,7 +1844,7 @@
       "Quando Serve un Professionista",
       "L'Approccio Intelligente: AI + Professionista"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1900,8 +1900,8 @@
     "url": "/blog/customer-journey-mapping.html",
     "type": "articolo",
     "title": "Customer Journey Mapping: Come Mappare il Percorso",
-    "description": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
-    "keywords": "customer, journey, mapping, come, mappare, percorso, marzo, 2026, min, lettura, aggiornato, luglio, vedere, spesso, nei, tuoi, risultati, ricerca, cliente, migliorare, esperienza, funziona, passaggi, creare, quali, sono, benefici, errori",
+    "description": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "keywords": "customer, journey, mapping, come, mappare, percorso, marzo, 2026, min, lettura, aggiornato, settembre, vedere, spesso, nei, tuoi, risultati, ricerca, cliente, migliorare, esperienza, funziona, passaggi, creare, quali, sono, benefici, errori",
     "headings": [
       "Customer Journey Mapping: Come Mappare il Percorso del Cliente per Migliorare l'Esperienza",
       "Come Funziona il Customer Journey Mapping?",
@@ -1913,10 +1913,10 @@
       "Come Scegliere la Web Agency Giusta: 10 Criteri che Contano",
       "Web Agency vs Freelance: Pro, Contro e Quando Scegliere nel 2026",
       "Serve Ancora un Sito Web nel 2026? La Risposta Definitiva",
-      "Domande frequenti su Strategia",
-      "Cos'è il customer journey mapping?"
+      "Il tuo sito accompagna il percorso dei clienti?",
+      "Domande frequenti su Strategia"
     ],
-    "content": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -1995,9 +1995,9 @@
     "id": "/blog/dati-obbligatori-sito-web.html",
     "url": "/blog/dati-obbligatori-sito-web.html",
     "type": "articolo",
-    "title": "Dati obbligatori sul sito web: guida 2026",
-    "description": "Guida sintetica ai dati obbligatori da esporre su un sito web in Italia: partita IVA, contatti, privacy, cookie e riferimenti societari.",
-    "keywords": "dati, obbligatori, sito, guida, 2026, sintetica, esporre, italia, partita, iva, contatti, privacy, cookie, riferimenti, societari, quali, identificativi, sono, aziendale, policy, sempre, obbligatoria, come, gestire, consenso, adeguare, gdpr, aziendali",
+    "title": "Dati Obbligatori Sito Web 2026: Guida e Sanzioni",
+    "description": "P.IVA, contatti, privacy e cookie: tutti i dati obbligatori sul sito web in Italia nel 2026, sanzioni GDPR fino a €20M e checklist operativa.",
+    "keywords": "dati, obbligatori, sito, 2026, guida, sanzioni, iva, contatti, privacy, cookie, tutti, italia, gdpr, fino, 20m, checklist, operativa, sintetica, quali, identificativi, sono, aziendale, policy, sempre, obbligatoria, come, gestire, consenso",
     "headings": [
       "Dati obbligatori su un sito web: guida sintetica 2026",
       "Quali dati identificativi sono obbligatori per un sito web aziendale?",
@@ -2012,7 +2012,7 @@
       "Sito Web Fai Da Te vs Professionale: Il Confronto Onesto nel 2026",
       "Sito Web per Ristoranti: Guida Completa con Esempi e Costi nel 2026"
     ],
-    "content": "Di WebNovis · 11 Marzo 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 11 Marzo 2026 · 7 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2163,9 +2163,9 @@
     "id": "/blog/ecommerce-errori-da-evitare.html",
     "url": "/blog/ecommerce-errori-da-evitare.html",
     "type": "articolo",
-    "title": "E-Commerce: 8 Errori che Uccidono le Vendite (e Come Evitarli)",
-    "description": "Checkout complicato, schede prodotto povere, niente SEO: gli errori e-commerce più costosi.",
-    "keywords": "ecommerce, errori, uccidono, vendite, come, evitarli, checkout, complicato, schede, prodotto, povere, niente, seo, costosi, costi, nascosti, fino, registrazione, obbligatoria, comprare, vendono, ostacoli, fiducia, data, scontata, mobile, trattato, ripiego",
+    "title": "E-commerce: 8 Errori che Frenano le Vendite",
+    "description": "Checkout, schede prodotto e SEO: gli 8 errori che costano vendite e come correggerli. Guida pratica.",
+    "keywords": "ecommerce, errori, frenano, vendite, checkout, schede, prodotto, seo, costano, come, correggerli, guida, pratica, uccidono, evitarli, costi, nascosti, fino, registrazione, obbligatoria, comprare, vendono, ostacoli, fiducia, data, scontata, mobile, trattato",
     "headings": [
       "E-Commerce: 8 Errori che Uccidono le Vendite (e Come Evitarli)",
       "1. Costi nascosti fino al checkout",
@@ -2180,7 +2180,7 @@
       "Articoli Correlati su E-Commerce",
       "Shopify vs E-commerce Custom: Costi e SEO"
     ],
-    "content": "Di WebNovis · 20 Gennaio 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Gennaio 2026 · 8 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2283,7 +2283,7 @@
     "id": "/blog/errori-404-gestione-seo.html",
     "url": "/blog/errori-404-gestione-seo.html",
     "type": "articolo",
-    "title": "Errori 404: come gestirli e salvare il traffico SEO",
+    "title": "Errori 404: Come Gestirli e Salvare il Traffico SEO",
     "description": "Di WebNovis · 27 Febbraio 2026 · 7 min di lettura Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "keywords": "seo, tecnica, errori, 404, gestione, agenzia, come, gestirli, salvare, traffico, febbraio, 2026, min, lettura, vedere, spesso, nei, tuoi, risultati, ricerca, guida, completa, cos, errore, perche, critico, identificare, tuo",
     "headings": [
@@ -2307,9 +2307,9 @@
     "id": "/blog/errori-comuni-siti-web.html",
     "url": "/blog/errori-comuni-siti-web.html",
     "type": "articolo",
-    "title": "10 Errori Comuni nei Siti Web che Ti Fanno Perdere Clienti",
-    "description": "Velocità, navigazione, CTA mancanti: gli errori più frequenti e come correggerli.",
-    "keywords": "errori, comuni, nei, siti, fanno, perdere, clienti, velocita, navigazione, cta, mancanti, frequenti, come, correggerli, costano, contatti, allontanano, visitatori, filo, conduttore, dove, iniziare, articoli, correlati, best, practice, architettura, informazioni",
+    "title": "Errori Siti Web: i 10 che Costano Clienti",
+    "description": "Lentezza, CTA deboli, mobile trascurato: i 10 errori più frequenti e come correggerli. Verifica il tuo sito.",
+    "keywords": "errori, siti, costano, clienti, lentezza, cta, deboli, mobile, trascurato, frequenti, come, correggerli, verifica, tuo, sito, comuni, nei, fanno, perdere, contatti, allontanano, visitatori, filo, conduttore, dove, iniziare, articoli, correlati",
     "headings": [
       "10 Errori Comuni nei Siti Web che Ti Fanno Perdere Clienti",
       "Gli errori che costano contatti",
@@ -2324,16 +2324,16 @@
       "Domande frequenti su Best Practice",
       "Qual è l'errore più costoso in un sito aziendale?"
     ],
-    "content": "Di WebNovis · 24 Gennaio 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 24 Gennaio 2026 · 7 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/european-accessibility-act-siti-web.html",
     "url": "/blog/european-accessibility-act-siti-web.html",
     "type": "articolo",
-    "title": "European Accessibility Act: Cosa Cambia per il Tuo Sito Web nel 2025-2026",
-    "description": "L",
-    "keywords": "european, accessibility, act, cosa, cambia, tuo, sito, 2025, 2026, cos, deve, adeguarsi, significa, accessibile, pratica, percepibilita, operabilita, comprensibilita, robustezza, come, verificare, accessibilita, problemi, comuni, vantaggio, competitivo, articoli, correlati",
+    "title": "European Accessibility Act: Guida Siti Web 2026",
+    "description": "Chi deve adeguarsi all",
+    "keywords": "european, accessibility, act, guida, siti, 2026, deve, adeguarsi, cosa, cambia, tuo, sito, 2025, cos, significa, accessibile, pratica, percepibilita, operabilita, comprensibilita, robustezza, come, verificare, accessibilita, problemi, comuni, vantaggio, competitivo",
     "headings": [
       "European Accessibility Act: Cosa Cambia per il Tuo Sito Web nel 2025-2026",
       "Cos'è l'European Accessibility Act",
@@ -2348,7 +2348,7 @@
       "Accessibilità = Vantaggio Competitivo",
       "Articoli Correlati su Web Development"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2379,9 +2379,9 @@
     "id": "/blog/facebook-ads-guida-pratica.html",
     "url": "/blog/facebook-ads-guida-pratica.html",
     "type": "articolo",
-    "title": "Facebook Ads per Principianti: Come Creare Campagne che Funzionano",
-    "description": "Targeting, budget, creatività, A/B test: guida step-by-step per le tue prime campagne Meta Ads.",
-    "keywords": "facebook, ads, principianti, come, creare, campagne, funzionano, targeting, budget, creativita, test, guida, step, tue, prime, meta, prima, aprire, gestore, tre, domande, obiettivo, giusto, cambia, tutto, preciso, microscopico, dove",
+    "title": "Facebook Ads: Guida Pratica alle Campagne 2026",
+    "description": "Budget, targeting e creatività: come creare campagne Meta Ads che portano contatti. Guida step-by-step.",
+    "keywords": "facebook, ads, guida, pratica, alle, campagne, 2026, budget, targeting, creativita, come, creare, meta, portano, contatti, step, principianti, funzionano, prima, aprire, gestore, tre, domande, obiettivo, giusto, cambia, tutto, preciso",
     "headings": [
       "Facebook Ads per Principianti: Come Creare Campagne che Funzionano",
       "Prima di aprire il gestore: le tre domande",
@@ -2396,16 +2396,16 @@
       "Meta Ads vs Google Ads: Quale Scegliere per il Tuo Business nel 2026?",
       "Google Ads per Principianti: Come Creare la Prima Campagna nel 2026"
     ],
-    "content": "Di WebNovis · 30 Gennaio 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 30 Gennaio 2026 · 8 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/featured-snippet-come-ottenere.html",
     "url": "/blog/featured-snippet-come-ottenere.html",
     "type": "articolo",
-    "title": "Featured Snippet: Come Conquistare la Posizione Zero su Google",
-    "description": "Come ottenere i featured snippet su Google: struttura contenuti, formato risposte, tipi di snippet. Guida pratica per la posizione zero.",
-    "keywords": "featured, snippet, come, conquistare, posizione, zero, google, ottenere, struttura, contenuti, formato, risposte, tipi, guida, pratica, paragrafo, lista, numerata, puntata, tabella, video, strutturare, contenuto, regola, heading, domanda, risposta, diretta",
+    "title": "Featured Snippet Google: Come Ottenerli 2026",
+    "description": "Struttura, risposte e formati che conquistano la posizione zero su Google e aiutano con AI Overview. Guida pratica.",
+    "keywords": "featured, snippet, google, come, ottenerli, 2026, struttura, risposte, formati, conquistano, posizione, zero, aiutano, overview, guida, pratica, conquistare, tipi, paragrafo, lista, numerata, puntata, tabella, video, strutturare, contenuto, regola, heading",
     "headings": [
       "Featured Snippet: Come Conquistare la Posizione Zero su Google",
       "I 4 Tipi di Featured Snippet",
@@ -2420,7 +2420,7 @@
       "Regola 4: Copri l'Argomento in Profondità",
       "Checklist Operativa per lo Snippet"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2475,9 +2475,9 @@
     "id": "/blog/fotografia-prodotto-ecommerce.html",
     "url": "/blog/fotografia-prodotto-ecommerce.html",
     "type": "articolo",
-    "title": "Fotografia Prodotto E-commerce: Vendere di Più",
-    "description": "Di WebNovis · 25 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Luglio 2026 25 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
-    "keywords": "fotografia, prodotto, ecommerce, vendere, febbraio, 2026, min, lettura, aggiornato, luglio, vedere, spesso, nei, tuoi, risultati, ricerca, guida, pratica, perche, cruciale, tuo, quali, attrezzature, servono, foto, prodotti, online, professionali",
+    "title": "Foto Prodotto e Scheda Prodotto E-commerce: Guida (2026)",
+    "description": "Foto prodotto per e-commerce: attrezzatura, still life, ottimizzazione e checklist. Guida 2026 per schede che convertono.",
+    "keywords": "foto, prodotto, scheda, ecommerce, guida, 2026, attrezzatura, still, life, ottimizzazione, checklist, schede, convertono, fotografia, pratica, vendere, perche, cruciale, tuo, quali, attrezzature, servono, prodotti, online, professionali, illuminazione, chiave, immagini",
     "headings": [
       "Fotografia Prodotto E-commerce: Guida Pratica per Vendere di Più",
       "Perché la fotografia prodotto è cruciale per il tuo e-commerce?",
@@ -2488,11 +2488,11 @@
       "Angolazioni e dettagli: cosa mostrare?",
       "Consistenza visiva: l'importanza dell'uniformità",
       "Ottimizzazione delle immagini prodotto per le conversioni: aspetti tecnici e strategici",
+      "Dalla foto alla scheda prodotto che vende",
       "Quali errori evitare nella fotografia prodotto per e-commerce?",
-      "Checklist operativa: migliora la fotografia del tuo e-commerce",
-      "Immagini Amatoriali vs. Professionali: L'Impatto sulle Conversioni"
+      "Checklist operativa: migliora la fotografia del tuo e-commerce"
     ],
-    "content": "Di WebNovis · 25 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Luglio 2026 25 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 25 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2513,10 +2513,10 @@
       "Chatbot per il Sito Web: Quando Serve e Come Implementarlo nel 2026",
       "GDPR e Sito Web: Guida alla Conformità per Aziende Italiane nel 2026",
       "Creare un Sito con l'AI: Verità e Limiti nel 2026",
-      "Domande frequenti su Tecnologia",
-      "Cosa è il GDPR e come si applica ai siti web?"
+      "Il tuo sito è in regola senza perdere contatti?",
+      "Domande frequenti su Tecnologia"
     ],
-    "content": "Di WebNovis · 1 Marzo 2026 · 10 min di lettura · Aggiornato: 1 Marzo 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 1 Marzo 2026 · 10 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2559,10 +2559,10 @@
       "In che modo la gestione dei resi contribuisce alla customer retention?",
       "Quali errori evitare nella gestione dei resi e-commerce?",
       "Checklist operativa per ottimizzare la gestione dei resi",
+      "Apri un e-commerce che gestisce resi senza grattacapi?",
       "Articoli Correlati",
       "Shopify vs Sito E-commerce Custom: Quale Conviene nel 2026?",
-      "E-commerce che Vende: Cosa Serve Davvero nel 2026",
-      "Serve la Partita IVA per un E-commerce? Guida Fiscale Pratica 2026"
+      "E-commerce che Vende: Cosa Serve Davvero nel 2026"
     ],
     "content": "Di WebNovis · 25 Febbraio 2026 · 7 min di lettura · Aggiornato: 25 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
@@ -2595,9 +2595,9 @@
     "id": "/blog/google-analytics-4-guida.html",
     "url": "/blog/google-analytics-4-guida.html",
     "type": "articolo",
-    "title": "Google Analytics 4: Guida Pratica per Capire i Dati del Tuo Sito",
-    "description": "Configurazione, metriche chiave, report: tutto su GA4 per decisioni basate sui dati.",
-    "keywords": "google, analytics, guida, pratica, capire, dati, tuo, sito, configurazione, metriche, chiave, report, tutto, ga4, decisioni, basate, sui, come, funziona, due, concetti, minima, serve, davvero, tre, guardare, ogni, mese",
+    "title": "Google Analytics 4: Guida Pratica GA4 2026",
+    "description": "Installazione, eventi e report chiave: usa GA4 per capire visite e richieste. Guida chiara anche se parti da zero.",
+    "keywords": "google, analytics, guida, pratica, ga4, 2026, installazione, eventi, report, chiave, usa, capire, visite, richieste, chiara, parti, zero, dati, tuo, sito, come, funziona, due, concetti, configurazione, minima, serve, davvero",
     "headings": [
       "Google Analytics 4: Guida Pratica per Capire i Dati del Tuo Sito",
       "Come funziona GA4, in due concetti",
@@ -2612,16 +2612,16 @@
       "SEO per Piccole Imprese: Guida Pratica per Farsi Trovare su Google",
       "Vuoi trasformare questi consigli in risultati concreti?"
     ],
-    "content": "Di WebNovis · 16 Gennaio 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 16 Gennaio 2026 · 8 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/google-business-profile-ottimizzazione.html",
     "url": "/blog/google-business-profile-ottimizzazione.html",
     "type": "articolo",
-    "title": "Google Business Profile: Come Ottimizzarlo per Ottenere Più Clienti Locali",
-    "description": "Guida completa all",
-    "keywords": "google, business, profile, come, ottimizzarlo, ottenere, clienti, locali, guida, completa, rivendica, verifica, tua, scheda, hai, ancora, fatto, scegli, categoria, giusta, importante, nome, ogni, campo, foto, fanno, differenza, davvero",
+    "title": "Google Business Profile: Guida SEO Locale 2026",
+    "description": "Categorie, foto, recensioni e post: ottimizza il profilo Google e fatti trovare dai clienti vicini. Guida pratica.",
+    "keywords": "google, business, profile, guida, seo, locale, 2026, categorie, foto, recensioni, post, ottimizza, profilo, fatti, trovare, dai, clienti, vicini, pratica, come, ottimizzarlo, ottenere, locali, rivendica, verifica, tua, scheda, hai",
     "headings": [
       "Google Business Profile: Come Ottimizzarlo per Ottenere Più Clienti Locali",
       "1. Rivendica e verifica la tua scheda (se non l'hai ancora fatto)",
@@ -2636,16 +2636,16 @@
       "SEO per Piccole Imprese: Guida Pratica per Farsi Trovare su Google",
       "Come Ottimizzare il Sito per AI Overviews e ChatGPT nel 2026"
     ],
-    "content": "Di WebNovis · 7 Agosto 2026 · 10 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Agosto 2026 · 10 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/google-search-console-avanzato.html",
     "url": "/blog/google-search-console-avanzato.html",
     "type": "articolo",
-    "title": "Google Search Console Avanzato: Funzionalità Nascoste",
-    "description": "Di WebNovis · 9 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
-    "keywords": "google, search, console, avanzato, funzionalita, nascoste, marzo, 2026, min, lettura, aggiornato, luglio, vedere, spesso, nei, tuoi, risultati, ricerca, tua, seo, come, sfruttare, report, avanzati, gsc, analisi, rendimento, segmentazione",
+    "title": "Google Search Console Avanzato: Guida 2026",
+    "description": "Di WebNovis · 9 Marzo 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "keywords": "google, search, console, avanzato, guida, 2026, marzo, min, lettura, aggiornato, settembre, vedere, spesso, nei, tuoi, risultati, ricerca, funzionalita, nascoste, tua, seo, come, sfruttare, report, avanzati, gsc, analisi, rendimento",
     "headings": [
       "Google Search Console Avanzato: Funzionalità Nascoste per la Tua SEO",
       "Come sfruttare i report avanzati di GSC per l'analisi SEO?",
@@ -2660,7 +2660,7 @@
       "In che modo GSC avanzato rivela opportunità di crescita?",
       "Analisi link: backlink e link interni per l'autorità"
     ],
-    "content": "Di WebNovis · 9 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 9 Marzo 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2684,7 +2684,7 @@
       "Caso 2: Buon CTR, posizione media 8-15",
       "Caso 3: Pagina non indicizzata"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 10 min di lettura · Aggiornato: 26 Marzo 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 10 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2739,9 +2739,9 @@
     "id": "/blog/guida-stile-brand.html",
     "url": "/blog/guida-stile-brand.html",
     "type": "articolo",
-    "title": "Guida di stile del brand: come crearla per coerenza totale",
-    "description": "Scopri come creare una guida di stile del brand per coerenza totale e successo. Guida completa per PMI e startup",
-    "keywords": "guida, stile, brand, come, crearla, coerenza, totale, scopri, creare, successo, completa, pmi, startup, cos, perche, importante, posso, mia, azienda, quali, sono, benefici, errori, comuni, evitare, creazione, articoli, correlati",
+    "title": "Guida di Stile del Brand: Come Crearla (Manuale 2026)",
+    "description": "Manuale di brand identity: cosa contiene, come crearlo e gli errori da evitare. Guida pratica per PMI e startup, con esempi concreti.",
+    "keywords": "guida, stile, brand, come, crearla, manuale, 2026, identity, cosa, contiene, crearlo, errori, evitare, pratica, pmi, startup, esempi, concreti, coerenza, totale, successo, cos, perche, importante, creare, posso, mia, azienda",
     "headings": [
       "Guida di stile del brand: come crearla per coerenza totale e successo",
       "Cos'è una guida di stile del brand?",
@@ -2756,7 +2756,7 @@
       "Domande frequenti su Branding",
       "Cos'è una guida di stile del brand?"
     ],
-    "content": "Di WebNovis · 3 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 3 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2852,7 +2852,7 @@
       "Siti Web per i Comuni serviti",
       "Hai Bisogno di Aiuto con il Tuo Progetto?"
     ],
-    "content": "Di WebNovis · 21 Febbraio 2026 · 12 min di lettura · Aggiornato: 21 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 21 Febbraio 2026 · 12 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2865,7 +2865,7 @@
     "headings": [
       "Come Identificare il Target del Tuo Business Online: Framework Pratico",
       "Perché Definire il Target è il Primo Step",
-      "Il Framework in 5 Step",
+      "Il Framework in 5 Step per Definire il Target",
       "Step 1: Analizza i Clienti Attuali",
       "Step 2: Crea la Buyer Persona",
       "Step 3: Segmenta per Valore",
@@ -2876,16 +2876,16 @@
       "Strategia Digitale per PMI",
       "Content Marketing per PMI"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/illustrazioni-custom-vs-stock.html",
     "url": "/blog/illustrazioni-custom-vs-stock.html",
     "type": "articolo",
-    "title": "Illustrazioni Custom vs Stock: Quando Investire",
-    "description": "Comprendi le differenze chiave tra illustrazioni custom e immagini stock. Scopri quando un design originale è un investimento strategico per rafforzare la tua.",
-    "keywords": "illustrazioni, custom, stock, quando, investire, comprendi, differenze, chiave, immagini, scopri, design, originale, investimento, strategico, rafforzare, tua, pmi, cosa, distingue, dalle, perche, azienda, dovrebbe, considerare, personalizzate, quali, scenari, sono",
+    "title": "Illustrazioni Custom vs Stock: Quando Conviene (Guida 2026)",
+    "description": "Illustrazioni custom o immagini stock? Differenze, costi, tempi e checklist per scegliere. Guida per PMI che vogliono una visual identity unica.",
+    "keywords": "illustrazioni, custom, stock, quando, conviene, guida, 2026, immagini, differenze, costi, tempi, checklist, scegliere, pmi, vogliono, visual, identity, unica, investire, design, originale, tua, cosa, distingue, dalle, perche, azienda, dovrebbe",
     "headings": [
       "Illustrazioni Custom vs Stock: Quando Investire nel Design Originale per la Tua PMI",
       "Cosa distingue le illustrazioni custom dalle immagini stock?",
@@ -2900,7 +2900,7 @@
       "Il Processo di Creazione di un Logo: Dal Brief al Design Finale",
       "Domande frequenti su Design"
     ],
-    "content": "Di WebNovis · 3 Marzo 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 3 Marzo 2026 · 7 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2908,8 +2908,8 @@
     "url": "/blog/importanza-del-design-siti-web.html",
     "type": "articolo",
     "title": "Web Design a Rho: L'Importanza di UX e UI nel 2026",
-    "description": "Di WebNovis · 23 Febbraio 2026 · 8 min di lettura · Aggiornato: 23 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
-    "keywords": "design, rho, importanza, 2026, febbraio, min, lettura, aggiornato, vedere, spesso, nei, tuoi, risultati, ricerca, aumento, conversioni, perche, fattore, invisibile, decide, successo, progetto, come, product, storico, cambiato, mondo, facebook",
+    "description": "Di WebNovis · 23 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "keywords": "design, rho, importanza, 2026, febbraio, min, lettura, aggiornato, settembre, vedere, spesso, nei, tuoi, risultati, ricerca, aumento, conversioni, perche, fattore, invisibile, decide, successo, progetto, come, product, storico, cambiato, mondo",
     "headings": [
       "L'Importanza del Design nel 2026: Dalla UX all'Aumento delle Conversioni",
       "Perché il design è il fattore invisibile che decide il successo di un progetto?",
@@ -2924,7 +2924,7 @@
       "Vuoi trasformare il tuo sito web in una risorsa ad alte conversioni?",
       "Domande frequenti sull'Importanza del Web Design"
     ],
-    "content": "Di WebNovis · 23 Febbraio 2026 · 8 min di lettura · Aggiornato: 23 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 23 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2956,21 +2956,21 @@
     "url": "/blog/indicizzazione-google-problemi.html",
     "type": "articolo",
     "title": "Sito Non Indicizzato su Google: 7 Cause e Soluzioni (2026)",
-    "description": "Sito non indicizzato su Google? Le 7 cause più comuni e le soluzioni concrete: coverage, noindex, canonical, crawl. Diagnosi 2026 WebNovis, agenzia web a Rho.",
-    "keywords": "seo, tecnica, indicizzazione, google, problemi, agenzia, sito, indicizzato, cause, soluzioni, 2026, comuni, concrete, coverage, noindex, canonical, crawl, diagnosi, rho, efficaci, pmi, perche, indicizza, tuo, come, diagnosticare, search, console",
+    "description": "Sito non indicizzato su Google? Le 7 cause più comuni e soluzioni concrete: coverage, noindex, canonical, crawl. Diagnosi WebNovis 2026.",
+    "keywords": "seo, tecnica, indicizzazione, google, problemi, agenzia, sito, indicizzato, cause, soluzioni, 2026, comuni, concrete, coverage, noindex, canonical, crawl, diagnosi, efficaci, pmi, perche, indicizza, tuo, come, diagnosticare, search, console, strategie",
     "headings": [
       "Problemi di Indicizzazione Google: Diagnosi e Soluzioni Efficaci per PMI",
       "Perché Google non indicizza il tuo sito? Le cause più comuni",
       "Come diagnosticare i problemi di indicizzazione con Google Search Console?",
       "Strategie pratiche per risolvere una pagina non indicizzata",
-      "Quali errori evitare nella gestione dell'indicizzazione?",
       "Checklist Operativa: Risolvere i Problemi di Indicizzazione",
+      "Sito non indicizzato e non sai da dove partire?",
       "Articoli Correlati",
       "Schema Markup: Guida ai Dati Strutturati per la SEO nel 2026",
       "Core Web Vitals: Cosa Sono e Come Migliorarli per il Tuo Sito",
       "Tag Canonical SEO: Guida Completa per Evitare Duplicati nel 2026",
-      "Domande frequenti su SEO Tecnica",
-      "Quanto tempo impiega Google per indicizzare una nuova pagina?"
+      "URL Strane in Search Console: Come Gestirle",
+      "Domande frequenti su SEO Tecnica"
     ],
     "content": "Di WebNovis · 27 Febbraio 2026 · 9 min di lettura Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
@@ -3005,22 +3005,22 @@
     "type": "articolo",
     "title": "Algoritmo Instagram 2026: cosa premia davvero",
     "description": "Segnali che contano davvero nel 2026: reach, salvataggi, caroselli, reel e frequenza. Guida pratica per PMI e professionisti che vogliono più risultati.",
-    "keywords": "algoritmo, instagram, 2026, cosa, premia, davvero, segnali, contano, reach, salvataggi, caroselli, reel, frequenza, guida, pratica, pmi, professionisti, vogliono, risultati, come, aumentare, funziona, quali, sono, fattori, chiave, influenzano, organica",
+    "keywords": "algoritmo, instagram, 2026, cosa, premia, davvero, segnali, contano, reach, salvataggi, caroselli, reel, frequenza, guida, pratica, pmi, professionisti, vogliono, risultati, come, aumentare, quali, sono, fattori, chiave, influenzano, organica, interesse",
     "headings": [
       "Algoritmo Instagram 2026: cosa premia davvero e come aumentare la reach",
-      "Come funziona l'algoritmo Instagram nel 2026?",
       "Quali sono i fattori chiave che influenzano la reach organica su Instagram?",
       "Interesse dell'utente",
       "Relazione",
       "Tempestività",
       "Frequenza",
       "Utilizzo",
-      "Come creare contenuti che l'algoritmo Instagram 2026 premia?",
       "Reel: il formato dominante",
       "Caroselli interattivi",
-      "Stories coinvolgenti"
+      "Stories coinvolgenti",
+      "Contenuti autentici e di valore",
+      "Tabella comparativa: Formati Instagram e loro impatto algoritmico (2026)"
     ],
-    "content": "Di WebNovis · 7 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3064,11 +3064,11 @@
       "Instagram per Aziende: Guida Completa alla Crescita Organica",
       "Instagram Reels: La Strategia 2026 per Crescere e Generare Lead B2B",
       "Instagram Stories per Business: Formati e Strategie Efficaci per PMI",
+      "I tuoi contenuti portano a un'azione concreta?",
       "Domande frequenti su Instagram",
-      "Come posso creare un carousel Instagram efficace?",
-      "Quanti elementi posso inserire nel mio carousel Instagram?"
+      "Come posso creare un carousel Instagram efficace?"
     ],
-    "content": "Di WebNovis · 7 Marzo 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Marzo 2026 · 7 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3089,21 +3089,21 @@
       "Instagram per Aziende: Guida Completa alla Crescita Organica",
       "Instagram Reels: La Strategia 2026 per Crescere e Generare Lead B2B",
       "Instagram Stories per Business: Formati e Strategie Efficaci per PMI",
-      "Domande frequenti su Instagram",
-      "Come posso trovare i migliori creator su Instagram per il mio brand?"
+      "Le collaborazioni portano visibilità o anche contatti?",
+      "Domande frequenti su Instagram"
     ],
-    "content": "Di WebNovis · 7 Marzo 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Marzo 2026 · 7 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/instagram-content-strategy.html",
     "url": "/blog/instagram-content-strategy.html",
     "type": "articolo",
-    "title": "Content Strategy per Instagram: Pilastri di Contenuto",
-    "description": "Di WebNovis · 7 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
-    "keywords": "content, strategy, instagram, pilastri, contenuto, marzo, 2026, min, lettura, aggiornato, luglio, vedere, spesso, nei, tuoi, risultati, ricerca, aziende, quali, sono, benefici, come, creare, gestire, engagement, errori, comuni, creazione",
+    "title": "Content Strategy Instagram 2026: pilastri per aziende",
+    "description": "Content strategy Instagram 2026: pilastri, formati e KPI per aziende che vogliono contenuti coerenti e più engagement.",
+    "keywords": "content, strategy, instagram, 2026, pilastri, aziende, formati, kpi, vogliono, contenuti, coerenti, engagement, contenuto, quali, sono, benefici, come, creare, gestire, errori, comuni, creazione, evitare, misurare, successo, utilizzare, metriche, migliorare",
     "headings": [
-      "Content Strategy per Instagram: Pilastri di Contenuto per Aziende",
+      "Content Strategy Instagram 2026: pilastri di contenuto per aziende",
       "Quali sono i benefici di una content strategy per Instagram?",
       "Come creare una content strategy per Instagram",
       "Quali sono i pilastri di una content strategy per Instagram?",
@@ -3116,18 +3116,18 @@
       "Articoli Correlati",
       "Instagram per Aziende: Guida Completa alla Crescita Organica"
     ],
-    "content": "Di WebNovis · 7 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Marzo 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/instagram-hashtag-strategia.html",
     "url": "/blog/instagram-hashtag-strategia.html",
     "type": "articolo",
-    "title": "Hashtag Instagram Strategia 2026: Massimizza la Reach B2B",
-    "description": "Scopri come aggiornare la tua hashtag Instagram strategia per il 2026, aumentare la reach e attrarre lead B2B qualificati.",
-    "keywords": "hashtag, instagram, strategia, 2026, massimizza, reach, b2b, scopri, come, aggiornare, tua, aumentare, attrarre, lead, qualificati, perche, sono, ancora, rilevanti, evolvere, approccio, less, more, diversificazione, intelligente, quali, tipologie, efficaci",
+    "title": "Hashtag Instagram 2026: strategia per più reach B2B",
+    "description": "Scopri come aggiornare la strategia hashtag Instagram per il 2026: quanti usarne, come sceglierli e come misurarli per più reach e lead B2B qualificati.",
+    "keywords": "hashtag, instagram, 2026, strategia, reach, b2b, scopri, come, aggiornare, quanti, usarne, sceglierli, misurarli, lead, qualificati, perche, sono, ancora, rilevanti, evolvere, tua, approccio, less, more, diversificazione, intelligente, quali, tipologie",
     "headings": [
-      "Hashtag Instagram Strategia 2026: Massimizza la Reach B2B",
+      "Hashtag Instagram 2026: strategia per più reach B2B",
       "Perché gli hashtag sono ancora rilevanti su Instagram nel 2026?",
       "Come evolvere la tua strategia hashtag per il 2026?",
       "L'approccio \"less is more\" e la diversificazione intelligente",
@@ -3140,16 +3140,16 @@
       "Instagram Reels: La Strategia 2026 per Crescere e Generare Lead B2B",
       "Instagram Stories per Business: Formati e Strategie Efficaci per PMI"
     ],
-    "content": "Di WebNovis · 6 Marzo 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 6 Marzo 2026 · 7 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/instagram-insights-guida.html",
     "url": "/blog/instagram-insights-guida.html",
     "type": "articolo",
-    "title": "Instagram Insights: le metriche che contano",
+    "title": "Instagram Insights 2026: guida alle metriche che contano",
     "description": "Come leggere Instagram Insights nel 2026: reach, salvataggi, retention, click e KPI utili per PMI e professionisti che vogliono contenuti più efficaci.",
-    "keywords": "instagram, insights, metriche, contano, come, leggere, 2026, reach, salvataggi, retention, click, kpi, utili, pmi, professionisti, vogliono, contenuti, efficaci, davvero, cosa, sono, perche, cruciali, tuo, business, accedere, navigare, efficacemente",
+    "keywords": "instagram, insights, 2026, guida, alle, metriche, contano, come, leggere, reach, salvataggi, retention, click, kpi, utili, pmi, professionisti, vogliono, contenuti, efficaci, davvero, cosa, sono, perche, cruciali, tuo, business, accedere",
     "headings": [
       "Instagram Insights 2026: metriche che contano davvero per PMI e professionisti",
       "Cosa sono Instagram Insights e perché sono cruciali per il tuo business?",
@@ -3164,7 +3164,7 @@
       "Instagram per Aziende: Guida Completa alla Crescita Organica",
       "Instagram Reels: La Strategia 2026 per Crescere e Generare Lead B2B"
     ],
-    "content": "Di WebNovis · 7 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3188,7 +3188,7 @@
       "SEO per Piccole Imprese: Guida Pratica per Farsi Trovare su Google",
       "Serve una strategia social più misurabile?"
     ],
-    "content": "Di WebNovis · 4 Febbraio 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 4 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3212,7 +3212,7 @@
       "SEO per Piccole Imprese: Guida Pratica per Farsi Trovare su Google",
       "Domande frequenti su Instagram"
     ],
-    "content": "Di WebNovis · 6 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 6 Marzo 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3236,7 +3236,7 @@
       "Domande Frequenti su Instagram Shopping",
       "Quanto tempo richiede la configurazione completa di Instagram Shopping?"
     ],
-    "content": "Di WebNovis · 7 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3280,11 +3280,11 @@
       "5. Automazione Processi",
       "Come Iniziare: La Roadmap per PMI",
       "AI e SEO: Come Cambiano le Regole",
-      "Errori da Evitare con l'AI",
+      "Errori da Evitare con l'AI nelle PMI",
       "Articoli Correlati su Tecnologia",
       "SEO per AI Overviews"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 10 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 10 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3363,9 +3363,9 @@
     "id": "/blog/keyword-research-guida-2026.html",
     "url": "/blog/keyword-research-guida-2026.html",
     "type": "articolo",
-    "title": "Keyword Research: Come Trovare le Parole Chiave Giuste nel 2026",
-    "description": "Guida completa alla ricerca keyword: tool gratuiti, intento di ricerca, long tail e analisi competitor. Trova le parole chiave giuste.",
-    "keywords": "keyword, research, come, trovare, parole, chiave, giuste, 2026, guida, completa, ricerca, tool, gratuiti, intento, long, tail, analisi, competitor, trova, cos, perche, conta, tipi, google, planner, suggest, persone, hanno",
+    "title": "Keyword Research: Guida 2026 per PMI",
+    "description": "Keyword research nel 2026: tool gratuiti, intento di ricerca, long tail e analisi competitor. Metodo pratico per PMI: trova clienti.",
+    "keywords": "keyword, research, guida, 2026, pmi, tool, gratuiti, intento, ricerca, long, tail, analisi, competitor, metodo, pratico, trova, clienti, come, trovare, parole, chiave, giuste, cos, perche, conta, tipi, google, planner",
     "headings": [
       "Keyword Research: Come Trovare le Parole Chiave Giuste nel 2026",
       "Cos'è la Keyword Research e Perché Conta",
@@ -3380,7 +3380,7 @@
       "Il Processo in 5 Step",
       "Step 1: Brainstorming Iniziale"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 10 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 10 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3450,18 +3450,18 @@
       "Quanto Costa una Landing Page nel 2026? Prezzi e ROI",
       "CRO: Come Ottimizzare il Tasso di Conversione del Tuo Sito nel 2026",
       "Funnel di Vendita Online: Come Costruirlo Step by Step nel 2026",
-      "Vuoi trasformare questi consigli in risultati concreti?"
+      "Above the Fold: Ottimizzare la Prima Schermata"
     ],
-    "content": "Di WebNovis · 5 Febbraio 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 5 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/lead-magnet-guida.html",
     "url": "/blog/lead-magnet-guida.html",
     "type": "articolo",
-    "title": "Lead magnet: come generare contatti qualificati",
-    "description": "Scopri come creare risorse gratuite di marketing per attirare lead qualificati e migliorare le tue strategie di lead generation",
-    "keywords": "lead, magnet, come, generare, contatti, qualificati, scopri, creare, risorse, gratuite, marketing, attirare, migliorare, tue, strategie, generation, guida, completa, perche, serve, tempo, interesse, acquisto, formati, funzionano, servizi, pmi, scambio",
+    "title": "Lead magnet 2026: guida per generare contatti qualificati",
+    "description": "Scopri come creare risorse gratuite di marketing per attirare lead qualificati e migliorare le tue strategie di lead generation nel 2026.",
+    "keywords": "lead, magnet, 2026, guida, generare, contatti, qualificati, scopri, come, creare, risorse, gratuite, marketing, attirare, migliorare, tue, strategie, generation, completa, perche, serve, tempo, interesse, acquisto, formati, funzionano, servizi, pmi",
     "headings": [
       "Lead Magnet: Guida Completa per Generare Contatti Qualificati",
       "Perché serve: il tempo tra l'interesse e l'acquisto",
@@ -3476,7 +3476,7 @@
       "Domande frequenti sui lead magnet",
       "Che differenza c'è tra un lead magnet e una brochure aziendale?"
     ],
-    "content": "Di WebNovis · 2 Marzo 2026 · 3 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 2 Marzo 2026 · 3 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3589,14 +3589,14 @@
       "Fase 3: le proposte — poche direzioni, ben motivate",
       "Fase 4: la rifinitura — dove si fa la qualità",
       "Fase 5: la consegna — il logo è un sistema, non un file",
-      "Cosa chiedere a chi te lo progetta",
+      "Cosa chiedere a chi progetta il tuo logo",
       "Articoli Correlati su Design",
       "Quanto Costa un Logo Professionale nel 2026? Guida Completa ai Prezzi",
       "Mockup Grafici: Cosa Sono e Perché Servono Prima dello Sviluppo",
       "Come Scegliere la Web Agency Giusta: 10 Criteri che Contano",
       "Il tuo brand comunica davvero il valore che offri?"
     ],
-    "content": "Di WebNovis · 1 Febbraio 2026 · 6 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 1 Febbraio 2026 · 6 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3747,9 +3747,9 @@
     "id": "/blog/mockup-grafici-guida.html",
     "url": "/blog/mockup-grafici-guida.html",
     "type": "articolo",
-    "title": "Mockup Sito Web: Cosa Sono e Quando Servono",
-    "description": "Guida ai mockup per siti web: differenza tra wireframe, mockup e prototipo, perché servono, come valutarli. Per PMI e imprenditori che commissionano un sito.",
-    "keywords": "mockup, sito, cosa, sono, quando, servono, guida, siti, differenza, wireframe, prototipo, perche, come, valutarli, pmi, imprenditori, commissionano, grafici, prima, sviluppo, livelli, progettazione, visiva, scheletro, aspetto, finale, interattivo, essenziale",
+    "title": "Mockup: Cosa Sono ed Esempi (Guida 2026)",
+    "description": "Mockup, wireframe e prototipo: cosa sono, differenze, costi e come valutare il progetto visivo prima dello sviluppo. Guida per PMI.",
+    "keywords": "mockup, cosa, sono, esempi, guida, 2026, wireframe, prototipo, differenze, costi, come, valutare, progetto, visivo, prima, sviluppo, pmi, grafici, perche, servono, livelli, progettazione, visiva, scheletro, aspetto, finale, interattivo, essenziale",
     "headings": [
       "Mockup Grafici: Cosa Sono e Perché Servono Prima dello Sviluppo",
       "I 3 Livelli della Progettazione Visiva",
@@ -3764,16 +3764,16 @@
       "Architettura Informazioni Sito",
       "UX Design Best Practice"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/motion-design-marketing.html",
     "url": "/blog/motion-design-marketing.html",
     "type": "articolo",
-    "title": "Motion Design Marketing: Video e Animazioni per il B2B",
-    "description": "Di WebNovis · 4 Marzo 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
-    "keywords": "motion, design, marketing, video, animazioni, b2b, marzo, 2026, min, lettura, aggiornato, luglio, vedere, spesso, nei, tuoi, risultati, ricerca, cos, perche, cruciale, tuo, brand, quali, vantaggi, offre, pmi, italiane",
+    "title": "Motion Design per Marketing B2B: Video e Animazioni (2026)",
+    "description": "Explainer video, animazioni social e demo prodotto: formati, durate e piattaforme per PMI B2B. Guida 2026 con checklist.",
+    "keywords": "motion, design, marketing, b2b, video, animazioni, 2026, explainer, social, demo, prodotto, formati, durate, piattaforme, pmi, guida, checklist, cos, perche, cruciale, tuo, brand, quali, vantaggi, offre, italiane, tipi, aziendali",
     "headings": [
       "Motion Design Marketing: Video e Animazioni per il B2B",
       "Cos'è il Motion Design e perché è cruciale per il tuo brand?",
@@ -3783,21 +3783,21 @@
       "Video Aziendali Animati",
       "Animazioni per Social Media",
       "Demo di Prodotto Animate",
+      "Scegli il formato in base all’obiettivo",
       "Come integrare il Motion Design nella tua strategia di marketing?",
       "Quali errori evitare nell'adozione del motion design marketing?",
-      "Checklist Operativa per il Motion Design Marketing",
-      "Articoli Correlati"
+      "Checklist Operativa per il Motion Design Marketing"
     ],
-    "content": "Di WebNovis · 4 Marzo 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 4 Marzo 2026 · 7 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/naming-aziendale-guida.html",
     "url": "/blog/naming-aziendale-guida.html",
     "type": "articolo",
-    "title": "Naming Aziendale: Come Scegliere il Nome",
-    "description": "Come scegliere il nome dell",
-    "keywords": "naming, aziendale, come, scegliere, nome, dell, perfetto, tuo, brand, caratteristiche, efficace, categorie, nomi, processo, step, definisci, posizionamento, brainstorming, strutturato, filtra, shortlist, verifica, disponibilita, test, mercato, registra, proteggi, errori",
+    "title": "Naming Aziendale: Come Scegliere il Nome del Brand",
+    "description": "Naming aziendale: 7 caratteristiche del nome efficace, 5 categorie con esempi e processo in 6 step. Guida per startup e PMI.",
+    "keywords": "naming, aziendale, come, scegliere, nome, brand, caratteristiche, efficace, categorie, esempi, processo, step, guida, startup, pmi, perfetto, tuo, nomi, definisci, posizionamento, brainstorming, strutturato, filtra, shortlist, verifica, disponibilita, test, mercato",
     "headings": [
       "Naming Aziendale: Come Scegliere il Nome Perfetto per il Tuo Brand",
       "Le 7 Caratteristiche di un Nome Efficace",
@@ -3809,10 +3809,10 @@
       "Step 4: Verifica Disponibilità",
       "Step 5: Test di Mercato",
       "Step 6: Registra e Proteggi",
-      "Errori Comuni nel Naming",
-      "Articoli Correlati su Branding"
+      "Il test del nome in 5 domande",
+      "Errori Comuni nel Naming"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3917,22 +3917,22 @@
     "type": "articolo",
     "title": "Normativa Accessibilità Web 2025-2026: Chi Deve Adeguarsi e Come",
     "description": "European Accessibility Act, WCAG 2.2, obblighi per aziende italiane: tutto sulla normativa accessibilità digitale. Scadenze, requisiti e come adeguare il sito.",
-    "keywords": "normativa, accessibilita, 2025, 2026, deve, adeguarsi, come, european, accessibility, act, wcag, obblighi, aziende, italiane, tutto, digitale, scadenze, requisiti, adeguare, sito, timeline, cosa, cambiato, quando, tecnici, percepibile, operabile, comprensibile",
+    "keywords": "normativa, accessibilita, 2025, 2026, deve, adeguarsi, come, european, accessibility, act, wcag, obblighi, aziende, italiane, tutto, digitale, scadenze, requisiti, adeguare, sito, timeline, cosa, cambiato, quando, eaa, tecnici, percepibile, operabile",
     "headings": [
       "Normativa Accessibilità Web 2025-2026: Chi Deve Adeguarsi e Come",
       "La Timeline: Cosa è Cambiato e Quando",
-      "Chi Deve Adeguarsi?",
+      "Chi Deve Adeguarsi all'EAA?",
       "I Requisiti Tecnici: WCAG 2.1 AA",
       "1. Percepibile",
       "2. Operabile",
       "3. Comprensibile",
       "4. Robusto",
-      "Le Sanzioni: Cosa Rischi",
+      "Le Sanzioni per la Mancata Accessibilità",
       "Come Adeguare il Tuo Sito: Roadmap Pratica",
       "Accessibilità Come Vantaggio Competitivo",
       "Articoli Correlati su Web Development"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 10 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 10 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3964,8 +3964,8 @@
     "url": "/blog/omnichannel-strategia.html",
     "type": "articolo",
     "title": "Strategia Omnichannel: Integrare i Canali per PMI",
-    "description": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
-    "keywords": "strategia, omnichannel, integrare, canali, pmi, marzo, 2026, min, lettura, aggiornato, luglio, vedere, spesso, nei, tuoi, risultati, ricerca, professionisti, cos, perche, cruciale, multichannel, differenza, chiave, tua, azienda, quali, sono",
+    "description": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "keywords": "strategia, omnichannel, integrare, canali, pmi, marzo, 2026, min, lettura, aggiornato, settembre, vedere, spesso, nei, tuoi, risultati, ricerca, professionisti, cos, perche, cruciale, multichannel, differenza, chiave, tua, azienda, quali, sono",
     "headings": [
       "Strategia Omnichannel: Integrare i Canali per PMI e Professionisti",
       "Cos'è la strategia omnichannel e perché è cruciale per le PMI?",
@@ -3980,7 +3980,7 @@
       "Articoli Correlati",
       "Come Scegliere la Web Agency Giusta: 10 Criteri che Contano"
     ],
-    "content": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4026,9 +4026,9 @@
       "6. Ridurre le Distrazioni",
       "7. Above the Fold",
       "8. Mobile UX",
-      "Come Fare A/B Testing"
+      "Come Fare A/B Testing sul Tuo Sito"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4059,9 +4059,9 @@
     "id": "/blog/packaging-design-guida.html",
     "url": "/blog/packaging-design-guida.html",
     "type": "articolo",
-    "title": "Packaging Design: Progettare l’Imballaggio del Prodotto (2026)",
-    "description": "Packaging design: come progettare un imballaggio che attrae, comunica valore e vende, dai materiali alla scelta del target. Guida con esempi concreti.",
-    "keywords": "packaging, design, progettare, imballaggio, prodotto, 2026, come, attrae, comunica, valore, vende, dai, materiali, scelta, target, guida, esempi, concreti, crea, rafforza, brand, perche, cruciale, tua, pmi, dell, influenza, decisioni",
+    "title": "Packaging Design: l’Imballaggio che Vende (Guida 2026)",
+    "description": "Packaging design che vende: materiali e finiture, sostenibilità, errori da evitare e checklist. Guida 2026 con esempi per PMI.",
+    "keywords": "packaging, design, imballaggio, vende, guida, 2026, materiali, finiture, sostenibilita, errori, evitare, checklist, esempi, pmi, crea, rafforza, brand, perche, cruciale, tua, come, dell, influenza, decisioni, acquisto, quali, elementi, rendono",
     "headings": [
       "Packaging Design: Crea un Imballaggio che Vende e Rafforza il Brand",
       "Perché il packaging design è cruciale per la tua PMI?",
@@ -4076,16 +4076,16 @@
       "Mockup Grafici: Cosa Sono e Perché Servono Prima dello Sviluppo",
       "Il Processo di Creazione di un Logo: Dal Brief al Design Finale"
     ],
-    "content": "Di WebNovis · 3 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 3 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/pagamenti-online-ecommerce.html",
     "url": "/blog/pagamenti-online-ecommerce.html",
     "type": "articolo",
-    "title": "Pagamenti e-commerce 2026: Stripe e PayPal",
-    "description": "Confronto 2026 sui pagamenti online per e-commerce: Stripe, PayPal, Scalapay, commissioni, checkout e criteri per scegliere il gateway giusto.",
-    "keywords": "pagamenti, ecommerce, 2026, stripe, paypal, confronto, sui, online, scalapay, commissioni, checkout, criteri, scegliere, gateway, giusto, perche, scelta, payment, strategica, tuo, b2b, quali, sono, principali, pagamento, flessibilita, integrazione, avanzata",
+    "title": "Pagamenti E-commerce 2026: Stripe, PayPal, Costi",
+    "description": "Stripe ~1,4%+€0,25, PayPal ~2,9%+€0,30: confronto 2026 di commissioni, checkout e criteri per scegliere il gateway giusto per il tuo e-commerce.",
+    "keywords": "pagamenti, ecommerce, 2026, stripe, paypal, costi, confronto, commissioni, checkout, criteri, scegliere, gateway, giusto, tuo, online, scalapay, perche, scelta, payment, strategica, b2b, quali, sono, principali, pagamento, flessibilita, integrazione, avanzata",
     "headings": [
       "Pagamenti online e-commerce 2026: Stripe, PayPal o Scalapay?",
       "Perché la scelta del payment gateway è strategica per il tuo e-commerce B2B?",
@@ -4100,7 +4100,7 @@
       "Domande Frequenti sui Pagamenti Online per E-commerce",
       "Articoli Correlati"
     ],
-    "content": "Di WebNovis · 25 Febbraio 2026 · 8 min di lettura · Aggiornato: 25 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 25 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4131,24 +4131,24 @@
     "id": "/blog/partita-iva-ecommerce.html",
     "url": "/blog/partita-iva-ecommerce.html",
     "type": "articolo",
-    "title": "Partita IVA per e-commerce: quando serve",
+    "title": "Partita IVA E-commerce 2026: Quando Serve e Costi",
     "description": "Quando serve la partita IVA per vendere online: forfettario al 5% i primi 5 anni, INPS ~€4.200, apertura gratuita. Costi reali e checklist prima di partire.",
-    "keywords": "partita, iva, ecommerce, quando, serve, vendere, online, forfettario, primi, anni, inps, 200, apertura, gratuita, costi, reali, checklist, prima, partire, 2026, regime, opzione, ideale, iniziare, adempimenti, obbligatori, errori, fiscali",
+    "keywords": "partita, iva, ecommerce, 2026, quando, serve, costi, vendere, online, forfettario, primi, anni, inps, 200, apertura, gratuita, reali, checklist, prima, partire, regime, adempimenti, obbligatori, errori, fiscali, comuni, evitare, quanto",
     "headings": [
       "Partita IVA per E-Commerce nel 2026: quando serve, costi e regime",
       "Quando Serve la Partita IVA per Vendere Online",
       "Serve la P.IVA se:",
       "NON serve la P.IVA se:",
       "I Costi Reali per un E-commerce con P.IVA",
-      "Regime Forfettario: L'Opzione Ideale per Iniziare",
       "Adempimenti Obbligatori per un E-commerce",
       "Errori Fiscali Comuni da Evitare",
       "Quanto Devo Fatturare per Coprire i Costi Fissi?",
       "Articoli Correlati su E-Commerce",
       "Quanto Costa un E-commerce?",
-      "E-commerce che Vende"
+      "E-commerce che Vende",
+      "Dati Obbligatori sul Sito"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 26 Marzo 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4229,31 +4229,55 @@
     "type": "articolo",
     "title": "Personal Branding Online: Come Costruire la Tua Autorità nel Digitale",
     "description": "Sito personale, LinkedIn, contenuti: strategie per posizionarti come esperto nel tuo settore.",
-    "keywords": "personal, branding, online, come, costruire, tua, autorita, digitale, sito, personale, linkedin, contenuti, strategie, posizionarti, esperto, tuo, settore, prima, fondamenta, posizionamento, casa, canale, dove, farsi, trovare, basta, scegli, profilo",
+    "keywords": "personal, branding, online, come, costruire, tua, autorita, digitale, sito, personale, linkedin, contenuti, strategie, posizionarti, esperto, tuo, settore, prima, fondamenta, posizionamento, casa, brand, canale, dove, farsi, trovare, basta, scegli",
     "headings": [
       "Personal Branding Online: Come Costruire la Tua Autorità nel Digitale",
       "Prima le fondamenta: il posizionamento",
-      "La casa: il tuo sito personale",
+      "Il sito personale: la casa del tuo brand",
       "Il canale: dove farsi trovare (uno basta)",
       "Se scegli LinkedIn: profilo che converte",
       "Il motore: contenuti che dimostrano, non che proclamano",
       "Gli errori che rovinano il lavoro",
-      "Il primo passo concreto",
+      "Il primo passo concreto: cerca il tuo nome su Google",
       "Articoli Correlati su Personal Brand",
       "Come Scegliere la Web Agency Giusta: 10 Criteri che Contano",
       "Quanto Costa un Sito Web? Prezzi Reali 2026",
       "SEO per Piccole Imprese: Guida Pratica per Farsi Trovare su Google"
     ],
-    "content": "Di WebNovis · 18 Gennaio 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 18 Gennaio 2026 · 7 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "indexable": true
+  },
+  {
+    "id": "/blog/piano-editoriale-seo.html",
+    "url": "/blog/piano-editoriale-seo.html",
+    "type": "articolo",
+    "title": "Piano Editoriale SEO 2026: Guida per Blog Aziendali",
+    "description": "Come creare un piano editoriale SEO per il blog aziendale: obiettivi, keyword, cluster, calendario e misura. Guida pratica per PMI che vogliono contatti, non solo visite.",
+    "keywords": "piano, editoriale, seo, 2026, guida, blog, aziendali, come, creare, aziendale, obiettivi, keyword, cluster, calendario, misura, pratica, pmi, vogliono, contatti, solo, visite, costruirlo, porta, cos, social, quale, serve, metodo",
+    "headings": [
+      "Piano Editoriale SEO: Come Costruirlo per un Blog che Porta Contatti",
+      "Che cos'è un piano editoriale SEO",
+      "Piano editoriale SEO o piano social: quale ti serve",
+      "Il metodo in 6 fasi",
+      "Fase 1: parti dagli obiettivi commerciali",
+      "Fase 2: fai l'inventario di ciò che hai già",
+      "Fase 3: keyword research e intento di ricerca",
+      "Fase 4: organizza i cluster intorno a una pagina pilastro",
+      "Fase 5: calendario, brief e pubblicazione sostenibile",
+      "Fase 6: misura e aggiorna",
+      "Gli errori che vanificano il piano",
+      "Checklist operativa da 8 punti"
+    ],
+    "content": "Di WebNovis · 7 Settembre 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/piano-editoriale-social.html",
     "url": "/blog/piano-editoriale-social.html",
     "type": "articolo",
-    "title": "Piano Editoriale Social: Come Creare un Piano in 5 Step",
+    "title": "Piano Editoriale Social 2026: guida in 5 step con template",
     "description": "Scopri come creare un piano editoriale social in 5 step con template. Migliora la tua strategia di contenuti e aumenta la tua presenza online.",
-    "keywords": "piano, editoriale, social, come, creare, step, scopri, template, migliora, tua, strategia, contenuti, aumenta, presenza, online, quali, sono, definisci, obiettivi, identifica, pubblico, scegli, canali, crea, calendario, monitora, risultati, errori",
+    "keywords": "piano, editoriale, social, 2026, guida, step, template, scopri, come, creare, migliora, tua, strategia, contenuti, aumenta, presenza, online, quali, sono, definisci, obiettivi, identifica, pubblico, scegli, canali, crea, calendario, monitora",
     "headings": [
       "Piano Editoriale Social: Come Creare un Piano in 5 Step con Template",
       "Quali sono i 5 step per creare un piano editoriale social?",
@@ -4268,7 +4292,7 @@
       "Quanto Costa la Gestione Social Media nel 2026? Prezzi e Pacchetti",
       "Social Media Strategy 2026: Cosa Funziona Davvero per le Aziende"
     ],
-    "content": "Di WebNovis · 5 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 5 Marzo 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4314,9 +4338,9 @@
       "Email Marketing: Guida Completa per PMI e Professionisti nel 2026",
       "Content Marketing per PMI: Come Attrarre Clienti con i Contenuti",
       "Blog Aziendale: Perché è Ancora il Miglior Investimento di Marketing per PMI",
-      "Domande frequenti su Content Marketing"
+      "Keyword Research: Come Trovare le Parole Chiave Giuste nel 2026"
     ],
-    "content": "Di WebNovis · 8 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 8 Marzo 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4357,14 +4381,14 @@
       "Step 3: Scegliere i Canali Giusti",
       "Step 4: Contenuti che Attraggono Clienti",
       "Step 5: Primi Investimenti in Advertising",
-      "Timeline Realistica",
+      "Timeline Realistica per Portare l'Attività Online",
       "Articoli Correlati su Strategia",
       "Strategia Digitale per PMI",
       "Serve Ancora un Sito Web?",
       "SEO per Piccole Imprese",
       "Stai valutando un partner digitale di lungo periodo?"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4419,9 +4443,9 @@
     "id": "/blog/preventivi-progetti-web.html",
     "url": "/blog/preventivi-progetti-web.html",
     "type": "articolo",
-    "title": "Come Leggere un Preventivo per un Sito Web: Guida per Aziende",
-    "description": "Cosa deve contenere un preventivo web trasparente: voci di costo, servizi inclusi e red flag da evitare. Guida per PMI.",
-    "keywords": "come, leggere, preventivo, sito, guida, aziende, cosa, deve, contenere, trasparente, voci, costo, servizi, inclusi, red, flag, evitare, pmi, devono, essere, quando, sospetto, confrontare, preventivi, domande, fare, prima, accettare",
+    "title": "Preventivo Sito Web: Come Leggerlo e Valutarlo",
+    "description": "Vetrina professionale €1.500-5.000: le voci che un preventivo web trasparente deve contenere, red flag ed errori da evitare. Guida 2026 per PMI.",
+    "keywords": "preventivo, sito, come, leggerlo, valutarlo, vetrina, professionale, 500, 000, voci, trasparente, deve, contenere, red, flag, errori, evitare, guida, 2026, pmi, leggere, aziende, devono, essere, quando, sospetto, confrontare, preventivi",
     "headings": [
       "Come Leggere un Preventivo per un Sito Web: Guida per Aziende",
       "Le Voci che DEVONO Essere nel Preventivo",
@@ -4436,7 +4460,7 @@
       "Stai valutando un partner digitale di lungo periodo?",
       "Domande frequenti su Strategia"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4484,16 +4508,16 @@
       "Brand Identity: Il Percorso Ideale per una PMI",
       "Errori Comuni nella Creazione della Brand Identity"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/quanto-costa-campagna-facebook-ads.html",
     "url": "/blog/quanto-costa-campagna-facebook-ads.html",
     "type": "articolo",
-    "title": "Quanto costa una campagna Facebook Ads?",
-    "description": "Quanto costa una campagna Facebook e Instagram Ads: budget minimo, CPC e CPM reali, costo per lead e fee di gestione. Esempi pratici 2026 per PMI.",
-    "keywords": "quanto, costa, campagna, facebook, ads, instagram, budget, minimo, cpc, cpm, reali, costo, lead, fee, gestione, esempi, pratici, 2026, pmi, due, costi, meta, pubblicitario, investire, settore, italia, freelance, agenzia",
+    "title": "Quanto Costa Facebook Ads nel 2026? Budget e CPL",
+    "description": "Budget minimo €300-500/mese, costo per lead €2-50 per settore, fee di gestione €300-1.500: i costi reali di Facebook e Instagram Ads nel 2026.",
+    "keywords": "quanto, costa, facebook, ads, 2026, budget, cpl, minimo, 300, 500, mese, costo, lead, settore, fee, gestione, costi, reali, instagram, campagna, cpc, due, meta, pubblicitario, investire, italia, freelance, agenzia",
     "headings": [
       "Quanto costa una campagna Facebook Ads nel 2026? Budget, CPC e gestione",
       "I Due Costi di una Campagna Meta Ads",
@@ -4508,7 +4532,7 @@
       "Costi Gestione Social Media",
       "Landing Page che Converte"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4539,9 +4563,9 @@
     "id": "/blog/quanto-costa-mantenere-sito-web.html",
     "url": "/blog/quanto-costa-mantenere-sito-web.html",
     "type": "articolo",
-    "title": "Quanto Costa Mantenere un Sito Web? La Guida ai Costi Nascosti",
-    "description": "Dominio, hosting, manutenzione, aggiornamenti, SEO: ecco quanto costa davvero mantenere un sito web ogni anno, con tutti i costi fissi e variabili spiegati.",
-    "keywords": "quanto, costa, mantenere, sito, guida, costi, nascosti, dominio, hosting, manutenzione, aggiornamenti, seo, ecco, davvero, ogni, anno, tutti, fissi, variabili, spiegati, obbligatori, mensili, annuali, opzionali, consigliati, articoli, correlati, development",
+    "title": "Quanto Costa Mantenere un Sito Web nel 2026?",
+    "description": "Fissi €100-300/anno più manutenzione €50-100/mese: dominio, hosting, SSL, backup, SEO e costi nascosti del sito web spiegati. Guida 2026.",
+    "keywords": "quanto, costa, mantenere, sito, 2026, fissi, 100, 300, anno, manutenzione, mese, dominio, hosting, ssl, backup, seo, costi, nascosti, spiegati, guida, obbligatori, ogni, mensili, annuali, opzionali, consigliati, articoli, correlati",
     "headings": [
       "Quanto Costa Mantenere un Sito Web? La Guida ai Costi Nascosti",
       "Costi fissi obbligatori (ogni anno)",
@@ -4556,16 +4580,16 @@
       "Domande frequenti su Web Development",
       "Quali sono i costi fissi annuali di un sito web?"
     ],
-    "content": "Di WebNovis · 7 Agosto 2026 · 8 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Agosto 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/quanto-costa-pubblicita-google-ads.html",
     "url": "/blog/quanto-costa-pubblicita-google-ads.html",
     "type": "articolo",
-    "title": "Quanto Costa la Pubblicità su Google? Budget, Costi e Strategie nel 2026",
-    "description": "Quanto costa Google Ads in Italia? Costo per click medi per settore, budget consigliati per PMI, e come evitare di sprecare soldi con campagne mal configurate.",
-    "keywords": "quanto, costa, pubblicita, google, budget, costi, strategie, 2026, ads, italia, costo, click, medi, settore, consigliati, pmi, come, evitare, sprecare, soldi, campagne, mal, configurate, funziona, pagherai, realmente, errori, fanno",
+    "title": "Quanto Costa Google Ads nel 2026? Budget e CPC",
+    "description": "CPC medi €0,50-15 per settore e budget minimo €450-900/mese per PMI locali: quanto costa Google Ads in Italia nel 2026 e come evitare sprechi.",
+    "keywords": "quanto, costa, google, ads, 2026, budget, cpc, medi, settore, minimo, 450, 900, mese, pmi, locali, italia, come, evitare, sprechi, pubblicita, costi, strategie, funziona, costo, pagherai, realmente, errori, fanno",
     "headings": [
       "Quanto Costa la Pubblicità su Google? Budget, Costi e Strategie nel 2026",
       "Come funziona il costo di Google Ads",
@@ -4580,16 +4604,16 @@
       "Domande frequenti su Advertising",
       "Qual è il budget minimo per una campagna Google Ads in Italia?"
     ],
-    "content": "Di WebNovis · 7 Agosto 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Agosto 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/quanto-costa-un-ecommerce.html",
     "url": "/blog/quanto-costa-un-ecommerce.html",
     "type": "articolo",
-    "title": "Quanto Costa un E-Commerce nel 2026? Prezzi Reali",
-    "description": "Quanto costa aprire un e-commerce nel 2026: tabella prezzi, Shopify vs custom, commissioni, costi nascosti, tempi e budget realistico per PMI.",
-    "keywords": "quanto, costa, ecommerce, 2026, prezzi, reali, aprire, tabella, shopify, custom, commissioni, costi, nascosti, tempi, budget, realistico, pmi, tre, approcci, quale, piattaforme, saas, bigcommerce, open, source, woocommerce, prestashop, magento",
+    "title": "Quanto Costa un E-commerce nel 2026? Da €3.500",
+    "description": "Shopify vs WooCommerce vs custom, commissioni e costi nascosti: budget realistici 2026 per PMI ed e-commerce custom da €3.500. Preventivo gratuito.",
+    "keywords": "quanto, costa, ecommerce, 2026, 500, shopify, woocommerce, custom, commissioni, costi, nascosti, budget, realistici, pmi, preventivo, gratuito, prezzi, reali, tre, approcci, quale, piattaforme, saas, bigcommerce, open, source, prestashop, magento",
     "headings": [
       "Quanto costa un e-commerce nel 2026? Prezzi reali, Shopify o custom",
       "I Tre Approcci: Quale Fa per Te?",
@@ -4604,7 +4628,7 @@
       "Non conviene se:",
       "Il Nostro Approccio all'E-Commerce"
     ],
-    "content": "Di WebNovis · 11 Febbraio 2026 · 10 min di lettura · Aggiornato: 14 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 11 Febbraio 2026 · 10 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4628,16 +4652,16 @@
       "Come Scegliere il Professionista Giusto",
       "Articoli Correlati su Design"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/quanto-costa-un-sito-web.html",
     "url": "/blog/quanto-costa-un-sito-web.html",
     "type": "articolo",
-    "title": "Quanto Costa un Sito Web: Prezzi e Costi Annuali 2026",
-    "description": "Cosa fa salire o scendere il prezzo di un sito nel 2026: perimetro, contenuti, integrazioni e differenze tra listino di mercato e catalogo WebNovis.",
-    "keywords": "quanto, costa, sito, prezzi, costi, annuali, 2026, cosa, salire, scendere, prezzo, perimetro, contenuti, integrazioni, differenze, listino, mercato, catalogo, reali, fattori, determinano, tabella, davvero, landing, page, 300, 500, vetrina",
+    "title": "Quanto Costa un Sito Web nel 2026: Prezzi da €500",
+    "description": "Landing da €500, vetrina da €1.200, e-commerce da €3.500: range di mercato 2026, cosa fa salire il prezzo e come chiedere un preventivo chiaro.",
+    "keywords": "quanto, costa, sito, 2026, prezzi, 500, landing, vetrina, 200, ecommerce, range, mercato, cosa, salire, prezzo, come, chiedere, preventivo, chiaro, reali, fattori, determinano, tabella, davvero, page, 300, 800, 000",
     "headings": [
       "Quanto Costa un Sito Web? Prezzi Reali 2026",
       "I Fattori che Determinano il Prezzo",
@@ -4652,16 +4676,16 @@
       "SEO Continuativa",
       "Freelancer vs Agenzia: Quale Scegliere?"
     ],
-    "content": "Di WebNovis · 12 Febbraio 2026 · 8 min di lettura · Aggiornato: 14 Febbraio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 12 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/quanto-costa-una-landing-page.html",
     "url": "/blog/quanto-costa-una-landing-page.html",
     "type": "articolo",
-    "title": "Quanto costa una landing page nel 2026?",
-    "description": "Prezzi reali 2026 per una landing page: range di costo, cosa include, esempi di ROI e quando conviene investire davvero.",
-    "keywords": "quanto, costa, landing, page, 2026, prezzi, reali, range, costo, cosa, include, esempi, roi, quando, conviene, investire, davvero, quadro, completo, influisce, design, template, custom, copywriting, professionale, integrazioni, tecniche, ottimizzazione",
+    "title": "Quanto Costa una Landing Page nel 2026? Da €500",
+    "description": "Landing €300-3.000+, budget realistico €600-1.500 per le PMI: cosa include, esempio di ROI e quando l",
+    "keywords": "quanto, costa, landing, page, 2026, 500, 300, 000, budget, realistico, 600, pmi, cosa, include, esempio, roi, quando, prezzi, quadro, completo, influisce, costo, design, template, custom, copywriting, professionale, integrazioni",
     "headings": [
       "Quanto Costa una Landing Page nel 2026? Prezzi e ROI",
       "Prezzi di una Landing Page nel 2026: Il Quadro Completo",
@@ -4676,16 +4700,16 @@
       "Articoli Correlati su Conversioni",
       "Come Creare una Landing Page che Converte"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 26 Marzo 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/rebranding-aziendale-guida.html",
     "url": "/blog/rebranding-aziendale-guida.html",
     "type": "articolo",
-    "title": "Rebranding Aziendale: Quando Farlo e Come Gestire il Cambiamento",
-    "description": "Segnali di necessità di rebranding, processo da seguire e come comunicare il cambiamento.",
-    "keywords": "rebranding, aziendale, quando, farlo, come, gestire, cambiamento, segnali, necessita, processo, seguire, comunicare, motivi, giusti, quelli, sbagliati, prima, strategia, poi, segni, parte, decide, risultato, errore, comune, meta, stai, pensando",
+    "title": "Rebranding Aziendale: Quando Farlo e Come Gestirlo (2026)",
+    "description": "Rebranding o restyling? Segnali che è il momento, processo in 3 fasi, comunicazione ed errori da evitare. Guida 2026 per PMI.",
+    "keywords": "rebranding, aziendale, quando, farlo, come, gestirlo, 2026, restyling, segnali, momento, processo, fasi, comunicazione, errori, evitare, guida, pmi, gestire, cambiamento, motivi, giusti, quelli, sbagliati, prima, strategia, poi, segni, comunicare",
     "headings": [
       "Rebranding Aziendale: Quando Farlo e Come Gestire il Cambiamento",
       "I motivi giusti (e quelli sbagliati)",
@@ -4700,7 +4724,7 @@
       "Il tuo brand comunica davvero il valore che offri?",
       "Domande frequenti su Branding"
     ],
-    "content": "Di WebNovis · 22 Gennaio 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 22 Gennaio 2026 · 7 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4781,14 +4805,14 @@
     "type": "articolo",
     "title": "Restyling del Sito Web: Quando Farlo e Come Non Perdere il Posizionamento",
     "description": "Segnali che indicano la necessità di un restyling e best practice per rinnovare il sito senza perdere ranking SEO.",
-    "keywords": "restyling, sito, quando, farlo, come, perdere, posizionamento, segnali, indicano, necessita, best, practice, rinnovare, senza, ranking, seo, ora, intervenire, rifacimento, differenza, conta, errori, comuni, vediamo, dove, cominciare, articoli, correlati",
+    "keywords": "restyling, sito, quando, farlo, come, perdere, posizionamento, segnali, indicano, necessita, best, practice, rinnovare, senza, ranking, seo, ora, fare, rifacimento, differenza, conta, errori, comuni, vediamo, dove, cominciare, articoli, correlati",
     "headings": [
       "Restyling del Sito Web: Quando Farlo e Come Non Perdere il Posizionamento",
-      "I segnali che è ora di intervenire",
+      "I segnali che è ora di fare un restyling",
       "Restyling o rifacimento: la differenza che conta",
       "Come non perdere il posizionamento",
       "Gli errori più comuni che vediamo",
-      "Da dove cominciare",
+      "Da dove cominciare con il restyling",
       "Articoli Correlati su Web Development",
       "Quanto Costa un Sito Web? Prezzi Reali 2026",
       "Sito Web Fai Da Te vs Professionale: Il Confronto Onesto nel 2026",
@@ -4796,7 +4820,7 @@
       "Vuoi trasformare questi consigli in risultati concreti?",
       "Domande frequenti su Web Development"
     ],
-    "content": "Di WebNovis · 6 Febbraio 2026 · 7 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 6 Febbraio 2026 · 7 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4916,7 +4940,7 @@
       "Come Implementare",
       "Errori Comuni"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -4936,9 +4960,9 @@
       "SEO per Piccole Imprese: Guida Pratica per Farsi Trovare su Google",
       "Come Ottimizzare il Sito per AI Overviews e ChatGPT nel 2026",
       "SEO Locale e Google Maps: Come Essere Primo nei Risultati nella Tua Zona",
+      "Keyword Research: Come Trovare le Parole Chiave Giuste nel 2026",
       "Domande frequenti su SEO",
-      "Come posso migliorare la visibilità del mio blog aziendale su Google?",
-      "Qual è l'importanza dell'ottimizzazione SEO per un blog aziendale?"
+      "Come posso migliorare la visibilità del mio blog aziendale su Google?"
     ],
     "content": "Di WebNovis · 27 Febbraio 2026 · 8 min di lettura Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
@@ -4988,7 +5012,7 @@
       "Strategia Recensioni",
       "Citazioni e Directory Locali"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -5012,16 +5036,16 @@
       "10. Segnali di Fiducia",
       "Checklist Rapida (Copia e Usa)"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/seo-per-ai-overviews.html",
     "url": "/blog/seo-per-ai-overviews.html",
     "type": "articolo",
-    "title": "GEO: Farsi Citare da ChatGPT e AI Overviews",
-    "description": "GEO (Generative Engine Optimization): come farti citare da ChatGPT, Gemini, Perplexity e AI Overviews. Guida pratica con checklist.",
-    "keywords": "geo, farsi, citare, chatgpt, overviews, generative, engine, optimization, come, farti, gemini, perplexity, guida, pratica, checklist, ottimizzare, sito, 2026, funzionano, risposte, strategie, tuo, struttura, nei, contenuti, dirette, inizio, dati",
+    "title": "AI Overviews: Come Farsi Citare nel 2026",
+    "description": "Risposte dirette, dati con fonti, FAQ e speakable, entità chiare: la checklist GEO 2026 per farti citare da ChatGPT, Gemini, Perplexity e AI Overviews.",
+    "keywords": "overviews, come, farsi, citare, 2026, risposte, dirette, dati, fonti, faq, speakable, entita, chiare, checklist, geo, farti, chatgpt, gemini, perplexity, ottimizzare, sito, funzionano, strategie, tuo, struttura, nei, contenuti, inizio",
     "headings": [
       "Come Ottimizzare il Sito per AI Overviews e ChatGPT nel 2026",
       "Come Funzionano le Risposte AI",
@@ -5036,7 +5060,7 @@
       "Checklist GEO per Ogni Articolo",
       "GEO e Local SEO: La Combinazione Vincente"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -5444,7 +5468,7 @@
       "Quanto Costa la Gestione Social Media nel 2026? Prezzi e Pacchetti",
       "Social Media Strategy 2026: Cosa Funziona Davvero per le Aziende"
     ],
-    "content": "Di WebNovis · 6 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 6 Marzo 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -5468,7 +5492,7 @@
       "Quanto Costa la Gestione Social Media nel 2026? Prezzi e Pacchetti",
       "Social Media Strategy 2026: Cosa Funziona Davvero per le Aziende"
     ],
-    "content": "Di WebNovis · 5 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 5 Marzo 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -5704,20 +5728,20 @@
       "Quanto Costa la Gestione Social Media nel 2026? Prezzi e Pacchetti",
       "Social Media Strategy 2026: Cosa Funziona Davvero per le Aziende",
       "Piano Editoriale Social: Come Creare un Piano in 5 Step con Template",
+      "TikTok per Aziende nel 2026: Strategie e Opportunità per PMI",
       "Domande frequenti su Social Media",
-      "Quali sono le tendenze social media più importanti per il 2026?",
-      "Come posso preparare la mia strategia social media per il 2026?"
+      "Quali sono le tendenze social media più importanti per il 2026?"
     ],
-    "content": "Di WebNovis · 6 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 6 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/teoria-colore-design-web.html",
     "url": "/blog/teoria-colore-design-web.html",
     "type": "articolo",
-    "title": "Teoria del Colore nel Web Design: Guida Pratica",
-    "description": "Scopri come la teoria del colore nel web design influenzi percezione e conversioni. Guida pratica per PMI e imprenditori: scegli le giuste combinazioni.",
-    "keywords": "teoria, colore, design, guida, pratica, scopri, come, influenzi, percezione, conversioni, pmi, imprenditori, scegli, giuste, combinazioni, italiane, perche, cruciale, tuo, sito, sei, designer, funziona, ruota, colori, quali, armonie, puoi",
+    "title": "Colori Sito Web: Teoria, Palette e Conversioni (2026)",
+    "description": "Quali colori scegliere per il sito: ruota dei colori, armonie, psicologia e contrasti accessibili. Guida 2026 per PMI e imprenditori.",
+    "keywords": "colori, sito, teoria, palette, conversioni, 2026, quali, scegliere, ruota, armonie, psicologia, contrasti, accessibili, guida, pmi, imprenditori, colore, design, pratica, italiane, perche, cruciale, tuo, sei, designer, come, funziona, puoi",
     "headings": [
       "Teoria del Colore nel Web Design: Guida Pratica per PMI Italiane",
       "Perché la teoria del colore è cruciale per il tuo sito web, anche se non sei un designer?",
@@ -5725,14 +5749,14 @@
       "Le armonie cromatiche più efficaci per il web design:",
       "Qual è l'impatto psicologico dei colori sul comportamento degli utenti?",
       "Impatto Psicologico dei Colori nel Web Design",
+      "Tre combinazioni rapide per settore",
       "Come scegliere la palette colori perfetta per il tuo brand?",
       "Quali errori evitare nella scelta dei colori per il tuo sito web?",
       "Checklist operativa per la scelta dei colori del tuo sito web",
       "Articoli Correlati",
-      "Quanto Costa un Logo Professionale nel 2026? Guida Completa ai Prezzi",
-      "Mockup Grafici: Cosa Sono e Perché Servono Prima dello Sviluppo"
+      "Quanto Costa un Logo Professionale nel 2026? Guida Completa ai Prezzi"
     ],
-    "content": "Di WebNovis · 4 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 4 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -5828,16 +5852,16 @@
       "Ignorare l'autenticità e il tono della piattaforma",
       "Non analizzare i dati"
     ],
-    "content": "Di WebNovis · 5 Marzo 2026 · 9 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 5 Marzo 2026 · 9 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
     "id": "/blog/tipografia-web-guida.html",
     "url": "/blog/tipografia-web-guida.html",
     "type": "articolo",
-    "title": "Tipografia web: scegli i font giusti per il tuo sito",
-    "description": "Scopri come scegliere i font migliori per il tuo sito web. Guida completa alla tipografia web per una UX ottimale e una brand identity coerente.",
-    "keywords": "tipografia, scegli, font, giusti, tuo, sito, scopri, come, scegliere, migliori, guida, completa, ottimale, brand, identity, coerente, qual, ruolo, design, mio, abbinamento, quali, errori, comuni, evitare, scelta, articoli, correlati",
+    "title": "Font per Siti Web: Come Scegliere la Tipografia (2026)",
+    "description": "Serif o sans-serif? Come scegliere e abbinare i font del sito: leggibilità, coerenza e accessibilità. Guida 2026 con esempi.",
+    "keywords": "font, siti, come, scegliere, tipografia, 2026, serif, sans, abbinare, sito, leggibilita, coerenza, accessibilita, guida, esempi, scegli, giusti, tuo, qual, ruolo, design, mio, abbinamento, quali, errori, comuni, evitare, scelta",
     "headings": [
       "Tipografia web: scegli i font giusti per il tuo sito",
       "Qual è il ruolo della tipografia nel design di un sito web?",
@@ -5852,7 +5876,7 @@
       "Qual è il ruolo della tipografia nel design di un sito web?",
       "Come posso scegliere i font giusti per il mio sito web?"
     ],
-    "content": "Di WebNovis · 1 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 1 Marzo 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -5874,9 +5898,9 @@
       "Quanto Costa una Brand Identity nel 2026? Prezzi per PMI e Startup",
       "Psicologia dei Colori nel Branding: Guida alla Scelta della Palette",
       "Naming Aziendale: Come Scegliere il Nome Perfetto per il Tuo Brand",
-      "Domande frequenti su Branding"
+      "La voce del tuo brand è riconoscibile ovunque?"
     ],
-    "content": "Di WebNovis · 3 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 3 Marzo 2026 · 8 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -6075,9 +6099,9 @@
     "id": "/blog/velocita-sito-web-guida.html",
     "url": "/blog/velocita-sito-web-guida.html",
     "type": "articolo",
-    "title": "Come Velocizzare il Tuo Sito Web: Guida Tecnica Completa 2026",
-    "description": "Guida pratica per velocizzare il sito: immagini, codice, caching, CDN, server. Come migliorare Core Web Vitals e punteggio Lighthouse.",
-    "keywords": "come, velocizzare, tuo, sito, guida, tecnica, completa, 2026, pratica, immagini, codice, caching, cdn, server, migliorare, core, vitals, punteggio, lighthouse, diagnosi, misura, prima, ottimizzare, ottimizzazioni, impatto, ottimizza, alto, minifica",
+    "title": "Come Velocizzare il Sito Web: Guida 2026",
+    "description": "Guida pratica per velocizzare il sito: immagini, codice, caching, CDN, server. Migliora Core Web Vitals e Lighthouse: inizia dalla diagnosi.",
+    "keywords": "come, velocizzare, sito, guida, 2026, pratica, immagini, codice, caching, cdn, server, migliora, core, vitals, lighthouse, inizia, diagnosi, tuo, tecnica, completa, misura, prima, ottimizzare, ottimizzazioni, impatto, ottimizza, alto, minifica",
     "headings": [
       "Come Velocizzare il Tuo Sito Web: Guida Tecnica Completa 2026",
       "Diagnosi: Misura Prima di Ottimizzare",
@@ -6092,7 +6116,7 @@
       "Caso Pratico: da Lighthouse 45 a 92",
       "Articoli Correlati su Performance"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 10 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 10 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -6140,7 +6164,7 @@
       "Come Scegliere la Web Agency Giusta",
       "Quanto Costa un Sito Web nel 2026?"
     ],
-    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 7 Agosto 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 20 Febbraio 2026 · 8 min di lettura · Aggiornato: 6 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
