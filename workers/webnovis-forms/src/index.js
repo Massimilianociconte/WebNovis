@@ -183,6 +183,9 @@ export default {
     }
 
     // Forward to Web3Forms (strip empty turnstile field noise is fine; keep token optional for their Pro path)
+    // Campi operativi nostri (redirect/ts) non inoltrati: niente rumore nella email.
+    formData.delete('redirect');
+    formData.delete('ts');
     const endpoint = env.WEB3FORMS_ENDPOINT || 'https://api.web3forms.com/submit';
     if (env.WEB3FORMS_ACCESS_KEY && !formData.get('access_key')) {
       formData.set('access_key', env.WEB3FORMS_ACCESS_KEY);

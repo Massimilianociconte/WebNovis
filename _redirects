@@ -32,6 +32,92 @@
 /social-media-rho.html /servizi/social-media.html 301
 /chiedere-recensioni-clienti /blog/chiedere-recensioni-clienti.html 301
 
+# --- 200: eccezioni pagine pubblicate (PRIMA dei wildcard) ---
+# Su Workers gli _redirects vincono sui file statici (nessuno shadowing):
+# ogni .html pubblicato che matcha un wildcard 301 deve avere la sua
+# eccezione 200, altrimenti va in 301 invece di 200.
+# Rigenera con: python3 -c (vedi commit) — o aggiungi la riga a mano.
+/agenzia-web-arese.html /agenzia-web-arese.html 200
+/agenzia-web-baranzate.html /agenzia-web-baranzate.html 200
+/agenzia-web-bollate.html /agenzia-web-bollate.html 200
+/agenzia-web-castellanza.html /agenzia-web-castellanza.html 200
+/agenzia-web-cinisello-balsamo.html /agenzia-web-cinisello-balsamo.html 200
+/agenzia-web-cornaredo.html /agenzia-web-cornaredo.html 200
+/agenzia-web-garbagnate.html /agenzia-web-garbagnate.html 200
+/agenzia-web-lainate.html /agenzia-web-lainate.html 200
+/agenzia-web-legnano.html /agenzia-web-legnano.html 200
+/agenzia-web-milano-nord.html /agenzia-web-milano-nord.html 200
+/agenzia-web-milano-ovest.html /agenzia-web-milano-ovest.html 200
+/agenzia-web-milano.html /agenzia-web-milano.html 200
+/agenzia-web-monza.html /agenzia-web-monza.html 200
+/agenzia-web-novate-milanese.html /agenzia-web-novate-milanese.html 200
+/agenzia-web-parabiago.html /agenzia-web-parabiago.html 200
+/agenzia-web-pero.html /agenzia-web-pero.html 200
+/agenzia-web-rho.html /agenzia-web-rho.html 200
+/agenzia-web-saronno.html /agenzia-web-saronno.html 200
+/agenzia-web-sesto-san-giovanni.html /agenzia-web-sesto-san-giovanni.html 200
+/agenzia-web-settimo-milanese.html /agenzia-web-settimo-milanese.html 200
+/ecommerce-arese.html /ecommerce-arese.html 200
+/ecommerce-bollate.html /ecommerce-bollate.html 200
+/ecommerce-bresso.html /ecommerce-bresso.html 200
+/ecommerce-cinisello-balsamo.html /ecommerce-cinisello-balsamo.html 200
+/ecommerce-cormano.html /ecommerce-cormano.html 200
+/ecommerce-garbagnate.html /ecommerce-garbagnate.html 200
+/ecommerce-lainate.html /ecommerce-lainate.html 200
+/ecommerce-legnano.html /ecommerce-legnano.html 200
+/ecommerce-limbiate.html /ecommerce-limbiate.html 200
+/ecommerce-milano.html /ecommerce-milano.html 200
+/ecommerce-monza.html /ecommerce-monza.html 200
+/ecommerce-rho.html /ecommerce-rho.html 200
+/ecommerce-senago.html /ecommerce-senago.html 200
+/email-marketing-milano.html /email-marketing-milano.html 200
+/email-marketing-monza.html /email-marketing-monza.html 200
+/google-ads-monza.html /google-ads-monza.html 200
+/graphic-design-milano.html /graphic-design-milano.html 200
+/landing-page-arese.html /landing-page-arese.html 200
+/landing-page-bollate.html /landing-page-bollate.html 200
+/landing-page-milano-ovest.html /landing-page-milano-ovest.html 200
+/landing-page-milano.html /landing-page-milano.html 200
+/landing-page-rho.html /landing-page-rho.html 200
+/realizzazione-siti-web-arese.html /realizzazione-siti-web-arese.html 200
+/realizzazione-siti-web-arluno.html /realizzazione-siti-web-arluno.html 200
+/realizzazione-siti-web-bollate.html /realizzazione-siti-web-bollate.html 200
+/realizzazione-siti-web-buccinasco.html /realizzazione-siti-web-buccinasco.html 200
+/realizzazione-siti-web-caronno-pertusella.html /realizzazione-siti-web-caronno-pertusella.html 200
+/realizzazione-siti-web-castellanza.html /realizzazione-siti-web-castellanza.html 200
+/realizzazione-siti-web-cormano.html /realizzazione-siti-web-cormano.html 200
+/realizzazione-siti-web-garbagnate.html /realizzazione-siti-web-garbagnate.html 200
+/realizzazione-siti-web-legnano.html /realizzazione-siti-web-legnano.html 200
+/realizzazione-siti-web-limbiate.html /realizzazione-siti-web-limbiate.html 200
+/realizzazione-siti-web-magenta.html /realizzazione-siti-web-magenta.html 200
+/realizzazione-siti-web-milano-ovest.html /realizzazione-siti-web-milano-ovest.html 200
+/realizzazione-siti-web-origgio.html /realizzazione-siti-web-origgio.html 200
+/realizzazione-siti-web-parabiago.html /realizzazione-siti-web-parabiago.html 200
+/realizzazione-siti-web-rho.html /realizzazione-siti-web-rho.html 200
+/realizzazione-siti-web-senago.html /realizzazione-siti-web-senago.html 200
+/realizzazione-siti-web-solaro.html /realizzazione-siti-web-solaro.html 200
+/seo-locale-arese.html /seo-locale-arese.html 200
+/seo-locale-bresso.html /seo-locale-bresso.html 200
+/seo-locale-cinisello-balsamo.html /seo-locale-cinisello-balsamo.html 200
+/seo-locale-cormano.html /seo-locale-cormano.html 200
+/seo-locale-garbagnate.html /seo-locale-garbagnate.html 200
+/seo-locale-lainate.html /seo-locale-lainate.html 200
+/seo-locale-milano.html /seo-locale-milano.html 200
+/seo-locale-parabiago.html /seo-locale-parabiago.html 200
+/seo-locale-rho.html /seo-locale-rho.html 200
+/seo-locale-rozzano.html /seo-locale-rozzano.html 200
+/seo-locale-senago.html /seo-locale-senago.html 200
+/seo-locale-sesto-san-giovanni.html /seo-locale-sesto-san-giovanni.html 200
+/sito-vetrina-arese.html /sito-vetrina-arese.html 200
+/sito-vetrina-bollate.html /sito-vetrina-bollate.html 200
+/sito-vetrina-lainate.html /sito-vetrina-lainate.html 200
+/sito-vetrina-legnano.html /sito-vetrina-legnano.html 200
+/sito-vetrina-rho.html /sito-vetrina-rho.html 200
+/social-media-legnano.html /social-media-legnano.html 200
+/social-media-milano.html /social-media-milano.html 200
+/social-media-parabiago.html /social-media-parabiago.html 200
+/social-media-sesto-san-giovanni.html /social-media-sesto-san-giovanni.html 200
+
 # 2026-09-03 (rettifica): blocco wildcard GEO RIPRISTINATO sullo stesso
 # principio — sul Worker queste famiglie non esistono (v. sopra): il wildcard
 # preserva equity verso le pagine servizio invece di 404. De-amplificazione
@@ -57,9 +143,9 @@
 /ecommerce-* /servizi/ecommerce.html 301
 /graphic-design-* /servizi/graphic-design.html 301
 # Citta de-amplificate delle famiglie attive (noindex, non pubblicate in
-# dist): verso l'hub invece di 404. I file pubblicati vincono comunque
-# sullo shadowing (regole non forzate), quindi le citta indicizzate
-# restano servite normalmente.
+# dist): verso l'hub invece di 404. ATTENZIONE: su Workers i redirect
+# vincono sui file statici, quindi le citta indicizzate e pubblicate
+# DEVONO avere la loro eccezione 200 nel blocco sopra.
 /agenzia-web-* /agenzia-web/ 301
 /realizzazione-siti-web-* /realizzazione-siti-web/ 301
 

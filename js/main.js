@@ -1118,9 +1118,50 @@ function resetTurnstile(form) {
     }
 }
 
+// Attende un token fresco (dopo un reset il widget invisibile riesegue da
+// solo). Copre submit lampo a widget non ancora pronto e token scaduti.
+function waitFreshTurnstileToken(form, timeoutMs = 9000) {
+    try {
+        const current = getTurnstileToken(form);
+        if (current) return Promise.resolve(current);
+    } catch (_) { /* ignore */ }
+    return new Promise((resolve) => {
+        const started = Date.now();
+        const tick = () => {
+            let token = '';
+            try { token = getTurnstileToken(form); } catch (_) { /* ignore */ }
+            if (token || Date.now() - started > timeoutMs) {
+                resolve(token);
+                return;
+            }
+            setTimeout(tick, 250);
+        };
+        tick();
+    });
+}
+
 function resolveFormSubmitEndpoint() {
+    try {
+        const host = window.location.hostname;
+        if (host === 'localhost' || host === '127.0.0.1') {
+            return 'https://api.web3forms.com/submit';
+        }
+    } catch (_) { /* ignore */ }
     if (formSubmitMode === 'proxy' && formProxyUrl) return formProxyUrl;
     return 'https://api.web3forms.com/submit';
+}
+
+// Dev-only: su localhost il proxy rifiuterebbe l'hostname; si torna al direct.
+// La chiave NON è committata: il dev la incolla una volta in console con
+// localStorage.setItem('wn_dev_access_key', '<key>').
+function applyDevAccessKey(formData) {
+    try {
+        const host = window.location.hostname;
+        if ((host === 'localhost' || host === '127.0.0.1') && !formData.get('access_key')) {
+            const devKey = localStorage.getItem('wn_dev_access_key');
+            if (devKey) formData.set('access_key', devKey);
+        }
+    } catch (_) { /* ignore */ }
 }
 
 const contactForm = document.querySelector('.contact-form');
@@ -1281,6 +1322,9 @@ if (contactForm) {
 
     updateSubmitState();
 
+    // Retry anti-token-scaduto: un solo re-invio automatico con token fresco.
+    let submitRetried = false;
+
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -1326,12 +1370,18 @@ if (contactForm) {
             }
 
             if (turnstileSitekey) {
-                const captchaToken = getTurnstileToken(contactForm);
+                let captchaToken = getTurnstileToken(contactForm);
+                if (!captchaToken) {
+                    // Widget non ancora pronto (submit lampo): reset + attesa token.
+                    resetTurnstile(contactForm);
+                    captchaToken = await waitFreshTurnstileToken(contactForm);
+                }
                 if (!captchaToken) {
                     throw new Error('Completa la verifica anti-bot prima di inviare.');
                 }
                 formData.set('cf-turnstile-response', captchaToken);
             }
+            applyDevAccessKey(formData);
 
             const response = await fetch(resolveFormSubmitEndpoint(), {
                 method: 'POST',
@@ -1341,6 +1391,17 @@ if (contactForm) {
             });
 
             if (!response.ok) {
+                // 403 captcha: preserva il codice per il retry automatico con token fresco.
+                if (response.status === 403) {
+                    let code = '';
+                    try {
+                        const probe = await response.clone().json();
+                        code = String(probe.code || probe.message || '');
+                    } catch (_) { /* ignore */ }
+                    if (/captcha|turnstile|timeout-or-duplicate/i.test(code)) {
+                        throw new Error('captcha_failed');
+                    }
+                }
                 throw new Error(`Errore di rete (${response.status}). Riprova o scrivici a hello@webnovis.com`);
             }
 
@@ -1366,6 +1427,7 @@ if (contactForm) {
                 // Success
                 button.innerHTML = '<span>✓ Messaggio Inviato!</span>';
                 button.style.background = 'linear-gradient(135deg, #14b8a6, #10b981)';
+                submitRetried = false;
                 if (resultDiv) {
                     resultDiv.style.display = 'block';
                     resultDiv.style.background = 'rgba(20, 184, 166, 0.1)';
@@ -1386,6 +1448,18 @@ if (contactForm) {
                 throw new Error(data.message || 'Errore nell\'invio');
             }
         } catch (error) {
+            // Token scaduto/duplicato: un solo re-invio automatico con token fresco.
+            const isCaptcha = turnstileSitekey && error && error.message === 'captcha_failed';
+            if (isCaptcha && !submitRetried && typeof contactForm.requestSubmit === 'function') {
+                submitRetried = true;
+                resetTurnstile(contactForm);
+                button.innerHTML = '<span>Verifica in corso, riprovo...</span>';
+                const fresh = await waitFreshTurnstileToken(contactForm);
+                if (fresh) {
+                    contactForm.requestSubmit();
+                    return;
+                }
+            }
             button.innerHTML = originalHTML;
             updateSubmitState();
             if (turnstileSitekey) resetTurnstile(contactForm);
@@ -1896,6 +1970,8 @@ const newsletterForm = document.getElementById('newsletterForm');
 
 if (newsletterForm) {
     newsletterForm.dataset.ts = String(Date.now());
+    // Stesso scudo anti-bot dei form contatto (invisibile, zero frizione).
+    mountTurnstileOnForm(newsletterForm);
     newsletterForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const emailInput = newsletterForm.querySelector('input[type="email"]');
@@ -1907,10 +1983,23 @@ if (newsletterForm) {
         button.textContent = 'Invio...';
 
         try {
-            // 1. Invia notifica via Web3Forms (email di notifica)
+            // Via proxy con captcha come i form contatto (niente post diretti
+            // senza token); in locale torna al direct (vedi applyDevAccessKey).
             const formData = new FormData(newsletterForm);
             if (newsletterForm.dataset.ts) formData.set('ts', newsletterForm.dataset.ts);
-            const response = await fetch('https://api.web3forms.com/submit', {
+            if (turnstileSitekey && formSubmitMode === 'proxy') {
+                let captchaToken = getTurnstileToken(newsletterForm);
+                if (!captchaToken) {
+                    resetTurnstile(newsletterForm);
+                    captchaToken = await waitFreshTurnstileToken(newsletterForm);
+                }
+                if (!captchaToken) {
+                    throw new Error('Completa la verifica anti-bot prima di inviare.');
+                }
+                formData.set('cf-turnstile-response', captchaToken);
+            }
+            applyDevAccessKey(formData);
+            const response = await fetch(resolveFormSubmitEndpoint(), {
                 method: 'POST',
                 body: formData,
                 signal: AbortSignal.timeout(15000)
@@ -1936,6 +2025,7 @@ if (newsletterForm) {
                 throw new Error(data.message || 'Errore');
             }
         } catch (error) {
+            if (turnstileSitekey) resetTurnstile(newsletterForm);
             button.textContent = 'Errore, riprova';
             button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
             setTimeout(() => {

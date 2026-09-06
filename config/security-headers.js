@@ -85,17 +85,28 @@ function buildStaticHeadersFile() {
   const lines = [
     '# AUTO-GENERATED: run npm run sync:headers after editing config/security-headers.js',
     '# Static host header rules for platforms that support _headers (Netlify/Cloudflare Pages).',
+    '# NOTE: X-Frame-Options is intentionally NOT in /* — Cloudflare merges all',
+    '# matching rules, so /* DENY + /portfolio/* SAMEORIGIN produced the invalid',
+    '# "DENY, SAMEORIGIN". XFO lives only on document path rules below.',
     '',
     '/*'
   ];
 
   for (const [headerName, value] of Object.entries(SECURITY_HEADERS)) {
+    if (headerName === 'X-Frame-Options') continue;
     lines.push(`  ${headerName}: ${value}`);
   }
 
+  const XFO_DENY = '  X-Frame-Options: DENY';
+
   lines.push(
     '',
+    // ! detach: /* e /*.html matchano anche /portfolio/* (splat greedy) e i
+    // valori verrebbero uniti con la virgola ("DENY, SAMEORIGIN" invalido e
+    // doppia CSP). Il detach ripristina un singolo valore per questo path.
     '/portfolio/*',
+    '  ! Content-Security-Policy',
+    '  ! X-Frame-Options',
     `  X-Frame-Options: ${PORTFOLIO_FRAMING_HEADERS['X-Frame-Options']}`,
     `  Content-Security-Policy: ${PORTFOLIO_FRAMING_HEADERS['Content-Security-Policy']}`,
     '',
@@ -118,27 +129,34 @@ function buildStaticHeadersFile() {
     '',
     '/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    XFO_DENY,
     '',
     '/*.html',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    XFO_DENY,
     '',
     // Gli indici di directory (riscritti 200 da _redirects) non matchano
     // /*.html: senza regola esplicita restano senza Cache-Control e il
     // browser puo servirli stanti per euristiche su Last-Modified.
     '/blog/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    XFO_DENY,
     '',
     '/servizi/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    XFO_DENY,
     '',
     '/zone-servite/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    XFO_DENY,
     '',
     '/agenzia-web/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    XFO_DENY,
     '',
     '/realizzazione-siti-web/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    XFO_DENY,
     '',
     '/api/*',
     '  X-Robots-Tag: noindex, nofollow'
