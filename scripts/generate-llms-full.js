@@ -11,6 +11,10 @@
  *   - pagine core        → testo estratto dal <main> dell'HTML pubblicato
  *   - servizi/*.html     → tutte le pagine servizio
  *   - pagine geo Tier 1  → da config/pseo-governance.js (single source)
+ *   - blog/*.html        → digest deterministico degli ultimi 10 articoli
+ *                          (titolo+URL+descrizione; le voci con claim non
+ *                          governati vengono scaltate con warning, mai
+ *                          pubblicate: l'export resta fail-closed)
  *
  * Uso:   node scripts/generate-llms-full.js
  * npm:   npm run build:llms-full
@@ -34,6 +38,58 @@ const CORE_PAGES = [
   'preventivo.html',
   'contatti.html'
 ];
+
+const BLOG_DIGEST_ITEMS = 10;
+const BLOG_DIGEST_DESC_CHARS = 160;
+
+/** Digest deterministico degli ultimi articoli (titolo+URL+descrizione).
+ *  Separatore `===` dedicato: non interferisce con il conteggio sezioni
+ *  `---` del test (una sezione per pagina configurata). Niente righe `URL: `
+ *  per non alterare l'elenco canonico verificato. */
+function buildBlogDigest() {
+  const blogDir = path.join(PUBLISH_ROOT, 'blog');
+  if (!fs.existsSync(blogDir)) return '';
+  const files = fs.readdirSync(blogDir)
+    .filter((f) => f.endsWith('.html') && f !== 'index.html')
+    .sort();
+  const items = [];
+  for (const file of files) {
+    const html = fs.readFileSync(path.join(blogDir, file), 'utf8');
+    const rawTitle = extractTitle(html);
+    if (!rawTitle) continue;
+    // Il suffisso " — WebNovis" è identico ovunque: solo rumore nel digest.
+    const title = rawTitle.replace(/\s+[—–|-]\s+WebNovis\s*$/i, '');
+    const slug = file.replace(/\.html$/, '');
+    const dateMatch = html.match(/<meta\s+[^>]*property="article:published_time"[^>]*content="([^"]*)"/i)
+      || html.match(/<meta\s+[^>]*property="article:modified_time"[^>]*content="([^"]*)"/i);
+    const date = dateMatch ? dateMatch[1].slice(0, 10) : '';
+    const desc = extractDescription(html).replace(/\s+/g, ' ').trim().slice(0, BLOG_DIGEST_DESC_CHARS);
+    items.push({ slug, title, date, desc });
+  }
+  items.sort((a, b) => (b.date || '').localeCompare(a.date || '') || a.slug.localeCompare(b.slug));
+  const lines = [];
+  let skipped = 0;
+  for (const item of items.slice(0, BLOG_DIGEST_ITEMS)) {
+    const line = `- [${item.title}](${SITE_URL}/blog/${item.slug}.html)` +
+      (item.desc ? ` — ${item.desc}` : '');
+    if (findUnsupportedPublishedClaims(line).length > 0) {
+      skipped += 1;
+      continue;
+    }
+    lines.push(line);
+  }
+  if (skipped > 0) {
+    console.warn(`⚠️ blog digest: saltate ${skipped} voci con claim non governati`);
+  }
+  if (lines.length === 0) return '';
+  return [
+    '========================================',
+    '## Dal blog (ultimi articoli)',
+    '',
+    ...lines,
+    ''
+  ].join('\n');
+}
 
 function listServicePages() {
   return fs.readdirSync(path.join(PUBLISH_ROOT, 'servizi'))
@@ -161,6 +217,7 @@ function main() {
   if (sections.length !== pages.length) {
     throw new Error(`⛔ llms-full section mismatch: expected ${pages.length}, built ${sections.length}`);
   }
+  const blogDigest = buildBlogDigest();
 
   const out = [
     '# WebNovis — llms-full.txt',
@@ -172,12 +229,13 @@ function main() {
     '',
     headerAbstract,
     '',
-    ...sections
+    ...sections,
+    ...(blogDigest ? ['', blogDigest] : [])
   ].join('\n');
 
   assertClaimSafe(out, 'llms-full.txt final export');
   fs.writeFileSync(path.join(PUBLISH_ROOT, 'llms-full.txt'), out, 'utf8');
-  console.log(`✅ llms-full.txt generato: ${sections.length} pagine, ${(out.length / 1024).toFixed(0)} KB`);
+  console.log(`✅ llms-full.txt generato: ${sections.length} pagine${blogDigest ? ' + digest blog' : ''}, ${(out.length / 1024).toFixed(0)} KB`);
 }
 
 main();
