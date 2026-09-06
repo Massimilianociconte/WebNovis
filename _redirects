@@ -16,9 +16,6 @@
 /index.html / 301
 /servizi /servizi/ 301
 /blog /blog/ 301
-# 2026-09-06: la directory /quanto-costa-un-sito-web/ non esiste (l'articolo vive in /blog/);
-# normalizza eventuali hit su directory-style verso l'URL canonico.
-/quanto-costa-un-sito-web/ /blog/quanto-costa-un-sito-web.html 301
 /agenzia-web /agenzia-web/ 301
 /realizzazione-siti-web /realizzazione-siti-web/ 301
 /zone-servite /zone-servite/ 301
