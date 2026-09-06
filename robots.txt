@@ -7,6 +7,8 @@
 
 Sitemap: https://www.webnovis.com/sitemap.xml
 
+# AI agents start here: /llms.txt (index) - /llms-full.txt (complete export).
+
 # Motori di ricerca generici, incluso Googlebot.
 User-agent: *
 Allow: /

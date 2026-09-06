@@ -67,12 +67,20 @@ Vincolo assoluto: **mai perdere qualità visiva, definizione, estetica o fluidit
 - Eccezione: `agenzia-web-rho.html` è handcrafted (`normalizeHandCraftedAgenziaPage`) — va editata direttamente (logo, favicon, hint).
 - Path relativi `../../` coerenti con output in root; logo header in webp come homepage; `decoding="async"` sulle content-img; hint coerenti.
 
-## 8. Verifica obbligatoria prima di dire "fatto"
+## 9. AI-readiness (audit Cloudflare: migliorie, mai regressioni)
+
+- Formati testuali: `ai.txt`, `llms.txt`, `llms-full.txt` si rigenerano con `npm run build:ai-exports|build:llms|build:llms-full` — mai scriverli a mano. I test ne verificano il determinismo.
+- `robots.txt`: policy effettiva testata (allow AI legittimi, block scraper). Solo commenti o Allow/Disallow coerenti; mai bloccare `/llms*.txt`, `/ai.txt`, css/js/Img.
+- Discovery bot via header `Link:` (config `AI_DISCOVERY_LINK`): solo sui blocchi documento di `_headers`, MAI su `/*` (colpirebbe gli asset) e mai tag `<link>` in head (bloat per gli utenti).
+- `.well-known/agent.json`: card statica e veritiera di Weby (capacità dal `chat-config.json`, prezzi dal listino). Niente endpoint inventati: solo widget on-site, WhatsApp, email, llms.txt.
+- NON implementare per spunta audit: API Catalog con endpoint di scrittura ( calamita spam contro l'hardening form), MCP/OAuth/WebMCP/DNS-AID/pagamenti macchina (nessun account/checkout/paywall = superficie d'attacco inutile), preload font (contende l'LCP immagine).
+
+## 10. Verifica obbligatoria prima di dire "fatto"
 
 1. `node --check` sui JS toccati; `node build.js` (0 errori); `npm run build:geo` se toccati template/geo; normalize della pagina.
 2. Test: `widget-loader`, `build-pipeline`, `html-structure`, `seo-smoke`, `audit-seo-a11y`, `lcp-hero`, `faq-schema`, `public-html`, `public-artifact`, `seo`, `security-and-legal`, `footer-widget-loader`, `image-loading-policy`, `geo-generator`, `nav-canonical` — tutti verdi.
 3. `git diff --stat`: nessun file fuori scope; nessun HTML root editato a mano (solo via build, tranne `blog/`, `portfolio/case-study/`, `agenzia-web-rho.html` che sono artefatti diretti); nessuna `?v=` incoerente.
-4. Verificare le affermazioni degli audit con `rg` prima di applicare: placeholder nei contenuti tutorial (`<code>` escaped), `og:url` con attributi in ordine diverso, preload già presenti, template che emettono già il fix, duplicati767 solo apparenti (DPR!), keyframes con `animation-name` separato, classi definite in 2 file (cascade!) — mai fix "a fiducia".
+4. Verificare le affermazioni degli audit con `rg` prima di applicare: placeholder nei contenuti tutorial (`<code>` escaped), `og:url` con attributi in ordine diverso, preload già presenti, template che emettono già il fix, duplicati solo apparenti (DPR!), keyframes con `animation-name` separato, classi definite in 2 file (cascade!) — mai fix "a fiducia".
 5. Per fix di rete: HAR fresco di controllo (errori 4xx/5xx = 0, niente doppi download, preload hit).
 6. Dubbi qualità/byte (AVIF, resize): diff numerico + controllo visivo, mai "a occhio" sul solo peso.
 7. Mai committare `dist/`; mai toccare `portfolio/*.html` CamelCase legacy (design isolato, canonical verso case-study) oltre head invisibili (og:url, preconnect, hero eager).

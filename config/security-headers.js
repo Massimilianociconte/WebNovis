@@ -97,6 +97,10 @@ function buildStaticHeadersFile() {
     lines.push(`  ${headerName}: ${value}`);
   }
 
+  // Discovery per agenti AI (audit Cloudflare "Link Headers"): punta ai formati
+  // testuali senza toccare l'HTML. Solo sui documenti, mai sugli asset.
+  const AI_DISCOVERY_LINK = '  Link: <https://www.webnovis.com/llms.txt>; rel="alternate"; type="text/plain"; title="AI index", <https://www.webnovis.com/ai.txt>; rel="alternate"; type="text/plain"; title="AI briefing"';
+
   lines.push(
     '',
     // ! detach: /* e /*.html matchano anche /portfolio/* (splat greedy) e i
@@ -107,6 +111,7 @@ function buildStaticHeadersFile() {
     '  ! X-Frame-Options',
     `  X-Frame-Options: ${PORTFOLIO_FRAMING_HEADERS['X-Frame-Options']}`,
     `  Content-Security-Policy: ${PORTFOLIO_FRAMING_HEADERS['Content-Security-Policy']}`,
+    AI_DISCOVERY_LINK,
     '',
     '/css/*',
     '  Cache-Control: public, max-age=31536000, stale-while-revalidate=86400',
@@ -127,27 +132,34 @@ function buildStaticHeadersFile() {
     '',
     '/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    AI_DISCOVERY_LINK,
     '',
     '/*.html',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    AI_DISCOVERY_LINK,
     '',
     // Gli indici di directory (riscritti 200 da _redirects) non matchano
     // /*.html: senza regola esplicita restano senza Cache-Control e il
     // browser puo servirli stanti per euristiche su Last-Modified.
     '/blog/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    AI_DISCOVERY_LINK,
     '',
     '/servizi/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    AI_DISCOVERY_LINK,
     '',
     '/zone-servite/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    AI_DISCOVERY_LINK,
     '',
     '/agenzia-web/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    AI_DISCOVERY_LINK,
     '',
     '/realizzazione-siti-web/',
     '  Cache-Control: public, max-age=300, stale-while-revalidate=3600',
+    AI_DISCOVERY_LINK,
     '',
     '/api/*',
     '  X-Robots-Tag: noindex, nofollow'
