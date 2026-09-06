@@ -169,7 +169,7 @@
         loadScript('cosmic-nebula.min.js').catch(function () {});
     });
     if (nebulaTarget) {
-        whenElementNearViewport(nebulaTarget, loadNebula, '120px 0px 120px 0px');
-        scheduleIdle(loadNebula, isMobileViewport ? 2000 : 800);
+        whenElementNearViewport(nebulaTarget, loadNebula, '200px 0px 200px 0px');
+        scheduleIdle(loadNebula, 500);
     }
 })();

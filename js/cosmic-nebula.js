@@ -30,7 +30,7 @@
         depth: false,
         stencil: false,
         antialias: false,
-        powerPreference: 'low-power',
+        powerPreference: 'default',
         preserveDrawingBuffer: false
     }) || canvas.getContext('experimental-webgl', {
         alpha: false,
@@ -58,17 +58,24 @@
     ].join('\n');
 
     // Fragment Shader: High-density living cosmic nebula with domain warping & stardust
+    // Uses David Hoskins' sine-less hash for 100% precision immunity on all mobile GPUs
     var fsSource = [
+        '#ifdef GL_FRAGMENT_PRECISION_HIGH',
+        'precision highp float;',
+        '#else',
         'precision mediump float;',
+        '#endif',
+        '',
         'uniform vec2 u_resolution;',
         'uniform float u_time;',
         'uniform vec2 u_mouse;',
         'uniform float u_is_mobile;',
         '',
-        '// Fast hash for procedural turbulence & stardust',
+        '// Sine-less, overflow-proof hash (works identically on iOS Metal, Mali, Adreno, Desktop)',
         'vec2 hash2(vec2 p) {',
-        '    p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));',
-        '    return -1.0 + 2.0 * fract(sin(p) * 43758.5453123);',
+        '    vec3 p3 = fract(vec3(p.xyx) * vec3(0.1031, 0.1030, 0.0973));',
+        '    p3 += dot(p3, p3.yzx + 33.33);',
+        '    return -1.0 + 2.0 * fract((p3.xx + p3.yz) * p3.zy);',
         '}',
         '',
         '// Simplex-style smooth noise',
@@ -85,32 +92,37 @@
         '    return dot(n, vec3(70.0));',
         '}',
         '',
-        '// Multi-octave Fractional Brownian Motion',
+        '// Multi-octave Fractional Brownian Motion (4 octaves for high richness everywhere)',
         'float fbm(vec2 p) {',
         '    float v = 0.0;',
         '    float a = 0.52;',
         '    mat2 rot = mat2(0.87, 0.49, -0.49, 0.87);',
-        '    // 4 octaves on desktop, 3 on mobile for ultra performance',
         '    v += a * noise2(p); p = rot * p * 2.04 + vec2(0.13, 0.27); a *= 0.5;',
         '    v += a * noise2(p); p = rot * p * 2.02 + vec2(0.35, 0.11); a *= 0.5;',
         '    v += a * noise2(p); p = rot * p * 2.03 + vec2(0.22, 0.43); a *= 0.5;',
-        '    if (u_is_mobile < 0.5) {',
-        '        v += a * noise2(p);',
-        '    }',
+        '    v += a * noise2(p);',
         '    return v;',
         '}',
         '',
         'void main() {',
         '    vec2 uv = gl_FragCoord.xy / u_resolution.xy;',
-        '    // Aspect-ratio corrected coordinates',
-        '    vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / min(u_resolution.x, u_resolution.y);',
         '    ',
-        '    // Optimal framing: center nebula diagonally across the hero showcase',
-        '    p *= 1.75;',
-        '    p.y -= 0.08;',
-        '    p.x += 0.28;',
+        '    // Aspect-ratio corrected coordinates tailored for desktop vs mobile portrait',
+        '    vec2 p;',
+        '    if (u_is_mobile > 0.5) {',
+        '        // Mobile portrait: symmetrically centered directly behind hero text & CTAs',
+        '        p = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.x;',
+        '        p *= 1.45;',
+        '        p.y += 0.10;',
+        '    } else {',
+        '        // Desktop landscape: optimal diagonal framing across the hero showcase',
+        '        p = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / min(u_resolution.x, u_resolution.y);',
+        '        p *= 1.75;',
+        '        p.y -= 0.08;',
+        '        p.x += 0.28;',
+        '    }',
         '    ',
-        '    // Inertial mouse parallax',
+        '    // Inertial pointer parallax',
         '    vec2 mouseEffect = (u_mouse - 0.5) * 0.35;',
         '    p += mouseEffect * 0.2;',
         '    ',
@@ -171,7 +183,7 @@
         '    ',
         '    // --- Procedural Stardust Stream ---',
         '    // Micro-particles adhere to velocity field (r) and drift organically',
-        '    vec2 starUv = (p * 38.0) + r * 5.5 + vec2(t * 1.4, -t * 0.7);',
+        '    vec2 starUv = (p * 34.0) + r * 5.2 + vec2(t * 1.4, -t * 0.7);',
         '    vec2 starGrid = floor(starUv);',
         '    vec2 starCell = fract(starUv) - 0.5;',
         '    vec2 starPos = hash2(starGrid);',
@@ -182,16 +194,20 @@
         '    vec3 starTint = mix(c_cyan_glow, c_core_star, starPos.y * 0.5 + 0.5);',
         '    col += starTint * (starSpark * gasDensity * 0.9);',
         '    ',
-        '    // --- Vignette, Bottom Dissolve & Contrast Shielding ---',
-        '    // Bottom edge dissolves seamlessly into solid #0a0a0a before the next section',
-        '    float bottomDissolve = smoothstep(0.0, 0.22, uv.y);',
-        '    ',
-        '    // Top edge maintains full cosmic vibrancy under and behind navbar',
+        '    // --- Vignette, Dissolve & Contrast Shielding ---',
+        '    float bottomDissolve = smoothstep(0.0, 0.18, uv.y);',
         '    float topDissolve = 1.0;',
         '    ',
-        '    // Left shield: soft luminance taming on left half so text & CTA are 100% readable',
-        '    float leftShield = smoothstep(0.02, 0.68, uv.x);',
-        '    float lumMultiplier = mix(0.60, 1.0, leftShield);',
+        '    float lumMultiplier = 1.0;',
+        '    if (u_is_mobile > 0.5) {',
+        '        // Mobile: balanced soft radial mask centered behind hero text',
+        '        float centerDist = length(uv - vec2(0.5, 0.45));',
+        '        lumMultiplier = mix(0.80, 1.0, smoothstep(0.15, 0.65, centerDist));',
+        '    } else {',
+        '        // Desktop: left shield for editorial copy on the left',
+        '        float leftShield = smoothstep(0.02, 0.68, uv.x);',
+        '        lumMultiplier = mix(0.60, 1.0, leftShield);',
+        '    }',
         '    ',
         '    col *= bottomDissolve * topDissolve * lumMultiplier;',
         '    ',
@@ -253,26 +269,23 @@
     var targetMouseY = 0.5;
     var currentMouseX = 0.5;
     var currentMouseY = 0.5;
+    var hasPointerInput = false;
+    var pointerTimer = null;
     var animationFrameId = null;
     var startTime = performance.now();
-    var lastFrameTime = 0;
     var isVisible = true;
     var isTabActive = true;
     var hasFadedIn = false;
 
-    // Mobile frame throttling: ~33ms (30fps) for mobile, 60fps for desktop
-    var targetFrameInterval = isMobile ? 33 : 16;
-
-    // Viewport resize handler with DPR scaling
+    // Viewport resize handler with adaptive DPR scaling
     function resize() {
         isMobile = window.matchMedia('(max-width: 768px)').matches;
-        targetFrameInterval = isMobile ? 33 : 16;
 
-        // Adaptive DPR:
-        // Desktop: 0.85x - 1.0x (plenty sharp for nebula smoke, saves fill rate)
-        // Mobile: 0.5x - 0.6x (super lightweight, 0 battery drain, butter smooth)
         var dpr = window.devicePixelRatio || 1;
-        var scaleFactor = isMobile ? Math.min(dpr * 0.55, 1.0) : Math.min(dpr * 0.85, 1.2);
+        // High fidelity DPR:
+        // Desktop: 0.85x - 1.25x
+        // Mobile: 0.70x - 1.0x (crisp, zero blur, highly optimized fill rate)
+        var scaleFactor = isMobile ? Math.min(dpr * 0.70, 1.0) : Math.min(dpr * 0.85, 1.25);
 
         var displayWidth = canvas.clientWidth || window.innerWidth;
         var displayHeight = canvas.clientHeight || window.innerHeight;
@@ -288,27 +301,45 @@
     }
 
     resize();
-    window.addEventListener('resize', function () {
-        resize();
-        if (prefersReducedMotion) {
-            renderFrame(performance.now());
-        }
-    }, { passive: true });
+    window.addEventListener('resize', resize, { passive: true });
 
-    // Smooth inertial mouse tracking (only on fine pointer / desktop)
+    // Pointer / Mouse tracking on desktop
     if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         window.addEventListener('mousemove', function (e) {
+            hasPointerInput = true;
             targetMouseX = e.clientX / window.innerWidth;
             targetMouseY = 1.0 - (e.clientY / window.innerHeight);
         }, { passive: true });
     }
 
+    // Touch interaction for mobile devices
+    window.addEventListener('touchmove', function (e) {
+        if (e.touches && e.touches[0]) {
+            hasPointerInput = true;
+            targetMouseX = e.touches[0].clientX / window.innerWidth;
+            targetMouseY = 1.0 - (e.touches[0].clientY / window.innerHeight);
+            if (pointerTimer) clearTimeout(pointerTimer);
+            pointerTimer = setTimeout(function () {
+                hasPointerInput = false;
+            }, 3000);
+        }
+    }, { passive: true });
+
     // Main Render Routine
     function renderFrame(now) {
         var elapsed = now - startTime;
-        var timeSec = elapsed * 0.001;
+        // If system prefers reduced motion, gently slow down rather than freezing
+        var speedMultiplier = prefersReducedMotion ? 0.35 : 1.0;
+        var timeSec = elapsed * 0.001 * speedMultiplier;
 
-        // Inertial mouse interpolation (smooth lerp)
+        // Autonomous organic cosmic drift when no pointer interaction is active
+        if (!hasPointerInput) {
+            var tDrift = timeSec * 0.35;
+            targetMouseX = 0.5 + Math.sin(tDrift * 0.7) * 0.14;
+            targetMouseY = 0.5 + Math.cos(tDrift * 0.5) * 0.14;
+        }
+
+        // Inertial pointer interpolation (smooth lerp)
         currentMouseX += (targetMouseX - currentMouseX) * 0.05;
         currentMouseY += (targetMouseY - currentMouseY) * 0.05;
 
@@ -326,25 +357,19 @@
         }
     }
 
-    // Animation Loop
+    // Smooth animation loop: 60 FPS / native refresh rate
     function loop(timestamp) {
         if (!isVisible || !isTabActive) {
             animationFrameId = null;
             return;
         }
 
-        var delta = timestamp - lastFrameTime;
-        if (delta >= targetFrameInterval) {
-            lastFrameTime = timestamp - (delta % targetFrameInterval);
-            renderFrame(timestamp);
-        }
-
+        renderFrame(timestamp);
         animationFrameId = requestAnimationFrame(loop);
     }
 
     function startLoop() {
-        if (animationFrameId || prefersReducedMotion) return;
-        lastFrameTime = performance.now();
+        if (animationFrameId) return;
         animationFrameId = requestAnimationFrame(loop);
     }
 
@@ -355,17 +380,13 @@
         }
     }
 
-    // Handle Reduced Motion: single static cinematic frame
-    if (prefersReducedMotion) {
-        renderFrame(performance.now());
-        return;
-    }
-
-    // IntersectionObserver: Pause when hero is scrolled out of viewport
+    // IntersectionObserver: Pause when hero is far out of viewport
     var heroSection = canvas.closest('.hero') || canvas.parentElement;
     if (heroSection && 'IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function (entries) {
-            isVisible = entries[0].isIntersecting;
+            var isIntersecting = entries[0].isIntersecting;
+            var inHeroZone = window.pageYOffset < (heroSection.offsetHeight || 900);
+            isVisible = isIntersecting || inHeroZone;
             if (isVisible) {
                 startLoop();
             } else {
@@ -373,10 +394,18 @@
             }
         }, {
             threshold: 0,
-            rootMargin: '120px 0px 120px 0px'
+            rootMargin: '200px 0px 200px 0px'
         });
         observer.observe(heroSection);
     }
+
+    // Window scroll fallback to guarantee animation runs in hero zone
+    window.addEventListener('scroll', function () {
+        if (window.pageYOffset < 900 && !animationFrameId && isTabActive) {
+            isVisible = true;
+            startLoop();
+        }
+    }, { passive: true });
 
     // Tab Visibility API: Pause when tab is hidden
     document.addEventListener('visibilitychange', function () {
