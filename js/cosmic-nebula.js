@@ -428,10 +428,20 @@
 
     // IntersectionObserver: Pause when hero is far out of viewport
     var heroSection = canvas.closest('.hero') || canvas.parentElement;
+    // Altezza hero cachata al resize: leggerla nel callback IO dopo lo scroll
+    // forzerebbe un reflow sincrono (Lighthouse: forced reflow).
+    var heroZoneHeight = 900;
+    function refreshHeroZoneHeight() {
+        try {
+            heroZoneHeight = (heroSection && heroSection.offsetHeight) || 900;
+        } catch (_) { heroZoneHeight = 900; }
+    }
+    refreshHeroZoneHeight();
+    window.addEventListener('resize', refreshHeroZoneHeight, { passive: true });
     if (heroSection && 'IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function (entries) {
             var isIntersecting = entries[0].isIntersecting;
-            var inHeroZone = window.pageYOffset < (heroSection.offsetHeight || 900);
+            var inHeroZone = window.pageYOffset < heroZoneHeight;
             isVisible = isIntersecting || inHeroZone;
             if (isVisible) {
                 startLoop();

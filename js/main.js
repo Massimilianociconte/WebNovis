@@ -1068,36 +1068,72 @@ function resolveTurnstileAction(form) {
     return 'contact';
 }
 
+const turnstileMountInflight = new WeakMap();
 async function mountTurnstileOnForm(form) {
     if (!turnstileSitekey || !form) return null;
-    let host = form.querySelector('.cf-turnstile, [data-webnovis-turnstile-host]');
-    if (!host) {
-        host = document.createElement('div');
-        host.className = 'cf-turnstile webnovis-turnstile-host';
-        host.setAttribute('data-webnovis-turnstile-host', '1');
-        host.style.margin = '0.75rem 0 1rem';
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (submitBtn && submitBtn.parentElement) {
-            submitBtn.parentElement.insertBefore(host, submitBtn);
-        } else {
-            form.appendChild(host);
+    if (turnstileWidgetIds.has(form)) return turnstileWidgetIds.get(form);
+    if (turnstileMountInflight.has(form)) return turnstileMountInflight.get(form);
+    const pending = (async () => {
+        let host = form.querySelector('.cf-turnstile, [data-webnovis-turnstile-host]');
+        if (!host) {
+            host = document.createElement('div');
+            host.className = 'cf-turnstile webnovis-turnstile-host';
+            host.setAttribute('data-webnovis-turnstile-host', '1');
+            host.style.margin = '0.75rem 0 1rem';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn && submitBtn.parentElement) {
+                submitBtn.parentElement.insertBefore(host, submitBtn);
+            } else {
+                form.appendChild(host);
+            }
         }
+        try {
+            await loadTurnstileScript();
+            if (!window.turnstile) return null;
+            if (turnstileWidgetIds.has(form)) return turnstileWidgetIds.get(form);
+            const widgetId = window.turnstile.render(host, {
+                sitekey: turnstileSitekey,
+                theme: turnstileTheme,
+                action: resolveTurnstileAction(form)
+            });
+            turnstileWidgetIds.set(form, widgetId);
+            return widgetId;
+        } catch (err) {
+            console.warn('[WebNovis] Turnstile mount failed', err);
+            return null;
+        } finally {
+            turnstileMountInflight.delete(form);
+        }
+    })();
+    turnstileMountInflight.set(form, pending);
+    return pending;
+}
+
+// Il widget anti-bot vive below-fold: montaggio differito alla prima
+// visibilità/interazione col form (mai nel critical path). Il submit
+// monta on-demand prima di leggere il token, quindi nessun invio resta scoperto.
+function scheduleTurnstileMount(form) {
+    if (!turnstileSitekey || !form || form.__webnovisTurnstileScheduled) return;
+    form.__webnovisTurnstileScheduled = true;
+    let done = false;
+    const mount = () => {
+        if (done) return;
+        done = true;
+        try { observer && observer.disconnect(); } catch (_) { /* ignore */ }
+        mountTurnstileOnForm(form);
+    };
+    let observer = null;
+    if (typeof IntersectionObserver === 'function') {
+        try {
+            observer = new IntersectionObserver((entries) => {
+                if (entries.some((entry) => entry.isIntersecting)) mount();
+            }, { rootMargin: '800px 0px' });
+            observer.observe(form);
+        } catch (_) { observer = null; }
     }
-    try {
-        await loadTurnstileScript();
-        if (!window.turnstile) return null;
-        if (turnstileWidgetIds.has(form)) return turnstileWidgetIds.get(form);
-        const widgetId = window.turnstile.render(host, {
-            sitekey: turnstileSitekey,
-            theme: turnstileTheme,
-            action: resolveTurnstileAction(form)
-        });
-        turnstileWidgetIds.set(form, widgetId);
-        return widgetId;
-    } catch (err) {
-        console.warn('[WebNovis] Turnstile mount failed', err);
-        return null;
-    }
+    form.addEventListener('focusin', mount, { once: true });
+    form.addEventListener('pointerdown', mount, { once: true });
+    if (!observer) mount();
 }
 
 function getTurnstileToken(form) {
@@ -1177,7 +1213,7 @@ if (contactForm) {
         emailInput.addEventListener('input', () => { replytoInput.value = emailInput.value; });
     }
     if (turnstileSitekey) {
-        mountTurnstileOnForm(contactForm);
+        scheduleTurnstileMount(contactForm);
     }
 
     const fields = contactForm.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
@@ -1370,6 +1406,8 @@ if (contactForm) {
             }
 
             if (turnstileSitekey) {
+                // Garanzia: se il mount differito non è ancora partito, montiamo ora.
+                await mountTurnstileOnForm(contactForm);
                 let captchaToken = getTurnstileToken(contactForm);
                 if (!captchaToken) {
                     // Widget non ancora pronto (submit lampo): reset + attesa token.
@@ -1971,7 +2009,7 @@ const newsletterForm = document.getElementById('newsletterForm');
 if (newsletterForm) {
     newsletterForm.dataset.ts = String(Date.now());
     // Stesso scudo anti-bot dei form contatto (invisibile, zero frizione).
-    mountTurnstileOnForm(newsletterForm);
+    scheduleTurnstileMount(newsletterForm);
     newsletterForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const emailInput = newsletterForm.querySelector('input[type="email"]');
@@ -1988,6 +2026,7 @@ if (newsletterForm) {
             const formData = new FormData(newsletterForm);
             if (newsletterForm.dataset.ts) formData.set('ts', newsletterForm.dataset.ts);
             if (turnstileSitekey && formSubmitMode === 'proxy') {
+                await mountTurnstileOnForm(newsletterForm);
                 let captchaToken = getTurnstileToken(newsletterForm);
                 if (!captchaToken) {
                     resetTurnstile(newsletterForm);

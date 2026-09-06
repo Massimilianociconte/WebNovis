@@ -73,11 +73,22 @@ function main() {
   const legacyBlogFooterOffenders = [];
   const eagerNonCriticalScriptOffenders = [];
   const missingLoaderOffenders = [];
+  const invalidSpeculationOffenders = [];
   for (const filePath of walk(ROOT)) {
     const html = fs.readFileSync(filePath, 'utf8');
     const relativePath = path.relative(ROOT, filePath);
     if (html.includes('height="auto"')) {
       offenders.push(relativePath);
+    }
+
+    for (const match of html.matchAll(/<script type="speculationrules">(.*?)<\/script>/gs)) {
+      try {
+        const rules = JSON.parse(match[1]);
+        assert.ok(rules && Array.isArray(rules.prefetch), 'prefetch rules');
+      } catch {
+        invalidSpeculationOffenders.push(relativePath);
+        break;
+      }
     }
 
     if (relativePath.startsWith(`blog${path.sep}`) && html.includes('class="footer-content"')) {
@@ -108,6 +119,11 @@ function main() {
     missingLoaderOffenders,
     [],
     `Public HTML must reference the progressive non-critical loader. Found: ${missingLoaderOffenders.slice(0, 20).join(', ')}`
+  );
+  assert.deepEqual(
+    invalidSpeculationOffenders,
+    [],
+    `Speculation rules must be valid JSON with a prefetch array (invalid JSON logs a console error and disables prefetch). Found: ${invalidSpeculationOffenders.slice(0, 20).join(', ')}`
   );
 }
 
