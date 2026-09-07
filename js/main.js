@@ -1176,6 +1176,12 @@ function waitFreshTurnstileToken(form, timeoutMs = 9000) {
     });
 }
 
+// TEMP-EMAIL-REDIRECT (2026-09-07, temporaneo — da revertare):
+// la casella che RICEVE le email dei form non è in questo file: è quella
+// collegata alla WEB3FORMS_ACCESS_KEY su Web3Forms (via Worker proxy).
+// Finché hello@webnovis.com non riceve (DNS spostati per Zoho), la key attiva
+// deve essere quella di webnovis.info@gmail.com. REVERT: ripristinare la key
+// di hello@ e rimuovere questo commento. Nessun impatto SEO (solo backend).
 function resolveFormSubmitEndpoint() {
     try {
         const host = window.location.hostname;

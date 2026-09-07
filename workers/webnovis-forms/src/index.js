@@ -4,6 +4,15 @@
  *
  * Secrets: TURNSTILE_SECRET (required)
  * Vars: TURNSTILE_HOSTNAMES, WEB3FORMS_ENDPOINT
+ *
+ * TEMP-EMAIL-REDIRECT (2026-09-07, temporaneo — da revertare):
+ * il destinatario delle email NON è nel codice: è la casella collegata alla
+ * WEB3FORMS_ACCESS_KEY su Web3Forms. Dal 2026-09-07 hello@webnovis.com non riceve
+ * (record DNS spostati per Zoho), quindi la key attiva deve essere quella collegata
+ * a webnovis.info@gmail.com (wrangler secret put WEB3FORMS_ACCESS_KEY).
+ * REVERT: appena hello@webnovis.com torna attiva, ripristinare la key precedente
+ * e rimuovere questo blocco di commento. Nessun impatto SEO: il destinatario è
+ * solo backend, nessun contenuto visibile cambia.
  */
 
 const CORS_HEADERS = {
