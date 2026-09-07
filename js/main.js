@@ -1178,10 +1178,11 @@ function waitFreshTurnstileToken(form, timeoutMs = 9000) {
 
 // TEMP-EMAIL-REDIRECT (2026-09-07, temporaneo — da revertare):
 // la casella che RICEVE le email dei form è quella collegata alla key Web3Forms
-// in uso. Finché hello@webnovis.com non riceve (DNS spostati per Zoho), i form
-// girano in direct con WEB3FORMS_PUBLIC_KEY (casella webnovis.info@gmail.com)
-// perché il proxy è murato dal bot-wall (502 upstream). REVERT: mode 'proxy' +
-// key hello@ e rimuovere i commenti TEMP. Nessun impatto SEO (solo backend).
+// in uso (ora webnovis.info@gmail.com; hello@ non riceve: DNS spostati per Zoho).
+// Causa vera dei 502/400 (da HAR): la key free rifiuta cf-turnstile-response
+// ("Pro feature") — il token non viene mai spedito a Web3Forms (verifica solo
+// server-side nel proxy). REVERT: key hello@ e rimuovere i commenti TEMP.
+// Nessun impatto SEO (solo backend).
 function resolveFormSubmitEndpoint() {
     try {
         const host = window.location.hostname;
@@ -1204,14 +1205,17 @@ function applyDevAccessKey(formData) {
             if (devKey) formData.set('access_key', devKey);
         }
     } catch (_) { /* ignore */ }
-    // TEMP-DIRECT (2026-09-07, temporaneo — da revertare): il proxy è murato
-    // dal bot-wall di Web3Forms (502 upstream), quindi il browser posta in
-    // direct con la PUBLIC key (pubblica per design Web3Forms, nessun segreto).
-    // REVERT: tornare a FORM_SUBMIT_MODE 'proxy' + key hello@ e rimuovere.
+    // In direct la chiave free rifiuta il campo captcha (feature Pro, 400):
+    // il token NON viene mai spedito a Web3Forms (il widget resta visibile
+    // come deterrente, la verifica server-side vive nel proxy).
     try {
         if (formSubmitMode !== 'proxy' && !formData.get('access_key')) {
             const pubKey = String(webnovisSiteConfig.WEB3FORMS_PUBLIC_KEY || '').trim();
             if (pubKey) formData.set('access_key', pubKey);
+        }
+        if (formSubmitMode !== 'proxy') {
+            formData.delete('cf-turnstile-response');
+            formData.delete('turnstile_token');
         }
     } catch (_) { /* ignore */ }
 }

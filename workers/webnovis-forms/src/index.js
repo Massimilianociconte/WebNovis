@@ -10,9 +10,12 @@
  * WEB3FORMS_ACCESS_KEY su Web3Forms. Dal 2026-09-07 hello@webnovis.com non riceve
  * (record DNS spostati per Zoho), quindi la key attiva deve essere quella collegata
  * a webnovis.info@gmail.com (wrangler secret put WEB3FORMS_ACCESS_KEY).
+ * Causa vera dei 502 (da HAR): la key free rifiuta cf-turnstile-response con 400
+ * "Pro feature", e il Worker lo propagava come 502 — qui sotto il token viene
+ * verificato (siteverify) e poi scartato prima dell'inoltro.
  * REVERT: appena hello@webnovis.com torna attiva, ripristinare la key precedente
- * e rimuovere questo blocco di commento. Nessun impatto SEO: il destinatario è
- * solo backend, nessun contenuto visibile cambia.
+ * (se Pro, si può valutare di tenere l'inoltro) e rimuovere questo blocco.
+ * Nessun impatto SEO: il destinatario è solo backend, nessun contenuto visibile cambia.
  */
 
 const CORS_HEADERS = {
@@ -193,8 +196,12 @@ export default {
 
     // Forward to Web3Forms (strip empty turnstile field noise is fine; keep token optional for their Pro path)
     // Campi operativi nostri (redirect/ts) non inoltrati: niente rumore nella email.
+    // Il token captcha NON viene mai inoltrato: sulle key free Web3Forms lo rifiuta
+    // con 400 "Pro feature" (la verifica è già avvenuta qui sopra via siteverify).
     formData.delete('redirect');
     formData.delete('ts');
+    formData.delete('cf-turnstile-response');
+    formData.delete('turnstile_token');
     const endpoint = env.WEB3FORMS_ENDPOINT || 'https://api.web3forms.com/submit';
     if (env.WEB3FORMS_ACCESS_KEY && !formData.get('access_key')) {
       formData.set('access_key', env.WEB3FORMS_ACCESS_KEY);
