@@ -2469,6 +2469,44 @@ section {
     }
 }
 
+/* ===== AI ACT MINI-FORM (dentro articoli blog) ===== */
+.ai-act-form {
+    margin: 2rem 0 1rem;
+    padding: 1.7rem;
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    background: rgba(37, 99, 235, 0.07);
+    border-radius: 16px;
+}
+.ai-act-form .form-group > label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--white);
+    font-size: 0.95rem;
+}
+.ai-act-form .form-group.form-checkbox label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--gray-light);
+    cursor: pointer;
+}
+.ai-act-form .form-group.form-checkbox input {
+    width: auto;
+    margin-top: 0.25rem;
+    accent-color: var(--primary);
+}
+.ai-act-form .form-result {
+    margin: 1rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+.ai-act-form .form-result:empty {
+    display: none;
+}
+
 /* ===== FORM CHECKBOXES ===== */
 .form-checkboxes {
     display: flex;

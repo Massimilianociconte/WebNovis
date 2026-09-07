@@ -2076,6 +2076,67 @@ if (newsletterForm) {
     });
 }
 
+// 5b. AI Act mini-form (dentro articolo blog): parere preliminare gratuito.
+// Riutilizza endpoint proxy + Turnstile come i form principali.
+const aiActForm = document.getElementById('aiActForm');
+if (aiActForm) {
+    aiActForm.dataset.ts = String(Date.now());
+    scheduleTurnstileMount(aiActForm);
+    aiActForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const result = document.getElementById('aiActResult');
+        if (!aiActForm.checkValidity()) {
+            aiActForm.reportValidity();
+            return;
+        }
+        const button = aiActForm.querySelector('button[type="submit"]');
+        const originalHTML = button.innerHTML;
+        button.disabled = true;
+        button.innerHTML = '<span>Invio in corso...</span>';
+        if (result) result.textContent = '';
+        try {
+            await mountTurnstileOnForm(aiActForm);
+            const formData = new FormData(aiActForm);
+            if (aiActForm.dataset.ts) formData.set('ts', aiActForm.dataset.ts);
+            const emailVal = aiActForm.querySelector('input[name="email"]');
+            if (emailVal && emailVal.value) formData.set('replyto', emailVal.value);
+            if (turnstileSitekey) {
+                let captchaToken = getTurnstileToken(aiActForm);
+                if (!captchaToken) {
+                    resetTurnstile(aiActForm);
+                    captchaToken = await waitFreshTurnstileToken(aiActForm);
+                }
+                if (!captchaToken) {
+                    throw new Error('Completa la verifica anti-bot prima di inviare.');
+                }
+                formData.set('cf-turnstile-response', captchaToken);
+            }
+            applyDevAccessKey(formData);
+            const response = await fetch(resolveFormSubmitEndpoint(), {
+                method: 'POST',
+                body: formData,
+                signal: AbortSignal.timeout(15000)
+            });
+            if (!response.ok) {
+                throw new Error(`Errore di rete (${response.status})`);
+            }
+            const data = await response.json();
+            if (data.success) {
+                if (result) result.textContent = 'Richiesta inviata! Ti risponderemo via email con il parere preliminare gratuito.';
+                aiActForm.reset();
+                button.innerHTML = '<span>✓ Inviato!</span>';
+            } else {
+                throw new Error(data.message || 'Errore');
+            }
+        } catch (error) {
+            if (turnstileSitekey) resetTurnstile(aiActForm);
+            if (result) result.textContent = 'Invio non riuscito. Scrivici a hello@webnovis.com oppure riprova.';
+            button.innerHTML = originalHTML;
+            button.disabled = false;
+        }
+    });
+}
+
 // 6. Floating Contact Buttons — visibility handled by unified scroll controller
 const whatsappFloat = document.getElementById('whatsappFloat');
 if (whatsappFloat) {

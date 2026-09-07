@@ -108,6 +108,7 @@ Tier 1 (priorità editoriale interna): 24 URL — elenco completo in https://www
 - [Mockup Grafici: Guida per Committenti](https://www.webnovis.com/blog/mockup-grafici-guida.html): Cosa sono i mockup, livelli di progettazione e come valutarli prima dello sviluppo.
 - [Problemi di Indicizzazione Google: Cause e Soluzioni](https://www.webnovis.com/blog/indicizzazione-google-problemi.html): Perché Google non indicizza un sito e come diagnosticarlo con Search Console.
 - [Algoritmo Instagram 2026](https://www.webnovis.com/blog/instagram-algoritmo-2026.html): Come funziona la reach organica e quali contenuti premia.
+- [AI Act 2026: Obblighi per i Siti Web](https://www.webnovis.com/blog/ai-act-2026-obblighi.html): Trasparenza chatbot e contenuti AI, sanzioni, checklist. Parere preliminare gratuito, analisi completa da €250.
 - [Manutenzione Sito Web: Costi e Checklist](https://www.webnovis.com/blog/manutenzione-sito-web.html): Cosa include la manutenzione, costi 2026 e confronto WordPress vs custom.
 - [Partita IVA per E-commerce: Costi e Regimi](https://www.webnovis.com/blog/partita-iva-ecommerce.html): Quando serve, costi reali e regime forfettario per vendere online.
 - [API REST per Aziende](https://www.webnovis.com/blog/api-rest-cosa-sono.html): Cosa sono e come collegano gestionali, CRM ed e-commerce.
@@ -147,4 +148,4 @@ I prezzi sono valori iniziali presenti in data/services.json, non preventivi né
 
 - [ai.txt](https://www.webnovis.com/ai.txt): export editoriale sintetico; nessun beneficio di ranking o citazione è dichiarato.
 - [Dati JSON AI](https://www.webnovis.com/webnovis-ai-data.json): gli stessi fatti e prezzi di catalogo in JSON, con campi non verificati esplicitamente esclusi.
-- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa del sito con 356 URL indicizzabili (allineata a meta robots index).
+- [Sitemap XML](https://www.webnovis.com/sitemap.xml): Mappa del sito con 357 URL indicizzabili (allineata a meta robots index).

@@ -177,6 +177,7 @@ Tier 1 (priorità editoriale interna): ${tier1Count} URL — elenco completo in 
 - [Mockup Grafici: Guida per Committenti](${SITE}/blog/mockup-grafici-guida.html): Cosa sono i mockup, livelli di progettazione e come valutarli prima dello sviluppo.
 - [Problemi di Indicizzazione Google: Cause e Soluzioni](${SITE}/blog/indicizzazione-google-problemi.html): Perché Google non indicizza un sito e come diagnosticarlo con Search Console.
 - [Algoritmo Instagram 2026](${SITE}/blog/instagram-algoritmo-2026.html): Come funziona la reach organica e quali contenuti premia.
+- [AI Act 2026: Obblighi per i Siti Web](${SITE}/blog/ai-act-2026-obblighi.html): Trasparenza chatbot e contenuti AI, sanzioni, checklist. Parere preliminare gratuito, analisi completa da €250.
 - [Manutenzione Sito Web: Costi e Checklist](${SITE}/blog/manutenzione-sito-web.html): Cosa include la manutenzione, costi 2026 e confronto WordPress vs custom.
 - [Partita IVA per E-commerce: Costi e Regimi](${SITE}/blog/partita-iva-ecommerce.html): Quando serve, costi reali e regime forfettario per vendere online.
 - [API REST per Aziende](${SITE}/blog/api-rest-cosa-sono.html): Cosa sono e come collegano gestionali, CRM ed e-commerce.
