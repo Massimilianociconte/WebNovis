@@ -1177,11 +1177,11 @@ function waitFreshTurnstileToken(form, timeoutMs = 9000) {
 }
 
 // TEMP-EMAIL-REDIRECT (2026-09-07, temporaneo — da revertare):
-// la casella che RICEVE le email dei form non è in questo file: è quella
-// collegata alla WEB3FORMS_ACCESS_KEY su Web3Forms (via Worker proxy).
-// Finché hello@webnovis.com non riceve (DNS spostati per Zoho), la key attiva
-// deve essere quella di webnovis.info@gmail.com. REVERT: ripristinare la key
-// di hello@ e rimuovere questo commento. Nessun impatto SEO (solo backend).
+// la casella che RICEVE le email dei form è quella collegata alla key Web3Forms
+// in uso. Finché hello@webnovis.com non riceve (DNS spostati per Zoho), i form
+// girano in direct con WEB3FORMS_PUBLIC_KEY (casella webnovis.info@gmail.com)
+// perché il proxy è murato dal bot-wall (502 upstream). REVERT: mode 'proxy' +
+// key hello@ e rimuovere i commenti TEMP. Nessun impatto SEO (solo backend).
 function resolveFormSubmitEndpoint() {
     try {
         const host = window.location.hostname;
@@ -1202,6 +1202,16 @@ function applyDevAccessKey(formData) {
         if ((host === 'localhost' || host === '127.0.0.1') && !formData.get('access_key')) {
             const devKey = localStorage.getItem('wn_dev_access_key');
             if (devKey) formData.set('access_key', devKey);
+        }
+    } catch (_) { /* ignore */ }
+    // TEMP-DIRECT (2026-09-07, temporaneo — da revertare): il proxy è murato
+    // dal bot-wall di Web3Forms (502 upstream), quindi il browser posta in
+    // direct con la PUBLIC key (pubblica per design Web3Forms, nessun segreto).
+    // REVERT: tornare a FORM_SUBMIT_MODE 'proxy' + key hello@ e rimuovere.
+    try {
+        if (formSubmitMode !== 'proxy' && !formData.get('access_key')) {
+            const pubKey = String(webnovisSiteConfig.WEB3FORMS_PUBLIC_KEY || '').trim();
+            if (pubKey) formData.set('access_key', pubKey);
         }
     } catch (_) { /* ignore */ }
 }
