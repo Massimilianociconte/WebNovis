@@ -1031,9 +1031,16 @@
 
 .newsletter-form {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.75rem;
     max-width: 500px;
     margin: 0 auto;
+}
+
+.newsletter-form .newsletter-consent {
+    flex-basis: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
 }
 
 .newsletter-form input {
