@@ -5,16 +5,12 @@
  * Secrets: TURNSTILE_SECRET (required)
  * Vars: TURNSTILE_HOSTNAMES, WEB3FORMS_ENDPOINT
  *
- * TEMP-EMAIL-REDIRECT (2026-09-07, temporaneo — da revertare):
- * il destinatario delle email NON è nel codice: è la casella collegata alla
- * WEB3FORMS_ACCESS_KEY su Web3Forms. Dal 2026-09-07 hello@webnovis.com non riceve
- * (record DNS spostati per Zoho), quindi la key attiva deve essere quella collegata
- * a webnovis.info@gmail.com (wrangler secret put WEB3FORMS_ACCESS_KEY).
- * Causa vera dei 502 (da HAR): la key free rifiuta cf-turnstile-response con 400
- * "Pro feature", e il Worker lo propagava come 502 — qui sotto il token viene
- * verificato (siteverify) e poi scartato prima dell'inoltro.
- * REVERT: appena hello@webnovis.com torna attiva, ripristinare la key precedente
- * (se Pro, si può valutare di tenere l'inoltro) e rimuovere questo blocco.
+ * Casella attiva: hello@webnovis.com (forward a webnovis.info@gmail.com).
+ * Il destinatario delle email NON è nel codice: è la casella collegata alla
+ * WEB3FORMS_ACCESS_KEY su Web3Forms (wrangler secret put WEB3FORMS_ACCESS_KEY
+ * con la key di hello@). Causa dei 502/400 (da HAR): la key free rifiuta
+ * cf-turnstile-response con 400 "Pro feature", quindi il token viene verificato
+ * (siteverify) e poi scartato prima dell'inoltro.
  * Nessun impatto SEO: il destinatario è solo backend, nessun contenuto visibile cambia.
  */
 

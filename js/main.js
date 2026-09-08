@@ -1176,12 +1176,10 @@ function waitFreshTurnstileToken(form, timeoutMs = 9000) {
     });
 }
 
-// TEMP-EMAIL-REDIRECT (2026-09-07, temporaneo — da revertare):
-// la casella che RICEVE le email dei form è quella collegata alla key Web3Forms
-// in uso (ora webnovis.info@gmail.com; hello@ non riceve: DNS spostati per Zoho).
-// Causa vera dei 502/400 (da HAR): la key free rifiuta cf-turnstile-response
-// ("Pro feature") — il token non viene mai spedito a Web3Forms (verifica solo
-// server-side nel proxy). REVERT: key hello@ e rimuovere i commenti TEMP.
+// Casella attiva: hello@webnovis.com (forward a webnovis.info@gmail.com).
+// Il destinatario è la casella collegata alla key Web3Forms in uso.
+// La key free rifiuta cf-turnstile-response ("Pro feature") — il token non
+// viene mai spedito a Web3Forms (verifica solo server-side nel proxy).
 // Nessun impatto SEO (solo backend).
 function resolveFormSubmitEndpoint() {
     try {
