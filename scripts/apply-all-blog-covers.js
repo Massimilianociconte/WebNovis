@@ -3,6 +3,14 @@ const path = require('path');
 
 const covers = [
   {
+    slug: 'openai-navier-stokes-cosa-e-stato-davvero-dimostrato',
+    alt: "Vortice fluidodinamico tridimensionale con correnti blu cobalto e metallo liquido racchiuso in una gabbia armillare geometrica in titanio e cristalli ottici, metafora del blow-up nelle equazioni di Navier-Stokes e della verifica formale con intelligenza artificiale"
+  },
+  {
+    slug: 'post-virale-openai-navier-stokes-nik-cosa-e-vero',
+    alt: "Due monoliti scultorei in pietra basaltica e ossidiana scura collegati da flussi luminosi di dati e sezionati da un raggio ottico di precisione, rappresentazione concettuale della controversia sui dati di ricerca tra matematici accademici e OpenAI"
+  },
+  {
     slug: 'ai-act-2026-obblighi',
     alt: "Scultura geometrica minimalista con bilancia della giustizia e marmo scuro, rappresentante la conformità normativa e gli obblighi dell'AI Act 2026 per siti web aziendali"
   },
