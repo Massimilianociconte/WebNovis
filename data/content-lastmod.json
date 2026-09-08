@@ -1,7 +1,7 @@
 {
  "/": {
-  "hash": "2f5ddf003b90789d567860b278335111",
-  "lastmod": "2026-09-06"
+  "hash": "86cc24509e2e10dc0823fed1afef65d0",
+  "lastmod": "2026-09-08"
  },
  "/accessibilita-arese.html": {
   "hash": "3219a587a106d417739b891f33d50864",
@@ -580,8 +580,8 @@
   "lastmod": "2026-08-31"
  },
  "/blog/ai-act-2026-obblighi.html": {
-  "hash": "cbe5d82c3d8d5f7e24023853651bdb43",
-  "lastmod": "2026-09-07"
+  "hash": "3334582f314a217ac25a9f7f536c9e1c",
+  "lastmod": "2026-09-08"
  },
  "/blog/alternativa-linktree-link-in-bio.html": {
   "hash": "9ef340cb208d82c78718b699b76f9276",
@@ -804,8 +804,8 @@
   "lastmod": "2026-08-11"
  },
  "/blog/dati-obbligatori-sito-web.html": {
-  "hash": "0b62cf31c6fc2f96421017964607d95a",
-  "lastmod": "2026-09-07"
+  "hash": "7a6e9539b38a4a6b1246229dc2af047e",
+  "lastmod": "2026-09-08"
  },
  "/blog/design-system-aziendale.html": {
   "hash": "45ece98195a449d74c5264273a132236",
@@ -846,6 +846,10 @@
  "/blog/email-vs-sms-marketing.html": {
   "hash": "c41492f9bfaedfdb1c9c02429477b028",
   "lastmod": "2026-08-31"
+ },
+ "/blog/en/openai-navier-stokes-what-was-actually-proven.html": {
+  "hash": "f392cbc765a269067c1a74ff5c9b5c2f",
+  "lastmod": "2026-09-08"
  },
  "/blog/engagement-sito-web-strategie.html": {
   "hash": "0637751eb9c72854e66c385dca097a61",
@@ -892,8 +896,8 @@
   "lastmod": "2026-09-07"
  },
  "/blog/gdpr-sito-web-guida.html": {
-  "hash": "83982c6259f2b2e1540c747a9e1e2315",
-  "lastmod": "2026-09-07"
+  "hash": "b9171a16878f68f0b6b29c7dc22a6909",
+  "lastmod": "2026-09-08"
  },
  "/blog/gestione-resi-ecommerce.html": {
   "hash": "023e6d6c4573dab812dc09d18b9958f0",
@@ -1135,6 +1139,10 @@
   "hash": "32c42afe8b9b315864fe6cf988be4c16",
   "lastmod": "2026-09-07"
  },
+ "/blog/openai-navier-stokes-cosa-e-stato-davvero-dimostrato.html": {
+  "hash": "7892f5124516afa3b6e9103db0e35c11",
+  "lastmod": "2026-09-08"
+ },
  "/blog/ottimizzazione-immagini-web.html": {
   "hash": "220dded9f9cbf9d09a8617c59295b026",
   "lastmod": "2026-08-31"
@@ -1312,8 +1320,8 @@
   "lastmod": "2026-09-07"
  },
  "/blog/seo-per-ai-overviews.html": {
-  "hash": "090f2e0249104163fe55e88c6d559436",
-  "lastmod": "2026-09-07"
+  "hash": "e196aefafd96dde9b587fb2987b9ecbd",
+  "lastmod": "2026-09-08"
  },
  "/blog/seo-per-piccole-imprese.html": {
   "hash": "bedbadf0a8bd0143072b85195a3e0f15",

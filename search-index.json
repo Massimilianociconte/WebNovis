@@ -652,8 +652,8 @@
     "url": "/blog/ai-act-2026-obblighi.html",
     "type": "articolo",
     "title": "AI Act 2026: Cosa Cambia dal 2 Agosto per il Tuo Sito Web",
-    "description": "Dal 2 agosto 2026 l’AI Act è pienamente applicabile: trasparenza per chatbot e contenuti generati dall’intelligenza artificiale, controlli e sanzioni. Cosa cambia per siti web, imprese, PMI e persone.",
-    "keywords": "act, 2026, cosa, cambia, agosto, tuo, sito, pienamente, applicabile, trasparenza, chatbot, contenuti, generati, dall, intelligenza, artificiale, controlli, sanzioni, siti, imprese, pmi, persone, data, rende, regolamento, concreto, sistema, livelli",
+    "description": "Dal 2 agosto 2026 l’AI Act entra nella fase principale di applicazione: trasparenza per chatbot e contenuti generati dall’intelligenza artificiale, controlli e sanzioni. Cosa cambia per siti web, imprese, PMI e persone.",
+    "keywords": "act, 2026, cosa, cambia, agosto, tuo, sito, entra, fase, principale, applicazione, trasparenza, chatbot, contenuti, generati, dall, intelligenza, artificiale, controlli, sanzioni, siti, imprese, pmi, persone, data, rende, regolamento, concreto",
     "headings": [
       "AI Act 2026: Cosa Cambia dal 2 Agosto per il Tuo Sito Web",
       "Il 2 agosto 2026: la data che rende il regolamento concreto",
@@ -668,7 +668,7 @@
       "Un chiarimento utile: non è un’etichetta universale",
       "Le aree di un sito web che oggi vanno verificate"
     ],
-    "content": "Di WebNovis · 7 Agosto 2026 · 12 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "content": "Di WebNovis · 7 Settembre 2026 · 12 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -2253,6 +2253,30 @@
       "FAQ su Email e SMS Marketing per PMI"
     ],
     "content": "Di WebNovis · 11 Marzo 2026 · 8 min di lettura · Aggiornato: 26 Luglio 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "indexable": true
+  },
+  {
+    "id": "/blog/en/openai-navier-stokes-what-was-actually-proven.html",
+    "url": "/blog/en/openai-navier-stokes-what-was-actually-proven.html",
+    "type": "articolo",
+    "title": "OpenAI and Navier–Stokes: what was actually proven and what is still missing",
+    "description": "OpenAI announced a Navier–Stokes proof nobody has seen. Forced Euler, Lean, Fefferman options c/d and Clay rules: what is verified and what is not.",
+    "keywords": "openai, and, navier, stokes, what, was, actually, proven, still, missing, announced, proof, nobody, has, seen, forced, euler, lean, fefferman, options, clay, rules, verified, not, cosa, stato, davvero, dimostrato",
+    "headings": [
+      "OpenAI e Navier–Stokes: cosa è stato davvero dimostrato e cosa manca ancora",
+      "Is Navier–Stokes actually solved? / È davvero risolto?",
+      "What did OpenAI claim to prove? / Cosa sostiene di aver dimostrato OpenAI?",
+      "What did Buckmaster and Alpöge actually prove? / Cosa hanno dimostrato Buckmaster e Alpöge?",
+      "What does “solving” Navier–Stokes mean? / Cosa significa “risolvere” Navier–Stokes?",
+      "What did the AI actually do? / Cosa ha fatto concretamente l'AI?",
+      "What does Lean actually verify? / Cosa verifica davvero Lean?",
+      "What does the Clay Institute require? / Cosa richiede il Clay Institute?",
+      "Why is trust the real bottleneck? / Perché il vero collo di bottiglia è fidarsi?",
+      "What does the community say? / Cosa dice la comunità?",
+      "What we know and what we do not / Cosa sappiamo e cosa non sappiamo — 8 September 2026",
+      "Frequently asked questions / FAQ"
+    ],
+    "content": "By WebNovis · 8 September 2026 · 16 min read · Updated: 8 September 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {
@@ -3981,6 +4005,30 @@
       "Come Scegliere la Web Agency Giusta: 10 Criteri che Contano"
     ],
     "content": "Di WebNovis · 10 Marzo 2026 · 9 min di lettura · Aggiornato: 7 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
+    "indexable": true
+  },
+  {
+    "id": "/blog/openai-navier-stokes-cosa-e-stato-davvero-dimostrato.html",
+    "url": "/blog/openai-navier-stokes-cosa-e-stato-davvero-dimostrato.html",
+    "type": "articolo",
+    "title": "OpenAI e Navier–Stokes: cosa è stato davvero dimostrato e cosa manca ancora",
+    "description": "OpenAI annuncia una prova su Navier–Stokes, ma nessuno l",
+    "keywords": "openai, navier, stokes, cosa, stato, davvero, dimostrato, manca, ancora, annuncia, prova, nessuno, risolto, actually, solved, sostiene, aver, what, did, claim, prove, hanno, buckmaster, alpoge, and, significa, risolvere, does",
+    "headings": [
+      "OpenAI e Navier–Stokes: cosa è stato davvero dimostrato e cosa manca ancora",
+      "È davvero risolto? / Is Navier–Stokes actually solved?",
+      "Cosa sostiene di aver dimostrato OpenAI? / What did OpenAI claim to prove?",
+      "Cosa hanno dimostrato Buckmaster e Alpöge? / What did Buckmaster and Alpöge actually prove?",
+      "Cosa significa “risolvere” Navier–Stokes? / What does solving mean?",
+      "Cosa ha fatto concretamente l'AI? / What did AI actually do?",
+      "Cosa verifica davvero Lean? / What does Lean actually verify?",
+      "Cosa richiede il Clay Institute? / What does the Clay Institute require?",
+      "Perché il vero collo di bottiglia è fidarsi? / Why is trust the bottleneck?",
+      "Cosa dice la comunità? / What does the community say?",
+      "Cosa sappiamo e cosa non sappiamo / Known vs unknown — 8 settembre 2026",
+      "Domande frequenti / FAQ"
+    ],
+    "content": "Di WebNovis · 8 Settembre 2026 · 16 min di lettura · Aggiornato: 8 Settembre 2026 Per vedere più spesso WebNovis nei tuoi risultati di ricerca.",
     "indexable": true
   },
   {

@@ -38,7 +38,7 @@ function auditPublicHtml() {
   const failures = [];
   const files = collectExpectedPublicHtml(ROOT);
 
-  assert.equal(files.length, 1154, 'the complete public HTML inventory must remain explicit');
+  assert.equal(files.length, 1156, 'the complete public HTML inventory must remain explicit');
 
   for (const relativePath of files) {
     const html = readText(relativePath);
@@ -77,18 +77,48 @@ function auditPublicHtml() {
       node.tagName === 'link' && Boolean(getAttribute(node, 'hreflang'))
     );
     if (isIndexable) {
-      if (hreflangLinks.length !== 1) {
-        failures.push(`${relativePath}: indexable page must have exactly one hreflang, got ${hreflangLinks.length}`);
-      } else {
-        if (getAttribute(hreflangLinks[0], 'hreflang') !== 'it-IT') {
-          failures.push(`${relativePath}: hreflang must be it-IT`);
+      const canonical = findElements(
+        head,
+        (node) => node.tagName === 'link' && getAttribute(node, 'rel').toLowerCase() === 'canonical'
+      );
+      const canonicalHref = canonical.length === 1 ? getAttribute(canonical[0], 'href') : '';
+      const docLang = (getAttribute(htmlElements[0], 'lang') || '').toLowerCase();
+      const expectedSelfHreflang = docLang === 'en' ? 'en' : 'it-IT';
+      const selfLinks = hreflangLinks.filter((node) => getAttribute(node, 'hreflang').toLowerCase() !== 'x-default' && getAttribute(node, 'href') === canonicalHref);
+      if (selfLinks.length !== 1) {
+        failures.push(`${relativePath}: indexable page must have exactly one self hreflang matching the canonical, got ${selfLinks.length}`);
+      } else if (getAttribute(selfLinks[0], 'hreflang').toLowerCase() !== expectedSelfHreflang.toLowerCase()) {
+        failures.push(`${relativePath}: self hreflang must be ${expectedSelfHreflang} for lang="${docLang}"`);
+      }
+      for (const alternate of hreflangLinks.filter((node) => !selfLinks.includes(node))) {
+        const alternateHreflang = getAttribute(alternate, 'hreflang');
+        const alternateHref = getAttribute(alternate, 'href');
+        if (!/^(it-IT|en|x-default)$/.test(alternateHreflang)) {
+          failures.push(`${relativePath}: unexpected alternate hreflang "${alternateHreflang}"`);
+          continue;
         }
-        const canonical = findElements(
-          head,
-          (node) => node.tagName === 'link' && getAttribute(node, 'rel').toLowerCase() === 'canonical'
-        );
-        if (canonical.length === 1 && getAttribute(hreflangLinks[0], 'href') !== getAttribute(canonical[0], 'href')) {
-          failures.push(`${relativePath}: hreflang must match the declared canonical`);
+        let alternatePath = '';
+        try {
+          const alternateUrl = new URL(alternateHref, 'https://www.webnovis.com');
+          if (alternateUrl.hostname !== 'www.webnovis.com') throw new Error('external target');
+          alternatePath = decodeURIComponent(alternateUrl.pathname).replace(/^\/+/, '');
+        } catch (_) {
+          failures.push(`${relativePath}: alternate hreflang target is not a same-site URL: ${alternateHref}`);
+          continue;
+        }
+        let alternateHtml = '';
+        try {
+          alternateHtml = readText(alternatePath);
+        } catch (_) {
+          failures.push(`${relativePath}: alternate hreflang target does not exist: ${alternateHref}`);
+          continue;
+        }
+        if (/\bnoindex\b/i.test(alternateHtml)) {
+          failures.push(`${relativePath}: alternate hreflang target must be indexable: ${alternateHref}`);
+          continue;
+        }
+        if (!alternateHtml.includes(canonicalHref)) {
+          failures.push(`${relativePath}: alternate hreflang target must link back (reciprocity): ${alternateHref}`);
         }
       }
     } else if (hreflangLinks.length !== 0) {
