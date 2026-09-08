@@ -8853,6 +8853,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     gap: 1rem;
     margin-top: 1.5rem;
 }
@@ -8866,7 +8867,59 @@ img {
     pointer-events: none;
 }
 
+/* Turnstile anti-bot: riga propria responsive, mai dentro la row dei bottoni.
+   Il widget ha 300px fissi (normal) / 100% (flexible): senza riga dedicata
+   spingeva "Invia" fuori schermo (mobile peggio). Solo layout: nessuna
+   animazione, colore o font toccati. min-height = riserva anti-CLS. */
+.webnovis-turnstile-host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    min-height: 65px;
+    margin: 0.75rem 0 1rem;
+    overflow: hidden;
+}
+
+.webnovis-turnstile-host iframe {
+    max-width: 100% !important;
+}
+
+/* Rete di sicurezza: se l'host finisse dentro .ms-nav (JS cachato), va a capo
+   intero sopra i bottoni invece di schiacciarli in riga. */
+.ms-nav .webnovis-turnstile-host {
+    flex: 1 1 100%;
+    order: -1;
+}
+
+/* Form a step singolo (contatti/preventivo) e compatti: widget centrato sopra
+   il submit, a tutta larghezza. */
+.contact-form .webnovis-turnstile-host,
+.newsletter-form .webnovis-turnstile-host,
+.ai-act-form .webnovis-turnstile-host {
+    flex-basis: 100%;
+}
+
+/* Nota gate sotto il widget: spiega che senza verifica non si prosegue.
+   Nascosta via JS quando il gate si apre (token ok o fail-open). */
+.turnstile-gate-note {
+    font-size: 0.82rem;
+    color: var(--gray-light);
+    text-align: center;
+    margin: 0 0 0.25rem;
+}
+
+/* Affordance: i bottoni murati dal gate non sono cliccabili. */
+button[type="submit"]:disabled,
+.ms-nav .btn:disabled {
+    cursor: not-allowed;
+}
+
 @media (max-width: 480px) {
+    .ms-nav {
+        gap: 0.75rem;
+    }
     .ms-options {
         grid-template-columns: 1fr;
     }

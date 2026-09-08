@@ -1037,8 +1037,71 @@ const webnovisSiteConfig = window.WEBNOVIS_SITE_CONFIG || {};
 const turnstileSitekey = String(webnovisSiteConfig.TURNSTILE_SITEKEY || '').trim();
 const formSubmitMode = String(webnovisSiteConfig.FORM_SUBMIT_MODE || 'web3forms').toLowerCase();
 const formProxyUrl = String(webnovisSiteConfig.FORM_PROXY_URL || '').trim();
+const formVerifyUrl = String(webnovisSiteConfig.FORM_VERIFY_URL || '').trim();
 const turnstileTheme = String(webnovisSiteConfig.TURNSTILE_THEME || 'dark');
 const turnstileWidgetIds = new WeakMap();
+// Stato per-form: { token: string, failed: boolean }.
+// - token: ultimo token ricevuto via callback (single-use, breve durata).
+// - failed: mount/render fallito (script bloccato, challenge rotto) →
+//   fail-open: i gate si aprono per non murare utenti reali. Il submit resta
+//   protetto: senza token il /verify non può confermare nulla e l'invio
+//   diretto richiede comunque il passaggio dal gate.
+const turnstileState = new WeakMap();
+
+function getTurnstileState(form) {
+    let st = null;
+    try { st = turnstileState.get(form); } catch (_) { /* ignore */ }
+    if (!st) {
+        st = { token: '', failed: false };
+        try { turnstileState.set(form, st); } catch (_) { /* ignore */ }
+    }
+    return st;
+}
+
+function clearTurnstileToken(form) {
+    try { getTurnstileState(form).token = ''; } catch (_) { /* ignore */ }
+}
+
+function markTurnstileFailed(form) {
+    try { getTurnstileState(form).failed = true; } catch (_) { /* ignore */ }
+    refreshTurnstileGates(form);
+}
+
+// Gate anti-bot: true = l'utente può proseguire/inviare.
+// Senza sitekey (feature off) è sempre aperto; aperto anche in fail-open
+// (mount fallito) per non bloccare utenti con script bloccato.
+function turnstileGateOk(form) {
+    if (!turnstileSitekey) return true;
+    try {
+        const st = getTurnstileState(form);
+        return st.token !== '' || st.failed;
+    } catch (_) { return true; }
+}
+
+// Chiama l'hook di refresh registrato dal form (aggiorna bottoni gated).
+function refreshTurnstileGates(form) {
+    try {
+        if (form && typeof form.__webnovisRefreshGate === 'function') {
+            form.__webnovisRefreshGate();
+        }
+    } catch (_) { /* ignore */ }
+}
+
+function scrollTurnstileIntoView(form) {
+    try {
+        const host = form ? form.querySelector('.cf-turnstile, [data-webnovis-turnstile-host]') : null;
+        if (host && host.scrollIntoView) {
+            host.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
+        }
+    } catch (_) { /* ignore */ }
+}
+
+function isLocalhostHost() {
+    try {
+        const h = window.location.hostname;
+        return h === 'localhost' || h === '127.0.0.1';
+    } catch (_) { return false; }
+}
 
 function loadTurnstileScript() {
     if (window.turnstile) return Promise.resolve();
@@ -1064,11 +1127,46 @@ function loadTurnstileScript() {
 
 function resolveTurnstileAction(form) {
     if (form && form.id === 'newsletterForm') return 'newsletter';
+    if (form && form.id === 'e404Form') return 'lead';
     if (/preventivo/i.test(location.pathname)) return 'preventivo';
     return 'contact';
 }
 
 const turnstileMountInflight = new WeakMap();
+// Il widget deve avere dimensioni reali al render: se l'host è dentro uno
+// step nascosto (multistep step 3 = display:none) il render fallirebbe
+// (widget 0x0, challenge appeso, warning postMessage). Si attende la
+// visibilità via IntersectionObserver — a submit lo step è visibile,
+// quindi nessun invio resta scoperto.
+function whenTurnstileHostVisible(host, timeoutMs = 15000) {
+    return new Promise((resolve) => {
+        let done = false;
+        const finish = () => {
+            if (done) return;
+            done = true;
+            try { observer && observer.disconnect(); } catch (_) { /* ignore */ }
+            resolve();
+        };
+        let observer = null;
+        if (typeof IntersectionObserver === 'function') {
+            try {
+                observer = new IntersectionObserver((entries) => {
+                    if (entries.some((entry) => entry.isIntersecting)) finish();
+                }, { rootMargin: '400px 0px' });
+                observer.observe(host);
+            } catch (_) { observer = null; }
+        }
+        // Fallback: niente observer (browser vecchi) o attesa oltre soglia.
+        if (!observer) { finish(); return; }
+        setTimeout(finish, timeoutMs);
+        // Ultima rete di sicurezza: interazione col form = step visibile.
+        const form = host.closest ? host.closest('form') : null;
+        if (form) {
+            form.addEventListener('focusin', finish, { once: true });
+            form.addEventListener('pointerdown', finish, { once: true });
+        }
+    });
+}
 async function mountTurnstileOnForm(form) {
     if (!turnstileSitekey || !form) return null;
     if (turnstileWidgetIds.has(form)) return turnstileWidgetIds.get(form);
@@ -1079,27 +1177,59 @@ async function mountTurnstileOnForm(form) {
             host = document.createElement('div');
             host.className = 'cf-turnstile webnovis-turnstile-host';
             host.setAttribute('data-webnovis-turnstile-host', '1');
-            host.style.margin = '0.75rem 0 1rem';
-            const submitBtn = form.querySelector('button[type="submit"]');
-            if (submitBtn && submitBtn.parentElement) {
-                submitBtn.parentElement.insertBefore(host, submitBtn);
+            // Riga propria sopra le azioni: mai dentro la flex-row dei bottoni
+            // (.ms-nav) dove i 300px fissi del widget spingevano "Invia" fuori
+            // schermo. Il layout è in css/style.css (.webnovis-turnstile-host).
+            const navRow = form.querySelector('.ms-nav');
+            if (navRow && navRow.parentElement) {
+                navRow.parentElement.insertBefore(host, navRow);
             } else {
-                form.appendChild(host);
+                const submitBtn = form.querySelector('button[type="submit"]');
+                if (submitBtn && submitBtn.parentElement) {
+                    submitBtn.parentElement.insertBefore(host, submitBtn);
+                } else {
+                    form.appendChild(host);
+                }
             }
         }
+        // Widget già renderizzato: nessuna attesa (il submit non deve mai
+        // bloccarsi: l'host può essere in uno step multistep nascosto).
+        if (turnstileWidgetIds.has(form)) return turnstileWidgetIds.get(form);
         try {
+            // Mai renderizzare in un contenitore nascosto (0x0, challenge
+            // appeso, warning postMessage): si attende la visibilità.
+            await whenTurnstileHostVisible(host);
             await loadTurnstileScript();
-            if (!window.turnstile) return null;
+            if (!window.turnstile) throw new Error('turnstile_unavailable');
             if (turnstileWidgetIds.has(form)) return turnstileWidgetIds.get(form);
             const widgetId = window.turnstile.render(host, {
                 sitekey: turnstileSitekey,
                 theme: turnstileTheme,
-                action: resolveTurnstileAction(form)
+                size: 'flexible',
+                retry: 'auto',
+                'refresh-expired': 'auto',
+                action: resolveTurnstileAction(form),
+                callback: (token) => {
+                    try {
+                        if (token) getTurnstileState(form).token = token;
+                    } catch (_) { /* ignore */ }
+                    refreshTurnstileGates(form);
+                },
+                'expired-callback': () => {
+                    clearTurnstileToken(form);
+                    refreshTurnstileGates(form);
+                },
+                'error-callback': () => {
+                    console.warn('[WebNovis] Turnstile widget error — fail-open');
+                    markTurnstileFailed(form);
+                }
             });
+            if (widgetId == null) throw new Error('turnstile_render_null');
             turnstileWidgetIds.set(form, widgetId);
             return widgetId;
         } catch (err) {
             console.warn('[WebNovis] Turnstile mount failed', err);
+            markTurnstileFailed(form);
             return null;
         } finally {
             turnstileMountInflight.delete(form);
@@ -1138,6 +1268,10 @@ function scheduleTurnstileMount(form) {
 
 function getTurnstileToken(form) {
     if (!turnstileSitekey) return '';
+    try {
+        const cached = getTurnstileState(form).token;
+        if (cached) return cached;
+    } catch (_) { /* ignore */ }
     const field = form.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
     if (field && field.value) return field.value;
     const widgetId = turnstileWidgetIds.get(form);
@@ -1148,6 +1282,7 @@ function getTurnstileToken(form) {
 }
 
 function resetTurnstile(form) {
+    clearTurnstileToken(form);
     const widgetId = turnstileWidgetIds.get(form);
     if (widgetId != null && window.turnstile && typeof window.turnstile.reset === 'function') {
         try { window.turnstile.reset(widgetId); } catch (_) { /* ignore */ }
@@ -1176,10 +1311,99 @@ function waitFreshTurnstileToken(form, timeoutMs = 9000) {
     });
 }
 
+// Endpoint di sola verifica Turnstile (siteverify server-side, senza inoltro
+// a Web3Forms): aggira il muro 403 del piano free sui POST server-side.
+function resolveFormVerifyEndpoint() {
+    try {
+        if (formVerifyUrl) return formVerifyUrl;
+        if (formProxyUrl) {
+            try { return new URL('/verify', formProxyUrl).toString(); } catch (_) { /* ignore */ }
+        }
+    } catch (_) { /* ignore */ }
+    return 'https://webnovis-forms.nexify-api.workers.dev/verify';
+}
+
+// Verifica il token via Worker. Ritorna:
+// - 'valid': token confermato dal siteverify → si può inviare;
+// - 'invalid': token mancante/scaduto/duplicato → serve nuova verifica;
+// - 'open': verifica non raggiungibile (rete, localhost, feature off) →
+//   fail-open per non murare invii legittimi (disponibilità > rigidità).
+async function verifyTurnstileToken(form, token) {
+    if (!turnstileSitekey || !token) return 'invalid';
+    try {
+        if (isLocalhostHost()) return 'open';
+    } catch (_) { /* ignore */ }
+    const url = resolveFormVerifyEndpoint();
+    if (!url) return 'open';
+    try {
+        const body = new FormData();
+        body.set('token', token);
+        const res = await fetch(url, {
+            method: 'POST',
+            body,
+            signal: AbortSignal.timeout(10000)
+        });
+        if (res.ok) return 'valid';
+        if (res.status === 403 || res.status === 400) return 'invalid';
+        return 'open';
+    } catch (_) {
+        return 'open';
+    }
+}
+
+// Campi operativi nostri (redirect/ts/botcheck) e token captcha: MAI a
+// Web3Forms in direct. Il redirect dirottava la risposta (302→HTML→json()
+// che esplode e mostra errore a mail inviata); ts/botcheck sporcavano
+// l'email; il token free è rifiutato con 400 "Pro feature".
+function stripDirectPayload(formData) {
+    try {
+        formData.delete('redirect');
+        formData.delete('ts');
+        formData.delete('botcheck');
+        formData.delete('cf-turnstile-response');
+        formData.delete('turnstile_token');
+    } catch (_) { /* ignore */ }
+}
+
+// Flusso umano completo condiviso da tutti i submit: monta on-demand,
+// ottiene un token, lo verifica via Worker (con un retry su token stantio).
+// Ritorna { status:'ok', token } oppure { status:'blocked', reason, message }.
+async function ensureVerifiedHuman(form) {
+    if (!turnstileSitekey) return { status: 'ok', token: '' };
+    if (isLocalhostHost()) return { status: 'ok', token: '', degraded: true };
+    await mountTurnstileOnForm(form);
+    const st = getTurnstileState(form);
+    let token = '';
+    try { token = getTurnstileToken(form); } catch (_) { /* ignore */ }
+    if (!token) {
+        // Widget tecnicamente rotto (script bloccato): fail-open, niente 9s
+        // di attesa a vuoto. Altrimenti il widget è visibile ma non risolto:
+        // si chiede subito all'utente di completarlo (niente attesa cieca).
+        if (st.failed) return { status: 'ok', token: '', degraded: true };
+        scrollTurnstileIntoView(form);
+        return { status: 'blocked', reason: 'missing', message: 'Completa la verifica anti-bot per continuare.' };
+    }
+    const verdict = await verifyTurnstileToken(form, token);
+    if (verdict === 'valid' || verdict === 'open') return { status: 'ok', token };
+    // Token scaduto/duplicato: un giro con token fresco (widget visibile qui:
+    // il submit avviene solo a step/form visibile).
+    resetTurnstile(form);
+    const fresh = await waitFreshTurnstileToken(form);
+    if (!fresh) {
+        scrollTurnstileIntoView(form);
+        return { status: 'blocked', reason: 'stale', message: 'Verifica scaduta: ricompleta il controllo anti-bot e riprova.' };
+    }
+    const verdict2 = await verifyTurnstileToken(form, fresh);
+    if (verdict2 === 'valid' || verdict2 === 'open') return { status: 'ok', token: fresh };
+    scrollTurnstileIntoView(form);
+    return { status: 'blocked', reason: 'invalid', message: 'Verifica anti-bot non riuscita. Riprova.' };
+}
+
 // Casella attiva: hello@webnovis.com (forward a webnovis.info@gmail.com).
 // Il destinatario è la casella collegata alla key Web3Forms in uso.
-// La key free rifiuta cf-turnstile-response ("Pro feature") — il token non
-// viene mai spedito a Web3Forms (verifica solo server-side nel proxy).
+// Architettura free (default): token verificato via /verify, invio diretto
+// browser → Web3Forms (client-side, consentito). Il proxy server-side
+// richiede Web3Forms Pro (il free risponde 403 e il proxy ritorna 502).
 // Nessun impatto SEO (solo backend).
 function resolveFormSubmitEndpoint() {
     try {
@@ -1203,11 +1427,14 @@ function applyDevAccessKey(formData) {
             if (devKey) formData.set('access_key', devKey);
         }
     } catch (_) { /* ignore */ }
-    // In direct la chiave free rifiuta il campo captcha (feature Pro, 400):
-    // il token NON viene mai spedito a Web3Forms (il widget resta visibile
-    // come deterrente, la verifica server-side vive nel proxy).
+    // La chiave Web3Forms è pubblica per design (sta nel dashboard Web3Forms e
+    // negli hidden input): va SEMPRE inviata quando manca, in qualsiasi
+    // modalità. Se il Worker proxy ha il secret server-side, lo sovrascrive
+    // lui (autoritativo). In direct (default) la chiave free rifiuta il campo
+    // captcha (feature Pro, 400): il token si verifica via /verify e NON
+    // viene mai spedito a Web3Forms (stripDirectPayload lo rimuove).
     try {
-        if (formSubmitMode !== 'proxy' && !formData.get('access_key')) {
+        if (!formData.get('access_key')) {
             const pubKey = String(webnovisSiteConfig.WEB3FORMS_PUBLIC_KEY || '').trim();
             if (pubKey) formData.set('access_key', pubKey);
         }
@@ -1329,7 +1556,9 @@ if (contactForm) {
 
     const updateSubmitState = () => {
         if (!submitButton) return;
-        submitButton.disabled = !validateForm(false);
+        // Il widget è visibile da subito: niente invio senza verifica
+        // (o fail-open se il mount è tecnicamente fallito).
+        submitButton.disabled = !validateForm(false) || !turnstileGateOk(contactForm);
     };
 
     const clearValidationState = () => {
@@ -1375,6 +1604,8 @@ if (contactForm) {
     }
 
     updateSubmitState();
+    // Hook per i callback Turnstile: riaprono/chiudono il gate al solve/scadere.
+    contactForm.__webnovisRefreshGate = updateSubmitState;
 
     // Retry anti-token-scaduto: un solo re-invio automatico con token fresco.
     let submitRetried = false;
@@ -1423,32 +1654,41 @@ if (contactForm) {
                 formData.set('budget', budgetEl.value);
             }
 
+            const endpoint = resolveFormSubmitEndpoint();
+            const useProxy = Boolean(formProxyUrl) && endpoint === formProxyUrl;
+
             if (turnstileSitekey) {
-                // Garanzia: se il mount differito non è ancora partito, montiamo ora.
-                await mountTurnstileOnForm(contactForm);
-                let captchaToken = getTurnstileToken(contactForm);
-                if (!captchaToken) {
-                    // Widget non ancora pronto (submit lampo): reset + attesa token.
-                    resetTurnstile(contactForm);
-                    captchaToken = await waitFreshTurnstileToken(contactForm);
+                const human = await ensureVerifiedHuman(contactForm);
+                if (human.status !== 'ok') {
+                    // Token stantio con widget in uno step nascosto: riporta
+                    // l'utente allo step 1 dove il widget è visibile.
+                    if (human.reason === 'stale' && typeof window.__webnovisMultistepGoTo === 'function') {
+                        try { window.__webnovisMultistepGoTo(1); } catch (_) { /* ignore */ }
+                    }
+                    updateSubmitState();
+                    throw new Error(human.message);
                 }
-                if (!captchaToken) {
-                    throw new Error('Completa la verifica anti-bot prima di inviare.');
-                }
-                formData.set('cf-turnstile-response', captchaToken);
+                // Solo proxy (Pro): il token serve al siteverify del Worker.
+                // In direct il token è già verificato via /verify e NON si
+                // inoltra (il free lo rifiuta con 400 "Pro feature").
+                if (useProxy && human.token) formData.set('cf-turnstile-response', human.token);
             }
+            if (!useProxy) stripDirectPayload(formData);
             applyDevAccessKey(formData);
 
-            const response = await fetch(resolveFormSubmitEndpoint(), {
+            const response = await fetch(endpoint, {
                 method: 'POST',
+                headers: useProxy ? undefined : { 'Accept': 'application/json' },
                 body: formData,
                 // Niente attese infinite su rete lenta: 15s poi errore gestito.
                 signal: AbortSignal.timeout(15000)
             });
 
             if (!response.ok) {
-                // 403 captcha: preserva il codice per il retry automatico con token fresco.
-                if (response.status === 403) {
+                // Solo proxy: 403 captcha → retry automatico con token fresco.
+                // In direct il 403 è il muro provider/rete (mai captcha: il
+                // token non viaggia) → errore diretto, niente retry inutile.
+                if (useProxy && response.status === 403) {
                     let code = '';
                     try {
                         const probe = await response.clone().json();
@@ -1504,8 +1744,14 @@ if (contactForm) {
                 throw new Error(data.message || 'Errore nell\'invio');
             }
         } catch (error) {
-            // Token scaduto/duplicato: un solo re-invio automatico con token fresco.
-            const isCaptcha = turnstileSitekey && error && error.message === 'captcha_failed';
+            // Token scaduto/duplicato (solo proxy Pro): un solo re-invio
+            // automatico con token fresco. In direct non accade mai.
+            let useProxyRetry = false;
+            try {
+                const ep = resolveFormSubmitEndpoint();
+                useProxyRetry = Boolean(formProxyUrl) && ep === formProxyUrl;
+            } catch (_) { /* ignore */ }
+            const isCaptcha = useProxyRetry && turnstileSitekey && error && error.message === 'captcha_failed';
             if (isCaptcha && !submitRetried && typeof contactForm.requestSubmit === 'function') {
                 submitRetried = true;
                 resetTurnstile(contactForm);
@@ -2026,7 +2272,8 @@ const newsletterForm = document.getElementById('newsletterForm');
 
 if (newsletterForm) {
     newsletterForm.dataset.ts = String(Date.now());
-    // Stesso scudo anti-bot dei form contatto (invisibile, zero frizione).
+    // Scudo anti-bot visibile e obbligatorio come i form contatto: niente
+    // iscrizione senza verifica completata (o fail-open se mount fallito).
     scheduleTurnstileMount(newsletterForm);
     newsletterForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -2039,25 +2286,26 @@ if (newsletterForm) {
         button.textContent = 'Invio...';
 
         try {
-            // Via proxy con captcha come i form contatto (niente post diretti
-            // senza token); in locale torna al direct (vedi applyDevAccessKey).
             const formData = new FormData(newsletterForm);
             if (newsletterForm.dataset.ts) formData.set('ts', newsletterForm.dataset.ts);
-            if (turnstileSitekey && formSubmitMode === 'proxy') {
-                await mountTurnstileOnForm(newsletterForm);
-                let captchaToken = getTurnstileToken(newsletterForm);
-                if (!captchaToken) {
-                    resetTurnstile(newsletterForm);
-                    captchaToken = await waitFreshTurnstileToken(newsletterForm);
+            const endpoint = resolveFormSubmitEndpoint();
+            const useProxy = Boolean(formProxyUrl) && endpoint === formProxyUrl;
+            // Widget visibile da subito e obbligatorio: niente iscrizione
+            // senza verifica completata (o fail-open se mount fallito).
+            if (turnstileSitekey) {
+                button.textContent = 'Verifica anti-bot...';
+                const human = await ensureVerifiedHuman(newsletterForm);
+                if (human.status !== 'ok') {
+                    throw new Error(human.message);
                 }
-                if (!captchaToken) {
-                    throw new Error('Completa la verifica anti-bot prima di inviare.');
-                }
-                formData.set('cf-turnstile-response', captchaToken);
+                if (useProxy && human.token) formData.set('cf-turnstile-response', human.token);
             }
+            if (!useProxy) stripDirectPayload(formData);
             applyDevAccessKey(formData);
-            const response = await fetch(resolveFormSubmitEndpoint(), {
+            button.textContent = 'Invio...';
+            const response = await fetch(endpoint, {
                 method: 'POST',
+                headers: useProxy ? undefined : { 'Accept': 'application/json' },
                 body: formData,
                 signal: AbortSignal.timeout(15000)
             });
@@ -2083,7 +2331,10 @@ if (newsletterForm) {
             }
         } catch (error) {
             if (turnstileSitekey) resetTurnstile(newsletterForm);
-            button.textContent = 'Errore, riprova';
+            const gateMsg = error && error.message && /anti-bot|verifica/i.test(error.message)
+                ? 'Completa la verifica ↑'
+                : 'Errore, riprova';
+            button.textContent = gateMsg;
             button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
             setTimeout(() => {
                 button.textContent = originalText;
@@ -2095,7 +2346,7 @@ if (newsletterForm) {
 }
 
 // 5b. AI Act mini-form (dentro articolo blog): parere preliminare gratuito.
-// Riutilizza endpoint proxy + Turnstile come i form principali.
+// Stesso flusso dei form principali: verifica via /verify + invio diretto.
 const aiActForm = document.getElementById('aiActForm');
 if (aiActForm) {
     aiActForm.dataset.ts = String(Date.now());
@@ -2113,25 +2364,26 @@ if (aiActForm) {
         button.innerHTML = '<span>Invio in corso...</span>';
         if (result) result.textContent = '';
         try {
-            await mountTurnstileOnForm(aiActForm);
             const formData = new FormData(aiActForm);
             if (aiActForm.dataset.ts) formData.set('ts', aiActForm.dataset.ts);
             const emailVal = aiActForm.querySelector('input[name="email"]');
             if (emailVal && emailVal.value) formData.set('replyto', emailVal.value);
+            const endpoint = resolveFormSubmitEndpoint();
+            const useProxy = Boolean(formProxyUrl) && endpoint === formProxyUrl;
             if (turnstileSitekey) {
-                let captchaToken = getTurnstileToken(aiActForm);
-                if (!captchaToken) {
-                    resetTurnstile(aiActForm);
-                    captchaToken = await waitFreshTurnstileToken(aiActForm);
+                button.innerHTML = '<span>Verifica anti-bot...</span>';
+                const human = await ensureVerifiedHuman(aiActForm);
+                if (human.status !== 'ok') {
+                    throw new Error(human.message);
                 }
-                if (!captchaToken) {
-                    throw new Error('Completa la verifica anti-bot prima di inviare.');
-                }
-                formData.set('cf-turnstile-response', captchaToken);
+                if (useProxy && human.token) formData.set('cf-turnstile-response', human.token);
+                button.innerHTML = '<span>Invio in corso...</span>';
             }
+            if (!useProxy) stripDirectPayload(formData);
             applyDevAccessKey(formData);
-            const response = await fetch(resolveFormSubmitEndpoint(), {
+            const response = await fetch(endpoint, {
                 method: 'POST',
+                headers: useProxy ? undefined : { 'Accept': 'application/json' },
                 body: formData,
                 signal: AbortSignal.timeout(15000)
             });
@@ -2148,12 +2400,35 @@ if (aiActForm) {
             }
         } catch (error) {
             if (turnstileSitekey) resetTurnstile(aiActForm);
-            if (result) result.textContent = 'Invio non riuscito. Scrivici a hello@webnovis.com oppure riprova.';
+            if (result) {
+                result.textContent = (error && error.message && /anti-bot|verifica/i.test(error.message))
+                    ? error.message
+                    : 'Invio non riuscito. Scrivici a hello@webnovis.com oppure riprova.';
+                if (/anti-bot|verifica/i.test(result.textContent)) scrollTurnstileIntoView(aiActForm);
+            }
             button.innerHTML = originalHTML;
             button.disabled = false;
         }
     });
 }
+
+// 5c. 404 lead mini-form: widget visibile + gate sincrono prima dell'invio.
+// Il backend (/api/lead su Worker AI) è rate-limited server-side; il gate
+// client (token presente o fail-open) è la frizione anti-bot proporzionata.
+const e404Form = document.getElementById('e404Form');
+if (e404Form) {
+    try { e404Form.dataset.ts = String(Date.now()); } catch (_) { /* ignore */ }
+    if (turnstileSitekey) scheduleTurnstileMount(e404Form);
+}
+window.__webnovisE404Gate = function () {
+    try {
+        if (!turnstileSitekey || !e404Form) return true;
+        return turnstileGateOk(e404Form);
+    } catch (_) { return true; }
+};
+window.__webnovisScrollGate = function (form) {
+    try { scrollTurnstileIntoView(form || e404Form); } catch (_) { /* ignore */ }
+};
 
 // 6. Floating Contact Buttons — visibility handled by unified scroll controller
 const whatsappFloat = document.getElementById('whatsappFloat');
@@ -2337,10 +2612,31 @@ if (multistepForm) {
         multistepForm.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'nearest' });
     };
 
+    // Hook per il submit handler: su token stantio riporta allo step 1
+    // dove il widget è visibile e risolvibile.
+    try {
+        window.__webnovisMultistepGoTo = goToStep;
+    } catch (_) { /* ignore */ }
+
     // Step 1: Goal options (multi-select)
     const goalOptions = document.getElementById('goalOptions');
     const goalInput = document.getElementById('goalInput');
     const msNext1 = document.getElementById('msNext1');
+
+    // Step 1: Goal options (multi-select). Il "Continua" resta murato finché
+    // il widget anti-bot (visibile sopra, fase iniziale) non è risolto — o in
+    // fail-open se il mount è tecnicamente fallito. Nota visibile sotto.
+    const updateMsNext1 = () => {
+        try {
+            const selected = goalOptions ? goalOptions.querySelectorAll('.ms-option.selected') : [];
+            const goalsOk = selected.length > 0;
+            const gateOk = turnstileGateOk(multistepForm);
+            if (msNext1) msNext1.disabled = !goalsOk || !gateOk;
+            const note = multistepForm.querySelector('.turnstile-gate-note');
+            if (note) note.style.display = gateOk ? 'none' : '';
+        } catch (_) { /* ignore */ }
+    };
+    multistepForm.__webnovisRefreshGate = updateMsNext1;
 
     if (goalOptions) {
         goalOptions.addEventListener('click', (e) => {
@@ -2352,7 +2648,7 @@ if (multistepForm) {
             const selected = goalOptions.querySelectorAll('.ms-option.selected');
             const values = Array.from(selected).map(o => o.dataset.value);
             if (goalInput) goalInput.value = values.join(', ');
-            if (msNext1) msNext1.disabled = values.length === 0;
+            updateMsNext1();
         });
     }
 
@@ -2380,6 +2676,13 @@ if (multistepForm) {
         const prevBtn = e.target.closest('.ms-prev');
 
         if (nextBtn && !nextBtn.disabled) {
+            // Cintura di sicurezza: dallo step 1 non si avanza senza verifica
+            // (il disabled copre già il caso normale).
+            if (currentStep === 1 && !turnstileGateOk(multistepForm)) {
+                scrollTurnstileIntoView(multistepForm);
+                updateMsNext1();
+                return;
+            }
             // Regenerate budget options when moving from step 1 to step 2
             if (currentStep === 1 && budgetOptions && goalOptions) {
                 const selected = goalOptions.querySelectorAll('.ms-option.selected');

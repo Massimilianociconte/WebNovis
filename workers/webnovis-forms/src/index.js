@@ -32,6 +32,50 @@ function json(body, status = 200, extra = {}) {
   });
 }
 
+function clientIp(request) {
+  return (
+    request.headers.get('CF-Connecting-IP') ||
+    request.headers.get('X-Forwarded-For')?.split(',')[0]?.trim() ||
+    ''
+  );
+}
+
+// Rate limit best-effort per IP e per scopo (senza IP nessun blocco: mai
+// negare per dati mancanti). Stessa semantica ovunque (submit e verify).
+function checkRateLimit(ip, scope, limit, windowMs) {
+  if (!ip) return false;
+  const now = Date.now();
+  const store =
+    globalThis.__wnRateLimit || (globalThis.__wnRateLimit = new Map());
+  const key = `${scope}:${ip}`;
+  const hits = (store.get(key) || []).filter((t) => now - t < windowMs);
+  if (hits.length >= limit) return true;
+  hits.push(now);
+  store.set(key, hits);
+  if (store.size > 2000) {
+    for (const [k, v] of store) {
+      if (!v.length || now - v[v.length - 1] > windowMs) store.delete(k);
+    }
+  }
+  return false;
+}
+
+async function readFormData(request) {
+  const contentType = request.headers.get('content-type') || '';
+  if (contentType.includes('multipart/form-data') || contentType.includes('application/x-www-form-urlencoded')) {
+    return await request.formData();
+  }
+  if (contentType.includes('application/json')) {
+    const payload = await request.json();
+    const fd = new FormData();
+    for (const [k, v] of Object.entries(payload || {})) {
+      if (v != null) fd.append(k, String(v));
+    }
+    return fd;
+  }
+  return await request.formData();
+}
+
 function parseHostnames(raw) {
   return new Set(
     String(raw || '')
@@ -104,28 +148,57 @@ export default {
       return json({
         ok: true,
         service: env.SERVICE_NAME || 'webnovis-forms',
-        turnstileConfigured: Boolean(env.TURNSTILE_SECRET)
+        turnstileConfigured: Boolean(env.TURNSTILE_SECRET),
+        web3formsConfigured: Boolean(env.WEB3FORMS_ACCESS_KEY)
       });
+    }
+
+    // POST /verify — sola verifica Turnstile (siteverify), senza inoltro.
+    // Serve il flusso direct (default sul piano free): il browser verifica il
+    // token qui e poi posta DIRETTAMENTE a Web3Forms. Il piano free blocca i
+    // POST server-side (403) quindi il vecchio proxying via /submit non può
+    // funzionare senza Pro — /verify aggira il muro (nessun inoltro).
+    if (url.pathname === '/verify' && request.method === 'POST') {
+      const ip = clientIp(request);
+      if (checkRateLimit(ip, 'verify', 10, 600_000)) {
+        return json({ ok: false, error: 'rate_limited' }, 429);
+      }
+      let formData;
+      try {
+        formData = await readFormData(request);
+      } catch {
+        return json({ ok: false, error: 'invalid_body' }, 400);
+      }
+      const token = String(
+        formData.get('token') ||
+        formData.get('cf-turnstile-response') ||
+        formData.get('turnstile_token') ||
+        ''
+      ).slice(0, 2048);
+      if (!token) {
+        return json({ ok: false, error: 'token_missing' }, 400);
+      }
+      const verified = await siteverifyTurnstile(env, token, ip);
+      if (!verified.ok) {
+        return json(
+          { ok: false, error: verified.error, codes: verified.codes || [] },
+          403
+        );
+      }
+      return json({ ok: true });
     }
 
     if (url.pathname !== '/submit' || request.method !== 'POST') {
       return json({ success: false, message: 'not_found' }, 404);
     }
 
-    const contentType = request.headers.get('content-type') || '';
+    // NOTA: /submit inoltra a Web3Forms server-side: richiede Web3Forms Pro
+    // (il free risponde 403 "Use our API in client side"). Tenuto per il
+    // percorso Pro futuro; il default free usa /verify + direct. Vedi
+    // docs/TURNSTILE-SETUP.md e js/site-config.js (FORM_SUBMIT_MODE).
     let formData;
     try {
-      if (contentType.includes('multipart/form-data') || contentType.includes('application/x-www-form-urlencoded')) {
-        formData = await request.formData();
-      } else if (contentType.includes('application/json')) {
-        const payload = await request.json();
-        formData = new FormData();
-        for (const [k, v] of Object.entries(payload || {})) {
-          if (v != null) formData.append(k, String(v));
-        }
-      } else {
-        formData = await request.formData();
-      }
+      formData = await readFormData(request);
     } catch {
       return json({ success: false, message: 'invalid_body' }, 400);
     }
@@ -149,38 +222,15 @@ export default {
     }
 
     // Rate limit best-effort per IP (5 submit / 10 min per isolate).
-    // Senza IP identificabile nessun blocco (mai negare per dati mancanti).
-    const remoteipEarly =
-      request.headers.get('CF-Connecting-IP') ||
-      request.headers.get('X-Forwarded-For')?.split(',')[0]?.trim() ||
-      '';
-    if (remoteipEarly) {
-      const now = Date.now();
-      const store =
-        globalThis.__wnRateLimit || (globalThis.__wnRateLimit = new Map());
-      const hits = (store.get(remoteipEarly) || []).filter(
-        (t) => now - t < 600_000
-      );
-      if (hits.length >= 5) {
-        return json({ success: false, message: 'rate_limited' }, 429);
-      }
-      hits.push(now);
-      store.set(remoteipEarly, hits);
-      if (store.size > 2000) {
-        for (const [k, v] of store) {
-          if (!v.length || now - v[v.length - 1] > 600_000) store.delete(k);
-        }
-      }
+    if (checkRateLimit(clientIp(request), 'submit', 5, 600_000)) {
+      return json({ success: false, message: 'rate_limited' }, 429);
     }
 
     const token =
       formData.get('cf-turnstile-response') ||
       formData.get('turnstile_token') ||
       '';
-    const remoteip =
-      request.headers.get('CF-Connecting-IP') ||
-      request.headers.get('X-Forwarded-For')?.split(',')[0]?.trim() ||
-      '';
+    const remoteip = clientIp(request);
 
     const verified = await siteverifyTurnstile(env, String(token || ''), remoteip);
     if (!verified.ok) {
@@ -199,7 +249,12 @@ export default {
     formData.delete('cf-turnstile-response');
     formData.delete('turnstile_token');
     const endpoint = env.WEB3FORMS_ENDPOINT || 'https://api.web3forms.com/submit';
-    if (env.WEB3FORMS_ACCESS_KEY && !formData.get('access_key')) {
+    // Il secret server-side è autoritativo: se presente sovrascrive qualsiasi
+    // chiave arrivata dal client (che potrebbe essere stale). Se assente, si
+    // tiene la chiave pubblica inviata dal browser (pubblica per design):
+    // senza chiave Web3Forms risponde 400 e il proxy ritornerebbe 502 a
+    // widget completato — il sintomo "form rotto" visto in produzione.
+    if (env.WEB3FORMS_ACCESS_KEY) {
       formData.set('access_key', env.WEB3FORMS_ACCESS_KEY);
     }
 
@@ -214,7 +269,18 @@ export default {
       try {
         data = JSON.parse(text);
       } catch {
-        data = { success: upstream.ok, message: text.slice(0, 200) };
+        data = { success: upstream.ok, message: text.slice(0, 200) || `upstream_http_${upstream.status}` };
+      }
+      if (!upstream.ok) {
+        // Diagnostica nei log Worker (wrangler tail): status + snippet.
+        // 403 = muro free sui POST server-side ("Use our API in client side"):
+        // serve Web3Forms Pro oppure il flusso /verify + direct.
+        try {
+          console.error(`Web3Forms upstream ${upstream.status}: ${String(text).slice(0, 300)}`);
+        } catch (_) { /* ignore */ }
+        if (upstream.status === 403) {
+          return json({ success: false, message: 'email_provider_forbidden', code: 'web3forms_pro_required' }, 502);
+        }
       }
       return json(data, upstream.ok ? 200 : 502);
     } catch {
