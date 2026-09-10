@@ -3139,6 +3139,30 @@ section {
     max-height: 44px;
 }
 
+/* --- ABIMAGE WEA® badge: item flex come gli altri, mai overlap --- */
+.footer-badges .abimage-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 220px;
+    max-width: 220px;
+    min-width: 0;
+    contain: layout paint;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.footer-badges .abimage-badge:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+
+.footer-badges .abimage-badge img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 420 / 150;
+}
+
 /* --- Footer bottom bar --- */
 .footer-bottom {
     text-align: center;
@@ -8063,6 +8087,15 @@ img {
         padding: 0.5rem 0;
     }
 
+    /* ABIMAGE WEA®: banner largo 2.8:1 — full-row centrato, mai schiacciato in 1 colonna */
+    .footer-badges .abimage-badge {
+        grid-column: 1 / -1;
+        width: 100%;
+        max-width: 280px;
+        flex: none;
+        margin: 0 auto;
+    }
+
     .footer-bottom {
         padding: 1.5rem 0 calc(1.5rem + env(safe-area-inset-bottom));
         text-align: center;
@@ -8642,6 +8675,13 @@ img {
 
     .footer-badges .review-badge {
         justify-content: center;
+    }
+
+    /* ABIMAGE WEA®: centrato e cappato anche su colonna singola */
+    .footer-badges .abimage-badge {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
     }
 
     /* -- Counter number text overflow -- */

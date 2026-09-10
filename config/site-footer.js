@@ -65,6 +65,23 @@ function sanitizeBrokenPhoneCtaMarkup(html) {
     .replace(LEGACY_PHONE_SR_ONLY_PATTERN, '');
 }
 
+function buildAbimageBadgeHtml() {
+  // Badge ABIMAGE WEA® (SVG remoto 420x150, ~1.6KB): ottimizzato PageSpeed —
+  // loading lazy nativo (below-fold), fetchpriority low (mai compete con LCP),
+  // decoding async, width/height reali + aspect-ratio (zero CLS), CSS class
+  // .abimage-badge per sizing/contain senza rompere la riga flex dei badge.
+  // Niente preconnect/dns-prefetch statici in head: il DNS si risolve al
+  // lazy-load, costo zero sul critical path. Niente JS.
+  const abimageImg = buildImageTag({
+    alt: 'ABIMAGE Web Excellence Award®: voto medio e posizione in classifica',
+    src: 'https://www.abimage.net/web-excellence-award/badge.php?site_id=0o9pguplkshb5jqjce',
+    width: 420,
+    height: 150,
+    style: 'display:block;width:100%;height:auto;aspect-ratio:420/150'
+  });
+  return `<a href="https://www.abimage.net/pagine/web-excellence-award.php?site_id=0o9pguplkshb5jqjce#vota" target="_blank" rel="noopener noreferrer" aria-label="Valuta questo sito con ABIMAGE Web Excellence Award®" class="abimage-badge">${abimageImg}</a>`;
+}
+
 function buildThirdPartyReviewBadgesHtml(prefix = '..') {
   const base = normalizeRelativePrefix(prefix);
   const designRushBadge = buildImageTag({
@@ -92,7 +109,7 @@ function buildThirdPartyReviewBadgesHtml(prefix = '..') {
   // Badge Trustpilot statico: zero JS, zero richieste esterne. Il widget
   // ufficiale falliva spesso al load (HAR 2026-09-05: 8x status 0) lasciando
   // solo il link testuale. Nessun punteggio inventato: solo brand + stelle.
-  return `${buildTrustpilotBadgeHtml()}<div class="review-badge" style="padding:0;background:0 0;border:none"><div data-agency-id="110524" data-designrush-widget data-style="light"></div><noscript><a href="https://www.designrush.com/agency/profile/web-novis#reviews" target="_blank" aria-label="Visit Web Novis reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript></div><span style="display:inline-flex;align-items:center">${designRushBadge}</span><a href="https://www.goodfirms.co/company/web-novis" target="_blank" rel="noopener noreferrer" aria-label="Web Novis su GoodFirms" style="display:inline-flex;align-items:center"><picture><source srcset="${base}Img/goodfirms-logo.webp" type="image/webp">${goodFirmsBadge}</picture></a> <a href="https://maidensail.com/startup/webnovis" target="_blank" rel="dofollow" title="Featured on Maidensail" aria-label="Featured on Maidensail" class="maidensail-badge" style="display:inline-flex;align-items:center">${maidensailBadge}</a>`;
+  return `${buildTrustpilotBadgeHtml()}<div class="review-badge" style="padding:0;background:0 0;border:none"><div data-agency-id="110524" data-designrush-widget data-style="light"></div><noscript><a href="https://www.designrush.com/agency/profile/web-novis#reviews" target="_blank" aria-label="Visit Web Novis reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript></div><span style="display:inline-flex;align-items:center">${designRushBadge}</span><a href="https://www.goodfirms.co/company/web-novis" target="_blank" rel="noopener noreferrer" aria-label="Web Novis su GoodFirms" style="display:inline-flex;align-items:center"><picture><source srcset="${base}Img/goodfirms-logo.webp" type="image/webp">${goodFirmsBadge}</picture></a> <a href="https://maidensail.com/startup/webnovis" target="_blank" rel="dofollow" title="Featured on Maidensail" aria-label="Featured on Maidensail" class="maidensail-badge" style="display:inline-flex;align-items:center">${maidensailBadge}</a> ${buildAbimageBadgeHtml()}`;
 }
 
 const TRUSTPILOT_WIDGET_PATTERN = /<div class="trustpilot-widget"[\s\S]*?<\/div>/g;
@@ -187,6 +204,11 @@ function normalizeFooterAssetMarkup(html) {
     let inner = footerBadgesMatch[2];
     inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/maidensail\.com\/startup\/webnovis["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
     inner = `${inner} ${maidensailLink}`;
+    // ABIMAGE WEA®: rimuove TUTTE le istanze esistenti (anche snippet raw
+    // incollati a mano senza lazy/dimensioni) e ne appende UNA ottimizzata
+    // in coda alla riga badge — mai overlap, mai duplicati, idempotente.
+    inner = inner.replace(/<a\b(?=[^>]*abimage\.net\/pagine\/web-excellence-award\.php)[^>]*>[\s\S]*?<\/a>/gi, '').trim();
+    inner = `${inner} ${buildAbimageBadgeHtml()}`;
     updated = updated.replace(footerBadgesMatch[0], `${footerBadgesMatch[1]} ${inner} ${footerBadgesMatch[3]}`);
   }
 
@@ -221,6 +243,7 @@ function normalizePhoneCtaMarkup(html) {
 }
 
 module.exports = {
+  buildAbimageBadgeHtml,
   buildPreferredSourceArticleHtml,
   buildPreferredSourceHtml,
   buildReviewBadgesHtml,
