@@ -1,14 +1,16 @@
 (function initFooterWidgetsLoader() {
     var loadedDesignRush = false;
+    var loadedVai = false;
     var widgetsRequested = false;
     var designRushSrc = 'https://www.designrush.com/topbest/js/widgets/agency-reviews.js';
+    var vaiBadgeSrc = 'https://vai.me/widgets/badge.js?v=2';
 
     // Trustpilot non passa piu da qui: il badge e statico in footer
     // (config/site-footer.js, zero richieste esterne). Il bootstrap esterno
     // falliva spesso al load (HAR 2026-09-05: 8x status 0).
 
     function hasFooterWidgets() {
-        return !!document.querySelector('[data-designrush-widget]');
+        return !!(document.querySelector('[data-designrush-widget]') || document.querySelector('.vai-widget[data-org="webnovis"]'));
     }
 
     function loadScript(src, onLoad) {
@@ -34,16 +36,31 @@
         loadScript(designRushSrc);
     }
 
+    // Vai.me Verified Badge: anchor statica già nel footer (backlink SEO dal
+    // primo byte). badge.js potenzia il nodo esistente: lazy solo a footer
+    // vicino al viewport, defer + una sola volta, zero costo sul critical path
+    // (LCP/TBT/CLS invariati). Idempotente: skip se script già presente.
+    function loadVaiBadge() {
+        if (loadedVai || !document.querySelector('.vai-widget[data-org="webnovis"]')) return;
+        if (document.querySelector('script[src^="https://vai.me/widgets/badge.js"]')) {
+            loadedVai = true;
+            return;
+        }
+        loadedVai = true;
+        loadScript(vaiBadgeSrc);
+    }
+
     function loadWidgets() {
         if (widgetsRequested || !hasFooterWidgets()) return;
         widgetsRequested = true;
         loadDesignRush();
+        loadVaiBadge();
     }
 
     function setupIntersectionTrigger() {
         if (!('IntersectionObserver' in window)) return false;
 
-        var candidates = document.querySelectorAll('.footer-reviews-badges, .footer-badges, [data-designrush-widget]');
+        var candidates = document.querySelectorAll('.footer-reviews-badges, .footer-badges, [data-designrush-widget], .vai-widget');
         if (!candidates.length) return false;
 
         var observer = new IntersectionObserver(function (entries) {

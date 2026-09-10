@@ -82,6 +82,17 @@ function buildAbimageBadgeHtml() {
   return `<a href="https://www.abimage.net/pagine/web-excellence-award.php?site_id=0o9pguplkshb5jqjce#vota" target="_blank" rel="noopener noreferrer" aria-label="Valuta questo sito con ABIMAGE Web Excellence Award®" class="abimage-badge">${abimageImg}</a>`;
 }
 
+function buildVaiBadgeHtml() {
+  // Badge Vai.me Verified (backlink exchange): HTML statico a costo zero —
+  // niente <script> inline nel footer (il loader lo inietta in lazy solo a
+  // footer vicino al viewport), niente preconnect/dns-prefetch in head, niente
+  // richieste di rete sul critical path. Il link resta crawlabile per SEO fin
+  // dal primo byte; badge.js (compact/dark) potenzia il nodo esistente senza
+  // creare duplicati. Classe vai-widget = hook ufficiale Vai.me, vai-badge =
+  // styling/CLS locale. min-height + contain riservano lo spazio (zero CLS).
+  return `<a href="https://vai.me/company/webnovis" rel="noopener" class="vai-widget vai-badge" data-type="badge" data-org="webnovis" data-style="compact" data-theme="dark" target="_blank" title="WebNovis — Verified on Vai.me" aria-label="WebNovis — Verified on Vai.me">WebNovis — Verified on Vai.me</a>`;
+}
+
 function buildThirdPartyReviewBadgesHtml(prefix = '..') {
   const base = normalizeRelativePrefix(prefix);
   const designRushBadge = buildImageTag({
@@ -109,7 +120,7 @@ function buildThirdPartyReviewBadgesHtml(prefix = '..') {
   // Badge Trustpilot statico: zero JS, zero richieste esterne. Il widget
   // ufficiale falliva spesso al load (HAR 2026-09-05: 8x status 0) lasciando
   // solo il link testuale. Nessun punteggio inventato: solo brand + stelle.
-  return `${buildTrustpilotBadgeHtml()}<div class="review-badge" style="padding:0;background:0 0;border:none"><div data-agency-id="110524" data-designrush-widget data-style="light"></div><noscript><a href="https://www.designrush.com/agency/profile/web-novis#reviews" target="_blank" aria-label="Visit Web Novis reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript></div><span style="display:inline-flex;align-items:center">${designRushBadge}</span><a href="https://www.goodfirms.co/company/web-novis" target="_blank" rel="noopener noreferrer" aria-label="Web Novis su GoodFirms" style="display:inline-flex;align-items:center"><picture><source srcset="${base}Img/goodfirms-logo.webp" type="image/webp">${goodFirmsBadge}</picture></a> <a href="https://maidensail.com/startup/webnovis" target="_blank" rel="dofollow" title="Featured on Maidensail" aria-label="Featured on Maidensail" class="maidensail-badge" style="display:inline-flex;align-items:center">${maidensailBadge}</a> ${buildAbimageBadgeHtml()}`;
+  return `${buildTrustpilotBadgeHtml()}<div class="review-badge" style="padding:0;background:0 0;border:none"><div data-agency-id="110524" data-designrush-widget data-style="light"></div><noscript><a href="https://www.designrush.com/agency/profile/web-novis#reviews" target="_blank" aria-label="Visit Web Novis reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript></div><span style="display:inline-flex;align-items:center">${designRushBadge}</span><a href="https://www.goodfirms.co/company/web-novis" target="_blank" rel="noopener noreferrer" aria-label="Web Novis su GoodFirms" style="display:inline-flex;align-items:center"><picture><source srcset="${base}Img/goodfirms-logo.webp" type="image/webp">${goodFirmsBadge}</picture></a> <a href="https://maidensail.com/startup/webnovis" target="_blank" rel="dofollow" title="Featured on Maidensail" aria-label="Featured on Maidensail" class="maidensail-badge" style="display:inline-flex;align-items:center">${maidensailBadge}</a> ${buildAbimageBadgeHtml()} ${buildVaiBadgeHtml()}`;
 }
 
 const TRUSTPILOT_WIDGET_PATTERN = /<div class="trustpilot-widget"[\s\S]*?<\/div>/g;
@@ -209,8 +220,19 @@ function normalizeFooterAssetMarkup(html) {
     // in coda alla riga badge — mai overlap, mai duplicati, idempotente.
     inner = inner.replace(/<a\b(?=[^>]*abimage\.net\/pagine\/web-excellence-award\.php)[^>]*>[\s\S]*?<\/a>/gi, '').trim();
     inner = `${inner} ${buildAbimageBadgeHtml()}`;
+    // Vai.me Verified: rimuove TUTTE le istanze esistenti (anchor + eventuali
+    // <script badge.js> incollati raw che bloccherebbero il critical path) e
+    // ne appende UNA statica ottimizzata. Lo script ufficiale viene iniettato
+    // in lazy da js/footer-widgets-loader.js solo a footer vicino al viewport.
+    inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/vai\.me\/company\/webnovis["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
+    inner = inner.replace(/\s*<script\b[^>]*src="https:\/\/vai\.me\/widgets\/badge\.js[^"]*"[^>]*><\/script>\s*/gi, ' ');
+    inner = `${inner} ${buildVaiBadgeHtml()}`;
     updated = updated.replace(footerBadgesMatch[0], `${footerBadgesMatch[1]} ${inner} ${footerBadgesMatch[3]}`);
   }
+
+  // Safety-net globale: mai <script vai.me> diretto nel markup pubblicato —
+  // deve passare dal loader lazy (PageSpeed: zero richieste sul critical path).
+  updated = updated.replace(/\s*<script\b[^>]*src="https:\/\/vai\.me\/widgets\/badge\.js[^"]*"[^>]*><\/script>\s*/gi, ' ');
 
   // CTA statica fonti-preferite: visibile anche senza JS, una sola istanza
   // per pagina (il loader JS deduplica eventuali residui a runtime).
@@ -244,6 +266,7 @@ function normalizePhoneCtaMarkup(html) {
 
 module.exports = {
   buildAbimageBadgeHtml,
+  buildVaiBadgeHtml,
   buildPreferredSourceArticleHtml,
   buildPreferredSourceHtml,
   buildReviewBadgesHtml,

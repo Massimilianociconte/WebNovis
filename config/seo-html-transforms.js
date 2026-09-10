@@ -1354,15 +1354,34 @@ function replaceArticleUpgrade(html, { title, description, href, label }) {
 }
 
 function ensureSelfHreflang(html, relativePath) {
-  const withoutExisting = html.replace(/\s*<link\b(?=[^>]*\bhreflang\s*=)[^>]*>/gi, '');
+  // Pagine non italiane (es. blog/en/, <html lang="en">): il cluster hreflang
+  // multilingua (en/it-IT/x-default) è handcrafted e verificato dai test
+  // (html-structure: self hreflang deve essere "en" per lang="en"). Forzare
+  // qui un self "it-IT" distruggerebbe il cluster — si preserva intatto.
+  if (/^blog\/en\//i.test(String(relativePath).replace(/\\/g, '/'))
+    || /<html\b[^>]*\blang\s*=\s*["']en["']/i.test(html)) {
+    return html;
+  }
   const publicPath = toPublicUrlPath(relativePath);
   const isNoindex = isNonPublicArtifactPath(relativePath)
     || NON_INDEXABLE_STATIC_PATHS.has(publicPath)
     || getIndexationDirectivesForPath(publicPath) === 'noindex, follow';
-  if (isNoindex) return withoutExisting;
+  if (isNoindex) {
+    return html.replace(/\s*<link\b(?=[^>]*\bhreflang\s*=)[^>]*>/gi, '');
+  }
 
-  const canonicalTag = withoutExisting.match(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i);
+  const canonicalTag = html.match(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i);
   const href = canonicalTag ? getTagAttribute(canonicalTag[0], 'href') : toAbsolutePublicUrl(relativePath);
+  // Cluster esistente già valido (self hreflang == canonical, es. coppie
+  // IT/EN con reciprocità): si preserva intatto invece di ridurlo a un
+  // self "it-IT" — la distruzione romperebbe la reciprocità verificata dai
+  // test (html-structure) e il SEO multilingua. Solo se il self manca lo si
+  // aggiunge in forma it-IT (comportamento storico per le pagine solo-IT).
+  const existingHreflangTags = html.match(/<link\b(?=[^>]*\bhreflang\s*=)[^>]*>/gi) || [];
+  const hasValidSelf = existingHreflangTags.some((tag) => getTagAttribute(tag, 'href') === href);
+  if (hasValidSelf) return html;
+
+  const withoutExisting = html.replace(/\s*<link\b(?=[^>]*\bhreflang\s*=)[^>]*>/gi, '');
   const hreflangTag = `<link rel="alternate" hreflang="it-IT" href="${href}">`;
 
   if (/<link\b[^>]*rel=["']canonical["'][^>]*>/i.test(withoutExisting)) {

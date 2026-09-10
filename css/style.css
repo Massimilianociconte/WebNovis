@@ -3163,6 +3163,42 @@ section {
     aspect-ratio: 420 / 150;
 }
 
+/* --- Vai.me Verified badge: pill testuale compatta dark, zero CLS --- */
+/* Anchor statica (backlink) potenziata in lazy da badge.js: riserva spazio
+   (min-height 36px + contain) così l'hydration non sposta il layout. Solo
+   transform/opacity sull'hover (composite, nessun reflow). */
+.footer-badges .vai-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    contain: layout paint;
+    transition: transform 0.2s, opacity 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.footer-badges .vai-badge:hover {
+    transform: translateY(-1px);
+    opacity: 0.94;
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.footer-badges .vai-badge:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
+}
+
 /* --- Footer bottom bar --- */
 .footer-bottom {
     text-align: center;
@@ -8096,6 +8132,16 @@ img {
         margin: 0 auto;
     }
 
+    /* Vai.me: pill compatta — full-row centrata su mobile, mai schiacciata */
+    .footer-badges .vai-badge {
+        grid-column: 1 / -1;
+        width: auto;
+        max-width: 320px;
+        margin: 0 auto;
+        justify-content: center;
+        text-align: center;
+    }
+
     .footer-bottom {
         padding: 1.5rem 0 calc(1.5rem + env(safe-area-inset-bottom));
         text-align: center;
@@ -8681,6 +8727,13 @@ img {
     .footer-badges .abimage-badge {
         width: 100%;
         max-width: 280px;
+        margin: 0 auto;
+    }
+
+    /* Vai.me: centrato anche su colonna singola */
+    .footer-badges .vai-badge {
+        width: auto;
+        max-width: 320px;
         margin: 0 auto;
     }
 
