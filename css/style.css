@@ -632,10 +632,37 @@ body {
     opacity: 1;
 }
 
+/* Fallback animato GPU-only quando WebGL non è disponibile (es. Android
+   Battery Saver che rifiuta il contesto). Solo transform/opacity = composite,
+   zero impatto LCP/layout. Non si attiva mai con prefers-reduced-motion. */
+.hero-bg.hero-bg--css-fallback::before {
+    content: "";
+    position: absolute;
+    inset: -12%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 55% 48% at 72% 32%, rgba(43, 99, 240, 0.20), transparent 66%),
+        radial-gradient(ellipse 46% 40% at 18% 78%, rgba(124, 58, 237, 0.16), transparent 62%),
+        radial-gradient(ellipse 40% 36% at 50% 50%, rgba(56, 189, 248, 0.10), transparent 65%);
+    opacity: 0.9;
+    will-change: transform, opacity;
+    animation: heroFallbackDrift 14s ease-in-out infinite alternate;
+}
+
+@keyframes heroFallbackDrift {
+    from { transform: translate3d(-1.5%, 1%, 0) scale(1); opacity: 0.75; }
+    50% { transform: translate3d(1.5%, -1%, 0) scale(1.06); opacity: 0.95; }
+    to { transform: translate3d(-1%, -1.5%, 0) scale(1.03); opacity: 0.85; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .cosmic-nebula-canvas {
         transition: none;
         opacity: 0.85;
+    }
+    .hero-bg.hero-bg--css-fallback::before {
+        animation: none;
     }
 }
 
@@ -8247,20 +8274,33 @@ img {
         display: flex;
         flex-wrap: nowrap;
         margin-top: 3rem;
-        gap: 2rem;
-        width: max-content;
-        animation: mobileTechMarquee 20s linear infinite;
+        margin-inline: -1.25rem;
+        padding-inline: 1.25rem;
+        padding-bottom: .5rem;
+        gap: 1rem;
+        width: auto;
+        max-width: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        animation: none;
+        transform: none;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        touch-action: pan-x pan-y;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
-    
-    @keyframes mobileTechMarquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-50% - 1rem)); }
+
+    .tech-grid::-webkit-scrollbar {
+        display: none;
     }
     
     .tech-item {
         flex: 0 0 auto;
         width: 120px;
         height: 120px;
+        scroll-snap-align: start;
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.05);
         border-radius: 20px;
@@ -8602,6 +8642,12 @@ img {
         padding: 3.5rem 0;
     }
 
+    .tech-grid {
+        margin-inline: -1rem;
+        padding-inline: 1rem;
+        gap: .75rem;
+    }
+
     .tech-item {
         padding: 1.25rem 0.75rem;
     }
@@ -8650,6 +8696,11 @@ img {
 
     .container {
         padding: 0 0.75rem;
+    }
+
+    .tech-grid {
+        margin-inline: -0.75rem;
+        padding-inline: 0.75rem;
     }
 
     /* -- Hero ultra-compact -- */

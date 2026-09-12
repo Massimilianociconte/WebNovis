@@ -6,7 +6,7 @@
     var baseUrl = currentScript && currentScript.src
         ? new URL('.', currentScript.src).href
         : new URL('js/', window.location.href).href;
-    var ASSET_V = '20260906a';
+    var ASSET_V = '20260912a';
     var loadedScripts = new Set();
 
     function resolveAsset(name) {

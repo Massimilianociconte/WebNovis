@@ -226,10 +226,18 @@ GEMINI_API_KEY_SEARCH=...      # Ricerca AI
 GEMINI_API_KEY_WRITER=...      # Auto writer blog
 GROQ_API_KEY=...               # Newsletter AI / fallback writer
 BREVO_API_KEY=...              # Newsletter + lead pipeline
-NEWSLETTER_ADMIN_SECRET=...    # Secret admin + unsubscribe HMAC
+NEWSLETTER_ADMIN_SECRET=...    # Solo header admin (vedi sotto)
+UNSUBSCRIBE_HMAC_SECRET=...    # Solo HMAC unsubscribe (vedi sotto)
 NODE_ENV=production
 PORT=3000
 ```
+
+> **MAI committare `.env`/`.dev.vars` con valori reali** — solo placeholder in `.env.example`
+> (protetto da `.pre-commit-config.yaml` + `.gitleaks.toml`).
+> I due secret newsletter sono separati (`docs/operational/NEWSLETTER-SECRETS.md`):
+> `NEWSLETTER_ADMIN_SECRET` solo per `X-Admin-Secret`, `UNSUBSCRIBE_HMAC_SECRET`
+> solo per i token HMAC di disiscrizione (con `UNSUBSCRIBE_HMAC_SECRET_PREVIOUS`
+> per la transizione senza rompere i vecchi link).
 
 ### Package.json Scripts
 

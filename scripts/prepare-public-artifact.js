@@ -230,6 +230,11 @@ function main(env = process.env) {
       path.join(ROOT_DIR, 'js', 'cobe.min.js'),
       path.join(stagingRoot, 'js', 'cobe.min.js')
     );
+    // Fuse.js self-hosted (vendored v7.0.0, caricato dinamicamente da search.js).
+    copyFile(
+      path.join(ROOT_DIR, 'js', 'fuse.min.js'),
+      path.join(stagingRoot, 'js', 'fuse.min.js')
+    );
     // Fallback non-minificato per noncritical-loader (prova .min.js prima).
     copyFile(
       path.join(ROOT_DIR, 'js', 'weby-shell.js'),

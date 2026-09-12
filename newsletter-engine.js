@@ -53,12 +53,49 @@ function getNewsletterAdminSecret() {
     return secret;
 }
 
-function createUnsubscribeToken(email) {
+const ADMIN_PLACEHOLDER = 'change-this-to-a-random-secret-string-32chars';
+let _unsubFallbackWarned = false;
+
+// Credential isolation: l'HMAC unsubscribe usa una chiave dedicata, mai
+// l'header admin. Fallback transitorio su NEWSLETTER_ADMIN_SECRET finché
+// UNSUBSCRIBE_HMAC_SECRET non è configurato (con warn una tantum).
+function getUnsubscribeHmacSecrets() {
+    const primary = process.env.UNSUBSCRIBE_HMAC_SECRET;
+    const previous = process.env.UNSUBSCRIBE_HMAC_SECRET_PREVIOUS;
+    const keys = [];
+    if (primary && primary !== ADMIN_PLACEHOLDER) keys.push({ id: 'primary', value: primary });
+    if (previous && previous !== ADMIN_PLACEHOLDER) keys.push({ id: 'previous', value: previous });
+    if (keys.length === 0) {
+        // Transizione: riusa l'admin secret esistente così i vecchi link restano validi.
+        if (!_unsubFallbackWarned) {
+            _unsubFallbackWarned = true;
+            console.warn('⚠️ UNSUBSCRIBE_HMAC_SECRET non configurato: uso transitorio di NEWSLETTER_ADMIN_SECRET per HMAC. Configurare la chiave dedicata (vedi docs/operational/NEWSLETTER-SECRETS.md).');
+        }
+        keys.push({ id: 'legacy-admin', value: getNewsletterAdminSecret() });
+    }
+    return keys;
+}
+
+function hmacFor(email, secret) {
     const crypto = require('crypto');
-    return crypto
-        .createHmac('sha256', getNewsletterAdminSecret())
-        .update(email.toLowerCase().trim())
-        .digest('hex');
+    return crypto.createHmac('sha256', secret).update(email.toLowerCase().trim()).digest('hex');
+}
+
+function createUnsubscribeToken(email) {
+    return hmacFor(email, getUnsubscribeHmacSecrets()[0].value);
+}
+
+function verifyUnsubscribeToken(email, token) {
+    const normalized = email.toLowerCase().trim();
+    for (const { id, value } of getUnsubscribeHmacSecrets()) {
+        const expected = hmacFor(normalized, value);
+        const a = Buffer.from(String(token));
+        const b = Buffer.from(expected);
+        if (a.length === b.length && require('crypto').timingSafeEqual(a, b)) {
+            return id;
+        }
+    }
+    return null;
 }
 
 // System prompt per Llama 3.3 — separato dai dati utente
@@ -389,5 +426,7 @@ module.exports = {
     getSubscribers,
     generateContent,
     unsubscribeContact,
-    getEditionLabel
+    getEditionLabel,
+    createUnsubscribeToken,
+    verifyUnsubscribeToken
 };

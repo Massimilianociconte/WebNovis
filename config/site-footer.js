@@ -93,6 +93,39 @@ function buildVaiBadgeHtml() {
   return `<a href="https://vai.me/company/webnovis" rel="noopener" class="vai-widget vai-badge" data-type="badge" data-org="webnovis" data-style="compact" data-theme="dark" target="_blank" title="WebNovis — Verified on Vai.me" aria-label="WebNovis — Verified on Vai.me">WebNovis — Verified on Vai.me</a>`;
 }
 
+function buildDirectoryBadgesHtml() {
+  // Badge directory esterne (Great Work Guild, WebPro Nexus, Web Design Listings, Yaeris):
+  // stesso pattern perf degli altri badge remoti (abimage/maidensail) —
+  // loading lazy nativo (footer below-fold), fetchpriority low (mai compete
+  // con LCP), decoding async, width/height reali (zero CLS), niente
+  // preconnect/dns-prefetch in head (DNS al lazy-load, costo zero sul
+  // critical path), niente JS. Link restano crawlababili dal primo byte.
+  // Dimensioni verificate 2026-09-12: GWG SVG 172x149 (~21KB), WPN PNG 200x161 (~18KB),
+  // Yaeris PNG 2048x563 (render 73x20, aspect preservato per zero CLS).
+  const yaerisImg = buildImageTag({
+    alt: 'Yaeris Directory',
+    src: 'https://listing.yaeris.com/yaeris-logo-white.png',
+    width: 73,
+    height: 20,
+    style: 'display:block;height:20px;width:auto'
+  });
+  const gwgImg = buildImageTag({
+    alt: 'Featured Agency – Great Work Guild',
+    src: 'https://greatworkguild.com/api/badges/89c037b2-b447-487c-bd77-1dc56e365832/verified',
+    width: 172,
+    height: 149,
+    style: 'display:block'
+  });
+  const wpnImg = buildImageTag({
+    alt: 'Find Web Novis on The WebPro Nexus',
+    src: 'https://www.webpronexus.com/images/memberbadge.png',
+    width: 200,
+    height: 161,
+    style: 'display:block;border:none'
+  });
+  return `<a href="https://greatworkguild.com/listings/webnovis" target="_blank" rel="noopener" aria-label="WebNovis su Great Work Guild" style="display:inline-flex;align-items:center">${gwgImg}</a> <a href="https://www.webpronexus.com/italy/rho/branding-agency/web-novis?from=badge" title="Find me on The WebPro Nexus - Directory & Forum (list your Marketing & Web Design business & be found)" target="_blank" rel="noopener" aria-label="WebNovis su The WebPro Nexus" style="display:inline-flex;align-items:center">${wpnImg}</a> <a href="https://www.webdesignlistings.org/" rel="noopener" aria-label="WebNovis su Web Design Listings" style="display:inline-flex;align-items:center">Web Design Listings</a> <a href="https://listing.yaeris.com/company/webnovius?utm_source=trust_badge&utm_medium=referral&utm_campaign=yaeris_directory" target="_blank" rel="noopener" aria-label="WebNovis su Yaeris Directory" style="display:inline-flex;align-items:center;gap:8px;background:#0b0f14;border:1px solid #232833;border-radius:10px;padding:8px 14px;text-decoration:none;font-family:system-ui,-apple-system,sans-serif">${yaerisImg}<span style="color:#ffffff;font-size:12px;font-weight:600">Verified listing</span></a>`;
+}
+
 function buildThirdPartyReviewBadgesHtml(prefix = '..') {
   const base = normalizeRelativePrefix(prefix);
   const designRushBadge = buildImageTag({
@@ -120,7 +153,7 @@ function buildThirdPartyReviewBadgesHtml(prefix = '..') {
   // Badge Trustpilot statico: zero JS, zero richieste esterne. Il widget
   // ufficiale falliva spesso al load (HAR 2026-09-05: 8x status 0) lasciando
   // solo il link testuale. Nessun punteggio inventato: solo brand + stelle.
-  return `${buildTrustpilotBadgeHtml()}<div class="review-badge" style="padding:0;background:0 0;border:none"><div data-agency-id="110524" data-designrush-widget data-style="light"></div><noscript><a href="https://www.designrush.com/agency/profile/web-novis#reviews" target="_blank" aria-label="Visit Web Novis reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript></div><span style="display:inline-flex;align-items:center">${designRushBadge}</span><a href="https://www.goodfirms.co/company/web-novis" target="_blank" rel="noopener noreferrer" aria-label="Web Novis su GoodFirms" style="display:inline-flex;align-items:center"><picture><source srcset="${base}Img/goodfirms-logo.webp" type="image/webp">${goodFirmsBadge}</picture></a> <a href="https://maidensail.com/startup/webnovis" target="_blank" rel="dofollow" title="Featured on Maidensail" aria-label="Featured on Maidensail" class="maidensail-badge" style="display:inline-flex;align-items:center">${maidensailBadge}</a> ${buildAbimageBadgeHtml()} ${buildVaiBadgeHtml()}`;
+  return `${buildTrustpilotBadgeHtml()}<div class="review-badge" style="padding:0;background:0 0;border:none"><div data-agency-id="110524" data-designrush-widget data-style="light"></div><noscript><a href="https://www.designrush.com/agency/profile/web-novis#reviews" target="_blank" aria-label="Visit Web Novis reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript></div><span style="display:inline-flex;align-items:center">${designRushBadge}</span><a href="https://www.goodfirms.co/company/web-novis" target="_blank" rel="noopener noreferrer" aria-label="Web Novis su GoodFirms" style="display:inline-flex;align-items:center"><picture><source srcset="${base}Img/goodfirms-logo.webp" type="image/webp">${goodFirmsBadge}</picture></a> <a href="https://maidensail.com/startup/webnovis" target="_blank" rel="dofollow" title="Featured on Maidensail" aria-label="Featured on Maidensail" class="maidensail-badge" style="display:inline-flex;align-items:center">${maidensailBadge}</a> ${buildAbimageBadgeHtml()} ${buildVaiBadgeHtml()} ${buildDirectoryBadgesHtml()}`;
 }
 
 const TRUSTPILOT_WIDGET_PATTERN = /<div class="trustpilot-widget"[\s\S]*?<\/div>/g;
@@ -227,6 +260,15 @@ function normalizeFooterAssetMarkup(html) {
     inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/vai\.me\/company\/webnovis["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
     inner = inner.replace(/\s*<script\b[^>]*src="https:\/\/vai\.me\/widgets\/badge\.js[^"]*"[^>]*><\/script>\s*/gi, ' ');
     inner = `${inner} ${buildVaiBadgeHtml()}`;
+    // Directory badges (Great Work Guild, WebPro Nexus, Web Design Listings):
+    // stessa idempotenza — rimuove eventuali istanze (anche raw senza lazy)
+    // e ne appende UNA ottimizzata in coda. Così tutte le 1100+ pagine
+    // ricevono i badge anche se il footer canonico non matcha.
+    inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/greatworkguild\.com\/listings\/webnovis["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
+    inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/www\.webpronexus\.com\/italy\/rho\/branding-agency\/web-novis[^"']*["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
+    inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/www\.webdesignlistings\.org\/["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
+    inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/listing\.yaeris\.com\/company\/webnovius[^"']*["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
+    inner = `${inner} ${buildDirectoryBadgesHtml()}`;
     updated = updated.replace(footerBadgesMatch[0], `${footerBadgesMatch[1]} ${inner} ${footerBadgesMatch[3]}`);
   }
 

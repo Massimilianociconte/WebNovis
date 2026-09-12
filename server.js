@@ -127,6 +127,23 @@ function anonymizeIp(ip) {
     return 'unknown';
 }
 
+// PII minimization: stdout gets metrics, never raw identifiers/content.
+// File/KV stores keep only what the business flow needs (see retention notes).
+function maskEmail(email) {
+    const s = String(email || '');
+    const at = s.lastIndexOf('@');
+    if (at <= 0) return '***';
+    const local = s.slice(0, at);
+    const domain = s.slice(at + 1);
+    return (local.charAt(0) || '*') + '***@' + domain;
+}
+
+function emailDomain(email) {
+    const s = String(email || '');
+    const at = s.lastIndexOf('@');
+    return at > 0 ? s.slice(at + 1) : 'invalid';
+}
+
 // ========== SECURITY: Shared prompt-injection guard (defense-in-depth) ==========
 // Matches known injection patterns in Italian + English, including:
 // - Leetspeak/spacing tricks (i g n o r a, ign0ra)
@@ -252,14 +269,49 @@ try {
 }
 const allowedCorsOrigins = getAllowedCorsOrigins(process.env);
 
+// Identificatore client per rate limiting: CF-Connecting-IP (scritto dall'edge
+// Cloudflare, non spoofabile via proxy) validato, altrimenti req.ip (socket).
+// X-Forwarded-For è attacker-controlled a sinistra e NON viene mai usato:
+// con trust proxy la rotazione XFF azzerava i bucket (dimostrato via test).
+function rateLimitKey(req) {
+    const cf = req.headers['cf-connecting-ip'];
+    if (typeof cf === 'string' && /^(?:\d{1,3}\.){3}\d{1,3}$|^[0-9a-fA-F:]+$/.test(cf.trim())) {
+        return 'cf:' + cf.trim();
+    }
+    return req.ip;
+}
+
+const limiterKeyGenerator = (req) => rateLimitKey(req);
+
 // Rate limiter for chat API (30 requests per 15 minutes per IP)
 const chatLimiter = rateLimit ? rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minuti
     max: 30, // limite di 30 richieste per finestra
+    keyGenerator: limiterKeyGenerator,
     message: {
         error: 'Troppe richieste. Riprova tra qualche minuto.',
         retryAfter: '15 minuti'
     },
+    standardHeaders: true,
+    legacyHeaders: false
+}) : (req, res, next) => next();
+
+// Rate limiter for admin endpoints (brute-force secret + LLM/email cost guard)
+const adminLimiter = rateLimit ? rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 20,
+    keyGenerator: limiterKeyGenerator,
+    message: { error: 'Troppe richieste. Riprova tra qualche minuto.' },
+    standardHeaders: true,
+    legacyHeaders: false
+}) : (req, res, next) => next();
+
+// Rate limiter for public unsubscribe (Brevo quota + log-flood guard)
+const unsubscribeLimiter = rateLimit ? rateLimit({
+    windowMs: 60 * 60 * 1000,
+    max: 30,
+    keyGenerator: limiterKeyGenerator,
+    message: { error: 'Troppe richieste. Riprova tra qualche ora.' },
     standardHeaders: true,
     legacyHeaders: false
 }) : (req, res, next) => next();
@@ -273,7 +325,8 @@ app.use(cors({
             return callback(null, true);
         }
 
-        const isLocalOrigin = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin);
+        // Localhost allowed only outside production (dev). In prod fail closed.
+        const isLocalOrigin = !isProd && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin);
         if (allowedCorsOrigins.has(origin) || isLocalOrigin) {
             return callback(null, true);
         }
@@ -288,6 +341,41 @@ app.use(cors({
 app.set('trust proxy', 1);
 
 app.use(express.json({ limit: '16kb' })); // Prevenzione DoS da payload giganti
+app.use(express.urlencoded({ extended: false, limit: '16kb' })); // Solo per POST /api/newsletter/unsubscribe (form browser + one-click RFC8058)
+
+// Fail-closed: le API accettano solo JSON, tranne l'unsubscribe POST che parla
+// anche form-urlencoded (browser + Gmail one-click). Senza Content-Type valido
+// il body resterebbe undefined e gli handler solleverebbero 500 generici.
+app.use('/api/', (req, res, next) => {
+    if (req.method === 'POST' && !req.is('application/json') && !(req.path === '/api/newsletter/unsubscribe' && req.is('application/x-www-form-urlencoded'))) {
+        return res.status(415).json({ error: 'Content-Type non supportato. Usare application/json.' });
+    }
+    next();
+});
+
+// 405 espliciti per path API noti (il catch-all finale resta 404 per path ignoti).
+const API_ALLOW = {
+    '/api/chat': 'POST, OPTIONS',
+    '/api/chat-lead': 'POST, OPTIONS',
+    '/api/search-ai': 'POST, OPTIONS',
+    '/api/lead': 'POST, OPTIONS',
+    '/api/newsletter': 'POST, OPTIONS',
+    '/api/newsletter/send': 'POST, OPTIONS',
+    '/api/config': 'GET, OPTIONS',
+    '/api/newsletter/preview': 'GET, OPTIONS',
+    '/api/newsletter/subscribers': 'GET, OPTIONS',
+    '/api/newsletter/unsubscribe': 'GET, POST, OPTIONS',
+    '/api/health': 'GET, OPTIONS'
+};
+app.all(Object.keys(API_ALLOW), (req, res, next) => {
+    const allow = API_ALLOW[req.path];
+    const method = req.method.toUpperCase();
+    if (method !== 'OPTIONS' && !(allow && allow.split(', ').includes(method))) {
+        res.set('Allow', allow || 'GET, POST, OPTIONS');
+        return res.status(405).json({ error: 'Metodo non consentito.' });
+    }
+    next();
+});
 
 // === SEO MIDDLEWARE STACK (Ref: SEO-playbook §1, §5) ===
 
@@ -436,9 +524,13 @@ app.use((req, res, next) => {
 });
 
 // 2.7 Strip /public/ prefix — redirect to canonical path (301)
+// Hardened: normalizza slash multipli per evitare open redirect protocol-relative (//evil.com)
 app.use((req, res, next) => {
     if (req.path.startsWith('/public/')) {
-        const canonical = req.path.replace(/^\/public/, '');
+        let canonical = req.path.replace(/^\/public/, '');
+        if (!canonical.startsWith('/')) canonical = '/' + canonical;
+        canonical = '/' + canonical.replace(/^\/+/, '');
+        if (/[\\ \t\r\n]/.test(canonical) || canonical.startsWith('//')) return res.status(400).end();
         const query = getRedirectQuerySuffix(req);
         return res.redirect(301, canonical + query);
     }
@@ -598,7 +690,10 @@ const SESSION_MAX_CONCURRENT = 1000;        // max concurrent sessions (memory g
 const chatSessions = new Map();
 
 function getOrCreateSession(sessionId) {
-    if (!sessionId || typeof sessionId !== 'string' || sessionId.length > 50) {
+    // Fail-closed come il worker: solo token opachi; qualsiasi altra stringa
+    // (path, chiavi KV, fixation arbitrarie) ottiene un nuovo ID server-side.
+    // Gli ID emessi dal server (24hex) e i legacy timestamp-base36 passano.
+    if (!sessionId || typeof sessionId !== 'string' || sessionId.length < 8 || sessionId.length > 50 || !/^[A-Za-z0-9_-]+$/.test(sessionId)) {
         sessionId = crypto.randomBytes(12).toString('hex');
     }
     let session = chatSessions.get(sessionId);
@@ -634,6 +729,7 @@ const has404Page = fs.existsSync(notFoundPath);
 const newsletterLimiter = rateLimit ? rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 10,
+    keyGenerator: limiterKeyGenerator,
     message: { error: 'Troppe richieste. Riprova tra qualche minuto.' },
     standardHeaders: true,
     legacyHeaders: false
@@ -643,6 +739,7 @@ const newsletterLimiter = rateLimit ? rateLimit({
 const searchAiLimiter = rateLimit ? rateLimit({
     windowMs: 60 * 1000,
     max: 10,
+    keyGenerator: limiterKeyGenerator,
     message: { error: 'Troppe ricerche AI. Riprova tra un minuto.' },
     standardHeaders: true,
     legacyHeaders: false
@@ -876,17 +973,17 @@ app.post('/api/newsletter', newsletterLimiter, async (req, res) => {
         const brevoData = await brevoResponse.json().catch(() => ({}));
 
         if (brevoResponse.ok || brevoResponse.status === 204) {
-            console.log(`✅ Newsletter: ${email} iscritto con successo (source: ${source || 'website'})`);
+            console.log(`✅ Newsletter: ${maskEmail(email)} iscritto con successo (source: ${source || 'website'})`);
             return res.json({ success: true, message: 'Iscrizione completata!' });
         }
 
         // Contatto già esistente nella lista — non è un errore
         if (brevoData.code === 'duplicate_parameter') {
-            console.log(`ℹ️ Newsletter: ${email} già iscritto (deduplicazione)`);
+            console.log(`ℹ️ Newsletter: ${maskEmail(email)} già iscritto (deduplicazione)`);
             return res.json({ success: true, message: 'Email già iscritta!', duplicate: true });
         }
 
-        console.error('❌ Brevo API error:', brevoData);
+        console.error('❌ Brevo API error:', brevoData && brevoData.code ? String(brevoData.code) : 'unknown');
         throw new Error(brevoData.message || 'Errore Brevo API');
 
     } catch (error) {
@@ -899,6 +996,7 @@ app.post('/api/newsletter', newsletterLimiter, async (req, res) => {
 const leadLimiter = rateLimit ? rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 5,
+    keyGenerator: limiterKeyGenerator,
     message: { error: 'Troppe richieste. Riprova tra qualche minuto.' },
     standardHeaders: true,
     legacyHeaders: false
@@ -922,7 +1020,7 @@ app.post('/api/lead', leadLimiter, async (req, res) => {
         const isLinkableUrl = /^https?:\/\/[^\s<>"']+$/i.test(cleanUrl);
         const leadType = type === 'analisi-sito' ? 'analisi-sito' : 'nuovo-progetto';
 
-        console.log(`🎯 New lead: ${leadType} | ${cleanEmail}${cleanUrl ? ' | ' + cleanUrl : ''}`);
+        console.log(`🎯 New lead: ${leadType} | ${maskEmail(cleanEmail)}${cleanUrl ? ' | hasUrl' : ''}`);
 
         // 1. Log to file (always works, zero dependency) - Async JSONL per evitare data loss
         const logEntry = {
@@ -969,7 +1067,7 @@ app.post('/api/lead', leadLimiter, async (req, res) => {
                         updateEnabled: true
                     })
                 });
-                console.log(`✅ Lead saved to Brevo: ${cleanEmail}`);
+                console.log(`✅ Lead saved to Brevo: ${maskEmail(cleanEmail)}`);
             } catch (brevoErr) {
                 console.error('⚠️ Brevo contact save error:', brevoErr.message);
             }
@@ -1041,8 +1139,12 @@ app.post('/api/chat-lead', chatLimiter, async (req, res) => {
         const cleanMessage = message.replace(/<[^>]*>/g, '').trim().slice(0, 300);
         const cleanPage = (page || '').trim().slice(0, 200);
         const cleanSession = (sessionId || '').trim().slice(0, 50);
+        // Fail-closed: messageCount must be a safe integer, never raw HTML into logs/email.
+        const cleanCount = Number.isSafeInteger(messageCount)
+            ? Math.min(Math.max(messageCount, 0), 100000)
+            : null;
 
-        console.log(`🎯 Chat lead intent: "${cleanMessage.substring(0, 60)}..." | page: ${cleanPage} | msgs: ${messageCount}`);
+        console.log(`🎯 Chat lead intent: len=${cleanMessage.length} | page: ${cleanPage} | msgs: ${cleanCount ?? '—'}`);
 
         // Log to file (always) - Async JSONL per evitare data loss
         const logEntry = {
@@ -1050,7 +1152,7 @@ app.post('/api/chat-lead', chatLimiter, async (req, res) => {
             message: cleanMessage,
             sessionId: cleanSession,
             page: cleanPage || null,
-            messageCount: messageCount || null,
+            messageCount: cleanCount,
             ip: anonymizeIp(req.ip)
         };
         const logPath = path.join(__dirname, 'leads-log.jsonl');
@@ -1074,7 +1176,7 @@ app.post('/api/chat-lead', chatLimiter, async (req, res) => {
                     <table style="width:100%;border-collapse:collapse;margin:16px 0;">
                         <tr><td style="padding:8px 12px;color:#888;border-bottom:1px solid #222;">Messaggio</td><td style="padding:8px 12px;color:#fff;border-bottom:1px solid #222;font-weight:600;">${escapeHtml(cleanMessage)}</td></tr>
                         <tr><td style="padding:8px 12px;color:#888;border-bottom:1px solid #222;">Pagina</td><td style="padding:8px 12px;color:#ccc;border-bottom:1px solid #222;">${escapeHtml(cleanPage) || '—'}</td></tr>
-                        <tr><td style="padding:8px 12px;color:#888;border-bottom:1px solid #222;">Messaggi inviati</td><td style="padding:8px 12px;color:#ccc;border-bottom:1px solid #222;">${messageCount || '—'}</td></tr>
+                        <tr><td style="padding:8px 12px;color:#888;border-bottom:1px solid #222;">Messaggi inviati</td><td style="padding:8px 12px;color:#ccc;border-bottom:1px solid #222;">${cleanCount ?? '—'}</td></tr>
                         <tr><td style="padding:8px 12px;color:#888;">Data</td><td style="padding:8px 12px;color:#ccc;">${new Date().toLocaleString('it-IT', { timeZone: 'Europe/Rome' })}</td></tr>
                     </table>
                     <p style="color:#666;font-size:13px;margin-top:24px;">Lead ad alto intento rilevato dal chatbot Weby — considera di ricontattarlo proattivamente.</p>
@@ -1086,7 +1188,7 @@ app.post('/api/chat-lead', chatLimiter, async (req, res) => {
                 body: JSON.stringify({
                     sender: { name: senderName, email: senderEmail },
                     to: [{ email: notifyEmail, name: 'WebNovis Team' }],
-                    subject: `💬 Lead chatbot: "${cleanMessage.substring(0, 50)}..."`,
+                    subject: `💬 Nuovo lead dal chatbot Weby`,
                     htmlContent: htmlBody
                 })
             }).catch(err => console.error('⚠️ Chat lead email error:', err.message));
@@ -1146,14 +1248,14 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
 
         // Server-side prompt injection guard (defense-in-depth, saves tokens on obvious attacks)
         if (INJECTION_PATTERNS.test(cleanMessage)) {
-            console.warn('🛡️ Chat injection blocked:', cleanMessage.substring(0, 80));
+            console.warn('🛡️ Chat injection blocked: len=', cleanMessage.length);
             return res.json({ response: INJECTION_SAFE_RESPONSE_CHAT });
         }
 
         // Retrieve or create server-side session (client cannot forge history)
         const { sessionId, session } = getOrCreateSession(clientSessionId);
 
-        console.log(`💬 New message [${sessionId.substring(0, 8)}…]: "${cleanMessage}"`);
+        console.log(`💬 New message [len=${cleanMessage.length}]`);
         console.log(`📚 Server-side history length: ${session.history.length}`);
 
         // v4.1 Smart routing: only pure greetings/thanks are handled locally.
@@ -1171,7 +1273,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
             console.log('⚠️ No GEMINI_API_KEY_CHAT found, using local responses');
             const response = getLocalResponse(cleanMessage);
             appendChatSessionTurn(session, cleanMessage, response);
-            console.log(`📤 Local response: ${response.substring(0, 50)}...`);
+            console.log(`📤 Local response: len=${response.length}`);
             return res.json({ response, sessionId });
         }
 
@@ -1265,7 +1367,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
 
         appendChatSessionTurn(session, cleanMessage, response);
 
-        console.log(`✅ Gemini response: ${response.substring(0, 100)}...`);
+        console.log(`✅ Gemini response: len=${response.length}`);
         res.json({ response, sessionId });
 
     } catch (error) {
@@ -1333,7 +1435,7 @@ Oppure compila il form nella sezione contatti qui sotto. Ti ricontatteremo attra
 }
 
 // Endpoint per ottenere la configurazione (opzionale)
-app.get('/api/config', requireAdminAuth, (req, res) => {
+app.get('/api/config', adminLimiter, requireAdminAuth, (req, res) => {
     const { chatbotInstructions, ...safeConfig } = config;
     res.json(safeConfig);
 });
@@ -1344,7 +1446,7 @@ const newsletterEngine = require('./newsletter-engine');
 // POST /api/newsletter/send — Genera e invia newsletter AI (protetto da admin secret)
 // Body: { topic: "argomento", subject: "Oggetto email" }
 // Header: X-Admin-Secret: <your-secret>
-app.post('/api/newsletter/send', requireAdminAuth, async (req, res) => {
+app.post('/api/newsletter/send', adminLimiter, requireAdminAuth, async (req, res) => {
     try {
         const { topic, subject } = req.body;
 
@@ -1354,12 +1456,21 @@ app.post('/api/newsletter/send', requireAdminAuth, async (req, res) => {
                 required: { topic: 'Argomento della newsletter', subject: 'Oggetto email' }
             });
         }
+        // Fail-closed schema: admin-only but LLM-costly + email blast — strict types/length, no CRLF.
+        if (typeof topic !== 'string' || typeof subject !== 'string') {
+            return res.status(400).json({ error: 'Parametri non validi.' });
+        }
+        const cleanTopic = topic.trim().slice(0, 200);
+        const cleanSubject = subject.trim().slice(0, 120);
+        if (cleanTopic.length < 8 || cleanSubject.length < 1 || /[\r\n]/.test(topic) || /[\r\n]/.test(subject)) {
+            return res.status(400).json({ error: 'Parametri non validi.' });
+        }
 
-        console.log(`📨 Newsletter send request — Topic: "${topic}", Subject: "${subject}"`);
+        console.log(`📨 Newsletter send request — Topic: "${cleanTopic}", Subject: "${cleanSubject}"`);
 
-        const result = await newsletterEngine.sendNewsletter(topic, subject);
+        const result = await newsletterEngine.sendNewsletter(cleanTopic, cleanSubject);
 
-        console.log(`✅ Newsletter result:`, JSON.stringify(result, null, 2));
+        console.log(`✅ Newsletter result: sent=${result.sent ?? '?'} failed=${result.failed ?? '?'} subscribers=${result.subscriberCount ?? '?'}`);
         res.json(result);
 
     } catch (error) {
@@ -1370,10 +1481,15 @@ app.post('/api/newsletter/send', requireAdminAuth, async (req, res) => {
 
 // GET /api/newsletter/preview — Genera anteprima senza inviare (protetto da admin secret)
 // Query: ?topic=argomento&name=NomeTest
-app.get('/api/newsletter/preview', requireAdminAuth, async (req, res) => {
+app.get('/api/newsletter/preview', adminLimiter, requireAdminAuth, async (req, res) => {
     try {
-        const topic = req.query.topic || 'trend e consigli di digital marketing per il 2026';
-        const name = req.query.name || 'Marco';
+        const qTopic = req.query.topic;
+        const qName = req.query.name;
+        const topic = Array.isArray(qTopic) ? null : (qTopic ?? 'trend e consigli di digital marketing per il 2026');
+        const name = Array.isArray(qName) ? null : (qName ?? 'Marco');
+        if (typeof topic !== 'string' || typeof name !== 'string' || !topic.trim() || !name.trim() || topic.length > 500 || name.length > 100) {
+            return res.status(400).json({ error: 'Parametri non validi.' });
+        }
 
         console.log(`👁️ Newsletter preview — Topic: "${topic}"`);
 
@@ -1407,7 +1523,7 @@ app.get('/api/newsletter/preview', requireAdminAuth, async (req, res) => {
 });
 
 // GET /api/newsletter/subscribers — Lista iscritti (protetto da admin secret)
-app.get('/api/newsletter/subscribers', requireAdminAuth, async (req, res) => {
+app.get('/api/newsletter/subscribers', adminLimiter, requireAdminAuth, async (req, res) => {
     try {
         const data = await newsletterEngine.getSubscribers();
         res.json(data);
@@ -1417,10 +1533,21 @@ app.get('/api/newsletter/subscribers', requireAdminAuth, async (req, res) => {
 });
 
 // GET /api/newsletter/unsubscribe — Disiscrizione GDPR (pubblico, link nelle email)
-app.get('/api/newsletter/unsubscribe', async (req, res) => {
+app.get('/api/newsletter/unsubscribe', unsubscribeLimiter, async (req, res) => {
     try {
         const email = req.query.email;
         const token = req.query.token;
+
+        if (Array.isArray(email) || Array.isArray(token)) {
+            return res.status(400).send(`
+                <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+                <title>Errore - WebNovis</title>
+                <style>body{background:#0a0a0f;color:#e0e0e0;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+                .card{background:#111118;border:1px solid rgba(91,106,174,0.15);border-radius:16px;padding:48px;text-align:center;max-width:460px}
+                h2{color:#ef4444;margin-bottom:12px}p{color:#999;line-height:1.6}</style></head><body>
+                <div class="card"><h2>Errore</h2><p>Parametri non validi. Verifica il link di disiscrizione.</p></div></body></html>
+            `);
+        }
 
         if (!email || !email.includes('@')) {
             return res.status(400).send(`
@@ -1445,18 +1572,9 @@ app.get('/api/newsletter/unsubscribe', async (req, res) => {
             `);
         }
 
-        const adminSecret = process.env.NEWSLETTER_ADMIN_SECRET;
-        if (!adminSecret || adminSecret === 'change-this-to-a-random-secret-string-32chars') {
-            return res.status(503).send(`
-                <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-                <title>Errore Configurazione - WebNovis</title>
-                <style>body{background:#0a0a0f;color:#e0e0e0;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
-                .card{background:#111118;border:1px solid rgba(91,106,174,0.15);border-radius:16px;padding:48px;text-align:center;max-width:460px}
-                h2{color:#ef4444;margin-bottom:12px}p{color:#999;line-height:1.6}</style></head><body>
-                <div class="card"><h2>Servizio temporaneamente non disponibile</h2><p>La disiscrizione è momentaneamente non configurata. Contattaci a hello@webnovis.com</p></div></body></html>
-            `);
-        }
-
+        // Credential isolation: l'unsubscribe dipende solo dalle chiavi HMAC
+        // (UNSUBSCRIBE_HMAC_SECRET + PREVIOUS, con fallback transitorio admin).
+        // Lo stato dell'admin secret NON deve bloccare la disiscrizione GDPR.
         const providedToken = String(token).trim();
         if (!/^[a-f0-9]{64}$/i.test(providedToken)) {
             return res.status(403).send(`
@@ -1469,11 +1587,23 @@ app.get('/api/newsletter/unsubscribe', async (req, res) => {
             `);
         }
 
-        const expectedToken = crypto.createHmac('sha256', adminSecret)
-            .update(email.toLowerCase().trim())
-            .digest('hex');
+        // Credential isolation: verifica contro UNSUBSCRIBE_HMAC_SECRET (+ previous
+        // in grace), con fallback transitorio sull'admin secret. Nessun HMAC inline qui.
+        let matchedKey = null;
+        try {
+            matchedKey = newsletterEngine.verifyUnsubscribeToken(email, providedToken);
+        } catch (err) {
+            return res.status(503).send(`
+                <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+                <title>Errore Configurazione - WebNovis</title>
+                <style>body{background:#0a0a0f;color:#e0e0e0;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+                .card{background:#111118;border:1px solid rgba(91,106,174,0.15);border-radius:16px;padding:48px;text-align:center;max-width:460px}
+                h2{color:#ef4444;margin-bottom:12px}p{color:#999;line-height:1.6}</style></head><body>
+                <div class="card"><h2>Servizio temporaneamente non disponibile</h2><p>La disiscrizione è momentaneamente non configurata. Contattaci a hello@webnovis.com</p></div></body></html>
+            `);
+        }
 
-        if (!crypto.timingSafeEqual(Buffer.from(providedToken), Buffer.from(expectedToken))) {
+        if (!matchedKey) {
             return res.status(403).send(`
                 <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
                 <title>Errore Sicurezza - WebNovis</title>
@@ -1484,8 +1614,66 @@ app.get('/api/newsletter/unsubscribe', async (req, res) => {
             `);
         }
 
+        // GET non muta mai stato (prefetch/scanner-safe): chiede conferma via POST.
+        // I vecchi link restano validi, serve un click in più. RFC8058 one-click
+        // usa direttamente POST (vedi sotto) con List-Unsubscribe=One-Click.
+        res.send(`
+            <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+            <title>Conferma disiscrizione - WebNovis</title>
+            <style>body{background:#0a0a0f;color:#e0e0e0;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+            .card{background:#111118;border:1px solid rgba(91,106,174,0.15);border-radius:16px;padding:48px;text-align:center;max-width:460px}
+            h2{color:#fff;margin-bottom:12px}p{color:#999;line-height:1.6}
+            button{background:#5B6AAE;color:#fff;border:none;border-radius:10px;padding:12px 28px;font-size:1rem;cursor:pointer}</style></head><body>
+            <div class="card">
+                <h2>Confermi la disiscrizione?</h2>
+                <p>L'indirizzo <strong style="color:#fff">${escapeHtml(email)}</strong> non riceverà più la newsletter WebNovis.</p>
+                <form method="POST" action="/api/newsletter/unsubscribe">
+                    <input type="hidden" name="email" value="${escapeHtml(email)}">
+                    <input type="hidden" name="token" value="${escapeHtml(providedToken)}">
+                    <button type="submit">Conferma disiscrizione</button>
+                </form>
+            </div></body></html>
+        `);
+
+    } catch (error) {
+        console.error('❌ Unsubscribe error:', error.message);
+        res.status(500).send('Errore durante la disiscrizione. Contattaci a hello@webnovis.com');
+    }
+});
+
+// POST /api/newsletter/unsubscribe — esegue la disiscrizione (form di conferma
+// o one-click RFC8058 dei client email: body List-Unsubscribe=One-Click).
+app.post('/api/newsletter/unsubscribe', unsubscribeLimiter, async (req, res) => {
+    try {
+        const email = req.body && req.body.email;
+        const token = req.body && req.body.token;
+
+        if (Array.isArray(email) || Array.isArray(token)) {
+            return res.status(400).json({ error: 'Parametri non validi.' });
+        }
+        if (!email || !String(email).includes('@')) {
+            return res.status(400).json({ error: 'Email non valida.' });
+        }
+        const providedToken = String(token || '').trim();
+        if (!/^[a-f0-9]{64}$/i.test(providedToken)) {
+            return res.status(403).json({ error: 'Token non valido.' });
+        }
+        let matchedKey = null;
+        try {
+            matchedKey = newsletterEngine.verifyUnsubscribeToken(email, providedToken);
+        } catch (err) {
+            return res.status(503).json({ error: 'Servizio temporaneamente non disponibile.' });
+        }
+        if (!matchedKey) {
+            return res.status(403).json({ error: 'Token non valido.' });
+        }
+
         await newsletterEngine.unsubscribeContact(email);
 
+        // One-click RFC8058: i client email accettano anche solo 200 + JSON.
+        if (req.is('application/x-www-form-urlencoded') && req.body['List-Unsubscribe'] === 'One-Click') {
+            return res.json({ success: true });
+        }
         res.send(`
             <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
             <title>Disiscrizione - WebNovis</title>
@@ -1494,14 +1682,14 @@ app.get('/api/newsletter/unsubscribe', async (req, res) => {
             h2{color:#14b8a6;margin-bottom:12px}p{color:#999;line-height:1.6}a{color:#7B8CC9}</style></head><body>
             <div class="card">
                 <h2>Disiscrizione completata</h2>
-                <p><strong style="color:#fff">${email.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))}</strong> è stato rimosso dalla newsletter WebNovis.</p>
+                <p><strong style="color:#fff">${escapeHtml(email)}</strong> è stato rimosso dalla newsletter WebNovis.</p>
                 <p>Non riceverai più email da noi. Se è stato un errore, puoi reiscriverti dal nostro <a href="https://www.webnovis.com/contatti.html">sito web</a>.</p>
             </div></body></html>
         `);
 
     } catch (error) {
         console.error('❌ Unsubscribe error:', error.message);
-        res.status(500).send('Errore durante la disiscrizione. Contattaci a hello@webnovis.com');
+        res.status(500).json({ error: 'Errore durante la disiscrizione.' });
     }
 });
 
@@ -1567,7 +1755,7 @@ function startNewsletterCron() {
 
         try {
             const result = await newsletterEngine.sendNewsletter(topic, subject);
-            console.log(`✅ Cron newsletter result:`, JSON.stringify(result));
+            console.log(`✅ Cron newsletter result: sent=${result.sent ?? '?'} failed=${result.failed ?? '?'}`);
         } catch (error) {
             console.error('❌ Cron newsletter error:', error.message);
         }

@@ -14,11 +14,41 @@
  * Nessun impatto SEO: il destinatario è solo backend, nessun contenuto visibile cambia.
  */
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Max-Age': '86400'
+const ALLOWED_ORIGINS = new Set([
+  'https://www.webnovis.com',
+  'https://webnovis.com'
+]);
+
+function getExtraOrigins(env) {
+  return String(env.CORS_ORIGINS || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+function corsHeadersFor(request, env) {
+  const origin = request.headers.get('Origin') || '';
+  const headers = {
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Max-Age': '86400',
+    Vary: 'Origin'
+  };
+  const allowed = new Set([...ALLOWED_ORIGINS, ...getExtraOrigins(env)]);
+  if (origin && allowed.has(origin)) {
+    headers['Access-Control-Allow-Origin'] = origin;
+  } else if (origin && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin)) {
+    // Dev only: anchored exact match, never substring.
+    headers['Access-Control-Allow-Origin'] = origin;
+  }
+  return headers;
+}
+
+const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Robots-Tag': 'noindex, nofollow',
+  'Referrer-Policy': 'no-referrer',
+  'Cache-Control': 'no-store, no-cache, must-revalidate'
 };
 
 function json(body, status = 200, extra = {}) {
@@ -26,7 +56,19 @@ function json(body, status = 200, extra = {}) {
     status,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      ...CORS_HEADERS,
+      ...SECURITY_HEADERS,
+      ...extra
+    }
+  });
+}
+
+function jsonCors(request, env, body, status = 200, extra = {}) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      ...SECURITY_HEADERS,
+      ...corsHeadersFor(request, env),
       ...extra
     }
   });
@@ -141,11 +183,15 @@ export default {
     const url = new URL(request.url);
 
     if (request.method === 'OPTIONS') {
-      return new Response(null, { status: 204, headers: CORS_HEADERS });
+      return new Response(null, { status: 204, headers: { ...SECURITY_HEADERS, ...corsHeadersFor(request, env) } });
+    }
+
+    if (url.pathname === '/health' && request.method !== 'GET') {
+      return jsonCors(request, env, { success: false, message: 'method_not_allowed' }, 405, { Allow: 'GET, OPTIONS' });
     }
 
     if (url.pathname === '/health' && request.method === 'GET') {
-      return json({
+      return jsonCors(request, env, {
         ok: true,
         service: env.SERVICE_NAME || 'webnovis-forms',
         turnstileConfigured: Boolean(env.TURNSTILE_SECRET),
@@ -158,16 +204,20 @@ export default {
     // token qui e poi posta DIRETTAMENTE a Web3Forms. Il piano free blocca i
     // POST server-side (403) quindi il vecchio proxying via /submit non può
     // funzionare senza Pro — /verify aggira il muro (nessun inoltro).
+    if (url.pathname === '/verify' && request.method !== 'POST') {
+      return jsonCors(request, env, { ok: false, error: 'method_not_allowed' }, 405, { Allow: 'POST, OPTIONS' });
+    }
+
     if (url.pathname === '/verify' && request.method === 'POST') {
       const ip = clientIp(request);
       if (checkRateLimit(ip, 'verify', 10, 600_000)) {
-        return json({ ok: false, error: 'rate_limited' }, 429);
+        return jsonCors(request, env, { ok: false, error: 'rate_limited' }, 429);
       }
       let formData;
       try {
         formData = await readFormData(request);
       } catch {
-        return json({ ok: false, error: 'invalid_body' }, 400);
+        return jsonCors(request, env, { ok: false, error: 'invalid_body' }, 400);
       }
       const token = String(
         formData.get('token') ||
@@ -176,20 +226,24 @@ export default {
         ''
       ).slice(0, 2048);
       if (!token) {
-        return json({ ok: false, error: 'token_missing' }, 400);
+        return jsonCors(request, env, { ok: false, error: 'token_missing' }, 400);
       }
       const verified = await siteverifyTurnstile(env, token, ip);
       if (!verified.ok) {
-        return json(
+        return jsonCors(request, env, 
           { ok: false, error: verified.error, codes: verified.codes || [] },
           403
         );
       }
-      return json({ ok: true });
+      return jsonCors(request, env, { ok: true });
+    }
+
+    if (url.pathname === '/submit' && request.method !== 'POST') {
+      return jsonCors(request, env, { success: false, message: 'method_not_allowed' }, 405, { Allow: 'POST, OPTIONS' });
     }
 
     if (url.pathname !== '/submit' || request.method !== 'POST') {
-      return json({ success: false, message: 'not_found' }, 404);
+      return jsonCors(request, env, { success: false, message: 'not_found' }, 404);
     }
 
     // NOTA: /submit inoltra a Web3Forms server-side: richiede Web3Forms Pro
@@ -200,12 +254,12 @@ export default {
     try {
       formData = await readFormData(request);
     } catch {
-      return json({ success: false, message: 'invalid_body' }, 400);
+      return jsonCors(request, env, { success: false, message: 'invalid_body' }, 400);
     }
 
     // Honeypot
     if (formData.get('botcheck')) {
-      return json({ success: true, message: 'ok' }, 200);
+      return jsonCors(request, env, { success: true, message: 'ok' }, 200);
     }
 
     // Time-trap invisibile: submit <2s dal load = quasi sempre bot.
@@ -216,14 +270,14 @@ export default {
       if (Number.isFinite(ts)) {
         const age = Date.now() - ts;
         if ((age >= 0 && age < 2000) || age > 24 * 3600 * 1000) {
-          return json({ success: true, message: 'ok' }, 200);
+          return jsonCors(request, env, { success: true, message: 'ok' }, 200);
         }
       }
     }
 
     // Rate limit best-effort per IP (5 submit / 10 min per isolate).
     if (checkRateLimit(clientIp(request), 'submit', 5, 600_000)) {
-      return json({ success: false, message: 'rate_limited' }, 429);
+      return jsonCors(request, env, { success: false, message: 'rate_limited' }, 429);
     }
 
     const token =
@@ -234,7 +288,7 @@ export default {
 
     const verified = await siteverifyTurnstile(env, String(token || ''), remoteip);
     if (!verified.ok) {
-      return json(
+      return jsonCors(request, env, 
         { success: false, message: 'captcha_failed', code: verified.error },
         403
       );
@@ -244,10 +298,19 @@ export default {
     // Campi operativi nostri (redirect/ts) non inoltrati: niente rumore nella email.
     // Il token captcha NON viene mai inoltrato: sulle key free Web3Forms lo rifiuta
     // con 400 "Pro feature" (la verifica è già avvenuta qui sopra via siteverify).
+    // Fail-closed: mai inoltrare override destinatario/mittente né allegati file
+    // (nessun <input type=file> nel sito — solo relay upstream non intenzionale).
     formData.delete('redirect');
     formData.delete('ts');
     formData.delete('cf-turnstile-response');
     formData.delete('turnstile_token');
+    formData.delete('to');
+    formData.delete('cc');
+    formData.delete('bcc');
+    formData.delete('from');
+    for (const [k, v] of formData) {
+      if (v instanceof File) formData.delete(k);
+    }
     const endpoint = env.WEB3FORMS_ENDPOINT || 'https://api.web3forms.com/submit';
     // Il secret server-side è autoritativo: se presente sovrascrive qualsiasi
     // chiave arrivata dal client (che potrebbe essere stale). Se assente, si
@@ -279,12 +342,12 @@ export default {
           console.error(`Web3Forms upstream ${upstream.status}: ${String(text).slice(0, 300)}`);
         } catch (_) { /* ignore */ }
         if (upstream.status === 403) {
-          return json({ success: false, message: 'email_provider_forbidden', code: 'web3forms_pro_required' }, 502);
+          return jsonCors(request, env, { success: false, message: 'email_provider_forbidden', code: 'web3forms_pro_required' }, 502);
         }
       }
-      return json(data, upstream.ok ? 200 : 502);
+      return jsonCors(request, env, data, upstream.ok ? 200 : 502);
     } catch {
-      return json({ success: false, message: 'upstream_error' }, 502);
+      return jsonCors(request, env, { success: false, message: 'upstream_error' }, 502);
     }
   }
 };

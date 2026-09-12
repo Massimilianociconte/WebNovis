@@ -93,6 +93,9 @@ function auditPublicHtml() {
       for (const alternate of hreflangLinks.filter((node) => !selfLinks.includes(node))) {
         const alternateHreflang = getAttribute(alternate, 'hreflang');
         const alternateHref = getAttribute(alternate, 'href');
+        // Self-referential x-default (single-language default version) is valid
+        // and needs no file-existence/reciprocity proof beyond the self link.
+        if (alternateHref === canonicalHref) continue;
         if (!/^(it-IT|en|x-default)$/.test(alternateHreflang)) {
           failures.push(`${relativePath}: unexpected alternate hreflang "${alternateHreflang}"`);
           continue;

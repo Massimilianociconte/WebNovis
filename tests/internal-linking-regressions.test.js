@@ -228,7 +228,20 @@ function main() {
   for (const entry of fs.readdirSync(blogDir, { withFileTypes: true })) {
     if (!entry.isFile() || !entry.name.endsWith('.html')) continue;
     const html = fs.readFileSync(path.join(blogDir, entry.name), 'utf8');
-    if (/<a\b[^>]*\bhref=["'][^"']*\butm_(?:source|medium|campaign|content)=/i.test(html)) {
+    // Solo link interni: gli UTM su domini esterni (es. badge directory con
+    // referral attribution obbligatoria) sono legittimi e non diluiscono il crawl.
+    const internalUtm = [...html.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["']/gi)]
+      .map((m) => m[1])
+      .filter((href) => /\butm_(?:source|medium|campaign|content)=/i.test(href))
+      .filter((href) => {
+        try {
+          const url = new URL(href.replace(/&amp;/g, '&'), 'https://www.webnovis.com');
+          return ['webnovis.com', 'www.webnovis.com'].includes(url.hostname);
+        } catch (_) {
+          return false;
+        }
+      });
+    if (internalUtm.length > 0) {
       utmOffenders.push(entry.name);
     }
     attributedLinks += (html.match(/<a\b[^>]*\bdata-analytics-source=["'][^"']+["']/gi) || []).length;

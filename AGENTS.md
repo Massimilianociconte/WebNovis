@@ -92,3 +92,12 @@ Mai cancellare senza: (1) trapianto contenuti unici nel survivor, (2) redirect 3
 ## 9. ID heading e deep-linking (2026-09)
 
 Gli `id` su h2/h3 devono essere kebab-case, senza apostrofi e SENZA parole della lista UNACCENTED di `tests/editorial-language-regressions.test.js` (può/perché/così/più/città/qualità/ecc. senza accento: il test li intercetta anche dentro gli attributi). Verificare sempre idempotenza `applySeoHtmlTransforms` dopo l'inserimento.
+
+## 11. Sicurezza secret/client/build-artifact (permanente, 2026-09)
+
+Regole non negoziabili, verificate da `tests/security-governance-regressions.test.js`:
+
+- **Secret:** mai secret nel client (HTML/JS/CSS pubblici); mai committare `.env`/`.dev.vars` con valori reali (solo `.env.example` con placeholder `your-*-here`/`change-this-*`, allowlist in `.gitleaks.toml`); mai stampare secret nei log (solo `Configured/Missing` o booleani); mai riportare valori completi nei report (solo tipo/provider/posizione/fingerprint parziale). Prima di classificare una stringa come credenziale reale, verificarne formato + effettivo utilizzo nel codice + assenza da git (`git log --all -- <file>`, `git ls-files`); distinguere sempre REALSECRET / PUBLICKEY (Turnstile sitekey, Web3Forms public key) / PLACEHOLDER / TEMPLATE / TESTVALUE; nessuna rotazione senza prova di leak.
+- **Client = pubblico, input = untrusted:** nessun controllo di sicurezza solo-frontend; authorization sempre server-side; default deny; fail closed (mai `allowed:true`/bypass silenzioso quando un servizio — KV, secret, limiter — manca); least privilege (chiavi separate per scopo: es. `NEWSLETTER_ADMIN_SECRET` solo header admin, `UNSUBSCRIBE_HMAC_SECRET` solo HMAC).
+- **Build/public artifact:** la fonte unica header è `config/security-headers.js` + `npm run sync:headers` (test `security-and-legal` fallisce se `_headers` diverge); mai pubblicare in webroot/`dist/`: `.env`, backup, `.har`, log con PII, config interne, prompt privati (`chat-config.json` è in `FORBIDDEN_PUBLIC_BASENAMES` + mai secret al suo interno), source maps (build con `sourceMap:false`); mai committare `dist/`.
+- Riferimenti operativi (non duplicare): secret Worker `docs/CLOUDFLARE-AI-SETUP.md##Sicurezza`, Turnstile `docs/TURNSTILE-SETUP.md`, artifact `docs/deploy/WORKERS-ASSETS-DIST.md`, rotazione newsletter `docs/operational/NEWSLETTER-SECRETS.md`.

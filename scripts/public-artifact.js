@@ -56,6 +56,7 @@ const FORBIDDEN_PUBLIC_BASENAMES = new Set([
   'ai-config.js',
   'build-search-index.js',
   'build.js',
+  'chat-config.json',
   'generate-sitemap.js',
   'newsletter-engine.js',
   'newsletter-template.html',
@@ -78,7 +79,7 @@ const DYNAMIC_RUNTIME_DEPENDENCIES = Object.freeze({
     'js/weby-shell.min.js'
   ],
   'js/globe.min.js': ['js/cobe.min.js'],
-  'js/search.min.js': ['search-index.json'],
+  'js/search.min.js': ['search-index.json', 'js/fuse.min.js'],
   'js/web-vitals-reporter.min.js': ['js/web-vitals.iife.js']
 });
 
@@ -121,6 +122,7 @@ const PUBLIC_SENTINELS = [
   'js/cosmic-nebula.min.js',
   'js/cursor.min.js',
   'js/footer-widgets-loader.min.js',
+  'js/fuse.min.js',
   'js/globe.min.js',
   'js/main.min.js',
   'js/noncritical-loader.min.js',
@@ -237,7 +239,7 @@ function isForbiddenPublicPath(relativePath) {
   if (FORBIDDEN_PUBLIC_PREFIXES.some((prefix) => normalized.startsWith(prefix))) return true;
   if (FORBIDDEN_PUBLIC_BASENAMES.has(basename)) return true;
   if (/^\.env(?:\.|$)/i.test(basename)) return true;
-  if (/\.(?:key|log|map|p12|pem|pfx|py)$/i.test(basename)) return true;
+  if (/\.(?:key|log|jsonl|har|map|p12|pem|pfx|py)$/i.test(basename)) return true;
   return false;
 }
 

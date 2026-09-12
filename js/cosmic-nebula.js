@@ -20,20 +20,27 @@
     var canvas = document.getElementById('cosmicNebulaCanvas');
     if (!canvas) return;
 
-    // Check prefers-reduced-motion
-    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Check prefers-reduced-motion (live: il Battery Saver Android può
+    // attivarlo dopo il load, quindi ascoltiamo anche i cambi)
+    var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var prefersReducedMotion = reduceMq.matches;
     var isMobile = window.matchMedia('(max-width: 768px)').matches;
+    var isAndroid = /Android/i.test(navigator.userAgent || '');
 
     // WebGL Context
     // high-performance: su GPU discrete evita l'integrata (frame più rapidi,
     // zero differenze visive); su mobile resta l'integrata in ogni caso.
+    // Su Android (specie con Battery Saver) 'high-performance' può far
+    // rifiutare il contesto: lì usiamo 'low-power' = stessa immagine, zero jank.
+    var powerPref = isMobile ? 'low-power' : 'high-performance';
     var gl = canvas.getContext('webgl', {
         alpha: false,
         depth: false,
         stencil: false,
         antialias: false,
-        powerPreference: 'high-performance',
-        preserveDrawingBuffer: false
+        powerPreference: powerPref,
+        preserveDrawingBuffer: false,
+        failIfMajorPerformanceCaveat: false
     }) || canvas.getContext('experimental-webgl', {
         alpha: false,
         depth: false,
@@ -42,12 +49,15 @@
     });
 
     if (!gl) {
-        // Fallback: apply elegant CSS cosmic gradient
+        // Fallback: canvas nascosto + classe che attiva il drift CSS
+        // (transform/opacity only, animato anche su Android senza WebGL)
         canvas.style.display = 'none';
         var heroBg = canvas.parentElement;
         if (heroBg) {
+            heroBg.classList.add('hero-bg--css-fallback');
             heroBg.style.background = 'radial-gradient(ellipse 90% 70% at 75% 45%, rgba(37, 99, 235, 0.22) 0%, rgba(91, 106, 174, 0.12) 40%, rgba(124, 58, 237, 0.08) 65%, #0a0a0a 100%)';
         }
+        canvas.classList.add('is-ready');
         return;
     }
 
@@ -289,13 +299,19 @@
     // statico — pixel identici al primo frame animato — e ci fermiamo. Sulle GPU
     // reali (tutti gli utenti veri) non cambia assolutamente nulla.
     var isSoftwareGL = false;
+    var detectedRenderer = '';
     try {
         var dbgExt = gl.getExtension('WEBGL_debug_renderer_info');
         if (dbgExt) {
             var rendererStr = gl.getParameter(dbgExt.UNMASKED_RENDERER_WEBGL) || '';
-            isSoftwareGL = /swiftshader|llvmpipe|softpipe|software raster|basic render|osmesa/i.test(rendererStr);
+            detectedRenderer = String(rendererStr);
+            isSoftwareGL = /swiftshader|llvmpipe|softpipe|software raster|basic render|osmesa/i.test(detectedRenderer);
         }
     } catch (e) { /* conservative: assume hardware */ }
+
+    // Tier lite per GPU mobile integrate (Mali/Adreno/PowerVR): stesso shader
+    // e stessa palette, solo DPR cap più basso = -40/50% fill-rate, 30fps stabili.
+    var isLiteGPU = isMobile && (isAndroid || /mali|adreno|powervr|videocore/i.test(detectedRenderer));
 
     // prefers-reduced-motion: un solo frame statico e stop (niente loop a 0.35x:
     // rispetta davvero la preferenza e azzera il costo per quegli utenti).
@@ -304,18 +320,28 @@
     // Viewport resize handler with adaptive DPR scaling
     function resize() {
         isMobile = window.matchMedia('(max-width: 768px)').matches;
+        isLiteGPU = isMobile && (isAndroid || /mali|adreno|powervr|videocore/i.test(detectedRenderer));
 
         var dpr = window.devicePixelRatio || 1;
         // High fidelity DPR:
         // Desktop: 0.85x - 1.25x
-        // Mobile: 0.70x - 1.0x (crisp, zero blur, highly optimized fill rate)
-        var scaleFactor = isMobile ? Math.min(dpr * 0.70, 1.0) : Math.min(dpr * 0.85, 1.25);
+        // Mobile full: 0.70x - 1.0x / Mobile lite (Android Mali/Adreno): 0.50x - 0.75x
+        // (crisp, zero blur, fill-rate sotto controllo su Tensor/Mali/Adreno)
+        var scaleFactor = isMobile
+            ? (isLiteGPU ? Math.min(dpr * 0.50, 0.75) : Math.min(dpr * 0.70, 1.0))
+            : Math.min(dpr * 0.85, 1.25);
 
         var displayWidth = canvas.clientWidth || window.innerWidth;
         var displayHeight = canvas.clientHeight || window.innerHeight;
 
         var renderWidth = Math.max(120, Math.floor(displayWidth * scaleFactor));
         var renderHeight = Math.max(120, Math.floor(displayHeight * scaleFactor));
+        // Cap larghezza mobile: oltre 640px il guadagno visivo è nullo, il costo no.
+        if (isMobile && renderWidth > 640) {
+            var ratio = 640 / renderWidth;
+            renderWidth = 640;
+            renderHeight = Math.max(120, Math.floor(renderHeight * ratio));
+        }
 
         if (canvas.width !== renderWidth || canvas.height !== renderHeight) {
             canvas.width = renderWidth;
@@ -472,6 +498,41 @@
             stopLoop();
         }
     });
+
+    // WebGL context lost/restore (tipico su Android sotto pressione memoria):
+    // senza handler il canvas restava nero/statico per sempre.
+    canvas.addEventListener('webglcontextlost', function (e) {
+        e.preventDefault();
+        stopLoop();
+    }, false);
+    canvas.addEventListener('webglcontextrestored', function () {
+        resize();
+        startLoop();
+    }, false);
+
+    // prefers-reduced-motion dinamico (Battery Saver on/off senza reload):
+    // rispetta davvero la preferenza, senza mai forzare il moto.
+    function onReduceChange(e) {
+        prefersReducedMotion = e.matches;
+        staticOnly = isSoftwareGL || prefersReducedMotion;
+        if (staticOnly) {
+            renderFrame(performance.now());
+            stopLoop();
+            if (animationFrameId) { cancelAnimationFrame(animationFrameId); animationFrameId = null; }
+            // Assicura comunque 1 frame visibile anche se il loop era fermo
+            animationFrameId = requestAnimationFrame(function (ts) {
+                animationFrameId = null;
+                renderFrame(ts);
+            });
+        } else if (isVisible && isTabActive) {
+            startLoop();
+        }
+    }
+    if (reduceMq && reduceMq.addEventListener) {
+        reduceMq.addEventListener('change', onReduceChange);
+    } else if (reduceMq && reduceMq.addListener) {
+        reduceMq.addListener(onReduceChange);
+    }
 
     // Start execution
     startLoop();

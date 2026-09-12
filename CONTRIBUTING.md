@@ -70,6 +70,8 @@ Vedi `docs/deploy/DEPLOY-GITHUB.md` per la procedura completa.
 ## Regole Importanti
 
 - **Non committare mai** `.env`, `node_modules/`, o file con API keys
+- **Prima di ogni push**: `npx gitleaks detect --source .` deve dare 0 leak; `dist/` non si committa mai
+- **Sitekey pubblica vs secret**: Turnstile sitekey e Web3Forms public key possono stare nel client; `TURNSTILE_SECRET`/`WEB3FORMS_ACCESS_KEY` solo via `wrangler secret put`, mai nel repo
 - **Rigenera la sitemap** dopo ogni aggiunta/rimozione di pagine HTML
 - **Testa i structured data** con [Google Rich Results Test](https://search.google.com/test/rich-results) dopo modifiche ai JSON-LD
 - **Verifica l'encoding** — usare `—` (em-dash Unicode) o `&mdash;` entity, mai `â€"`

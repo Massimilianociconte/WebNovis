@@ -1,5 +1,9 @@
 name: Weekly pSEO Generator
 
+concurrency:
+  group: pseo-${{ github.ref }}
+  cancel-in-progress: false
+
 on:
   schedule:
     # Every Sunday at 3:00 AM UTC (4:00 AM CET / 5:00 AM CEST)
@@ -41,17 +45,18 @@ jobs:
       # Step 1: Generate AI content blocks for new/missing cities
       - name: Generate AI content blocks
         if: ${{ github.event.inputs.skip_ai != 'true' }}
+        env:
+          PSEO_FORCE_AI: ${{ github.event.inputs.force_ai }}
+          GEMINI_API_KEY_PSEO: ${{ secrets.GEMINI_API_KEY_PSEO }}
+          GEMINI_API_KEY_PSEO_2: ${{ secrets.GEMINI_API_KEY_PSEO_2 }}
         run: |
-          if [ "${{ github.event.inputs.force_ai }}" = "true" ]; then
+          if [ "$PSEO_FORCE_AI" = "true" ]; then
             echo "🔄 Force regenerating ALL AI content blocks..."
             node scripts/generate-ai-content.js --force
           else
             echo "📝 Generating AI content for new/missing cities..."
             node scripts/generate-ai-content.js
           fi
-        env:
-          GEMINI_API_KEY_PSEO: ${{ secrets.GEMINI_API_KEY_PSEO }}
-          GEMINI_API_KEY_PSEO_2: ${{ secrets.GEMINI_API_KEY_PSEO_2 }}
 
       # Step 2: Generate all geo pages (agenzia + realizzazione + servizio×città)
       - name: Generate geo pages

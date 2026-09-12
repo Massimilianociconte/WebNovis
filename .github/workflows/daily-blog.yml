@@ -1,5 +1,9 @@
 name: Daily Blog Writer
 
+concurrency:
+  group: blog-${{ github.ref }}
+  cancel-in-progress: false
+
 # ⚠️ AUTOMAZIONE SOSPESA (2026-06-09): la pubblicazione automatica giornaliera
 # di 10 articoli/giorno espone al rischio "scaled content abuse" (policy Google
 # marzo 2024). Il cron è disabilitato: la generazione resta disponibile SOLO
@@ -40,8 +44,9 @@ jobs:
         run: npm ci --omit=dev
 
       - name: Run auto-writer
-        run: node blog/auto-writer.js --count ${{ github.event.inputs.count || '2' }}
+        run: node blog/auto-writer.js --count "$BLOG_COUNT"
         env:
+          BLOG_COUNT: ${{ github.event.inputs.count || '2' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}

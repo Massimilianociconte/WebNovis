@@ -1931,12 +1931,70 @@ function WebNovis() {
 
 const GA_MEASUREMENT_ID = 'G-BPMBY6RTKP';
 
-const hasAnalyticsConsent = () => {
+// Consentimento cookie: chiave versionata con timestamp per enforce di
+// expiry (180gg, come da cookie-policy §2/§5) e re-prompt su policy-change.
+// Legacy `cookie_consent` (stringa nuda, senza ts) migrato una tantum e poi ignorato.
+const CONSENT_KEY = 'cookie_consent_v1';
+const CONSENT_TTL_MS = 180 * 24 * 3600 * 1000;
+const CONSENT_POLICY_VERSION = '2026-02-12';
+
+const readConsentChoice = () => {
     try {
-        return localStorage.getItem('cookie_consent') === 'accepted';
+        const raw = localStorage.getItem(CONSENT_KEY);
+        if (raw) {
+            const o = JSON.parse(raw);
+            if (o && (o.choice === 'accepted' || o.choice === 'rejected') && typeof o.ts === 'number') {
+                if (Date.now() - o.ts > CONSENT_TTL_MS) return null; // scaduto → re-prompt
+                if (o.policy !== CONSENT_POLICY_VERSION) return null; // policy cambiata → re-prompt
+                return o.choice;
+            }
+            return null;
+        }
+        // Migrazione una tantum dal formato legacy (senza timestamp):
+        // adottato con timestamp corrente così scade tra 180gg invece di durare per sempre.
+        const legacy = localStorage.getItem('cookie_consent');
+        if (legacy === 'accepted' || legacy === 'rejected') {
+            try {
+                localStorage.setItem(CONSENT_KEY, JSON.stringify({ choice: legacy, ts: Date.now(), policy: CONSENT_POLICY_VERSION }));
+            } catch (err) { /* private mode: consenso di sessione */ }
+            try { localStorage.removeItem('cookie_consent'); } catch (err) { /* noop */ }
+            return legacy;
+        }
+        return null;
     } catch (err) {
-        return false;
+        return null;
     }
+};
+
+const writeConsentChoice = (choice) => {
+    try {
+        localStorage.setItem(CONSENT_KEY, JSON.stringify({ choice, ts: Date.now(), policy: CONSENT_POLICY_VERSION }));
+    } catch (err) {
+        // Ignore storage errors (private mode / browser policy)
+    }
+};
+
+// Revoca runtime (link "Gestisci cookie" in cookie-policy + console):
+// disabilita il tracciamento e ripropone il banner senza cancellare dati a mano.
+const revokeCookieConsent = () => {
+    try { localStorage.removeItem(CONSENT_KEY); } catch (err) { /* noop */ }
+    try { localStorage.removeItem('cookie_consent'); } catch (err) { /* noop */ }
+    disableAnalyticsTracking();
+    const banner = document.getElementById('cookieBanner');
+    if (banner) {
+        banner.style.display = '';
+        requestAnimationFrame(() => banner.classList.add('visible'));
+        const accept = document.getElementById('cookieAccept');
+        if (accept) accept.focus({ preventScroll: true });
+    }
+};
+window.__webnovisRevokeConsent = revokeCookieConsent;
+
+// Pulsante "Gestisci cookie" (cookie-policy): revoca e ripresenta il banner.
+document.getElementById('manageCookies')?.addEventListener('click', () => revokeCookieConsent());
+
+const hasAnalyticsConsent = () => {
+    return readConsentChoice() === 'accepted';
 };
 
 const enableAnalyticsTracking = () => {
@@ -2463,13 +2521,7 @@ featureCardsNC.forEach(card => {
 const cookieBanner = document.getElementById('cookieBanner');
 const cookieAccept = document.getElementById('cookieAccept');
 const cookieReject = document.getElementById('cookieReject');
-const storedCookieConsent = (() => {
-    try {
-        return localStorage.getItem('cookie_consent');
-    } catch (err) {
-        return null;
-    }
-})();
+const storedCookieConsent = readConsentChoice();
 
 if (storedCookieConsent === 'accepted') {
     enableAnalyticsTracking();
@@ -2483,11 +2535,7 @@ if (cookieBanner) {
         setTimeout(() => cookieBanner.classList.add('visible'), 800);
 
         const dismissBanner = (choice) => {
-            try {
-                localStorage.setItem('cookie_consent', choice);
-            } catch (err) {
-                // Ignore storage errors (private mode / browser policy)
-            }
+            writeConsentChoice(choice);
 
             if (choice === 'accepted') {
                 enableAnalyticsTracking();
@@ -2536,6 +2584,7 @@ if (multistepForm) {
     };
 
     const fmtEuro = (val) => '€' + val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const escAttr = (val) => String(val).replace(/[&<>"']/g, function (s) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]; });
     const roundTo500 = (val) => Math.round(val / 500) * 500;
 
     const computeBudgetTiers = (selectedGoals) => {
@@ -2572,7 +2621,7 @@ if (multistepForm) {
 
     const renderBudgetOptions = (container, tiers) => {
         container.innerHTML = tiers.map(tier =>
-            '<button type="button" class="ms-option" data-value="' + tier.value + '">' +
+            '<button type="button" class="ms-option" data-value="' + escAttr(tier.value) + '">' +
             budgetIcons[tier.icon] + '<span>' + tier.label + '</span></button>'
         ).join('');
     };

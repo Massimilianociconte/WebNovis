@@ -8,6 +8,6 @@ title = "WebNovis gitleaks config"
 useDefault = true
 
 [allowlist]
-description = "placeholder .env.example"
+description = "placeholder .env.example + IndexNow ownership key (pubblica by-design: deve esistere come {key}.txt in webroot)"
 paths = ["\\.env\\.example$"]
-regexes = ["your-.*-here", "sender@example\\.com", "notify@example\\.com", "change-this-to-.*", "mainEntityOfPage", "test-secret-", "ae6e8799-e395-4ec7-88fa-4d532286cc7d"]
+regexes = ["your-.*-here", "sender@example\\.com", "notify@example\\.com", "change-this-to-.*", "mainEntityOfPage", "test-secret-", "ae6e8799-e395-4ec7-88fa-4d532286cc7d", "fcba07953b913918408db7ab2f9331dc"]

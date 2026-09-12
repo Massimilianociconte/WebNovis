@@ -79,7 +79,7 @@ function main() {
   {
     const html = read('src/html/index.html');
     const buttons = [...html.matchAll(/<button class="faq-question"[^>]*>/g)].map((m) => m[0]);
-    assert.equal(buttons.length, 9, 'expected 9 FAQ buttons on homepage');
+    assert.equal(buttons.length, 8, 'expected 8 FAQ buttons on homepage (single deduped section)');
     buttons.forEach((btn, i) => {
       if (!/aria-expanded="false"/.test(btn)) failures.push(`FAQ button #${i + 1}: missing aria-expanded="false" (A3)`);
       const ctl = (btn.match(/aria-controls="([^"]+)"/) || [])[1];

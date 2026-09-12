@@ -72,6 +72,10 @@ function json(data, status = 200, extraHeaders = {}) {
     status,
     headers: {
       'content-type': 'application/json; charset=utf-8',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Robots-Tag': 'noindex, nofollow',
+      'Referrer-Policy': 'no-referrer',
+      'Cache-Control': 'no-store, no-cache, must-revalidate',
       ...extraHeaders
     }
   });
@@ -98,7 +102,8 @@ function corsHeaders(request, env) {
     headers['Access-Control-Allow-Origin'] = origin;
   } else if (!origin) {
     // non-browser
-  } else if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+  } else if (/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin)) {
+    // Dev only: anchored exact match. Never substring (evil-localhost.com must not match).
     headers['Access-Control-Allow-Origin'] = origin;
   }
   return headers;
@@ -178,7 +183,9 @@ const CACHED_SYSTEM_PROMPT = buildSystemPrompt();
 async function getSession(env, sessionId) {
   if (!env.SESSIONS) return { sessionId: sessionId || crypto.randomUUID(), history: [] };
   let id = sessionId;
-  if (!id || typeof id !== 'string' || id.length > 64) {
+  // Fail-closed: accept only opaque token charset; reject path separators/keys
+  // (e.g. "../../", "lead:", "chat:") — otherwise issue a fresh server-side id.
+  if (!id || typeof id !== 'string' || id.length < 8 || id.length > 64 || !/^[A-Za-z0-9_-]+$/.test(id)) {
     id = crypto.randomUUID().replace(/-/g, '').slice(0, 24);
   }
   const raw = await env.SESSIONS.get(`chat:${id}`, 'json');
@@ -263,7 +270,15 @@ function escapeHtml(unsafe) {
     .replace(/'/g, '&#39;');
 }
 
+function requireJsonContent(request) {
+  const ct = request.headers.get('content-type') || '';
+  return ct.includes('application/json');
+}
+
 async function handleChat(request, env) {
+  if (!requireJsonContent(request)) {
+    return json({ error: 'Content-Type non supportato. Usare application/json.' }, 415);
+  }
   const body = await request.json().catch(() => ({}));
   const message = body.message;
   const clientSessionId = body.sessionId;
@@ -368,6 +383,9 @@ async function handleChat(request, env) {
 }
 
 async function handleSearchAi(request, env) {
+  if (!requireJsonContent(request)) {
+    return json({ error: 'Content-Type non supportato. Usare application/json.' }, 415);
+  }
   const body = await request.json().catch(() => ({}));
   const query = body.query;
   const currentPage = normalizePath(body.currentPage || '/');
@@ -440,15 +458,28 @@ async function handleSearchAi(request, env) {
 }
 
 async function handleChatLead(request, env) {
+  if (!requireJsonContent(request)) {
+    return json({ error: 'Content-Type non supportato. Usare application/json.' }, 415);
+  }
   const body = await request.json().catch(() => ({}));
   if (!body.message || typeof body.message !== 'string') {
     return json({ error: 'Messaggio mancante.' }, 400);
   }
 
+  // Dedicated bucket: chat-lead must not share/starve chat budget, and must be throttled on its own.
+  const rlLead = await rateLimit(env, `chatlead:${clientIp(request)}`, 10, 15 * 60);
+  if (!rlLead.allowed) {
+    return json({ error: 'Troppe richieste. Riprova tra qualche minuto.' }, 429);
+  }
+
   const cleanMessage = body.message.replace(/<[^>]*>/g, '').trim().slice(0, 300);
   const cleanPage = String(body.page || '').trim().slice(0, 200);
   const cleanSession = String(body.sessionId || '').trim().slice(0, 50);
-  const messageCount = body.messageCount || null;
+  // Fail-closed: messageCount is a counter, never raw HTML for KV/email.
+  const cleanCount = Number.isSafeInteger(body.messageCount)
+    ? Math.min(Math.max(body.messageCount, 0), 100000)
+    : null;
+  const messageCount = cleanCount;
 
   // Store lead in KV for audit
   if (env.SESSIONS) {
@@ -493,7 +524,7 @@ async function handleChatLead(request, env) {
         body: JSON.stringify({
           sender: { name: senderName, email: senderEmail },
           to: [{ email: notifyEmail, name: 'WebNovis Team' }],
-          subject: `Lead chatbot: "${cleanMessage.substring(0, 50)}..."`,
+          subject: `Nuovo lead dal chatbot Weby`,
           htmlContent: htmlBody
         })
       });
@@ -530,13 +561,27 @@ export default {
         response = await handleSearchAi(request, env);
       } else if (request.method === 'POST' && url.pathname === '/api/chat-lead') {
         response = await handleChatLead(request, env);
+      } else if (url.pathname === '/api/chat' || url.pathname === '/api/search-ai' || url.pathname === '/api/chat-lead') {
+        // Path noto, metodo errato: 405 esplicito (fail-closed, no path echo oltre il noto).
+        response = json({ error: 'Metodo non consentito.' }, 405, { Allow: 'POST, OPTIONS' });
+      } else if (request.method === 'GET' && (url.pathname === '/api/health' || url.pathname === '/health' || url.pathname === '/')) {
+        response = json({
+          status: 'ok',
+          service: 'webnovis-ai',
+          platform: 'cloudflare-workers',
+          corpusSize: searchEngine.corpusSize,
+          time: new Date().toISOString()
+        });
+      } else if (url.pathname === '/api/health' || url.pathname === '/health' || url.pathname === '/') {
+        response = json({ error: 'Metodo non consentito.' }, 405, { Allow: 'GET, OPTIONS' });
       } else {
-        response = json({ error: 'Not found', path: url.pathname }, 404);
+        // Generic 404: never echo attacker-controlled path.
+        response = json({ error: 'Not found' }, 404);
       }
 
       return withCors(response, request, env);
     } catch (err) {
-      console.error('worker error', err);
+      console.error('worker error', err && err.message ? err.message : 'unknown');
       return withCors(json({ error: 'Errore interno.' }, 500), request, env);
     }
   }

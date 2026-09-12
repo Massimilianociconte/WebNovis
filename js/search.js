@@ -26,7 +26,11 @@
     ? (window.WEBNOVIS_LOCAL_AI_API || 'http://127.0.0.1:8787')
     : 'https://webnovis-ai.nexify-api.workers.dev');
   var AI_ENDPOINT = SEARCH_API_BASE + '/api/search-ai';
-  var FUSE_CDN = 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js';
+  // Self-hosted (js/fuse.min.js, v7.0.0, Apache-2.0, license header preserved):
+  // zero CDN dependency, zero SRI needed. ?v= is the file content hash —
+  // bump it manually if fuse.min.js is ever updated (fix-cache-busting only
+  // stamps HTML refs, not dynamic JS loads).
+  var FUSE_LOCAL = '/js/fuse.min.js?v=e3621b53';
   var LOCAL_AI_STOP_WORDS = {
     a: true, ad: true, ai: true, al: true, alla: true, allo: true, all: true, anche: true, che: true, chi: true,
     ci: true, con: true, da: true, dal: true, dalla: true, dei: true, del: true, della: true, delle: true,
@@ -96,11 +100,36 @@
     return d.innerHTML;
   }
 
+  // Attribute-context escaper: escHTML (textContent round-trip) does NOT encode
+  // quotes, so it must never be used inside href="..." / data-*="...".
+  function escAttr(s) {
+    return escHTML(s).replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/`/g, '&#96;');
+  }
+
+  // Allowlist for AI-emitted markdown links: same-origin paths only, no quotes,
+  // spaces or protocol-relative URLs. Anything else renders as plain text.
+  function safeAiPath(raw) {
+    if (!raw || /["'<>\s]/.test(raw)) return null;
+    if (raw.charAt(0) !== '/' || raw.charAt(1) === '/') return null;
+    if (!/^\/[A-Za-z0-9\-_\/\.~%?#=&+]*$/.test(raw)) return null;
+    return raw;
+  }
+
+  // Href for index-driven results: same allowlist, fail-closed to site root.
+  // The local index only contains same-origin paths (verified: 361/361).
+  function safeHref(u) {
+    return escAttr(safeAiPath(u) || '/');
+  }
+
   function renderAiAnswer(text) {
     if (!text) return '';
     function formatInline(line) {
       return escHTML(line)
-        .replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, '<a href="$2" class="search-ai-link">$1</a>')
+        .replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, function (m, label, url) {
+          var safe = safeAiPath(url);
+          if (!safe) return label;
+          return '<a href="' + escAttr(safe) + '" class="search-ai-link">' + label + '</a>';
+        })
         .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
         .replace(/`([^`]+)`/g, '<code>$1</code>');
     }
@@ -488,7 +517,7 @@
 
   function initFuse() {
     if (fuse) return Promise.resolve(fuse);
-    return Promise.all([loadScript(FUSE_CDN), loadIndex()])
+    return Promise.all([loadScript(FUSE_LOCAL), loadIndex()])
       .then(function () {
         fuse = new window.Fuse(searchIndex, {
           keys: [
@@ -627,7 +656,7 @@
       html += '<div class="search-results-section">';
       html += '<div class="search-results-label">Risultati</div>';
       local.forEach(function (item, i) {
-        html += '<a href="' + escHTML(item.url) + '" class="search-result-item' + (i === selIdx ? ' selected' : '') + '" role="option" data-index="' + i + '" aria-selected="' + (i === selIdx) + '">' +
+        html += '<a href="' + safeHref(item.url) + '" class="search-result-item' + (i === selIdx ? ' selected' : '') + '" role="option" data-index="' + i + '" aria-selected="' + (i === selIdx) + '">' +
           '<span class="search-result-icon">' + typeIcon(item.type) + '</span>' +
           '<div class="search-result-content">' +
           '<div class="search-result-title">' + highlight(item.title, query) + '</div>' +
@@ -646,7 +675,7 @@
       html += '<p class="search-ai-footnote">Sintesi automatica: verifica i dettagli importanti sulle pagine collegate.</p>';
       if (ai.suggestedPages && ai.suggestedPages.length) {
         ai.suggestedPages.forEach(function (p) {
-          html += '<a href="' + escHTML(p.url) + '" class="search-result-item search-ai-suggestion">' +
+          html += '<a href="' + safeHref(p.url) + '" class="search-result-item search-ai-suggestion">' +
             '<span class="search-result-icon">' + AI_ICON + '</span>' +
             '<div class="search-result-content"><div class="search-result-title">' + escHTML(p.title) + '</div></div>' +
             '<span class="search-result-relevance">' + Math.round((p.relevance || 0) * 100) + '%</span>' +
@@ -656,7 +685,7 @@
       if (ai.relatedQueries && ai.relatedQueries.length) {
         html += '<div class="search-related">';
         ai.relatedQueries.forEach(function (q) {
-          html += '<button class="search-related-tag" data-query="' + escHTML(q) + '">' + escHTML(q) + '</button>';
+          html += '<button class="search-related-tag" data-query="' + escAttr(q) + '">' + escHTML(q) + '</button>';
         });
         html += '</div>';
       }
@@ -704,7 +733,7 @@
     html += '<p class="search-ai-footnote">Sintesi automatica: verifica i dettagli importanti sulle pagine collegate.</p>';
     if (ai.suggestedPages && ai.suggestedPages.length) {
       ai.suggestedPages.forEach(function (p) {
-        html += '<a href="' + escHTML(p.url) + '" class="search-result-item search-ai-suggestion">' +
+        html += '<a href="' + safeHref(p.url) + '" class="search-result-item search-ai-suggestion">' +
           '<span class="search-result-icon">' + AI_ICON + '</span>' +
           '<div class="search-result-content"><div class="search-result-title">' + escHTML(p.title) + '</div></div>' +
           '<span class="search-result-relevance">' + Math.round((p.relevance || 0) * 100) + '%</span>' +
@@ -714,7 +743,7 @@
     if (ai.relatedQueries && ai.relatedQueries.length) {
       html += '<div class="search-related">';
       ai.relatedQueries.forEach(function (q) {
-        html += '<button class="search-related-tag" data-query="' + escHTML(q) + '">' + escHTML(q) + '</button>';
+        html += '<button class="search-related-tag" data-query="' + escAttr(q) + '">' + escHTML(q) + '</button>';
       });
       html += '</div>';
     }
