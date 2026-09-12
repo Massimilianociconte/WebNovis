@@ -18,7 +18,7 @@
    "recordCount": 17,
    "sourceArtifact": "WebNovis-Publishable-Copy-Realizzazione-17-2026-07-23.json",
    "sourceSha256": "f658bd48c2e4c0408796a60286110c4278b2a6ccafcdb317160c1bf4791e943a",
-   "contentSha256": "a22d7deb33421ba7d002046caac8721888283eda8203f722aedbac1facd312bc"
+   "contentSha256": "e4ce01fad6086a7e9de0ac1e4256e8eb3d89a0d80729396b92ffb6e921482f5d"
   },
   {
    "cluster": "ecommerce",
@@ -42,7 +42,7 @@
    "recordCount": 18,
    "sourceArtifact": "WebNovis-Publishable-Copy-Other-Services-18-2026-07-23.json",
    "sourceSha256": "d0b43890ae18a5aa78976ff0a525034da658e350ca2b8a90ceca3b2c844efe0e",
-   "contentSha256": "18a25794c1c8a4b25cdb99f3b500557b4c7ec2335f383da521958485f67fcadc"
+   "contentSha256": "b84e8baf24413fdcae9d37a25288c9a32374bc2c604e3cef4137e5bb4f5724ad"
   }
  ],
  "recordIndex": [

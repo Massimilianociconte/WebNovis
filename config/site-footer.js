@@ -94,7 +94,7 @@ function buildVaiBadgeHtml() {
 }
 
 function buildDirectoryBadgesHtml() {
-  // Badge directory esterne (Great Work Guild, WebPro Nexus, Web Design Listings, Yaeris):
+  // Badge directory esterne (Great Work Guild, WebPro Nexus, Web Design Listings, Yaeris, Pick an Agency):
   // stesso pattern perf degli altri badge remoti (abimage/maidensail) —
   // loading lazy nativo (footer below-fold), fetchpriority low (mai compete
   // con LCP), decoding async, width/height reali (zero CLS), niente
@@ -123,7 +123,7 @@ function buildDirectoryBadgesHtml() {
     height: 161,
     style: 'display:block;border:none'
   });
-  return `<a href="https://greatworkguild.com/listings/webnovis" target="_blank" rel="noopener" aria-label="WebNovis su Great Work Guild" style="display:inline-flex;align-items:center">${gwgImg}</a> <a href="https://www.webpronexus.com/italy/rho/branding-agency/web-novis?from=badge" title="Find me on The WebPro Nexus - Directory & Forum (list your Marketing & Web Design business & be found)" target="_blank" rel="noopener" aria-label="WebNovis su The WebPro Nexus" style="display:inline-flex;align-items:center">${wpnImg}</a> <a href="https://www.webdesignlistings.org/" rel="noopener" aria-label="WebNovis su Web Design Listings" style="display:inline-flex;align-items:center">Web Design Listings</a> <a href="https://listing.yaeris.com/company/webnovius?utm_source=trust_badge&utm_medium=referral&utm_campaign=yaeris_directory" target="_blank" rel="noopener" aria-label="WebNovis su Yaeris Directory" style="display:inline-flex;align-items:center;gap:8px;background:#0b0f14;border:1px solid #232833;border-radius:10px;padding:8px 14px;text-decoration:none;font-family:system-ui,-apple-system,sans-serif">${yaerisImg}<span style="color:#ffffff;font-size:12px;font-weight:600">Verified listing</span></a>`;
+  return `<a href="https://greatworkguild.com/listings/webnovis" target="_blank" rel="noopener" aria-label="WebNovis su Great Work Guild" style="display:inline-flex;align-items:center">${gwgImg}</a> <a href="https://www.webpronexus.com/italy/rho/branding-agency/web-novis?from=badge" title="Find me on The WebPro Nexus - Directory & Forum (list your Marketing & Web Design business & be found)" target="_blank" rel="noopener" aria-label="WebNovis su The WebPro Nexus" style="display:inline-flex;align-items:center">${wpnImg}</a> <a href="https://www.webdesignlistings.org/" rel="noopener" aria-label="WebNovis su Web Design Listings" style="display:inline-flex;align-items:center">Web Design Listings</a> <a href="https://listing.yaeris.com/company/webnovius?utm_source=trust_badge&utm_medium=referral&utm_campaign=yaeris_directory" target="_blank" rel="noopener" aria-label="WebNovis su Yaeris Directory" style="display:inline-flex;align-items:center;gap:8px;background:#0b0f14;border:1px solid #232833;border-radius:10px;padding:8px 14px;text-decoration:none;font-family:system-ui,-apple-system,sans-serif">${yaerisImg}<span style="color:#ffffff;font-size:12px;font-weight:600">Verified listing</span></a> <a href="https://www.pickanagency.com/agencies/webnovis?ref=pa-3ded50c9fd98c1d56f32910ad07a730b" rel="noopener" target="_blank" aria-label="WebNovis su Pick an Agency" style="display:inline-flex;align-items:center">Featured on Pick an Agency</a>`;
 }
 
 function buildThirdPartyReviewBadgesHtml(prefix = '..') {
@@ -268,6 +268,7 @@ function normalizeFooterAssetMarkup(html) {
     inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/www\.webpronexus\.com\/italy\/rho\/branding-agency\/web-novis[^"']*["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
     inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/www\.webdesignlistings\.org\/["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
     inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/listing\.yaeris\.com\/company\/webnovius[^"']*["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
+    inner = inner.replace(/<a\b(?=[^>]*href=["']https:\/\/www\.pickanagency\.com\/agencies\/webnovis[^"']*["'])[^>]*>[\s\S]*?<\/a>/gi, '').trim();
     inner = `${inner} ${buildDirectoryBadgesHtml()}`;
     updated = updated.replace(footerBadgesMatch[0], `${footerBadgesMatch[1]} ${inner} ${footerBadgesMatch[3]}`);
   }
