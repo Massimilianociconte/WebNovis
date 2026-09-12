@@ -1,6 +1,7 @@
 /**
  * WebNovis AI API — Cloudflare Worker
- * Endpoints: /api/health, /api/chat, /api/chat-lead, /api/search-ai
+ * Endpoints: /api/health, /api/chat, /api/chat-lead, /api/search-ai,
+ *   /api/newsletter (POST, double opt-in), /api/newsletter/confirm (GET)
  */
 import searchIndex from '../data/search-index.json';
 import chatConfig from '../data/chat-config.json';
@@ -22,6 +23,10 @@ const CHAT_RL_LIMIT = 30;
 const CHAT_RL_WINDOW = 15 * 60;
 const SEARCH_RL_LIMIT = 20;
 const SEARCH_RL_WINDOW = 60;
+const NEWSLETTER_RL_LIMIT = 10;
+const NEWSLETTER_RL_WINDOW = 15 * 60;
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const DEFAULT_ORIGINS = [
   'https://www.webnovis.com',
@@ -268,6 +273,192 @@ function escapeHtml(unsafe) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+// HMAC-SHA256 via WebCrypto (il Worker non ha node:crypto). La chiave è
+// BREVO_API_KEY: segreto server-side ad alta entropia già presente nell'env,
+// mai esposto al client. Nessun nuovo secret da gestire.
+async function hmacHex(keyMaterial, message) {
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    'raw', enc.encode(keyMaterial), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
+  );
+  const sig = await crypto.subtle.sign('HMAC', key, enc.encode(message));
+  return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+function safeEqualHex(a, b) {
+  const x = String(a || '');
+  const y = String(b || '');
+  if (!/^[a-f0-9]{64}$/i.test(x) || x.length !== y.length) return false;
+  let diff = 0;
+  for (let i = 0; i < x.length; i++) diff |= x.charCodeAt(i) ^ y.charCodeAt(i);
+  return diff === 0;
+}
+
+async function brevoFetch(apiKey, path, options = {}) {
+  const res = await fetch(`https://api.brevo.com/v3${path}`, {
+    method: 'GET',
+    ...options,
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      'api-key': apiKey,
+      ...(options.headers || {})
+    },
+    signal: AbortSignal.timeout(10_000)
+  });
+  const data = await res.json().catch(() => ({}));
+  return { res, data };
+}
+
+// POST /api/newsletter — double opt-in senza backend dedicato.
+// Crea il contatto FUORI dalla lista (attributo DOI_PENDING) e invia l'email
+// transazionale con link di conferma. Risposta sempre uniforme (no oracle).
+async function handleNewsletter(request, env) {
+  if (!requireJsonContent(request)) {
+    return json({ error: 'Content-Type non supportato. Usare application/json.' }, 415);
+  }
+  const rl = await rateLimit(env, `newsletter:${clientIp(request)}`, NEWSLETTER_RL_LIMIT, NEWSLETTER_RL_WINDOW);
+  if (!rl.allowed) {
+    return json({ error: 'Troppe richieste. Riprova tra qualche minuto.' }, 429);
+  }
+
+  const body = await request.json().catch(() => ({}));
+  const email = String(body.email || '').trim().toLowerCase().slice(0, 254);
+  const name = String(body.name || '').trim().slice(0, 100);
+  const source = String(body.source || 'website').trim().slice(0, 30);
+  if (!EMAIL_RE.test(email)) {
+    return json({ error: 'Email non valida.' }, 400);
+  }
+
+  const BREVO_API_KEY = env.BREVO_API_KEY;
+  const listId = Number.parseInt(env.BREVO_LIST_ID, 10);
+  const senderEmail = env.BREVO_SENDER_EMAIL || 'newsletter@webnovis.com';
+  const senderName = env.BREVO_SENDER_NAME || 'WebNovis';
+  const notifyEmail = env.BREVO_NOTIFICATION_EMAIL || 'hello@webnovis.com';
+  if (!BREVO_API_KEY || !Number.isSafeInteger(listId)) {
+    console.error('newsletter misconfigured: missing BREVO_API_KEY or BREVO_LIST_ID');
+    return json({ error: 'Servizio temporaneamente non disponibile.' }, 503);
+  }
+
+  // Se già iscritto e confermato: successo silenzioso, nessuna nuova email (anti-abuse).
+  try {
+    const existing = await brevoFetch(BREVO_API_KEY, `/contacts/${encodeURIComponent(email)}`);
+    if (existing.res.ok) {
+      const inList = Array.isArray(existing.data.listIds) && existing.data.listIds.includes(listId);
+      const pending = existing.data.attributes && existing.data.attributes.DOI_PENDING;
+      if (inList && !pending) return json({ success: true });
+    }
+  } catch (err) {
+    console.error('newsletter lookup error', err && err.message ? err.message : 'unknown');
+  }
+
+  // Crea/aggiorna FUORI dalla lista, in attesa di conferma (double opt-in).
+  const upsert = await brevoFetch(BREVO_API_KEY, '/contacts', {
+    method: 'POST',
+    body: JSON.stringify({
+      email,
+      attributes: { NOME: name || '', SOURCE: source, DOI_PENDING: true },
+      updateEnabled: true
+    })
+  });
+  if (!upsert.res.ok && upsert.data.code !== 'duplicate_parameter') {
+    console.error('newsletter upsert error', upsert.res.status, upsert.data.code || '');
+    return json({ error: 'Servizio temporaneamente non disponibile.' }, 502);
+  }
+
+  const token = await hmacHex(BREVO_API_KEY, email);
+  const confirmUrl = `https://webnovis-ai.nexify-api.workers.dev/api/newsletter/confirm?email=${encodeURIComponent(email)}&token=${token}`;
+  const mail = await brevoFetch(BREVO_API_KEY, '/smtp/email', {
+    method: 'POST',
+    body: JSON.stringify({
+      sender: { name: senderName, email: senderEmail },
+      to: [{ email }],
+      subject: 'Conferma la tua iscrizione alla newsletter WebNovis',
+      htmlContent: `<div style="font-family:Segoe UI,Arial,sans-serif;max-width:600px;margin:0 auto;padding:32px;background:#0a0a0f;color:#e0e0e0;border-radius:16px;">`
+        + `<h2 style="color:#a8b4f8;">Un ultimo passo 🌱</h2>`
+        + `<p>Ciao${name ? ' ' + escapeHtml(name) : ''}! Clicca il pulsante per confermare l'iscrizione alla newsletter WebNovis.</p>`
+        + `<p><a href="${confirmUrl}" style="display:inline-block;background:#5B6AAE;color:#fff;padding:12px 28px;border-radius:10px;text-decoration:none;">Conferma iscrizione</a></p>`
+        + `<p style="color:#888;font-size:13px;">Se non hai richiesto tu l'iscrizione, ignora pure questa email.</p></div>`
+    })
+  });
+  if (!mail.res.ok) {
+    console.error('newsletter confirm-mail error', mail.res.status);
+    return json({ error: 'Servizio temporaneamente non disponibile.' }, 502);
+  }
+
+  // Notifica admin fire-and-forget (destinatario fisso, mai pilotabile).
+  try {
+    await brevoFetch(BREVO_API_KEY, '/smtp/email', {
+      method: 'POST',
+      body: JSON.stringify({
+        sender: { name: senderName, email: senderEmail },
+        to: [{ email: notifyEmail, name: 'WebNovis Team' }],
+        subject: 'Nuova iscrizione newsletter (in attesa di conferma)',
+        htmlContent: `<p>Nuova richiesta di iscrizione da ${escapeHtml(email)} (fonte: ${escapeHtml(source)}). In attesa di conferma via link.</p>`
+      })
+    });
+  } catch (err) {
+    console.error('newsletter notify error', err && err.message ? err.message : 'unknown');
+  }
+
+  return json({ success: true });
+}
+
+// GET /api/newsletter/confirm?email=&token= — conferma double opt-in.
+// Non muta mai via prefetch senza token valido (HMAC 256-bit); idempotente.
+async function handleNewsletterConfirm(request, env) {
+  const url = new URL(request.url);
+  const email = String(url.searchParams.get('email') || '').trim().toLowerCase().slice(0, 254);
+  const token = String(url.searchParams.get('token') || '').trim();
+  const BREVO_API_KEY = env.BREVO_API_KEY;
+  const listId = Number.parseInt(env.BREVO_LIST_ID, 10);
+  if (!BREVO_API_KEY || !Number.isSafeInteger(listId)) {
+    return htmlPage('Servizio non disponibile', 'La conferma è momentaneamente non configurata. Scrivici a hello@webnovis.com.', false);
+  }
+  if (!EMAIL_RE.test(email) || !/^[a-f0-9]{64}$/i.test(token)) {
+    return htmlPage('Link non valido', 'Il link di conferma non è valido. Richiedi una nuova iscrizione dal sito.', false);
+  }
+  const expected = await hmacHex(BREVO_API_KEY, email);
+  if (!safeEqualHex(token, expected)) {
+    return htmlPage('Link non valido', 'Il link di conferma non è valido o è stato manomesso.', false);
+  }
+  try {
+    const update = await brevoFetch(BREVO_API_KEY, `/contacts/${encodeURIComponent(email)}`, {
+      method: 'PUT',
+      body: JSON.stringify({ listIds: [listId], attributes: { DOI_PENDING: false }, updateEnabled: true })
+    });
+    if (!update.res.ok) {
+      return htmlPage('Errore temporaneo', 'Conferma non riuscita, riprova tra qualche minuto.', false);
+    }
+  } catch (err) {
+    console.error('newsletter confirm error', err && err.message ? err.message : 'unknown');
+    return htmlPage('Errore temporaneo', 'Conferma non riuscita, riprova tra qualche minuto.', false);
+  }
+  return htmlPage('Iscrizione confermata', `L'indirizzo ${escapeHtml(email)} è ora iscritto alla newsletter WebNovis. Benvenuto! 🎉`, true);
+}
+
+function htmlPage(title, message, ok) {
+  const color = ok ? '#14b8a6' : '#ef4444';
+  return new Response(
+    `<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">`
+    + `<title>${escapeHtml(title)} - WebNovis</title>`
+    + `<style>body{background:#0a0a0f;color:#e0e0e0;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:1rem}`
+    + `.card{background:#111118;border:1px solid rgba(91,106,174,0.15);border-radius:16px;padding:48px;text-align:center;max-width:460px}`
+    + `h2{color:${color};margin-bottom:12px}p{color:#999;line-height:1.6}</style></head><body>`
+    + `<div class="card"><h2>${escapeHtml(title)}</h2><p>${message}</p></div></body></html>`,
+    {
+      status: 200,
+      headers: {
+        'content-type': 'text/html; charset=utf-8',
+        'X-Content-Type-Options': 'nosniff',
+        'X-Robots-Tag': 'noindex, nofollow',
+        'Referrer-Policy': 'no-referrer',
+        'Cache-Control': 'no-store, no-cache, must-revalidate'
+      }
+    }
+  );
 }
 
 function requireJsonContent(request) {
@@ -561,9 +752,15 @@ export default {
         response = await handleSearchAi(request, env);
       } else if (request.method === 'POST' && url.pathname === '/api/chat-lead') {
         response = await handleChatLead(request, env);
-      } else if (url.pathname === '/api/chat' || url.pathname === '/api/search-ai' || url.pathname === '/api/chat-lead') {
+      } else if (request.method === 'POST' && url.pathname === '/api/newsletter') {
+        response = await handleNewsletter(request, env);
+      } else if (request.method === 'GET' && url.pathname === '/api/newsletter/confirm') {
+        response = await handleNewsletterConfirm(request, env);
+      } else if (url.pathname === '/api/chat' || url.pathname === '/api/search-ai' || url.pathname === '/api/chat-lead' || url.pathname === '/api/newsletter') {
         // Path noto, metodo errato: 405 esplicito (fail-closed, no path echo oltre il noto).
         response = json({ error: 'Metodo non consentito.' }, 405, { Allow: 'POST, OPTIONS' });
+      } else if (url.pathname === '/api/newsletter/confirm') {
+        response = json({ error: 'Metodo non consentito.' }, 405, { Allow: 'GET, OPTIONS' });
       } else if (request.method === 'GET' && (url.pathname === '/api/health' || url.pathname === '/health' || url.pathname === '/')) {
         response = json({
           status: 'ok',

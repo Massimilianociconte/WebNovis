@@ -125,6 +125,16 @@ function main() {
     assert.ok(workerForms.includes(field), `forms worker must strip ${field}`);
   }
 
+  // 17. Newsletter double opt-in sul Worker: endpoint, RL dedicato, uniform response, HMAC dedicato
+  assert.ok(workerAi.includes("url.pathname === '/api/newsletter'"), 'worker must expose POST /api/newsletter');
+  assert.ok(workerAi.includes("url.pathname === '/api/newsletter/confirm'"), 'worker must expose GET /api/newsletter/confirm');
+  assert.ok(workerAi.includes('NEWSLETTER_RL_LIMIT'), 'newsletter must have a dedicated rate-limit bucket');
+  assert.ok(workerAi.includes('DOI_PENDING'), 'newsletter must stage contacts pending confirmation');
+  assert.ok(!/BREVO_API_KEY\s*[:=]\s*['"]xkeysib/.test(workerAi), 'worker must never embed the Brevo key');
+  assert.ok(!/onrender/.test(headers) && !/onrender/.test(readText('js/main.js')), 'dead Render backend must not be referenced');
+  assert.ok(mainJs.includes('showNewsletterConfirmNotice'), 'widget must show the double opt-in notice');
+  assert.ok(readText('css/nicole-inspired.css').includes('.newsletter-confirm'), 'confirm notice must be styled');
+
   // 17. Stdout senza PII grezza (metriche, non content)
   assert.ok(server.includes('function maskEmail('), 'server must provide email masking for logs');
   assert.ok(!server.includes('console.log(`✅ Newsletter: ${email}'), 'stdout must not log raw newsletter email');

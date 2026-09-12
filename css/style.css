@@ -8169,6 +8169,77 @@ img {
         text-align: center;
     }
 
+    /* Directory badges (GWG/WPN/testuali/Yaeris): centratura celle + aria anti-FAB */
+    .footer-badges,
+    .footer-reviews-badges {
+        justify-items: center;
+        align-items: center;
+        row-gap: 0.85rem;
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+    }
+    /* Cap GWG/WPN: da 172x149 / 200x161 naturali a max 56px, ratio intatta */
+    .footer-badges a[href*="greatworkguild.com"],
+    .footer-badges a[href*="webpronexus.com"],
+    .footer-reviews-badges a[href*="greatworkguild.com"],
+    .footer-reviews-badges a[href*="webpronexus.com"] {
+        width: auto;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0 auto;
+        justify-content: center;
+        justify-self: center;
+    }
+    .footer-badges a[href*="greatworkguild.com"] img,
+    .footer-badges a[href*="webpronexus.com"] img,
+    .footer-reviews-badges a[href*="greatworkguild.com"] img,
+    .footer-reviews-badges a[href*="webpronexus.com"] img {
+        max-height: 56px;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+    }
+    /* Link testuali -> chip leggibili (stesso pattern .vai-badge) */
+    .footer-badges a[href*="webdesignlistings.org"],
+    .footer-badges a[href*="pickanagency.com"],
+    .footer-reviews-badges a[href*="webdesignlistings.org"],
+    .footer-reviews-badges a[href*="pickanagency.com"] {
+        grid-column: 1 / -1;
+        width: auto;
+        max-width: 320px;
+        margin: 0 auto;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: 0.01em;
+        white-space: normal;
+        color: rgba(255,255,255,0.88);
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+        min-height: 36px;
+        text-decoration: none;
+    }
+    /* Yaeris: full-row centrata, mai tagliata dal back-to-top */
+    .footer-badges a[href*="yaeris.com"],
+    .footer-reviews-badges a[href*="yaeris.com"] {
+        grid-column: 1 / -1;
+        width: auto;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0 auto;
+        justify-content: center;
+        justify-self: center;
+        box-sizing: border-box;
+    }
+    /* Rete sicurezza: nessun img badge può mai sforare la cella */
+    .footer-badges img,
+    .footer-reviews-badges img {
+        max-width: 100%;
+    }
+
     .footer-bottom {
         padding: 1.5rem 0 calc(1.5rem + env(safe-area-inset-bottom));
         text-align: center;
@@ -8594,6 +8665,26 @@ img {
         padding: 0.62rem 0.7rem;
     }
 
+    /* Badge directory compatti a 480px (scala Maidensail 44px) + respiro anti-FAB */
+    .footer-badges a[href*="greatworkguild.com"] img,
+    .footer-badges a[href*="webpronexus.com"] img,
+    .footer-reviews-badges a[href*="greatworkguild.com"] img,
+    .footer-reviews-badges a[href*="webpronexus.com"] img {
+        max-height: 48px;
+    }
+    .footer-badges,
+    .footer-reviews-badges {
+        row-gap: 0.65rem;
+        padding-bottom: calc(2.25rem + env(safe-area-inset-bottom, 0px));
+    }
+    .footer-badges a[href*="webdesignlistings.org"],
+    .footer-badges a[href*="pickanagency.com"],
+    .footer-reviews-badges a[href*="webdesignlistings.org"],
+    .footer-reviews-badges a[href*="pickanagency.com"] {
+        font-size: 0.72rem;
+        padding: 0.4rem 0.8rem;
+    }
+
     /* -- Showcase numbers compact -- */
     .showcase-numbers {
         padding: 3rem 0;
@@ -8786,6 +8877,20 @@ img {
         width: auto;
         max-width: 320px;
         margin: 0 auto;
+    }
+
+    /* Directory badges su colonna singola: tutto centrato full-width, cap 44px */
+    .footer-badges a[href*="greatworkguild.com"],
+    .footer-badges a[href*="webpronexus.com"],
+    .footer-reviews-badges a[href*="greatworkguild.com"],
+    .footer-reviews-badges a[href*="webpronexus.com"] {
+        grid-column: 1 / -1;
+    }
+    .footer-badges a[href*="greatworkguild.com"] img,
+    .footer-badges a[href*="webpronexus.com"] img,
+    .footer-reviews-badges a[href*="greatworkguild.com"] img,
+    .footer-reviews-badges a[href*="webpronexus.com"] img {
+        max-height: 44px;
     }
 
     /* -- Counter number text overflow -- */

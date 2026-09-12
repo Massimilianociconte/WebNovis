@@ -10,7 +10,7 @@ const CONTENT_SECURITY_POLICY_DIRECTIVES = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.designrush.com",
   "img-src 'self' data: https: blob:",
   "font-src 'self' https://fonts.gstatic.com https://www.designrush.com",
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://g.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://vai.me https://webnovis-ai.nexify-api.workers.dev https://webnovis-forms.nexify-api.workers.dev https://webnovis-chat.onrender.com https://challenges.cloudflare.com",
+  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://g.clarity.ms https://api.web3forms.com https://www.facebook.com https://www.designrush.com https://vai.me https://webnovis-ai.nexify-api.workers.dev https://webnovis-forms.nexify-api.workers.dev https://challenges.cloudflare.com",
   "frame-src 'self' https://challenges.cloudflare.com https://arconti31.com https://unimidoc.netlify.app https://www.fbtotalsecurity.com https://www.mikunaitalia.it https://www.mimmofratelli.com https://www.playmomentum.it https://www.quickseo.online",
   "frame-ancestors 'none'",
   "object-src 'none'",

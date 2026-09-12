@@ -1090,6 +1090,20 @@
     color: var(--gray);
 }
 
+/* Avviso double opt-in: visibile e centrato su mobile e desktop, sopra il fold del widget */
+.newsletter-confirm {
+    margin: 0.9rem auto 0;
+    max-width: 500px;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid rgba(20, 184, 166, 0.35);
+    border-radius: 14px;
+    background: rgba(20, 184, 166, 0.08);
+    color: var(--white);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    text-align: center;
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
     .counters-grid {

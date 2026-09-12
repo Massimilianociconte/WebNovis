@@ -1006,11 +1006,12 @@ techItems.forEach(item => {
 
 // Brevo Newsletter Helper — centralizzato per widget e form contatto
 // Deduplicazione automatica lato server (Brevo updateEnabled: true)
-// FIX: su hosting statico (GitHub Pages) /api/* non esiste — usa il backend Render
-// (stesso pattern di chat.js / search.js)
+// Backend: Worker webnovis-ai (double opt-in con email di conferma).
+// Su hosting statico (GitHub Pages) /api/* non esiste — si usa il Worker;
+// in locale si usa il server Express (stessa API e risposte).
 const NEWSLETTER_API_ENDPOINT = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
     ? 'http://localhost:3000/api/newsletter'
-    : 'https://webnovis-chat.onrender.com/api/newsletter';
+    : 'https://webnovis-ai.nexify-api.workers.dev/api/newsletter';
 
 async function subscribeToNewsletter(email, name, source) {
     try {
@@ -1029,6 +1030,23 @@ async function subscribeToNewsletter(email, name, source) {
         console.warn('Newsletter subscription failed:', err.message);
         return { success: false };
     }
+}
+
+// Avviso double opt-in sotto il widget: creato via DOM (niente innerHTML con
+// input utente), visibile e centrato su mobile e desktop, auto-rimosso.
+function showNewsletterConfirmNotice(form, mailSent) {
+    try {
+        const old = form.parentElement && form.parentElement.querySelector('.newsletter-confirm');
+        if (old) old.remove();
+        const p = document.createElement('p');
+        p.className = 'newsletter-confirm';
+        p.setAttribute('role', 'status');
+        p.textContent = mailSent
+            ? '✓ Iscrizione registrata! Controlla la tua email e clicca il link di conferma per completarla.'
+            : '✓ Iscrizione registrata! Se non ricevi la mail di conferma entro pochi minuti, scrivici a hello@webnovis.com.';
+        form.after(p);
+        setTimeout(() => { if (p.parentElement) p.remove(); }, 12000);
+    } catch (err) { /* never break the form UX */ }
 }
 
 // Enhanced Form Validation with Visual Feedback
@@ -2373,17 +2391,18 @@ if (newsletterForm) {
             const data = await response.json();
 
             if (data.success) {
-                // 2. Iscrivi a Brevo (lista newsletter centralizzata)
-                subscribeToNewsletter(emailInput.value, '', 'newsletter-widget');
+                // 2. Iscrivi a Brevo con double opt-in (il server invia l'email di conferma)
+                const sub = await subscribeToNewsletter(emailInput.value, '', 'newsletter-widget');
 
-                button.textContent = '✓ Iscritto!';
+                button.textContent = '✓ Controlla la tua email!';
                 button.style.background = 'linear-gradient(135deg, #14b8a6, #10b981)';
                 emailInput.value = '';
+                showNewsletterConfirmNotice(newsletterForm, sub && sub.success !== false);
                 setTimeout(() => {
                     button.textContent = originalText;
                     button.style.background = '';
                     button.disabled = false;
-                }, 3000);
+                }, 5000);
             } else {
                 throw new Error(data.message || 'Errore');
             }
